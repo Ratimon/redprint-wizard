@@ -22,7 +22,7 @@ Together with [`redprint-forge`](https://github.com/Ratimon/redprint-forge), it 
 
 We are currently still in an experimental phase leading up to a first audit and would love to hear your feedback on how we can improve `Reprint`.
 
-If you want to say **thank you** or/and support active development of Solid Grinder:
+If you want to say **thank you** or/and support active development of Redprint Wizard:
 
 - Add a [GitHub Star](https://github.com/Ratimon/redprint-wizard) to the
   project.
