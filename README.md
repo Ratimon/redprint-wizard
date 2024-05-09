@@ -1,4 +1,4 @@
-<h1>Keep Optimimstic and be OPStack deployer!! </h1>
+<h1>Keep Optimistic and be OPStack deployer!! </h1>
 
 WIP!!
 
