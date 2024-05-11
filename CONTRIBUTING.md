@@ -15,5 +15,5 @@ https://tailwindcss.com/docs/guides/sveltekit
 Installing dependencies for theme:
 
 ```bash
-pnpm add -D @tailwindcss/forms @tailwindcss/typography daisyui svelte-preprocess
+pnpm add -D @tailwindcss/forms @tailwindcss/typography daisyui svelte-preprocess postcss-load-config
 ```
