@@ -19,6 +19,8 @@ Together with [`redprint-forge`](https://github.com/Ratimon/redprint-forge), it 
 
 ## Contributing
 
+See our [`contributing guidelines`](./CONTRIBUTING.md).
+
 
 We are currently still in an experimental phase leading up to a first audit and would love to hear your feedback on how we can improve `Reprint`.
 
