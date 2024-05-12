@@ -2,6 +2,15 @@
     import '../app.postcss';
     import {url} from '$lib/utils/path';
 	import {appName, appDescription, themeColor, appleStatusBarStyle} from 'web-config';
+
+    import Header from './Header.svelte';
+
+    const headLinks = [
+    {pathname: '#about', title: 'ABOUT US'},
+    {pathname: '#source', title: 'SOURCECODE'},
+    {pathname: '#redprimt-forge', title: 'redprint-forge'},
+    ];
+
 </script>
 
 <svelte:head>
@@ -32,5 +41,11 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content={appleStatusBarStyle} />
 	<meta name="apple-mobile-web-app-title" content={appName} />
 </svelte:head>
+
+<Header links={headLinks} class="bg-base-200 "></Header>
   
-<slot />
+<!-- <slot /> -->
+
+<div class="min-h-full flex flex-col">
+    <slot />
+</div>

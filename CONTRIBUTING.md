@@ -24,6 +24,7 @@ Adding first header:
 pnpm add -D @iconify/svelte
 ```
 
+Generating pwa-based logo:
 ```bash
 pnpm run prepare
 ```
