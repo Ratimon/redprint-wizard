@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
+		"prepare": "pwag static/icon.svg src/web-config.json && cp static/pwa/favicon-512.png static/maskable_icon_512x512.png",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -10,6 +11,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@iconify/svelte": "^4.0.2",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
@@ -19,6 +21,7 @@
 		"daisyui": "^4.11.1",
 		"postcss": "^8.4.38",
 		"postcss-load-config": "^5.1.0",
+		"pwag": "^0.3.0",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
 		"svelte-preprocess": "^5.1.4",

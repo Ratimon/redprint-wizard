@@ -1,0 +1,15 @@
+{
+	"appName": "Redprint Wizard",
+	"appTitle": "OZ's styled dev playground",
+	"appDescription": "an interactive code generator  to modify & deploy OPStack ’s contracts",
+	"themeColor": "#000000",
+	"appleStatusBarStyle": "black-translucent",
+	"icon": "static/icon.svg",
+	"maskableIcons": [
+		{
+			"src": "../maskable_icon_512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}

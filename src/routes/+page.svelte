@@ -1,8 +1,13 @@
-<h1 class="text-3xl font-bold underline">
-Hello world!</h1>
+<script  lang="ts">
 
-<style lang="postcss">
-    :global(html) {
-        background-color: theme(colors.gray.100);
-    }
-</style>
+    import Header from './Header.svelte';
+
+    const headLinks = [
+      {pathname: '#about', title: 'ABOUT US'},
+      {pathname: '#source', title: 'SOURCECODE'},
+      {pathname: '#redprimt-forge', title: 'redprint-forge'},
+  	];
+
+</script>
+
+<Header links={headLinks} class="bg-base-200 "></Header>

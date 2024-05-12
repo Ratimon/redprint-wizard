@@ -1,5 +1,10 @@
 .DS_Store
 node_modules
+# vscode
+.vscode/*
+!.vscode/settings.json.default
+!.vscode/launch.json.default
+!.vscode/extensions.json.default
 /build
 /.svelte-kit
 /package
@@ -8,3 +13,10 @@ node_modules
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+# environment variables
+.env.*
+.env*.local
+!.env.example
+
+# pwag
+static/pwa
