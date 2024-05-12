@@ -2,6 +2,7 @@
   import Icon from '@iconify/svelte';
   
   import NavTabs from '$lib/ui/header/NavScrolls.svelte';
+  import ButtonPopoverCategories from  '$lib/ui/popover/ButtonPopoverCategories.svelte';
   import ButtonGradient from '$lib/ui/buttons/ButtonGradient.svelte';
 
   import {appName} from 'web-config';
@@ -11,6 +12,8 @@
 	export {className as class};
 
   export let links : {pathname: string; title: string}[];
+  export let featureLinks : {pathname: string; title: string}[];
+
 
   let isOpen: boolean = false;
   const setIsOpen = (open : boolean) :void => {
@@ -46,6 +49,7 @@
           tabClass="tab tab-sm tab-lifted flex-1"
           whenSelected="tab-active font-black !bg-base-100"
         />
+        <ButtonPopoverCategories categoryLinks={featureLinks} />
       </div>
   
       <!-- CTA / Launch / Lead on big screens  -->

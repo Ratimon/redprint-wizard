@@ -11,6 +11,11 @@
     {pathname: '#redprimt-forge', title: 'redprint-forge'},
     ];
 
+    const featureLinks = [
+    {pathname: '/features/custom-gas-token', title: 'Custom Gas Token'},
+	{pathname: '/features/custom-bridge', title: 'Custom Bridge'},
+    ];
+
 </script>
 
 <svelte:head>
@@ -42,7 +47,7 @@
 	<meta name="apple-mobile-web-app-title" content={appName} />
 </svelte:head>
 
-<Header links={headLinks} class="bg-base-200 "></Header>
+<Header links={headLinks} featureLinks={featureLinks} class="bg-base-200 "></Header>
   
 <!-- <slot /> -->
 
