@@ -6,7 +6,6 @@
     export let categoryLinks:{pathname: string; title: string}[];
 
 </script>
-  
 
 
 <Popover class="relative z-30" >

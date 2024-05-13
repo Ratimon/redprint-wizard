@@ -3,6 +3,9 @@
     import {url} from '$lib/utils/path';
 	import {appName, appDescription, themeColor, appleStatusBarStyle} from 'web-config';
 
+    // import type { PageData } from "./$types";
+    import { page } from '$app/stores';
+
     import Header from './Header.svelte';
 
     const headLinks = [
@@ -50,6 +53,40 @@
 <Header links={headLinks} featureLinks={featureLinks} class="bg-base-200 "></Header>
   
 <!-- <slot /> -->
+
+<nav class="flex justify-center my-6">
+
+    <ul class="steps">
+
+        <a href="/1-governance" class="step step-primary">
+            Set up Governance Layer
+        </a>
+
+        <a href="/2-super-chain"
+            class="step"
+            class:step-primary={$page.route.id?.match(/2-super-chain|3-plasma-chain|4-op-chain/g)}
+            > 
+            Set up L1 Super Chain
+        </a>
+
+        <a href="/3-plasma-chain"
+            class="step"
+            class:step-primary={$page.route.id?.match(/3-plasma-chain|4-op-chain/g)}
+        >
+            Set up Plasma Chain
+        </a>
+
+        <a href="/4-op-chain"
+            class="step"
+            class:step-primary={$page.route.id?.includes("/4-op-chain")}
+            >
+            Set up L2 OP Chain
+         </a>
+
+    </ul>
+
+
+</nav>
 
 <div class="min-h-full flex flex-col">
     <slot />
