@@ -1,1 +1,163 @@
-11111
+<script  lang="ts">
+    import { createEventDispatcher } from 'svelte';
+
+    import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
+    import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard';
+    import { ContractBuilder, buildGeneric, printContract, sanitizeKind, OptionsError } from '$lib/wizard';
+    import hljs from '../highlightjs';
+    import { postConfig } from '../post-config';
+
+    const dispatch = createEventDispatcher();
+
+    export let initialTab: string | undefined = 'Safe';
+    export let tab: Kind = sanitizeKind(initialTab);
+
+    $: {
+        tab = sanitizeKind(tab);
+        dispatch('tab-change', tab);
+    };
+
+    let allOpts: { [k in Kind]?: Required<KindedOptions[k]> } = {};
+    let errors: { [k in Kind]?: OptionsErrorMessages } = {};
+
+    let contract: Contract = new ContractBuilder('MyToken');
+
+    $: opts = allOpts[tab];
+
+    $: {
+    if (opts) {
+            try {
+                contract = buildGeneric(opts);
+                errors[tab] = undefined;
+            } catch (e: unknown) {
+                if (e instanceof OptionsError) {
+                errors[tab] = e.messages;
+                } else {
+                throw e;
+                }
+            }
+        }
+    }
+
+  $: code = printContract(contract);
+  $: highlightedCode = injectHyperlinks(hljs.highlight(code, {language: 'solidity'} ).value);
+
+  const language = 'solidity';
+
+
+    let copied = false;
+    const copyHandler = async () => {
+    await navigator.clipboard.writeText(code);
+    copied = true;
+    if (opts) {
+        await postConfig(opts, 'copy', language);
+    }
+    setTimeout(() => {
+        copied = false;
+    }, 1000);
+    };
+
+
+</script>
+
+<div class="container flex flex-col gap-4 p-4">
+    <div class="header flex flex-row justify-between">
+        <div class="tab overflow-hidden">
+            <ul class="menu menu-horizontal bg-base-200">
+                <li>
+                  <button class:selected={tab === 'Governor'} on:click={() => tab = 'Governor'}>
+                    Governor
+                  </button>
+                </li>
+                <li>
+                    <button class:selected={tab === 'Governor'} on:click={() => tab = 'Governor'}>
+                      Governor
+                    </button>
+                  </li>
+            </ul>
+
+        </div>
+        11111
+    </div>
+</div>
+
+
+
+<style lang="postcss">
+    .container {
+      background-color: var(--gray-1);
+      border: 1px solid var(--gray-2);
+      border-radius: 10px;
+      min-width: 32rem;
+    }
+  
+    .header {
+      font-size: var(--text-small);
+    }
+  
+    .tab {
+      color: var(--gray-5);
+    }
+  
+    .tab button, .action-button, :global(.overflow-btn) {
+      padding: var(--size-1) var(--size-2);
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  
+    .tab button, :global(.overflow-btn) {
+      border: 0;
+      background-color: transparent;
+    }
+  
+    .tab button:hover, :global(.overflow-btn):hover {
+      background-color: var(--gray-2);
+    }
+  
+    .tab button.selected {
+      background-color: var(--solidity-blue-2);
+      color: white;
+      order: -1;
+    }
+  
+    :global(.overflow-menu) button.selected {
+      order: unset;
+    }
+  
+    .action-button {
+      background-color: var(--gray-1);
+      border: 1px solid var(--gray-3);
+      color: var(--gray-6);
+      cursor: pointer;
+  
+      &:hover {
+        background-color: var(--gray-2);
+      }
+  
+      /* &:active, &.active {
+        background-color: var(--gray-2);
+      }
+      */
+
+      /* &.disabled {
+        color: var(--gray-4);
+      } */
+  
+      :global(.icon) {
+        margin-right: var(--size-1);
+      }
+    }
+  
+    .controls {
+      background-color: white;
+      padding: var(--size-4);
+    }
+  
+    .controls, .output {
+      border-radius: 5px;
+      box-shadow: var(--shadow);
+    }
+  
+</style>
+  
