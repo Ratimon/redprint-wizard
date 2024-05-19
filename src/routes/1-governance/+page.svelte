@@ -1,6 +1,9 @@
 <script  lang="ts">
     import { createEventDispatcher } from 'svelte';
 
+    import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
+    import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
+
     import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
     import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard';
     import { ContractBuilder, buildGeneric, printContract, sanitizeKind, OptionsError } from '$lib/wizard';
@@ -61,7 +64,9 @@
 </script>
 
 <div class="container flex flex-col gap-4 p-4">
+
     <div class="header flex flex-row justify-between">
+
         <div class="tab overflow-hidden">
             <ul class="menu menu-horizontal bg-base-200">
                 <li>
@@ -73,15 +78,24 @@
                     <button class:selected={tab === 'Governor'} on:click={() => tab = 'Governor'}>
                       Governor
                     </button>
-                  </li>
+                </li>
             </ul>
-
         </div>
-        11111
+
+        <div class="action flex flex-row gap-2 shrink-0">
+            <button class="action-button min-w-[165px]" on:click={copyHandler}>
+              <div class="flex justify-between">
+                {#if copied}
+                  <CheckIcon />Copied
+                {:else}
+                  <CopyIcon />Copy to Clipboard
+                {/if}
+              </div>
+            </button>
+        </div>
+
     </div>
 </div>
-
-
 
 <style lang="postcss">
     .container {
