@@ -4,6 +4,8 @@
     import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
     import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
 
+    import GovernorControls from '$lib/ui/controls/GovernorControls.svelte';
+
     import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
     import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard';
     import { ContractBuilder, buildGeneric, printContract, sanitizeKind, OptionsError } from '$lib/wizard';
@@ -12,7 +14,7 @@
 
     const dispatch = createEventDispatcher();
 
-    export let initialTab: string | undefined = 'Safe';
+    export let initialTab: string | undefined = 'Governor';
     export let tab: Kind = sanitizeKind(initialTab);
 
     $: {
@@ -95,6 +97,19 @@
         </div>
 
     </div>
+
+    <div class="flex flex-row gap-4 grow">
+
+      <!-- w-64 -->
+      <div class="controls w-64 flex flex-col shrink-0 justify-between h-[calc(100vh-84px)] overflow-auto">
+        <div class:hidden={tab !== 'Governor'}>
+          <GovernorControls bind:opts={allOpts.Governor} errors={errors.Governor} />
+        </div>
+      </div>
+
+    </div>
+
+
 </div>
 
 <style lang="postcss">
@@ -168,7 +183,7 @@
       padding: var(--size-4);
     }
   
-    .controls, .output {
+    .controls {
       border-radius: 5px;
       box-shadow: var(--shadow);
     }
