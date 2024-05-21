@@ -1,6 +1,6 @@
 const daisyui = require('daisyui');
 const typography = require('@tailwindcss/typography');
-const forms = require('@tailwindcss/forms');
+const forms = require('@tailwindcss/forms')({ strategy: 'class' });
 
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],

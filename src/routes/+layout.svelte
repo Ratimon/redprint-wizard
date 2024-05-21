@@ -52,9 +52,8 @@
 
 <Header links={headLinks} featureLinks={featureLinks} class="bg-base-200 "></Header>
   
-<!-- <slot /> -->
 
-<nav class="flex justify-center my-6">
+<nav class="flex justify-center my-4">
 
     <ul class="steps">
 
@@ -85,9 +84,9 @@
 
     </ul>
 
-
 </nav>
 
-<div class="min-h-full flex flex-col">
-    <slot />
-</div>
+<!-- <div class="min-h-full flex flex-col">
+</div> -->
+
+<slot />

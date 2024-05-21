@@ -23,8 +23,8 @@
 </script>
 
 <header class={className}>
-    <nav class="container flex items-center justify-between px-8 py-4 mx-2"
-      aria-label="Global" >
+    <nav class="container flex items-center justify-between px-8 py-4 mx-8" aria-label="Global" >
+
       <div class="flex lg:flex-1">
         <a class="flex items-center gap-2 shrink-0"
           href="/"
@@ -53,7 +53,7 @@
       </div>
   
       <!-- CTA / Launch / Lead on big screens  -->
-      <div class="hidden lg:flex lg:justify-end lg:flex-1">
+      <div class="hidden justify-end lg:flex lg:justify-end lg:flex-1">
         <ButtonGradient title="Read Our Blog" />
       </div>
   
