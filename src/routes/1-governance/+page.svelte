@@ -68,90 +68,83 @@
 
 <div class="container flex flex-col gap-4 p-8 mx-8">
 
+  <div class="divider divider-primary bg-primary-100">
+    <p class="text-2xl">1.1 Contracts</p>
+  </div>
 
-  <div class="collapse border border-base-300 bg-base-200">
-    <input type="checkbox" checked="checked" />
+  <div class="header flex flex-row justify-between">
 
-    <div class="collapse-title text-xl font-medium">
-      1: Contract Params Setting
+    <div class="tab overflow-hidden">
+    
+        <ul class="menu menu-horizontal bg-base-200">
+            <li>
+              <button class:selected={tab === 'Governor'} on:click={() => tab = 'Governor'}>
+                Governor
+              </button>
+            </li>
+            <li>
+              <button class:selected={tab === 'Governor'} on:click={() => tab = 'Governor'}>
+                Governor
+              </button>
+            </li>
+        </ul>
     </div>
-    <div class="collapse-content"> 
 
-      <div class="header flex flex-row justify-between">
-
-        <div class="tab overflow-hidden">
-        
-            <ul class="menu menu-horizontal bg-base-200">
-                <li>
-                  <button class:selected={tab === 'Governor'} on:click={() => tab = 'Governor'}>
-                    Governor
-                  </button>
-                </li>
-                <li>
-                  <button class:selected={tab === 'Governor'} on:click={() => tab = 'Governor'}>
-                    Governor
-                  </button>
-                </li>
-            </ul>
-        </div>
-
-        <div class="action flex flex-row gap-2 shrink-0">
-            <button class="action-button min-w-[165px]" on:click={copyHandler}>
-              <div class="flex justify-between">
-                {#if copied}
-                  <CheckIcon />Copied
-                {:else}
-                  <CopyIcon />Copy to Clipboard
-                {/if}
-              </div>
-            </button>
-        </div>
-
-      </div>
-
-      <div class="flex flex-row gap-4 grow">
-        <!-- w-64 -->
-        <div class="controls w-64 flex flex-col shrink-0 justify-between h-[calc(210vh-80px)] overflow-auto">
-          <div class:hidden={tab !== 'Governor'}>
-            <GovernorControls bind:opts={allOpts.Governor} errors={errors.Governor} />
+    <div class="action flex flex-row gap-2 shrink-0">
+        <button class="action-button min-w-[165px]" on:click={copyHandler}>
+          <div class="flex justify-between">
+            {#if copied}
+              <CheckIcon />Copied
+            {:else}
+              <CopyIcon />Copy to Clipboard
+            {/if}
           </div>
-        </div>
+        </button>
+    </div>
 
-        <div class="output flex flex-col grow overflow-auto h-[calc(210vh-80px)]">
-          <pre class="flex flex-col grow basis-0 overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html highlightedCode}
-            </code>
-          </pre>
-        </div>
+  </div>
 
+  <div class="flex flex-row gap-4 grow">
+    <!-- w-64 -->
+    <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(210vh-80px)] overflow-auto">
+      <div class:hidden={tab !== 'Governor'}>
+        <GovernorControls bind:opts={allOpts.Governor} errors={errors.Governor} />
+      </div>
+    </div>
 
+    
+
+    <div class="output flex flex-col grow overflow-auto h-[calc(210vh-40px)]">
+
+      <div class="badge badge-primary badge-outline badge-lg">
+        Smart Contract
       </div>
 
-    </div>
-  </div>
-
-  <div class="collapse collapse-arrow bg-base-200">
-    <input type="checkbox" /> 
-    <div class="collapse-title text-xl font-medium">
-      2: Contracts 2 Setting
-    </div>
-    <div class="collapse-content"> 
-      <p>hello</p>
-    </div>
-  </div>
-
-
-
-
-    <div class="output flex flex-col grow overflow-auto h-[calc(75vh-84px)]">
       <pre class="flex flex-col grow basis-0 overflow-auto">
         <code class="hljs grow overflow-auto p-4">
           {@html highlightedCode}
         </code>
       </pre>
     </div>
+    
+    <div class="output flex flex-col grow overflow-auto h-[calc(210vh-40px)]">
 
+      <div class="badge badge-primary badge-outline badge-lg">
+        Deploy Script
+      </div>
+
+      <pre class="flex flex-col grow basis-0 overflow-auto">
+        <code class="hljs grow overflow-auto p-4">
+          {@html highlightedCode}
+        </code>
+      </pre>
+    </div>
+    
+  </div>
+
+  <div class="divider divider-primary bg-primary-100">
+    <p class="text-2xl">1.1 Contracts</p>
+  </div>
 
 </div>
 
