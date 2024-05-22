@@ -4,12 +4,12 @@ import type { Contract, Parent, ContractFunction, FunctionArgument, Value, Natsp
 import type { Options, Helpers }from './options';
 import { withHelpers } from './options';
 
-import type { Lines} from './utils/format-lines';
-import { formatLines, spaceBetween } from './utils/format-lines';
-import { mapValues } from './utils/map-values';
+import type { Lines} from '../utils/format-lines';
+import { formatLines, spaceBetween } from '../utils/format-lines';
+import { mapValues } from '../utils/map-values';
 import SOLIDITY_VERSION from './solidity-version.json';
 import { inferTranspiled } from './infer-transpiled';
-import { compatibleContractsSemver } from './utils/version';
+import { compatibleContractsSemver } from '../utils/version';
 
 export function printContract(contract: Contract, opts?: Options): string {
   const helpers = withHelpers(contract, opts);

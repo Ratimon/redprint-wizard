@@ -1,4 +1,4 @@
-import type { BaseFunction } from '../contract';
+import type { BaseFunction } from '../smart-contracts/contract';
 
 type ImplicitNameFunction = Omit<BaseFunction, 'name'>;
 

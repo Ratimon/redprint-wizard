@@ -1,4 +1,4 @@
-import type { GenericOptions } from '$lib/wizard/build-generic';
+import type { GenericOptions } from '$lib/wizard/smart-contracts/build-generic';
 import { v4 as uuid } from 'uuid';
 
 declare global {

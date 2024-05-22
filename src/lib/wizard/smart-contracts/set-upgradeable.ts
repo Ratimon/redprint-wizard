@@ -1,7 +1,7 @@
 import type { ContractBuilder } from './contract';
 export type { Access } from './set-access-control';
 import {  requireAccessControl } from './set-access-control';
-import { defineFunctions } from './utils/define-functions';
+import { defineFunctions } from '../utils/define-functions';
 
 export const upgradeableOptions = [false, 'transparent', 'uups'] as const;
 

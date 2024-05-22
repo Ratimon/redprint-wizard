@@ -1,8 +1,8 @@
 <script lang="ts">
   import HelpTooltip from './HelpTooltip.svelte';
 
-  import type { KindedOptions, OptionsErrorMessages } from '$lib/wizard';
-  import { governor, infoDefaults } from '$lib/wizard';
+  import type { KindedOptions, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
+  import { governor, infoDefaults } from '$lib/wizard/smart-contracts';
 
   import ToggleRadio from '$lib/ui/inputs/ToggleRadio.svelte';
   import UpgradeabilitySection from './UpgradeabilitySection.svelte';

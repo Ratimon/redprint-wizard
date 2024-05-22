@@ -8,8 +8,8 @@ import { setAccessControl } from "./set-access-control";
 import { printContract } from "./print";
 import { setInfo } from "./set-info";
 import { setUpgradeable } from "./set-upgradeable";
-import { defineFunctions } from './utils/define-functions';
-import { durationToBlocks } from "./utils/duration";
+import { defineFunctions } from '../utils/define-functions';
+import { durationToBlocks } from "../utils/duration";
 
 export const defaults: Required<GovernorOptions> = {
   name: 'MyGovernor',

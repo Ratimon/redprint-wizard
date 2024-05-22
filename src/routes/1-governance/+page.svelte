@@ -7,8 +7,8 @@
     import GovernorControls from '$lib/ui/controls/GovernorControls.svelte';
 
     import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
-    import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard';
-    import { ContractBuilder, buildGeneric, printContract, sanitizeKind, OptionsError } from '$lib/wizard';
+    import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
+    import { ContractBuilder, buildGeneric, printContract, sanitizeKind, OptionsError } from '$lib/wizard/smart-contracts';
     import hljs from '../highlightjs';
     import { postConfig } from '../post-config';
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 
-  import type {Info } from '$lib/wizard';
-  import { infoDefaults } from '$lib/wizard';
+  import type {Info } from '$lib/wizard/smart-contracts';
+  import { infoDefaults } from '$lib/wizard/smart-contracts';
 
   import HelpTooltip from './HelpTooltip.svelte';
 

@@ -1,4 +1,4 @@
-import { toIdentifier } from './utils/to-identifier';
+import { toIdentifier } from '../utils/to-identifier';
 
 export interface Contract {
   name: string;
