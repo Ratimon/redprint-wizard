@@ -83,8 +83,8 @@
               </button>
             </li>
             <li>
-              <button class:selected={tab === 'Governor'} on:click={() => tab = 'Governor'}>
-                Governor
+              <button class:selected={tab === 'Safe'} on:click={() => tab = 'Safe'}>
+                Safe MultiSig
               </button>
             </li>
         </ul>

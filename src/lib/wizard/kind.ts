@@ -4,19 +4,15 @@ export type Kind = GenericOptions['kind'];
 
 export function sanitizeKind(kind: unknown): Kind {
   if (typeof kind === 'string') {
-    const sanitized = kind.replace(/^(ERC|.)/i, c => c.toUpperCase());
-    if (isKind(sanitized)) {
-      return sanitized;
+    if (isKind(kind)) {
+      return kind;
     }
   }
-  return 'ERC20';
+  return 'Custom';
 }
 
 function isKind<T>(value: Kind | T): value is Kind {
   switch (value) {
-    case 'ERC20':
-    case 'ERC1155':
-    case 'ERC721':
     case 'Governor':
     case 'Custom':
       return true;
