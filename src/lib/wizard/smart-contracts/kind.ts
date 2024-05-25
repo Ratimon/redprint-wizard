@@ -2,7 +2,7 @@ import type { GenericOptions } from './build-generic';
 
 export type Kind = GenericOptions['kind'];
 
-export function sanitizeKind(kind: unknown): Kind {
+export function sanitizeContractKind(kind: unknown): Kind {
   if (typeof kind === 'string') {
     if (isKind(kind)) {
       return kind;
@@ -13,6 +13,7 @@ export function sanitizeKind(kind: unknown): Kind {
 
 function isKind<T>(value: Kind | T): value is Kind {
   switch (value) {
+    case 'Safe':
     case 'Governor':
     case 'Custom':
       return true;

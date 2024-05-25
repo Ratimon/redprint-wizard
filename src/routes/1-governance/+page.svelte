@@ -7,36 +7,43 @@
     import GovernorControls from '$lib/ui/controls/GovernorControls.svelte';
 
     import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
+
     import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
-    import { ContractBuilder, buildGeneric, printContract, sanitizeKind, OptionsError } from '$lib/wizard/smart-contracts';
+    // import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
+
+    import { ContractBuilder, buildContractGeneric, printContract, sanitizeContractKind, ContractOptionsError } from '$lib/wizard/smart-contracts';
+    // import { ContractBuilder, buildGeneric, printContract, sanitizeKind, OptionsError } from '$lib/wizard/smart-contracts';
+
+    // import { DeployScriptBuilder, buildGeneric, printContract, sanitizeKind, OptionsError } from '$lib/wizard/deploy-scripts';
+
     import hljs from '../highlightjs';
     import { postConfig } from '../post-config';
 
     const dispatch = createEventDispatcher();
 
-    export let initialTab: string | undefined = 'Governor';
-    export let tab: Kind = sanitizeKind(initialTab);
+    export let initialContractTab: string | undefined = 'Governor';
+    export let contractTab: Kind = sanitizeContractKind(initialContractTab);
 
     $: {
-        tab = sanitizeKind(tab);
-        dispatch('tab-change', tab);
+      contractTab = sanitizeContractKind(contractTab);
+      dispatch('contractTab-change', contractTab);
     };
 
-    let allOpts: { [k in Kind]?: Required<KindedOptions[k]> } = {};
+    let allContractsOpts: { [k in Kind]?: Required<KindedOptions[k]> } = {};
     let errors: { [k in Kind]?: OptionsErrorMessages } = {};
 
     let contract: Contract = new ContractBuilder('MyToken');
 
-    $: opts = allOpts[tab];
+    $: contractOpts = allContractsOpts[contractTab];
 
     $: {
-    if (opts) {
+    if (contractOpts) {
             try {
-                contract = buildGeneric(opts);
-                errors[tab] = undefined;
+                contract = buildContractGeneric(contractOpts);
+                errors[contractTab] = undefined;
             } catch (e: unknown) {
                 if (e instanceof OptionsError) {
-                errors[tab] = e.messages;
+                errors[contractTab] = e.messages;
                 } else {
                 throw e;
                 }
@@ -55,8 +62,8 @@
   const copyHandler = async () => {
     await navigator.clipboard.writeText(code);
     copied = true;
-    if (opts) {
-        await postConfig(opts, 'copy', language);
+    if (contractOpts) {
+        await postConfig(contractOpts, 'copy', language);
     }
     setTimeout(() => {
         copied = false;
@@ -78,12 +85,12 @@
     
         <ul class="menu menu-horizontal bg-base-200">
             <li>
-              <button class:selected={tab === 'Governor'} on:click={() => tab = 'Governor'}>
+              <button class:selected={contractTab === 'Governor'} on:click={() => contractTab = 'Governor'}>
                 Governor
               </button>
             </li>
             <li>
-              <button class:selected={tab === 'Safe'} on:click={() => tab = 'Safe'}>
+              <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
                 Safe MultiSig
               </button>
             </li>
@@ -107,8 +114,8 @@
   <div class="flex flex-row gap-4 grow">
     <!-- w-64 -->
     <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(210vh-80px)] overflow-auto">
-      <div class:hidden={tab !== 'Governor'}>
-        <GovernorControls bind:opts={allOpts.Governor} errors={errors.Governor} />
+      <div class:hidden={contractTab !== 'Governor'}>
+        <GovernorControls bind:opts={allContractsOpts.Governor} errors={errors.Governor} />
       </div>
     </div>
 

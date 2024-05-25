@@ -11,7 +11,7 @@ export interface KindedOptions {
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
 
-export function buildGeneric(opts: GenericOptions) {
+export function buildContractGeneric(opts: GenericOptions) {
   switch (opts.kind) {
 
     case 'Governor':
