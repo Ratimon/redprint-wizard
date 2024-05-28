@@ -5,11 +5,22 @@ import type { DeployContract} from './contract';
 import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
 
 import { DeployBuilder } from "./contract";
-
+import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
+export const defaults: Required<DeployGovernerOptions> = {
+  name: 'MyGovernor',
 
-export interface DeploySafeOptions extends CommonOptions {
+  info: commonDefaults.info
+} as const;
+
+export function printDeployGovernor(opts: DeployGovernerOptions = defaults): string {
+  return printDeployContract(buildDeployGoverner(opts));
+}
+
+
+
+export interface DeployGovernerOptions extends CommonOptions {
     name: string;
     // delay: string;
     // period: string;
@@ -23,7 +34,7 @@ export interface DeploySafeOptions extends CommonOptions {
     // settings?: boolean;
   }
 
-export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
+export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract {
     const allOpts = withDeloyDefaults(opts);
   
     const c = new DeployBuilder(allOpts.name);
@@ -45,7 +56,7 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
     return c;
   }
 
-  function withDeloyDefaults(opts: DeploySafeOptions): Required<DeploySafeOptions> {
+  function withDeloyDefaults(opts: DeployGovernerOptions): Required<DeployGovernerOptions> {
     return {
       ...opts,
       ...withCommonDefaults(opts),
@@ -62,7 +73,7 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
     };
   }
 
-  function addBase(c: DeployBuilder, { name }: DeploySafeOptions) {
+  function addBase(c: DeployBuilder, { name }: DeployGovernerOptions) {
     const DeployScript = {
       name: 'DeployScript',
       path: '@redprint-core/deployer/DeployScript.sol',

@@ -1,4 +1,4 @@
-import type { DeployScriptBuilder } from "./contract";
+import type { DeployBuilder } from "./contract";
 
 export const TAG_SECURITY_CONTACT = `@custom:security-contact`;
 
@@ -11,7 +11,7 @@ export type Info = {
   license?: string;
 }
 
-export function setInfo(c: DeployScriptBuilder, info: Info) {
+export function setInfo(c: DeployBuilder, info: Info) {
   const { securityContact, license } = info;
   
   if (securityContact) {

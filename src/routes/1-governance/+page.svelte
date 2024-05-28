@@ -12,9 +12,7 @@
     // import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
 
     import { ContractBuilder, buildContractGeneric, printContract, sanitizeContractKind, ContractOptionsError } from '$lib/wizard/smart-contracts';
-    // import { ContractBuilder, buildGeneric, printContract, sanitizeKind, OptionsError } from '$lib/wizard/smart-contracts';
-
-    // import { DeployScriptBuilder, buildGeneric, printContract, sanitizeKind, OptionsError } from '$lib/wizard/deploy-scripts';
+    import { DeployBuilder, buildDeployGeneric, printDeployContract, sanitizeDeployKind, DeployOptionsError } from '$lib/wizard/deploy-scripts';
 
     import hljs from '../highlightjs';
     import { postConfig } from '../post-config';
@@ -42,7 +40,7 @@
                 contract = buildContractGeneric(contractOpts);
                 errors[contractTab] = undefined;
             } catch (e: unknown) {
-                if (e instanceof OptionsError) {
+                if (e instanceof ContractOptionsError) {
                 errors[contractTab] = e.messages;
                 } else {
                 throw e;

@@ -1,6 +1,6 @@
 import { toIdentifier } from '../utils/to-identifier';
 
-export interface DeployScriptContract {
+export interface DeployContract {
   name: string;
   license: string;
   parents: Parent[];
@@ -71,7 +71,7 @@ export interface NatspecTag {
   value: string;
 }
 
-export class DeployScriptBuilder implements DeployScriptContract {
+export class DeployBuilder implements DeployContract {
   readonly name: string;
   license: string = 'MIT';
 
