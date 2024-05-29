@@ -1,5 +1,5 @@
 import type { CommonOptions } from './common-options';
-import { printGovernor, defaults as governorDefaults, isAccessControlRequired as governorIsAccessControlRequired, type GovernorOptions } from './governor';
+import { printGovernor, defaults as governorDefaults, isAccessControlRequired as governorIsAccessControlRequired, type GovernorOptions } from './1-governor';
 import { printCustom, defaults as customDefaults, isAccessControlRequired as customIsAccessControlRequired, type CustomOptions } from './custom';
 
 export interface WizardContractAPI<Options extends CommonOptions> {

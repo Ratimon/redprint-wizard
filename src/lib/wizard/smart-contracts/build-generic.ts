@@ -1,8 +1,8 @@
 
 import type { CustomOptions} from './custom';
 import { buildCustom } from './custom';
-import type { GovernorOptions} from './governor';
-import { buildGovernor } from './governor';
+import type { GovernorOptions} from './1-governor';
+import { buildGovernor } from './1-governor';
 
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & CustomOptions;

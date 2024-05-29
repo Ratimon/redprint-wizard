@@ -4,9 +4,9 @@
     import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
     import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
 
-    import GovernorControls from '$lib/ui/controls/GovernorControls.svelte';
+    import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
     import CustomControls from '$lib/ui/controls/CustomControls.svelte';
-    import SafeControls from '$lib/ui/controls/SafeControls.svelte';
+    import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
 
     import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
 
