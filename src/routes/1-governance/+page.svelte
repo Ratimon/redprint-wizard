@@ -5,6 +5,8 @@
     import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
 
     import GovernorControls from '$lib/ui/controls/GovernorControls.svelte';
+    import CustomControls from '$lib/ui/controls/CustomControls.svelte';
+    import SafeControls from '$lib/ui/controls/SafeControls.svelte';
 
     import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
 
@@ -88,6 +90,11 @@
               </button>
             </li>
             <li>
+              <button class:selected={contractTab === 'Custom'} on:click={() => contractTab = 'Custom'}>
+                Custom
+              </button>
+            </li>
+            <li>
               <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
                 Safe MultiSig
               </button>
@@ -115,6 +122,15 @@
       <div class:hidden={contractTab !== 'Governor'}>
         <GovernorControls bind:opts={allContractsOpts.Governor} errors={errors.Governor} />
       </div>
+
+      <div class:hidden={contractTab !== 'Custom'}>
+        <CustomControls bind:opts={allContractsOpts.Custom}  />
+      </div>
+
+      <div class:hidden={contractTab !== 'Safe'}>
+        <SafeControls bind:opts={allContractsOpts.Safe}  />
+      </div>
+
     </div>
 
     
