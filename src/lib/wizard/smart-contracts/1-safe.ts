@@ -9,7 +9,6 @@ import { printContract } from "./print";
 import type { Info  } from "./set-info";
 import { setInfo  } from "./set-info";
 import { setAccessControl } from './set-access-control';
-
 import { setUpgradeable } from './set-upgradeable';
 
 

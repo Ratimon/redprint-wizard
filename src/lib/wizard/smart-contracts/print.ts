@@ -48,6 +48,7 @@ export function printContract(contract: Contract, opts?: Options): string {
       [
         ...printNatspecTags(contract.natspecTags),
         [`contract ${contract.name}`, ...printInheritance(contract, helpers), '{'].join(' '),
+        contract.usings.map(p => `using ${p.library.name} for ${p.usingFor} ;`),
         spaceBetween(
           contract.variables,
           printConstructor(contract, helpers),
@@ -63,6 +64,7 @@ export function printContract(contract: Contract, opts?: Options): string {
     ),
   );
 }
+
 
 function printInheritance(contract: Contract, { transformName }: Helpers): [] | [string] {
   if (contract.parents.length > 0) {

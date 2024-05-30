@@ -5,6 +5,7 @@ export interface Contract {
   license: string;
   parents: Parent[];
   natspecTags: NatspecTag[];
+  usings: Using[];
   imports: ParentContract[];
   functions: ContractFunction[];
   constructorCode: string[];
@@ -112,6 +113,10 @@ export class ContractBuilder implements Contract {
     ];
   }
 
+  get usings(): Using[] {
+    return [...this.using];
+  }
+
   get functions(): ContractFunction[] {
     return [...this.functionMap.values()];
   }
@@ -119,6 +124,17 @@ export class ContractBuilder implements Contract {
   get variables(): string[] {
     return [...this.variableSet];
   }
+
+  // export interface Using {
+  //   library: ParentContract;
+  //   usingFor: string;
+  // }
+
+  addLibrary(contract: ParentContract, useFor: string ) {
+    const using : Using = {library : contract ,usingFor: useFor  } ;
+    this.using.push(using);
+  }
+
 
   addParent(contract: ParentContract, params: Value[] = []): boolean {
     const present = this.parentMap.has(contract.name);
@@ -207,3 +223,4 @@ export class ContractBuilder implements Contract {
     return !present;
   }
 }
+
