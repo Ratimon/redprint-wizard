@@ -1,7 +1,6 @@
 import type { CommonOptions } from './common-options';
 import { printGovernor, defaults as governorDefaults, isAccessControlRequired as governorIsAccessControlRequired, type GovernorOptions } from './1-governor';
 import { printSafe, defaults as safeDefaults , type SafeOptions } from './1-safe';
-import { printCustom, defaults as customDefaults, isAccessControlRequired as customIsAccessControlRequired, type CustomOptions } from './custom';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -23,8 +22,6 @@ export interface WizardContractAPI<Options extends CommonOptions> {
 
 export type Governor = WizardContractAPI<GovernorOptions>;
 export type Safe = WizardContractAPI<SafeOptions>;
-export type Custom = WizardContractAPI<CustomOptions>;
-
 
 export const governor: Governor = {
   print: printGovernor,
@@ -35,10 +32,4 @@ export const governor: Governor = {
 export const safe: Safe = {
   print: printSafe,
   defaults: safeDefaults
-}
-
-export const custom: Custom = {
-  print: printCustom,
-  defaults: customDefaults,
-  isAccessControlRequired: customIsAccessControlRequired
 }

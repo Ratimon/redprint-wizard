@@ -125,11 +125,6 @@ export class ContractBuilder implements Contract {
     return [...this.variableSet];
   }
 
-  // export interface Using {
-  //   library: ParentContract;
-  //   usingFor: string;
-  // }
-
   addLibrary(contract: ParentContract, useFor: string ) {
     const using : Using = {library : contract ,usingFor: useFor  } ;
     this.using.push(using);

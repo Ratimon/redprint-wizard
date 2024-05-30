@@ -5,7 +5,6 @@
     import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
 
     import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
-    import CustomControls from '$lib/ui/controls/CustomControls.svelte';
     import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
 
     import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
@@ -84,21 +83,16 @@
     <div class="tab overflow-hidden">
     
         <ul class="menu menu-horizontal bg-base-200">
-            <li>
-              <button class:selected={contractTab === 'Governor'} on:click={() => contractTab = 'Governor'}>
-                Governor
-              </button>
-            </li>
-            <li>
-              <button class:selected={contractTab === 'Custom'} on:click={() => contractTab = 'Custom'}>
-                Custom
-              </button>
-            </li>
-            <li>
-              <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
-                Safe MultiSig
-              </button>
-            </li>
+          <li>
+            <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
+              Safe MultiSig
+            </button>
+          </li>
+          <li>
+            <button class:selected={contractTab === 'Governor'} on:click={() => contractTab = 'Governor'}>
+              Governor
+            </button>
+          </li>
         </ul>
     </div>
 
@@ -118,24 +112,19 @@
 
   <div class="flex flex-row gap-4 grow">
     <!-- w-64 -->
-    <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(210vh-80px)] overflow-auto">
-      <div class:hidden={contractTab !== 'Governor'}>
-        <GovernorControls bind:opts={allContractsOpts.Governor} errors={errors.Governor} />
-      </div>
-
-      <div class:hidden={contractTab !== 'Custom'}>
-        <CustomControls bind:opts={allContractsOpts.Custom}  />
-      </div>
+    <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
 
       <div class:hidden={contractTab !== 'Safe'}>
         <SafeControls bind:opts={allContractsOpts.Safe}  />
       </div>
 
+      <div class:hidden={contractTab !== 'Governor'}>
+        <GovernorControls bind:opts={allContractsOpts.Governor} errors={errors.Governor} />
+      </div>
+
     </div>
 
-    
-
-    <div class="output flex flex-col grow overflow-auto h-[calc(210vh-40px)]">
+    <div class="output flex flex-col grow overflow-auto h-[calc(150vh-40px)]">
 
       <div class="badge badge-primary badge-outline badge-lg">
         Smart Contract
@@ -148,7 +137,7 @@
       </pre>
     </div>
     
-    <div class="output flex flex-col grow overflow-auto h-[calc(210vh-40px)]">
+    <div class="output flex flex-col grow overflow-auto h-[calc(150vh-40px)]">
 
       <div class="badge badge-primary badge-outline badge-lg">
         Deploy Script

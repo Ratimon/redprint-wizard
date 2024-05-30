@@ -8,14 +8,14 @@ export function sanitizeDeployKind(kind: unknown): Kind {
       return kind;
     }
   }
-  return 'Custom';
+  return 'Safe';
 }
 
 function isKind<T>(value: Kind | T): value is Kind {
   switch (value) {
     case 'Safe':
+      return true;
     case 'Governor':
-    case 'Custom':
       return true;
 
     default: {

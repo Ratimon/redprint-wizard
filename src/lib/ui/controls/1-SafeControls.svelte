@@ -21,7 +21,7 @@
     <label class="labeled-input">
       <span>Name</span>
       <input bind:value={opts.name}>
-    </label>sanitizeContractKind
+    </label>
   </section>
   
   <section class="controls-section">
