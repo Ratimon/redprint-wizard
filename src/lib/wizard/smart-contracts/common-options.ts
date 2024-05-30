@@ -9,6 +9,7 @@ export const defaults: Required<CommonOptions> = {
   info: infoDefaults,
 } as const;
 
+
 export interface CommonOptions {
   access?: Access;
   upgradeable?: Upgradeable;

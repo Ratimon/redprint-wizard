@@ -2,20 +2,17 @@
     import HelpTooltip from './HelpTooltip.svelte';
   
     import type { KindedOptions } from '$lib/wizard/smart-contracts';
-    //to do : change to safe , module
-    import { custom, infoDefaults } from '$lib/wizard/smart-contracts';
-  
-    // import AccessControlSection from './AccessControlSection.svelte';
-    import UpgradeabilitySection from './UpgradeabilitySection.svelte';
+    import { safe, infoDefaults } from '$lib/wizard/smart-contracts';
     import InfoSection from './InfoSection.svelte';
+
+    const defaults = safe.defaults;
   
     export let opts: Required<KindedOptions['Safe']> = {
       kind: 'Safe',
-      ...custom.defaults,
-      info: { ...infoDefaults }, // create new object since Info is nested
+      ...defaults,
+      info: {  securityContact: 'Consult full contract at https://github.com/safe-global/safe-smart-account/blob/main/contracts/proxies/SafeProxy.sol', license: 'MIT'  },
     };
   
-    // $: requireAccessControl = custom.isAccessControlRequired(opts);
   </script>
   
   <section class="controls-section">
@@ -24,25 +21,25 @@
     <label class="labeled-input">
       <span>Name</span>
       <input bind:value={opts.name}>
-    </label>
+    </label>sanitizeContractKind
   </section>
   
   <section class="controls-section">
-    <h1>Features</h1>
+    <h1>Chains</h1>
   
     <div class="checkbox-group">
-      <label class:checked={opts.pausable}>
-        <input type="checkbox" bind:checked={opts.pausable}>
-        Pausable
-        <HelpTooltip link="https://docs.openzeppelin.com/contracts/api/utils#Pausable">
-          Privileged accounts will be able to pause the functionality marked as <code>whenNotPaused</code>.
-          Useful for emergency response.
+      <label class:checked={opts.chain === 'ethereum'}>
+        <input type="radio" bind:group={opts.chain} value="ethereum">
+        Ethereum
+        <HelpTooltip link="https://chainlist.org/chain/1">
+          Default Chain is Ethereum. Safe's smart contracts should be already deployed, so we can call them to initial our safe wallet 
         </HelpTooltip>
       </label>
+  
+
     </div>
   </section>
-  <!-- <AccessControlSection bind:access={opts.access} required={requireAccessControl} /> -->
-  <!-- <UpgradeabilitySection bind:upgradeable={opts.upgradeable} /> -->
-  
-  <InfoSection bind:info={opts.info} />
+
+
+<InfoSection bind:info={opts.info} />
   

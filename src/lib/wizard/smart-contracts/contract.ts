@@ -8,6 +8,7 @@ export interface Contract {
   imports: ParentContract[];
   functions: ContractFunction[];
   constructorCode: string[];
+  fallbackCode: string[];
   constructorArgs: FunctionArgument[];
   variables: string[];
   upgradeable: boolean;
@@ -82,6 +83,7 @@ export class ContractBuilder implements Contract {
 
   readonly constructorArgs: FunctionArgument[] = [];
   readonly constructorCode: string[] = [];
+  readonly fallbackCode: string[] = [];
   readonly variableSet: Set<string> = new Set();
 
   private parentMap: Map<string, Parent> = new Map<string, Parent>();
@@ -167,6 +169,10 @@ export class ContractBuilder implements Contract {
 
   addConstructorCode(code: string) {
     this.constructorCode.push(code);
+  }
+
+  addFallbackCode(code: string) {
+    this.fallbackCode.push(code);
   }
 
   addFunctionCode(code: string, baseFn: BaseFunction, mutability?: FunctionMutability) {

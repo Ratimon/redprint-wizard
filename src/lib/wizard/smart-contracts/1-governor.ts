@@ -11,6 +11,23 @@ import { setUpgradeable } from "./set-upgradeable";
 import { defineFunctions } from '../utils/define-functions';
 import { durationToBlocks } from "../utils/duration";
 
+export interface GovernorOptions extends CommonOptions {
+  name: string;
+  delay: string;
+  period: string;
+  blockTime?: number;
+  proposalThreshold?: string;
+  decimals?: number;
+  quorumMode?: 'percent' | 'absolute';
+  quorumPercent?: number;
+  quorumAbsolute?: string;
+  votes?: VotesOptions;
+  timelock?: TimelockOptions;
+  storage?: boolean;
+  settings?: boolean;
+}
+
+
 export const defaults: Required<GovernorOptions> = {
   name: 'MyGovernor',
   delay: '1 day',
@@ -42,21 +59,6 @@ export function printGovernor(opts: GovernorOptions = defaults): string {
   return printContract(buildGovernor(opts));
 }
 
-export interface GovernorOptions extends CommonOptions {
-  name: string;
-  delay: string;
-  period: string;
-  blockTime?: number;
-  proposalThreshold?: string;
-  decimals?: number;
-  quorumMode?: 'percent' | 'absolute';
-  quorumPercent?: number;
-  quorumAbsolute?: string;
-  votes?: VotesOptions;
-  timelock?: TimelockOptions;
-  storage?: boolean;
-  settings?: boolean;
-}
 
 export function isAccessControlRequired(opts: Partial<GovernorOptions>): boolean {
   return opts.upgradeable === 'uups';

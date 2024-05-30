@@ -1,5 +1,6 @@
 import type { CommonOptions } from './common-options';
 import { printGovernor, defaults as governorDefaults, isAccessControlRequired as governorIsAccessControlRequired, type GovernorOptions } from './1-governor';
+import { printSafe, defaults as safeDefaults , type SafeOptions } from './1-safe';
 import { printCustom, defaults as customDefaults, isAccessControlRequired as customIsAccessControlRequired, type CustomOptions } from './custom';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -17,10 +18,11 @@ export interface WizardContractAPI<Options extends CommonOptions> {
    * Whether any of the provided options require access control to be enabled. If this returns `true`, then calling `print` with the 
    * same options would cause the `access` option to default to `'ownable'` if it was `undefined` or `false`. 
    */
-  isAccessControlRequired: (opts: Partial<Options>) => boolean,
+  isAccessControlRequired?: (opts: Partial<Options>) => boolean,
 }
 
 export type Governor = WizardContractAPI<GovernorOptions>;
+export type Safe = WizardContractAPI<SafeOptions>;
 export type Custom = WizardContractAPI<CustomOptions>;
 
 
@@ -29,6 +31,12 @@ export const governor: Governor = {
   defaults: governorDefaults,
   isAccessControlRequired: governorIsAccessControlRequired
 }
+
+export const safe: Safe = {
+  print: printSafe,
+  defaults: safeDefaults
+}
+
 export const custom: Custom = {
   print: printCustom,
   defaults: customDefaults,

@@ -32,7 +32,7 @@
     let allContractsOpts: { [k in Kind]?: Required<KindedOptions[k]> } = {};
     let errors: { [k in Kind]?: OptionsErrorMessages } = {};
 
-    let contract: Contract = new ContractBuilder('MyToken');
+    let contract: Contract = new ContractBuilder('SafeProxy');
 
     $: contractOpts = allContractsOpts[contractTab];
 

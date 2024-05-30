@@ -13,8 +13,8 @@ export function sanitizeContractKind(kind: unknown): Kind {
 
 function isKind<T>(value: Kind | T): value is Kind {
   switch (value) {
-    case 'Safe':
     case 'Governor':
+    case 'Safe':
     case 'Custom':
       return true;
 

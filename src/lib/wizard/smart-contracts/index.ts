@@ -19,4 +19,4 @@ export { ContractOptionsError } from './error';
 export type { Kind } from './kind';
 export { sanitizeContractKind } from './kind';
 
-export { governor, custom } from './api';
+export { governor, safe, custom } from './api';

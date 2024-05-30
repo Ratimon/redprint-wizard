@@ -21,8 +21,8 @@ export function buildDeployGeneric(opts: GenericOptions) {
     case 'Governor':
       return buildDeployGoverner(opts);
 
-    // case 'Custom':
-    //   return buildCustom(opts);
+    case 'Custom':
+      return buildCustom(opts);
 
     default:
       const _: never = opts;

@@ -11,19 +11,20 @@ import SOLIDITY_VERSION from './solidity-version.json';
 import { inferTranspiled } from './infer-transpiled';
 import { compatibleContractsSemver } from '../utils/version';
 
-export function printNote(url: string): string {
+// // to do delete
+// export function printNote(url: string): string {
 
-  return formatLines(
-    ...spaceBetween(
-      [
-        `// Note `,
-        `The interested one can consult the full code here ;${url};`,
-      ],
-    )
+//   return formatLines(
+//     ...spaceBetween(
+//       [
+//         `// Note `,
+//         `The interested one can consult the full code here ;${url};`,
+//       ],
+//     )
 
-  )
+//   )
 
-}
+// }
 
 export function printContract(contract: Contract, opts?: Options): string {
   const helpers = withHelpers(contract, opts);
@@ -47,7 +48,6 @@ export function printContract(contract: Contract, opts?: Options): string {
       [
         ...printNatspecTags(contract.natspecTags),
         [`contract ${contract.name}`, ...printInheritance(contract, helpers), '{'].join(' '),
-
         spaceBetween(
           contract.variables,
           printConstructor(contract, helpers),
@@ -55,6 +55,7 @@ export function printContract(contract: Contract, opts?: Options): string {
           ...fns.modifiers,
           hasOverrides ? [`// The following functions are overrides required by Solidity.`] : [],
           ...fns.override,
+          printFallback(contract),
         ),
 
         `}`,
@@ -173,6 +174,29 @@ export function printValue(value: Value): string {
     }
   } else {
     return JSON.stringify(value);
+  }
+}
+
+function printFallback(contract: Contract): Lines[] {
+  // const hasParentParams = contract.parents.some(p => p.params.length > 0);
+  const hasFallbackCode = contract.fallbackCode.length > 0;
+  // const parentsWithInitializers = contract.parents.filter(hasInitializer);
+  if (hasFallbackCode ) {
+    // const parents = parentsWithInitializers
+    //   .flatMap(p => printParentConstructor(p, helpers));
+    const modifiers = ['external payable'];
+    const args: string[] = [];
+    const body = contract.fallbackCode;
+    const head = 'fallback'
+    const fallback = printFunction2(
+      head,
+      args,
+      modifiers,
+      body,
+    );
+    return fallback;
+  } else {
+    return [];
   }
 }
 
