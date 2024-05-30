@@ -17,7 +17,7 @@ Once you've created a project and installed dependencies with `pnpm install` (or
 pnpm dev
 ```
 
-## What is it for ?
+## What Is It For
 
 One of our Swiss army knife toolset: **Redprint Wizard UI**. It is a code generator/ interactive developer playground. It supports a space to experience, innovate and build features that either lie far along ether Optimism or Ethereum 's roadmaps which aren't yet available on the production at all, empowering developers to dream, tinker, and push the boundaries of what's possible by composing their own different OPStack components together.
 
