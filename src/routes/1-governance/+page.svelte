@@ -10,9 +10,9 @@
     import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
 
     import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
-    // import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
-
     import { ContractBuilder, buildContractGeneric, printContract, sanitizeContractKind, ContractOptionsError } from '$lib/wizard/smart-contracts';
+
+    import type { DeployKindedOptions, DeployKind, DeployContract, OptionsErrorMessages } from '$lib/wizard/deploy-scripts';
     import { DeployBuilder, buildDeployGeneric, printDeployContract, sanitizeDeployKind, DeployOptionsError } from '$lib/wizard/deploy-scripts';
 
     import hljs from '../highlightjs';

@@ -1,17 +1,17 @@
-import type { GenericOptions } from './build-generic';
+import type { DeployGenericOptions } from './build-generic';
 
-export type Kind = GenericOptions['kind'];
+export type DeployKind = DeployGenericOptions['kind'];
 
-export function sanitizeDeployKind(kind: unknown): Kind {
+export function sanitizeDeployKind(kind: unknown): DeployKind {
   if (typeof kind === 'string') {
-    if (isKind(kind)) {
+    if (isDeployKind(kind)) {
       return kind;
     }
   }
   return 'Safe';
 }
 
-function isKind<T>(value: Kind | T): value is Kind {
+function isDeployKind<T>(value: DeployKind | T): value is DeployKind {
   switch (value) {
     case 'Safe':
       return true;
