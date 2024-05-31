@@ -9,12 +9,12 @@ import { printContract } from "./print";
 import { setInfo  } from "./set-info";
 
 export interface SafeOptions extends CommonOptions {
-  name: string;
+  contractName: string;
   chain: ChainsOptions;
 }
 
 export const defaults: Required<SafeOptions> = {
-  name: 'SafeProxy',
+  contractName: 'SafeProxy',
   chain: 'ethereum',
   access: commonDefaults.access,
 
@@ -41,8 +41,7 @@ export function printSafe(opts: SafeOptions = defaults): string {
 export function buildSafe(opts: SafeOptions): Contract {
   const allOpts = withDefaults(opts);
 
-  const c = new ContractBuilder(allOpts.name);
-
+  const c = new ContractBuilder(allOpts.contractName);
 
   c.addVariable(`address internal singleton;`);
 

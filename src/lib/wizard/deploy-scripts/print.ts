@@ -33,7 +33,7 @@ export function printDeployContract(contract: DeployContract, opts?: Options): s
       [
         ...printNatspecTags(contract.natspecTags),
         [`contract ${contract.name}`, ...printInheritance(contract, helpers), '{'].join(' '),
-
+        contract.usings.map(p => `using ${p.library.name} for ${p.usingFor} ;`),
         spaceBetween(
           contract.variables,
           printConstructor(contract, helpers),

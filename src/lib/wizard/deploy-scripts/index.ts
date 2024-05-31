@@ -9,7 +9,7 @@ export { printDeployContract } from './print';
 
 export type { Info } from './set-info';
 
-export { defaults as infoDefaults } from './set-info';
+export { defaults as deployInfoDefaults } from './set-info';
 
 export type { DeployOptionsErrorMessages } from './error';
 export { DeployOptionsError } from './error';
@@ -17,4 +17,4 @@ export { DeployOptionsError } from './error';
 export type { DeployKind } from './kind';
 export { sanitizeDeployKind } from './kind';
 
-export { governor, safe } from './api';
+export { deployGovernor, deploySafe } from './api';

@@ -12,7 +12,7 @@ import { defineFunctions } from '../utils/define-functions';
 import { durationToBlocks } from "../utils/duration";
 
 export interface GovernorOptions extends CommonOptions {
-  name: string;
+  contractName: string;
   delay: string;
   period: string;
   blockTime?: number;
@@ -29,7 +29,7 @@ export interface GovernorOptions extends CommonOptions {
 
 
 export const defaults: Required<GovernorOptions> = {
-  name: 'MyGovernor',
+  contractName: 'MyGovernor',
   delay: '1 day',
   period: '1 week',
 
@@ -84,7 +84,7 @@ function withDefaults(opts: GovernorOptions): Required<GovernorOptions> {
 export function buildGovernor(opts: GovernorOptions): Contract {
   const allOpts = withDefaults(opts);
 
-  const c = new ContractBuilder(allOpts.name);
+  const c = new ContractBuilder(allOpts.contractName);
 
   validateDecimals(allOpts.decimals);
 
@@ -103,12 +103,12 @@ export function buildGovernor(opts: GovernorOptions): Contract {
   return c;
 }
 
-function addBase(c: ContractBuilder, { name }: GovernorOptions) {
+function addBase(c: ContractBuilder, { contractName }: GovernorOptions) {
   const Governor = {
     name: 'Governor',
     path: '@openzeppelin/contracts/governance/Governor.sol',
   };
-  c.addParent(Governor, [name]);
+  c.addParent(Governor, [contractName]);
   c.addOverride(Governor, functions.votingDelay);
   c.addOverride(Governor, functions.votingPeriod);
   c.addOverride(Governor, functions.quorum);

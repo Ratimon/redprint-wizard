@@ -2,14 +2,18 @@
     import HelpTooltip from './HelpTooltip.svelte';
   
     import type { KindedOptions } from '$lib/wizard/smart-contracts';
-    import { safe, infoDefaults } from '$lib/wizard/smart-contracts';
+    import { safe, contractInfoDefaults } from '$lib/wizard/smart-contracts';
+    import { deploySafe, deployInfoDefaults } from '$lib/wizard/deploy-scripts';
+
     import InfoSection from './InfoSection.svelte';
 
-    const defaults = safe.defaults;
+    const contractDefaults = safe.defaults;
+    const deployDefaults = deploySafe.defaults;
   
     export let opts: Required<KindedOptions['Safe']> = {
       kind: 'Safe',
-      ...defaults,
+      ...contractDefaults,
+      ...deployDefaults,
       info: {  securityContact: 'Consult full contract at https://github.com/safe-global/safe-smart-account/blob/main/contracts/proxies/SafeProxy.sol', license: 'MIT'  },
     };
   
@@ -20,7 +24,7 @@
   
     <label class="labeled-input">
       <span>Name</span>
-      <input bind:value={opts.name}>
+      <input bind:value={opts.contractName}>
     </label>
   </section>
   

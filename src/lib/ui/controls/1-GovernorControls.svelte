@@ -1,8 +1,10 @@
 <script lang="ts">
   import HelpTooltip from './HelpTooltip.svelte';
 
+  // todo refactor into shared folder
   import type { KindedOptions, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
-  import { governor, infoDefaults } from '$lib/wizard/smart-contracts';
+  import { governor, contractInfoDefaults } from '$lib/wizard/smart-contracts';
+  import { deployGovernor, deployInfoDefaults } from '$lib/wizard/deploy-scripts';
 
   import ToggleRadio from '$lib/ui/inputs/ToggleRadio.svelte';
   import UpgradeabilitySection from './UpgradeabilitySection.svelte';
@@ -11,14 +13,16 @@
   import { error } from './error-tooltip';
   import { resizeToFit } from './resize-to-fit';
 
-  const defaults = governor.defaults;
+  const contractDefaults = governor.defaults;
+  const deployDefaults = deployGovernor.defaults;
 
   export let opts: Required<KindedOptions['Governor']> = {
     kind: 'Governor',
-    ...defaults,
+    ...contractDefaults,
+    ...deployDefaults,
     proposalThreshold: '', // default to empty in UI
     quorumAbsolute: '', // default to empty in UI
-    info: { ...infoDefaults }, // create new object since Info is nested
+    info: { ...contractInfoDefaults }, // create new object since Info is nested
   };
 
   let quorumAbsoluteInput: HTMLInputElement;
@@ -62,7 +66,7 @@
 
   <label class="labeled-input">
     <span>Name</span>
-    <input bind:value={opts.name}>
+    <input bind:value={opts.contractName}>
   </label>
 
   <div class="grid grid-cols-2 gap-2">
@@ -86,7 +90,7 @@
   <p class="tooltip-container flex justify-between items-center pr-2">
     <label class="text-sm">
       1 block =
-      <input type="number" step="0.01" placeholder={defaults.blockTime.toString()} bind:value={opts.blockTime} class="input-inline" use:resizeToFit>
+      <input type="number" step="0.01" placeholder={contractDefaults.blockTime.toString()} bind:value={opts.blockTime} class="input-inline" use:resizeToFit>
       seconds
     </label>
     <HelpTooltip>
@@ -114,7 +118,7 @@
       <HelpTooltip>Quorum required for a proposal to pass.</HelpTooltip>
     </span>
     {#if opts.quorumMode === 'percent'}
-      <input id="quorum-input" type="number" bind:value={opts.quorumPercent} placeholder={defaults.quorumPercent.toString()} use:error={errors?.quorumPercent}>
+      <input id="quorum-input" type="number" bind:value={opts.quorumPercent} placeholder={contractDefaults.quorumPercent.toString()} use:error={errors?.quorumPercent}>
     {:else}
       <input id="quorum-input" bind:value={opts.quorumAbsolute} use:error={errors?.quorumAbsolute} bind:this={quorumAbsoluteInput}>
     {/if}
@@ -123,7 +127,7 @@
   <p class="tooltip-container flex justify-between items-center pr-2">
     <label class="text-sm">
       Token decimals:
-      <input disabled={disabledDecimals} type="number" bind:value={opts.decimals} placeholder={defaults.decimals.toString()} class="input-inline" use:resizeToFit use:error={errors?.decimals}>
+      <input disabled={disabledDecimals} type="number" bind:value={opts.decimals} placeholder={contractDefaults.decimals.toString()} class="input-inline" use:resizeToFit use:error={errors?.decimals}>
     </label>
     <HelpTooltip>Token amounts above will be extended with this number of zeroes. Does not apply to ERC721Votes.</HelpTooltip>
   </p>

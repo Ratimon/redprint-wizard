@@ -10,11 +10,11 @@ import { setInfo } from "./set-info";
 
 
 export interface DeploySafeOptions extends CommonOptions {
-    name: string;
+    deployName: string;
   }
 
 export const defaults: Required<DeploySafeOptions> = {
-  name: 'DeploySafeProxy',
+  deployName: 'DeploySafeProxy',
 
   info: commonDefaults.info
 } as const;
@@ -33,7 +33,7 @@ export function printDeploySafe(opts: DeploySafeOptions = defaults): string {
 export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
     const allOpts = withDeployDefaults(opts);
   
-    const c = new DeployBuilder(allOpts.name);
+    const c = new DeployBuilder(allOpts.deployName);
   
     // validateDecimals(allOpts.decimals);
   
@@ -53,14 +53,14 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
   }
 
 
-  function addBase(c: DeployBuilder, { name }: DeploySafeOptions) {
+  function addBase(c: DeployBuilder, { deployName }: DeploySafeOptions) {
     const DeployScript = {
       name: 'DeployScript',
       path: '@redprint-core/deployer/DeployScript.sol',
     };
 
 
-    c.addParent(DeployScript, [name]);
+    c.addLibrary(DeployScript, `IDeployer`);
     // c.addOverride(Governor, functions.votingDelay);
     // c.addOverride(Governor, functions.votingPeriod);
     // c.addOverride(Governor, functions.quorum);

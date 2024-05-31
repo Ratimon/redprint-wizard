@@ -1,7 +1,7 @@
 <script lang="ts">
 
   import type {Info } from '$lib/wizard/smart-contracts';
-  import { infoDefaults } from '$lib/wizard/smart-contracts';
+  import { contractInfoDefaults } from '$lib/wizard/smart-contracts';
 
   import HelpTooltip from './HelpTooltip.svelte';
 
@@ -28,7 +28,7 @@
 
   <label class="labeled-input">
     <span>License</span>
-    <input bind:value={info.license} placeholder={infoDefaults.license} />
+    <input bind:value={info.license} placeholder={contractInfoDefaults.license} />
   </label>
 </section>
 

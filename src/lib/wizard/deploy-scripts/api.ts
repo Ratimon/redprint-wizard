@@ -16,16 +16,16 @@ export interface WizardContractAPI<Options extends CommonOptions> {
 
 }
 
-export type Governor = WizardContractAPI<DeployGovernerOptions>;
-export type Safe = WizardContractAPI<DeploySafeOptions>;
+export type DeployGovernor = WizardContractAPI<DeployGovernerOptions>;
+export type DeploySafe = WizardContractAPI<DeploySafeOptions>;
 
 
-export const governor: Governor = {
+export const deployGovernor: DeployGovernor = {
   print: printDeployGovernor,
   defaults: governorDefaults,
 }
 
-export const safe: Safe = {
+export const deploySafe: DeploySafe = {
   print: printDeploySafe,
   defaults: safeDefaults,
 }

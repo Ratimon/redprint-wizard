@@ -9,7 +9,7 @@ import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
 export const defaults: Required<DeployGovernerOptions> = {
-  name: 'MyGovernor',
+  deployName: 'DeployGovernerScript',
 
   info: commonDefaults.info
 } as const;
@@ -21,7 +21,7 @@ export function printDeployGovernor(opts: DeployGovernerOptions = defaults): str
 
 
 export interface DeployGovernerOptions extends CommonOptions {
-    name: string;
+  deployName: string;
     // delay: string;
     // period: string;
     // blockTime?: number;
@@ -37,7 +37,7 @@ export interface DeployGovernerOptions extends CommonOptions {
 export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract {
     const allOpts = withDeloyDefaults(opts);
   
-    const c = new DeployBuilder(allOpts.name);
+    const c = new DeployBuilder(allOpts.deployName);
   
     // validateDecimals(allOpts.decimals);
   
@@ -73,14 +73,15 @@ export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract
     };
   }
 
-  function addBase(c: DeployBuilder, { name }: DeployGovernerOptions) {
+  function addBase(c: DeployBuilder, { deployName }: DeployGovernerOptions) {
     const DeployScript = {
       name: 'DeployScript',
       path: '@redprint-core/deployer/DeployScript.sol',
     };
 
 
-    c.addParent(DeployScript, [name]);
+    c.addLibrary(DeployScript, `IDeployer`);
+
     // c.addOverride(Governor, functions.votingDelay);
     // c.addOverride(Governor, functions.votingPeriod);
     // c.addOverride(Governor, functions.quorum);

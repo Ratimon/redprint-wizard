@@ -12,6 +12,7 @@
     import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
     import { ContractBuilder, buildContractGeneric, printContract, sanitizeContractKind, ContractOptionsError } from '$lib/wizard/smart-contracts';
 
+    // to do remove unneeded reduntdant one
     import type { DeployKindedOptions, DeployKind, DeployContract, OptionsErrorMessages } from '$lib/wizard/deploy-scripts';
     import { DeployBuilder, buildDeployGeneric, printDeployContract, sanitizeDeployKind, DeployOptionsError } from '$lib/wizard/deploy-scripts';
 
@@ -32,6 +33,7 @@
     let errors: { [k in Kind]?: OptionsErrorMessages } = {};
 
     let contract: Contract = new ContractBuilder('SafeProxy');
+    let deployContract: DeployContract = new DeployBuilder('DeploySafeScript');
 
     $: contractOpts = allContractsOpts[contractTab];
 
@@ -39,6 +41,7 @@
     if (contractOpts) {
             try {
                 contract = buildContractGeneric(contractOpts);
+                deployContract = buildDeployGeneric(contractOpts);
                 errors[contractTab] = undefined;
             } catch (e: unknown) {
                 if (e instanceof ContractOptionsError) {
@@ -51,9 +54,11 @@
     }
 
   $: code = printContract(contract);
+  $: deployCode = printDeployContract(deployContract);
   // injected hyper link
   // $: highlightedCode = hljs.highlight(code, {language: 'solidity'} ).value;
   $: highlightedCode = injectHyperlinks(hljs.highlight(code, {language: 'solidity'} ).value);
+  $: highlightedDeployCode = injectHyperlinks(hljs.highlight(deployCode, {language: 'solidity'} ).value);
 
   const language = 'solidity';
 
@@ -145,7 +150,7 @@
 
       <pre class="flex flex-col grow basis-0 overflow-auto">
         <code class="hljs grow overflow-auto p-4">
-          {@html highlightedCode}
+          {@html highlightedDeployCode}
         </code>
       </pre>
     </div>

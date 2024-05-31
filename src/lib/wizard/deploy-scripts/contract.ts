@@ -5,6 +5,7 @@ export interface DeployContract {
   license: string;
   parents: Parent[];
   natspecTags: NatspecTag[];
+  usings: Using[];
   imports: ParentContract[];
   functions: ContractFunction[];
   constructorCode: string[];
@@ -90,15 +91,7 @@ export class DeployBuilder implements DeployContract {
   }
 
   get parents(): Parent[] {
-    return [...this.parentMap.values()].sort((a, b) => {
-      if (a.contract.name === 'Initializable') {
-        return -1;
-      } else if (b.contract.name === 'Initializable') {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    return [...this.parentMap.values()]
   }
 
   get imports(): ParentContract[] {
@@ -108,12 +101,21 @@ export class DeployBuilder implements DeployContract {
     ];
   }
 
+  get usings(): Using[] {
+    return [...this.using];
+  }
+
   get functions(): ContractFunction[] {
     return [...this.functionMap.values()];
   }
 
   get variables(): string[] {
     return [...this.variableSet];
+  }
+
+  addLibrary(contract: ParentContract, useFor: string ) {
+    const using : Using = {library : contract ,usingFor: useFor  } ;
+    this.using.push(using);
   }
 
   addParent(contract: ParentContract, params: Value[] = []): boolean {
