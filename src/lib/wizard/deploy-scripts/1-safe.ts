@@ -34,19 +34,8 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
     const allOpts = withDeployDefaults(opts);
   
     const c = new DeployBuilder(allOpts.deployName);
-  
-    // validateDecimals(allOpts.decimals);
-  
+    
     addBase(c, allOpts);
-    // addSettings(c, allOpts);
-    // addCounting(c);
-    // addStorage(c, allOpts);
-    // addVotes(c);
-    // addQuorum(c, allOpts);
-    // addTimelock(c, allOpts);
-  
-    // setAccessControl(c, allOpts.access);
-    // setUpgradeable(c, allOpts.upgradeable, allOpts.access);
     setInfo(c, allOpts.info);
   
     return c;
@@ -59,19 +48,5 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
       path: '@redprint-core/deployer/DeployScript.sol',
     };
 
-
     c.addLibrary(DeployScript, `IDeployer`);
-    // c.addOverride(Governor, functions.votingDelay);
-    // c.addOverride(Governor, functions.votingPeriod);
-    // c.addOverride(Governor, functions.quorum);
-    // c.addOverride(Governor, functions.state);
-    // c.addOverride(Governor, functions.propose);
-    // c.addOverride(Governor, functions.proposalNeedsQueuing);
-    // c.addOverride(Governor, functions.proposalThreshold);
-    // c.addOverride(Governor, functions._propose);
-    // c.addOverride(Governor, functions._queueOperations);
-    // c.addOverride(Governor, functions._executeOperations);
-    // c.addOverride(Governor, functions._cancel);
-    // c.addOverride(Governor, functions._executor);
-    // c.addOverride(Governor, supportsInterface);
   }

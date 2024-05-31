@@ -11,21 +11,6 @@ import SOLIDITY_VERSION from './solidity-version.json';
 import { inferTranspiled } from './infer-transpiled';
 import { compatibleContractsSemver } from '../utils/version';
 
-// // to do delete
-// export function printNote(url: string): string {
-
-//   return formatLines(
-//     ...spaceBetween(
-//       [
-//         `// Note `,
-//         `The interested one can consult the full code here ;${url};`,
-//       ],
-//     )
-
-//   )
-
-// }
-
 export function printContract(contract: Contract, opts?: Options): string {
   const helpers = withHelpers(contract, opts);
 

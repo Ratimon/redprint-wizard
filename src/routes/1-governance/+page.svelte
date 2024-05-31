@@ -20,7 +20,7 @@
 
     const dispatch = createEventDispatcher();
 
-    export let initialContractTab: string | undefined = 'Governor';
+    export let initialContractTab: string | undefined = 'Safe';
     export let contractTab: Kind | DeployKind = sanitizeContractKind(initialContractTab);
 
     $: {

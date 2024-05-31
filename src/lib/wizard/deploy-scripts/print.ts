@@ -60,24 +60,12 @@ function printInheritance(contract: DeployContract, { transformName }: Helpers):
 function printConstructor(contract: DeployContract, helpers: Helpers): Lines[] {
   const hasParentParams = contract.parents.some(p => p.params.length > 0);
   const hasConstructorCode = contract.constructorCode.length > 0;
-  // const parentsWithInitializers = contract.parents.filter(hasInitializer);
   if (hasParentParams || hasConstructorCode) {
-    // const parents = parentsWithInitializers
-    //   .flatMap(p => printParentConstructor(p, helpers));
     const parents = contract.parents.flatMap(p => printParentConstructor(p))
-    // const parents = contract.parents
-    // const modifiers = helpers.upgradeable ? ['initializer public'] : parents;
     const modifiers = parents;
     const args = contract.constructorArgs.map(a =>  printArgument(a));
     const body = contract.constructorCode;
-    // const body = helpers.upgradeable
-    //   ? spaceBetween(
-    //     parents.map(p => p + ';'),
-    //     contract.constructorCode,
-    //   )
-    //   : contract.constructorCode;
     const head = 'constructor';
-    // const head = helpers.upgradeable ? 'function initialize' : 'constructor';
     const constructor = printFunction2(
       head,
       args,
@@ -86,32 +74,10 @@ function printConstructor(contract: DeployContract, helpers: Helpers): Lines[] {
     );
 
     return constructor;
-
-    // if (!helpers.upgradeable) {
-    //   return constructor;
-    // } else {
-    //   return spaceBetween(
-    //     DISABLE_INITIALIZERS,
-    //     constructor,
-    //   );
-    // }
-
-  // } else if (!helpers.upgradeable) {
-  //   return [];
   } else {
     return [];
   }
 }
-
-// const DISABLE_INITIALIZERS = 
-// [
-//   '/// @custom:oz-upgrades-unsafe-allow constructor',
-//   'constructor() {',
-//   [
-//     '_disableInitializers();'
-//   ],
-//   '}'
-// ];
 
 function hasInitializer(parent: Parent) {
   // CAUTION
@@ -240,7 +206,7 @@ function printFunction2(kindedName: string, args: string[], modifiers: string[],
 
 function printArgument(arg: FunctionArgument): string {
   let type: string | ReferencedContract;
-  
+
   if (typeof arg.type === 'string') {
     if (/^[A-Z]/.test(arg.type)) {
       `Type ${arg.type} is not a primitive type. Define it as a ContractReference`;
