@@ -1,8 +1,9 @@
 <script lang="ts">
   import HelpTooltip from './HelpTooltip.svelte';
 
-  // todo refactor into shared folder
   import type { KindedOptions, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
+  import type { DeployKindedOptions, DeployOptionsErrorMessages } from '$lib/wizard/deploy-scripts';
+
   import { governor, contractInfoDefaults } from '$lib/wizard/smart-contracts';
   import { deployGovernor, deployInfoDefaults } from '$lib/wizard/deploy-scripts';
 
@@ -16,7 +17,7 @@
   const contractDefaults = governor.defaults;
   const deployDefaults = deployGovernor.defaults;
 
-  export let opts: Required<KindedOptions['Governor']> = {
+  export let opts: Required<KindedOptions['Governor'] | DeployKindedOptions['Governor']> = {
     kind: 'Governor',
     ...contractDefaults,
     ...deployDefaults,
@@ -40,7 +41,7 @@
     }
   };
 
-  export let errors: undefined | OptionsErrorMessages;
+  export let errors: undefined | OptionsErrorMessages | DeployOptionsErrorMessages;
 
   let wasERC721Votes = opts.votes === 'erc721votes';
   let previousDecimals = opts.decimals;

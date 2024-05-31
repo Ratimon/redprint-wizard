@@ -3,6 +3,7 @@
   
     import type { KindedOptions } from '$lib/wizard/smart-contracts';
     import { safe, contractInfoDefaults } from '$lib/wizard/smart-contracts';
+    import type { DeployKindedOptions } from '$lib/wizard/deploy-scripts';
     import { deploySafe, deployInfoDefaults } from '$lib/wizard/deploy-scripts';
 
     import InfoSection from './InfoSection.svelte';
@@ -10,7 +11,7 @@
     const contractDefaults = safe.defaults;
     const deployDefaults = deploySafe.defaults;
   
-    export let opts: Required<KindedOptions['Safe']> = {
+    export let opts: Required<KindedOptions['Safe'] | DeployKindedOptions['Safe'] > = {
       kind: 'Safe',
       ...contractDefaults,
       ...deployDefaults,

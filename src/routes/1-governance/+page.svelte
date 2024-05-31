@@ -12,8 +12,7 @@
     import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
     import { ContractBuilder, buildContractGeneric, printContract, sanitizeContractKind, ContractOptionsError } from '$lib/wizard/smart-contracts';
 
-    // to do remove unneeded reduntdant one
-    import type { DeployKindedOptions, DeployKind, DeployContract, OptionsErrorMessages } from '$lib/wizard/deploy-scripts';
+    import type { DeployKindedOptions, DeployKind, DeployContract, DeployOptionsErrorMessages } from '$lib/wizard/deploy-scripts';
     import { DeployBuilder, buildDeployGeneric, printDeployContract, sanitizeDeployKind, DeployOptionsError } from '$lib/wizard/deploy-scripts';
 
     import hljs from '../highlightjs';
@@ -22,15 +21,15 @@
     const dispatch = createEventDispatcher();
 
     export let initialContractTab: string | undefined = 'Governor';
-    export let contractTab: Kind = sanitizeContractKind(initialContractTab);
+    export let contractTab: Kind | DeployKind = sanitizeContractKind(initialContractTab);
 
     $: {
       contractTab = sanitizeContractKind(contractTab);
       dispatch('contractTab-change', contractTab);
     };
 
-    let allContractsOpts: { [k in Kind]?: Required<KindedOptions[k]> } = {};
-    let errors: { [k in Kind]?: OptionsErrorMessages } = {};
+    let allContractsOpts: { [k in Kind]?: Required<KindedOptions[k] | DeployKindedOptions [k]> } = {};
+    let errors: { [k in Kind]?: OptionsErrorMessages | DeployOptionsErrorMessages } = {};
 
     let contract: Contract = new ContractBuilder('SafeProxy');
     let deployContract: DeployContract = new DeployBuilder('DeploySafeScript');

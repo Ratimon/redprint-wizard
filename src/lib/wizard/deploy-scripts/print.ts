@@ -240,7 +240,7 @@ function printFunction2(kindedName: string, args: string[], modifiers: string[],
 
 function printArgument(arg: FunctionArgument): string {
   let type: string | ReferencedContract;
-  // todo remove below line
+  
   if (typeof arg.type === 'string') {
     if (/^[A-Z]/.test(arg.type)) {
       `Type ${arg.type} is not a primitive type. Define it as a ContractReference`;
