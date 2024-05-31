@@ -11,11 +11,12 @@
     const contractDefaults = safe.defaults;
     const deployDefaults = deploySafe.defaults;
   
+    // to do : fix shard info
     export let opts: Required<KindedOptions['Safe'] | DeployKindedOptions['Safe'] > = {
       kind: 'Safe',
       ...contractDefaults,
       ...deployDefaults,
-      info: {  securityContact: 'Consult full contract at https://github.com/safe-global/safe-smart-account/blob/main/contracts/proxies/SafeProxy.sol', license: 'MIT'  },
+      info: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
   
   </script>

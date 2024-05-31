@@ -36,7 +36,7 @@ export function printDeployContract(contract: DeployContract, opts?: Options): s
         contract.usings.map(p => `using ${p.library.name} for ${p.usingFor} ;`),
         spaceBetween(
           contract.variables,
-          printConstructor(contract, helpers),
+          // printConstructor(contract, helpers),
           ...fns.code,
           ...fns.modifiers,
           hasOverrides ? [`// The following functions are overrides required by Solidity.`] : [],
@@ -57,27 +57,27 @@ function printInheritance(contract: DeployContract, { transformName }: Helpers):
   }
 }
 
-function printConstructor(contract: DeployContract, helpers: Helpers): Lines[] {
-  const hasParentParams = contract.parents.some(p => p.params.length > 0);
-  const hasConstructorCode = contract.constructorCode.length > 0;
-  if (hasParentParams || hasConstructorCode) {
-    const parents = contract.parents.flatMap(p => printParentConstructor(p))
-    const modifiers = parents;
-    const args = contract.constructorArgs.map(a =>  printArgument(a));
-    const body = contract.constructorCode;
-    const head = 'constructor';
-    const constructor = printFunction2(
-      head,
-      args,
-      modifiers,
-      body,
-    );
+// function printConstructor(contract: DeployContract, helpers: Helpers): Lines[] {
+//   const hasParentParams = contract.parents.some(p => p.params.length > 0);
+//   const hasConstructorCode = contract.constructorCode.length > 0;
+//   if (hasParentParams || hasConstructorCode) {
+//     const parents = contract.parents.flatMap(p => printParentConstructor(p))
+//     const modifiers = parents;
+//     const args = contract.constructorArgs.map(a =>  printArgument(a));
+//     const body = contract.constructorCode;
+//     const head = 'constructor';
+//     const constructor = printFunction2(
+//       head,
+//       args,
+//       modifiers,
+//       body,
+//     );
 
-    return constructor;
-  } else {
-    return [];
-  }
-}
+//     return constructor;
+//   } else {
+//     return [];
+//   }
+// }
 
 function hasInitializer(parent: Parent) {
   // CAUTION
