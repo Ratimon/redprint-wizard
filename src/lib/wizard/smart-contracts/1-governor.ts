@@ -46,7 +46,7 @@ export const defaults: Required<GovernorOptions> = {
   
   access: commonDefaults.access,
   upgradeable: commonDefaults.upgradeable,
-  info: commonDefaults.info
+  contractInfo: commonDefaults.contractInfo
 } as const;
 
 export const votesOptions = ['erc20votes', 'erc721votes'] as const;
@@ -98,7 +98,7 @@ export function buildGovernor(opts: GovernorOptions): Contract {
 
   setAccessControl(c, allOpts.access);
   setUpgradeable(c, allOpts.upgradeable, allOpts.access);
-  setInfo(c, allOpts.info);
+  setInfo(c, allOpts.contractInfo);
 
   return c;
 }

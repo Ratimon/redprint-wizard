@@ -20,7 +20,7 @@ export const defaults: Required<SafeOptions> = {
 
   //todo remove it
   upgradeable: commonDefaults.upgradeable,
-  info: commonDefaults.info
+  contractInfo: commonDefaults.contractInfo
 } as const;
 
 function withDefaults(opts: SafeOptions): Required<SafeOptions> {
@@ -69,7 +69,7 @@ export function buildSafe(opts: SafeOptions): Contract {
   c.addFallbackCode('  return(0, returndatasize())');
   c.addFallbackCode('}');
 
-  setInfo(c, allOpts.info);
+  setInfo(c, allOpts.contractInfo);
 
   return c;
 }

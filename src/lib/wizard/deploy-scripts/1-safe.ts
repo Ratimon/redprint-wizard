@@ -16,7 +16,7 @@ export interface DeploySafeOptions extends CommonOptions {
 export const defaults: Required<DeploySafeOptions> = {
   deployName: 'DeploySafeProxy',
 
-  info: commonDefaults.info
+  deployInfo: commonDefaults.deployInfo
 } as const;
 
 function withDeployDefaults(opts: DeploySafeOptions): Required<DeploySafeOptions> {
@@ -36,7 +36,7 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
     const c = new DeployBuilder(allOpts.deployName);
     
     addBase(c, allOpts);
-    setInfo(c, allOpts.info);
+    setInfo(c, allOpts.deployInfo);
   
     return c;
   }

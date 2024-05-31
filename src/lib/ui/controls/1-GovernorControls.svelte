@@ -23,7 +23,8 @@
     ...deployDefaults,
     proposalThreshold: '', // default to empty in UI
     quorumAbsolute: '', // default to empty in UI
-    info: { ...contractInfoDefaults }, // create new object since Info is nested
+    contractInfo: {  securityContact: 'Consult full code at https://github.com/OpenZeppelin/openzeppelin-contracts', license: 'MIT'  },
+    deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
   };
 
   let quorumAbsoluteInput: HTMLInputElement;
@@ -212,4 +213,4 @@
 
 <UpgradeabilitySection bind:upgradeable={opts.upgradeable} />
 
-<InfoSection bind:info={opts.info} />
+<InfoSection bind:info={opts.contractInfo} />

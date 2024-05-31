@@ -2,15 +2,15 @@ import type { Info } from "./set-info";
 import { defaults as infoDefaults } from "./set-info";
 
 export const defaults: Required<CommonOptions> = {
-  info: infoDefaults,
+  deployInfo: infoDefaults,
 } as const;
 
 export interface CommonOptions {
-  info?: Info;
+  deployInfo?: Info;
 }
 
 export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions> {
   return {
-    info: opts.info ?? {},
+    deployInfo: opts.deployInfo ?? {},
   };
 }

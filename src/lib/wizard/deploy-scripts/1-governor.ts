@@ -11,7 +11,7 @@ import { setInfo } from "./set-info";
 export const defaults: Required<DeployGovernerOptions> = {
   deployName: 'DeployGovernerScript',
 
-  info: commonDefaults.info
+  deployInfo: commonDefaults.deployInfo
 } as const;
 
 export function printDeployGovernor(opts: DeployGovernerOptions = defaults): string {
@@ -28,7 +28,7 @@ export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract
     const c = new DeployBuilder(allOpts.deployName);
     
     addBase(c, allOpts);
-    setInfo(c, allOpts.info);
+    setInfo(c, allOpts.deployInfo);
   
     return c;
   }
