@@ -1,30 +1,37 @@
 
-import type { CommonOptions} from './common-options';
 
 import type { DeployContract} from './contract';
+import { DeployBuilder } from "./contract";
+import type { CommonOptions} from './common-options';
 import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
 
-import { DeployBuilder } from "./contract";
-
+import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
 
 export interface DeploySafeOptions extends CommonOptions {
     name: string;
-    // delay: string;
-    // period: string;
-    // blockTime?: number;
-    // proposalThreshold?: string;
-    // decimals?: number;
-    // quorumMode?: 'percent' | 'absolute';
-    // quorumPercent?: number;
-    // quorumAbsolute?: string;
-    // storage?: boolean;
-    // settings?: boolean;
   }
 
+export const defaults: Required<DeploySafeOptions> = {
+  name: 'DeploySafeProxy',
+
+  info: commonDefaults.info
+} as const;
+
+function withDeployDefaults(opts: DeploySafeOptions): Required<DeploySafeOptions> {
+  return {
+    ...opts,
+    ...withCommonDefaults(opts)
+  };
+}
+
+export function printDeploySafe(opts: DeploySafeOptions = defaults): string {
+  return printDeployContract(buildDeploySafe(opts));
+}
+
 export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
-    const allOpts = withDeloyDefaults(opts);
+    const allOpts = withDeployDefaults(opts);
   
     const c = new DeployBuilder(allOpts.name);
   
@@ -45,22 +52,6 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
     return c;
   }
 
-  function withDeloyDefaults(opts: DeploySafeOptions): Required<DeploySafeOptions> {
-    return {
-      ...opts,
-      ...withCommonDefaults(opts),
-      // decimals: opts.decimals ?? defaults.decimals,
-      // blockTime: opts.blockTime || defaults.blockTime,
-      // quorumPercent: opts.quorumPercent ?? defaults.quorumPercent,
-      // quorumAbsolute: opts.quorumAbsolute ?? defaults.quorumAbsolute,
-      // proposalThreshold: opts.proposalThreshold || defaults.proposalThreshold,
-      // settings: opts.settings ?? defaults.settings,
-      // storage: opts.storage ?? defaults.storage,
-      // quorumMode: opts.quorumMode ?? defaults.quorumMode,
-      // votes: opts.votes ?? defaults.votes,
-      // timelock: opts.timelock ?? defaults.timelock
-    };
-  }
 
   function addBase(c: DeployBuilder, { name }: DeploySafeOptions) {
     const DeployScript = {

@@ -1,8 +1,7 @@
 import type { CommonOptions } from './common-options';
-import { printDeployGovernor, defaults as governorDefaults, type DeployGovernerOptions } from './governor';
-// import { printSafe, defaults as safeDefaults, type DeploySafeOptions } from './safe';
+import { printDeployGovernor, defaults as governorDefaults, type DeployGovernerOptions } from './1-governor';
+import { printDeploySafe, defaults as safeDefaults, type DeploySafeOptions } from './1-safe';
 
-import { printCustom, defaults as customDefaults, type CustomOptions } from './custom';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -18,8 +17,7 @@ export interface WizardContractAPI<Options extends CommonOptions> {
 }
 
 export type Governor = WizardContractAPI<DeployGovernerOptions>;
-// export type Safe = WizardContractAPI<DeploySafeOptions>;
-export type Custom = WizardContractAPI<CustomOptions>;
+export type Safe = WizardContractAPI<DeploySafeOptions>;
 
 
 export const governor: Governor = {
@@ -27,12 +25,7 @@ export const governor: Governor = {
   defaults: governorDefaults,
 }
 
-// export const safe: Safe = {
-//   print: printSafe,
-//   defaults: safeDefaults,
-// }
-
-export const custom: Custom = {
-  print: printCustom,
-  defaults: customDefaults,
+export const safe: Safe = {
+  print: printDeploySafe,
+  defaults: safeDefaults,
 }
