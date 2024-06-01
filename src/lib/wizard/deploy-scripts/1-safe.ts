@@ -1,7 +1,6 @@
-
-
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
+
 import type { CommonOptions} from './common-options';
 import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
 
@@ -43,7 +42,6 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
 
 
   function addBase(c: DeployBuilder, { deployName }: DeploySafeOptions) {
-    // import {DeployerFunctions} from "@script-5_0_2/deployer/DeployerFunctions.sol";
 
     const DeployFunctions = {
       name: 'DeployerFunctions',
@@ -55,5 +53,5 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
       name: 'DeployScript',
       path: '@redprint-core/deployer/DeployScript.sol',
     };
-    c.addParent(DeployScript, [deployName]);
+    c.addParent(DeployScript, []);
   }

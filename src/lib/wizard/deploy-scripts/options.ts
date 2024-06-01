@@ -1,7 +1,6 @@
 import * as path from 'path-browserify';
 
 import type { DeployContract, ReferencedContract, ParentContract } from './contract';
-import { inferTranspiled } from './infer-transpiled';
 
 export interface Options {
   transformImport?: (parent: ParentContract) => ParentContract;

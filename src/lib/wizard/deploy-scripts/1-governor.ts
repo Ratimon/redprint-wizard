@@ -1,10 +1,9 @@
-
 import type { CommonOptions} from './common-options';
-
-import type { DeployContract} from './contract';
 import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
 
+import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
+
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
@@ -40,12 +39,21 @@ export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract
     };
   }
 
+  // todo remove unused param
   function addBase(c: DeployBuilder, { deployName }: DeployGovernerOptions) {
+
+    const DeployFunctions = {
+      name: 'DeployerFunctions',
+      path: '@script-5_0_2/deployer/DeployerFunctions.sol',
+    };
+
+    c.addLibrary(DeployFunctions, `IDeployer`);
+
     const DeployScript = {
       name: 'DeployScript',
       path: '@redprint-core/deployer/DeployScript.sol',
     };
 
-    c.addLibrary(DeployScript, `IDeployer`);
+    c.addParent(DeployScript, []);
 
   }

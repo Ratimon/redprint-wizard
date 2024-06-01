@@ -8,8 +8,6 @@ import type { Lines} from '../utils/format-lines';
 import { formatLines, spaceBetween } from '../utils/format-lines';
 import { mapValues } from '../utils/map-values';
 import SOLIDITY_VERSION from './solidity-version.json';
-import { inferTranspiled } from './infer-transpiled';
-import { compatibleContractsSemver } from '../utils/version';
 
 export function printDeployContract(contract: DeployContract, opts?: Options): string {
   const helpers = withHelpers(opts);
@@ -57,35 +55,6 @@ function printInheritance(contract: DeployContract, { transformName }: Helpers):
   }
 }
 
-// function printConstructor(contract: DeployContract, helpers: Helpers): Lines[] {
-//   const hasParentParams = contract.parents.some(p => p.params.length > 0);
-//   const hasConstructorCode = contract.constructorCode.length > 0;
-//   if (hasParentParams || hasConstructorCode) {
-//     const parents = contract.parents.flatMap(p => printParentConstructor(p))
-//     const modifiers = parents;
-//     const args = contract.constructorArgs.map(a =>  printArgument(a));
-//     const body = contract.constructorCode;
-//     const head = 'constructor';
-//     const constructor = printFunction2(
-//       head,
-//       args,
-//       modifiers,
-//       body,
-//     );
-
-//     return constructor;
-//   } else {
-//     return [];
-//   }
-// }
-
-function hasInitializer(parent: Parent) {
-  // CAUTION
-  // This list is validated by compilation of SafetyCheck.sol.
-  // Always keep this list and that file in sync.
-  return !['Initializable'].includes(parent.contract.name);
-}
-
 type SortedFunctions = Record<'code' | 'modifiers' | 'override', ContractFunction[]>;
 
 // Functions with code first, then those with modifiers, then the rest
@@ -103,19 +72,6 @@ function sortedFunctions(contract: DeployContract): SortedFunctions {
   }
 
   return fns;
-}
-
-function printParentConstructor({ contract, params }: Parent): [] | [string] {
-  // const useTranspiled = inferTranspiled(contract);
-  // const fn = useTranspiled ? `__${contract.name}_init` : contract.name;
-  const fn = contract.name;
-  if (params.length > 0) {
-    return [
-      fn + '(' + params.map(printValue).join(', ') + ')',
-    ];
-  } else {
-    return [];
-  }
 }
 
 export function printValue(value: Value): string {
@@ -139,7 +95,6 @@ export function printValue(value: Value): string {
 }
 
 function printFunction(fn: ContractFunction): Lines[] {
-  // const { transformName } = helpers;
 
   if (fn.override.size <= 1 && fn.modifiers.length === 0 && fn.code.length === 0 && !fn.final) {
     return []
