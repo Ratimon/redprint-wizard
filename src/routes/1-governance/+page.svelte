@@ -128,7 +128,7 @@
 
     </div>
 
-    <div class="output flex flex-col grow overflow-auto h-[calc(150vh-40px)]">
+    <div class="output flex flex-col grow overflow-auto h-[calc(100vh-40px)]">
 
       <div class="badge badge-primary badge-outline badge-lg">
         Smart Contract
@@ -141,7 +141,7 @@
       </pre>
     </div>
     
-    <div class="output flex flex-col grow overflow-auto h-[calc(150vh-40px)]">
+    <div class="output flex flex-col grow overflow-auto h-[calc(100vh-40px)]">
 
       <div class="badge badge-primary badge-outline badge-lg">
         Deploy Script

@@ -18,9 +18,9 @@
 
   <label class="labeled-input">
     <span class="flex justify-between pr-2">
-      Security Contact
+      Reference
       <HelpTooltip link="https://github.com/ethereum-lists/contracts/blob/main/README.md#tracking-new-deployments">
-      Where people can contact you to report security issues. Will only be visible if contract metadata is verified.
+         The link to original code
       </HelpTooltip>
     </span>
     <input bind:value={info.securityContact} placeholder="security@example.com" />

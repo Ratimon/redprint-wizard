@@ -11,7 +11,7 @@
   const contractDefaults = safe.defaults;
   const deployDefaults = deploySafe.defaults;
 
-  // to do : fix shard info
+  // to do : fix shared info
   export let opts: Required<KindedOptions['Safe'] | DeployKindedOptions['Safe'] > = {
     kind: 'Safe',
     ...contractDefaults,
@@ -36,13 +36,14 @@
 
   <div class="checkbox-group">
     <label class:checked={opts.chain === 'ethereum'}>
-      <input type="radio" bind:group={opts.chain} value="ethereum">
+      <input type="radio" bind:group={opts.chain} value='ethereu'>
       Ethereum
       <HelpTooltip link="https://chainlist.org/chain/1">
         Default Chain is Ethereum. Safe's smart contracts should be already deployed, so we can call them to initial our safe wallet 
       </HelpTooltip>
     </label>
   </div>
+
 </section>
 
 
