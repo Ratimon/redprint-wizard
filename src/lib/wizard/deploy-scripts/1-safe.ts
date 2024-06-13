@@ -43,12 +43,9 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
   
   addBase(c, allOpts);
 
-
   if (allOpts.chain) {
     addChain(c, allOpts);
   }
-
-
 
   setInfo(c, allOpts.deployInfo);
 
@@ -114,24 +111,16 @@ function addChain(c: DeployBuilder ,  { chain } : Required<DeploySafeOptions> , 
   if (mnemonic) {
     c.addFunctionCode(`string memory mnemonic = vm.envString("MNEMONIC");`, fn);
     c.addFunctionCode(`uint256 ownerPrivateKey = vm.deriveKey(mnemonic, "m/44'/60'/0'/0/", 1);`, fn);
-    c.addFunctionCode(`owner = vm.envOr("DEPLOYER", vm.addr(ownerPrivateKey));`, fn);
+    c.addFunctionCode(`owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`, fn);
   } else {
+    c.addFunctionCode(`owner = vm.envAddress("DEPLOYER_ADDRESS");`, fn);
 
-    // to do add option for privatekey & address
-
+    // to do : add ui for address
   }
 
   c.addFunctionCode(`safeProxy_ = SafeProxy(deployer.deploy_SystemOwnerSafe("SystemOwnerSafe", "SafeProxyFactory", "SafeSingleton", address(owner)));`, fn);
 
 }
-
-// export interface BaseFunction {
-//   name: string;
-//   args: FunctionArgument[];
-//   returns?: string[];
-//   kind: FunctionKind;
-//   mutability?: FunctionMutability;
-// }
 
 function getDeployFunction() {
   const fn = {
@@ -140,14 +129,6 @@ function getDeployFunction() {
     returns: ['SafeProxyFactory safeProxyFactory_', 'Safe safeSingleton_, SafeProxy safeProxy_' ] , 
     kind: 'external' as const,
   };
-
-  // if (!incremental) {
-  //   fn.args.push({ name: '', type: '' });
-  // }
-
-  // if (uriStorage) {
-  //   fn.args.push({ name: '', type: 'string memory' });
-  // }
 
   return fn;
 }

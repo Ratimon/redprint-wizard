@@ -36,7 +36,7 @@
 
   <div class="checkbox-group">
     <label class:checked={opts.chain === 'ethereum'}>
-      <input type="radio" bind:group={opts.chain} value='ethereu'>
+      <input type="radio" bind:group={opts.chain} value='ethereum'>
       Ethereum
       <HelpTooltip link="https://chainlist.org/chain/1">
         Default Chain is Ethereum. Safe's smart contracts should be already deployed, so we can call them to initial our safe wallet 
@@ -45,6 +45,7 @@
   </div>
 
 </section>
+
 
 
 <InfoSection bind:info={opts.contractInfo} />
