@@ -42,7 +42,7 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
-  addBase(c, allOpts);
+  addBase(c);
 
   const fn : BaseFunction = getDeployFunction();
 
@@ -55,7 +55,7 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
 }
 
 
-function addBase(c: DeployBuilder, { deployName }: DeploySafeOptions) {
+function addBase(c: DeployBuilder) {
 
   const DeployFunctions = {
     name: 'DeployerFunctions',

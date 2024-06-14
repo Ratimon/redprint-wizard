@@ -26,7 +26,7 @@ export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract
   
     const c = new DeployBuilder(allOpts.deployName);
     
-    addBase(c, allOpts);
+    addBase(c);
     setInfo(c, allOpts.deployInfo);
   
     return c;
@@ -39,8 +39,7 @@ export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract
     };
   }
 
-  // todo remove unused param
-  function addBase(c: DeployBuilder, { deployName }: DeployGovernerOptions) {
+  function addBase(c: DeployBuilder) {
 
     const DeployFunctions = {
       name: 'DeployerFunctions',
