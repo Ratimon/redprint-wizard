@@ -1,4 +1,4 @@
-import type { DeployContract} from './contract';
+import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
 import type { CommonOptions} from './common-options';
@@ -8,19 +8,21 @@ import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
 export const chainOptions = [false, 'ethereum', 'optimism'] as const;
-export type ChainOptions = typeof chainOptions[number];
+export type Chain = typeof chainOptions[number];
+
+export const opSecOptions = [false, 'address', 'key', 'mnemonic'] as const;
+export type OpSec = typeof opSecOptions[number];
 
 export interface DeploySafeOptions extends CommonOptions {
     deployName: string;
-
-    chain: ChainOptions;
-    // chain: string;
-
+    chain: Chain;
+    opSec: OpSec;
   }
 
 export const defaults: Required<DeploySafeOptions> = {
   deployName: 'DeploySafeProxy',
   chain: 'ethereum',
+  opSec: 'mnemonic',
 
   deployInfo: commonDefaults.deployInfo
 } as const;
@@ -38,15 +40,15 @@ export function printDeploySafe(opts: DeploySafeOptions = defaults): string {
 
 export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
-
   const c = new DeployBuilder(allOpts.deployName);
   
   addBase(c, allOpts);
 
-  if (allOpts.chain) {
-    addChain(c, allOpts);
-  }
+  const fn : BaseFunction = getDeployFunction();
 
+  if (allOpts.chain) {
+    addChain(c, fn, allOpts);
+  }
   setInfo(c, allOpts.deployInfo);
 
   return c;
@@ -68,7 +70,6 @@ function addBase(c: DeployBuilder, { deployName }: DeploySafeOptions) {
   c.addParent(DeployScript, []);
 }
 
-
 const chainModules = {
   ethereum: {
     safeProxyFactory: {
@@ -89,15 +90,13 @@ const chainModules = {
 } as const;
 
 
-function addChain(c: DeployBuilder ,  { chain } : Required<DeploySafeOptions> , mnemonic = true,) {
+function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<DeploySafeOptions> , mnemonic = true,) {
+  const chain = allOpts.chain;
 
   if (chain === false) {
     return;
   }
-
   const { safeProxyFactory, safeSingleton } = chainModules[chain];
-
-  const fn = getDeployFunction();
 
   c.addVariable('address owner;');
     
@@ -108,18 +107,32 @@ function addChain(c: DeployBuilder ,  { chain } : Required<DeploySafeOptions> , 
   c.addFunctionCode(`    ? safeSingleton_ = Safe(deployer.deploy_Safe("SafeSingleton"))`, fn);
   c.addFunctionCode(`    : safeSingleton_ = Safe(payable(safeSingleton));`, fn);
 
-  if (mnemonic) {
-    c.addFunctionCode(`string memory mnemonic = vm.envString("MNEMONIC");`, fn);
-    c.addFunctionCode(`uint256 ownerPrivateKey = vm.deriveKey(mnemonic, "m/44'/60'/0'/0/", 1);`, fn);
-    c.addFunctionCode(`owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`, fn);
-  } else {
-    c.addFunctionCode(`owner = vm.envAddress("DEPLOYER_ADDRESS");`, fn);
-
-    // to do : add ui for address
-  }
+  setOpsec(c, fn, allOpts.opSec);
 
   c.addFunctionCode(`safeProxy_ = SafeProxy(deployer.deploy_SystemOwnerSafe("SystemOwnerSafe", "SafeProxyFactory", "SafeSingleton", address(owner)));`, fn);
 
+}
+
+function setOpsec(c: DeployBuilder, fn: BaseFunction, opsec: OpSec) {
+
+  switch (opsec) {
+    case 'address': {
+      console.log('address')
+      c.addFunctionCode(`owner = vm.envAddress("DEPLOYER_ADDRESS");`, fn);
+      break;
+    }
+    case 'key': {
+      c.addFunctionCode(`owner = vm.envAddress("DEPLOYER_ADDRESS");`, fn);
+      break;
+    }
+    case 'mnemonic': {
+      console.log('mnemonic')
+      c.addFunctionCode(`string memory mnemonic = vm.envString("MNEMONIC");`, fn);
+      c.addFunctionCode(`uint256 ownerPrivateKey = vm.deriveKey(mnemonic, "m/44'/60'/0'/0/", 1);`, fn);
+      c.addFunctionCode(`owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`, fn);
+      break;
+    }
+  }
 }
 
 function getDeployFunction() {
