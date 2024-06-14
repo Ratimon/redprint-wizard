@@ -122,6 +122,9 @@ function setOpsec(c: DeployBuilder, fn: BaseFunction, opsec: OpSec) {
       break;
     }
     case 'key': {
+      c.addFunctionCode(`uint256 ownerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");`, fn);
+      c.addFunctionCode(`owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`, fn);
+
       c.addFunctionCode(`owner = vm.envAddress("DEPLOYER_ADDRESS");`, fn);
       break;
     }

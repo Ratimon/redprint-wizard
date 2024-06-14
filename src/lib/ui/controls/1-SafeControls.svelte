@@ -60,6 +60,14 @@
       </HelpTooltip>
     </label>
 
+    <label class:checked={opts.opSec === 'key'}>
+      <input type="radio" bind:group={opts.opSec} value='key'>
+      Key
+      <HelpTooltip>
+        Key
+      </HelpTooltip>
+    </label>
+
     <label class:checked={opts.opSec === 'address'}>
       <input type="radio" bind:group={opts.opSec} value='address'>
       Address
