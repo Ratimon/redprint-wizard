@@ -43,7 +43,6 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
   const c = new DeployBuilder(allOpts.deployName);
   
   addBase(c);
-
   const fn : BaseFunction = getDeployFunction();
 
   if (allOpts.chain) {
@@ -54,9 +53,8 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
   return c;
 }
 
-
+// to do : add contract to deploy ?
 function addBase(c: DeployBuilder) {
-
   const DeployFunctions = {
     name: 'DeployerFunctions',
     path: '@script-5_0_2/deployer/DeployerFunctions.sol',
@@ -98,6 +96,7 @@ function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<Deploy
   }
   const { safeProxyFactory, safeSingleton } = chainModules[chain];
 
+  // to do : abstract into 2 functions ?
   c.addVariable('address owner;');
     
   c.addFunctionCode(`address safeProxyFactory = ${safeProxyFactory.address};`, fn);

@@ -52,6 +52,7 @@
   <h1>OpSec Management</h1>
   <div class="checkbox-group">
       
+    <!-- todo add command line option  -->
     <label class:checked={opts.opSec === 'mnemonic'}>
       <input type="radio" bind:group={opts.opSec} value='mnemonic'>
       Mnemonic

@@ -71,6 +71,8 @@
     <input bind:value={opts.contractName}>
   </label>
 
+  <!-- todo add Opsec option  -->
+
   <div class="grid grid-cols-2 gap-2">
     <label class="labeled-input">
       <span class="flex justify-between">
