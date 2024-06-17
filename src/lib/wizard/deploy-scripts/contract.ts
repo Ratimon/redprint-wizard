@@ -6,7 +6,7 @@ export interface DeployContract {
   parents: Parent[];
   natspecTags: NatspecTag[];
   usings: Using[];
-  imports: ParentContract[];
+  dependencies: ParentContract[];
   functions: ContractFunction[];
   constructorCode: string[];
   constructorArgs: FunctionArgument[];
@@ -94,7 +94,7 @@ export class DeployBuilder implements DeployContract {
     return [...this.parentMap.values()]
   }
 
-  get imports(): ParentContract[] {
+  get dependencies(): ParentContract[] {
     return [
       ...[...this.parentMap.values()].map(p => p.contract),
       ...this.using.map(u => u.library),

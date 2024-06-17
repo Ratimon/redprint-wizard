@@ -6,7 +6,7 @@ export interface Contract {
   parents: Parent[];
   natspecTags: NatspecTag[];
   usings: Using[];
-  imports: ParentContract[];
+  dependencies: ParentContract[];
   functions: ContractFunction[];
   constructorCode: string[];
   fallbackCode: string[];
@@ -106,7 +106,7 @@ export class ContractBuilder implements Contract {
     });
   }
 
-  get imports(): ParentContract[] {
+  get dependencies(): ParentContract[] {
     return [
       ...[...this.parentMap.values()].map(p => p.contract),
       ...this.using.map(u => u.library),

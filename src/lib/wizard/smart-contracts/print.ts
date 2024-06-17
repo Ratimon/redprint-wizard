@@ -11,6 +11,8 @@ import SOLIDITY_VERSION from './solidity-version.json';
 import { inferTranspiled } from './infer-transpiled';
 import { compatibleContractsSemver } from '../utils/version';
 
+
+
 export function printContract(contract: Contract, opts?: Options): string {
   const helpers = withHelpers(contract, opts);
 
@@ -28,7 +30,7 @@ export function printContract(contract: Contract, opts?: Options): string {
         `pragma solidity ^${SOLIDITY_VERSION};`,
       ],
 
-      contract.imports.map(p => `import "${helpers.transformImport(p).path}";`),
+      contract.dependencies.map(p => `import "${helpers.transformImport(p).path}";`),
 
       [
         ...printNatspecTags(contract.natspecTags),

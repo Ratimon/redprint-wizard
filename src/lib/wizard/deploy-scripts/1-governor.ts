@@ -63,7 +63,7 @@ export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract
 
 function addBase(c: DeployBuilder) {
 
-  // to do addImport() in contract.t
+  // to do addImport() in contract.ts
 
   const DeployFunctions = {
     name: 'DeployerFunctions',
