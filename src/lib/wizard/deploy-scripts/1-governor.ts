@@ -63,21 +63,37 @@ export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract
 
 function addBase(c: DeployBuilder) {
 
-  // to do addImport() in contract.ts
+  const MyGovernor = {
+    name: 'MyGovernor',
+    path: '@main/MyGovernor.sol',
+  };
+  c.addModule(MyGovernor);
+  
+  const IVotes = {
+    name: 'IVotes',
+    path: '@openzeppelin/contracts/governance/extensions/GovernorVotes.sol',
+  };
+  c.addModule(IVotes);
+
+  const TimelockController = {
+    name: 'TimelockController',
+    path: '@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol',
+  };
+  c.addModule(TimelockController);
+  
 
   const DeployFunctions = {
     name: 'DeployerFunctions',
     path: '@script-5_0_2/deployer/DeployerFunctions.sol',
   };
-
   c.addLibrary(DeployFunctions, `IDeployer`);
 
   const DeployScript = {
     name: 'DeployScript',
     path: '@redprint-core/deployer/DeployScript.sol',
   };
-
   c.addParent(DeployScript, []);
+
 
   c.addVariable('address token;');
   
@@ -88,11 +104,6 @@ function addVotes(c: DeployBuilder, fn : BaseFunction) {
 
   c.addVariable('address token;');
   c.addFunctionCode(`IVotes _token = IVotes(token);`, fn);
-
-  // c.addParent({
-  //   name: 'GovernorVotes',
-  //   path: `@openzeppelin/contracts/governance/extensions/GovernorVotes.sol`,
-  // });
 
 }
 
