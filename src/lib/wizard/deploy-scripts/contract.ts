@@ -133,13 +133,13 @@ export class DeployBuilder implements DeployContract {
     return [...this.variableSet];
   }
 
-  addModule(contract: ParentContract ) {
-    this.modules.push(contract);
-  }
-
   addLibrary(contract: ParentContract, useFor: string ) {
     const using : Using = {library : contract, usingFor: useFor  } ;
     this.using.push(using);
+  }
+
+  addModule(contract: ParentContract ) {
+    this.modules.push(contract);
   }
 
   addParent(contract: ParentContract, params: Value[] = []): boolean {

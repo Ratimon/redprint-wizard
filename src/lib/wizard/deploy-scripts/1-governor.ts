@@ -74,12 +74,6 @@ function addBase(c: DeployBuilder) {
     path: '@openzeppelin/contracts/governance/extensions/GovernorVotes.sol',
   };
   c.addModule(IVotes);
-
-  const TimelockController = {
-    name: 'TimelockController',
-    path: '@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol',
-  };
-  c.addModule(TimelockController);
   
 
   const DeployFunctions = {
@@ -112,11 +106,17 @@ const timelockModules = {
     timelockType: {
       name: 'TimelockController',
     },
+    timelockParent: {
+      path: `@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol`,
+    }
   },
   compound: {
     timelockType: {
       name: 'ICompoundTimelock',
     },
+    timelockParent: {
+      path: `@openzeppelin/contracts/governance/extensions/GovernorTimelockCompound.sol`,
+    }
   },
 } as const;
   
@@ -135,6 +135,20 @@ function addTimelock(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<
 }
 
 function addDeployLogic(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<DeployGovernerOptions>) {
+
+  if (timelock === false) {
+    return;
+  }
+
+  const { timelockType, timelockParent } = timelockModules[timelock];
+
+  const TimelockController = {
+    name: timelockType.name,
+    path: timelockParent.path,
+  };
+
+  c.addModule(TimelockController);
+
   if (timelock ) {
     c.addFunctionCode(`MyGovernor governer = new MyGovernor(_token, _timelock);`, fn);
 

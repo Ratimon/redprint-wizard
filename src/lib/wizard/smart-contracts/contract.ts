@@ -5,8 +5,11 @@ export interface Contract {
   license: string;
   parents: Parent[];
   natspecTags: NatspecTag[];
+
   usings: Using[];
+  modules: ParentContract[];
   dependencies: ParentContract[];
+
   functions: ContractFunction[];
   constructorCode: string[];
   fallbackCode: string[];
@@ -80,6 +83,7 @@ export class ContractBuilder implements Contract {
   upgradeable = false;
 
   readonly using: Using[] = [];
+  readonly modules: ParentContract[] = [];
   readonly natspecTags: NatspecTag[] = [];
 
   readonly constructorArgs: FunctionArgument[] = [];
@@ -107,10 +111,26 @@ export class ContractBuilder implements Contract {
   }
 
   get dependencies(): ParentContract[] {
-    return [
+
+    const pathMap: Map<string, Set<string>> = new Map();
+    const allContracts = [
       ...[...this.parentMap.values()].map(p => p.contract),
       ...this.using.map(u => u.library),
+      ...this.modules,
     ];
+
+    allContracts.forEach(contract => {
+      if (!pathMap.has(contract.path)) {
+        pathMap.set(contract.path, new Set());
+      }
+      pathMap.get(contract.path)!.add(contract.name);
+    });
+
+    return Array.from(pathMap.entries()).map(([path, names]) => ({
+      path,
+      name: Array.from(names).join(', '),
+    } as ParentContract));
+    
   }
 
   get usings(): Using[] {
@@ -130,6 +150,9 @@ export class ContractBuilder implements Contract {
     this.using.push(using);
   }
 
+  addModule(contract: ParentContract ) {
+    this.modules.push(contract);
+  }
 
   addParent(contract: ParentContract, params: Value[] = []): boolean {
     const present = this.parentMap.has(contract.name);

@@ -109,6 +109,7 @@ function addBase(c: ContractBuilder, { contractName }: GovernorOptions) {
     path: '@openzeppelin/contracts/governance/Governor.sol',
   };
   c.addParent(Governor, [contractName]);
+
   c.addOverride(Governor, functions.votingDelay);
   c.addOverride(Governor, functions.votingPeriod);
   c.addOverride(Governor, functions.quorum);
@@ -236,6 +237,14 @@ function addVotes(c: ContractBuilder) {
     name: 'GovernorVotes',
     path: `@openzeppelin/contracts/governance/extensions/GovernorVotes.sol`,
   }, [{ lit: tokenArg }]);
+
+
+  const IVotes = {
+    name: 'IVotes',
+    path: '@openzeppelin/contracts/governance/extensions/GovernorVotes.sol',
+  };
+  c.addModule(IVotes);
+  
 }
 
 export const numberPattern = /^(?!$)(\d*)(?:\.(\d+))?(?:e(\d+))?$/;
@@ -345,6 +354,14 @@ function addTimelock(c: ContractBuilder, { timelock }: Required<GovernorOptions>
   c.addOverride(timelockParent, functions._executor);
   c.addOverride(timelockParent, functions.state);
   c.addOverride(timelockParent, functions.proposalNeedsQueuing);
+
+
+  const TimelockController = {
+    name: timelockType.name,
+    path: timelockParent.path,
+  };
+
+  c.addModule(TimelockController);
 }
 
 function addStorage(c: ContractBuilder, { storage }: GovernorOptions) {

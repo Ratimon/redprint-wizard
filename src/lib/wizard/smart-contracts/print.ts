@@ -30,7 +30,7 @@ export function printContract(contract: Contract, opts?: Options): string {
         `pragma solidity ^${SOLIDITY_VERSION};`,
       ],
 
-      contract.dependencies.map(p => `import "${helpers.transformImport(p).path}";`),
+      contract.dependencies.map(p => `import {${p.name}} from "${helpers.transformImport(p).path}";`),
 
       [
         ...printNatspecTags(contract.natspecTags),

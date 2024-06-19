@@ -41,6 +41,8 @@ export function printSafe(opts: SafeOptions = defaults): string {
 export function buildSafe(opts: SafeOptions): Contract {
   const allOpts = withDefaults(opts);
 
+  // to do add interface
+
   const c = new ContractBuilder(allOpts.contractName);
 
   c.addVariable(`address internal singleton;`);
