@@ -66,6 +66,25 @@ function addBase(c: DeployBuilder) {
     path: '@redprint-core/deployer/DeployScript.sol',
   };
   c.addParent(DeployScript, []);
+
+  const SafeProxyFactory = {
+    name: 'SafeProxyFactory',
+    path: 'safe-smart-account/contracts/proxies/SafeProxyFactory.sol',
+  };
+  c.addModule(SafeProxyFactory);
+
+  const Safe = {
+    name: 'Safe',
+    path: 'safe-smart-account/contracts/Safe.sol',
+  };
+  c.addModule(Safe);
+
+  const SafeProxy = {
+    name: 'SafeProxy',
+    path: 'safe-smart-account/contracts/proxies/SafeProxy.sol',
+  };
+  c.addModule(SafeProxy);
+
 }
 
 const chainModules = {

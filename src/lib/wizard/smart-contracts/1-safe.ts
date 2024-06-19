@@ -42,8 +42,14 @@ export function buildSafe(opts: SafeOptions): Contract {
   const allOpts = withDefaults(opts);
 
   // to do add interface
-
   const c = new ContractBuilder(allOpts.contractName);
+
+  const IProxy = {
+    name: 'IProxy',
+    path: 'safe-smart-account/contracts/proxies/SafeProxy.sol',
+  };
+
+  c.addModule(IProxy);
 
   c.addVariable(`address internal singleton;`);
 

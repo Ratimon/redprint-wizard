@@ -63,18 +63,6 @@ export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract
 
 function addBase(c: DeployBuilder) {
 
-  const MyGovernor = {
-    name: 'MyGovernor',
-    path: '@main/MyGovernor.sol',
-  };
-  c.addModule(MyGovernor);
-  
-  const IVotes = {
-    name: 'IVotes',
-    path: '@openzeppelin/contracts/governance/extensions/GovernorVotes.sol',
-  };
-  c.addModule(IVotes);
-  
 
   const DeployFunctions = {
     name: 'DeployerFunctions',
@@ -87,6 +75,18 @@ function addBase(c: DeployBuilder) {
     path: '@redprint-core/deployer/DeployScript.sol',
   };
   c.addParent(DeployScript, []);
+
+  const MyGovernor = {
+    name: 'MyGovernor',
+    path: '@main/MyGovernor.sol',
+  };
+  c.addModule(MyGovernor);
+  
+  const IVotes = {
+    name: 'IVotes',
+    path: '@openzeppelin/contracts/governance/extensions/GovernorVotes.sol',
+  };
+  c.addModule(IVotes);
 
 
   c.addVariable('address token;');

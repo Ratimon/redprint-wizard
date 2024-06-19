@@ -238,7 +238,6 @@ function addVotes(c: ContractBuilder) {
     path: `@openzeppelin/contracts/governance/extensions/GovernorVotes.sol`,
   }, [{ lit: tokenArg }]);
 
-
   const IVotes = {
     name: 'IVotes',
     path: '@openzeppelin/contracts/governance/extensions/GovernorVotes.sol',

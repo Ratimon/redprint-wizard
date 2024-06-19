@@ -23,7 +23,7 @@
 </script>
   
 <section class="controls-section">
-  <h1>Settings</h1>
+  <h1>Contract Settings</h1>
 
   <label class="labeled-input">
     <span>Name</span>
