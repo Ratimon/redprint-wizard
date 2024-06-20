@@ -14,6 +14,8 @@ export function setUpgradeable(c: ContractBuilder, upgradeable: Upgradeable, acc
 
   c.upgradeable = true;
 
+  // to do : remove Governer ? AddUpgradable
+
   c.addParent({
     name: 'Initializable',
     path: '@openzeppelin/contracts/proxy/utils/Initializable.sol',

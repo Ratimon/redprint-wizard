@@ -1,6 +1,7 @@
 import 'array.prototype.flatmap/auto';
 
-import type { Contract, Parent, ContractFunction, FunctionArgument, Value, NatspecTag } from './contract';
+import type { Contract,ReferencedContract,  Parent, ContractFunction, FunctionArgument, Value, NatspecTag } from './contract';
+
 import type { Options, Helpers }from './options';
 import { withHelpers } from './options';
 
@@ -10,7 +11,6 @@ import { mapValues } from '../utils/map-values';
 import SOLIDITY_VERSION from './solidity-version.json';
 import { inferTranspiled } from './infer-transpiled';
 import { compatibleContractsSemver } from '../utils/version';
-
 
 
 export function printContract(contract: Contract, opts?: Options): string {
@@ -30,7 +30,11 @@ export function printContract(contract: Contract, opts?: Options): string {
         `pragma solidity ^${SOLIDITY_VERSION};`,
       ],
 
-      contract.dependencies.map(p => `import {${p.name}} from "${helpers.transformImport(p).path}";`),
+      contract.dependencies.map(p => {
+        const names = p.name.split(', ').map(name => ({ name } as ReferencedContract));
+        const transformedNames = helpers.transformNames(names).join(', ');
+        return `import {${transformedNames}} from "${helpers.transformImport(p).path}";`;
+      }),
 
       [
         ...printNatspecTags(contract.natspecTags),

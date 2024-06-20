@@ -28,17 +28,42 @@ export interface Options {
   transformImport?: (parent: ParentContract) => ParentContract;
 }
 
+// export interface Helpers extends Required<Options> {
+//   upgradeable: boolean;
+//   transformName: (name: ReferencedContract) => string;
+// }
+
+// export function withHelpers(contract: Contract, opts: Options = {}): Helpers {
+//   const contractUpgradeable = contract.upgradeable;
+//   const transformName = (n: ReferencedContract) => contractUpgradeable && inferTranspiled(n) ? upgradeableName(n.name) : n.name;
+//   return {
+//     upgradeable: contractUpgradeable,
+//     transformName,
+//     transformImport: p1 => {
+//       const p2 = contractUpgradeable && inferTranspiled(p1) ? upgradeableImport(p1) : p1;
+//       return opts.transformImport?.(p2) ?? p2;
+//     },
+//   };
+// }
+
 export interface Helpers extends Required<Options> {
   upgradeable: boolean;
   transformName: (name: ReferencedContract) => string;
+  transformNames: (names: ReferencedContract[]) => string[];
 }
 
 export function withHelpers(contract: Contract, opts: Options = {}): Helpers {
   const contractUpgradeable = contract.upgradeable;
+
   const transformName = (n: ReferencedContract) => contractUpgradeable && inferTranspiled(n) ? upgradeableName(n.name) : n.name;
+
+  const transformNames = (names: ReferencedContract[]) => 
+    names.map(n => contractUpgradeable && inferTranspiled(n) ? upgradeableName(n.name) : n.name);
+  
   return {
     upgradeable: contractUpgradeable,
     transformName,
+    transformNames,
     transformImport: p1 => {
       const p2 = contractUpgradeable && inferTranspiled(p1) ? upgradeableImport(p1) : p1;
       return opts.transformImport?.(p2) ?? p2;

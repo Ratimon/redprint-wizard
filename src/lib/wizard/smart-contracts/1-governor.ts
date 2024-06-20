@@ -97,7 +97,9 @@ export function buildGovernor(opts: GovernorOptions): Contract {
   addTimelock(c, allOpts);
 
   setAccessControl(c, allOpts.access);
+  
   setUpgradeable(c, allOpts.upgradeable, allOpts.access);
+
   setInfo(c, allOpts.contractInfo);
 
   return c;
@@ -242,6 +244,7 @@ function addVotes(c: ContractBuilder) {
     name: 'IVotes',
     path: '@openzeppelin/contracts/governance/extensions/GovernorVotes.sol',
   };
+
   c.addModule(IVotes);
   
 }
