@@ -135,7 +135,6 @@ function setOpsec(c: DeployBuilder, fn: BaseFunction, opsec: OpSec) {
 
   switch (opsec) {
     case 'address': {
-      console.log('address')
       c.addFunctionCode(`owner = vm.envAddress("DEPLOYER_ADDRESS");`, fn);
       break;
     }
@@ -147,7 +146,6 @@ function setOpsec(c: DeployBuilder, fn: BaseFunction, opsec: OpSec) {
       break;
     }
     case 'mnemonic': {
-      console.log('mnemonic')
       c.addFunctionCode(`string memory mnemonic = vm.envString("MNEMONIC");`, fn);
       c.addFunctionCode(`uint256 ownerPrivateKey = vm.deriveKey(mnemonic, "m/44'/60'/0'/0/", 1);`, fn);
       c.addFunctionCode(`owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`, fn);
