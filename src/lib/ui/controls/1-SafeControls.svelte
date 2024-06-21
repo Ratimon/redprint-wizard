@@ -12,7 +12,9 @@
   const deployDefaults = deploySafe.defaults;
 
   // to do : fix shared info
+  // export let opts: KindedOptions['Safe'] | DeployKindedOptions['Safe']  = {
   export let opts: Required<KindedOptions['Safe'] | DeployKindedOptions['Safe'] > = {
+
     kind: 'Safe',
     ...contractDefaults,
     ...deployDefaults,
@@ -52,7 +54,7 @@
   <h1>OpSec Management</h1>
   <div class="checkbox-group">
       
-    <!-- todo add command line option  -->
+    <!-- todo add hardware/ command line option  -->
     <label class:checked={opts.opSec === 'mnemonic'}>
       <input type="radio" bind:group={opts.opSec} value='mnemonic'>
       Mnemonic

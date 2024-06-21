@@ -63,28 +63,21 @@ export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract
 
 function addBase(c: DeployBuilder) {
 
-
-  const DeployFunctions = {
-    name: 'DeployerFunctions',
-    path: '@script-5_0_2/deployer/DeployerFunctions.sol',
+  const Script = {
+    name: 'Script',
+    path: '@forge-std/Script.sol',
   };
-  c.addLibrary(DeployFunctions, `IDeployer`);
-
-  const DeployScript = {
-    name: 'DeployScript',
-    path: '@redprint-core/deployer/DeployScript.sol',
-  };
-  c.addParent(DeployScript, []);
+  c.addParent(Script, []);
 
   const MyGovernor = {
     name: 'MyGovernor',
-    path: '@main/MyGovernor.sol',
+    path: '@main/governer/MyGovernor.sol',
   };
   c.addModule(MyGovernor);
   
   const IVotes = {
     name: 'IVotes',
-    path: '@openzeppelin/contracts/governance/extensions/GovernorVotes.sol',
+    path: '@main/governer/MyGovernor.sol',
   };
   c.addModule(IVotes);
 
@@ -107,7 +100,7 @@ const timelockModules = {
       name: 'TimelockController',
     },
     timelockParent: {
-      path: `@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol`,
+      path: `@main/governer/MyGovernor.sol`,
     }
   },
   compound: {
@@ -115,7 +108,7 @@ const timelockModules = {
       name: 'ICompoundTimelock',
     },
     timelockParent: {
-      path: `@openzeppelin/contracts/governance/extensions/GovernorTimelockCompound.sol`,
+      path: `@main/governer/MyGovernor.sol`,
     }
   },
 } as const;

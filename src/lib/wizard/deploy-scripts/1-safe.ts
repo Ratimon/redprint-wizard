@@ -57,7 +57,7 @@ export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
 function addBase(c: DeployBuilder) {
   const DeployFunctions = {
     name: 'DeployerFunctions',
-    path: '@script-5_0_2/deployer/DeployerFunctions.sol',
+    path: '@redprint-core/deployer/DeployerFunctions.sol',
   };
   c.addLibrary(DeployFunctions, `IDeployer`);
 
