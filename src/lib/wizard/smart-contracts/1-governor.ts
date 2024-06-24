@@ -11,6 +11,12 @@ import { setUpgradeable } from "./set-upgradeable";
 import { defineFunctions } from '../utils/define-functions';
 import { durationToBlocks } from "../utils/duration";
 
+export const votesOptions = ['erc20votes', 'erc721votes'] as const;
+export type VotesOptions = typeof votesOptions[number];
+
+export const timelockOptions = [false, 'openzeppelin', 'compound'] as const;
+export type TimelockOptions = typeof timelockOptions[number];
+
 export interface GovernorOptions extends CommonOptions {
   contractName: string;
   delay: string;
@@ -49,11 +55,6 @@ export const defaults: Required<GovernorOptions> = {
   contractInfo: commonDefaults.contractInfo
 } as const;
 
-export const votesOptions = ['erc20votes', 'erc721votes'] as const;
-export type VotesOptions = typeof votesOptions[number];
-
-export const timelockOptions = [false, 'openzeppelin', 'compound'] as const;
-export type TimelockOptions = typeof timelockOptions[number];
 
 export function printGovernor(opts: GovernorOptions = defaults): string {
   return printContract(buildGovernor(opts));

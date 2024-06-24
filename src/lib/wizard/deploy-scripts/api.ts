@@ -1,6 +1,16 @@
-import type { CommonOptions } from './common-options';
-import { printDeployGovernor, defaults as governorDefaults, type DeployGovernerOptions } from './1-governor';
-import { printDeploySafe, defaults as safeDefaults, type DeploySafeOptions } from './1-safe';
+// import type { CommonOptions } from './common-options';
+import type { CommonOptions } from '../shared/common-options';
+
+import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
+import { defaults as governorDefaults } from '../shared/1-shared-governor-option';
+import { printDeployGovernor} from './1-governor';
+
+// import { printDeploySafe, defaults as safeDefaults, type DeploySafeOptions } from './1-safe';
+
+// import { printDeploySafe, defaults as safeDefaults } from './1-safe';
+import type {  SharedSafeOptions } from '../shared/1-shared-safe-option';
+import {  defaults as safeDefaults } from '../shared/1-shared-safe-option';
+import { printDeploySafe } from './1-safe';
 
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -16,8 +26,8 @@ export interface WizardContractAPI<Options extends CommonOptions> {
 
 }
 
-export type DeployGovernor = WizardContractAPI<DeployGovernerOptions>;
-export type DeploySafe = WizardContractAPI<DeploySafeOptions>;
+export type DeployGovernor = WizardContractAPI<SharedGovernerOptions>;
+export type DeploySafe = WizardContractAPI<SharedSafeOptions>;
 
 
 export const deployGovernor: DeployGovernor = {

@@ -1,44 +1,48 @@
 
 import type { Contract} from './contract';
 import {  ContractBuilder } from './contract';
+
 import type { CommonOptions} from './common-options';
-import { withCommonDefaults, defaults as commonDefaults } from './common-options';
+// import { withCommonDefaults, defaults as commonDefaults } from './common-options';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-shared-safe-option";
+
 
 import { printContract } from "./print";
-
 import { setInfo  } from "./set-info";
 
-export interface SafeOptions extends CommonOptions {
-  contractName: string;
-  chain: ChainsOptions;
-}
+import type { SharedSafeOptions} from '../shared/1-shared-safe-option';
 
-export const defaults: Required<SafeOptions> = {
-  contractName: 'SafeProxy',
-  chain: 'ethereum',
-  access: commonDefaults.access,
+// export interface SafeOptions extends CommonOptions {
+//   contractName: string;
+//   chain: ChainsOptions;
+// }
 
-  //todo remove it
-  upgradeable: commonDefaults.upgradeable,
-  contractInfo: commonDefaults.contractInfo
-} as const;
+// export const defaults: Required<SafeOptions> = {
+//   contractName: 'SafeProxy',
+//   chain: 'ethereum',
+//   access: commonDefaults.access,
 
-function withDefaults(opts: SafeOptions): Required<SafeOptions> {
+//   //todo remove it
+//   upgradeable: commonDefaults.upgradeable,
+//   contractInfo: commonDefaults.contractInfo
+// } as const;
+
+function withDefaults(opts: SharedSafeOptions): Required<SharedSafeOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
-    chain: opts.chain ?? defaults.chain
+    chain: opts.chain ?? commonDefaults.chain
   };
 }
 
 export const chainOptions = ['ethereum'] as const;
 export type ChainsOptions = typeof chainOptions[number];
 
-export function printSafe(opts: SafeOptions = defaults): string {
+export function printSafe(opts: SharedSafeOptions = commonDefaults): string {
   return printContract(buildSafe(opts));
 }
 
-export function buildSafe(opts: SafeOptions): Contract {
+export function buildSafe(opts: SharedSafeOptions): Contract {
   const allOpts = withDefaults(opts);
 
   // to do add interface

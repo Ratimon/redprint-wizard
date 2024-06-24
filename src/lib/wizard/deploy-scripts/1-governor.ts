@@ -1,8 +1,11 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { CommonOptions} from './common-options';
-import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
+// import type { CommonOptions} from './common-options';
+// import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
+
+import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-shared-governor-option";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
@@ -10,32 +13,32 @@ import { setInfo } from "./set-info";
 export const timelockOptions = [false, 'openzeppelin', 'compound'] as const;
 export type TimelockOptions = typeof timelockOptions[number];
 
-export const defaults: Required<DeployGovernerOptions> = {
-  deployName: 'DeployGovernerScript',
-  timelock: 'openzeppelin',
-  deployInfo: commonDefaults.deployInfo
-} as const;
+// export const defaults: Required<DeployGovernerOptions> = {
+//   deployName: 'DeployGovernerScript',
+//   timelock: 'openzeppelin',
+//   deployInfo: commonDefaults.deployInfo
+// } as const;
 
 
-export interface DeployGovernerOptions extends CommonOptions {
-  deployName: string;
+// export interface DeployGovernerOptions extends CommonOptions {
+//   deployName: string;
 
-  timelock?: TimelockOptions;
-}
+//   timelock?: TimelockOptions;
+// }
 
-function withDeloyDefaults(opts: DeployGovernerOptions): Required<DeployGovernerOptions> {
+function withDeloyDefaults(opts: SharedGovernerOptions): Required<SharedGovernerOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
-    timelock: opts.timelock ?? defaults.timelock
+    timelock: opts.timelock ?? commonDefaults.timelock
   };
 }
 
-export function printDeployGovernor(opts: DeployGovernerOptions = defaults): string {
+export function printDeployGovernor(opts: SharedGovernerOptions = commonDefaults): string {
   return printDeployContract(buildDeployGoverner(opts));
 }
   
-export function buildDeployGoverner(opts: DeployGovernerOptions): DeployContract {
+export function buildDeployGoverner(opts: SharedGovernerOptions): DeployContract {
     const allOpts = withDeloyDefaults(opts);
   
     const c = new DeployBuilder(allOpts.deployName);
@@ -115,7 +118,7 @@ const timelockModules = {
   
 
 
-function addTimelock(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<DeployGovernerOptions>) {
+function addTimelock(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<SharedGovernerOptions>) {
   if (timelock === false) {
     return;
   }
@@ -127,7 +130,7 @@ function addTimelock(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<
 
 }
 
-function addDeployLogic(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<DeployGovernerOptions>) {
+function addDeployLogic(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<SharedGovernerOptions>) {
 
   if (timelock === false) {
     return;

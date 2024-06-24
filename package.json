@@ -24,6 +24,7 @@
 		"daisyui": "^4.11.1",
 		"path-browserify": "^1.0.1",
 		"postcss": "^8.4.38",
+		"postcss-import": "^16.1.0",
 		"postcss-load-config": "^5.1.0",
 		"pwag": "^0.3.0",
 		"svelte": "^4.2.7",

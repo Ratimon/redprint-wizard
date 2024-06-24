@@ -1,9 +1,12 @@
 <script lang="ts">
   import HelpTooltip from './HelpTooltip.svelte';
 
-  import type { KindedOptions } from '$lib/wizard/smart-contracts';
+  // import type { KindedOptions } from '$lib/wizard/smart-contracts';
   import { safe, contractInfoDefaults } from '$lib/wizard/smart-contracts';
-  import type { DeployKindedOptions } from '$lib/wizard/deploy-scripts';
+
+  // import type { DeployKindedOptions } from '$lib/wizard/deploy-scripts';
+  import type { KindedOptions } from '$lib/wizard/shared';
+
   import { deploySafe, deployInfoDefaults } from '$lib/wizard/deploy-scripts';
 
   import InfoSection from './InfoSection.svelte';
@@ -13,8 +16,7 @@
 
   // to do : fix shared info
   // export let opts: KindedOptions['Safe'] | DeployKindedOptions['Safe']  = {
-  export let opts: Required<KindedOptions['Safe'] | DeployKindedOptions['Safe'] > = {
-
+  export let opts: Required<KindedOptions['Safe'] > = {
     kind: 'Safe',
     ...contractDefaults,
     ...deployDefaults,

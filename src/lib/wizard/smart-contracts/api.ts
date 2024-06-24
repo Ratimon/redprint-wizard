@@ -1,6 +1,13 @@
-import type { CommonOptions } from './common-options';
+// import type { CommonOptions } from './common-options';
 import { printGovernor, defaults as governorDefaults, isAccessControlRequired as governorIsAccessControlRequired, type GovernorOptions } from './1-governor';
-import { printSafe, defaults as safeDefaults , type SafeOptions } from './1-safe';
+// import { printSafe, defaults as safeDefaults , type SafeOptions } from './1-safe';
+import { printSafe } from './1-safe';
+
+import {  defaults as safeDefaults } from '../shared/1-shared-safe-option';
+import type {  SharedSafeOptions } from '../shared/1-shared-safe-option';
+import type { CommonOptions } from '../shared/common-options';
+
+
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -21,7 +28,7 @@ export interface WizardContractAPI<Options extends CommonOptions> {
 }
 
 export type Governor = WizardContractAPI<GovernorOptions>;
-export type Safe = WizardContractAPI<SafeOptions>;
+export type Safe = WizardContractAPI<SharedSafeOptions>;
 
 export const governor: Governor = {
   print: printGovernor,

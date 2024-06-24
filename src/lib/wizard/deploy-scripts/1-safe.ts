@@ -1,8 +1,14 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { CommonOptions} from './common-options';
-import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
+// import type { CommonOptions} from './common-options';
+// import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
+
+// import type { CommonOptions } from '../shared/common-options';
+
+import type { SharedSafeOptions} from '../shared/1-shared-safe-option';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-shared-safe-option";
+
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
@@ -13,32 +19,52 @@ export type Chain = typeof chainOptions[number];
 export const opSecOptions = [false, 'address', 'key', 'mnemonic'] as const;
 export type OpSec = typeof opSecOptions[number];
 
-export interface DeploySafeOptions extends CommonOptions {
-    deployName: string;
-    chain: Chain;
-    opSec: OpSec;
-  }
 
-export const defaults: Required<DeploySafeOptions> = {
-  deployName: 'DeploySafeProxy',
-  chain: 'ethereum',
-  opSec: 'mnemonic',
 
-  deployInfo: commonDefaults.deployInfo
-} as const;
+// export interface DeploySafeOptions extends CommonOptions {
+//   deployName: string;
+//   chain: Chain;
+//   opSec: OpSec;
+// }
 
-function withDeployDefaults(opts: DeploySafeOptions): Required<DeploySafeOptions> {
+// export const defaults: Required<DeploySafeOptions> = {
+//   deployName: 'DeploySafeProxy',
+//   chain: 'ethereum',
+//   opSec: 'mnemonic',
+
+//   deployInfo: commonDefaults.deployInfo
+// } as const;
+
+// function withDeployDefaults(opts: DeploySafeOptions): Required<DeploySafeOptions> {
+//   return {
+//     ...opts,
+//     ...withCommonDefaults(opts)
+//   };
+// }
+
+
+// export const defaults: Required<SharedSafeOptions> = {
+//   deployName: 'DeploySafeProxy',
+//   chain: 'ethereum',
+//   opSec: 'mnemonic',
+
+//   deployInfo: commonDefaults.deployInfo
+// } as const;
+
+
+function withDeployDefaults(opts: SharedSafeOptions): Required<SharedSafeOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeploySafe(opts: DeploySafeOptions = defaults): string {
+
+export function printDeploySafe(opts: SharedSafeOptions = commonDefaults): string {
   return printDeployContract(buildDeploySafe(opts));
 }
 
-export function buildDeploySafe(opts: DeploySafeOptions): DeployContract {
+export function buildDeploySafe(opts: SharedSafeOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -107,7 +133,7 @@ const chainModules = {
 } as const;
 
 
-function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<DeploySafeOptions> , mnemonic = true,) {
+function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<SharedSafeOptions> , mnemonic = true,) {
   const chain = allOpts.chain;
 
   if (chain === false) {

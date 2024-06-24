@@ -1,12 +1,15 @@
 
-import type { DeploySafeOptions} from './1-safe';
+// import type { DeploySafeOptions} from './1-safe';
+import type { SharedSafeOptions} from '../shared/1-shared-safe-option';
+
 import { buildDeploySafe } from './1-safe';
-import type { DeployGovernerOptions} from './1-governor';
+import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
 import { buildDeployGoverner } from './1-governor';
 
+
 export interface DeployKindedOptions {
-  Safe: { kind: 'Safe' } & DeploySafeOptions;
-  Governor: { kind: 'Governor' } & DeployGovernerOptions;
+  Safe: { kind: 'Safe' } & SharedSafeOptions;
+  Governor: { kind: 'Governor' } & SharedGovernerOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];

@@ -9,10 +9,14 @@
 
     import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
 
-    import type { KindedOptions, Kind, Contract, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
+    import type { KindedOptions, Kind, OptionsErrorMessages } from '$lib/wizard/shared';
+    import {  sanitizeKind, OptionsError } from '$lib/wizard/shared';
+
+    import type {  Contract } from '$lib/wizard/smart-contracts';
     import { ContractBuilder, buildContractGeneric, printContract, sanitizeContractKind, ContractOptionsError } from '$lib/wizard/smart-contracts';
 
-    import type { DeployKindedOptions, DeployKind, DeployContract, DeployOptionsErrorMessages } from '$lib/wizard/deploy-scripts';
+    // import type { DeployKindedOptions, DeployKind, DeployContract, DeployOptionsErrorMessages } from '$lib/wizard/deploy-scripts';
+    import type {  DeployContract } from '$lib/wizard/deploy-scripts';
     import { DeployBuilder, buildDeployGeneric, printDeployContract, sanitizeDeployKind, DeployOptionsError } from '$lib/wizard/deploy-scripts';
 
     import hljs from '../highlightjs';
@@ -21,17 +25,22 @@
     const dispatch = createEventDispatcher();
 
     export let initialContractTab: string | undefined = 'Safe';
-    export let contractTab: Kind | DeployKind = sanitizeContractKind(initialContractTab);
+    // export let contractTab: Kind | DeployKind = sanitizeContractKind(initialContractTab);
+    export let contractTab: Kind = sanitizeKind(initialContractTab);
+
 
     $: {
-      contractTab = sanitizeContractKind(contractTab);
+      contractTab = sanitizeKind(contractTab);
       dispatch('contractTab-change', contractTab);
     };
 
-    let allContractsOpts: { [k in Kind]?: Required<KindedOptions[k] | DeployKindedOptions [k]> } = {};
-    let errors: { [k in Kind]?: OptionsErrorMessages | DeployOptionsErrorMessages } = {};
+    let allContractsOpts: { [k in Kind]?: Required<KindedOptions [k]> } = {};
+    let errors: { [k in Kind]?: OptionsErrorMessages } = {};
+    // let allContractsOpts: { [k in Kind]?: Required<KindedOptions[k] | DeployKindedOptions [k]> } = {};
+    // let errors: { [k in Kind]?: OptionsErrorMessages | DeployOptionsErrorMessages } = {};
 
     let contract: Contract = new ContractBuilder('SafeProxy');
+    
     let deployContract: DeployContract = new DeployBuilder('DeploySafeScript');
 
     $: contractOpts = allContractsOpts[contractTab];
@@ -43,7 +52,7 @@
                 deployContract = buildDeployGeneric(contractOpts);
                 errors[contractTab] = undefined;
             } catch (e: unknown) {
-                if (e instanceof ContractOptionsError) {
+                if (e instanceof OptionsError) {
                 errors[contractTab] = e.messages;
                 } else {
                 throw e;
