@@ -1,6 +1,8 @@
 import { supportsInterface } from "./common-functions";
-import type { CommonOptions} from './common-options';
-import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
+
+import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-shared-governor-option";
+
 import type { Contract} from './contract';
 import { ContractBuilder } from "./contract";
 import { ContractOptionsError } from "./error";
@@ -17,72 +19,32 @@ export type VotesOptions = typeof votesOptions[number];
 export const timelockOptions = [false, 'openzeppelin', 'compound'] as const;
 export type TimelockOptions = typeof timelockOptions[number];
 
-export interface GovernorOptions extends CommonOptions {
-  contractName: string;
-  delay: string;
-  period: string;
-  blockTime?: number;
-  proposalThreshold?: string;
-  decimals?: number;
-  quorumMode?: 'percent' | 'absolute';
-  quorumPercent?: number;
-  quorumAbsolute?: string;
-  votes?: VotesOptions;
-  timelock?: TimelockOptions;
-  storage?: boolean;
-  settings?: boolean;
-}
-
-
-export const defaults: Required<GovernorOptions> = {
-  contractName: 'MyGovernor',
-  delay: '1 day',
-  period: '1 week',
-
-  votes: 'erc20votes',
-  timelock: 'openzeppelin',
-  blockTime: 12,
-  decimals: 18,
-  proposalThreshold: '0',
-  quorumMode: 'percent',
-  quorumPercent: 4,
-  quorumAbsolute: '',
-  storage: false,
-  settings: true,
-  
-  access: commonDefaults.access,
-  upgradeable: commonDefaults.upgradeable,
-  contractInfo: commonDefaults.contractInfo
-} as const;
-
-
-export function printGovernor(opts: GovernorOptions = defaults): string {
+export function printGovernor(opts: SharedGovernerOptions = commonDefaults): string {
   return printContract(buildGovernor(opts));
 }
 
-
-export function isAccessControlRequired(opts: Partial<GovernorOptions>): boolean {
+export function isAccessControlRequired(opts: Partial<SharedGovernerOptions>): boolean {
   return opts.upgradeable === 'uups';
 }
 
-function withDefaults(opts: GovernorOptions): Required<GovernorOptions> {
+function withDefaults(opts: SharedGovernerOptions): Required<SharedGovernerOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
-    decimals: opts.decimals ?? defaults.decimals,
-    blockTime: opts.blockTime || defaults.blockTime,
-    quorumPercent: opts.quorumPercent ?? defaults.quorumPercent,
-    quorumAbsolute: opts.quorumAbsolute ?? defaults.quorumAbsolute,
-    proposalThreshold: opts.proposalThreshold || defaults.proposalThreshold,
-    settings: opts.settings ?? defaults.settings,
-    storage: opts.storage ?? defaults.storage,
-    quorumMode: opts.quorumMode ?? defaults.quorumMode,
-    votes: opts.votes ?? defaults.votes,
-    timelock: opts.timelock ?? defaults.timelock
+    decimals: opts.decimals ?? commonDefaults.decimals,
+    blockTime: opts.blockTime || commonDefaults.blockTime,
+    quorumPercent: opts.quorumPercent ?? commonDefaults.quorumPercent,
+    quorumAbsolute: opts.quorumAbsolute ?? commonDefaults.quorumAbsolute,
+    proposalThreshold: opts.proposalThreshold || commonDefaults.proposalThreshold,
+    settings: opts.settings ?? commonDefaults.settings,
+    storage: opts.storage ?? commonDefaults.storage,
+    quorumMode: opts.quorumMode ?? commonDefaults.quorumMode,
+    votes: opts.votes ?? commonDefaults.votes,
+    timelock: opts.timelock ?? commonDefaults.timelock
   };
 }
 
-export function buildGovernor(opts: GovernorOptions): Contract {
+export function buildGovernor(opts: SharedGovernerOptions): Contract {
   const allOpts = withDefaults(opts);
 
   const c = new ContractBuilder(allOpts.contractName);
@@ -106,7 +68,7 @@ export function buildGovernor(opts: GovernorOptions): Contract {
   return c;
 }
 
-function addBase(c: ContractBuilder, { contractName }: GovernorOptions) {
+function addBase(c: ContractBuilder, { contractName }: SharedGovernerOptions) {
   const Governor = {
     name: 'Governor',
     path: '@openzeppelin/contracts/governance/Governor.sol',
@@ -128,7 +90,7 @@ function addBase(c: ContractBuilder, { contractName }: GovernorOptions) {
   c.addOverride(Governor, supportsInterface);
 }
 
-function addSettings(c: ContractBuilder, allOpts: Required<GovernorOptions>) {
+function addSettings(c: ContractBuilder, allOpts: Required<SharedGovernerOptions>) {
   if (allOpts.settings) {
     const GovernorSettings = {
       name: 'GovernorSettings',
@@ -151,7 +113,7 @@ function addSettings(c: ContractBuilder, allOpts: Required<GovernorOptions>) {
   }
 }
 
-function getVotingDelay(opts: Required<GovernorOptions>): number {
+function getVotingDelay(opts: Required<SharedGovernerOptions>): number {
   try {
     return durationToBlocks(opts.delay, opts.blockTime);
   } catch (e) {
@@ -165,7 +127,7 @@ function getVotingDelay(opts: Required<GovernorOptions>): number {
   }
 }
 
-function getVotingPeriod(opts: Required<GovernorOptions>): number {
+function getVotingPeriod(opts: Required<SharedGovernerOptions>): number {
   try {
     return durationToBlocks(opts.period, opts.blockTime);
   } catch (e) {
@@ -187,7 +149,7 @@ function validateDecimals(decimals: number) {
   }
 }
 
-function getProposalThreshold({ proposalThreshold, decimals, votes }: Required<GovernorOptions>): string {
+function getProposalThreshold({ proposalThreshold, decimals, votes }: Required<SharedGovernerOptions>): string {
   if (!/^\d+$/.test(proposalThreshold)) {
     throw new ContractOptionsError({
       proposalThreshold: 'Not a valid number',
@@ -201,7 +163,7 @@ function getProposalThreshold({ proposalThreshold, decimals, votes }: Required<G
   }
 }
 
-function setVotingParameters(c: ContractBuilder, opts: Required<GovernorOptions>) {
+function setVotingParameters(c: ContractBuilder, opts: Required<SharedGovernerOptions>) {
   const delayBlocks = getVotingDelay(opts);
   c.setFunctionBody([`return ${delayBlocks}; // ${opts.delay}`], functions.votingDelay);
 
@@ -209,7 +171,7 @@ function setVotingParameters(c: ContractBuilder, opts: Required<GovernorOptions>
   c.setFunctionBody([`return ${periodBlocks}; // ${opts.period}`], functions.votingPeriod);
 }
 
-function setProposalThreshold(c: ContractBuilder, opts: Required<GovernorOptions>) {
+function setProposalThreshold(c: ContractBuilder, opts: Required<SharedGovernerOptions>) {
   const threshold = getProposalThreshold(opts);
   const nonZeroThreshold = parseInt(threshold) !== 0;
 
@@ -252,7 +214,7 @@ function addVotes(c: ContractBuilder) {
 
 export const numberPattern = /^(?!$)(\d*)(?:\.(\d+))?(?:e(\d+))?$/;
 
-function addQuorum(c: ContractBuilder, opts: Required<GovernorOptions>) {
+function addQuorum(c: ContractBuilder, opts: Required<SharedGovernerOptions>) {
   if (opts.quorumMode === 'percent') {
     if (opts.quorumPercent > 100) {
       throw new ContractOptionsError({
@@ -337,7 +299,7 @@ function getQuorumFractionComponents(quorumPercent: number): {quorumFractionNume
   return { quorumFractionNumerator, quorumFractionDenominator };
 }
 
-function addTimelock(c: ContractBuilder, { timelock }: Required<GovernorOptions>) {
+function addTimelock(c: ContractBuilder, { timelock }: Required<SharedGovernerOptions>) {
   if (timelock === false) {
     return;
   }
@@ -367,7 +329,7 @@ function addTimelock(c: ContractBuilder, { timelock }: Required<GovernorOptions>
   c.addModule(TimelockController);
 }
 
-function addStorage(c: ContractBuilder, { storage }: GovernorOptions) {
+function addStorage(c: ContractBuilder, { storage }: SharedGovernerOptions) {
   if (storage) {
     const GovernorStorage = {
       name: 'GovernorStorage',

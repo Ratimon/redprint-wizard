@@ -1,13 +1,11 @@
 <script lang="ts">
   import HelpTooltip from './HelpTooltip.svelte';
 
-  // import type { KindedOptions, OptionsErrorMessages } from '$lib/wizard/smart-contracts';
   import type {  OptionsErrorMessages } from '$lib/wizard/shared';
-  // import type { DeployKindedOptions, DeployOptionsErrorMessages } from '$lib/wizard/deploy-scripts';
   import type { KindedOptions } from '$lib/wizard/shared';
 
-  import { governor, contractInfoDefaults } from '$lib/wizard/smart-contracts';
-  import { deployGovernor, deployInfoDefaults } from '$lib/wizard/deploy-scripts';
+  import { governor } from '$lib/wizard/smart-contracts';
+  import { deployGovernor } from '$lib/wizard/deploy-scripts';
 
   import ToggleRadio from '$lib/ui/inputs/ToggleRadio.svelte';
   import UpgradeabilitySection from './UpgradeabilitySection.svelte';
@@ -73,7 +71,7 @@
     <input bind:value={opts.contractName}>
   </label>
 
-  <!-- todo add Opsec option  -->
+  <!-- to do add Opsec option  -->
 
   <div class="grid grid-cols-2 gap-2">
     <label class="labeled-input">

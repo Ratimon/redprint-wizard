@@ -8,15 +8,3 @@ export type Info = {
   securityContact?: string;
   license?: string;
 }
-
-// export function setInfo(c: DeployBuilder, info: Info) {
-//   const { securityContact, license } = info;
-  
-//   if (securityContact) {
-//     c.addNatspecTag(TAG_SECURITY_CONTACT, securityContact);
-//   }
-
-//   if (license) {
-//     c.license = license;
-//   }
-// }

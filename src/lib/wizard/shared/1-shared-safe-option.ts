@@ -1,14 +1,6 @@
-import type { DeployContract, BaseFunction} from '../deploy-scripts/contract';
-import { DeployBuilder } from "../deploy-scripts/contract";
-
-import type { Info } from "./set-info";
-import { defaults as infoDefaults } from "./set-info";
 
 import type { CommonOptions} from './common-options';
-// import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
-
-import { printDeployContract } from "../deploy-scripts/print";
-import { setInfo } from "../deploy-scripts/set-info";
+import { defaults as infoDefaults } from "./set-info";
 
 export const chainOptions = [false, 'ethereum', 'optimism'] as const;
 export type Chain = typeof chainOptions[number];
@@ -18,20 +10,15 @@ export type OpSec = typeof opSecOptions[number];
 
 
 export const commonDefaults: Required<CommonOptions> = {
+  //contract
   access: false,
   upgradeable: false,
   contractInfo: infoDefaults,
 
+  //deploy
   deployInfo: infoDefaults,
 } as const;
 
-// export interface CommonOptions {
-//   access: false,
-//   upgradeable: false,
-//   contractInfo: Info,
-
-//   deployInfo?: Info;
-// }
 
 export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions> {
   return {

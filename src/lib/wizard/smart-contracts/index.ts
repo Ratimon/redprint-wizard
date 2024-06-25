@@ -16,7 +16,4 @@ export { defaults as contractInfoDefaults } from './set-info';
 export type { OptionsErrorMessages } from './error';
 export { ContractOptionsError } from './error';
 
-export type { Kind } from './kind';
-export { sanitizeContractKind } from './kind';
-
 export { governor, safe } from './api';

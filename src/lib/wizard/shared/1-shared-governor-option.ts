@@ -1,15 +1,6 @@
-import type { DeployContract, BaseFunction} from '../deploy-scripts/contract';
-import { DeployBuilder } from "../deploy-scripts/contract";
-
-import type { Info } from "./set-info";
-import { defaults as infoDefaults } from "./set-info";
 
 import type { CommonOptions} from './common-options';
-
-// import { defaults as commonDefaults } from "./common-options";
-
-import { printDeployContract } from "../deploy-scripts/print";
-import { setInfo } from "../deploy-scripts/set-info";
+import { defaults as infoDefaults } from "./set-info";
 
 export const votesOptions = ['erc20votes', 'erc721votes'] as const;
 export type VotesOptions = typeof votesOptions[number];
@@ -26,23 +17,31 @@ export const commonDefaults: Required<CommonOptions> = {
   deployInfo: infoDefaults,
 } as const;
 
-// export interface CommonOptions {
-//   access: false,
-//   upgradeable: false,
-//   contractInfo: Info,
 
-//   deployInfo?: Info;
-// }
+export function withCommonDefaults(opts: SharedGovernerOptions): Required<SharedGovernerOptions> {
+  return {
+    access: opts.access ?? false,
+    upgradeable: opts.upgradeable ?? false,
+    contractInfo: opts.contractInfo ?? {},
 
-// export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions> {
-//   return {
-//     access: opts.access ?? false,
-//     upgradeable: opts.upgradeable ?? false,
-//     contractInfo: opts.contractInfo ?? {},
-    
-//     deployInfo: opts.deployInfo ?? {},
-//   };
-// }
+    deployInfo: opts.deployInfo ?? {},
+
+    ...opts,
+    // ...withCommonDefaults(opts),
+
+    decimals: opts.decimals ?? defaults.decimals,
+    blockTime: opts.blockTime || defaults.blockTime,
+    quorumPercent: opts.quorumPercent ?? defaults.quorumPercent,
+    quorumAbsolute: opts.quorumAbsolute ?? defaults.quorumAbsolute,
+    proposalThreshold: opts.proposalThreshold || defaults.proposalThreshold,
+    settings: opts.settings ?? defaults.settings,
+    storage: opts.storage ?? defaults.storage,
+    quorumMode: opts.quorumMode ?? defaults.quorumMode,
+    votes: opts.votes ?? defaults.votes,
+    timelock: opts.timelock ?? defaults.timelock
+
+  };
+}
 
 export const defaults: Required<SharedGovernerOptions> = {
   //contract
@@ -72,32 +71,6 @@ export const defaults: Required<SharedGovernerOptions> = {
 } as const;
 
 
-export function withCommonDefaults(opts: SharedGovernerOptions): Required<SharedGovernerOptions> {
-  return {
-    access: opts.access ?? false,
-    upgradeable: opts.upgradeable ?? false,
-    contractInfo: opts.contractInfo ?? {},
-
-    deployInfo: opts.deployInfo ?? {},
-
-    ...opts,
-    // ...withCommonDefaults(opts),
-
-    decimals: opts.decimals ?? defaults.decimals,
-    blockTime: opts.blockTime || defaults.blockTime,
-    quorumPercent: opts.quorumPercent ?? defaults.quorumPercent,
-    quorumAbsolute: opts.quorumAbsolute ?? defaults.quorumAbsolute,
-    proposalThreshold: opts.proposalThreshold || defaults.proposalThreshold,
-    settings: opts.settings ?? defaults.settings,
-    storage: opts.storage ?? defaults.storage,
-    quorumMode: opts.quorumMode ?? defaults.quorumMode,
-    votes: opts.votes ?? defaults.votes,
-    timelock: opts.timelock ?? defaults.timelock
-
-  };
-}
-
-  
 export interface SharedGovernerOptions extends CommonOptions {
 
   contractName: string;
@@ -113,7 +86,6 @@ export interface SharedGovernerOptions extends CommonOptions {
   timelock?: TimelockOptions;
   storage?: boolean;
   settings?: boolean;
-
 
   deployName: string;
 }

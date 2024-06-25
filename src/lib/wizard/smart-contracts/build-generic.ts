@@ -1,16 +1,14 @@
 
-import type { GovernorOptions} from './1-governor';
-import { buildGovernor } from './1-governor';
-// import type { SafeOptions} from './1-safe';
 import type { SharedSafeOptions} from '../shared/1-shared-safe-option';
+import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
 
 import { buildSafe } from './1-safe';
-
+import { buildGovernor } from './1-governor';
 
 
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
-  Governor: { kind: 'Governor' } & GovernorOptions;
+  Governor: { kind: 'Governor' } & SharedGovernerOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];

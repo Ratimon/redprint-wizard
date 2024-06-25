@@ -26,7 +26,7 @@
       </svg>
     </PopoverButton>
 
-    <!-- todo -->
+    <!-- to do -->
     <!-- <Transition></Transition> -->
   
     <PopoverPanel class="absolute left-0 z-30 mt-3 w-screen max-w-full sm:max-w-sm transform">

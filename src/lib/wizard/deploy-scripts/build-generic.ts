@@ -1,5 +1,3 @@
-
-// import type { DeploySafeOptions} from './1-safe';
 import type { SharedSafeOptions} from '../shared/1-shared-safe-option';
 
 import { buildDeploySafe } from './1-safe';

@@ -1,7 +1,6 @@
 import type { Info } from "./set-info";
 import { defaults as infoDefaults } from "./set-info";
 
-// to do :  change path
 import type { Access } from "../smart-contracts/set-access-control";
 import type { Upgradeable } from "../smart-contracts/set-upgradeable";
 

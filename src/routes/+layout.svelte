@@ -33,7 +33,7 @@
 	<meta property="twitter:description" content={appDescription} />
 
 	<!-- minimal -->
-	<!-- TODO automatise -->
+	<!-- TO DO automatise -->
 	<link rel="icon" href={url('/pwa/favicon.svg')} type="image/svg+xml" />
 	<link rel="icon" href={url('/pwa/favicon.ico')} sizes="any" /><!-- 32×32 -->
 	<link rel="apple-touch-icon" href={url('/pwa/apple-touch-icon.png')} /><!-- 180×180 -->

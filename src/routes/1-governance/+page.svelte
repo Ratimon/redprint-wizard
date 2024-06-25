@@ -13,11 +13,10 @@
     import {  sanitizeKind, OptionsError } from '$lib/wizard/shared';
 
     import type {  Contract } from '$lib/wizard/smart-contracts';
-    import { ContractBuilder, buildContractGeneric, printContract, sanitizeContractKind, ContractOptionsError } from '$lib/wizard/smart-contracts';
+    import { ContractBuilder, buildContractGeneric, printContract, ContractOptionsError } from '$lib/wizard/smart-contracts';
 
-    // import type { DeployKindedOptions, DeployKind, DeployContract, DeployOptionsErrorMessages } from '$lib/wizard/deploy-scripts';
     import type {  DeployContract } from '$lib/wizard/deploy-scripts';
-    import { DeployBuilder, buildDeployGeneric, printDeployContract, sanitizeDeployKind, DeployOptionsError } from '$lib/wizard/deploy-scripts';
+    import { DeployBuilder, buildDeployGeneric, printDeployContract } from '$lib/wizard/deploy-scripts';
 
     import hljs from '../highlightjs';
     import { postConfig } from '../post-config';
@@ -25,7 +24,6 @@
     const dispatch = createEventDispatcher();
 
     export let initialContractTab: string | undefined = 'Safe';
-    // export let contractTab: Kind | DeployKind = sanitizeContractKind(initialContractTab);
     export let contractTab: Kind = sanitizeKind(initialContractTab);
 
 

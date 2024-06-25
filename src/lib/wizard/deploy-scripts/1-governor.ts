@@ -1,9 +1,6 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-// import type { CommonOptions} from './common-options';
-// import { withCommonDefaults, defaults as commonDefaults } from "./common-options";
-
 import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
 import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-shared-governor-option";
 
@@ -13,18 +10,6 @@ import { setInfo } from "./set-info";
 export const timelockOptions = [false, 'openzeppelin', 'compound'] as const;
 export type TimelockOptions = typeof timelockOptions[number];
 
-// export const defaults: Required<DeployGovernerOptions> = {
-//   deployName: 'DeployGovernerScript',
-//   timelock: 'openzeppelin',
-//   deployInfo: commonDefaults.deployInfo
-// } as const;
-
-
-// export interface DeployGovernerOptions extends CommonOptions {
-//   deployName: string;
-
-//   timelock?: TimelockOptions;
-// }
 
 function withDeloyDefaults(opts: SharedGovernerOptions): Required<SharedGovernerOptions> {
   return {

@@ -1,31 +1,12 @@
-
 import type { Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
-import type { CommonOptions} from './common-options';
-// import { withCommonDefaults, defaults as commonDefaults } from './common-options';
 import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-shared-safe-option";
-
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";
 
 import type { SharedSafeOptions} from '../shared/1-shared-safe-option';
-
-// export interface SafeOptions extends CommonOptions {
-//   contractName: string;
-//   chain: ChainsOptions;
-// }
-
-// export const defaults: Required<SafeOptions> = {
-//   contractName: 'SafeProxy',
-//   chain: 'ethereum',
-//   access: commonDefaults.access,
-
-//   //todo remove it
-//   upgradeable: commonDefaults.upgradeable,
-//   contractInfo: commonDefaults.contractInfo
-// } as const;
 
 function withDefaults(opts: SharedSafeOptions): Required<SharedSafeOptions> {
   return {
