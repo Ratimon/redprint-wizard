@@ -41,7 +41,7 @@ export function buildDeploySafe(opts: SharedSafeOptions): DeployContract {
   return c;
 }
 
-// to do : add contract to deploy ?
+// to do : add contract to deploy or note to use form lib ?
 function addBase(c: DeployBuilder) {
   const DeployFunctions = {
     name: 'DeployerFunctions',

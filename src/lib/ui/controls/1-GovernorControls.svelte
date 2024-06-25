@@ -64,7 +64,7 @@
 </script>
 
 <section class="controls-section">
-  <h1>Contract Settings</h1>
+  <h1 class="bg-neutral-content">Contract Settings</h1>
 
   <label class="labeled-input">
     <span>Name</span>

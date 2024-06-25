@@ -22,7 +22,7 @@
 </script>
   
 <section class="controls-section">
-  <h1>Contract Settings</h1>
+  <h1 class="bg-neutral-content" >Contract Settings</h1>
 
   <label class="labeled-input">
     <span>Name</span>
@@ -30,9 +30,14 @@
   </label>
 </section>
 
+<InfoSection bind:info={opts.contractInfo} />
+
+<section class="controls-section">
+  <h1 class="bg-neutral-content" >Deploy Script Settings</h1>
+</section>
+
 <section class="controls-section">
   <h1>Chains</h1>
-
   <div class="checkbox-group">
 
     <label class:checked={opts.chain === 'ethereum'}>
@@ -44,19 +49,18 @@
     </label>
 
   </div>
-
 </section>
 
 <section class="controls-section">
   <h1>OpSec Management</h1>
   <div class="checkbox-group">
-      
-    <!-- to do add hardware/ command line option  -->
-    <label class:checked={opts.opSec === 'mnemonic'}>
-      <input type="radio" bind:group={opts.opSec} value='mnemonic'>
-      Mnemonic
+    <span>Owner </span>
+    <!-- to do add markdown to notify -->
+    <label class:checked={opts.opSec === 'address'}>
+      <input type="radio" bind:group={opts.opSec} value='address'>
+      Address
       <HelpTooltip>
-        Mnemonic
+        It is noted that this address will be set as owner, not the deployer of the contract.
       </HelpTooltip>
     </label>
 
@@ -64,20 +68,16 @@
       <input type="radio" bind:group={opts.opSec} value='key'>
       Key
       <HelpTooltip>
-        Key
+        It is not recommended to store your private key in the environment file.
       </HelpTooltip>
     </label>
 
-    <label class:checked={opts.opSec === 'address'}>
-      <input type="radio" bind:group={opts.opSec} value='address'>
-      Address
+    <label class:checked={opts.opSec === 'mnemonic'}>
+      <input type="radio" bind:group={opts.opSec} value='mnemonic'>
+      Mnemonic
       <HelpTooltip>
-        Address
+        It is not recommended to store your mnemonic in the environment file.
       </HelpTooltip>
     </label>
-
   </div>
 </section>
-
-<InfoSection bind:info={opts.contractInfo} />
-  
