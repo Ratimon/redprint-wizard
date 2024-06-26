@@ -107,6 +107,7 @@
         </ul>
     </div>
 
+    <!-- to do add Copy deploy script -->
     <div class="action flex flex-row gap-2 shrink-0">
         <button class="action-button min-w-[165px]" on:click={copyHandler}>
           <div class="flex justify-between">

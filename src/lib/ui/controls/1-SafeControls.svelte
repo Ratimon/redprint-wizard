@@ -8,6 +8,36 @@
 
   import InfoSection from './InfoSection.svelte';
 
+  import MarkdownIt from "markdown-it";
+  import hljs from 'highlight.js';
+
+  // to do : optimize bundler
+  const md = MarkdownIt({
+    html: true,
+    linkify: true,
+    highlight: function (str: string, lang: string) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(str, { language: lang }).value;
+      } catch (err) {
+        // Handle error
+      }
+    }
+    return '';
+  }
+  });
+
+
+  const codeExample = md.render(`
+  \`\`\`typescript
+  function hi() {
+    return "Hi"
+  }
+  console.log(\`\${hi()}, Jack.\`)
+  \`\`\`
+  `);
+
+
   const contractDefaults = safe.defaults;
   const deployDefaults = deploySafe.defaults;
 
@@ -18,6 +48,7 @@
     contractInfo: {  securityContact: 'Consult full code at https://github.com/safe-global/safe-smart-account/blob/a9e3385bb38c29d45b3901ff7180b59fcee86ac9/contracts/proxies/SafeProxy.sol', license: 'MIT'  },
     deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
   };
+
   
 </script>
   
@@ -55,7 +86,7 @@
   <h1>OpSec Management</h1>
   <div class="checkbox-group">
     <span>Owner </span>
-    <!-- to do add markdown to notify -->
+    <!-- to do : add markdown to notify -->
     <label class:checked={opts.opSec === 'address'}>
       <input type="radio" bind:group={opts.opSec} value='address'>
       Address
@@ -81,3 +112,5 @@
     </label>
   </div>
 </section>
+
+{@html md.render(codeExample)}
