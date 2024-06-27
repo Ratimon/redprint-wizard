@@ -1,5 +1,7 @@
 <script  lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import MarkdownIt from "markdown-it";
+
   import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
   import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
 
@@ -18,8 +20,6 @@
 
   import hljs  from '../highlightjs';
   import { postConfig } from '../post-config';
-
-  import MarkdownIt from "markdown-it";
 
   const dispatch = createEventDispatcher();
 
@@ -65,24 +65,36 @@
 
   const language = 'solidity';
 
-  let copied = false;
-  const copyHandler = async () => {
+  let isContractCopied = false;
+  const copyContractHandler = async () => {
     await navigator.clipboard.writeText(code);
-    copied = true;
+    isContractCopied = true;
     if (contractOpts) {
-        await postConfig(contractOpts, 'copy', language);
+        await postConfig(contractOpts, 'copy-contract', language);
     }
     setTimeout(() => {
-        copied = false;
+      isContractCopied = false;
     }, 1000);
   };
 
-    // to do : optimize bundler
-  
+  let isScriptCopied = false;
+  const copyScriptHandler = async () => {
+    await navigator.clipboard.writeText(deployCode);
+    isScriptCopied = true;
+    if (contractOpts) {
+        await postConfig(contractOpts, 'copy-script', language);
+    }
+    setTimeout(() => {
+      isScriptCopied = false;
+    }, 1000);
+  };
+
+  // to do : optimize bundler
   const md = MarkdownIt({
     html: true,
     linkify: true,
     highlight: function (str: string, lang: string) {
+      // to do redctor : hljs to specify language
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(str, { language: lang }).value;
@@ -132,18 +144,34 @@
       </ul>
     </div>
 
-    <!-- to do add Copy deploy script -->
+
+    <!-- to do : track analytics -->
     <div class="action flex flex-row gap-2 shrink-0">
-        <button class="action-button min-w-[165px]" on:click={copyHandler}>
+        <button class="action-button min-w-[165px]" on:click={copyContractHandler}>
           <div class="flex justify-between">
-            {#if copied}
+            {#if isContractCopied}
               <CheckIcon />Copied
             {:else}
-              <CopyIcon />Copy to Clipboard
+              <CopyIcon />Copy Contract Code
             {/if}
           </div>
         </button>
     </div>
+
+    <!-- to do : track analytics -->
+    <div class="action flex flex-row gap-2 shrink-0">
+      <button class="action-button min-w-[165px]" on:click={copyScriptHandler}>
+        <div class="flex justify-between">
+          {#if isScriptCopied}
+            <CheckIcon />Copied
+          {:else}
+            <CopyIcon />Copy Script Code
+          {/if}
+        </div>
+      </button>
+    </div>
+
+
   </div>
 
   <p>In your terminal, copy below contracts' codes and run deployment scripts to your prefered network:</p>
