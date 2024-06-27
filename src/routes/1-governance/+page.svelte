@@ -13,7 +13,7 @@
   import {  sanitizeKind, OptionsError } from '$lib/wizard/shared';
 
   import type {  Contract } from '$lib/wizard/smart-contracts';
-  import { ContractBuilder, buildContractGeneric, printContract, ContractOptionsError } from '$lib/wizard/smart-contracts';
+  import { ContractBuilder, buildContractGeneric, printContract } from '$lib/wizard/smart-contracts';
 
   import type {  DeployContract } from '$lib/wizard/deploy-scripts';
   import { DeployBuilder, buildDeployGeneric, printDeployContract } from '$lib/wizard/deploy-scripts';
@@ -94,7 +94,7 @@
     html: true,
     linkify: true,
     highlight: function (str: string, lang: string) {
-      // to do redctor : hljs to specify language
+      // to do : refactor : hljs to specify language
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(str, { language: lang }).value;
@@ -124,7 +124,7 @@
 <div class="container flex flex-col gap-4 p-8 mx-8">
 
   <div class="divider divider-primary bg-primary-100">
-    <p class="text-2xl">1.1 Contracts</p>
+    <p class="text-2xl">1.1 : Deploy Contracts</p>
   </div>
 
   <div class="header flex flex-row justify-between">
@@ -144,7 +144,7 @@
       </ul>
     </div>
 
-
+    <!-- to do : Add button to download zip -->
     <!-- to do : track analytics -->
     <div class="action flex flex-row gap-2 shrink-0">
         <button class="action-button min-w-[165px]" on:click={copyContractHandler}>
@@ -229,8 +229,11 @@
       
   </div>
 
+  <!-- to do : Add menu to scroll to each contract -->
+  <!-- to do : eg. 1.2 upgrade contract (comming soon) -->
+
   <div class="divider divider-primary bg-primary-100">
-    <p class="text-2xl">1.1 Contracts</p>
+    <p class="text-2xl">1.1 : Deploy Contracts</p>
   </div>
 
 </div>

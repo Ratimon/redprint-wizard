@@ -13,7 +13,4 @@ export type { Info } from './set-info';
 
 export { defaults as contractInfoDefaults } from './set-info';
 
-export type { OptionsErrorMessages } from './error';
-export { ContractOptionsError } from './error';
-
 export { governor, safe } from './api';
