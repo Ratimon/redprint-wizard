@@ -8,36 +8,6 @@
 
   import InfoSection from './InfoSection.svelte';
 
-  import MarkdownIt from "markdown-it";
-  import hljs from 'highlight.js';
-
-  // to do : optimize bundler
-  const md = MarkdownIt({
-    html: true,
-    linkify: true,
-    highlight: function (str: string, lang: string) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(str, { language: lang }).value;
-      } catch (err) {
-        // Handle error
-      }
-    }
-    return '';
-  }
-  });
-
-
-  const codeExample = md.render(`
-  \`\`\`typescript
-  function hi() {
-    return "Hi"
-  }
-  console.log(\`\${hi()}, Jack.\`)
-  \`\`\`
-  `);
-
-
   const contractDefaults = safe.defaults;
   const deployDefaults = deploySafe.defaults;
 
@@ -86,7 +56,6 @@
   <h1>OpSec Management</h1>
   <div class="checkbox-group">
     <span>Owner </span>
-    <!-- to do : add markdown to notify -->
     <label class:checked={opts.opSec === 'address'}>
       <input type="radio" bind:group={opts.opSec} value='address'>
       Address
@@ -112,5 +81,3 @@
     </label>
   </div>
 </section>
-
-{@html md.render(codeExample)}
