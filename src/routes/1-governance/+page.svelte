@@ -128,6 +128,14 @@
       }
   };
 
+  const downloadScriptNpmHandler = async () => {
+      const blob = new Blob([deployCode], { type: 'text/plain' });
+      if (opts) {
+        fileSaver.saveAs(blob, opts.deployName + '.sol');
+        await postConfig(opts, 'download-script', language);
+      }
+  };
+
 
 </script>
 
@@ -170,19 +178,25 @@
       </ul>
     </div>
 
-    <!-- to do : Add button to download zip -->
-
-    <!-- to do : track analytics -->
     <div class="action flex flex-row gap-2 shrink-0">
-        <button class="action-button min-w-[165px]" on:click={copyContractHandler}>
-          <div class="flex justify-between">
-            {#if isContractCopied}
-              <CheckIcon />Copied
-            {:else}
-              <CopyIcon />Copy Contract Code
-            {/if}
-          </div>
-        </button>
+      <!-- to do : track analytics -->
+      <button class="action-button min-w-[165px]" on:click={copyContractHandler}>
+        <div class="flex justify-between">
+          {#if isContractCopied}
+            <CheckIcon />Copied
+          {:else}
+            <CopyIcon />Copy Contract Code
+          {/if}
+        </div>
+      </button>
+
+      <!-- to do : track analytics -->
+      <button class="action-button min-w-[165px]" on:click={downloadContractNpmHandler}>
+        <div class="flex justify-between">
+          <FileIcon /> Download As .sol
+        </div>
+      </button>
+
     </div>
 
     <!-- to do : track analytics -->
@@ -198,7 +212,7 @@
       </button>
 
       <!-- to do : track analytics -->
-      <button class="action-button min-w-[165px]" on:click={downloadContractNpmHandler}>
+      <button class="action-button min-w-[165px]" on:click={downloadScriptNpmHandler}>
         <div class="flex justify-between">
           <FileIcon /> Download As .sol
         </div>
@@ -248,7 +262,7 @@
   </div>
 
   <!-- to do : Add menu to scroll to each contract -->
-  <!-- to do : eg. 1.2 upgrade contract (comming soon) -->
+  <!-- to do : eg. 1.2 upgrade contract (coming soon) -->
 
   <div class="divider divider-primary bg-primary-100">
     <p class="text-2xl">1.1 : Deploy Contracts</p>
@@ -257,80 +271,79 @@
 </div>
 
 <style lang="postcss">
-    .container {
-      background-color: var(--gray-1);
-      border: 1px solid var(--gray-2);
-      border-radius: 10px;
-      min-width: 32rem;
-    }
-  
-    /* .header {
-      font-size: var(--text-small);
-    } */
-  
-    .tab {
-      color: var(--gray-5);
-    }
-  
-    .tab button, .action-button, :global(.overflow-btn) {
-      padding: var(--size-1) var(--size-2);
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  
-    .tab button, :global(.overflow-btn) {
-      border: 0;
-      background-color: transparent;
-    }
-  
-    .tab button:hover, :global(.overflow-btn):hover {
+  .container {
+    background-color: var(--gray-1);
+    border: 1px solid var(--gray-2);
+    border-radius: 10px;
+    min-width: 32rem;
+  }
+
+  /* .header {
+    font-size: var(--text-small);
+  } */
+
+  .tab {
+    color: var(--gray-5);
+  }
+
+  .tab button, .action-button, :global(.overflow-btn) {
+    padding: var(--size-1) var(--size-2);
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .tab button, :global(.overflow-btn) {
+    border: 0;
+    background-color: transparent;
+  }
+
+  .tab button:hover, :global(.overflow-btn):hover {
+    background-color: var(--gray-2);
+  }
+
+  .tab button.selected {
+    background-color: var(--solidity-blue-2);
+    color: white;
+    order: -1;
+  }
+
+  :global(.overflow-menu) button.selected {
+    order: unset;
+  }
+
+  .action-button {
+    background-color: var(--gray-1);
+    border: 1px solid var(--gray-3);
+    color: var(--gray-6);
+    cursor: pointer;
+
+    &:hover {
       background-color: var(--gray-2);
     }
-  
-    .tab button.selected {
-      background-color: var(--solidity-blue-2);
-      color: white;
-      order: -1;
-    }
-  
-    :global(.overflow-menu) button.selected {
-      order: unset;
-    }
-  
-    .action-button {
-      background-color: var(--gray-1);
-      border: 1px solid var(--gray-3);
-      color: var(--gray-6);
-      cursor: pointer;
-  
-      &:hover {
-        background-color: var(--gray-2);
-      }
-  
-      /* &:active, &.active {
-        background-color: var(--gray-2);
-      }
-      */
 
-      /* &.disabled {
-        color: var(--gray-4);
-      } */
-  
-      :global(.icon) {
-        margin-right: var(--size-1);
-      }
+    /* &:active, &.active {
+      background-color: var(--gray-2);
     }
-  
-    .controls {
-      background-color: white;
-      padding: var(--size-4);
+    */
+
+    /* &.disabled {
+      color: var(--gray-4);
+    } */
+
+    :global(.icon) {
+      margin-right: var(--size-1);
     }
-  
-    .controls {
-      border-radius: 5px;
-      box-shadow: var(--shadow);
-    }
-  
+  }
+
+  .controls {
+    background-color: white;
+    padding: var(--size-4);
+  }
+
+  .controls {
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+  }
 </style>
   
