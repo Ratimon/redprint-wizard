@@ -4,6 +4,7 @@
 
   import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
   import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
+  import FileIcon from '$lib/ui/icons/FileIcon.svelte';
 
   import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
   import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
@@ -20,6 +21,37 @@
 
   import hljs  from '../highlightjs';
   import { postConfig } from '../post-config';
+
+  import fileSaver from 'file-saver';
+
+  // to do : optimize bundler
+  const md = MarkdownIt({
+    html: true,
+    linkify: true,
+    highlight: function (str: string, lang: string) {
+      // to do : refactor : hljs to specify language
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(str, { language: lang }).value;
+      } catch (err) {
+        // Handle error
+        }
+      }
+      return '';
+    }
+  });
+
+  $: codeExample1 = md.render(`
+  \`\`\`bash
+    forge script script/100_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast
+  \`\`\`
+  `);
+
+  $: codeExample2 = md.render(`
+  \`\`\`bash
+    --mnemonic-derivation-paths \"m/44'/60'/0'/0/0\"
+  \`\`\`
+  `);
 
   const dispatch = createEventDispatcher();
 
@@ -38,13 +70,12 @@
   
   let deployContract: DeployContract = new DeployBuilder('DeploySafeScript');
 
-  $: contractOpts = allContractsOpts[contractTab];
-
+  $: opts = allContractsOpts[contractTab];
   $: {
-  if (contractOpts) {
+  if (opts) {
           try {
-              contract = buildContractGeneric(contractOpts);
-              deployContract = buildDeployGeneric(contractOpts);
+              contract = buildContractGeneric(opts);
+              deployContract = buildDeployGeneric(opts);
               errors[contractTab] = undefined;
           } catch (e: unknown) {
               if (e instanceof OptionsError) {
@@ -69,8 +100,8 @@
   const copyContractHandler = async () => {
     await navigator.clipboard.writeText(code);
     isContractCopied = true;
-    if (contractOpts) {
-        await postConfig(contractOpts, 'copy-contract', language);
+    if (opts) {
+        await postConfig(opts, 'copy-contract', language);
     }
     setTimeout(() => {
       isContractCopied = false;
@@ -81,42 +112,21 @@
   const copyScriptHandler = async () => {
     await navigator.clipboard.writeText(deployCode);
     isScriptCopied = true;
-    if (contractOpts) {
-        await postConfig(contractOpts, 'copy-script', language);
+    if (opts) {
+        await postConfig(opts, 'copy-script', language);
     }
     setTimeout(() => {
       isScriptCopied = false;
     }, 1000);
   };
 
-  // to do : optimize bundler
-  const md = MarkdownIt({
-    html: true,
-    linkify: true,
-    highlight: function (str: string, lang: string) {
-      // to do : refactor : hljs to specify language
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(str, { language: lang }).value;
-      } catch (err) {
-        // Handle error
+  const downloadContractNpmHandler = async () => {
+      const blob = new Blob([code], { type: 'text/plain' });
+      if (opts) {
+        fileSaver.saveAs(blob, opts.contractName + '.sol');
+        await postConfig(opts, 'download-contract', language);
       }
-    }
-    return '';
-  }
-  });
-
-  $: codeExample1 = md.render(`
-  \`\`\`bash
-    forge script script/100_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast
-  \`\`\`
-  `);
-
-  $: codeExample2 = md.render(`
-  \`\`\`bash
-    --mnemonic-derivation-paths \"m/44'/60'/0'/0/0\"
-  \`\`\`
-  `);
+  };
 
 
 </script>
@@ -125,6 +135,22 @@
 
   <div class="divider divider-primary bg-primary-100">
     <p class="text-2xl">1.1 : Deploy Contracts</p>
+  </div>
+
+  <p>In your terminal, copy below contracts' codes and run deployment scripts to your prefered network:</p>
+
+  <div class="flex flex-row justify-center">
+    <code class="hljs">
+      {@html md.render(codeExample1)}
+    </code>
+  </div>
+
+  <p>(Optional), you can specify your derivation path:</p>
+
+  <div class="flex flex-row justify-center">
+    <code class="hljs">
+      {@html md.render(codeExample2)}
+    </code>
   </div>
 
   <div class="header flex flex-row justify-between">
@@ -145,6 +171,7 @@
     </div>
 
     <!-- to do : Add button to download zip -->
+
     <!-- to do : track analytics -->
     <div class="action flex flex-row gap-2 shrink-0">
         <button class="action-button min-w-[165px]" on:click={copyContractHandler}>
@@ -169,25 +196,16 @@
           {/if}
         </div>
       </button>
+
+      <!-- to do : track analytics -->
+      <button class="action-button min-w-[165px]" on:click={downloadContractNpmHandler}>
+        <div class="flex justify-between">
+          <FileIcon /> Download As .sol
+        </div>
+      </button>
+
     </div>
 
-
-  </div>
-
-  <p>In your terminal, copy below contracts' codes and run deployment scripts to your prefered network:</p>
-
-  <div class="flex flex-row justify-center">
-    <code class="hljs">
-      {@html md.render(codeExample1)}
-    </code>
-  </div>
-
-  <p>(Optional), you can specify your derivation path:</p>
-
-  <div class="flex flex-row justify-center">
-    <code class="hljs">
-      {@html md.render(codeExample2)}
-    </code>
   </div>
 
   <div class="flex flex-row gap-4 grow">

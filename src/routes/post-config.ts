@@ -8,7 +8,7 @@ declare global {
 }
 const instance = uuid();
 
-export type Action = 'copy-contract'| 'copy-script' | 'download-foundry';
+export type Action = 'copy-contract'| 'copy-script' | 'download-contract';
 export type Language = 'solidity';
 
 export async function postConfig(opts: Required<GenericOptions> , action: Action, language: Language) {
