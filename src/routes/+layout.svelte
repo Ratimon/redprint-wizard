@@ -54,16 +54,22 @@
   
 
 <nav class="flex justify-center my-4">
-
-    <!-- to do : Adding step 0 -->
     <ul class="steps">
-        <a href="/1-governance" class="step step-primary">
+        <a href="/"
+            class="step step-primary"
+        >
+            Get Started !!
+        </a>
+        <a href="/1-governance"
+            class="step"
+            class:step-primary={$page.route.id?.match(/1-governance|2-super-chain|3-plasma-chain|4-op-chain/g)}
+        >
             Set up Governance Layer
         </a>
         <a href="/2-super-chain"
             class="step"
             class:step-primary={$page.route.id?.match(/2-super-chain|3-plasma-chain|4-op-chain/g)}
-            > 
+        > 
             Set up L1 Super Chain
         </a>
         <a href="/3-plasma-chain"

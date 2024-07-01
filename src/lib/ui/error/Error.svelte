@@ -1,12 +1,11 @@
 <script lang="ts">
-
+  // import { goto } from '$app/navigation';
   export let error: string = 'error';
-    const test = async () => {
-  };
-  
+
 </script>
 
 <div class="h-screen w-full flex flex-col justify-center items-center text-center gap-6 p-6">
+
     <div class="p-6 bg-white rounded-xl">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -123,44 +122,34 @@
     </div>
 
     <p class="font-medium md:text-xl md:font-semibold">
-      Something went wrong 🥲
+      Working In Progress 🥲
     </p>
 
     <p class="text-red-500">{error}</p>
 
     <div class="flex flex-wrap gap-4 justify-center">
-      <button class="btn btn-sm" on:click={test}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          class="w-5 h-5"
-        >
-          <path
-            d="M15.312 11.424a5.5 5.5 0 01-9.201 2.466l-.312-.311h2.433a.75.75 0 000-1.5H3.989a.75.75 0 00-.75.75v4.242a.75.75 0 001.5 0v-2.43l.31.31a7 7 0 0011.712-3.138.75.75 0 00-1.449-.39zm1.23-3.723a.75.75 0 00.219-.53V2.929a.75.75 0 00-1.5 0V5.36l-.31-.31A7 7 0 003.239 8.188a.75.75 0 101.448.389A5.5 5.5 0 0113.89 6.11l.311.31h-2.432a.75.75 0 000 1.5h4.243a.75.75 0 00.53-.219z"
-          />
-        </svg>
-        Refresh
-      </button>
+      <button class="btn btn-sm">
 
       <!--  to do add support -->
       <!-- <ButtonSupport /> -->
-       <!--  to do add link -->
 
-       <a class="btn btn-sm"
+      <!--  to do add link -->
+      <!--  add Home page -->
+
+      <a class="btn btn-sm"
        href="/"
-       >
+      >
        <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
         class="w-5 h-5"
         >
-        <path
-            d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z"
-        />
-     </svg>
-     Home
-       </a>
+          <path
+              d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z"
+          />
+        </svg>
+        Home
+      </a>
     </div>
   </div>
