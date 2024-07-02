@@ -6,8 +6,8 @@
   import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
   import FileIcon from '$lib/ui/icons/FileIcon.svelte';
 
-  import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
   import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
+  import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
   import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
 
   import type { KindedOptions, Kind, OptionsErrorMessages } from '$lib/wizard/shared';
@@ -19,8 +19,8 @@
   import type {  DeployContract } from '$lib/wizard/deploy-scripts';
   import { DeployBuilder, buildDeployGeneric, printDeployContract } from '$lib/wizard/deploy-scripts';
 
-  import hljs  from '../highlightjs';
-  import { postConfig } from '../post-config';
+  import hljs  from '$lib/ui/utils/highlightjs';
+  import { postConfig } from '$lib/ui/utils/post-config';
 
   import fileSaver from 'file-saver';
 
@@ -73,6 +73,9 @@
   $: opts = allContractsOpts[contractTab];
   $: {
   if (opts) {
+    // console.log('opts', opts)
+    // console.log('contractTab', contractTab)
+    // console.log('allContractsOpts', allContractsOpts)
           try {
               contract = buildContractGeneric(opts);
               deployContract = buildDeployGeneric(opts);
@@ -84,7 +87,7 @@
               throw e;
               }
           }
-      }
+    }
   }
 
   $: code = printContract(contract);
@@ -225,13 +228,14 @@
   <div class="flex flex-row gap-4 grow">
     <!-- w-64 -->
     <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
-      <div class:hidden={contractTab !== 'Safe'}>
-        <SafeControls bind:opts={allContractsOpts.Safe}  />
-      </div>
 
+      <div class:hidden={contractTab !== 'Safe'}>
+        <SafeControls bind:opts={allContractsOpts.Safe} />
+      </div>
       <div class:hidden={contractTab !== 'Governor'}>
         <GovernorControls bind:opts={allContractsOpts.Governor} errors={errors.Governor} />
       </div>
+
     </div>
 
     <div class="output flex flex-col grow overflow-auto h-[calc(100vh-40px)]">
