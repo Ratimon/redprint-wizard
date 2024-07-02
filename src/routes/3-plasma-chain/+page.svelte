@@ -1,9 +1,6 @@
 <script  lang="ts">
-
-    import type { ComponentType } from 'svelte';
-    import type { GenericOptions, KindedOptions, Kind, OptionsErrorMessages } from '$lib/wizard/shared';
+    import type { KindedOptions, Kind, OptionsErrorMessages } from '$lib/wizard/shared';
     import {  sanitizeKind, OptionsError } from '$lib/wizard/shared';
-
 
     import type {  Contract } from '$lib/wizard/smart-contracts';
     import { ContractBuilder, buildContractGeneric, printContract } from '$lib/wizard/smart-contracts';
@@ -15,7 +12,6 @@
 
     import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
     import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
-
 
     export let initialContractTab: string | undefined = 'Safe';
     export let contractTab: Kind = sanitizeKind(initialContractTab);
@@ -30,9 +26,6 @@
     $: opts = allContractsOpts[contractTab];
     $: {
     if (opts) {
-        // console.log('opts', opts)
-        // console.log('contractTab', contractTab)
-        // console.log('allContractsOpts', allContractsOpts)
             try {
                 contract = buildContractGeneric(opts);
                 deployContract = buildDeployGeneric(opts);
@@ -46,15 +39,6 @@
             }
         }
     }
-        
-    // let opts = allContractsOpts[contractTab];
-
-    // export let controls : {contractTabName: string; controlComponent: ComponentType; optionKind: Required<GenericOptions> | undefined }[] = [
-    //     { contractTabName : 'Safe' , controlComponent :  SafeControls , optionKind: allContractsOpts.Safe  },
-    //     { contractTabName : 'Governor' , controlComponent :  GovernorControls, optionKind: allContractsOpts.Governor }
-    // ];
-
-
 
 </script>
 
@@ -65,7 +49,7 @@
             <ul class="menu menu-horizontal bg-base-200">
               <li>
                 <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
-                  Safe MultiSig
+                  MultiSig
                 </button>
               </li>
               <li>
@@ -78,6 +62,7 @@
     </div> 
 
     <div slot="control" >
+         <!-- w-64 -->
         <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
             <div class:hidden={contractTab !== 'Safe'}>
                 <SafeControls bind:opts={allContractsOpts.Safe} />
@@ -121,8 +106,6 @@
     :global(.overflow-menu) button.selected {
       order: unset;
     }
-  
-
   
     .controls {
       background-color: white;

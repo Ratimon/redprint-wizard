@@ -1,27 +1,22 @@
 <script  lang="ts">
     import { createEventDispatcher } from 'svelte';
     import MarkdownIt from "markdown-it";
-
-    import type { ComponentType } from 'svelte';
   
     import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
     import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
     import FileIcon from '$lib/ui/icons/FileIcon.svelte';
   
-    import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
-    import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
     import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
 
     // to do remove Generic in Smart contract
-    // import type { GenericOptions } from '$lib/wizard/smart-contracts/build-generic';
-    import type { GenericOptions, KindedOptions, Kind, OptionsErrorMessages } from '$lib/wizard/shared';
-    import {  sanitizeKind, OptionsError } from '$lib/wizard/shared';
+    import type {  Kind } from '$lib/wizard/shared';
+    import {  sanitizeKind } from '$lib/wizard/shared';
   
     import type {  Contract } from '$lib/wizard/smart-contracts';
-    import { ContractBuilder, buildContractGeneric, printContract } from '$lib/wizard/smart-contracts';
+    import { printContract } from '$lib/wizard/smart-contracts';
   
     import type {  DeployContract } from '$lib/wizard/deploy-scripts';
-    import { DeployBuilder, buildDeployGeneric, printDeployContract } from '$lib/wizard/deploy-scripts';
+    import {  printDeployContract } from '$lib/wizard/deploy-scripts';
   
     import hljs  from '$lib/ui/utils/highlightjs';
     import { postConfig } from '$lib/ui/utils/post-config';
@@ -46,74 +41,30 @@
     });
   
     $: codeExample1 = md.render(`
-    \`\`\`bash
-      forge script script/100_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast
-    \`\`\`
-    `);
-  
-    $: codeExample2 = md.render(`
-    \`\`\`bash
-      --mnemonic-derivation-paths \"m/44'/60'/0'/0/0\"
-    \`\`\`
-    `);
+  \`\`\`bash
+    forge script script/100_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast
+  \`\`\`
+  `);
+
+  $: codeExample2 = md.render(`
+  \`\`\`bash
+    --mnemonic-derivation-paths \"m/44'/60'/0'/0/0\"
+  \`\`\`
+  `);
   
     const dispatch = createEventDispatcher();
-
-    // export let controls : {contractTabName: string; controlComponent: ComponentType; optionKind: Required<GenericOptions> | undefined }[] = [
-    // ];
-
-    // export let initialContractTab: string | undefined = 'Safe';
-    // export let contractTab: Kind = sanitizeKind(initialContractTab);
 
     export let initialContractTab: string | undefined ;
     export let contractTab: Kind = sanitizeKind(initialContractTab);
   
     $: {
       contractTab = sanitizeKind(contractTab);
-      console.log('contractTab', contractTab)
-
       dispatch('contractTab-change', contractTab);
     };
-  
-    // export let allContractsOpts: { [k in Kind]?: Required<KindedOptions [k]> } = {};
-    // let errors: { [k in Kind]?: OptionsErrorMessages } = {};
-  
-    // let contract: Contract = new ContractBuilder('SafeProxy');
-    
-    // let deployContract: DeployContract = new DeployBuilder('DeploySafeScript');
-
-    // to do : custommized typ? 
-    // export let controls : {contractTabName: string; controlComponent: ComponentType; optionKind: Required<GenericOptions> | undefined }[] = [
-    //     { contractTabName : 'Safe' , controlComponent :  SafeControls , optionKind: allContractsOpts.Safe  },
-    //     { contractTabName : 'Governor' , controlComponent :  GovernorControls, optionKind: allContractsOpts.Governor }
-    // ];
 
     export let contract: Contract ;
     export let deployContract: DeployContract;
-
     export let opts;
-  
-    // $: opts = allContractsOpts[contractTab];
-    // $: {
-    // console.log('opts', opts)
-    // console.log('contractTab', contractTab)
-    // console.log('allContractsOpts', allContractsOpts)
-    // if (opts) {
-    //         try {
-    //             contract = buildContractGeneric(opts);
-    //             deployContract = buildDeployGeneric(opts);
-    //             errors[contractTab] = undefined;
-    //         } catch (e: unknown) {
-    //             if (e instanceof OptionsError) {
-    //             errors[contractTab] = e.messages;
-    //             } else {
-    //             throw e;
-    //             }
-    //         }
-    //     }
-    // }
-
-
   
     $: code = printContract(contract);
     $: deployCode = printDeployContract(deployContract);
@@ -164,7 +115,6 @@
         }
     };
   
-  
   </script>
   
   <div class="container flex flex-col gap-4 p-8 mx-8">
@@ -189,26 +139,9 @@
       </code>
     </div>
 
-
-  
     <div class="header flex flex-row justify-between">
 
       <slot name="menu" />
-  
-      <!-- <div class="tab overflow-hidden">
-        <ul class="menu menu-horizontal bg-base-200">
-          <li>
-            <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
-              Safe MultiSig
-            </button>
-          </li>
-          <li>
-            <button class:selected={contractTab === 'Governor'} on:click={() => contractTab = 'Governor'}>
-              Governor
-            </button>
-          </li>
-        </ul>
-      </div> -->
   
       <div class="action flex flex-row gap-2 shrink-0">
         <!-- to do : track analytics -->
@@ -255,19 +188,8 @@
     </div>
   
     <div class="flex flex-row gap-4 grow">
-      <!-- w-64 -->
-
         <slot name="control" />
 
-
-        <!-- to do : refactor to list of Safe / Governer test  -->
-
-        <!-- <slot name="content">{text}</slot> -->
-        <!-- <slot >{text}</slot> -->
-
-
-
-    
       <div class="output flex flex-col grow overflow-auto h-[calc(100vh-40px)]">
         <div class="badge badge-primary badge-outline badge-lg">
           Smart Contract: {contract.name}.sol
@@ -304,62 +226,60 @@
   
   </div>
   
-  <style lang="postcss">
+<style lang="postcss">
     .container {
-      background-color: var(--gray-1);
-      border: 1px solid var(--gray-2);
-      border-radius: 10px;
-      min-width: 32rem;
+        background-color: var(--gray-1);
+        border: 1px solid var(--gray-2);
+        border-radius: 10px;
+        min-width: 32rem;
     }
-  
+
     /* .header {
-      font-size: var(--text-small);
+        font-size: var(--text-small);
     } */
-  
+
     /* .tab {
-      color: var(--gray-5);
+        color: var(--gray-5);
     }
-   */
+    */
     .action-button, :global(.overflow-btn) {
-      padding: var(--size-1) var(--size-2);
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
+        padding: var(--size-1) var(--size-2);
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
     }
-  
+
     :global(.overflow-btn) {
-      border: 0;
-      background-color: transparent;
+        border: 0;
+        background-color: transparent;
     }
-  
+
     :global(.overflow-btn):hover {
-      background-color: var(--gray-2);
+        background-color: var(--gray-2);
     }
-  
-  
+
+
     .action-button {
-      background-color: var(--gray-1);
-      border: 1px solid var(--gray-3);
-      color: var(--gray-6);
-      cursor: pointer;
-  
-      &:hover {
+        background-color: var(--gray-1);
+        border: 1px solid var(--gray-3);
+        color: var(--gray-6);
+        cursor: pointer;
+
+        &:hover {
         background-color: var(--gray-2);
-      }
-  
-      /* &:active, &.active {
+        }
+
+        /* &:active, &.active {
         background-color: var(--gray-2);
-      }
-      */
-  
-      /* &.disabled {
+        }
+        */
+
+        /* &.disabled {
         color: var(--gray-4);
-      } */
-  
-      :global(.icon) {
+        } */
+
+        :global(.icon) {
         margin-right: var(--size-1);
-      }
+        }
     }
-  
-  </style>
-    
+</style>

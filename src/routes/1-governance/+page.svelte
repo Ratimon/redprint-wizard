@@ -170,7 +170,7 @@
       <ul class="menu menu-horizontal bg-base-200">
         <li>
           <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
-            Safe MultiSig
+            MultiSig
           </button>
         </li>
         <li>
