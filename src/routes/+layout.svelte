@@ -7,6 +7,7 @@
     import { page } from '$app/stores';
 
     import Header from './Header.svelte';
+    import Footer from './Footer.svelte';
 
     const headLinks = [
     {pathname: '#about', title: 'ABOUT US'},
@@ -18,6 +19,12 @@
     {pathname: '/features/custom-gas-token', title: 'Custom Gas Token'},
 	{pathname: '/features/custom-bridge', title: 'Custom Bridge'},
     ];
+
+    const footLinks = [
+    {pathname: '#about', title: 'ABOUT US'},
+    {pathname: '#source', title: 'SOURCECODE'},
+    {pathname: '#redprimt-forge', title: 'redprint-forge'},
+  	];
 
 </script>
 
@@ -89,3 +96,5 @@
 </nav>
 
 <slot />
+
+<Footer links={footLinks}></Footer>
