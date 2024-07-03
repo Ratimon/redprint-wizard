@@ -12,6 +12,11 @@
     // to do : add Plausible
 </script>
 
+<!-- hero + maskable icon -->
+<!-- FeaturesCircle -->
+<!-- withWithour -->
+ <!-- Features Next -->
+
 RedPrint Wizard
 
 Interactive Playgound
