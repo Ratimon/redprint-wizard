@@ -2,6 +2,14 @@
     // import type { PageData } from "./$types";
     import { page } from '$app/stores';
 
+    // to do : seo
+    // import { MetaTags } from 'svelte-meta-tags';
+    // import extend from 'just-extend'; // Please provide functions that allow deep merging of objects, such as lodash.merge, deepmerge, just-extend.
+
+    // export let data;
+
+    // to do : add blog
+    // to do : add Plausible
 </script>
 
 RedPrint Wizard

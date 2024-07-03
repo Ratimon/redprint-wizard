@@ -2,7 +2,6 @@
 	import {appName, appDescription} from 'web-config';
 
   //  to do add support email
-
   // import {supportEmail} from 'mailgun-config';
 
   import {url} from '$lib/utils/path';
