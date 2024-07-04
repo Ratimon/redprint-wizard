@@ -1,6 +1,8 @@
 <script lang="ts">
     import { Popover, PopoverButton, PopoverPanel} from "@rgossiaux/svelte-headlessui";
 
+    import Background from '$lib/ui/background/Background.svelte';
+
     import NavTabs from '$lib/ui/header/NavTabs.svelte';
 
     export let categoryLinks:{pathname: string; title: string}[];
@@ -31,15 +33,15 @@
   
     <PopoverPanel class="absolute left-0 z-30 mt-3 w-screen max-w-full sm:max-w-sm transform">
         <div class="overflow-hidden rounded-box shadow-lg ring-1 ring-base-content ring-opacity-5">
-            <div class="relative grid gap-2 bg-base-100 p-2 overflow-hidden">
-
-                <NavTabs
-                    pages={categoryLinks}
-                    class=""
-                    tabClass="block text-left p-3 -m-1 cursor-pointer hover:bg-base-200 rounded-box duration-200"
-                />
-
-            </div>
+            <Background color="bg-base-100">
+                <div class="relative grid gap-2 p-2 overflow-hidden">
+                    <NavTabs
+                        pages={categoryLinks}
+                        class=""
+                        tabClass="block text-left p-3 -m-1 cursor-pointer hover:bg-base-200 rounded-box duration-200"
+                    />
+                </div>
+            </Background>
         </div>
   
     </PopoverPanel>

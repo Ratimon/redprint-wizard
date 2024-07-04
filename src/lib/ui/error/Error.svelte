@@ -1,12 +1,14 @@
 <script lang="ts">
   // import { goto } from '$app/navigation';
+  import Background from '$lib/ui/background/Background.svelte';
+
   export let error: string = 'error';
 
 </script>
 
 <div class="h-screen w-full flex flex-col justify-center items-center text-center gap-6 p-6">
-
-    <div class="p-6 bg-white rounded-xl">
+  <Background color="bg-white">
+    <div class="p-6 rounded-xl">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         data-name="Layer 1"
@@ -120,6 +122,7 @@
         />
       </svg>
     </div>
+  </Background>
 
     <p class="font-medium md:text-xl md:font-semibold">
       Working In Progress 🥲

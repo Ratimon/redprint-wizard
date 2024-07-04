@@ -8,6 +8,8 @@
   import type {  DeployContract } from '$lib/wizard/deploy-scripts';
   import { DeployBuilder, buildDeployGeneric, printDeployContract } from '$lib/wizard/deploy-scripts';
 
+  import Background from '$lib/ui/background/Background.svelte';
+
   import Wizard from '$lib/ui/components/Wizard.svelte'
 
   import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
@@ -46,7 +48,8 @@
   
   <div slot="menu" >
       <div class="tab overflow-hidden">
-          <ul class="menu menu-horizontal bg-base-200">
+        <Background color="bg-base-200">
+          <ul class="menu menu-horizontal">
             <li>
               <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
                 MultiSig
@@ -58,6 +61,7 @@
               </button>
             </li>
           </ul>
+        </Background>
       </div>
   </div> 
 

@@ -1,12 +1,13 @@
 <script lang="ts">
-  import HelpTooltip from './HelpTooltip.svelte';
+  import Background from '$lib/ui/background/Background.svelte';
+
+  import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
+  import InfoSection from '$lib/ui/controls/InfoSection.svelte';
 
   import type { KindedOptions } from '$lib/wizard/shared';
 
   import { safe } from '$lib/wizard/smart-contracts';
   import { deploySafe } from '$lib/wizard/deploy-scripts';
-
-  import InfoSection from './InfoSection.svelte';
 
   const contractDefaults = safe.defaults;
   const deployDefaults = deploySafe.defaults;
@@ -23,7 +24,10 @@
 </script>
   
 <section class="controls-section">
-  <h1 class="bg-neutral-content" >Contract Settings</h1>
+  <Background color="bg-neutral-content">
+    <h1 >Contract Settings</h1>
+  </Background>
+  
 
   <label class="labeled-input">
     <span>Name</span>
@@ -34,7 +38,9 @@
 <InfoSection bind:info={opts.contractInfo} />
 
 <section class="controls-section">
-  <h1 class="bg-neutral-content" >Deploy Script Settings</h1>
+  <Background color="bg-neutral-content">
+    <h1>Deploy Script Settings</h1>
+  </Background>
 </section>
 
 <section class="controls-section">

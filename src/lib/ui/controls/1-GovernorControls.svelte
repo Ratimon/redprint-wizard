@@ -1,5 +1,10 @@
 <script lang="ts">
-  import HelpTooltip from './HelpTooltip.svelte';
+  import Background from '$lib/ui/background/Background.svelte';
+
+  import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
+  import UpgradeabilitySection from '$lib/ui/controls/UpgradeabilitySection.svelte';
+  import InfoSection from '$lib/ui/controls/InfoSection.svelte';
+  import ToggleRadio from '$lib/ui/inputs/ToggleRadio.svelte';
 
   import type {  OptionsErrorMessages } from '$lib/wizard/shared';
   import type { KindedOptions } from '$lib/wizard/shared';
@@ -7,10 +12,6 @@
   import { governor } from '$lib/wizard/smart-contracts';
   import { deployGovernor } from '$lib/wizard/deploy-scripts';
 
-  import ToggleRadio from '$lib/ui/inputs/ToggleRadio.svelte';
-  import UpgradeabilitySection from './UpgradeabilitySection.svelte';
-  import InfoSection from './InfoSection.svelte';
-  
   import { error } from './error-tooltip';
   import { resizeToFit } from './resize-to-fit';
 
@@ -64,7 +65,9 @@
 </script>
 
 <section class="controls-section">
-  <h1 class="bg-neutral-content">Contract Settings</h1>
+  <Background color="bg-neutral-content">
+    <h1>Contract Settings</h1>
+  </Background>
 
   <label class="labeled-input">
     <span>Name</span>

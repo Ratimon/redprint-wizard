@@ -1,9 +1,10 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
   
-  import NavTabs from '$lib/ui/header/NavScrolls.svelte';
+  import Background from '$lib/ui/background/Background.svelte';
   import ButtonPopoverCategories from  '$lib/ui/popover/ButtonPopoverCategories.svelte';
   import ButtonGradient from '$lib/ui/buttons/ButtonGradient.svelte';
+  import NavTabs from '$lib/ui/header/NavScrolls.svelte';
 
   import {appName} from 'web-config';
   import {url} from '$lib/utils/path';
@@ -22,9 +23,10 @@
 
 </script>
 
-<header class={className}>
+<Background color={className}>
+  <header>
     <nav class="container flex items-center justify-between px-8 py-4 mx-8" aria-label="Global" >
-
+  
       <div class="flex lg:flex-1">
         <a class="flex items-center gap-2 shrink-0"
           href="/"
@@ -117,4 +119,5 @@
         </div>
       </div>
     </nav>
-</header>
+  </header>
+</Background>

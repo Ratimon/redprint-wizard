@@ -2,6 +2,8 @@
     import { createEventDispatcher } from 'svelte';
     import MarkdownIt from "markdown-it";
   
+    import Background from '$lib/ui/background/Background.svelte';
+
     import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
     import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
     import FileIcon from '$lib/ui/icons/FileIcon.svelte';
@@ -119,9 +121,11 @@
   
   <div class="container flex flex-col gap-4 p-8 mx-8">
   
-    <div class="divider divider-primary bg-primary-100">
-      <p class="text-2xl">1.1 : Deploy Contracts</p>
-    </div>
+    <Background color="bg-base-100">
+      <div class="divider divider-primary ">
+        <p class="text-2xl">1.1 : Deploy Contracts</p>
+      </div>
+    </Background>
   
     <p>In your terminal, copy below contracts' codes and run deployment scripts to your prefered network:</p>
   
@@ -220,10 +224,12 @@
     <!-- to do : Add menu to scroll to each contract -->
     <!-- to do : eg. 1.2 upgrade contract (coming soon) -->
   
-    <div class="divider divider-primary bg-primary-100">
-      <p class="text-2xl">1.1 : Deploy Contracts</p>
-    </div>
-  
+    <Background color="bg-base-100">
+      <div class="divider divider-primary">
+        <p class="text-2xl">1.1 : Deploy Contracts</p>
+      </div>
+    </Background>
+
   </div>
   
 <style lang="postcss">
