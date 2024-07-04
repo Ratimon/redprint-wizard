@@ -6,8 +6,8 @@
     // import type { PageData } from "./$types";
     import { page } from '$app/stores';
 
-    import Header from './Header.svelte';
-    import Footer from './Footer.svelte';
+    import Header from '$lib/ui/templates/Header.svelte';
+    import Footer from '$lib/ui/templates/Footer.svelte';
 
     const headLinks = [
     {pathname: '#about', title: 'ABOUT US'},
