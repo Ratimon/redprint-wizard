@@ -27,13 +27,10 @@
         <a href="https://github.com/Ratimon/redprint-forge" class="btn btn-netral btn-md">
           REDPRINT-FORGE's GITHUB
         </a>
-    
       </div>
-
-
       <TestimonialsAvatars />
     </div>
-    <div class="lg:w-full">
+    <div class="hidden lg:block lg:w-full">
       <img
         class="w-full"
         alt="Redprint Wizard"

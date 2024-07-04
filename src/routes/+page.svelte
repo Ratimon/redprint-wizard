@@ -1,13 +1,13 @@
 <script  lang="ts">
     // import type { PageData } from "./$types";
-    import { page } from '$app/stores';
+    // import { page } from '$app/stores';
 
     import Hero from '$lib/ui/templates/Hero.svelte';
+    import Problem from '$lib/ui/templates/Problem.svelte';
 
     // to do : seo
     // import { MetaTags } from 'svelte-meta-tags';
     // import extend from 'just-extend'; // Please provide functions that allow deep merging of objects, such as lodash.merge, deepmerge, just-extend.
-
     // export let data;
 
     // to do : add blog
@@ -15,8 +15,9 @@
 </script>
 
 <Hero></Hero>
+<Problem></Problem>
 <!-- FeaturesCircle -->
-<!-- withWithour -->
+<!-- withWithout -->
 <!-- Features Next -->
 
 

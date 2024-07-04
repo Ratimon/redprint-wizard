@@ -1,6 +1,9 @@
 <script  lang="ts">
     import { createEventDispatcher } from 'svelte';
     import MarkdownIt from "markdown-it";
+    import hljs  from '$lib/ui/utils/highlightjs';
+    import { postConfig } from '$lib/ui/utils/post-config';
+    import fileSaver from 'file-saver';
   
     import Background from '$lib/ui/background/Background.svelte';
 
@@ -20,11 +23,6 @@
     import type {  DeployContract } from '$lib/wizard/deploy-scripts';
     import {  printDeployContract } from '$lib/wizard/deploy-scripts';
   
-    import hljs  from '$lib/ui/utils/highlightjs';
-    import { postConfig } from '$lib/ui/utils/post-config';
-  
-    import fileSaver from 'file-saver';
-  
     // to do : optimize bundler
     const md = MarkdownIt({
       html: true,
@@ -42,6 +40,7 @@
       }
     });
   
+
     $: codeExample1 = md.render(`
   \`\`\`bash
     forge script script/100_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast
