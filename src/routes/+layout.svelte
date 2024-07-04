@@ -63,31 +63,36 @@
 <nav class="flex justify-center my-4">
     <ul class="steps">
         <a href="/"
+            data-content="0"
             class="step step-primary"
         >
             Get Started !!
         </a>
         <a href="/1-governance"
+            data-content="1"
             class="step"
-            class:step-primary={$page.route.id?.match(/1-governance|2-super-chain|3-plasma-chain|4-op-chain/g)}
+            class:step-primary={$page.route.id?.match(/1-governance|2-superchain|3-plasmachain|4-opchain/g)}
         >
             Set up Governance Layer
         </a>
-        <a href="/2-super-chain"
+        <a href="/2-superchain"
+            data-content="2"
             class="step"
-            class:step-primary={$page.route.id?.match(/2-super-chain|3-plasma-chain|4-op-chain/g)}
+            class:step-primary={$page.route.id?.match(/2-superchain|3-plasmachain|4-opchain/g)}
         > 
             Set up L1 Super Chain
         </a>
-        <a href="/3-plasma-chain"
+        <a href="/3-plasmachain"
+            data-content="3"
             class="step"
-            class:step-primary={$page.route.id?.match(/3-plasma-chain|4-op-chain/g)}
+            class:step-primary={$page.route.id?.match(/3-plasmachain|4-opchain/g)}
         >
             Set up Plasma Chain
         </a>
-        <a href="/4-op-chain"
+        <a href="/4-opchain"
+            data-content="4"
             class="step"
-            class:step-primary={$page.route.id?.includes("/4-op-chain")}
+            class:step-primary={$page.route.id?.includes("/4-opchain")}
             >
             Set up L2 OP Chain
          </a>
