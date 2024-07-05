@@ -36,7 +36,7 @@
   <section class="justify-center text-neutral-content">
     <div class="max-w-7xl mx-auto px-8 py-16 md:py-32 text-center">
       <h2 class="max-w-3xl mx-auto font-extrabold text-4xl md:text-5xl tracking-tight mb-6 md:mb-8">
-        As Eth roll-up-centric roadmap continues, it becomes a challenge to present all of OPStack's contract variations in a simple way.
+        As Eth roll-up-centric roadmap continues, it becomes a challenge to walkthrough all of OPStack's contract variations.
       </h2>
       <p class="max-w-xl mx-auto text-lg opacity-90 leading-relaxed mb-12 md:mb-20">
         Governence Layer, Plasma, Bridge ... There&apos;s so much going
@@ -54,14 +54,6 @@
 
         <Step emoji="😔" text="Quit Blockchain Dev" />
       </div>
-
-      <!-- <div class="w-fit">
-        <img
-          class="w-auto"
-          alt="original deploy script"
-          src="/deploy_original.png"
-          />
-      </div> -->
 
       <!-- <div class="divider divider-neutral	"></div>
       <p class="max-w-xl mx-auto text-lg opacity-90 leading-relaxed mb-12 md:mb-20 whitespace-pre">

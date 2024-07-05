@@ -4,6 +4,7 @@
 
     import Hero from '$lib/ui/templates/Hero.svelte';
     import Problem from '$lib/ui/templates/Problem.svelte';
+    import WithWithout from '$lib/ui/templates/WithWithout.svelte';
 
     // to do : seo
     // import { MetaTags } from 'svelte-meta-tags';
@@ -16,8 +17,8 @@
 
 <Hero></Hero>
 <Problem></Problem>
+<WithWithout></WithWithout>
 <!-- FeaturesCircle -->
-<!-- withWithout -->
 <!-- Features Next -->
 
 
