@@ -1,34 +1,8 @@
 <script lang="ts">
-  import MarkdownIt from "markdown-it";
-  import hljs  from '$lib/ui/utils/highlightjs';
 
   import Arrow from "$lib/ui/problem/Arrow.svelte";
   import Background from '$lib/ui/background/Background.svelte';
   import Step from "$lib/ui/problem/Step.svelte";
-
-  // to do : optimize bundler
-  const md = MarkdownIt({
-    html: true,
-    linkify: true,
-    highlight: function (str: string, lang: string) {
-      // to do : refactor : hljs to specify language
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(str, { language: lang }).value;
-      } catch (err) {
-        // Handle error
-        }
-      }
-      return '';
-    }
-  });
-
-  $: deployCommand = md.render(`
-  \`\`\`bash
-    forge script -vvv scripts/deploy/Deploy.s.sol:Deploy 
-`);
-
-
 
 </script>
 
@@ -54,22 +28,6 @@
 
         <Step emoji="😔" text="Quit Blockchain Dev" />
       </div>
-
-      <!-- <div class="divider divider-neutral	"></div>
-      <p class="max-w-xl mx-auto text-lg opacity-90 leading-relaxed mb-12 md:mb-20 whitespace-pre">
-        This is from OPStack repo :
-      </p>
-
-      <div class="flex flex-row justify-center">
-        <code class="hljs">
-          {@html md.render(deployCommand)}
-        </code>
-      </div>
-
-      <div class="divider divider-neutral	"></div>
-      <p class="max-w-xl mx-auto text-lg opacity-90 leading-relaxed mb-12 md:mb-20">
-        This is from OPStack repo :
-      </p> -->
 
     </div>
   </section>

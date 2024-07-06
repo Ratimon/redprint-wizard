@@ -4,6 +4,7 @@
 
     import Hero from '$lib/ui/templates/Hero.svelte';
     import Problem from '$lib/ui/templates/Problem.svelte';
+    import FeaturesListicle from '$lib/ui/templates/FeaturesListicle.svelte';
     import WithWithout from '$lib/ui/templates/WithWithout.svelte';
 
     // to do : seo
@@ -13,13 +14,14 @@
 
     // to do : add blog
     // to do : add Plausible
+
 </script>
 
 <Hero></Hero>
 <Problem></Problem>
+<FeaturesListicle ></FeaturesListicle>
 <WithWithout></WithWithout>
-<!-- FeaturesCircle -->
-<!-- Features Next -->
+<!-- Features Grid -->
 
 
 Documentation / Github
