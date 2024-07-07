@@ -127,7 +127,7 @@
                   by composing different OPStack components TOGETHER.
                 </div>
         
-                <div class="divider divider-neutral"></div>
+                <!-- <div class="divider divider-neutral"></div> -->
         
                 <p class="text-accent font-medium text-sm font-mono mb-3">
                     Original: we have ;
@@ -141,6 +141,7 @@
                 </div> 
         
                 <div class="divider divider-neutral"></div>
+                <!-- <br> -->
         
                 <p class="text-accent font-medium text-sm font-mono mb-3">
                     Then: it can be broken into following components:
