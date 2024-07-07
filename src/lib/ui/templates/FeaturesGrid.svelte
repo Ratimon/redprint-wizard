@@ -7,7 +7,8 @@
     export let landingSubtitle: string = "RESOURCES"
     export let landingDescription: string = "Discover more about the open source libraly driven by & on Optimism"
 
-    export let maximiumColumn: Number= 3;
+    export let xGap:  string ;
+    export let maximiumColumn: string;
 
     interface FeatureGridElement {
         title: string;
@@ -27,10 +28,9 @@
     yPadding="py-24"
 >
     
-    <div class={`grid grid-cols-1 gap-x-6 gap-y-24 sm:grid-cols-2 md:grid-cols-${maximiumColumn}`}>
+    <div class={`grid grid-cols-1 gap-x-${xGap} gap-y-24 sm:grid-cols-2 md:grid-cols-${maximiumColumn}`}>
 
         {#each featureGridElements as feature}
-            
                 <FeatureGridElement
                     title={feature.title}
                     path={feature.path}
