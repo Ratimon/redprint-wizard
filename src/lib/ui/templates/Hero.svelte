@@ -11,7 +11,7 @@
         Interactive Playgound for OPStack Developers.
       </h1>
       <p class="text-lg opacity-80 leading-relaxed">
-        Redpring Wizard supports a space to visialize and craft your own OPStack contract components. This empowers developers to experience, tinker, and push the boundaries of L2/App-chain innoavtion.
+        Redpring Wizard supports a space to visialize and build your own OPStack contract components. This empowers developers to experience, tinker, and push the boundaries of L2/App-chain innoavtion.
       </p>
 
       <div class="flex flex-row gap-x-2 justify-center">

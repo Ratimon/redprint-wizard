@@ -6,6 +6,7 @@
     import Problem from '$lib/ui/templates/Problem.svelte';
     import FeaturesListicle from '$lib/ui/templates/FeaturesListicle.svelte';
     import WithWithout from '$lib/ui/templates/WithWithout.svelte';
+    import FeaturesGrid from '$lib/ui/templates/FeaturesGrid.svelte';
 
     // to do : seo
     // import { MetaTags } from 'svelte-meta-tags';
@@ -21,25 +22,9 @@
 <Problem></Problem>
 <FeaturesListicle ></FeaturesListicle>
 <WithWithout></WithWithout>
-<!-- Features Grid -->
+<FeaturesGrid></FeaturesGrid>
 
+<!-- refactor : FeaturesGrid  -->
+ <!-- refactor : sub-variable for all templates  -->
 
-Documentation / Github
-
-//////
-
-SOURCE CODE
-
-Documentation
-
-Status
-
-Changelog
-
-Contribute
-
-Roadmap
-
-/////
-
-Learn more Blog
+Find Us

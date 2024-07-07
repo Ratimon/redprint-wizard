@@ -14,6 +14,11 @@
 <Background color="bg-base-100">
     <section>
         <div class="max-w-5xl mx-auto px-8 py-16 md:py-32 ">
+
+            <div class="text-center text-sm font-bold text-primary-500">
+                COMPARISONS
+            </div>
+
             <h2 class="text-center font-extrabold text-3xl md:text-5xl tracking-tight mb-12 md:mb-20">
                 Paying for RaaS or Building Your Own?
             </h2>

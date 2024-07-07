@@ -5,7 +5,7 @@
     import Background from '$lib/ui/background/Background.svelte';
     import Icon from '@iconify/svelte';
 
-    interface FeatureList {
+    interface FeatureListElement {
         title: string;
         descriptions: string[];
         script: string;
@@ -59,7 +59,7 @@
         highlight : "L2 's Smart Contract Layer",
         iconName: "simple-icons:optimism",
     },
-    ] as FeatureList[];
+    ] as FeatureListElement[];
 
     export let featureSelected: string = '1: Governance';
 
@@ -115,16 +115,20 @@
     <div class="max-w-3xl mx-auto">
         <Background color="bg-base-100">
             <div class="max-md:px-8 max-w-3xl">
+                <div class="text-center text-sm font-bold text-primary-500">
+                    SOLUTIONS
+                </div>
                 <h2 class="font-extrabold text-3xl lg:text-5xl tracking-tight mb-8">
                  <!-- 💡 COPY TIP: Remind visitors about the value of your product. Why do they need it?  -->
-                  Abstract your app chain, visualize it in a simple way, and supercharge your development power
+                  Abstract your app chain, visualize logic, and supercharge your development power
                 </h2>
                 
                 <div class="text-base-content/80 leading-relaxed mb-8 lg:text-lg">
                   <!-- 💡 COPY TIP: Explain how your product delivers what you promise in the headline. -->
-                  It supports a space to experience, innovate and build features that either Optimism or Ethereum 's roadmaps
-                  which aren't yet available on the production at all, empowering developers to dream, tinker, and push the boundaries of what's possible
-                  by composing different OPStack components TOGETHER.
+                  The simplest tool to build <b>experimental</b> and <b>innovational</b> features 
+                  which aren't yet available on the production at all by composing different <b>OPStack</b> components TOGETHER.
+                  This empowers developer to push the boundaries of what's possible beyond Optimism or Ethereum 's roadmaps.
+                  
                 </div>
         
                 <!-- <div class="divider divider-neutral"></div> -->

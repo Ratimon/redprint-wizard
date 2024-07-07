@@ -9,6 +9,9 @@
 <Background color="bg-neutral">
   <section class="justify-center text-neutral-content">
     <div class="max-w-7xl mx-auto px-8 py-16 md:py-32 text-center">
+      <div class="text-center text-sm font-bold text-primary-500">
+        PROBLEMS
+      </div>
       <h2 class="max-w-3xl mx-auto font-extrabold text-4xl md:text-5xl tracking-tight mb-6 md:mb-8">
         As Eth roll-up-centric roadmap continues, it becomes a challenge to walkthrough all of OPStack's contract variations.
       </h2>

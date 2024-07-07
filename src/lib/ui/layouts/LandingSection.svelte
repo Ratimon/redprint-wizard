@@ -17,10 +17,11 @@
                 </div>
             {/if}
             {#if title }
-                <h2 class="text-4xl font-bold text-gray-900">
+                <h2 class="text-center font-extrabold text-3xl md:text-5xl tracking-tight mb-12 md:mb-20">
                     {title}
                 </h2>
             {/if}
+
             {#if description}
                 <div class="mt-4 text-xl">
                     {description}

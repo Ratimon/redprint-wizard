@@ -3,11 +3,14 @@
     import Icon from '@iconify/svelte';
 
     export let title: string = '';
+    export let path: string = '';
     export let iconName: string= '';
 
 </script>
 
-<div class="text-primary-400 stroke-current w-6 h-6 stroke-2 flex flex-col">
+<!-- <a></a> -->
+
+<a href={path} class="text-primary-400 stroke-current w-6 h-6 stroke-2 flex flex-col">
 
     <div class="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-gray-100">
         <Icon icon={iconName} />
@@ -22,7 +25,7 @@
         </div>
     </div>
 
-</div>
+</a>
 
 <style lang="postcss">
     /* .feature-element :global(svg) {
