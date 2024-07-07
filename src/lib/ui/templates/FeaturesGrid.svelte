@@ -16,38 +16,7 @@
         iconName?: string;
     }
 
-    const featureGridElements = [
-    {
-        title: "SOURCECODE",
-        path: "https://github.com/Ratimon/redprint-wizard",
-        iconName: "carbon:repo-source-code",
-    },
-    {
-        title: "DOCUMENTATION",
-        path: "https://github.com/Ratimon/redprint-wizard/blob/main/README.md",
-        iconName: "oui:documentation",
-    },
-    {
-        title: "STATUS",
-        path: "https://github.com/Ratimon/redprint-wizard",
-        iconName: "pajamas:status-health",
-    },
-    {
-        title: "CHANGELOG",
-        path: "https://github.com/Ratimon/redprint-wizard",
-        iconName: "hugeicons:git-merge",
-    },
-    {
-        title: "CONTRIBUTE",
-        path: "https://github.com/Ratimon/redprint-wizard",
-        iconName: "ion:git-commit-sharp",
-    },
-    {
-        title: "ROADMAP",
-        path: "https://github.com/Ratimon/redprint-wizard",
-        iconName: "streamline:arrow-roadmap",
-    },
-    ] as FeatureGridElement[];
+    export let featureGridElements = [] as FeatureGridElement[];
 
 </script>
 

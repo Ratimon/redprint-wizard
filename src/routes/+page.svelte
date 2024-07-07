@@ -16,15 +16,70 @@
     // to do : add blog
     // to do : add Plausible
 
+    interface FeatureGridElement {
+        title: string;
+        description? : string;
+        path?: string;
+        iconName?: string;
+    }
+
+    let resourceTitle: string = "Everything you need to craft your own OPStack chain."
+    let resourceSubtitle: string = "RESOURCES"
+    let resourceDescription: string = "Discover more about the open source libraly driven by & on Optimism"
+    let resourceMaximiumColumn: Number= 3;
+
+    let resources : FeatureGridElement[] = [
+    {
+        title: "SOURCECODE",
+        path: "https://github.com/Ratimon/redprint-wizard",
+        iconName: "carbon:repo-source-code",
+    },
+    {
+        title: "DOCUMENTATION",
+        path: "https://github.com/Ratimon/redprint-wizard/blob/main/README.md",
+        iconName: "oui:documentation",
+    },
+    {
+        title: "STATUS",
+        path: "https://github.com/Ratimon/redprint-wizard",
+        iconName: "pajamas:status-health",
+    },
+    {
+        title: "CHANGELOG",
+        path: "https://github.com/Ratimon/redprint-wizard",
+        iconName: "hugeicons:git-merge",
+    },
+    {
+        title: "CONTRIBUTE",
+        path: "https://github.com/Ratimon/redprint-wizard",
+        iconName: "ion:git-commit-sharp",
+    },
+    {
+        title: "ROADMAP",
+        path: "https://github.com/Ratimon/redprint-wizard",
+        iconName: "streamline:arrow-roadmap",
+    },
+    ] as FeatureGridElement[];
+
+
 </script>
 
 <Hero></Hero>
 <Problem></Problem>
 <FeaturesListicle ></FeaturesListicle>
 <WithWithout></WithWithout>
-<FeaturesGrid></FeaturesGrid>
+<FeaturesGrid
+    landingTitle={resourceTitle}
+    landingSubtitle={resourceSubtitle}
+    landingDescription={resourceDescription}
+    maximiumColumn={resourceMaximiumColumn}
+    featureGridElements={resources}
+></FeaturesGrid>
+
+<!-- <FeaturesGrid featureGridElements={resources} ></FeaturesGrid> -->
+
 
 <!-- refactor : FeaturesGrid  -->
- <!-- refactor : sub-variable for all templates  -->
+<!-- refactor : sub-variable for all templates  -->
 
 Find Us
