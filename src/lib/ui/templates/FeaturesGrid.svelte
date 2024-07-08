@@ -3,9 +3,11 @@
     import LandingSection from '$lib/ui/layouts/LandingSection.svelte';
     import FeatureGridElement from '$lib/ui/feature/FeatureGridElement.svelte';
 
-    export let landingTitle: string = "Everything you need to craft your own OPStack chain."
-    export let landingSubtitle: string = "RESOURCES"
-    export let landingDescription: string = "Discover more about the open source libraly driven by & on Optimism"
+    export let keyToNav: string = '#feature';
+
+    export let landingTitle: string = ""
+    export let landingSubtitle: string = ""
+    export let landingDescription: string = ""
 
     interface FeatureGridElement {
         title: string;
@@ -25,7 +27,7 @@
     yPadding="py-24"
 >
     
-    <div class={`grid grid-cols-1 gap-x-4 gap-y-24 sm:grid-cols-2 md:grid-cols-4`}>
+    <div id={keyToNav} class={`grid grid-cols-1 gap-x-4 gap-y-24 sm:grid-cols-2 md:grid-cols-4`}>
 
         {#each featureGridElements as feature}
                 <FeatureGridElement

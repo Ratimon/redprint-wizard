@@ -5,6 +5,8 @@
     import Background from '$lib/ui/background/Background.svelte';
     import Icon from '@iconify/svelte';
 
+    export let keyToNav: string = '#solution';
+
     interface FeatureListElement {
         title: string;
         descriptions: string[];
@@ -111,7 +113,7 @@
 
 </script>
 
-<section class="py-24">
+<section id={keyToNav} class="py-24">
     <div class="max-w-3xl mx-auto">
         <Background color="bg-base-100">
             <div class="max-md:px-8 max-w-3xl">

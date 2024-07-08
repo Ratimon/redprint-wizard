@@ -87,16 +87,17 @@
 
 <Hero></Hero>
 <Problem></Problem>
-<FeaturesListicle ></FeaturesListicle>
+<FeaturesListicle keyToNav={'#solution'} ></FeaturesListicle>
 <WithWithout></WithWithout>
 <FeaturesGrid
+    keyToNav={'#resource'}
     landingTitle={resourceTitle}
     landingSubtitle={resourceSubtitle}
     landingDescription={resourceDescription}
     featureGridElements={resources}
 ></FeaturesGrid>
-
 <FeaturesGrid
+    keyToNav={'#contact'}
     landingTitle={contactTitle}
     landingSubtitle={contactSubtitle}
     landingDescription={contactDescription}

@@ -52,6 +52,7 @@
             <div class="flex flex-col justify-center items-center md:items-start gap-2 mb-10 text-sm">
   
               <!-- to do remove -->
+               
               <!-- {#if supportEmail}
                 <PageLink
                   class="link link-hover"
@@ -77,6 +78,13 @@
                 href={links[1].pathname}>
                 {links[1].title}
               </PageLink>
+              <PageLink
+                class="link link-hover"
+                whenUnselected="tab tab-sm tab-lifted flex-1"
+                whenSelected="tab-active font-black !bg-base-100"
+                href={links[2].pathname}>
+                {links[2].title}
+            </PageLink>
   
             </div>
           </div>

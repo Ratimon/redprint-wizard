@@ -10,9 +10,9 @@
     import Footer from '$lib/ui/templates/Footer.svelte';
 
     const headLinks = [
-    {pathname: '#about', title: 'ABOUT US'},
-    {pathname: '#source', title: 'SOURCECODE'},
-    {pathname: '#redprimt-forge', title: 'redprint-forge'},
+    {pathname: '#solution', title: 'Features'},
+    {pathname: '#resource', title: 'Resources'},
+    {pathname: '#contact', title: 'Contact Us'},
     ];
 
     const featureLinks = [
@@ -21,9 +21,9 @@
     ];
 
     const footLinks = [
-    {pathname: '#about', title: 'ABOUT US'},
-    {pathname: '#source', title: 'SOURCECODE'},
-    {pathname: '#redprimt-forge', title: 'redprint-forge'},
+    {pathname: '#solution', title: 'Features'},
+    {pathname: '#resource', title: 'Resources'},
+    {pathname: '#contact', title: 'Contact Us'},
   	];
 
 </script>
