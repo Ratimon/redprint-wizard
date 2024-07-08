@@ -26,8 +26,6 @@
     let resourceTitle: string = "Everything you need to craft your own OPStack chain."
     let resourceSubtitle: string = "RESOURCES"
     let resourceDescription: string = "Discover more about the open source libraly driven by & on Optimism"
-    let resourceXGap: string = '4'
-    let resourceMaximiumColumn: string= '4';
 
     let resources : FeatureGridElement[] = [
     {
@@ -65,8 +63,6 @@
     let contactTitle: string = "Find Us !!"
     let contactSubtitle: string = "CONTACT"
     let contactDescription: string = "Discover more, and join our community."
-    let contactXGap: string = '4';
-    let contactMaximiumColumn: string= '4';
 
     let contacts : FeatureGridElement[] = [
     {
@@ -97,8 +93,6 @@
     landingTitle={resourceTitle}
     landingSubtitle={resourceSubtitle}
     landingDescription={resourceDescription}
-    xGap={resourceXGap}
-    maximiumColumn={resourceMaximiumColumn}
     featureGridElements={resources}
 ></FeaturesGrid>
 
@@ -106,8 +100,6 @@
     landingTitle={contactTitle}
     landingSubtitle={contactSubtitle}
     landingDescription={contactDescription}
-    xGap={contactXGap}
-    maximiumColumn={contactMaximiumColumn}
     featureGridElements={contacts}
 ></FeaturesGrid>
 
