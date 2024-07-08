@@ -1,30 +1,48 @@
-<script>
+<script lang="ts" >
     import '../app.postcss';
     import {url} from '$lib/utils/path';
 	import {appName, appDescription, themeColor, appleStatusBarStyle} from 'web-config';
 
+    // to do
     // import type { PageData } from "./$types";
     import { page } from '$app/stores';
+
+    import Background from '$lib/ui/background/Background.svelte';
 
     import Header from '$lib/ui/templates/Header.svelte';
     import Footer from '$lib/ui/templates/Footer.svelte';
 
-    const headLinks = [
-    {pathname: '#solution', title: 'Features'},
-    {pathname: '#resource', title: 'Resources'},
-    {pathname: '#contact', title: 'Contact Us'},
+    const navOptions = ['tab', 'scroll'] as const;
+    type NavOptions = typeof navOptions[number];
+
+    interface Link {
+        pathname: string;
+        title: string;
+        navType: NavOptions;
+    }
+
+    // only 'tab'
+    const fallbackHeadLinks : Link[] = [
+    {pathname: '/', title: 'Home', navType: 'tab'},
     ];
 
-    const featureLinks = [
-    {pathname: '/features/custom-gas-token', title: 'Custom Gas Token'},
-	{pathname: '/features/custom-bridge', title: 'Custom Bridge'},
+    const featureLinks : Link[] = [
+    {pathname: '/features/custom-gas-token', title: 'Custom Gas Token', navType: 'tab' },
+	{pathname: '/features/custom-bridge', title: 'Custom Bridge', navType: 'tab'},
     ];
 
-    const footLinks = [
-    {pathname: '#solution', title: 'Features'},
-    {pathname: '#resource', title: 'Resources'},
-    {pathname: '#contact', title: 'Contact Us'},
-  	];
+    // only 'tab'
+    const fallbackFootLinks : Link[] = [
+    {pathname: '/', title: 'Home', navType: 'tab'},
+    {pathname: '/features/custom-gas-token', title: 'Custom Gas Token', navType: 'tab'},
+	{pathname: '/features/custom-bridge', title: 'Custom Bridge', navType: 'tab'},
+    ];
+
+    // const footLinks : Link[]  = [
+    // {pathname: '#solution', title: 'Features', navType: 'scroll'},
+    // {pathname: '#resource', title: 'Resources', navType: 'scroll'},
+    // {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
+  	// ];
 
 </script>
 
@@ -57,10 +75,22 @@
 	<meta name="apple-mobile-web-app-title" content={appName} />
 </svelte:head>
 
-<Header links={headLinks} featureLinks={featureLinks} class="bg-base-200 "></Header>
-  
+
+<Background color='bg-base-200'>    
+
+    {#if $page.data.headLinks}
+        <Header links={$page.data.headLinks} featureLinks={featureLinks}></Header>
+    {:else}
+        <Header links={fallbackHeadLinks} featureLinks={featureLinks}></Header>
+    {/if}
+
+    <!-- <Header links={$page.data.headLinks} featureLinks={featureLinks}></Header> -->
+
+</Background>
+
 
 <nav class="flex justify-center my-4">
+
     <ul class="steps">
         <a href="/"
             data-content="0"
@@ -102,4 +132,9 @@
 
 <slot />
 
-<Footer links={footLinks}></Footer>
+{#if $page.data.footLinks}
+    <Footer links={$page.data.footLinks}></Footer>
+{:else}
+    <Footer links={fallbackFootLinks}></Footer>
+{/if}
+

@@ -7,6 +7,8 @@
 	export let whenSelected: string = '';
 	export let whenUnselected: string = '';
 
+	// to do remove
+
 	export let pages: {pathname: string; title: string}[];
 </script>
 

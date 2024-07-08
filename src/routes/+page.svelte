@@ -104,4 +104,4 @@
     featureGridElements={contacts}
 ></FeaturesGrid>
 
-<!-- refactor : sub-variable for all templates  -->
+<!-- refactor : type  -->

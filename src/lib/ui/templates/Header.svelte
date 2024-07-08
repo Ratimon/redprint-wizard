@@ -4,15 +4,26 @@
   import Background from '$lib/ui/background/Background.svelte';
   import ButtonPopoverCategories from  '$lib/ui/popover/ButtonPopoverCategories.svelte';
   import ButtonGradient from '$lib/ui/buttons/ButtonGradient.svelte';
-  import NavTabs from '$lib/ui/header/NavScrolls.svelte';
+
+  import Nav from '$lib/ui/header/Nav.svelte';
+
+  // import NavScrolls from '$lib/ui/header/NavScrolls.svelte';
+  // import NavTabs from '$lib/ui/header/NavTabs.svelte';
+
 
   import {appName} from 'web-config';
   import {url} from '$lib/utils/path';
 
+  // to do add Background
   let className = 'bg-base-200';
 	export {className as class};
 
-  export let links : {pathname: string; title: string}[];
+  // to do  add type
+  // export let navType : string = 'scroll';
+
+
+  // to do  add type
+  export let links : {pathname: string; title: string;  navType: string}[];
   export let featureLinks : {pathname: string; title: string}[];
 
 
@@ -45,12 +56,35 @@
       </div>
   
       <div class="hidden lg:flex lg:justify-center lg:gap-12 lg:items-center" >
-        <NavTabs
+
+        <!-- {#if navType == 'scroll'}
+
+          <NavScrolls
+            pages={links}
+            class="link link-info"
+            tabClass="tab tab-sm tab-lifted flex-1"
+            whenSelected="tab-active font-black !bg-base-100"
+          />
+
+        {:else}
+
+          <NavTabs
+            pages={links}
+            class="link link-info"
+            tabClass="tab tab-sm tab-lifted flex-1"
+            whenSelected="tab-active font-black !bg-base-100"
+          />
+
+        {/if} -->
+
+        <Nav
           pages={links}
           class="link link-info"
           tabClass="tab tab-sm tab-lifted flex-1"
           whenSelected="tab-active font-black !bg-base-100"
         />
+
+
         <ButtonPopoverCategories categoryLinks={featureLinks} />
       </div>
   
@@ -101,13 +135,40 @@
           <!-- links on small screens -->
           <div class="flow-root mt-6">
             <div class="py-4">
-              <NavTabs
+
+
+              <!-- {#if navType == 'scroll'}
+
+                <NavScrolls
+                  pages={links}
+                  class="flex flex-col gap-y-4 items-start"
+          
+                  tabClass="tab tab-sm tab-lifted flex-1"
+                  whenSelected="tab-active font-black !bg-base-100"
+                />
+      
+              {:else}
+      
+                <NavTabs
+                  pages={links}
+                  class="flex flex-col gap-y-4 items-start"
+          
+                  tabClass="tab tab-sm tab-lifted flex-1"
+                  whenSelected="tab-active font-black !bg-base-100"
+                />
+    
+              {/if} -->
+
+              <Nav
                 pages={links}
                 class="flex flex-col gap-y-4 items-start"
         
                 tabClass="tab tab-sm tab-lifted flex-1"
                 whenSelected="tab-active font-black !bg-base-100"
               />
+    
+
+
             </div>
             <div class="divider"></div>
             <!-- CTA / Launch / Lead on small screens  -->

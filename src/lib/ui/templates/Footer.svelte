@@ -10,7 +10,7 @@
   import ScrollLink from '$lib/ui/header/ScrollLink.svelte';
   import PageLink from '$lib/ui/header/PageLink.svelte';
 
-  export let links : {pathname: string; title: string}[];
+  export let links : {pathname: string; title: string; navType: string}[];
 
 </script>
 
@@ -52,7 +52,7 @@
             <div class="flex flex-col justify-center items-center md:items-start gap-2 mb-10 text-sm">
   
               <!-- to do remove -->
-               
+
               <!-- {#if supportEmail}
                 <PageLink
                   class="link link-hover"
@@ -63,28 +63,48 @@
                     Support
                 </PageLink>
               {/if} -->
+
+              {#each links as link}
+
+                {#if link.navType == 'scroll'}
+                    <svelte:component this={ScrollLink} class="link link-hover" whenUnselected="tab tab-sm tab-lifted flex-1" whenSelected="tab-active font-black !bg-base-100" href={link.pathname}>
+                        {link.title}
+                    </svelte:component>
+                {:else}
+                    <svelte:component this={PageLink} class="link link-hover" whenUnselected="tab tab-sm tab-lifted flex-1" whenSelected="tab-active font-black !bg-base-100" href={link.pathname}>
+                        {link.title}
+                    </svelte:component>
+                {/if}
+        
+                <!-- <svelte:component this={PageLink} class={tabClass} {whenUnselected} {whenSelected} href={page.pathname}>
+                    {page.title}
+                </svelte:component> -->
+            
+              {/each}
   
-              <ScrollLink
+              <!-- <ScrollLink
                 class="link link-hover"
                 whenUnselected="tab tab-sm tab-lifted flex-1"
                 whenSelected="tab-active font-black !bg-base-100"
                 href={links[0].pathname}>
                 {links[0].title}
               </ScrollLink>
-              <PageLink
+
+              <ScrollLink
                 class="link link-hover"
                 whenUnselected="tab tab-sm tab-lifted flex-1"
                 whenSelected="tab-active font-black !bg-base-100"
                 href={links[1].pathname}>
                 {links[1].title}
-              </PageLink>
-              <PageLink
+              </ScrollLink>
+
+              <ScrollLink
                 class="link link-hover"
                 whenUnselected="tab tab-sm tab-lifted flex-1"
                 whenSelected="tab-active font-black !bg-base-100"
                 href={links[2].pathname}>
                 {links[2].title}
-            </PageLink>
+              </ScrollLink> -->
   
             </div>
           </div>
