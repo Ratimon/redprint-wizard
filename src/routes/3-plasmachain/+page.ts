@@ -1,12 +1,4 @@
-interface Link {
-    pathname: string;
-    title: string;
-    navType: NavOptions;
-}
-
-const navOptions = ['tab', 'scroll'] as const;
-type NavOptions = typeof navOptions[number];
-
+import type {Link } from '$lib/model/Link';
 
 export function load() {
 

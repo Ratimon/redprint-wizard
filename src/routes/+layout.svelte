@@ -12,14 +12,7 @@
     import Header from '$lib/ui/templates/Header.svelte';
     import Footer from '$lib/ui/templates/Footer.svelte';
 
-    const navOptions = ['tab', 'scroll'] as const;
-    type NavOptions = typeof navOptions[number];
-
-    interface Link {
-        pathname: string;
-        title: string;
-        navType: NavOptions;
-    }
+    import type {Link } from '$lib/model/Link';
 
     // only 'tab'
     const fallbackHeadLinks : Link[] = [
@@ -37,12 +30,6 @@
     {pathname: '/features/custom-gas-token', title: 'Custom Gas Token', navType: 'tab'},
 	{pathname: '/features/custom-bridge', title: 'Custom Bridge', navType: 'tab'},
     ];
-
-    // const footLinks : Link[]  = [
-    // {pathname: '#solution', title: 'Features', navType: 'scroll'},
-    // {pathname: '#resource', title: 'Resources', navType: 'scroll'},
-    // {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
-  	// ];
 
 </script>
 

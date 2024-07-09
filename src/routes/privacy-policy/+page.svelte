@@ -1,6 +1,6 @@
 <script lang="ts">
     import {appName} from 'web-config';
-    // to do : addseo tags
+    // to do : add seo tags
 
 </script>
 

@@ -1,4 +1,6 @@
 <script lang="ts">
+    import type {FeatureListElement } from '$lib/model/Feature';
+
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -7,15 +9,7 @@
 
     export let keyToNav: string = '#solution';
 
-    interface FeatureListElement {
-        title: string;
-        descriptions: string[];
-        script: string;
-        highlight: string;
-        iconName?: string;
-    }
-
-    const featureLists = [
+    const featureLists  = [
     {
         title: "1: Governance",
         descriptions:

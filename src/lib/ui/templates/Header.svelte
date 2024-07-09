@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type {Link } from '$lib/model/Link';
+
   import Icon from '@iconify/svelte';
   
   import Background from '$lib/ui/background/Background.svelte';
@@ -7,10 +9,6 @@
 
   import Nav from '$lib/ui/header/Nav.svelte';
 
-  // import NavScrolls from '$lib/ui/header/NavScrolls.svelte';
-  // import NavTabs from '$lib/ui/header/NavTabs.svelte';
-
-
   import {appName} from 'web-config';
   import {url} from '$lib/utils/path';
 
@@ -18,13 +16,8 @@
   let className = 'bg-base-200';
 	export {className as class};
 
-  // to do  add type
-  // export let navType : string = 'scroll';
-
-
-  // to do  add type
-  export let links : {pathname: string; title: string;  navType: string}[];
-  export let featureLinks : {pathname: string; title: string}[];
+  export let links : Link[];
+  export let featureLinks : Link[];
 
 
   let isOpen: boolean = false;

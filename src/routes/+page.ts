@@ -1,15 +1,6 @@
-interface Link {
-    pathname: string;
-    title: string;
-    navType: NavOptions;
-}
-
-const navOptions = ['tab', 'scroll'] as const;
-type NavOptions = typeof navOptions[number];
+import type {Link } from '$lib/model/Link';
 
 export function load() {
-
-    // const navType: NavOptions = 'scroll';
 
     const headLinks : Link[] = [
         {pathname: '#solution', title: 'Features', navType: 'scroll'},
@@ -31,8 +22,7 @@ export function load() {
     ];
 
 	return {
-        // navType : navType,
 		headLinks: headLinks,
-        footLinks: footLinks,
+        footLinks: footLinks
 	};
 }

@@ -1,4 +1,6 @@
 <script lang="ts">
+    import type {Link } from '$lib/model/Link';
+
 	import ScrollLink from '$lib/ui/header/ScrollLink.svelte';
     import PageLink from '$lib/ui/header/PageLink.svelte';
 
@@ -9,8 +11,7 @@
 	export let whenSelected: string = '';
 	export let whenUnselected: string = '';
 
-    // to do type
-	export let pages: {pathname: string; title: string; navType: string}[];
+	export let pages: Link[];
 
 
 </script>

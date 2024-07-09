@@ -1,5 +1,6 @@
 <script lang="ts">
-	import {appName, appDescription} from 'web-config';
+  import type {Link } from '$lib/model/Link';
+  import {appName, appDescription} from 'web-config';
 
   //  to do add support email
   // import {supportEmail} from 'mailgun-config';
@@ -10,7 +11,7 @@
   import ScrollLink from '$lib/ui/header/ScrollLink.svelte';
   import PageLink from '$lib/ui/header/PageLink.svelte';
 
-  export let links : {pathname: string; title: string; navType: string}[];
+  export let links : Link[];
 
 </script>
 
@@ -65,7 +66,6 @@
               {/if} -->
 
               {#each links as link}
-
                 {#if link.navType == 'scroll'}
                     <svelte:component this={ScrollLink} class="link link-hover" whenUnselected="tab tab-sm tab-lifted flex-1" whenSelected="tab-active font-black !bg-base-100" href={link.pathname}>
                         {link.title}
@@ -75,36 +75,7 @@
                         {link.title}
                     </svelte:component>
                 {/if}
-        
-                <!-- <svelte:component this={PageLink} class={tabClass} {whenUnselected} {whenSelected} href={page.pathname}>
-                    {page.title}
-                </svelte:component> -->
-            
               {/each}
-  
-              <!-- <ScrollLink
-                class="link link-hover"
-                whenUnselected="tab tab-sm tab-lifted flex-1"
-                whenSelected="tab-active font-black !bg-base-100"
-                href={links[0].pathname}>
-                {links[0].title}
-              </ScrollLink>
-
-              <ScrollLink
-                class="link link-hover"
-                whenUnselected="tab tab-sm tab-lifted flex-1"
-                whenSelected="tab-active font-black !bg-base-100"
-                href={links[1].pathname}>
-                {links[1].title}
-              </ScrollLink>
-
-              <ScrollLink
-                class="link link-hover"
-                whenUnselected="tab tab-sm tab-lifted flex-1"
-                whenSelected="tab-active font-black !bg-base-100"
-                href={links[2].pathname}>
-                {links[2].title}
-              </ScrollLink> -->
   
             </div>
           </div>
