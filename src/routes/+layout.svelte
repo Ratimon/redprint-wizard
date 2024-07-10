@@ -1,35 +1,37 @@
 <script lang="ts" >
+    import type {Link } from '$lib/model/Link';
+
     import '../app.postcss';
     import {url} from '$lib/utils/path';
 	import {appName, appDescription, themeColor, appleStatusBarStyle} from 'web-config';
-
     // to do
     // import type { PageData } from "./$types";
     import { page } from '$app/stores';
 
     import Background from '$lib/ui/background/Background.svelte';
-
     import Header from '$lib/ui/templates/Header.svelte';
     import Footer from '$lib/ui/templates/Footer.svelte';
-
-    import type {Link } from '$lib/model/Link';
 
     // only 'tab'
     const fallbackHeadLinks : Link[] = [
     {pathname: '/', title: 'Home', navType: 'tab'},
     ];
 
-    const featureLinks : Link[] = [
-    {pathname: '/features/custom-gas-token', title: 'Custom Gas Token', navType: 'tab' },
-	{pathname: '/features/custom-bridge', title: 'Custom Bridge', navType: 'tab'},
+    const fallbackMenuTitle: string = 'Blog'
+
+    const fallbackDropDownLinks : Link[] = [
+    {pathname: '/blog/category/announcements', title: 'Announcements', navType: 'tab'},
+    {pathname: '/blog/category/tutorials', title: 'Tutorials', navType: 'tab'},
     ];
 
     // only 'tab'
     const fallbackFootLinks : Link[] = [
     {pathname: '/', title: 'Home', navType: 'tab'},
-    {pathname: '/features/custom-gas-token', title: 'Custom Gas Token', navType: 'tab'},
-	{pathname: '/features/custom-bridge', title: 'Custom Bridge', navType: 'tab'},
+    {pathname: '/blog/first-post', title: 'Custom Gas Token', navType: 'tab'},
+	{pathname: '/blog/first-post', title: 'Custom Bridge', navType: 'tab'},
     ];
+
+    // let stepsHidden : boolean = false;
 
 </script>
 
@@ -65,57 +67,60 @@
 
 <Background color='bg-base-200'>    
 
-    {#if $page.data.headLinks}
-        <Header links={$page.data.headLinks} featureLinks={featureLinks}></Header>
+    <!-- to do : see edge case -->
+    {#if $page.data.headLinks && $page.data.actionLink }
+        <Header links={$page.data.headLinks} menuTitle={$page.data.menuTitle} dropDownLinks={$page.data.dropDownLinks} actionLink={$page.data.actionLink} ></Header>
     {:else}
-        <Header links={fallbackHeadLinks} featureLinks={featureLinks}></Header>
+        <Header links={fallbackHeadLinks} menuTitle={fallbackMenuTitle} dropDownLinks={fallbackDropDownLinks} actionLink={fallbackHeadLinks[0]} ></Header>
     {/if}
-
-    <!-- <Header links={$page.data.headLinks} featureLinks={featureLinks}></Header> -->
 
 </Background>
 
+{#if  !$page.data.stepsHidden }
 
-<nav class="flex justify-center my-4">
+<!-- {#if  stepsHidden || $page.data.stepsHidden } -->
+    <nav class="flex justify-center my-4">
 
-    <ul class="steps">
-        <a href="/"
-            data-content="0"
-            class="step step-primary"
-        >
-            Get Started !!
-        </a>
-        <a href="/1-governance"
-            data-content="1"
-            class="step"
-            class:step-primary={$page.route.id?.match(/1-governance|2-superchain|3-plasmachain|4-opchain/g)}
-        >
-            Set up Governance Layer
-        </a>
-        <a href="/2-superchain"
-            data-content="2"
-            class="step"
-            class:step-primary={$page.route.id?.match(/2-superchain|3-plasmachain|4-opchain/g)}
-        > 
-            Set up L1 Super Chain
-        </a>
-        <a href="/3-plasmachain"
-            data-content="3"
-            class="step"
-            class:step-primary={$page.route.id?.match(/3-plasmachain|4-opchain/g)}
-        >
-            Set up Plasma Chain
-        </a>
-        <a href="/4-opchain"
-            data-content="4"
-            class="step"
-            class:step-primary={$page.route.id?.includes("/4-opchain")}
+        <ul class="steps">
+            <a href="/"
+                data-content="0"
+                class="step step-primary"
             >
-            Set up L2 OP Chain
-         </a>
-    </ul>
+                Get Started !!
+            </a>
+            <a href="/1-governance"
+                data-content="1"
+                class="step"
+                class:step-primary={$page.route.id?.match(/1-governance|2-superchain|3-plasmachain|4-opchain/g)}
+            >
+                Set up Governance Layer
+            </a>
+            <a href="/2-superchain"
+                data-content="2"
+                class="step"
+                class:step-primary={$page.route.id?.match(/2-superchain|3-plasmachain|4-opchain/g)}
+            > 
+                Set up L1 Super Chain
+            </a>
+            <a href="/3-plasmachain"
+                data-content="3"
+                class="step"
+                class:step-primary={$page.route.id?.match(/3-plasmachain|4-opchain/g)}
+            >
+                Set up Plasma Chain
+            </a>
+            <a href="/4-opchain"
+                data-content="4"
+                class="step"
+                class:step-primary={$page.route.id?.includes("/4-opchain")}
+                >
+                Set up L2 OP Chain
+            </a>
+        </ul>
 
-</nav>
+    </nav>
+{/if}
+
 
 <slot />
 

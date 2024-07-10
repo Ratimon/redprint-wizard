@@ -8,12 +8,20 @@ export function load() {
         {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
     ];
 
+    const dropDownLinks : Link[] = [
+        {pathname: '/blog/first-post', title: 'Custom Gas Token', navType: 'tab' },
+        {pathname: '/blog/first-post', title: 'Custom Bridge', navType: 'tab'},
+    ];
+    
+    const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
+
+
     const footLinks : Link[] = [
         {pathname: '#solution', title: 'Features', navType: 'scroll'},
         {pathname: '#resource', title: 'Resources', navType: 'scroll'},
         {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
-        {pathname: '/features/custom-gas-token', title: 'Feature: Custom Gas Token', navType: 'tab'},
-        {pathname: '/features/custom-bridge', title: 'Feature: Custom Bridge', navType: 'tab'},
+        {pathname: '/blog/first-post', title: 'Feature: Custom Gas Token', navType: 'tab'},
+        {pathname: '/blog/first-post', title: 'Feature: Custom Bridge', navType: 'tab'},
         {pathname: '/', title: 'Home', navType: 'tab'},
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},
         {pathname: '/3-plasmachain', title: '3: PlasmaChain', navType: 'tab'},
@@ -23,6 +31,10 @@ export function load() {
 
 	return {
 		headLinks: headLinks,
-        footLinks: footLinks
+        menuTitle: "Try these Features!!",
+        dropDownLinks: dropDownLinks,
+        actionLink: actionLink,
+        footLinks: footLinks,
+        // stepsHidden: true
 	};
 }

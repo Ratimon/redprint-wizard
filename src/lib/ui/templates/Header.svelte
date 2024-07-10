@@ -12,12 +12,14 @@
   import {appName} from 'web-config';
   import {url} from '$lib/utils/path';
 
-  // to do add Background
   let className = 'bg-base-200';
 	export {className as class};
 
   export let links : Link[];
-  export let featureLinks : Link[];
+  export let menuTitle :string;
+  export let dropDownLinks : Link[];
+
+  export let actionLink :Link;
 
 
   let isOpen: boolean = false;
@@ -77,13 +79,18 @@
           whenSelected="tab-active font-black !bg-base-100"
         />
 
+        {#if dropDownLinks}
+          <ButtonPopoverCategories {dropDownLinks} {menuTitle} />
+        {/if}
 
-        <ButtonPopoverCategories categoryLinks={featureLinks} />
+        
       </div>
   
       <!-- CTA / Launch / Lead on big screens  -->
       <div class="hidden justify-end lg:flex lg:justify-end lg:flex-1">
-        <ButtonGradient title="Read Our Blog" />
+        <a href={actionLink.pathname}>
+          <ButtonGradient title={actionLink.title} />
+        </a>
       </div>
   
       <!-- Burger button to open menu on mobile  -->

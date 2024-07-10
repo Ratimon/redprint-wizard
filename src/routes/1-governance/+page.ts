@@ -16,6 +16,8 @@ export function load() {
 
 	return {
 		headLinks: headLinks,
+        // menuTitle: "Blog",
+        // dropDownLinks: categoryLinks,
         footLinks: footLinks
 	};
 }

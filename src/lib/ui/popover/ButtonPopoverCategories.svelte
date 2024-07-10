@@ -6,7 +6,8 @@
     import Background from '$lib/ui/background/Background.svelte';
     import Nav from '$lib/ui/header/Nav.svelte';
 
-    export let categoryLinks: Link[];
+    export let menuTitle: string = "Try these Features!!";
+    export let dropDownLinks: Link[];
 
 </script>
 
@@ -16,7 +17,7 @@
         class="link no-underline flex flex-nowrap items-center gap-1 text-base-content/80 hover:text-base-content active:text-base-content focus:text-base-content duration-100"
         title="Open Blog Categories"
         >
-        Try these Features!!
+            {menuTitle}
         <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
@@ -37,7 +38,7 @@
             <Background color="bg-base-100">
                 <div class="relative grid gap-2 p-2 overflow-hidden">
                     <Nav
-                        pages={categoryLinks}
+                        pages={dropDownLinks}
                         class=""
                         tabClass="block text-left p-3 -m-1 cursor-pointer hover:bg-base-200 rounded-box duration-200"
                     />
