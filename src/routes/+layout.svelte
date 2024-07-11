@@ -33,8 +33,10 @@
 
     // let stepsHidden : boolean = false;
 
+
 </script>
 
+<!-- refactor to svlete head -->
 <svelte:head>
 	<title>{appName}</title>
 	<meta name="title" content={appName} />
