@@ -27,8 +27,8 @@
     // only 'tab'
     const fallbackFootLinks : Link[] = [
     {pathname: '/', title: 'Home', navType: 'tab'},
-    {pathname: '/blog/first-post', title: 'Custom Gas Token', navType: 'tab'},
-	{pathname: '/blog/first-post', title: 'Custom Bridge', navType: 'tab'},
+    {pathname: '/blog/1-introduce-forge', title: 'Custom Gas Token', navType: 'tab'},
+	{pathname: '/blog/2-introduce-wizard', title: 'Custom Bridge', navType: 'tab'},
     ];
 
     // let stepsHidden : boolean = false;

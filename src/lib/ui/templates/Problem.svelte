@@ -21,11 +21,11 @@
       </p>
 
       <div class="flex flex-col md:flex-row justify-center items-center md:items-start gap-6">
-        <Step emoji="🧑‍💻" text="Weeks to understand and fork OP Stack" />
+        <Step emoji="🧑‍💻" text="Weeks to Understand and Fork OPStack" />
 
         <Arrow extraStyle="max-md:-scale-x-100 md:-rotate-90" />
 
-        <Step emoji="😮‍💨" text="Struggle to keep up with fast development pace" />
+        <Step emoji="😮‍💨" text="Struggle to Keep up with Fast Development Pace" />
 
         <Arrow extraStyle="md:-scale-x-100 md:-rotate-90" />
 

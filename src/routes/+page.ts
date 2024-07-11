@@ -9,8 +9,8 @@ export function load() {
     ];
 
     const dropDownLinks : Link[] = [
-        {pathname: '/blog/first-post', title: 'Custom Gas Token', navType: 'tab' },
-        {pathname: '/blog/first-post', title: 'Custom Bridge', navType: 'tab'},
+        {pathname: '/blog/1-introduce-forge', title: 'Custom Gas Token', navType: 'tab' },
+        {pathname: '/blog/2-introduce-wizard', title: 'Custom Bridge', navType: 'tab'},
     ];
     
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
@@ -20,8 +20,8 @@ export function load() {
         {pathname: '#solution', title: 'Features', navType: 'scroll'},
         {pathname: '#resource', title: 'Resources', navType: 'scroll'},
         {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
-        {pathname: '/blog/first-post', title: 'Feature: Custom Gas Token', navType: 'tab'},
-        {pathname: '/blog/first-post', title: 'Feature: Custom Bridge', navType: 'tab'},
+        {pathname: '/blog/1-introduce-forge', title: 'Feature: Custom Gas Token', navType: 'tab'},
+        {pathname: '/blog/2-introduce-wizard', title: 'Feature: Custom Bridge', navType: 'tab'},
         {pathname: '/', title: 'Home', navType: 'tab'},
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},
         {pathname: '/3-plasmachain', title: '3: PlasmaChain', navType: 'tab'},

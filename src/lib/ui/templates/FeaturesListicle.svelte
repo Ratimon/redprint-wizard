@@ -144,7 +144,7 @@
                 <!-- <br> -->
         
                 <p class="text-accent font-medium text-sm font-mono mb-3">
-                    Then: it can be broken into following components:
+                    Then: it can be broken into modular components:
                 </p>
         
                 <div class="flex flex-row justify-center">

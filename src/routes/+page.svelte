@@ -27,6 +27,7 @@
     let resourceSubtitle: string = "RESOURCES"
     let resourceDescription: string = "Discover more about the open source libraly driven by & on Optimism"
 
+    // to do : fix link
     let resources : FeatureGridElement[] = [
     {
         title: "SOURCECODE",

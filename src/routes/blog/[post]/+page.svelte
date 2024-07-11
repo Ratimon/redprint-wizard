@@ -81,7 +81,7 @@
 	</div>
 
 	<article>
-		<section class="my-12 md:my-20 max-w-[800px]">
+		<section class="mx-12 my-12 md:my-20 max-w-[800px]">
 
 			<div class="flex items-center gap-4 mb-6">
 				{#if categoriesToLabel}
@@ -149,7 +149,7 @@
 				{/if}
 			</section>
 
-			<section class="w-full max-md:pt-4 md:pr-20 space-y-12 md:space-y-20">
+			<section class="mx-32 w-full max-md:pt-4 md:pr-20 space-y-12 md:space-y-20">
 				<div class="prose">
 					<svelte:component this={data.content} />
 				</div>

@@ -2,10 +2,23 @@ import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex'
+import { createHighlighter } from "@bitmachina/highlighter";
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
 	extensions: ['.md'],
+	highlight: {
+		highlighter: await createHighlighter({ theme: "nord" }),
+		// highlighter: async (code, lang = 'text') => {
+		// 	const highlighter = await getHighlighter({
+		// 		themes: ['poimandres'],
+		// 		langs: ['javascript', 'typescript']
+		// 	})
+		// 	await highlighter.loadLanguage('javascript', 'typescript')
+		// 	const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'poimandres' }))
+		// 	return `{@html \`${html}\` }`
+		// }
+	},
 }
 
 /** @type {import('@sveltejs/kit').Config} */

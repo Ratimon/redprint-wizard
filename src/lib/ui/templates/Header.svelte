@@ -52,26 +52,6 @@
   
       <div class="hidden lg:flex lg:justify-center lg:gap-12 lg:items-center" >
 
-        <!-- {#if navType == 'scroll'}
-
-          <NavScrolls
-            pages={links}
-            class="link link-info"
-            tabClass="tab tab-sm tab-lifted flex-1"
-            whenSelected="tab-active font-black !bg-base-100"
-          />
-
-        {:else}
-
-          <NavTabs
-            pages={links}
-            class="link link-info"
-            tabClass="tab tab-sm tab-lifted flex-1"
-            whenSelected="tab-active font-black !bg-base-100"
-          />
-
-        {/if} -->
-
         <Nav
           pages={links}
           class="link link-info"
@@ -136,29 +116,6 @@
           <div class="flow-root mt-6">
             <div class="py-4">
 
-
-              <!-- {#if navType == 'scroll'}
-
-                <NavScrolls
-                  pages={links}
-                  class="flex flex-col gap-y-4 items-start"
-          
-                  tabClass="tab tab-sm tab-lifted flex-1"
-                  whenSelected="tab-active font-black !bg-base-100"
-                />
-      
-              {:else}
-      
-                <NavTabs
-                  pages={links}
-                  class="flex flex-col gap-y-4 items-start"
-          
-                  tabClass="tab tab-sm tab-lifted flex-1"
-                  whenSelected="tab-active font-black !bg-base-100"
-                />
-    
-              {/if} -->
-
               <Nav
                 pages={links}
                 class="flex flex-col gap-y-4 items-start"
@@ -166,14 +123,14 @@
                 tabClass="tab tab-sm tab-lifted flex-1"
                 whenSelected="tab-active font-black !bg-base-100"
               />
-    
-
-
+  
             </div>
             <div class="divider"></div>
             <!-- CTA / Launch / Lead on small screens  -->
             <div class="flex flex-col">
-              <ButtonGradient title="Read Our Blog" />
+              <a href={actionLink.pathname}>
+                <ButtonGradient title={actionLink.title} />
+              </a>
             </div>
           </div>
   
