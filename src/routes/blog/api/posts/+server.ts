@@ -1,7 +1,6 @@
 import { json } from '@sveltejs/kit'
 import type { PostData } from '../../Blog.model';
 
-
 async function getPosts() {
 	let posts: PostData[] = []
 
@@ -25,6 +24,7 @@ async function getPosts() {
 	return posts
 }
 
+// Handle GET Request to blog/api/posts
 export async function GET() {
 	const posts = await getPosts()
 	return json(posts)

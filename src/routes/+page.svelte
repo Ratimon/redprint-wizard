@@ -1,6 +1,5 @@
 <script  lang="ts">
-    // import type { PageData } from "./$types";
-    // import { page } from '$app/stores';
+    import type {FeatureGridItem } from '$lib/model/Feature';
 
     import Hero from '$lib/ui/templates/Hero.svelte';
     import Problem from '$lib/ui/templates/Problem.svelte';
@@ -16,19 +15,12 @@
     // to do : add blog
     // to do : add Plausible
 
-    interface FeatureGridElement {
-        title: string;
-        description? : string;
-        path?: string;
-        iconName?: string;
-    }
-
     let resourceTitle: string = "Everything you need to craft your own OPStack chain."
     let resourceSubtitle: string = "RESOURCES"
     let resourceDescription: string = "Discover more about the open source libraly driven by & on Optimism"
 
     // to do : fix link
-    let resources : FeatureGridElement[] = [
+    let resources : FeatureGridItem[] = [
     {
         title: "SOURCECODE",
         path: "https://github.com/Ratimon/redprint-wizard",
@@ -59,13 +51,13 @@
         path: "https://github.com/Ratimon/redprint-wizard",
         iconName: "streamline:arrow-roadmap",
     },
-    ] as FeatureGridElement[];
+    ] as FeatureGridItem[];
 
     let contactTitle: string = "Find Us !!"
     let contactSubtitle: string = "CONTACT"
     let contactDescription: string = "Discover more, and join our community."
 
-    let contacts : FeatureGridElement[] = [
+    let contacts : FeatureGridItem[] = [
     {
         title: "BLOG",
         path: "/#blog",
@@ -81,7 +73,7 @@
         path: "/#about",
         iconName: "pajamas:status-health",
     },
-    ] as FeatureGridElement[];
+    ] as FeatureGridItem[];
 
 
 </script>

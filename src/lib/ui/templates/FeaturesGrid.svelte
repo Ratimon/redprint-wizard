@@ -1,4 +1,6 @@
 <script lang="ts">
+
+    import type {FeatureGridItem } from '$lib/model/Feature';
     
     import LandingSection from '$lib/ui/layouts/LandingSection.svelte';
     import FeatureGridElement from '$lib/ui/feature/FeatureGridElement.svelte';
@@ -9,14 +11,8 @@
     export let landingSubtitle: string = ""
     export let landingDescription: string = ""
 
-    interface FeatureGridElement {
-        title: string;
-        description? : string;
-        path?: string;
-        iconName?: string;
-    }
 
-    export let featureGridElements = [] as FeatureGridElement[];
+    export let featureGridElements = [] as FeatureGridItem[];
 
 </script>
 

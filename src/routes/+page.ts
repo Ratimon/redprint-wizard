@@ -9,12 +9,11 @@ export function load() {
     ];
 
     const dropDownLinks : Link[] = [
-        {pathname: '/blog/1-introduce-forge', title: 'Custom Gas Token', navType: 'tab' },
-        {pathname: '/blog/2-introduce-wizard', title: 'Custom Bridge', navType: 'tab'},
+        {pathname: '/blog/1-introduce-forge', title: 'Modular Deployer', navType: 'tab' },
+        {pathname: '/blog/2-introduce-wizard', title: 'Wizard', navType: 'tab'},
     ];
     
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
-
 
     const footLinks : Link[] = [
         {pathname: '#solution', title: 'Features', navType: 'scroll'},

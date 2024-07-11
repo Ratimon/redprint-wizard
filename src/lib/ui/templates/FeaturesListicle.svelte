@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {FeatureListElement } from '$lib/model/Feature';
+    import type {FeatureListItem } from '$lib/model/Feature';
 
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
@@ -55,7 +55,7 @@
         highlight : "L2 's Smart Contract Layer",
         iconName: "simple-icons:optimism",
     },
-    ] as FeatureListElement[];
+    ] as FeatureListItem[];
 
     export let featureSelected: string = '1: Governance';
 
