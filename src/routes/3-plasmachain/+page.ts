@@ -1,6 +1,21 @@
 import type {Link } from '$lib/model/Link';
+import type { MetaTagsProps } from 'svelte-meta-tags';
+import {appName} from 'web-config';
 
 export function load() {
+
+    const title = "Set up Plasma Chain";
+    const description = "Deploy and set up Plasma Chain";
+
+    const pageMetaTags = Object.freeze({
+        title: title,
+        titleTemplate: `%s | ${appName}`,
+        description: description,
+        openGraph: {
+            title: title,
+            description: description,
+        },
+    }) satisfies MetaTagsProps;
 
     const headLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},
@@ -16,6 +31,7 @@ export function load() {
     ];
 
 	return {
+        pageMetaTags: pageMetaTags,
 		headLinks: headLinks,
         // menuTitle: "Blog",
         // dropDownLinks: categoryLinks,

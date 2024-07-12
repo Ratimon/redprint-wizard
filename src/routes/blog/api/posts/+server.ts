@@ -1,5 +1,7 @@
-import { json } from '@sveltejs/kit'
+import type { MetaTagsProps } from 'svelte-meta-tags';
 import type { PostData } from '../../Blog.model';
+
+import { json } from '@sveltejs/kit'
 
 async function getPosts() {
 	let posts: PostData[] = []
@@ -18,7 +20,7 @@ async function getPosts() {
 	}
 
 	posts = posts.sort((first, second) =>
-    new Date(second.date).getTime() - new Date(first.date).getTime()
+    	new Date(second.date).getTime() - new Date(first.date).getTime()
 	)
 
 	return posts

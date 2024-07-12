@@ -1,13 +1,11 @@
 <script lang="ts">
     import {appName} from 'web-config';
-    // to do : add seo tags
   
 </script>
 
 <main class="max-w-xl mx-auto">
 
     <div class="p-5">
-
         <a href="/" class="btn btn-ghost">
             <svg
                 xmlns="http://www.w3.org/2000/svg"

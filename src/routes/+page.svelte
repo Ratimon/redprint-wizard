@@ -7,19 +7,13 @@
     import WithWithout from '$lib/ui/templates/WithWithout.svelte';
     import FeaturesGrid from '$lib/ui/templates/FeaturesGrid.svelte';
 
-    // to do : seo
-    // import { MetaTags } from 'svelte-meta-tags';
-    // import extend from 'just-extend'; // Please provide functions that allow deep merging of objects, such as lodash.merge, deepmerge, just-extend.
-    // export let data;
-
-    // to do : add blog
     // to do : add Plausible
 
     let resourceTitle: string = "Everything you need to craft your own OPStack chain."
     let resourceSubtitle: string = "RESOURCES"
     let resourceDescription: string = "Discover more about the open source libraly driven by & on Optimism"
 
-    // to do : fix link
+    // to do : fix link && add github stars add support button
     let resources : FeatureGridItem[] = [
     {
         title: "SOURCECODE",
@@ -60,7 +54,7 @@
     let contacts : FeatureGridItem[] = [
     {
         title: "BLOG",
-        path: "/#blog",
+        path: "/blog",
         iconName: "quill:inbox-newsletter",
     },
     {
@@ -70,7 +64,7 @@
     },
     {
         title: "REACH OUT",
-        path: "/#about",
+        path: "/about",
         iconName: "pajamas:status-health",
     },
     ] as FeatureGridItem[];

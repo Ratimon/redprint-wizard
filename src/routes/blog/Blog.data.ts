@@ -17,8 +17,7 @@ export const categories: CategoryPresenter[] = [
 		title: "Product Announcements",
 		// A short version of the title . 1 or 2 words
 		titleShort: "Announcements",
-		description:
-		"Here are the latest product ammouncments we've added to Redprint toolkit, including Redprint Wizard and redprint-forge.",
+		description: "Here are the latest product announcments we've added to Redprint toolkit, including Redprint Wizard and redprint-forge.",
 		descriptionShort: "Latest product annoucement added to Redprint toolkit.",
 	},
 	{

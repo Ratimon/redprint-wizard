@@ -1,6 +1,18 @@
 import type {Link } from '$lib/model/Link';
+import type { MetaTagsProps } from 'svelte-meta-tags';
+import {appName, appDescription} from 'web-config';
 
 export function load() {
+
+    const pageMetaTags = Object.freeze({
+        title: appName,
+        titleTemplate: '%s | OPStack Deployer',
+        description: appDescription,
+        openGraph: {
+            title: appName,
+            description: appDescription,
+        },
+      }) satisfies MetaTagsProps;
 
     const headLinks : Link[] = [
         {pathname: '#solution', title: 'Features', navType: 'scroll'},
@@ -29,6 +41,7 @@ export function load() {
     ];
 
 	return {
+        pageMetaTags: pageMetaTags,
 		headLinks: headLinks,
         menuTitle: "Try these Features!!",
         dropDownLinks: dropDownLinks,

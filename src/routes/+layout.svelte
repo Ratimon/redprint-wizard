@@ -1,12 +1,14 @@
 <script lang="ts" >
+    import type { PageData } from "./$types";
     import type {Link } from '$lib/model/Link';
 
     import '../app.postcss';
     import {url} from '$lib/utils/path';
 	import {appName, appDescription, themeColor, appleStatusBarStyle} from 'web-config';
-    // to do
-    // import type { PageData } from "./$types";
+    
+    import { MetaTags } from 'svelte-meta-tags';
     import { page } from '$app/stores';
+    import extend from 'just-extend';
 
     import Background from '$lib/ui/background/Background.svelte';
     import Header from '$lib/ui/templates/Header.svelte';
@@ -33,39 +35,64 @@
 
     // let stepsHidden : boolean = false;
 
+    export let data : PageData;
+    $: metaTags = extend(true, {}, data.baseMetaTags, $page.data.pageMetaTags);
 
 </script>
 
-<!-- refactor to svlete head -->
-<svelte:head>
-	<title>{appName}</title>
-	<meta name="title" content={appName} />
-	<meta name="description" content={appDescription} />
+<MetaTags
+    {...metaTags}
+    
+    additionalLinkTags={[
+        {
+        rel: 'icon',
+        href: url('/pwa/favicon.svg'),
+        },
+        {
+        rel: 'icon',
+        href: url('/pwa/favicon.svg'),
+        sizes: "any" //  32×32
+        },
+        {
+        rel: 'apple-touch-icon',
+        href: url('/pwa/apple-touch-icon.png')
+        },
+        {
+        rel: 'manifest',
+        href: url('/pwa/manifest.webmanifest')
+        }
+    ]}
 
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content={appName} />
-	<meta property="og:description" content={appDescription} />
-	<meta property="twitter:title" content={appName} />
-	<meta property="twitter:description" content={appDescription} />
-
-	<!-- minimal -->
-	<!-- to do automatise -->
-	<link rel="icon" href={url('/pwa/favicon.svg')} type="image/svg+xml" />
-	<link rel="icon" href={url('/pwa/favicon.ico')} sizes="any" /><!-- 32×32 -->
-	<link rel="apple-touch-icon" href={url('/pwa/apple-touch-icon.png')} /><!-- 180×180 -->
-  	<link rel="manifest" href={url('/pwa/manifest.webmanifest')} />
-
-	<!-- extra info -->
-	<meta name="theme-color" content={themeColor} />
-	<meta name="mobile-web-app-capable" content="yes" />
-	<meta name="application-name" content={appName} />
-
-	<!-- apple -->
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content={appleStatusBarStyle} />
-	<meta name="apple-mobile-web-app-title" content={appName} />
-</svelte:head>
-
+    additionalMetaTags={[
+        // extra info
+        {
+        name: "theme-color",
+        content: themeColor
+        },
+        {
+        name: 'mobile-web-app-capable',
+        content: 'yes'
+        },
+        {
+        name: 'application-name',
+        content: appName
+        },
+        // apple
+        {
+        name: "apple-mobile-web-app-capable",
+        content: 'yes'
+        },
+        {
+        name: 'apple-mobile-web-app-status-bar-style',
+        content: appleStatusBarStyle
+        },
+        {
+        name: 'apple-mobile-web-app-title',
+        content: appName
+        }
+    ]}
+    >
+</MetaTags>
 
 <Background color='bg-base-200'>    
 

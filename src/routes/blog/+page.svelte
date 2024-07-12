@@ -2,9 +2,10 @@
     import '../../app.postcss';
 	import type { AuthorPresenter, CategoryPresenter, PostPresenter } from './Blog.presenter'
 	import {categories, authors} from './Blog.data'
+	import {appName} from 'web-config';
+
 	import CardArticle from '$lib/ui/blog/CardArticle.svelte';
 	import CardCategory from '$lib/ui/blog/CardCategory.svelte';
-	import {appName} from 'web-config';
 
 	export let data;
 
@@ -32,19 +33,12 @@
       .slice(0, 6);
 </script>
 
-<!-- SEO -->
-<!-- <svelte:head>
-	<title>The {appName}</title>
-	<meta property="og:type" content="article" />
-	<meta property="og:title" content="Blog" />
-</svelte:head> -->
-
 <section class="text-center max-w-xl mx-auto mt-12 mb-24 md:mb-32">
 	<h1 class="font-extrabold text-3xl lg:text-5xl tracking-tight mb-6">
-	  The {appName} Blog
+	  The Official {appName} Blog
 	</h1>
 	<p class="text-lg opacity-80 leading-relaxed">
-		Updates, stories, and announcements from the {appName} Labs team.
+		Updates, stories, and announcements from the {appName} team.
 	</p>
 </section>
 
