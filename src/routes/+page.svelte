@@ -7,13 +7,11 @@
     import WithWithout from '$lib/ui/templates/WithWithout.svelte';
     import FeaturesGrid from '$lib/ui/templates/FeaturesGrid.svelte';
 
-    // to do : add Plausible
-
     let resourceTitle: string = "Everything you need to craft your own OPStack chain."
     let resourceSubtitle: string = "RESOURCES"
     let resourceDescription: string = "Discover more about the open source libraly driven by & on Optimism"
 
-    // to do : fix link && add github stars add support button
+    // to do : fix link && add github stars && add support button && prerender && email handle && add acknoweldgement
     let resources : FeatureGridItem[] = [
     {
         title: "SOURCECODE",

@@ -1,47 +1,50 @@
 <script  lang="ts">
-    import { createEventDispatcher } from 'svelte';
-    import MarkdownIt from "markdown-it";
-    import hljs  from '$lib/ui/utils/highlightjs';
-    import { postConfig } from '$lib/ui/utils/post-config';
-    import fileSaver from 'file-saver';
-  
-    import Background from '$lib/ui/background/Background.svelte';
+  import { createEventDispatcher } from 'svelte';
+  import MarkdownIt from "markdown-it";
+  import hljs  from '$lib/ui/utils/highlightjs';
+  import { postConfig } from '$lib/ui/utils/post-config';
+  import fileSaver from 'file-saver';
 
-    import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
-    import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
-    import FileIcon from '$lib/ui/icons/FileIcon.svelte';
-  
-    import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
+  import Background from '$lib/ui/background/Background.svelte';
 
-    // to do remove Generic in Smart contract
-    import type {  Kind } from '$lib/wizard/shared';
-    import {  sanitizeKind } from '$lib/wizard/shared';
-  
-    import type {  Contract } from '$lib/wizard/smart-contracts';
-    import { printContract } from '$lib/wizard/smart-contracts';
-  
-    import type {  DeployContract } from '$lib/wizard/deploy-scripts';
-    import {  printDeployContract } from '$lib/wizard/deploy-scripts';
-  
-    // to do : optimize bundler
-    const md = MarkdownIt({
-      html: true,
-      linkify: true,
-      highlight: function (str: string, lang: string) {
-        // to do : refactor : hljs to specify language
-      if (lang && hljs.getLanguage(lang)) {
-        try {
-          return hljs.highlight(str, { language: lang }).value;
-        } catch (err) {
-          // Handle error
-          }
+  import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
+  import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
+  import FileIcon from '$lib/ui/icons/FileIcon.svelte';
+
+  import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
+
+  // to do remove Generic in Smart contract
+  import type {  Kind } from '$lib/wizard/shared';
+  import {  sanitizeKind } from '$lib/wizard/shared';
+
+  import type {  Contract } from '$lib/wizard/smart-contracts';
+  import { printContract } from '$lib/wizard/smart-contracts';
+
+  import type {  DeployContract } from '$lib/wizard/deploy-scripts';
+  import {  printDeployContract } from '$lib/wizard/deploy-scripts';
+
+  import type { GaEvent } from '$lib/analytics/analytics.Store';
+  import { analyticsStore } from '$lib/analytics/analytics.Store'
+
+  // to do : optimize bundler
+  const md = MarkdownIt({
+    html: true,
+    linkify: true,
+    highlight: function (str: string, lang: string) {
+      // to do : refactor : hljs to specify language
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(str, { language: lang }).value;
+      } catch (err) {
+        // Handle error
         }
-        return '';
       }
-    });
+      return '';
+    }
+  });
   
 
-    $: codeExample1 = md.render(`
+  $: codeExample1 = md.render(`
   \`\`\`bash
     forge script script/100_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast
   \`\`\`
@@ -55,6 +58,7 @@
   
     const dispatch = createEventDispatcher();
 
+    // to do : handling unwanted bug when duplicate contractTab eg duplicate GaEvent counts
     export let initialContractTab: string | undefined ;
     export let contractTab: Kind = sanitizeKind(initialContractTab);
   
@@ -69,8 +73,7 @@
   
     $: code = printContract(contract);
     $: deployCode = printDeployContract(deployContract);
-    // injected hyper link
-    // $: highlightedCode = hljs.highlight(code, {language: 'solidity'} ).value;
+
     $: highlightedCode = injectHyperlinks(hljs.highlight(code, {language: 'solidity'} ).value);
     $: highlightedDeployCode = injectHyperlinks(hljs.highlight(deployCode, {language: 'solidity'} ).value);
   
@@ -83,6 +86,17 @@
       if (opts) {
           await postConfig(opts, 'copy-contract', language);
       }
+
+      const new_event : GaEvent  = {
+        id:   crypto.randomUUID().toString(),
+        data: {},
+        event: `copy-contract-${contractTab}`,
+        type: "event",
+      }
+      // console.log('new_event', new_event)
+      $analyticsStore = [...$analyticsStore, new_event]
+      // analyticsStore.update( (existing_events : GaEvent ) => [ ...existing_events, new_event ])
+
       setTimeout(() => {
         isContractCopied = false;
       }, 1000);
@@ -95,25 +109,52 @@
       if (opts) {
           await postConfig(opts, 'copy-script', language);
       }
+
+      const new_event : GaEvent  = {
+        id:   crypto.randomUUID().toString(),
+        data: {},
+        event: `copy-script-${contractTab}`,
+        type: "event",
+      }
+      $analyticsStore = [...$analyticsStore, new_event]
+
       setTimeout(() => {
         isScriptCopied = false;
       }, 1000);
     };
   
     const downloadContractNpmHandler = async () => {
-        const blob = new Blob([code], { type: 'text/plain' });
-        if (opts) {
-          fileSaver.saveAs(blob, opts.contractName + '.sol');
-          await postConfig(opts, 'download-contract', language);
-        }
+
+      const blob = new Blob([code], { type: 'text/plain' });
+      if (opts) {
+        fileSaver.saveAs(blob, opts.contractName + '.sol');
+        await postConfig(opts, 'download-contract', language);
+      }
+
+      const new_event : GaEvent  = {
+        id:   crypto.randomUUID().toString(),
+        data: {},
+        event: `download-contract-${contractTab}`,
+        type: "event",
+      }
+      $analyticsStore = [...$analyticsStore, new_event]
     };
   
     const downloadScriptNpmHandler = async () => {
-        const blob = new Blob([deployCode], { type: 'text/plain' });
-        if (opts) {
-          fileSaver.saveAs(blob, opts.deployName + '.sol');
-          await postConfig(opts, 'download-script', language);
-        }
+
+      const blob = new Blob([deployCode], { type: 'text/plain' });
+      if (opts) {
+        fileSaver.saveAs(blob, opts.deployName + '.sol');
+        await postConfig(opts, 'download-script', language);
+      }
+
+      const new_event : GaEvent  = {
+        id:   crypto.randomUUID().toString(),
+        data: {},
+        event: `copy-contract-${contractTab}`,
+        type: "event",
+      }
+      $analyticsStore = [...$analyticsStore, new_event]
     };
   
   </script>
@@ -147,7 +188,6 @@
       <slot name="menu" />
   
       <div class="action flex flex-row gap-2 shrink-0">
-        <!-- to do : track analytics -->
         <button class="action-button min-w-[165px]" on:click={copyContractHandler}>
           <div class="flex justify-between">
             {#if isContractCopied}
@@ -158,7 +198,6 @@
           </div>
         </button>
   
-        <!-- to do : track analytics -->
         <button class="action-button min-w-[165px]" on:click={downloadContractNpmHandler}>
           <div class="flex justify-between">
             <FileIcon /> Download As .sol
@@ -167,7 +206,6 @@
   
       </div>
   
-      <!-- to do : track analytics -->
       <div class="action flex flex-row gap-2 shrink-0">
         <button class="action-button min-w-[165px]" on:click={copyScriptHandler}>
           <div class="flex justify-between">
@@ -179,7 +217,6 @@
           </div>
         </button>
   
-        <!-- to do : track analytics -->
         <button class="action-button min-w-[165px]" on:click={downloadScriptNpmHandler}>
           <div class="flex justify-between">
             <FileIcon /> Download As .sol

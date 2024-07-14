@@ -9,9 +9,7 @@
   import { DeployBuilder, buildDeployGeneric, printDeployContract } from '$lib/wizard/deploy-scripts';
 
   import Background from '$lib/ui/background/Background.svelte';
-
   import Wizard from '$lib/ui/components/Wizard.svelte'
-
   import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
   import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
 

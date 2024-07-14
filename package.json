@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "prepare": "pwag static/icon.svg src/web-config.json && cp static/pwa/favicon-512.png static/maskable_icon_512x512.png",
-        "dev": "vite dev",
+        "dev": "dotenv -- vite dev",
         "build": "vite build",
         "preview": "vite preview",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -25,6 +25,8 @@
         "bits-ui": "^0.21.12",
         "clsx": "^2.1.1",
         "daisyui": "^4.11.1",
+        "dotenv": "^16.4.5",
+        "dotenv-cli": "^7.4.2",
         "just-extend": "^6.2.0",
         "mdsvex": "^0.11.2",
         "path-browserify": "^1.0.1",

@@ -4,8 +4,9 @@
 
     import '../app.postcss';
     import {url} from '$lib/utils/path';
-	import {appName, appDescription, themeColor, appleStatusBarStyle} from 'web-config';
-    
+	import {appName, themeColor, appleStatusBarStyle} from 'web-config';
+    import { PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID } from '$env/static/public'
+
     import { MetaTags } from 'svelte-meta-tags';
     import { page } from '$app/stores';
     import extend from 'just-extend';
@@ -13,6 +14,7 @@
     import Background from '$lib/ui/background/Background.svelte';
     import Header from '$lib/ui/templates/Header.svelte';
     import Footer from '$lib/ui/templates/Footer.svelte';
+    import GaAnalytics from '$lib/analytics/GaAnalytics.svelte';
 
     // only 'tab'
     const fallbackHeadLinks : Link[] = [
@@ -37,6 +39,10 @@
 
     export let data : PageData;
     $: metaTags = extend(true, {}, data.baseMetaTags, $page.data.pageMetaTags);
+
+    // to do : private?
+    let MEASUREMENT_ID = PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID;
+    // console.log(`PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID`, PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID);
 
 </script>
 
@@ -150,7 +156,6 @@
     </nav>
 {/if}
 
-
 <slot />
 
 {#if $page.data.footLinks}
@@ -159,3 +164,4 @@
     <Footer links={fallbackFootLinks}></Footer>
 {/if}
 
+<GaAnalytics {MEASUREMENT_ID} />
