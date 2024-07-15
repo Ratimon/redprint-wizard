@@ -51,6 +51,7 @@ export function clipboard(node: HTMLElement, args: Parameter): ActionReturn<Para
 }
 
 // Shared copy method
-function copyToClipboard(data: any): void {
+export function copyToClipboard(data: any): void {
+
 	navigator.clipboard.writeText(String(data));
 }

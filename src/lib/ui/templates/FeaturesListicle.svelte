@@ -1,9 +1,7 @@
 <script lang="ts">
     import type {FeatureListItem } from '$lib/model/Feature';
 
-    import MarkdownIt from "markdown-it";
-    import hljs  from '$lib/ui/utils/highlightjs';
-
+    import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
     import Background from '$lib/ui/background/Background.svelte';
     import Icon from '@iconify/svelte';
 
@@ -76,34 +74,20 @@
         featureSelected = name;
     }
 
-    // to do : optimize bundler
-    const md = MarkdownIt({
-        html: true,
-        linkify: true,
-        highlight: function (str: string, lang: string) {
-        // to do : refactor : hljs to specify language
-        if (lang && hljs.getLanguage(lang)) {
-        try {
-            return hljs.highlight(str, { language: lang }).value;
-        } catch (err) {
-            // Handle error
-            }
-        }
-        return '';
-        }
-    });
+//     $: deployCommand = md.render(`
+//   \`\`\`bash
+//     forge script -vvv scripts/deploy/Deploy.s.sol:Deploy 
+//   \`\`\`
+//   `);
 
-    $: deployCommand = md.render(`
-  \`\`\`bash
-    forge script -vvv scripts/deploy/Deploy.s.sol:Deploy 
-  \`\`\`
-  `);
+//     $: featureExample = md.render(`
+//   \`\`\`bash
+//     forge script script/100_${featureToDisplay?.script}.s.sol
+//   \`\`\`
+//   `);
 
-    $: featureExample = md.render(`
-  \`\`\`bash
-    forge script script/100_${featureToDisplay?.script}.s.sol
-  \`\`\`
-  `);
+  $: deployCommand1 = `forge script -vvv scripts/deploy/Deploy.s.sol:Deploy`
+  $: deployCommand2 = `forge script script/100_${featureToDisplay?.script}.s.sol`
 
 </script>
 
@@ -115,43 +99,39 @@
                     SOLUTIONS
                 </div>
                 <h2 class="font-extrabold text-3xl lg:text-5xl tracking-tight mb-8">
-                 <!-- 💡 COPY TIP: Remind visitors about the value of your product. Why do they need it?  -->
                   Abstract your app chain, visualize logic, and supercharge your development power
                 </h2>
                 
                 <div class="text-base-content/80 leading-relaxed mb-8 lg:text-lg">
-                  <!-- 💡 COPY TIP: Explain how your product delivers what you promise in the headline. -->
                   The simplest tool to build <b>experimental</b> and <b>innovational</b> features 
                   which aren't yet available on the production at all by composing different <b>OPStack</b> components TOGETHER.
                   This empowers developer to push the boundaries of what's possible beyond Optimism or Ethereum 's roadmaps.
                   
                 </div>
         
-                <!-- <div class="divider divider-neutral"></div> -->
-        
-                <p class="text-accent font-medium text-sm font-mono mb-3">
-                    Original: we have ;
-                </p>
-                
-         
-                <div class="flex flex-row justify-center">
-                     <code class="hljs">
-                       {@html md.render(deployCommand)}
-                     </code>
-                </div> 
-        
-                <div class="divider divider-neutral"></div>
-                <!-- <br> -->
-        
-                <p class="text-accent font-medium text-sm font-mono mb-3">
-                    Then: it can be broken into modular components:
-                </p>
-        
-                <div class="flex flex-row justify-center">
-                    <code class="hljs">
-                      {@html md.render(featureExample)}
-                    </code>
-               </div> 
+                <div class="pt-0.5 pb-4 justify-center">
+                    <h3 class="m-2 text-accent font-medium text-sm font-mono mb-3">Original: we have:</h3>
+                    <CopyBlock
+                      boxClass="p-2 rounded-box font-black text-primary max-w-full mx-auto text-center"
+                      class="mb-5"
+                      background="bg-primary-content"
+                      copiedBackground="bg-success"
+                      copiedColor="text-success-content"
+                      text={deployCommand1}
+                    />
+                </div>
+
+               <div class="pt-0.5 pb-4 justify-center">
+                    <h3 class="m-2 text-accent font-medium text-sm font-mono mb-3">Then: it can be broken into modular components::</h3>
+                    <CopyBlock
+                        boxClass="p-2 rounded-box font-black text-primary max-w-full mx-auto text-center"
+                        class="mb-5"
+                        background="bg-primary-content"
+                        copiedBackground="bg-success"
+                        copiedColor="text-success-content"
+                        text={deployCommand2}
+                    />
+                </div>
         
             </div>
         </Background>

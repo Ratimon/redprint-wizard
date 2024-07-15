@@ -23,7 +23,6 @@
             We are also building redprint-forge, a developer-friendly framework/library in solidity to modify & deploy OPStack ’s contracts in a modular style
 		</p>
        
-
 	</div>
 
 	<div class="pt-3 pb-4">
@@ -31,7 +30,7 @@
 		<CopyBlock
 			boxClass="p-2 rounded-box font-black text-primary max-w-xl mx-auto"
 			class="mb-5"
-			background="bg-reverse-primary"
+			background="bg-primary-content"
 			copiedBackground="bg-success"
 			copiedColor="text-success-content"
 			text={`npm add -D redprint-forge`}

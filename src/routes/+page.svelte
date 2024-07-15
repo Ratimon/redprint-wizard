@@ -17,7 +17,7 @@
     let resourceSubtitle: string = "RESOURCES"
     let resourceDescription: string = "Discover more about the open source libraly driven by & on Optimism"
 
-    // Add support button && prerender && email handle && add acknoweldgement && pre-render && fix tos  && add report
+    // to do:  Add support button && prerender && email handle && add acknoweldgement && pre-render && fix tos  && add report
     let resources : FeatureGridItem[] = [
     {
         title: "SOURCECODE",

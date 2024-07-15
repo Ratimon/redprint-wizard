@@ -1,8 +1,8 @@
 <script lang="ts">
 	// based on https://github.com/skeletonlabs/skeleton/blob/58d9780dafd4a7ca04b1086a30aac8c0dc3ce416/src/lib/utilities/CodeBlock/CodeBlock.svelte
 	import {createEventDispatcher} from 'svelte';
-	import {clipboard} from '../utils/clipboard';
-
+	import {clipboard} from '$lib/ui/utils/clipboard';
+    
 	const dispatch = createEventDispatcher<{copied: string}>();
 
 	export let text = '';
@@ -24,7 +24,7 @@
 		/** @event {{}} copy - Fires when the Copy button is pressed.  */
 		dispatch('copied', event.detail);
 	}
-    
+
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->

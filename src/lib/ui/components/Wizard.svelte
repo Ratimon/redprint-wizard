@@ -1,17 +1,19 @@
 <script  lang="ts">
   import { createEventDispatcher } from 'svelte';
-  import MarkdownIt from "markdown-it";
-  import hljs  from '$lib/ui/utils/highlightjs';
-  import { postConfig } from '$lib/ui/utils/post-config';
+
   import fileSaver from 'file-saver';
 
   import Background from '$lib/ui/background/Background.svelte';
 
+  import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
   import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
   import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
   import FileIcon from '$lib/ui/icons/FileIcon.svelte';
 
   import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
+  import {copyToClipboard} from '$lib/ui/utils/clipboard';
+  import hljs  from '$lib/ui/utils/highlightjs';
+  import { postConfig } from '$lib/ui/utils/post-config';
 
   // to do remove Generic in Smart contract
   import type {  Kind } from '$lib/wizard/shared';
@@ -25,36 +27,9 @@
 
   import type { GaEvent } from '$lib/analytics/analytics.Store';
   import { analyticsStore } from '$lib/analytics/analytics.Store'
-
-  // to do : optimize bundler
-  const md = MarkdownIt({
-    html: true,
-    linkify: true,
-    highlight: function (str: string, lang: string) {
-      // to do : refactor : hljs to specify language
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(str, { language: lang }).value;
-      } catch (err) {
-        // Handle error
-        }
-      }
-      return '';
-    }
-  });
   
-
-  $: codeExample1 = md.render(`
-  \`\`\`bash
-    forge script script/100_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast
-  \`\`\`
-  `);
-
-  $: codeExample2 = md.render(`
-  \`\`\`bash
-    --mnemonic-derivation-paths \"m/44'/60'/0'/0/0\"
-  \`\`\`
-  `);
+  $: codeCommand1 = `forge script script/100_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast`
+  $: codeCommand2 = `--mnemonic-derivation-paths \"m/44'/60'/0'/0/0\"`
   
     const dispatch = createEventDispatcher();
 
@@ -81,7 +56,7 @@
   
     let isContractCopied = false;
     const copyContractHandler = async () => {
-      await navigator.clipboard.writeText(code);
+      copyToClipboard(code);
       isContractCopied = true;
       if (opts) {
           await postConfig(opts, 'copy-contract', language);
@@ -104,7 +79,7 @@
   
     let isScriptCopied = false;
     const copyScriptHandler = async () => {
-      await navigator.clipboard.writeText(deployCode);
+      copyToClipboard(deployCode);
       isScriptCopied = true;
       if (opts) {
           await postConfig(opts, 'copy-script', language);
@@ -166,24 +141,32 @@
         <p class="text-2xl">1.1 : Deploy Contracts</p>
       </div>
     </Background>
-  
-    <p>In your terminal, copy below contracts' codes and run deployment scripts to your prefered network:</p>
-  
-    <div class="flex flex-row justify-center">
-      <code class="hljs">
-        {@html md.render(codeExample1)}
-      </code>
-    </div>
-  
-    <p>(Optional), you can specify your derivation path:</p>
-  
-    <div class="flex flex-row justify-center">
-      <code class="hljs">
-        {@html md.render(codeExample2)}
-      </code>
+
+    <div class="pt-3 pb-4 justify-center">
+      <h2 class="m-4 font-semibold">In your terminal, copy below contracts' codes and run deployment scripts to your prefered network:</h2>
+      <CopyBlock
+        boxClass="p-2 rounded-box font-black text-primary max-w-full mx-auto text-center"
+        class="mb-5"
+        background="bg-primary-content"
+        copiedBackground="bg-success"
+        copiedColor="text-success-content"
+        text={codeCommand1}
+      />
     </div>
 
-    <div class="header flex flex-row justify-between">
+    <div class="pt-3 pb-4 justify-center">
+      <h2 class="m-4 font-semibold">(Optional), you can specify your derivation path:</h2>
+      <CopyBlock
+        boxClass="p-2 rounded-box font-black text-primary max-w-full mx-auto text-center"
+        class="mb-5"
+        background="bg-primary-content"
+        copiedBackground="bg-success"
+        copiedColor="text-success-content"
+        text={codeCommand2}
+      />
+    </div>
+
+    <div class=" pt-3 pb-4 header flex flex-row justify-between">
 
       <slot name="menu" />
   
