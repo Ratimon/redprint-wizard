@@ -5,8 +5,8 @@
     export let points : {pain: string; feature: string}[] = [
     {pain: "Pay at least $3000 per month", feature: `lower Cost by paying only gas to Eth`},
     {pain: "Waste hours in developer support", feature: "No more external support"},
-    {pain: "Can’t update sourcecode (new features, bug fix)", feature: "Complete control by your team"},
-    {pain: "Same old code/features", feature: "Innovation beyond your competitors"},
+    {pain: "Can’t update sourcecode (new features, bug fix)", feature: "Complete control by your team (eg. it contains a set of best practises for Rollup Development)"},
+    {pain: "Same old code/features", feature: "Innovation beyond your competitors (eg. quickly get a idea for hackathon or quick prototypes)"},
   	];
 
 </script>

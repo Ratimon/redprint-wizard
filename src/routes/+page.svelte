@@ -17,7 +17,7 @@
     let resourceSubtitle: string = "RESOURCES"
     let resourceDescription: string = "Discover more about the open source libraly driven by & on Optimism"
 
-    // to do : fix link  && add support button && prerender && email handle && add acknoweldgement && pre-render
+    // Add support button && prerender && email handle && add acknoweldgement && pre-render && fix tos  && add report
     let resources : FeatureGridItem[] = [
     {
         title: "SOURCECODE",
@@ -29,26 +29,30 @@
         path: "https://github.com/Ratimon/redprint-wizard/blob/main/README.md",
         iconName: "oui:documentation",
     },
-    {
-        title: "STATUS",
-        path: "https://github.com/Ratimon/redprint-wizard",
-        iconName: "pajamas:status-health",
-    },
+    // to do : add notion
+    // {
+    //     title: "STATUS",
+    //     path: "https://github.com/Ratimon/redprint-wizard",
+    //     iconName: "pajamas:status-health",
+    // },
+    // to do : add github release ?
     {
         title: "CHANGELOG",
         path: "https://github.com/Ratimon/redprint-wizard",
         iconName: "hugeicons:git-merge",
     },
+    // to do : improve github 's markdown section
     {
         title: "CONTRIBUTE",
-        path: "https://github.com/Ratimon/redprint-wizard",
+        path: "https://github.com/Ratimon/redprint-wizard/blob/main/CONTRIBUTING.md",
         iconName: "ion:git-commit-sharp",
     },
-    {
-        title: "ROADMAP",
-        path: "https://github.com/Ratimon/redprint-wizard",
-        iconName: "streamline:arrow-roadmap",
-    },
+    // to do : add github 's project
+    // {
+    //     title: "ROADMAP",
+    //     path: "https://github.com/Ratimon/redprint-wizard",
+    //     iconName: "streamline:arrow-roadmap",
+    // },
     ] as FeatureGridItem[];
 
     let contactTitle: string = "Find Us !!"
@@ -61,13 +65,19 @@
         path: "/blog",
         iconName: "quill:inbox-newsletter",
     },
+    // {
+    //     title: "TWITTER",
+    //     path: "https://x.com/",
+    //     iconName: "line-md:twitter-x",
+    // },
     {
-        title: "TWITTER",
-        path: "https://x.com/",
-        iconName: "line-md:twitter-x",
+        title: "NEWSLETTER",
+        path: "https://www.beehiiv.com/",
+        iconName: "mdi:email-newsletter",
     },
+    // to do : reach out , email?
     {
-        title: "REACH OUT",
+        title: "ABOUT US",
         path: "/about",
         iconName: "pajamas:status-health",
     },

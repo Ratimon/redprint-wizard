@@ -21,6 +21,10 @@
         Interactive Playgound for OPStack Developers.
       </h1>
 
+
+
+      
+
       <p class="text-lg opacity-80 leading-relaxed">
         - <b>Redprint Wizard</b> supports a space to visialize and build your own OPStack contract components.
       </p>
@@ -49,6 +53,10 @@
 
       </div>
 
+      <p class="text-lg opacity-80 leading-relaxed">
+        "It is great to quickly get a idea for hackathon or quick prototypes and it is aldo a good starting point for long term rollup projects as it contains a set of best practises for smart contract developments and
+        Opsec mangement". 
+      </p> 
 
       <TestimonialsAvatars />
     </div>
