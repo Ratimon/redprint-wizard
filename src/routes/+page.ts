@@ -40,6 +40,7 @@ export function load() {
 
     ];
 
+
 	return {
         pageMetaTags: pageMetaTags,
 		headLinks: headLinks,

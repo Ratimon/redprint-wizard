@@ -1,4 +1,5 @@
 <script  lang="ts">
+    import type {GithubRepo } from '$lib/model/GithubRepo';
     import type {FeatureGridItem } from '$lib/model/Feature';
 
     import Hero from '$lib/ui/templates/Hero.svelte';
@@ -7,11 +8,16 @@
     import WithWithout from '$lib/ui/templates/WithWithout.svelte';
     import FeaturesGrid from '$lib/ui/templates/FeaturesGrid.svelte';
 
+    const repositories : GithubRepo[]  = [
+        {title: 'Wizard', owner : 'Ratimon', name: 'redprint-wizard' },
+        {title: 'redprint-forge', owner : 'Ratimon', name: 'redprint-forge' },
+    ];
+
     let resourceTitle: string = "Everything you need to craft your own OPStack chain."
     let resourceSubtitle: string = "RESOURCES"
     let resourceDescription: string = "Discover more about the open source libraly driven by & on Optimism"
 
-    // to do : fix link && add github stars && add support button && prerender && email handle && add acknoweldgement
+    // to do : fix link  && add support button && prerender && email handle && add acknoweldgement && pre-render
     let resources : FeatureGridItem[] = [
     {
         title: "SOURCECODE",
@@ -70,7 +76,7 @@
 
 </script>
 
-<Hero></Hero>
+<Hero {repositories}></Hero>
 <Problem></Problem>
 <FeaturesListicle keyToNav={'#solution'} ></FeaturesListicle>
 <WithWithout></WithWithout>
@@ -88,5 +94,3 @@
     landingDescription={contactDescription}
     featureGridElements={contacts}
 ></FeaturesGrid>
-
-<!-- refactor : type  -->
