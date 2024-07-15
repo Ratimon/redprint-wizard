@@ -35,11 +35,11 @@
 
             1. Information We Collect
 
-            Personal Data: We collect your name, email address, and payment information for order processing.
+            Personal Data: We collect your email address for for the use of our newsletter.
             Non-Personal Data: We use web cookies to enhance your browsing experience.
             2. Purpose of Data Collection
 
-            We collect your personal data to process your orders and provide you with our services.
+            We collect your personal data to provide you with our services.
             3. Data Sharing
 
             We do not share your personal data with any third parties.

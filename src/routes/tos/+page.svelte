@@ -40,7 +40,7 @@
             All source code is open source under the MIT license. You are free to use, modify, and distribute the code in accordance with the MIT license terms.
             3. User Data Collection
 
-            We collect your name, email address, and payment information for order processing. We also use web cookies to enhance your browsing experience. For more details, please refer to our Privacy Policy at https://redprint.ninja/privacy-policy.
+            We collect your email address for the use of our newsletter. We also use web cookies to enhance your browsing experience. For more details, please refer to our Privacy Policy at https://redprint.ninja/privacy-policy.
             4. User Responsibilities
 
             You agree to use our website and services in compliance with all applicable laws and regulations. You are responsible for maintaining the confidentiality of your account information.

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
 
+	// to do : add seo tags
 	import {appName} from 'web-config';
 </script>
 
