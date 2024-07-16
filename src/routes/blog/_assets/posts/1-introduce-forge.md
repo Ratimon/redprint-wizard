@@ -110,4 +110,12 @@ As you can see in [ProxyAdmin.t.sol](https://github.com/Ratimon/redprint-optimis
 
 This could, together with **Type-Safe Deployment** feature, also improve overall security, because it potentially minimize false positives from using different deployment logics among production and test environments.
 
-Find the example of using **redprint-forge** in [Redprint Wizard](http://redprint.ninja/) and the source code at [github repo](https://github.com/Ratimon/redprint-forge) and let us know what you think!! 
+Find the example of using **redprint-forge** in [Redprint Wizard](http://redprint.ninja/) and the source code at [github repo](https://github.com/Ratimon/redprint-forge) and let us know what you think!!
+
+
+## Acknowledgement
+
+We embrace a culture of regenerative approach of buiding open-source software and we acknowledge, use, and get inspiration from these upstream software repositories :
+- [OPStack](https://github.com/ethereum-optimism/optimism)
+- [forge](https://github.com/foundry-rs/foundry/tree/master/crates/forge)
+- [forge-deploy](https://github.com/wighawag/forge-deploy)

@@ -40,4 +40,13 @@ It is highlighted that the generated deploy scripts relies on our own [solidity-
 
 This is just one example. There are many other interesting customizable contracts to explore and add hackable features. For instance, customized bridge can be created by extending `IStandardard Bridge` as well as modifying `L1StandardBridge` or `L1ERC721Bridge`.
 
-let us know what you dream, tinker, and push the boundaries of what's possible by composing your own different OPStack components together! 
+let us know what you dream, tinker, and push the boundaries of what's possible by composing your own different OPStack components together!
+
+## Acknowledgement
+
+We embrace a culture of regenerative approach of buiding open-source software and we acknowledge, use, and get inspiration from these upstream software repositories :
+- [OPStack](https://github.com/ethereum-optimism/optimism)
+- [forge-deploy](https://github.com/wighawag/forge-deploy)
+- [openzeppelin-contracts](https://github.com/openZeppelin openzeppelin-contracts)
+- [contracts-wizard](https://github.com/OpenZeppelin/contracts-wizard)
+- [skeleton](https://github.com/skeletonlabs/skeleton)
