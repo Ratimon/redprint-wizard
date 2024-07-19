@@ -1,6 +1,8 @@
 import type { MetaTagsProps } from 'svelte-meta-tags';
 import {appName, appDescription} from 'web-config';
 
+export const prerender = true;
+
 export const load = ( { url} : {url:any} ) => {
     const baseMetaTags = Object.freeze({
       title: appName,
