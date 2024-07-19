@@ -71,7 +71,7 @@
     //     iconName: "line-md:twitter-x",
     // },
     {
-        title: "NEWSLETTER",
+        title: "AUTHOR's NEWSLETTER",
         path: "https://www.beehiiv.com/",
         iconName: "mdi:email-newsletter",
     },
