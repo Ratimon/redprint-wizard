@@ -11,9 +11,25 @@
 
 ## Installation
 
-Once you've created a project and installed dependencies with `pnpm install` (or `yarn`), start a development server:
+### with npm
+
+We assume that you already setup your own working front-end environment and `cd` into it
 
 ```bash
+cd my-project;
+``` 
+
+Add the `redprint-wizard` using your favorite package manager, e.g., with pnpm:
+
+```sh
+npm add -D redprint-wizard
+```
+
+Alternatively, you can fork a project and installed dependencies with `pnpm install` (or `yarn`), then start a development server:
+
+```bash
+git clone git@github.com:Ratimon/redprint-wizard.git
+cd redprint-wizard;
 pnpm dev
 ```
 
