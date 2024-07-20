@@ -1,7 +1,7 @@
 {
     "name": "redprint-wizard",
     "description": "Interactive smart contract generator based on OPStack Contracts.",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "homepage": "https://redprint.ninja/",
     "keywords": [
         "blockchain",
