@@ -1,8 +1,33 @@
 {
     "name": "redprint-wizard",
-    "version": "0.0.1",
-    "private": true,
+    "description": "Interactive smart contract generator based on OPStack Contracts.",
+    "version": "0.0.0",
+    "homepage": "https://redprint.ninja/",
+    "keywords": [
+        "blockchain",
+        "ethereum",
+        "library",
+        "smart-contracts",
+        "solidity",
+        "code-generator"
+    ],
+    "files": [
+        "src/",
+        "static/",
+        "LICENSE",
+        "README.md",
+        ".npmrc",
+        "LICENSE",
+        "postcss.config.cjs",
+        "svelte.config.js",
+        "tailwind.config.cjs",
+        "tsconfig.json",
+        "vite.config.ts"
+      ],
+    "license": "MIT",
+    "repository": "github:Ratimon/redprint-wizard",
     "scripts": {
+        "---------------------- DEV WORKFLOW ----------------------": "",
         "prepare": "pwag static/icon.svg src/web-config.json && cp static/pwa/favicon-512.png static/maskable_icon_512x512.png",
         "dev": "dotenv -- vite dev",
         "build": "vite build",
@@ -10,6 +35,10 @@
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
     },
+    "author": {
+        "name": "Rati Montreewat",
+        "url": "https://github.com/Ratimon/redprint-wizard"
+      },
     "devDependencies": {
         "@iconify/svelte": "^4.0.2",
         "@openzeppelin/contracts": "^5.0.2",
