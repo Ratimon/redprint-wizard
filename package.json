@@ -28,9 +28,9 @@
     "repository": "github:Ratimon/redprint-wizard",
     "scripts": {
         "---------------------- DEV WORKFLOW ----------------------": "",
-        "prepare": "pwag static/icon.svg src/web-config.json && cp static/pwa/favicon-512.png static/maskable_icon_512x512.png",
+        "generate_icon": "pwag static/icon.svg src/web-config.json && cp static/pwa/favicon-512.png static/maskable_icon_512x512.png",
         "dev": "dotenv -- vite dev",
-        "build": "vite build",
+        "build": "pnpm run generate_icon && dotenv -- vite build",
         "preview": "vite preview",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"

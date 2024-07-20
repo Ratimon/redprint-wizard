@@ -38,9 +38,13 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
+          settings-path: .npmrc
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Build all
+        run: pnpm build
 
   npm_publish:
     name: publish to npm
