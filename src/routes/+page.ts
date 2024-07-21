@@ -40,11 +40,10 @@ export function load() {
 
     ];
 
-
 	return {
         pageMetaTags: pageMetaTags,
 		headLinks: headLinks,
-        menuTitle: "Try these Features!!",
+        menuTitle: "Try Our toolkit",
         dropDownLinks: dropDownLinks,
         actionLink: actionLink,
         footLinks: footLinks,

@@ -26,7 +26,7 @@
             <div class="flex flex-col md:flex-row justify-center items-center md:items-start gap-8 md:gap-12">
               <div class="bg-error/20 text-error p-8 md:p-12 rounded-lg w-full ">
                 <h3 class="font-bold text-lg mb-4">
-                  Using RaaS
+                  Using RaaS 🥵
                 </h3>
 
                 <ul class="list-disc list-inside space-y-1.5 ">
@@ -49,7 +49,7 @@
     
               <div class="bg-success/20 text-success p-8 md:p-12 rounded-lg w-full">
                 <h3 class="font-bold text-lg mb-4">
-                  Building your own with Redprint
+                  Building your own with Redprint 🤩
                 </h3>
     
                 <ul class="list-disc list-inside space-y-1.5 ">

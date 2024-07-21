@@ -15,7 +15,7 @@
 
     let resourceTitle: string = "Everything you need to craft your own OPStack chain."
     let resourceSubtitle: string = "RESOURCES"
-    let resourceDescription: string = "Discover more about the open source libraly driven by & on Optimism"
+    let resourceDescription: string = "Discover more about the open source library"
 
     // to do: Add support button && email handle && add report && add package for redprint wizard
     let resources : FeatureGridItem[] = [
@@ -35,10 +35,9 @@
     //     path: "https://github.com/Ratimon/redprint-wizard",
     //     iconName: "pajamas:status-health",
     // },
-    // to do : add github release ?
     {
         title: "CHANGELOG",
-        path: "https://github.com/Ratimon/redprint-wizard",
+        path: "https://github.com/Ratimon/redprint-wizard/releases",
         iconName: "hugeicons:git-merge",
     },
     // to do : improve github 's markdown section

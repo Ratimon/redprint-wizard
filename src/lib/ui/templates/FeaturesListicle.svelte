@@ -74,17 +74,6 @@
         featureSelected = name;
     }
 
-//     $: deployCommand = md.render(`
-//   \`\`\`bash
-//     forge script -vvv scripts/deploy/Deploy.s.sol:Deploy 
-//   \`\`\`
-//   `);
-
-//     $: featureExample = md.render(`
-//   \`\`\`bash
-//     forge script script/100_${featureToDisplay?.script}.s.sol
-//   \`\`\`
-//   `);
 
   $: deployCommand1 = `forge script -vvv scripts/deploy/Deploy.s.sol:Deploy`
   $: deployCommand2 = `forge script script/100_${featureToDisplay?.script}.s.sol`
@@ -191,7 +180,26 @@
                     {/if}
 
                 </div>
+
+
+            </div>
+        </Background>
+
+
+    </div>
+
+    <div class="max-w-3xl mx-auto py-8">
+        <Background color="bg-base-100">
+            <div class="max-md:px-8 max-w-3xl">
+                <div class="text-center text-sm font-bold text-primary-500">
+                    <a href="/1-governance" class= "btn btn-primary btn-block">
+                        Set up {featureToDisplay?.highlight}
+                    </a>
+                </div>
+
             </div>
         </Background>
     </div>
+
+
 </section>

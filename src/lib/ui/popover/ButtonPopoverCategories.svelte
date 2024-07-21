@@ -6,7 +6,7 @@
     import Background from '$lib/ui/background/Background.svelte';
     import Nav from '$lib/ui/header/Nav.svelte';
 
-    export let menuTitle: string = "Try these Features!!";
+    export let menuTitle: string = "Try Our toolkit!!";
     export let dropDownLinks: Link[];
 
 </script>
