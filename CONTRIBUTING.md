@@ -1,6 +1,6 @@
 ## CONTRIBUTING
 
-### Quick Guide
+### Developer's Quick Guide
 
 >[!NOTE]
 > For who want to scaffolding their own svelte project
@@ -38,6 +38,10 @@ pnpm run generate_icon
 >[!WARNING]
 > This is only for basic UI dependencies only, you can checkout other dependencies at [package.json](./package.json)
 
+### Writer's Quick Guide
+
+WIP
+
 ### Publishing
 
 >[!WARNING]
@@ -50,5 +54,5 @@ git push -u origin main
 git tag v0.0.5 main
 git push origin tag v0.0.5
 ```
-
-DONT forget to add secret env `NPM_AUTH_TOKEN` at [repo](https://github.com/Ratimon/solid-grinder/settings/secrets/actions)
+>[!WARNING]
+> DONT forget to add secret env `NPM_AUTH_TOKEN` at [repo](https://github.com/Ratimon/solid-grinder/settings/secrets/actions)
