@@ -1,7 +1,7 @@
 ---
 title: Introducing Redprint Wizard
 description: An interactive OPStack 's smart contract generator
-date: '2023-7-10'
+date: '2023-7-22'
 categories:
   - announcements
   - products
@@ -14,6 +14,7 @@ imgAlt: Introducting Redprint Wizard
 ---
 
 # Introducing Redprint Wizard
+
 
 After EIP 4844 has been launched, the tx cost on L2 becomes very cheap, as the Ethereum roll-up-centric roadmap has become more mature.
 In particilar, rollups will scale, and transactions by end users will not directly happen on L1, but L2, then be rolled up and settled on L1.
@@ -41,6 +42,8 @@ It is highlighted that the generated deploy scripts relies on our own [solidity-
 This is just one example. There are many other interesting customizable contracts to explore and add hackable features. For instance, customized bridge can be created by extending `IStandardard Bridge` as well as modifying `L1StandardBridge` or `L1ERC721Bridge`.
 
 let us know what you dream, tinker, and push the boundaries of what's possible by composing your own different OPStack components together!
+
+[👉🏻  🛠️ Installation Guide 🛠️](https://github.com/Ratimon/redprint-wizard?tab=readme-ov-file#installation)
 
 ## Acknowledgement
 

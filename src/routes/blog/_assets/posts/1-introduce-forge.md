@@ -1,7 +1,7 @@
 ---
 title: Introducing redprint-forge
 description: A dev framework to modify & deploy OPStack ’s contracts.
-date: '2023-7-10'
+date: '2023-7-22'
 categories:
   - announcements
   - products
@@ -24,8 +24,7 @@ To tackle this, we are thrilled to  introduce **redprint-forge**. It is a develo
 - Separate into each of modular and customizable components
 - All-Solidity-based so no context switching, no new testing syntax
 
-
-The directories below show how modular the `redprint-forge` 's **deployment system** is :
+The directories below show how modular the `redprint-forge` 's **deployment system** is:
 
 On the one hand, the first one is a set of deployment scripts written in [/script](https://github.com/Ratimon/redprint-optimism-contracts-examples/tree/main/script), using `redprint-forge` library and style guide:
 
@@ -112,6 +111,7 @@ This could, together with **Type-Safe Deployment** feature, also improve overall
 
 Find the example of using **redprint-forge** in [Redprint Wizard](http://redprint.ninja/) and the source code at [github repo](https://github.com/Ratimon/redprint-forge) and let us know what you think!!
 
+[👉🏻  🛠️ Installation Guide 🛠️](https://github.com/Ratimon/redprint-forge?tab=readme-ov-file#installation)
 
 ## Acknowledgement
 
