@@ -11,9 +11,9 @@ frontend:
       commands:
         - env >> .env
         - pnpm run build
-        - node amplify.mjs
+        - pnpm i --prod
   artifacts:
-    baseDirectory: .amplify-hosting
+    baseDirectory: .build
     files:
       - '**/*'
   cache:
