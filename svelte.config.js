@@ -1,23 +1,22 @@
 import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-node'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import { mdsvex } from 'mdsvex'
-import { createHighlighter } from "@bitmachina/highlighter";
+import { mdsvex, escapeSvelte } from 'mdsvex'
+import { createHighlighter } from 'shiki'
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
 	extensions: ['.md'],
 	highlight: {
-		highlighter: await createHighlighter({ theme: "nord" }),
-		// highlighter: async (code, lang = 'text') => {
-		// 	const highlighter = await getHighlighter({
-		// 		themes: ['poimandres'],
-		// 		langs: ['javascript', 'typescript']
-		// 	})
-		// 	await highlighter.loadLanguage('javascript', 'typescript')
-		// 	const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'poimandres' }))
-		// 	return `{@html \`${html}\` }`
-		// }
+		highlighter: async (code, lang = 'text') => {
+			const highlighter = await createHighlighter({
+				themes: ['poimandres'],
+				langs: ['javascript', 'typescript', 'sh']
+			})
+			await highlighter.loadLanguage('javascript', 'typescript')
+			const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'poimandres' }))
+			return `{@html \`${html}\` }`
+		}
 	},
 }
 
