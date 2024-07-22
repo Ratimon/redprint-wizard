@@ -3,6 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
+        - nvm install 20.12.2
+        - nvm use 20.12.2
         - corepack enable
         - pnpm install
     build:
