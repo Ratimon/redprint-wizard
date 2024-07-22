@@ -5,7 +5,7 @@
     import LandingSection from '$lib/ui/layouts/LandingSection.svelte';
     import FeatureGridElement from '$lib/ui/feature/FeatureGridElement.svelte';
 
-    export let keyToNav: string = '#feature';
+    export let keyToNav: string = '#resource';
 
     export let landingTitle: string = ""
     export let landingSubtitle: string = ""
@@ -22,6 +22,8 @@
     description={landingDescription}
     yPadding="py-24"
 >
+    <!-- to do : remove -->
+    <!-- {#if keyToNav } -->
     
     <div id={keyToNav} class={`grid grid-cols-1 gap-x-4 gap-y-24 sm:grid-cols-2 md:grid-cols-4`}>
 
@@ -38,5 +40,7 @@
 
 	    {/each}
     </div>
+
+    <!-- {/if} -->
 
 </LandingSection>

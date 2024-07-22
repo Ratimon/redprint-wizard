@@ -46,6 +46,13 @@ const config = {
 			'web-config': './src/web-config.json',
 			'mailgun-config': './src/mailgun-config.json',
 		},
+		// to do: should we ignore ?
+		prerender: {
+			handleHttpError: ({ path, referrer, message }) => {
+			  console.log(path, referrer, message)
+			},
+			handleMissingId: 'ignore',
+		},
 	}
 };
 

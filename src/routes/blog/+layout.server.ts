@@ -10,7 +10,7 @@ export async function load({ fetch }) {
         {pathname: '#solution', title: 'Features', navType: 'scroll'},
         {pathname: '#resource', title: 'Resources', navType: 'scroll'},
         {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
-        {pathname: '/blog/category/announcments', title: 'Features', navType: 'tab'},
+        {pathname: '/blog/category/announcements', title: 'Features', navType: 'tab'},
         {pathname: '/blog/category/tutorials', title: 'Tutorials', navType: 'tab'},
         {pathname: '/', title: 'Home', navType: 'tab'},
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},
@@ -24,14 +24,14 @@ export async function load({ fetch }) {
 	  ];
 	
 	const dropDownLinks  : Link[] = [
-        {pathname: '/blog/category/announcments', title: 'Features', navType: 'tab'},
+        {pathname: '/blog/category/announcements', title: 'Features', navType: 'tab'},
         {pathname: '/blog/category/tutorials', title: 'Tutorials', navType: 'tab'},
 	];
 	
 
 	return {
 		headLinks: headLinks,
-		// menuTitle: "Blog",
+		// menuTitle: "Try Our toolkit",
         dropDownLinks: dropDownLinks,
         footLinks: footLinks,
 		posts: posts,
