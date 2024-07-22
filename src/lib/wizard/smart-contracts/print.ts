@@ -1,4 +1,4 @@
-import 'array.prototype.flatmap/auto';
+// import 'array.prototype.flatmap/auto';
 
 import type { Contract,ReferencedContract,  Parent, ContractFunction, FunctionArgument, Value, NatspecTag } from './contract';
 

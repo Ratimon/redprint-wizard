@@ -1,4 +1,4 @@
-import 'array.prototype.flatmap/auto';
+// import 'array.prototype.flatmap/auto';
 
 export type Lines = string | typeof whitespace | Lines[];
 
