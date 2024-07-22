@@ -3,11 +3,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - corepack enable
+        - pnpm install
     build:
       commands:
         - env >> .env
-        - npm run build
+        - pnpm run build
         - node amplify.mjs
   artifacts:
     baseDirectory: .amplify-hosting

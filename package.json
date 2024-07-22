@@ -23,7 +23,7 @@
         "tailwind.config.cjs",
         "tsconfig.json",
         "vite.config.ts"
-      ],
+    ],
     "license": "MIT",
     "repository": "github:Ratimon/redprint-wizard",
     "scripts": {
@@ -38,7 +38,7 @@
     "author": {
         "name": "Rati Montreewat",
         "url": "https://github.com/Ratimon/redprint-wizard"
-      },
+    },
     "devDependencies": {
         "@iconify/svelte": "^4.0.2",
         "@openzeppelin/contracts": "^5.0.2",
@@ -83,5 +83,9 @@
         "highlightjs-solidity": "^2.0.6",
         "tippy.js": "^6.3.7",
         "uuid": "^9.0.1"
-    }
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35"
 }
