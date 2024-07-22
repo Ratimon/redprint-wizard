@@ -13,7 +13,7 @@ frontend:
         - pnpm run build
         - pnpm i --prod
   artifacts:
-    baseDirectory: .build
+    baseDirectory: build
     files:
       - '**/*'
   cache:
