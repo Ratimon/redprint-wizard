@@ -126,7 +126,7 @@
       const new_event : GaEvent  = {
         id:   crypto.randomUUID().toString(),
         data: {},
-        event: `copy-contract-${contractTab}`,
+        event: `download-script-${contractTab}`,
         type: "event",
       }
       $analyticsStore = [...$analyticsStore, new_event]
