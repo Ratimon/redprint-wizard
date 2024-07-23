@@ -37,7 +37,6 @@
 			if (typeof gtag !== 'undefined') {
 				// @ts-ignore
 				gtag(type, event, data);
-				console.log('event created with data', next);
 			} else {
 				// gtag not found, retry till retries become 0
 				if (retries > 0) {

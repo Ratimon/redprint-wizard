@@ -2,6 +2,7 @@
   import { createEventDispatcher } from 'svelte';
 
   import fileSaver from 'file-saver';
+  import { v4 as uuid } from 'uuid';
 
   import Background from '$lib/ui/background/Background.svelte';
 
@@ -13,7 +14,6 @@
   import { injectHyperlinks } from '$lib/ui/utils/inject-hyperlinks';
   import {copyToClipboard} from '$lib/ui/utils/clipboard';
   import hljs  from '$lib/ui/utils/highlightjs';
-  import { postConfig } from '$lib/ui/utils/post-config';
 
   // to do remove Generic in Smart contract
   import type {  Kind } from '$lib/wizard/shared';
@@ -51,26 +51,22 @@
 
     $: highlightedCode = injectHyperlinks(hljs.highlight(code, {language: 'solidity'} ).value);
     $: highlightedDeployCode = injectHyperlinks(hljs.highlight(deployCode, {language: 'solidity'} ).value);
-  
-    const language = 'solidity';
-  
+    
     let isContractCopied = false;
+
     const copyContractHandler = async () => {
       copyToClipboard(code);
       isContractCopied = true;
-      if (opts) {
-          await postConfig(opts, 'copy-contract', language);
-      }
 
-      const new_event : GaEvent  = {
-        id:   crypto.randomUUID().toString(),
-        data: {},
-        event: `copy-contract-${contractTab}`,
-        type: "event",
+      if (opts) {
+        const new_event : GaEvent  = {
+          id:   uuid(),
+          data: {...opts},
+          event: `copy-contract-${contractTab}`,
+          type: "event",
+        }
+        $analyticsStore = [...$analyticsStore, new_event]
       }
-      // console.log('new_event', new_event)
-      $analyticsStore = [...$analyticsStore, new_event]
-      // analyticsStore.update( (existing_events : GaEvent ) => [ ...existing_events, new_event ])
 
       setTimeout(() => {
         isContractCopied = false;
@@ -78,20 +74,20 @@
     };
   
     let isScriptCopied = false;
+
     const copyScriptHandler = async () => {
       copyToClipboard(deployCode);
       isScriptCopied = true;
-      if (opts) {
-          await postConfig(opts, 'copy-script', language);
-      }
 
-      const new_event : GaEvent  = {
-        id:   crypto.randomUUID().toString(),
-        data: {},
-        event: `copy-script-${contractTab}`,
-        type: "event",
+      if (opts) {
+        const new_event : GaEvent  = {
+          id:   uuid(),
+          data: {...opts},
+          event: `copy-script-${contractTab}`,
+          type: "event",
+        }
+        $analyticsStore = [...$analyticsStore, new_event]
       }
-      $analyticsStore = [...$analyticsStore, new_event]
 
       setTimeout(() => {
         isScriptCopied = false;
@@ -103,12 +99,11 @@
       const blob = new Blob([code], { type: 'text/plain' });
       if (opts) {
         fileSaver.saveAs(blob, opts.contractName + '.sol');
-        await postConfig(opts, 'download-contract', language);
       }
 
       const new_event : GaEvent  = {
-        id:   crypto.randomUUID().toString(),
-        data: {},
+        id:   uuid(),
+        data: {...opts},
         event: `download-contract-${contractTab}`,
         type: "event",
       }
@@ -120,16 +115,15 @@
       const blob = new Blob([deployCode], { type: 'text/plain' });
       if (opts) {
         fileSaver.saveAs(blob, opts.deployName + '.sol');
-        await postConfig(opts, 'download-script', language);
+        const new_event : GaEvent  = {
+          id:   uuid(),
+          data: {...opts},
+          event: `download-script-${contractTab}`,
+          type: "event",
+        }
+        $analyticsStore = [...$analyticsStore, new_event]
       }
 
-      const new_event : GaEvent  = {
-        id:   crypto.randomUUID().toString(),
-        data: {},
-        event: `download-script-${contractTab}`,
-        type: "event",
-      }
-      $analyticsStore = [...$analyticsStore, new_event]
     };
   
   </script>
