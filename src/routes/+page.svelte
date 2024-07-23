@@ -71,7 +71,7 @@
     // },
     {
         title: "AUTHOR's NEWSLETTER",
-        path: "https://www.beehiiv.com/",
+        path: "https://rati-eth-newsletter.beehiiv.com/",
         iconName: "mdi:email-newsletter",
     },
     // to do : reach out , email?
