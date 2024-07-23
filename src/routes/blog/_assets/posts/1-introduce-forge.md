@@ -1,7 +1,7 @@
 ---
 title: Introducing redprint-forge
 description: A dev framework to modify & deploy OPStack ’s contracts.
-date: '2023-7-22'
+date: '2023-7-24'
 categories:
   - announcements
   - products

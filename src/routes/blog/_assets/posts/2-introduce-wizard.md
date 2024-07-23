@@ -1,7 +1,7 @@
 ---
 title: Introducing Redprint Wizard
 description: An interactive OPStack 's smart contract generator
-date: '2023-7-22'
+date: '2023-7-24'
 categories:
   - announcements
   - products
