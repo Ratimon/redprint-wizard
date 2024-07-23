@@ -1,6 +1,8 @@
 import preprocess from 'svelte-preprocess';
 // import adapter from '@sveltejs/adapter-node'
-import adapter from '@sveltejs/adapter-static';
+// import adapter from '@sveltejs/adapter-static';
+import adapter from 'amplify-adapter';
+
 
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex, escapeSvelte } from 'mdsvex'
