@@ -1,5 +1,7 @@
 import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-node'
+// import adapter from '@sveltejs/adapter-node'
+import adapter from '@sveltejs/adapter-static';
+
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex, escapeSvelte } from 'mdsvex'
 import { createHighlighter } from 'shiki'
@@ -43,6 +45,7 @@ const config = {
 		alias: {
 			// alias for web-config
 			'web-config': './src/web-config.json',
+			// to do : remove
 			'mailgun-config': './src/mailgun-config.json',
 		},
 		// to do: should we ignore ?
