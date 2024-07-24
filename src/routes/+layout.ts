@@ -16,25 +16,41 @@ export const load = ( { url} : {url:any} ) => {
         title: appName,
         description: appDescription,
         siteName: appName,
-        // images: [
-        //   {
-        //     url: 'https://www.example.ie/og-image.jpg',
-        //     alt: 'Og Image Alt',
-        //     width: 800,
-        //     height: 600,
-        //     secureUrl: 'https://www.example.ie/og-image.jpg',
-        //     type: 'image/jpeg'
-        //   }
-        // ],
+        images: [
+          {
+            url: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/icon.png',
+            alt: 'Redprint Wizard Logo',
+            width: 512,
+            height: 512,
+            secureUrl: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/icon.png',
+            type: 'image/jpeg'
+          },
+          {
+            url: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/1-introduce-forge/header.png',
+            alt: 'redprint-forge',
+            width: 1280,
+            height: 720,
+            secureUrl: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/1-introduce-forge/header.png',
+            type: 'image/jpeg'
+          },
+          {
+            url: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/2-introduce-wizard/header.png',
+            alt: 'Redprint Wizard',
+            width: 1280,
+            height: 720,
+            secureUrl: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/2-introduce-wizard/header.png',
+            type: 'image/jpeg'
+          }
+        ],
       },
       // to do
       twitter: {
-        handle: '@handle',
-        site: '@site',
+        handle: 'RATi_MOn',
+        site: 'https://twitter.com/RATi_MOn',
         title: appName,
         description: appDescription,
-        image: 'https://www.example.ie/twitter-image.jpg',
-        imageAlt: 'Twitter image alt'
+        image: '/icon.png',
+        imageAlt: 'Redprint Wizars'
       }
     }) satisfies MetaTagsProps;
   
