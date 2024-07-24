@@ -7,8 +7,8 @@ import { error } from '@sveltejs/kit'
 export async function load({ params, fetch }) {
 	try {
 		const post = await import(`../_assets/posts/${params.post}.md`)
-        const response = await fetch('/blog/api/posts')
-        const posts: PostData[] = await response.json()
+        // const response = await fetch('/blog/api/posts')
+        // const posts: PostData[] = await response.json()
 
 		const title = post.metadata.title;
 		const description = post.metadata.description;
@@ -27,7 +27,7 @@ export async function load({ params, fetch }) {
 			pageMetaTags: pageMetaTags,
 			content: post.default,
 			meta: post.metadata,
-            posts: posts,
+            // posts: posts,
             slug: params.post
 		}
 	} catch (e) {

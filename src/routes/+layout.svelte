@@ -31,11 +31,10 @@
     // only 'tab'
     const fallbackFootLinks : Link[] = [
     {pathname: '/', title: 'Home', navType: 'tab'},
-    {pathname: '/blog/1-introduce-forge', title: 'Custom Gas Token', navType: 'tab'},
-	{pathname: '/blog/2-introduce-wizard', title: 'Custom Bridge', navType: 'tab'},
+    {pathname: '/blog/1-introduce-forge', title: 'Introduce Forge', navType: 'tab'},
+	{pathname: '/blog/2-introduce-wizard', title: 'Introduce Wizard', navType: 'tab'},
     ];
 
-    // let stepsHidden : boolean = false;
 
     export let data : PageData;
     $: metaTags = extend(true, {}, data.baseMetaTags, $page.data.pageMetaTags);

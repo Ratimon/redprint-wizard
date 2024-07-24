@@ -7,8 +7,8 @@ import { authors } from '../../Blog.data';
 
 export async function load({ fetch, params }) {
 	try {
-        const response = await fetch('/blog/api/posts')
-        const posts: PostData[] = await response.json()
+        // const response = await fetch('/blog/api/posts')
+        // const posts: PostData[] = await response.json()
 
 		const author = authors.find((author) => author.slug == params.slug)
 		const title = author?.name;
@@ -26,7 +26,7 @@ export async function load({ fetch, params }) {
 
 		return {
 			pageMetaTags: pageMetaTags,
-			posts: posts,
+			// posts: posts,
             slug: params.slug
 		}
 		

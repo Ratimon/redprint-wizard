@@ -29,9 +29,6 @@
             </svelte:component>
         {/if}
 
-        <!-- <svelte:component this={PageLink} class={tabClass} {whenUnselected} {whenSelected} href={page.pathname}>
-            {page.title}
-        </svelte:component> -->
 
 	{/each}
 </div>
