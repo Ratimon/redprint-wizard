@@ -31,8 +31,8 @@ export function load() {
         {pathname: '#solution', title: 'Features', navType: 'scroll'},
         {pathname: '#resource', title: 'Resources', navType: 'scroll'},
         {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
-        {pathname: '/blog/1-introduce-forge', title: 'Feature: Custom Gas Token', navType: 'tab'},
-        {pathname: '/blog/2-introduce-wizard', title: 'Feature: Custom Bridge', navType: 'tab'},
+        {pathname: '/blog/1-introduce-forge', title: 'redprint-forge', navType: 'tab'},
+        {pathname: '/blog/2-introduce-wizard', title: 'Redprint Wizard', navType: 'tab'},
         {pathname: '/', title: 'Home', navType: 'tab'},
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},
         {pathname: '/3-plasmachain', title: '3: PlasmaChain', navType: 'tab'},
@@ -47,6 +47,6 @@ export function load() {
         dropDownLinks: dropDownLinks,
         actionLink: actionLink,
         footLinks: footLinks,
-        // stepsHidden: true
+        stepsHidden: false
 	};
 }

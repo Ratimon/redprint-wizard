@@ -7,9 +7,6 @@ export async function load({ fetch }) {
 	const posts: PostData[] = await response.json()
 
     const footLinks : Link[] = [
-        {pathname: '#solution', title: 'Features', navType: 'scroll'},
-        {pathname: '#resource', title: 'Resources', navType: 'scroll'},
-        {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
         {pathname: '/blog/category/announcements', title: 'Features', navType: 'tab'},
         {pathname: '/blog/category/tutorials', title: 'Tutorials', navType: 'tab'},
         {pathname: '/', title: 'Home', navType: 'tab'},
@@ -36,6 +33,5 @@ export async function load({ fetch }) {
         footLinks: footLinks,
 		posts: posts,
 		stepsHidden: true
-
 	}
 }
