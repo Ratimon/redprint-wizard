@@ -23,7 +23,7 @@ To align with the roll-up-centric roadmap vision, Optimism has released the conc
 
 However, building roll-up, the app chain or even L3 on top of Optimism requires more better resourceful knowledge bases. This can be very challenging, especially for novices, because the technology is still early and the development practice is quite new. It is still difficult to communicate what potential features can be possibly built, and  exactly which sets of smart contracts required to choose and be composed together to archive such features.
 
-To realize visions of both Ethereum and Optimism, we are thrilled to  release **Redprint Wizard**. It is a code generator/ interactive developer playground to  develope a part of L2/rollup out of components from OPStack Contracts. Select the desired smart contract layer that you want (currently support for Governor and SafeMultisig contracts for Governance layer),
+To realize visions of both Ethereum and Optimism, we are thrilled to  release [`Redprint Wizard`](https://redprint.ninja/). It is a code generator/ interactive developer playground to  develope a part of L2/rollup out of components from OPStack Contracts. Select the desired smart contract layer that you want (currently support for Governor and SafeMultisig contracts for Governance layer),
 
 It can be seen below that there are several options to choose in own desired layers. In our example, it is step 1 of the **governance** Layer and the [`Governor-style contract`](https://docs.openzeppelin.com/contracts/5.x/api/governance) is picked over the [`Safe's Multi-sig`](https://github.com/safe-global/safe-smart-account).
 
@@ -48,8 +48,9 @@ let us know what you dream, tinker, and push the boundaries of what's possible b
 ## Acknowledgement
 
 We embrace a culture of regenerative approach of buiding open-source software and we acknowledge, use, and get inspiration from these upstream software repositories :
-- [OPStack](https://github.com/ethereum-optimism/optimism)
-- [forge-deploy](https://github.com/wighawag/forge-deploy)
-- [openzeppelin-contracts](https://github.com/openZeppelin openzeppelin-contracts)
-- [contracts-wizard](https://github.com/OpenZeppelin/contracts-wizard)
-- [skeleton](https://github.com/skeletonlabs/skeleton)
+- [OPStack](https://github.com/ethereum-optimism/optimism) by **OP Labs**
+- [redprint-forge](https://github.com/Ratimon/redprint-forge) by Us !!
+- [forge-deploy](https://github.com/wighawag/forge-deploy) by **Ronan Sandford**
+- [openzeppelin-contracts](https://github.com/openZeppelin/openzeppelin-contracts) by **OpenZeppelin**
+- [contracts-wizard](https://github.com/OpenZeppelin/contracts-wizard) by **OpenZeppelin**
+- [skeleton](https://github.com/skeletonlabs/skeleton) by **Skeleton Labs**

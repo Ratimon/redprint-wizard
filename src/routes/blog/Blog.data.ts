@@ -60,6 +60,7 @@ export const categories: CategoryPresenter[] = [
 		twitter: "Twitter",
 		linkedIn: "LinkedIn",
 		github: "Github",
+		blog: "Blog",
 	};
 
 	// Social icons used in the author's bio.
@@ -80,6 +81,10 @@ export const categories: CategoryPresenter[] = [
 		github: {
 			name: socialSlugs.github,
 			iconName: "Github",
+		},
+		blog: {
+			name: socialSlugs.blog,
+			iconName: "Blog",
 		},
 		};
 		
@@ -117,6 +122,11 @@ export const categories: CategoryPresenter[] = [
 			name: socialIcons.github.name,
 			icon: socialIcons.github.iconName,
 			url: "https://github.com/Ratimon",
+		},
+		{
+			name: socialIcons.blog.name,
+			icon: socialIcons.blog.iconName,
+			url: "https://rati-eth-newsletter.beehiiv.com/subscribe",
 		},
 		],
 	},

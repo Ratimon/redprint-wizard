@@ -2,7 +2,7 @@
 export type CategoriesSlug = 'announcements' | 'products' | 'tutorials' | 'reports' | 'events';
 // 'research'|
 export type AuthorSlug = 'Rati';
-export type SocialSlug = 'Twitter' | 'LinkedIn' | 'Github';
+export type SocialSlug = 'Twitter' | 'LinkedIn' | 'Github' | 'Blog';
 
 export type PostData = {
 	title: string

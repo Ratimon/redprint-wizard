@@ -17,16 +17,16 @@ imgAlt: Introducting redprint-forge
 
 As OPStack technology advances along with the the roll-up-centric roadmap vision, there are a great range of OPStack 's smart contract variations to select and more features to choose from, it becomes a challenge to present, manage and deploy all of them in a simple way. 
 
-To tackle this, we are thrilled to  introduce **redprint-forge**. It is a developer-friendly framework/library in solidity to modify & deploy OPStack ’s contracts in a modular style. It works as an engine to:
+To tackle this, we are thrilled to  introduce [redprint-forge](https://github.com/Ratimon/redprint-forge), a developer-friendly framework/library in solidity to modify & deploy OPStack ’s contracts in a modular style. It works as an engine to:
 
 - Provide type-safe deployment functions for **OPStack**'s smart contract component. This ensures correct type and order of arguments, enhancing security in smart contract development
 - Save deployment schemas in **json** file
 - Separate into each of modular and customizable components
-- All-Solidity-based so no context switching, no new testing syntax
+- Based on All-Solidity, so no context switching, no new testing syntax
 
-The directories below show how modular the `redprint-forge` 's **deployment system** is:
+The directories below show how modular the [redprint-forge](https://github.com/Ratimon/redprint-forge)'s **deployment system** is:
 
-On the one hand, the first one is a set of deployment scripts written in [/script](https://github.com/Ratimon/redprint-optimism-contracts-examples/tree/main/script), using `redprint-forge` library and style guide:
+On the one hand, the first one is a set of deployment scripts written in [/script](https://github.com/Ratimon/redprint-optimism-contracts-examples/tree/main/script), using [redprint-forge](https://github.com/Ratimon/redprint-forge) library and style guide:
 
 ```sh 
 ├── script
@@ -92,9 +92,9 @@ On the other hand, the second one is the original script from **Optimism**'s [`D
 │   ├──
 ```
 
-As you can see, the original script is a single file, containing more than 1000 lines of code for all deployment logics for all contracts. Meanwhile, `redprint-forge` abstracts and separates them into modular components, enabling better readability.
+As you can see, the original script is a single file, containing more than 1000 lines of code for all deployment logics for all contracts. Meanwhile, [redprint-forge](https://github.com/Ratimon/redprint-forge) abstracts and separates them into modular components, enabling better readability.
 
-Using together with `Redprint Wizard`, the generated solidity code which consists of both smart contract parts and their relevant deploy scripts are displayed in customizable ways, leading to better developer experience and creativity.
+Using together with [`Redprint Wizard`](https://redprint.ninja/), the generated solidity code which consists of both smart contract parts and their relevant deploy scripts are displayed in customizable ways, leading to better developer experience and creativity.
 
 Furthermore, these deployment components are extremely re-usable to replicate the same environment when testing. This will speed up the development process, as the developer does not need to re-write deployment logics again in test suites.
 
@@ -116,6 +116,6 @@ Find the example of using **redprint-forge** in [Redprint Wizard](http://redprin
 ## Acknowledgement
 
 We embrace a culture of regenerative approach of buiding open-source software and we acknowledge, use, and get inspiration from these upstream software repositories :
-- [OPStack](https://github.com/ethereum-optimism/optimism)
-- [forge](https://github.com/foundry-rs/foundry/tree/master/crates/forge)
-- [forge-deploy](https://github.com/wighawag/forge-deploy)
+- [OPStack](https://github.com/ethereum-optimism/optimism) by **OP Labs**
+- [forge](https://github.com/foundry-rs/foundry/tree/master/crates/forge) by **Paradigm**
+- [forge-deploy](https://github.com/wighawag/forge-deploy) by **Ronan Sandford**
