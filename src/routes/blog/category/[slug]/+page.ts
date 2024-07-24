@@ -7,8 +7,6 @@ import { categories } from '../../Blog.data';
 
 export async function load({ fetch, params }) {
 	try {
-        // const response = await fetch('/blog/api/posts')
-        // const posts: PostData[] = await response.json()
 
 		const category = categories.find((category) => category.slug == params.slug)!;
 		const title = category?.title;
@@ -26,7 +24,6 @@ export async function load({ fetch, params }) {
 
 		return {
 			pageMetaTags: pageMetaTags,
-			// posts: posts,
             slug: params.slug
 		}
 		

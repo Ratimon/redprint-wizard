@@ -17,7 +17,7 @@
     let resourceSubtitle: string = "RESOURCES"
     let resourceDescription: string = "Discover more about the open source library"
 
-    // to do: Add support button && email handle && add report && add package for redprint wizard
+    // to do: Add support button && email handle && add report
     let resources : FeatureGridItem[] = [
     {
         title: "SOURCECODE",

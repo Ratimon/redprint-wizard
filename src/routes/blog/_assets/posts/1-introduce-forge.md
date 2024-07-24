@@ -115,7 +115,7 @@ Find the example of using **redprint-forge** in [Redprint Wizard](http://redprin
 
 ## Acknowledgement
 
-We embrace a culture of regenerative approach of buiding open-source software and we acknowledge, use, and get inspiration from these upstream software repositories :
+We embrace a culture of regenerative approach of building open-source software and we acknowledge, use, and get inspiration from these upstream software repositories :
 - [OPStack](https://github.com/ethereum-optimism/optimism) by **OP Labs**
 - [forge](https://github.com/foundry-rs/foundry/tree/master/crates/forge) by **Paradigm**
 - [forge-deploy](https://github.com/wighawag/forge-deploy) by **Ronan Sandford**
