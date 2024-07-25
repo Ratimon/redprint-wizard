@@ -42,6 +42,15 @@ export function buildDeployGoverner(opts: SharedGovernerOptions): DeployContract
 
     addDeployLogic(c, fn, allOpts);
 
+    // to do : refactor to internal function
+    if (allOpts.upgradeable) {
+      const MyGovernor = {
+        name: 'Upgrades',
+        path: '@openzeppelin-foundry-upgrades/Upgrades.sol',
+      };
+      c.addModule(MyGovernor);
+    }
+
     c.addFunctionCode(`vm.stopBroadcast();`, fn);
 
     setInfo(c, allOpts.deployInfo);

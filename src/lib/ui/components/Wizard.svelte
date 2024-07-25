@@ -160,12 +160,12 @@
       />
     </div>
 
-    <div class=" pt-3 pb-4 header flex flex-row justify-between">
+    <div class="pt-3 pb-4 header flex flex-row justify-between">
 
       <slot name="menu" />
   
       <div class="action flex flex-row gap-2 shrink-0">
-        <button class="action-button min-w-[165px]" on:click={copyContractHandler}>
+        <button class="action-button min-w-[150px]" on:click={copyContractHandler}>
           <div class="flex justify-between">
             {#if isContractCopied}
               <CheckIcon />Copied
@@ -175,7 +175,7 @@
           </div>
         </button>
   
-        <button class="action-button min-w-[165px]" on:click={downloadContractNpmHandler}>
+        <button class="action-button min-w-[150px]" on:click={downloadContractNpmHandler}>
           <div class="flex justify-between">
             <FileIcon /> Download As .sol
           </div>
@@ -207,7 +207,7 @@
     <div class="flex flex-row gap-4 grow">
         <slot name="control" />
 
-      <div class="output flex flex-col grow overflow-auto h-[calc(100vh-40px)]">
+      <div class="output flex flex-col grow overflow-auto h-[calc(165vh-40px)]">
         <div class="badge badge-primary badge-outline badge-lg">
           Smart Contract: {contract.name}.sol
         </div>
@@ -219,8 +219,7 @@
         </pre>
       </div>
       
-      <div class="output flex flex-col grow overflow-auto h-[calc(100vh-40px)]">
-  
+      <div class="output flex flex-col grow overflow-auto h-[calc(165vh-40px)]">
         <div class="badge badge-primary badge-outline badge-lg">
           Deploy Script: {deployContract.name}.s.sol
         </div>
