@@ -2,7 +2,6 @@
   import type { Instance as TippyInstance } from 'tippy.js';
   import tippy from 'tippy.js';
 
-
   import { onMount } from 'svelte';
 
   export let text = '';

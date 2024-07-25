@@ -17,7 +17,7 @@
     let resourceSubtitle: string = "RESOURCES"
     let resourceDescription: string = "Discover more about the open source library"
 
-    // to do: Add support button && email handle && add report
+    // to do: Add support button && email handle && add report && add overflowMenu
     let resources : FeatureGridItem[] = [
     {
         title: "SOURCECODE",

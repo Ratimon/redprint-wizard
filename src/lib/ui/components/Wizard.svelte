@@ -245,59 +245,60 @@
   </div>
   
 <style lang="postcss">
-    .container {
-        background-color: var(--gray-1);
-        border: 1px solid var(--gray-2);
-        border-radius: 10px;
-        min-width: 32rem;
-    }
+  .container {
+      background-color: var(--gray-1);
+      border: 1px solid var(--gray-2);
+      border-radius: 10px;
+      min-width: 32rem;
+  }
 
-    /* .header {
-        font-size: var(--text-small);
-    } */
+  /* .header {
+      font-size: var(--text-small);
+  } */
 
-    /* .tab {
-        color: var(--gray-5);
-    }
-    */
-    .action-button, :global(.overflow-btn) {
-        padding: var(--size-1) var(--size-2);
-        border-radius: 6px;
-        font-weight: bold;
-        cursor: pointer;
-    }
+  /* .tab {
+      color: var(--gray-5);
+  }
+  */
+  .action-button, :global(.overflow-btn) {
+      padding: var(--size-1) var(--size-2);
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+  }
 
-    :global(.overflow-btn) {
-        border: 0;
-        background-color: transparent;
-    }
+  :global(.overflow-btn) {
+      border: 0;
+      background-color: transparent;
+  }
 
-    :global(.overflow-btn):hover {
-        background-color: var(--gray-2);
-    }
+  :global(.overflow-btn):hover {
+      background-color: var(--gray-2);
+  }
 
 
-    .action-button {
-        background-color: var(--gray-1);
-        border: 1px solid var(--gray-3);
-        color: var(--gray-6);
-        cursor: pointer;
+  .action-button {
+      background-color: var(--gray-1);
+      border: 1px solid var(--gray-3);
+      color: var(--gray-6);
+      cursor: pointer;
 
-        &:hover {
-        background-color: var(--gray-2);
-        }
+      &:hover {
+      background-color: var(--gray-2);
+      }
 
-        /* &:active, &.active {
-        background-color: var(--gray-2);
-        }
-        */
+      /* &:active, &.active {
+      background-color: var(--gray-2);
+      }
+      */
 
-        /* &.disabled {
-        color: var(--gray-4);
-        } */
+      /* &.disabled {
+      color: var(--gray-4);
+      } */
 
-        :global(.icon) {
-        margin-right: var(--size-1);
-        }
-    }
+      :global(.icon) {
+      margin-right: var(--size-1);
+      }
+  }
+
 </style>

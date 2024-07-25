@@ -45,6 +45,7 @@
 
   export let errors: undefined | OptionsErrorMessages;
 
+
   let wasERC721Votes = opts.votes === 'erc721votes';
   let previousDecimals = opts.decimals;
   let disabledDecimals: boolean;
@@ -219,3 +220,9 @@
 <UpgradeabilitySection bind:upgradeable={opts.upgradeable} />
 
 <InfoSection bind:info={opts.contractInfo} />
+
+<!-- <style lang="postcss">
+  .has-error {
+    box-shadow: 0 0 var(--size-1) var(--red-2);
+  }
+</style> -->

@@ -5,7 +5,7 @@ import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-shar
 
 import type { Contract} from './contract';
 import { ContractBuilder } from "./contract";
-import { ContractOptionsError } from "./error";
+import { OptionsError } from "../shared/error";
 import { setAccessControl } from "./set-access-control";
 import { printContract } from "./print";
 import { setInfo } from "./set-info";
@@ -99,8 +99,8 @@ function addSettings(c: ContractBuilder, allOpts: Required<SharedGovernerOptions
     c.addParent(
       GovernorSettings,
       [
-        { value: getVotingDelay(allOpts), note: allOpts.delay },
-        { value: getVotingPeriod(allOpts), note: allOpts.period },
+        getVotingDelay(allOpts) ,
+        getVotingPeriod(allOpts) ,
         { lit: getProposalThreshold(allOpts) },
       ],
     );
@@ -118,7 +118,7 @@ function getVotingDelay(opts: Required<SharedGovernerOptions>): number {
     return durationToBlocks(opts.delay, opts.blockTime);
   } catch (e) {
     if (e instanceof Error) {
-      throw new ContractOptionsError({
+      throw new OptionsError({
         delay: e.message,
       });
     } else {
@@ -132,7 +132,7 @@ function getVotingPeriod(opts: Required<SharedGovernerOptions>): number {
     return durationToBlocks(opts.period, opts.blockTime);
   } catch (e) {
     if (e instanceof Error) {
-      throw new ContractOptionsError({
+      throw new OptionsError({
         period: e.message,
       });
     } else {
@@ -143,7 +143,7 @@ function getVotingPeriod(opts: Required<SharedGovernerOptions>): number {
 
 function validateDecimals(decimals: number) {
   if (!/^\d+$/.test(decimals.toString())) {
-    throw new ContractOptionsError({
+    throw new OptionsError({
       decimals: 'Not a valid number',
     });
   }
@@ -151,7 +151,7 @@ function validateDecimals(decimals: number) {
 
 function getProposalThreshold({ proposalThreshold, decimals, votes }: Required<SharedGovernerOptions>): string {
   if (!/^\d+$/.test(proposalThreshold)) {
-    throw new ContractOptionsError({
+    throw new OptionsError({
       proposalThreshold: 'Not a valid number',
     });
   }
@@ -217,7 +217,7 @@ export const numberPattern = /^(?!$)(\d*)(?:\.(\d+))?(?:e(\d+))?$/;
 function addQuorum(c: ContractBuilder, opts: Required<SharedGovernerOptions>) {
   if (opts.quorumMode === 'percent') {
     if (opts.quorumPercent > 100) {
-      throw new ContractOptionsError({
+      throw new OptionsError({
         quorumPercent: 'Invalid percentage',
       });
     }
@@ -242,7 +242,7 @@ function addQuorum(c: ContractBuilder, opts: Required<SharedGovernerOptions>) {
 
   else if (opts.quorumMode === 'absolute') {
     if (!numberPattern.test(opts.quorumAbsolute)) {
-      throw new ContractOptionsError({
+      throw new OptionsError({
         quorumAbsolute: 'Not a valid number',
       });
     }
@@ -285,7 +285,7 @@ function getQuorumFractionComponents(quorumPercent: number): {quorumFractionNume
 
   const quorumPercentSegments = quorumPercent.toString().split(".");
   if (quorumPercentSegments.length > 2) {
-    throw new ContractOptionsError({
+    throw new OptionsError({
       quorumPercent: 'Invalid percentage',
     });
   } else if (quorumPercentSegments.length == 2 && quorumPercentSegments[0] !== undefined && quorumPercentSegments[1] !== undefined) {
