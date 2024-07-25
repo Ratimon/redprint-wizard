@@ -115,10 +115,21 @@ function addTimelock(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<
 
 }
 
-function addDeployLogic(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<SharedGovernerOptions>) {
+
+function addDeployLogic(c: DeployBuilder, fn: BaseFunction, { timelock, upgradeable }: Required<SharedGovernerOptions>) {
 
   if (timelock === false) {
-    return;
+
+    // to do : refactor to use `case`
+    if (upgradeable == 'transparent' ) {
+      c.addFunctionCode(`address proxy = Upgrades.deployTransparentProxy("MyGovernor.sol", abi.encodeCall(MyGovernor.initialize, ( _token)));`, fn);
+    } else if (upgradeable == 'uups') {
+      c.addFunctionCode(`address proxy = Upgrades.deployUUPSProxy("MyGovernor.sol", abi.encodeCall(MyGovernor.initialize, ( _token)));`, fn);
+    } else {
+      c.addFunctionCode(`MyGovernor governer = new MyGovernor(_token);`, fn);
+    }
+
+    return '';
   }
 
   const { timelockType, timelockParent } = timelockModules[timelock];
@@ -130,14 +141,13 @@ function addDeployLogic(c: DeployBuilder, fn: BaseFunction, { timelock }: Requir
 
   c.addModule(TimelockController);
 
-  if (timelock ) {
-    c.addFunctionCode(`MyGovernor governer = new MyGovernor(_token, _timelock);`, fn);
-
+  if (upgradeable == 'transparent' ) {
+    c.addFunctionCode(`address proxy = Upgrades.deployTransparentProxy("MyGovernor.sol", abi.encodeCall(MyGovernor.initialize, ( _token, _timelock)));`, fn);
+  } else if (upgradeable == 'uups') {
+    c.addFunctionCode(`address proxy = Upgrades.deployUUPSProxy("MyGovernor.sol", abi.encodeCall(MyGovernor.initialize, ( _token, _timelock)));`, fn);
   } else {
-    c.addFunctionCode(`MyGovernor governer = new MyGovernor(_token);`, fn);
-
+    c.addFunctionCode(`MyGovernor governer = new MyGovernor(_token, _timelock);`, fn);
   }
-
 
 }
 
