@@ -41,7 +41,31 @@ Together with [`redprint-forge`](https://github.com/Ratimon/redprint-forge), it 
 
 ## Architecture
 
-WIP / dependencies
+```sh
+├── src
+│   ├── lib
+│   │   ├── analytics            # Google Analytics 
+│   │   ├── model                # Front-end Data Model
+│   │   ├── ui                   # UI Compoment
+│   │   ├── utils
+│   │   └── wizard               # code generation logic.
+│   │       ├── deploy-scripts
+│   │       ├── shared
+│   │       ├── smart-contracts
+│   │       └── utils
+│   ├── routes                    # Svelte routes
+│   │   ├── 1-governance
+│   │   ├── 2-superchain
+│   │   ├── 3-plasmachain
+│   │   ├── 4-opchain
+│   │   ├── about
+│   │   ├── blog
+│   │   ├── privacy-policy
+│   │   └── tos
+└── static                        # Static files
+    ├── blog
+    └── pwa
+```
 
 ## Contributing
 
@@ -51,7 +75,7 @@ If you want to say **thank you** or/and support active development of Redprint W
 
 - Add a [GitHub Star](https://github.com/Ratimon/redprint-wizard) to the
   project.
-- Tweet about **Redprint**.
+- Tweet about [Redprint](https://redprint.ninja/blog/2-introduce-wizard)
 - Write interesting articles about the project on
   [Medium](https://medium.com/), or your personal blog.
 - Keep Optimimstic !!
