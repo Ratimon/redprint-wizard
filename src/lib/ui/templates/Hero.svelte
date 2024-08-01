@@ -50,8 +50,8 @@
       </div>
 
       <p class="text-lg opacity-80 leading-relaxed">
-        "It is great to quickly get a idea for hackathon or quick prototypes, and it is also a good starting point for long term rollup projects as it contains a set of best practises for smart contract developments and
-        Opsec mangement". 
+        "It is great to quickly get a idea for hackathon or quick prototypes, and it is also a good starting point for long term rollup projects as it contains a set of best practices for smart contract developments and
+        Opsec management". 
       </p> 
 
       <TestimonialsAvatars />
