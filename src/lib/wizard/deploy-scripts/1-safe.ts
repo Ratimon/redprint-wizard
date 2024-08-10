@@ -4,7 +4,6 @@ import { DeployBuilder } from "./contract";
 import type { SharedSafeOptions} from '../shared/1-shared-safe-option';
 import { withCommonDefaults, defaults } from "../shared/1-shared-safe-option";
 
-
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
@@ -103,7 +102,7 @@ function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<Shared
   const { safeProxyFactory, safeSingleton } = chainModules[chain];
 
   // to do : abstract into 2 functions ?
-  c.addVariable('address owner;');
+  setOpsec(c, fn, allOpts.opSec);
     
   c.addFunctionCode(`address safeProxyFactory = ${safeProxyFactory.address};`, fn);
   c.addFunctionCode(`address safeSingleton = ${safeSingleton.address};`, fn);
@@ -111,8 +110,6 @@ function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<Shared
   c.addFunctionCode(`safeProxyFactory.code.length == 0`, fn);
   c.addFunctionCode(`    ? safeSingleton_ = Safe(deployer.deploy_Safe("SafeSingleton"))`, fn);
   c.addFunctionCode(`    : safeSingleton_ = Safe(payable(safeSingleton));`, fn);
-
-  setOpsec(c, fn, allOpts.opSec);
 
   c.addFunctionCode(`safeProxy_ = SafeProxy(deployer.deploy_SystemOwnerSafe("SystemOwnerSafe", "SafeProxyFactory", "SafeSingleton", address(owner)));`, fn);
 
@@ -122,20 +119,19 @@ function setOpsec(c: DeployBuilder, fn: BaseFunction, opsec: OpSec) {
 
   switch (opsec) {
     case 'address': {
-      c.addFunctionCode(`owner = vm.envAddress("DEPLOYER_ADDRESS");`, fn);
+      c.addVariable(`address owner = vm.envAddress("DEPLOYER_ADDRESS");`);
       break;
     }
     case 'key': {
-      c.addFunctionCode(`uint256 ownerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");`, fn);
-      c.addFunctionCode(`owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`, fn);
+      c.addVariable(`uint256 ownerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");`);
+      c.addVariable(`address owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`);
 
-      c.addFunctionCode(`owner = vm.envAddress("DEPLOYER_ADDRESS");`, fn);
       break;
     }
     case 'mnemonic': {
-      c.addFunctionCode(`string memory mnemonic = vm.envString("MNEMONIC");`, fn);
-      c.addFunctionCode(`uint256 ownerPrivateKey = vm.deriveKey(mnemonic, "m/44'/60'/0'/0/", 1);`, fn);
-      c.addFunctionCode(`owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`, fn);
+      c.addVariable(`string mnemonic = vm.envString("MNEMONIC");`);
+      c.addVariable(`uint256 ownerPrivateKey = vm.deriveKey(mnemonic, "m/44'/60'/0'/0/", 1);`);
+      c.addVariable(`address owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`);
       break;
     }
   }
