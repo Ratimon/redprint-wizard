@@ -6,7 +6,6 @@
   import TestimonialsAvatars from "$lib/ui/testinomials/TestimonialsAvatars.svelte";
   import Stargazers from '$lib/ui/components/Stargazers.svelte';
 
-
   export let repositories: GithubRepo[]= [];
 
 </script>
@@ -60,7 +59,7 @@
     <div class="hidden lg:block lg:w-full">
       <img
         class="w-full"
-        alt="Redprint Wizard"
+        alt="Hero showing the Redprint logo"
         src="/icon.png"
         width={512}
         height={512}
