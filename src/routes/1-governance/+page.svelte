@@ -10,6 +10,8 @@
 
   import Background from '$lib/ui/background/Background.svelte';
   import Wizard from '$lib/ui/components/Wizard.svelte'
+  import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte'
+
   import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
   import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
 
@@ -47,18 +49,14 @@
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
-          <ul class="menu menu-horizontal">
-            <li>
-              <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
-                MultiSig
-              </button>
-            </li>
-            <li>
-              <button class:selected={contractTab === 'Governor'} on:click={() => contractTab = 'Governor'}>
-                Governor
-              </button>
-            </li>
-          </ul>
+          <OverflowMenu>
+            <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
+              MultiSig
+            </button>
+            <button class:selected={contractTab === 'Governor'} on:click={() => contractTab = 'Governor'}>
+              Governor
+            </button>            
+          </OverflowMenu>
         </Background>
       </div>
   </div> 
