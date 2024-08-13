@@ -43,31 +43,36 @@ export function buildDeploySafe(opts: SharedSafeOptions): DeployContract {
 function addBase(c: DeployBuilder) {
   const DeployFunctions = {
     name: 'DeployerFunctions',
-    path: '@redprint-core/deployer/DeployerFunctions.sol',
+    path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
   c.addLibrary(DeployFunctions, `IDeployer`);
+  const IDeployer = {
+    name: 'IDeployer',
+    path: '@redprint-deploy/deployer/DeployerFunctions.sol',
+  };
+  c.addModule(IDeployer);
 
   const DeployScript = {
     name: 'DeployScript',
-    path: '@redprint-core/deployer/DeployScript.sol',
+    path: '@redprint-deploy/deployer/DeployScript.sol',
   };
   c.addParent(DeployScript, []);
 
   const SafeProxyFactory = {
     name: 'SafeProxyFactory',
-    path: 'safe-smart-account/contracts/proxies/SafeProxyFactory.sol',
+    path: '@redprint-safe-contracts/contracts/proxies/SafeProxyFactory.sol',
   };
   c.addModule(SafeProxyFactory);
 
   const Safe = {
     name: 'Safe',
-    path: 'safe-smart-account/contracts/Safe.sol',
+    path: '@redprint-safe-contracts/contracts/Safe.sol',
   };
   c.addModule(Safe);
 
   const SafeProxy = {
     name: 'SafeProxy',
-    path: 'safe-smart-account/contracts/proxies/SafeProxy.sol',
+    path: '@redprint-safe-contracts/contracts/proxies/SafeProxy.sol',
   };
   c.addModule(SafeProxy);
 

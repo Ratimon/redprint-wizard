@@ -62,7 +62,7 @@ function addBase(c: DeployBuilder) {
 
   const Script = {
     name: 'Script',
-    path: '@forge-std/Script.sol',
+    path: '@redprint-forge-std/Script.sol',
   };
   c.addParent(Script, []);
 
@@ -78,10 +78,8 @@ function addBase(c: DeployBuilder) {
   };
   c.addModule(IVotes);
 
-
   c.addVariable('address token;');
   
-
 }
 
 function addVotes(c: DeployBuilder, fn : BaseFunction) {

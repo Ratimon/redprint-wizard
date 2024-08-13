@@ -31,7 +31,7 @@ export function buildSafe(opts: SharedSafeOptions): Contract {
 
   const IProxy = {
     name: 'IProxy',
-    path: 'safe-smart-account/contracts/proxies/SafeProxy.sol',
+    path: '@redprint-safe-contracts/contracts/proxies/SafeProxy.sol',
   };
 
   c.addModule(IProxy);
