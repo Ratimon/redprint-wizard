@@ -9,8 +9,9 @@
   import { DeployBuilder, buildDeployGeneric, printDeployContract } from '$lib/wizard/deploy-scripts';
 
   import Background from '$lib/ui/background/Background.svelte';
-  import Wizard from '$lib/ui/components/Wizard.svelte'
-  import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte'
+  import Wizard from '$lib/ui/components/Wizard.svelte';
+  import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
+  import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
 
   import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
   import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
@@ -44,8 +45,40 @@
 
 </script>
 
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary">
+    <h1 class="text-2xl ">1.1 : Prerequisites</h1>
+  </div>
+</Background>
+
+<div class="container flex flex-col gap-4 p-8 mx-8">
+  <h2 class="m-4 font-semibold">Add the <a class="bg-primary underline" href="https://github.com/Ratimon/redprint-forge" target="_blank" rel="noreferrer">redprint-forge</a> using your favorite package manager, e.g., with npm:</h2>
+
+
+  <CopyBlock
+    boxClass="p-2 rounded-box font-black text-primary max-w-xl mx-auto"
+    class="mb-5"
+    background="bg-primary-content"
+    copiedBackground="bg-success"
+    copiedColor="text-success-content"
+    text={`npm install -D redprint-forge`}
+  />
+  <p class="mt-6 text-base-300">
+    Find out more on
+    <a class="underline" href="https://github.com/Ratimon/redprint-forge" target="_blank" rel="noreferrer"
+      >github
+    </a>
+  </p>
+
+</div>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-2xl">1.2 : Deploy Governance Contract</p>
+  </div>
+</Background>
+
 <Wizard initialContractTab={initialContractTab} contractTab={contractTab} opts={opts} contract={contract} deployContract={deployContract}>
-  
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
@@ -75,8 +108,18 @@
 
 </Wizard>
 
+<!-- to do : Add menu to scroll to each contract -->
+<!-- to do : eg. 1.2 upgrade contract (coming soon) -->
+
 
 <style lang="postcss">
+
+  .container {
+      background-color: var(--gray-1);
+      border: 1px solid var(--gray-2);
+      border-radius: 10px;
+      min-width: 32rem;
+  }
 
   .tab {
     color: var(--gray-5);

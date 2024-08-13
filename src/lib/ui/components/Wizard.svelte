@@ -128,12 +128,6 @@
 </script>
 <div class="container flex flex-col gap-4 p-8 mx-8">
 
-  <Background color="bg-base-100">
-    <div class="divider divider-primary ">
-      <p class="text-2xl">1.1 : Deploy Contracts</p>
-    </div>
-  </Background>
-
   <div class="pt-3 pb-4 justify-center">
     <h2 class="m-4 font-semibold">In your terminal, copy below contracts' codes and run deployment scripts to your prefered network:</h2>
     <CopyBlock
@@ -230,15 +224,6 @@
     </div>
     
   </div>
-
-  <!-- to do : Add menu to scroll to each contract -->
-  <!-- to do : eg. 1.2 upgrade contract (coming soon) -->
-
-  <Background color="bg-base-100">
-    <div class="divider divider-primary">
-      <p class="text-2xl">1.1 : Deploy Contracts</p>
-    </div>
-  </Background>
 
 </div>
   
