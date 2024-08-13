@@ -4,7 +4,6 @@
   import fileSaver from 'file-saver';
   import { v4 as uuid } from 'uuid';
 
-  import Background from '$lib/ui/background/Background.svelte';
 
   import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
   import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
@@ -28,8 +27,8 @@
   import type { GaEvent } from '$lib/analytics/analytics.Store';
   import { analyticsStore } from '$lib/analytics/analytics.Store'
   
-  $: codeCommand1 = `forge script script/100_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast`
-  $: codeCommand2 = `--mnemonic-derivation-paths \"m/44'/60'/0'/0/0\"`
+  $: codeCommand = `forge script script/100_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast`
+  $: optionCommand = `--mnemonic-derivation-paths \"m/44'/60'/0'/0/0\"`
   
   const dispatch = createEventDispatcher();
 
@@ -136,7 +135,7 @@
       background="bg-primary-content"
       copiedBackground="bg-success"
       copiedColor="text-success-content"
-      text={codeCommand1}
+      text={codeCommand}
     />
   </div>
 
@@ -148,7 +147,7 @@
       background="bg-primary-content"
       copiedBackground="bg-success"
       copiedColor="text-success-content"
-      text={codeCommand2}
+      text={optionCommand}
     />
   </div>
 

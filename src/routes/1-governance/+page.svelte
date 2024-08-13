@@ -13,6 +13,9 @@
   import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
   import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
 
+  import MarkdownIt from "markdown-it";
+  import hljs  from '$lib/ui/utils/highlightjs';
+
   import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
   import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
 
@@ -43,6 +46,34 @@
       }
   }
 
+  // to do : optimize bundler
+  const md = MarkdownIt({
+    html: true,
+    linkify: true,
+    highlight: function (str: string, lang: string) {
+    // to do : refactor : hljs to specify language
+    if (lang && hljs.getLanguage(lang)) {
+    try {
+        return hljs.highlight(str, { language: lang }).value;
+    } catch (err) {
+        // Handle error
+        }
+    }
+    return '';
+    }
+  });
+
+  $: remmapingContent = md.render(`
+  \`\`\`bash
+@redprint-core/=node_modules/redprint-forge/src
+@redprint-deploy/=node_modules/redprint-forge/script
+@redprint-forge-std/=node_modules/redprint-forge/lib/forge-std/src
+@redprint-openzeppelin/=node_modules/redprint-forge/lib/openzeppelin-4_9_4/contracts
+@redprint-openzeppelin-upgradable/=node_modules/redprint-forge/lib/openzeppelin-upgradable-4_9_4/contracts
+@redprint-safe-contracts/=node_modules/redprint-forge/lib/safe-smart-account/contracts
+  \`\`\`
+  `);
+
 </script>
 
 <Background color="bg-base-100 pt-3 pb-4">
@@ -54,7 +85,6 @@
 <div class="container flex flex-col gap-4 p-8 mx-8">
   <h2 class="m-4 font-semibold">Add the <a class="bg-primary underline" href="https://github.com/Ratimon/redprint-forge" target="_blank" rel="noreferrer">redprint-forge</a> using your favorite package manager, e.g., with npm:</h2>
 
-
   <CopyBlock
     boxClass="p-2 rounded-box font-black text-primary max-w-xl mx-auto"
     class="mb-5"
@@ -63,11 +93,26 @@
     copiedColor="text-success-content"
     text={`npm install -D redprint-forge`}
   />
+
   <p class="mt-6 text-base-300">
     Find out more on
     <a class="underline" href="https://github.com/Ratimon/redprint-forge" target="_blank" rel="noreferrer"
       >github
     </a>
+  </p>
+
+  <p class="m-4 font-semibold">
+    Adding <span class="underline bg-secondary">remappings.txt</span> with following:
+  </p>
+
+  <div class="output flex flex-col grow overflow-auto">
+      <code class="hljs grow overflow-auto p-4">
+        {@html md.render(remmapingContent)}
+      </code>
+  </div>
+
+  <p class="mt-6 text-base-300">
+    We use <span class="underline bg-accent">@redprint-/</span> as a convention to avoid any naming conflicts with your previously installed libararies ( i.e. @redprint-forge-std/ vs @forge-std/)
   </p>
 
 </div>
