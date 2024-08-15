@@ -280,7 +280,7 @@ L1_RPC_URL=http://localhost:8545
 
       <h3 class="font-bold text-lg">Copy .env!</h3>
       <p class="py-4"> This following file uses foundry's default test private keys. </p>
-      <p class="py-4"> DONT forget to change <span class="underline bg-secondary">MNEMONIC</span>, <span class="underline bg-secondary">DEPLOYER_PRIVATE_KEY</span> and <span class="underline bg-secondary">DEPLOYER</span>D</p>
+      <p class="py-4"> DONT forget to change <span class="underline bg-secondary">MNEMONIC</span>, <span class="underline bg-secondary">DEPLOYER_PRIVATE_KEY</span> and <span class="underline bg-secondary">DEPLOYER_ADDRESS</span> to be yours!</p>
       <div class="output flex flex-col grow overflow-auto">
         <code class="hljs grow overflow-auto p-4">
           {@html md.render(envContent)}
