@@ -9,7 +9,7 @@
   import { DeployBuilder, buildDeployGeneric, printDeployContract } from '$lib/wizard/deploy-scripts';
 
   import Background from '$lib/ui/background/Background.svelte';
-  import Wizard from '$lib/ui/components/Wizard.svelte';
+  import WizardDouble from '$lib/ui/components/WizardDouble.svelte';
   import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
   import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
 
@@ -292,8 +292,9 @@ L1_RPC_URL=http://localhost:8545
   </div>
 
   <p class="mt-6 text-base-300">
-    In our example , we use <a class="bg-accent underline" href=https://github.com/wighawag/ldenv target="_blank" rel="noreferrer">ldenv</a> as convention guide for environment variable management.This will helps to manage deployment artifacts when deploying to different networks. Check our <a class="bg-accent underline" href=https://github.com/Ratimon/redprint-optimism-contracts-examples/blob/main/package.json target="_blank" rel="noreferrer">example !!</a> 
+    In our example, we use <a class="bg-accent underline" href=https://github.com/wighawag/ldenv target="_blank" rel="noreferrer">ldenv</a> as convention guide for environment variable management.This will helps to manage deployment artifacts when deploying to different networks. Check our <a class="bg-accent underline" href=https://github.com/Ratimon/redprint-optimism-contracts-examples/blob/main/package.json target="_blank" rel="noreferrer">example !!</a> 
   </p>
+
 
 
 </div>
@@ -304,7 +305,7 @@ L1_RPC_URL=http://localhost:8545
   </div>
 </Background>
 
-<Wizard initialContractTab={initialContractTab} contractTab={contractTab} opts={opts} contract={contract} deployContract={deployContract}>
+<WizardDouble initialContractTab={initialContractTab} contractTab={contractTab} opts={opts} contract={contract} deployContract={deployContract}>
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
@@ -332,7 +333,9 @@ L1_RPC_URL=http://localhost:8545
       </div>
   </div> 
 
-</Wizard>
+</WizardDouble>
+
+
 
 <!-- to do : Add menu to scroll to each contract -->
 <!-- to do : eg. 1.2 upgrade contract (coming soon) -->

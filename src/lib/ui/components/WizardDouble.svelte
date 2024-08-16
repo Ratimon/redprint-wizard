@@ -4,7 +4,6 @@
   import fileSaver from 'file-saver';
   import { v4 as uuid } from 'uuid';
 
-
   import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
   import CopyIcon from '$lib/ui/icons/CopyIcon.svelte';
   import CheckIcon from '$lib/ui/icons/CheckIcon.svelte';
