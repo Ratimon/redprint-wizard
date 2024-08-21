@@ -1,14 +1,15 @@
 <script  lang="ts">
-  import type { KindedOptions, Kind, OptionsErrorMessages } from '$lib/wizard/shared';
-  import {  sanitizeKind, OptionsError } from '$lib/wizard/shared';
+  import type { KindedGovernanceOptions, KindGovernance, KindedAllStepOneOptions, KindAllStepOne, OptionsErrorMessages } from '$lib/wizard/shared';
+  import {  sanitizeKindGovernance, sanitizeKindAllStepOne, OptionsError } from '$lib/wizard/shared';
 
   import type {  Contract } from '$lib/wizard/smart-contracts';
-  import { ContractBuilder, buildContractGeneric, printContract } from '$lib/wizard/smart-contracts';
+  import { ContractBuilder, buildContractGeneric } from '$lib/wizard/smart-contracts';
 
   import type {  DeployContract } from '$lib/wizard/deploy-scripts';
   import { DeployBuilder, buildDeployGeneric, printDeployContract } from '$lib/wizard/deploy-scripts';
 
   import Background from '$lib/ui/background/Background.svelte';
+  import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
   import WizardDouble from '$lib/ui/components/WizardDouble.svelte';
   import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
   import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
@@ -16,29 +17,55 @@
   import MarkdownIt from "markdown-it";
   import hljs  from '$lib/ui/utils/highlightjs';
 
-  import SafeControls from '$lib/ui/controls//1-SafeControls.svelte';
+  import SafeControls from '$lib/ui/controls/1-SafeControls.svelte';
   import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
+  import AllControls from '$lib/ui/controls/1-AllControls.svelte';
 
-  export let initialContractTab: string | undefined = 'Safe';
-  export let contractTab: Kind = sanitizeKind(initialContractTab);
+  export let initialContractGovernanceTab: string | undefined = 'Safe';
+  export let contractGovernanceTab: KindGovernance = sanitizeKindGovernance(initialContractGovernanceTab);
 
-  let allContractsOpts: { [k in Kind]?: Required<KindedOptions [k]> } = {};
+  let allContractsGovernanceOpts: { [k in KindGovernance]?: Required<KindedGovernanceOptions [k]> } = {};
 
-  let errors: { [k in Kind]?: OptionsErrorMessages } = {};
+  let errorsGovernance: { [k in KindGovernance]?: OptionsErrorMessages } = {};
 
-  let contract: Contract = new ContractBuilder('SafeProxy');
-  let deployContract: DeployContract = new DeployBuilder('DeploySafeScript');
+  let contractGovernance: Contract = new ContractBuilder('SafeProxy');
+  let deployContractGovernance: DeployContract = new DeployBuilder('DeploySafeScript');
 
-  $: opts = allContractsOpts[contractTab];
+  $: optsGovernance = allContractsGovernanceOpts[contractGovernanceTab];
   $: {
-  if (opts) {
+  if (optsGovernance) {
           try {
-              contract = buildContractGeneric(opts);
-              deployContract = buildDeployGeneric(opts);
-              errors[contractTab] = undefined;
+              contractGovernance = buildContractGeneric(optsGovernance);
+              deployContractGovernance = buildDeployGeneric(optsGovernance);
+              errorsGovernance[contractGovernanceTab] = undefined;
           } catch (e: unknown) {
               if (e instanceof OptionsError) {
-              errors[contractTab] = e.messages;
+                errorsGovernance[contractGovernanceTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  export let initialContractStepTab: string | undefined = 'AllStepOne';
+  export let contractStepTab: KindAllStepOne = sanitizeKindAllStepOne(initialContractStepTab);
+
+  let allContractsStepOpts: { [k in KindAllStepOne]?: Required<KindedAllStepOneOptions [k]> } = {};
+
+  let errorsStep: { [k in KindAllStepOne]?: OptionsErrorMessages } = {};
+
+  let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
+
+  $: optsStep = allContractsStepOpts[contractStepTab];
+  $: {
+  if (optsStep) {
+          try {
+              deployContractStep = buildDeployGeneric(optsStep);
+              errorsStep[contractStepTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsStep[contractStepTab] = e.messages;
               } else {
               throw e;
               }
@@ -305,15 +332,15 @@ L1_RPC_URL=http://localhost:8545
   </div>
 </Background>
 
-<WizardDouble initialContractTab={initialContractTab} contractTab={contractTab} opts={opts} contract={contract} deployContract={deployContract}>
+<WizardDouble initialContractTab={initialContractGovernanceTab} contractTab={contractGovernanceTab} opts={optsGovernance} contract={contractGovernance} deployContract={deployContractGovernance}>
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
           <OverflowMenu>
-            <button class:selected={contractTab === 'Safe'} on:click={() => contractTab = 'Safe'}>
+            <button class:selected={contractGovernanceTab === 'Safe'} on:click={() => contractGovernanceTab = 'Safe'}>
               MultiSig
             </button>
-            <button class:selected={contractTab === 'Governor'} on:click={() => contractTab = 'Governor'}>
+            <button class:selected={contractGovernanceTab === 'Governor'} on:click={() => contractGovernanceTab = 'Governor'}>
               Governor
             </button>            
           </OverflowMenu>
@@ -324,21 +351,48 @@ L1_RPC_URL=http://localhost:8545
   <div slot="control" >
        <!-- w-64 -->
       <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
-          <div class:hidden={contractTab !== 'Safe'}>
-              <SafeControls bind:opts={allContractsOpts.Safe} />
+          <div class:hidden={contractGovernanceTab !== 'Safe'}>
+              <SafeControls bind:opts={allContractsGovernanceOpts.Safe} />
             </div>
-          <div class:hidden={contractTab !== 'Governor'}>
-              <GovernorControls bind:opts={allContractsOpts.Governor} errors={errors.Governor} />
+          <div class:hidden={contractGovernanceTab !== 'Governor'}>
+              <GovernorControls bind:opts={allContractsGovernanceOpts.Governor} errors={errorsGovernance.Governor} />
           </div> 
       </div>
   </div> 
 
 </WizardDouble>
 
-
-
 <!-- to do : Add menu to scroll to each contract -->
-<!-- to do : eg. 1.2 upgrade contract (coming soon) -->
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary">
+    <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
+  </div>
+</Background>
+
+<WizardSingle initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsGovernance} deployContract={deployContractStep}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractStepTab === 'AllStepOne'} on:click={() => contractStepTab = 'AllStepOne'}>
+              DeployAll
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractStepTab !== 'AllStepOne'}>
+              <AllControls bind:opts={allContractsStepOpts.AllStepOne} />
+            </div>
+      </div>
+  </div> 
+
+</WizardSingle>
 
 
 <style lang="postcss">

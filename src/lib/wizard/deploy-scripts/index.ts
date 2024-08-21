@@ -11,4 +11,4 @@ export type { Info } from './set-info';
 
 export { defaults as deployInfoDefaults } from './set-info';
 
-export { deployGovernor, deploySafe } from './api';
+export { deployGovernor, deploySafe, deployStepOneAll } from './api';

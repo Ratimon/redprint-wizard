@@ -197,7 +197,7 @@
   <div class="flex flex-row gap-4 grow">
       <slot name="control" />
 
-    <div class="output flex flex-col grow overflow-auto h-[calc(165vh-40px)]">
+    <div class="output flex flex-col grow overflow-auto h-[calc(120vh-40px)]">
       <div class="badge badge-primary badge-outline badge-lg">
         Smart Contract: {contract.name}.sol
       </div>
@@ -209,7 +209,7 @@
       </pre>
     </div>
     
-    <div class="output flex flex-col grow overflow-auto h-[calc(165vh-40px)]">
+    <div class="output flex flex-col grow overflow-auto h-[calc(120vh-40px)]">
       <div class="badge badge-primary badge-outline badge-lg">
         Deploy Script: {deployContract.name}.s.sol
       </div>

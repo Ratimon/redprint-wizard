@@ -7,7 +7,7 @@
   import ToggleRadio from '$lib/ui/inputs/ToggleRadio.svelte';
 
   import type {  OptionsErrorMessages } from '$lib/wizard/shared';
-  import type { KindedOptions } from '$lib/wizard/shared';
+  import type { KindedGovernanceOptions } from '$lib/wizard/shared';
 
   import { governor } from '$lib/wizard/smart-contracts';
   import { deployGovernor } from '$lib/wizard/deploy-scripts';
@@ -18,7 +18,7 @@
   const contractDefaults = governor.defaults;
   const deployDefaults = deployGovernor.defaults;
 
-  export let opts: Required<KindedOptions['Governor']> = {
+  export let opts: Required<KindedGovernanceOptions['Governor']> = {
     kind: 'Governor',
     ...contractDefaults,
     ...deployDefaults,
@@ -220,9 +220,3 @@
 <UpgradeabilitySection bind:upgradeable={opts.upgradeable} />
 
 <InfoSection bind:info={opts.contractInfo} />
-
-<!-- <style lang="postcss">
-  .has-error {
-    box-shadow: 0 0 var(--size-1) var(--red-2);
-  }
-</style> -->

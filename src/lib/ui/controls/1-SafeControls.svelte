@@ -4,7 +4,7 @@
   import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
   import InfoSection from '$lib/ui/controls/InfoSection.svelte';
 
-  import type { KindedOptions } from '$lib/wizard/shared';
+  import type { KindedGovernanceOptions } from '$lib/wizard/shared';
 
   import { safe } from '$lib/wizard/smart-contracts';
   import { deploySafe } from '$lib/wizard/deploy-scripts';
@@ -12,7 +12,7 @@
   const contractDefaults = safe.defaults;
   const deployDefaults = deploySafe.defaults;
 
-  export let opts: Required<KindedOptions['Safe'] > = {
+  export let opts: Required<KindedGovernanceOptions['Safe'] > = {
     kind: 'Safe',
     ...contractDefaults,
     ...deployDefaults,
