@@ -10,7 +10,6 @@ import { setInfo } from "./set-info";
 export const timelockOptions = [false, 'openzeppelin', 'compound'] as const;
 export type TimelockOptions = typeof timelockOptions[number];
 
-
 function withDeloyDefaults(opts: SharedGovernerOptions): Required<SharedGovernerOptions> {
   return {
     ...opts,
@@ -109,7 +108,6 @@ const timelockModules = {
 } as const;
   
 
-
 function addTimelock(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<SharedGovernerOptions>) {
   if (timelock === false) {
     return;
@@ -119,7 +117,6 @@ function addTimelock(c: DeployBuilder, fn: BaseFunction, { timelock }: Required<
 
   c.addVariable('address timelock;');
   c.addFunctionCode(`${timelockType.name} _timelock = ${timelockType.name}(payable(timelock));`, fn);
-
 }
 
 
@@ -135,7 +132,6 @@ function addDeployLogic(c: DeployBuilder, fn: BaseFunction, { timelock, upgradea
     } else {
       c.addFunctionCode(`MyGovernor governer = new MyGovernor(_token);`, fn);
     }
-
     return '';
   }
 

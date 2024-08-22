@@ -39,7 +39,7 @@ export const defaults: Required<SharedSafeOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeploySafeProxy',
+  deployName: 'DeploySafeProxyScript',
   chain: 'ethereum',
   opSec: 'mnemonic',
 

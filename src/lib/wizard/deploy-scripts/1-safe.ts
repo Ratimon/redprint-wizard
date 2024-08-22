@@ -20,7 +20,6 @@ function withDeployDefaults(opts: SharedSafeOptions): Required<SharedSafeOptions
   };
 }
 
-
 export function printDeploySafe(opts: SharedSafeOptions = defaults): string {
   return printDeployContract(buildDeploySafe(opts));
 }
@@ -125,6 +124,7 @@ function setOpsec(c: DeployBuilder, fn: BaseFunction, opsec: OpSec) {
   switch (opsec) {
     case 'address': {
       c.addVariable(`address owner = vm.envAddress("DEPLOYER_ADDRESS");`);
+
       break;
     }
     case 'key': {
@@ -137,6 +137,7 @@ function setOpsec(c: DeployBuilder, fn: BaseFunction, opsec: OpSec) {
       c.addVariable(`string mnemonic = vm.envString("MNEMONIC");`);
       c.addVariable(`uint256 ownerPrivateKey = vm.deriveKey(mnemonic, "m/44'/60'/0'/0/", 1);`);
       c.addVariable(`address owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`);
+      
       break;
     }
   }

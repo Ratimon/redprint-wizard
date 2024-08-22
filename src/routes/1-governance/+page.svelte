@@ -388,7 +388,7 @@ L1_RPC_URL=http://localhost:8545
       <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
           <div class:hidden={contractStepTab !== 'AllStepOne'}>
               <AllControls bind:opts={allContractsStepOpts.AllStepOne} />
-            </div>
+          </div>
       </div>
   </div> 
 

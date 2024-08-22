@@ -20,7 +20,6 @@ export type GenericGovernanceOptions = KindedGovernanceOptions[keyof KindedGover
 
 export interface KindedAllStepOneOptions {
   AllStepOne: { kind: 'AllStepOne' } & SharedAllOptions;
-  // StepOne: { kind: 'StepOne' } & SharedAllOptions;
 }
 
 export type GenericAllStepOneOptions = KindedAllStepOneOptions[keyof KindedAllStepOneOptions];
