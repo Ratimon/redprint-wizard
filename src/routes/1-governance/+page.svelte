@@ -332,7 +332,7 @@ L1_RPC_URL=http://localhost:8545
   </div>
 </Background>
 
-<WizardDouble initialContractTab={initialContractGovernanceTab} contractTab={contractGovernanceTab} opts={optsGovernance} contract={contractGovernance} deployContract={deployContractGovernance}>
+<WizardDouble conventionNumber={'100'} initialContractTab={initialContractGovernanceTab} contractTab={contractGovernanceTab} opts={optsGovernance} contract={contractGovernance} deployContract={deployContractGovernance}>
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
@@ -370,7 +370,7 @@ L1_RPC_URL=http://localhost:8545
   </div>
 </Background>
 
-<WizardSingle initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsGovernance} deployContract={deployContractStep}>
+<WizardSingle conventionNumber={'000'} initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsGovernance} deployContract={deployContractStep}>
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">

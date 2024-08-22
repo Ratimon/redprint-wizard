@@ -21,9 +21,10 @@
     import {  printDeployContract } from '$lib/wizard/deploy-scripts';
   
     import type { GaEvent } from '$lib/analytics/analytics.Store';
-    import { analyticsStore } from '$lib/analytics/analytics.Store'
-    
-    $: codeCommand = `forge script script/000_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast`
+    import { analyticsStore } from '$lib/analytics/analytics.Store';
+
+    export let conventionNumber: string;
+    $: codeCommand = `forge script script/${conventionNumber}_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast`
     $: optionCommand = `--mnemonic-derivation-paths \"m/44'/60'/0'/0/0\"`
     
     const dispatch = createEventDispatcher();
@@ -37,17 +38,12 @@
       dispatch('contractTab-change', contractTab);
     };
   
-    // export let contract: Contract ;
     export let deployContract: DeployContract;
     export let opts;
   
     $: deployCode = printDeployContract(deployContract);
-
     $: highlightedDeployCode = injectHyperlinks(hljs.highlight(deployCode, {language: 'solidity'} ).value);
     
-    // let isContractCopied = false;
-  
-
     let isScriptCopied = false;
   
     const copyScriptHandler = async () => {
@@ -142,8 +138,7 @@
   
       <div class="output flex flex-col grow overflow-auto h-[calc(120vh-40px)]">
         <div class="badge badge-primary badge-outline badge-lg">
-          <!-- to do add convention -->
-          Deploy Script: {deployContract.name}.s.sol
+          Deploy Script: {conventionNumber}_{deployContract.name}.s.sol
         </div>
   
         <pre class="flex flex-col grow basis-0 overflow-auto">
