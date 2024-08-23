@@ -2,7 +2,6 @@
 import type { CommonOptions} from './common-options';
 import { defaults as infoDefaults } from "./set-info";
 
-// to do : remove redundant
 export const chainOptions = [false, 'ethereum', 'optimism'] as const;
 export type Chain = typeof chainOptions[number];
 

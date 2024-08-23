@@ -1,16 +1,13 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type {  SharedAllOptions } from '../shared/1-all-option';
+import type {  SharedAllOptions, Governance } from '../shared/1-all-option';
 import {  defaults } from '../shared/1-all-option';
 
 import { defaults as infoDefaults } from "./set-info";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
-
-export const governanceOptions = [false, 'safe-multisig', 'governor'] as const;
-export type Governance = typeof governanceOptions[number];
 
 function withDeployDefaults(opts: SharedAllOptions): Required<SharedAllOptions> {
   return {

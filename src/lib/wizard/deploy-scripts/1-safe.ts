@@ -1,17 +1,11 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedSafeOptions} from '../shared/1-shared-safe-option';
+import type { SharedSafeOptions, OpSec} from '../shared/1-shared-safe-option';
 import { withCommonDefaults, defaults } from "../shared/1-shared-safe-option";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
-
-export const chainOptions = [false, 'ethereum', 'optimism'] as const;
-export type Chain = typeof chainOptions[number];
-
-export const opSecOptions = [false, 'address', 'key', 'mnemonic'] as const;
-export type OpSec = typeof opSecOptions[number];
 
 function withDeployDefaults(opts: SharedSafeOptions): Required<SharedSafeOptions> {
   return {
@@ -116,7 +110,6 @@ function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<Shared
   c.addFunctionCode(`    : safeSingleton_ = Safe(payable(safeSingleton));`, fn);
 
   c.addFunctionCode(`safeProxy_ = SafeProxy(deployer.deploy_SystemOwnerSafe("SystemOwnerSafe", "SafeProxyFactory", "SafeSingleton", address(owner)));`, fn);
-
 }
 
 function setOpsec(c: DeployBuilder, fn: BaseFunction, opsec: OpSec) {
