@@ -176,7 +176,7 @@ fs_permissions = [
   \`\`\`
   `);
 
-  let isEnvModalOpen = false;
+  let isArtifactModalOpen = false;
 
   $: envContent = md.render(`
   \`\`\`bash
@@ -211,6 +211,18 @@ GS_BATCHER_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 GS_PROPOSER_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 GS_SEQUENCER_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 L1_RPC_URL=http://localhost:8545
+  \`\`\`
+  `);
+
+  let isEnvModalOpen = false;
+
+  $: addressAllContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "0x41C3c259514f88211c4CA2fd805A93F8F9A57504",
+  "SafeSingleton": "0x0401911641c4781D93c41f9aa8094B171368E6a9",
+  "SystemOwnerSafe": "0x31Ce59Df6F742e1C83f00427F09DCAaF0765DF3b"
+}
   \`\`\`
   `);
 
@@ -389,7 +401,37 @@ L1_RPC_URL=http://localhost:8545
               <AllControls bind:opts={allContractsStepOpts.AllStepOne} />
           </div>
       </div>
-  </div> 
+  </div>
+
+  <div slot="artifact" class="flex flex-col items-center" >
+
+    <p class="m-4 font-semibold">
+      After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+    </p>
+  
+    <button class="btn modal-button" on:click={()=>isArtifactModalOpen = true}>See the artifact's content example</button>
+  
+    <div class="modal" class:modal-open={isArtifactModalOpen}>
+      <div class="modal-box w-11/12 max-w-5xl">
+  
+        <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactModalOpen = false} >✕</button>
+        </form>
+  
+        <h3 class="font-bold text-lg">Example!</h3>
+        <p class="py-4"> Your saved address will be different. </p>
+        <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+        <div class="output flex flex-col grow overflow-auto">
+          <code class="hljs grow overflow-auto p-4">
+            {@html md.render(addressAllContent)}
+          </code>
+        </div>
+        <p class="py-4">click on ✕ button to close</p>
+  
+      </div>
+    </div>
+
+  </div>
 
 </WizardSingle>
 
