@@ -224,6 +224,8 @@
     
   </div>
 
+  <slot name="artifact" />
+
 </div>
   
 <style lang="postcss">

@@ -370,6 +370,38 @@ L1_RPC_URL=http://localhost:8545
       </div>
   </div> 
 
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressAllContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </WizardDouble>
 
 <!-- to do : Add menu to scroll to each contract -->
@@ -402,39 +434,40 @@ L1_RPC_URL=http://localhost:8545
           </div>
       </div>
   </div>
+  
+  <div slot="artifact" >
 
-  <div slot="artifact" class="flex flex-col items-center" >
-
-    <p class="m-4 font-semibold">
-      After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-    </p>
-  
-    <button class="btn modal-button" on:click={()=>isArtifactModalOpen = true}>See the artifact's content example</button>
-  
-    <div class="modal" class:modal-open={isArtifactModalOpen}>
-      <div class="modal-box w-11/12 max-w-5xl">
-  
-        <form method="dialog">
-          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactModalOpen = false} >✕</button>
-        </form>
-  
-        <h3 class="font-bold text-lg">Example!</h3>
-        <p class="py-4"> Your saved address will be different. </p>
-        <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-        <div class="output flex flex-col grow overflow-auto">
-          <code class="hljs grow overflow-auto p-4">
-            {@html md.render(addressAllContent)}
-          </code>
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressAllContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
         </div>
-        <p class="py-4">click on ✕ button to close</p>
-  
       </div>
     </div>
 
   </div>
 
 </WizardSingle>
-
 
 
 <style lang="postcss">
