@@ -35,7 +35,6 @@
 	{pathname: '/blog/2-introduce-wizard', title: 'Introduce Wizard', navType: 'tab'},
     ];
 
-
     export let data : PageData;
     $: metaTags = extend(true, {}, data.baseMetaTags, $page.data.pageMetaTags);
 
@@ -99,6 +98,7 @@
 </MetaTags>
 
 <Background color='bg-base-200'>    
+
 
     <!-- to do : see edge case -->
     {#if $page.data.headLinks && $page.data.actionLink }

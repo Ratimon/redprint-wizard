@@ -1,4 +1,7 @@
 <script  lang="ts">
+
+  import type { PageData } from "./$types";
+
   import type { KindedGovernanceOptions, KindGovernance, KindedAllStepOneOptions, KindAllStepOne, OptionsErrorMessages } from '$lib/wizard/shared';
   import {  sanitizeKindGovernance, sanitizeKindAllStepOne, OptionsError } from '$lib/wizard/shared';
 
@@ -20,6 +23,8 @@
   import SafeControls from '$lib/ui/controls/1-SafeControls.svelte';
   import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
   import AllControls from '$lib/ui/controls/1-AllControls.svelte';
+
+  export let data : PageData;
 
   export let initialContractGovernanceTab: string | undefined = 'Safe';
   export let contractGovernanceTab: KindGovernance = sanitizeKindGovernance(initialContractGovernanceTab);
@@ -229,9 +234,13 @@ L1_RPC_URL=http://localhost:8545
 </script>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary">
-    <h1 class="text-2xl ">1.1 : Prerequisites</h1>
-  </div>
+
+  <section id={data.dropDownLinks[0].pathname}>
+    <div class="divider divider-primary">
+      <h1 class="text-2xl ">1.1 : Prerequisites</h1>
+    </div>
+  </section>
+
 </Background>
 
 <div class="container flex flex-col gap-4 p-8 mx-8">
@@ -337,9 +346,13 @@ L1_RPC_URL=http://localhost:8545
 </div>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-2xl">1.2 : Deploy Governance Contract</p>
-  </div>
+
+  <section id={data.dropDownLinks[1].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-2xl">1.2 : Deploy Governance Contract</p>
+    </div>
+  </section>
+
 </Background>
 
 <WizardDouble conventionNumber={'100'} initialContractTab={initialContractGovernanceTab} contractTab={contractGovernanceTab} opts={optsGovernance} contract={contractGovernance} deployContract={deployContractGovernance}>
@@ -404,12 +417,12 @@ L1_RPC_URL=http://localhost:8545
 
 </WizardDouble>
 
-<!-- to do : Add menu to scroll to each contract -->
-
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary">
-    <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
-  </div>
+  <section id={data.dropDownLinks[2].pathname}>
+    <div class="divider divider-primary">
+      <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
+    </div>
+  </section>
 </Background>
 
 <WizardSingle conventionNumber={'000'} initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsGovernance} deployContract={deployContractStep}>
