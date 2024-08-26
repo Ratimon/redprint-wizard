@@ -322,8 +322,6 @@ L1_RPC_URL=http://localhost:8545
     In our example, we use <a class="bg-accent underline" href=https://github.com/wighawag/ldenv target="_blank" rel="noreferrer">ldenv</a> as convention guide for environment variable management.This will helps to manage deployment artifacts when deploying to different networks. Check our <a class="bg-accent underline" href=https://github.com/Ratimon/redprint-optimism-contracts-examples/blob/main/package.json target="_blank" rel="noreferrer">example !!</a> 
   </p>
 
-
-
 </div>
 
 <Background color="bg-base-100 pt-3 pb-4">
@@ -371,6 +369,7 @@ L1_RPC_URL=http://localhost:8545
 </Background>
 
 <WizardSingle conventionNumber={'000'} initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsGovernance} deployContract={deployContractStep}>
+
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
@@ -393,6 +392,7 @@ L1_RPC_URL=http://localhost:8545
   </div> 
 
 </WizardSingle>
+
 
 
 <style lang="postcss">
