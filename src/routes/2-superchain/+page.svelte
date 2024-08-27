@@ -53,13 +53,12 @@
 <Background color="bg-base-100 pt-3 pb-4">
     <section id={data.dropDownLinks[0].pathname}>
       <div class="divider divider-primary">
-        <h1 class="text-2xl ">2.1 : Prerequisites</h1>
+        <h1 class="text-2xl ">2.0 : Prerequisites</h1>
       </div>
     </section>
 </Background>
 
 <div class="container flex flex-col gap-4 p-8 mx-8">
-
   <h2 class="m-4 font-semibold">
     Make sure you have run the <a class="bg-primary underline" href="/1-governance/" target="_blank" rel="noreferrer">deploy script</a> for governance layer:
   </h2>
@@ -77,10 +76,16 @@
   <p class="mt-6 text-base-300">
     Without <span class="underline bg-accent">this artifact file</span>, the next deployment scripts can not be run.
   </p>
-
 </div>
-  
 
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[1].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-2xl">2.1 : Deploy AddressManager Contract</p>
+    </div>
+  </section>
+</Background>
+  
 <!-- 201A_DeployAddressManager.s -->
 
 <!-- 201B_DeployAndSetupProxyAdmin.s.sol -->

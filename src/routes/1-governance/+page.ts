@@ -22,8 +22,8 @@ export function load() {
     ];
 
     const dropDownLinks : Link[] = [
-        {pathname: '/1-governance/#1.1', title: '1.1) Prerequisites', navType: 'scroll' },
-        {pathname: '/1-governance/#1.2', title: '1.2) Deploy Governance Contract', navType: 'scroll'},
+        {pathname: '/1-governance/#1.0', title: '1.0) Prerequisites', navType: 'scroll' },
+        {pathname: '/1-governance/#1.1', title: '1.1) Governance', navType: 'scroll'},
         {pathname: '/1-governance/#all', title: 'Deploy All', navType: 'scroll'},
     ];
 

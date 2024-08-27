@@ -235,7 +235,7 @@ L1_RPC_URL=http://localhost:8545
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[0].pathname}>
     <div class="divider divider-primary">
-      <h1 class="text-2xl ">1.1 : Prerequisites</h1>
+      <h1 class="text-2xl ">1.0 : Prerequisites</h1>
     </div>
   </section>
 </Background>
@@ -344,12 +344,12 @@ L1_RPC_URL=http://localhost:8545
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[1].pathname}>
     <div class="divider divider-primary ">
-      <p class="text-2xl">1.2 : Deploy Governance Contract</p>
+      <p class="text-2xl">1.1 : Deploy Governance Contract</p>
     </div>
   </section>
 </Background>
 
-<WizardDouble conventionNumber={'100'} initialContractTab={initialContractGovernanceTab} contractTab={contractGovernanceTab} opts={optsGovernance} contract={contractGovernance} deployContract={deployContractGovernance}>
+<WizardDouble conventionNumber={'101'} initialContractTab={initialContractGovernanceTab} contractTab={contractGovernanceTab} opts={optsGovernance} contract={contractGovernance} deployContract={deployContractGovernance}>
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
@@ -408,7 +408,6 @@ L1_RPC_URL=http://localhost:8545
     </div>
 
   </div>
-
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
