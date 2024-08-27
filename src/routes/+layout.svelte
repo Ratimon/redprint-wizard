@@ -99,7 +99,6 @@
 
 <Background color='bg-base-200'>    
 
-
     <!-- to do : see edge case -->
     {#if $page.data.headLinks && $page.data.actionLink }
         <Header links={$page.data.headLinks} menuTitle={$page.data.menuTitle} dropDownLinks={$page.data.dropDownLinks} actionLink={$page.data.actionLink} ></Header>
@@ -111,7 +110,6 @@
 
 {#if  !$page.data.stepsHidden }
 
-<!-- {#if  stepsHidden || $page.data.stepsHidden } -->
     <nav class="flex justify-center my-4">
 
         <ul class="steps">

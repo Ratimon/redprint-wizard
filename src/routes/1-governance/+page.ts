@@ -3,7 +3,6 @@ import type { MetaTagsProps } from 'svelte-meta-tags';
 import {appName} from 'web-config';
 
 export function load() {
-
     const title = "Set up Governance Layer";
     const description = "Deploy and set up Governance Layer";
 

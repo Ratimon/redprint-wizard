@@ -1,5 +1,4 @@
 <script  lang="ts">
-
   import type { PageData } from "./$types";
 
   import type { KindedGovernanceOptions, KindGovernance, KindedAllStepOneOptions, KindAllStepOne, OptionsErrorMessages } from '$lib/wizard/shared';
@@ -9,7 +8,7 @@
   import { ContractBuilder, buildContractGeneric } from '$lib/wizard/smart-contracts';
 
   import type {  DeployContract } from '$lib/wizard/deploy-scripts';
-  import { DeployBuilder, buildDeployGeneric, printDeployContract } from '$lib/wizard/deploy-scripts';
+  import { DeployBuilder, buildDeployGeneric } from '$lib/wizard/deploy-scripts';
 
   import Background from '$lib/ui/background/Background.svelte';
   import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
@@ -17,12 +16,12 @@
   import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
   import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
 
-  import MarkdownIt from "markdown-it";
-  import hljs  from '$lib/ui/utils/highlightjs';
-
   import SafeControls from '$lib/ui/controls/1-SafeControls.svelte';
   import GovernorControls from '$lib/ui/controls/1-GovernorControls.svelte';
   import AllControls from '$lib/ui/controls/1-AllControls.svelte';
+
+  import MarkdownIt from "markdown-it";
+  import hljs  from '$lib/ui/utils/highlightjs';
 
   export let data : PageData;
 
@@ -234,13 +233,11 @@ L1_RPC_URL=http://localhost:8545
 </script>
 
 <Background color="bg-base-100 pt-3 pb-4">
-
   <section id={data.dropDownLinks[0].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">1.1 : Prerequisites</h1>
     </div>
   </section>
-
 </Background>
 
 <div class="container flex flex-col gap-4 p-8 mx-8">
@@ -342,17 +339,14 @@ L1_RPC_URL=http://localhost:8545
   <p class="mt-6 text-base-300">
     In our example, we use <a class="bg-accent underline" href=https://github.com/wighawag/ldenv target="_blank" rel="noreferrer">ldenv</a> as convention guide for environment variable management.This will helps to manage deployment artifacts when deploying to different networks. Check our <a class="bg-accent underline" href=https://github.com/Ratimon/redprint-optimism-contracts-examples/blob/main/package.json target="_blank" rel="noreferrer">example !!</a> 
   </p>
-
 </div>
 
 <Background color="bg-base-100 pt-3 pb-4">
-
   <section id={data.dropDownLinks[1].pathname}>
     <div class="divider divider-primary ">
       <p class="text-2xl">1.2 : Deploy Governance Contract</p>
     </div>
   </section>
-
 </Background>
 
 <WizardDouble conventionNumber={'100'} initialContractTab={initialContractGovernanceTab} contractTab={contractGovernanceTab} opts={optsGovernance} contract={contractGovernance} deployContract={deployContractGovernance}>
@@ -481,7 +475,6 @@ L1_RPC_URL=http://localhost:8545
   </div>
 
 </WizardSingle>
-
 
 <style lang="postcss">
 

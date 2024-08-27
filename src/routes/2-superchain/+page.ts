@@ -23,6 +23,16 @@ export function load() {
         {pathname: '/3-plasmachain', title: '3: PlasmaChain', navType: 'tab'},
     ];
 
+    const dropDownLinks : Link[] = [
+        {pathname: '/2-superchain/#2.1', title: '2.1) Prerequisites', navType: 'scroll' },
+        {pathname: '/2-superchain/#2.2', title: '2.2) Deploy Governance Contract', navType: 'scroll'},
+        {pathname: '/2-superchain/#2.3', title: '2.2) Deploy Governance Contract', navType: 'scroll'},
+        {pathname: '/2-superchain/#2.4', title: '2.2) Deploy Governance Contract', navType: 'scroll'},
+        {pathname: '/2-superchain/#all', title: 'Deploy All', navType: 'scroll'},
+    ];
+
+    const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
+
     const footLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},
@@ -33,8 +43,9 @@ export function load() {
 	return {
         pageMetaTags: pageMetaTags,
 		headLinks: headLinks,
-        // menuTitle: "Blog",
-        // dropDownLinks: categoryLinks,
+        menuTitle: "Steps",
+        dropDownLinks: dropDownLinks,
+        actionLink: actionLink,
         footLinks: footLinks
 	};
 }
