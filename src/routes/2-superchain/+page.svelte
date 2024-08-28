@@ -1,12 +1,51 @@
 <script  lang="ts">
   import type { PageData } from "./$types";
 
+  import type { KindedAddressManagerOptions, KindAddressManager,  OptionsErrorMessages } from '$lib/wizard/shared';
+  import {  sanitizeKindAddressManager, OptionsError } from '$lib/wizard/shared';
+
+  import type {  Contract } from '$lib/wizard/smart-contracts';
+  import { ContractBuilder, buildContractGeneric } from '$lib/wizard/smart-contracts';
+  import type {  DeployContract } from '$lib/wizard/deploy-scripts';
+  import { DeployBuilder, buildDeployGeneric } from '$lib/wizard/deploy-scripts';
+
   import Background from '$lib/ui/background/Background.svelte';
+  import WizardDouble from '$lib/ui/components/WizardDouble.svelte';
+  import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
+
+  import AddressManagerControls from '$lib/ui/controls/2-AddressManagerControls.svelte';
 
   import MarkdownIt from "markdown-it";
   import hljs  from '$lib/ui/utils/highlightjs';
 
   export let data : PageData;
+
+  export let initialContractAddressManagerTab: string | undefined = 'AddressManager';
+  export let contractAddressManagerTab: KindAddressManager = sanitizeKindAddressManager(initialContractAddressManagerTab);
+
+  let allContractsAddressManagerOpts: { [k in KindAddressManager]?: Required<KindedAddressManagerOptions [k]> } = {};
+
+  let errorsAddressManager: { [k in KindAddressManager]?: OptionsErrorMessages } = {};
+
+  let contractAddressManager: Contract = new ContractBuilder('SafeProxy');
+  let deployContractAddressManager: DeployContract = new DeployBuilder('DeploySafeScript');
+
+  $: optsAddressManager = allContractsAddressManagerOpts[contractAddressManagerTab];
+  $: {
+  if (optsAddressManager) {
+          try {
+              contractAddressManager = buildContractGeneric(optsAddressManager);
+              deployContractAddressManager = buildDeployGeneric(optsAddressManager);
+              errorsAddressManager[contractAddressManagerTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsAddressManager[contractAddressManagerTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
 
   // to do : optimize bundler
   const md = MarkdownIt({
@@ -25,19 +64,6 @@
     }
   });
 
-  $: remmapingContent = md.render(`
-  \`\`\`bash
-@redprint-core/=node_modules/redprint-forge/src
-@redprint-deploy/=node_modules/redprint-forge/script
-@redprint-forge-std/=node_modules/redprint-forge/lib/forge-std/src
-@redprint-openzeppelin/=node_modules/redprint-forge/lib/openzeppelin-4_9_4/contracts
-@redprint-openzeppelin-upgradable/=node_modules/redprint-forge/lib/openzeppelin-upgradable-4_9_4/contracts
-@redprint-safe-contracts/=node_modules/redprint-forge/lib/safe-smart-account/contracts
-  \`\`\`
-  `);
-
-  let isConfigModalOpen = false;
-
   $: addressAllContent = md.render(`
   \`\`\`bash
 {
@@ -47,6 +73,8 @@
 }
   \`\`\`
   `);
+
+  let isArtifactStepOneModalOpen = false;
 
 </script>
 
@@ -86,7 +114,62 @@
   </section>
 </Background>
   
-<!-- 201A_DeployAddressManager.s -->
+<WizardDouble conventionNumber={'201'} initialContractTab={initialContractAddressManagerTab} contractTab={contractAddressManagerTab} opts={optsAddressManager} contract={contractAddressManager} deployContract={deployContractAddressManager}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractAddressManagerTab === 'AddressManager'} on:click={() => contractAddressManagerTab = 'AddressManager'}>
+              MultiSig
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractAddressManagerTab !== 'AddressManager'}>
+              <AddressManagerControls bind:opts={allContractsAddressManagerOpts.AddressManager} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressAllContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<!-- version control -->
 
 <!-- 201B_DeployAndSetupProxyAdmin.s.sol -->
 

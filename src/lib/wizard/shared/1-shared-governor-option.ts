@@ -1,10 +1,8 @@
-
 import type { CommonOptions} from './common-options';
 import { defaults as infoDefaults } from "./set-info";
 
 export const votesOptions = ['erc20votes', 'erc721votes'] as const;
 export type VotesOptions = typeof votesOptions[number];
-
 
 export const timelockOptions = [false, 'openzeppelin', 'compound'] as const;
 export type TimelockOptions = typeof timelockOptions[number];
@@ -16,7 +14,6 @@ export const commonDefaults: Required<CommonOptions> = {
 
   deployInfo: infoDefaults,
 } as const;
-
 
 export function withCommonDefaults(opts: SharedGovernerOptions): Required<SharedGovernerOptions> {
   return {

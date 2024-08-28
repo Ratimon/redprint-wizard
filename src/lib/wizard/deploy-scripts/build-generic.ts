@@ -7,11 +7,14 @@ import { buildDeployGoverner } from './1-governor';
 import type { SharedAllOptions} from '../shared/1-all-option';
 import { buildDeployAllStepOne } from './1-all';
 
+import type { SharedAddressManagerOptions } from '../shared/2-shared-address-manager-option';
+import { buildDeployAddressManager } from './2-address-manager';
 
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
   AllStepOne: {kind: 'AllStepOne'} & SharedAllOptions;
+  AddressManager: {kind: 'AddressManager'} & SharedAddressManagerOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -27,6 +30,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'AllStepOne':
       return buildDeployAllStepOne(opts);
+
+    case 'AddressManager':
+        return  buildDeployAddressManager(opts);
 
     default:
       const _: never = opts;

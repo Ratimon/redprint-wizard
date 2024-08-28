@@ -6,7 +6,6 @@
 
   import type {  Contract } from '$lib/wizard/smart-contracts';
   import { ContractBuilder, buildContractGeneric } from '$lib/wizard/smart-contracts';
-
   import type {  DeployContract } from '$lib/wizard/deploy-scripts';
   import { DeployBuilder, buildDeployGeneric } from '$lib/wizard/deploy-scripts';
 

@@ -1,4 +1,4 @@
-import type { GenericOptions, GenericGovernanceOptions, GenericAllStepOneOptions } from './build-generic';
+import type { GenericOptions, GenericGovernanceOptions, GenericAllStepOneOptions, GenericAddressManagerOptions } from './build-generic';
 
 export type Kind = GenericOptions['kind'];
 
@@ -11,6 +11,7 @@ export function sanitizeKind(kind: unknown): Kind {
   return 'Safe';
 }
 
+//  to do :
 function isKind<T>(value: Kind | T): value is Kind {
   switch (value) {
     case 'Safe':
@@ -19,6 +20,8 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'AllStepOne':
         return true;
+    case 'AddressManager':
+      return true;
 
     default: {
       // Static assert that we've checked all kinds.
@@ -56,7 +59,6 @@ function isKindGovernance<T>(value: KindGovernance | T): value is KindGovernance
 
 export type KindAllStepOne = GenericAllStepOneOptions['kind'];
 
-
 export function sanitizeKindAllStepOne(kind: unknown): KindAllStepOne {
   if (typeof kind === 'string') {
     if (isKindAllStepOne(kind)) {
@@ -70,8 +72,6 @@ function isKindAllStepOne<T>(value: KindAllStepOne | T): value is KindAllStepOne
   switch (value) {
     case 'AllStepOne':
       return true;
-    // case 'StepOne':
-    //   return true;
 
     default: {
       // Static assert that we've checked all kinds.
@@ -81,3 +81,26 @@ function isKindAllStepOne<T>(value: KindAllStepOne | T): value is KindAllStepOne
   }
 }
 
+export type KindAddressManager = GenericAddressManagerOptions['kind'];
+
+export function sanitizeKindAddressManager(kind: unknown): KindAddressManager {
+  if (typeof kind === 'string') {
+    if (isKindAddressManager(kind)) {
+      return kind;
+    }
+  }
+  return 'AddressManager';
+}
+
+function isKindAddressManager<T>(value: KindAddressManager | T): value is KindAddressManager {
+  switch (value) {
+    case 'AddressManager':
+      return true;
+
+    default: {
+      // Static assert that we've checked all kinds.
+      const _: T = value;
+      return false;
+    }
+  }
+}
