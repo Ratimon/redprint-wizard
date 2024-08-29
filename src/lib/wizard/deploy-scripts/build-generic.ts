@@ -4,7 +4,7 @@ import { buildDeploySafe } from './1-safe';
 import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
 import { buildDeployGoverner } from './1-governor';
 
-import type { SharedAllOptions} from '../shared/1-all-option';
+import type { SharedAllOptions} from '../shared/1-shared-all-option';
 import { buildDeployAllStepOne } from './1-all';
 
 import type { SharedAddressManagerOptions } from '../shared/2-shared-address-manager-option';

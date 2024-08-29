@@ -1,7 +1,7 @@
 
 import type { SharedSafeOptions} from '../shared/1-shared-safe-option';
 import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
-import type { SharedAllOptions} from '../shared/1-all-option';
+import type { SharedAllOptions} from './1-shared-all-option';
 
 import type { SharedAddressManagerOptions } from '../shared/2-shared-address-manager-option';
 

@@ -13,6 +13,11 @@ export { defaults as InfoDefaults } from './set-info';
 export type {OptionsErrorMessages } from './error';
 export { OptionsError } from './error';
 
-// to do : separate to 1- , 2-
-export type { Kind, KindGovernance, KindAllStepOne, KindAddressManager } from './kind';
-export { sanitizeKind, sanitizeKindGovernance, sanitizeKindAllStepOne, sanitizeKindAddressManager } from './kind';
+export type { Kind} from './0-all-kind';
+export { sanitizeKind} from './0-all-kind';
+
+export type { KindGovernance, KindAllStepOne } from './1-kind';
+export {  sanitizeKindGovernance, sanitizeKindAllStepOne } from './1-kind';
+
+export type { KindAddressManager} from './2-kind';
+export { sanitizeKindAddressManager} from './2-kind';

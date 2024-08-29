@@ -11,5 +11,9 @@ export type { Info } from './set-info';
 
 export { defaults as deployInfoDefaults } from './set-info';
 
-//  to do : separrate 1/2
-export { deployGovernor, deploySafe, deployStepOneAll, deployAddressManager } from './api';
+export {
+    deployGovernor,
+    deploySafe,
+    deployStepOneAll,
+    deployAddressManager
+} from './api';
