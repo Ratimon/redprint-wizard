@@ -1,12 +1,13 @@
-import type { Contract} from './contract';
+import type { Contract, BaseFunction} from './contract';
 import {  ContractBuilder } from './contract';
 
 import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-shared-safe-option";
+import type { SharedAddressManagerOptions } from '../shared/2-shared-address-manager-option';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";
 
-import type { SharedAddressManagerOptions } from '../shared/2-shared-address-manager-option';
+import { defineFunctions } from '../utils/define-functions';
 
 function withDefaults(opts: SharedAddressManagerOptions): Required<SharedAddressManagerOptions> {
   return {
@@ -20,45 +21,65 @@ export function printAddressManager(opts: SharedAddressManagerOptions = commonDe
 }
 
 export function buildAddressManager(opts: SharedAddressManagerOptions): Contract {
-  const allOpts = withDefaults(opts);
+    const allOpts = withDefaults(opts);
+    // to do add interface
+    // to do add note to highlight diff in op mono repo
+    const c = new ContractBuilder(allOpts.contractName);
 
-  // to do add interface
-  const c = new ContractBuilder(allOpts.contractName);
+    const Ownable = {
+        name: 'Ownable',
+        path: '@redprint-openzeppelin/access/Ownable.sol',
+    };
 
-  const IProxy = {
-    name: 'IProxy',
-    path: '@redprint-safe-contracts/contracts/proxies/SafeProxy.sol',
-  };
+    c.addParent(Ownable, []);
+    
+    c.addVariable(`mapping(bytes32 => address) private addresses;`);
+    c.addVariable(`event AddressSet(string indexed name, address newAddress, address oldAddress);`);
 
-  c.addModule(IProxy);
+    // setAddress
+    c.addModifier('whenNotPaused', functions.setAddress);
+    c.addFunctionCode(`bytes32 nameHash = _getNameHash(_name);`, functions.setAddress);
+    c.addFunctionCode(`address oldAddress = addresses[nameHash];`, functions.setAddress);
+    c.addFunctionCode(`addresses[nameHash] = _address;`, functions.setAddress);
+    c.addFunctionCode(`emit AddressSet(_name, _address, oldAddress);`, functions.setAddress);
 
-  c.addVariable(`address internal singleton;`);
+    // getAddress
+    c.addFunctionCode(`return addresses[_getNameHash(_name)];`, functions.getAddress);
 
-  c.addConstructorArgument({
-    type: 'address',
-    name: '_singleton'
-  });
-  c.addConstructorCode('require(_singleton != address(0), "Invalid singleton address provided");');
-  c.addConstructorCode('singleton = _singleton;');
+    // _getNameHash
+    c.addFunctionCode(`return keccak256(abi.encodePacked(_name));`, functions._getNameHash);
 
-  c.addFallbackCode('// solhint-disable-next-line no-inline-assembly');
-  c.addFallbackCode('assembly {');
-  c.addFallbackCode('  let _singleton := sload(0)');
-  c.addFallbackCode('  // 0xa619486e == keccak("masterCopy()"). The value is right padded to 32-bytes with 0s');
-  c.addFallbackCode('  if eq(calldataload(0), 0xa619486e00000000000000000000000000000000000000000000000000000000) {');
-  c.addFallbackCode('      mstore(0, shr(12, shl(12, _singleton)))');
-  c.addFallbackCode('      return(0, 0x20)');
-  c.addFallbackCode('  }');
-  c.addFallbackCode('  calldatacopy(0, 0, calldatasize())');
-  c.addFallbackCode('  let success := delegatecall(gas(), _singleton, 0, calldatasize(), 0, 0)');
-  c.addFallbackCode('  returndatacopy(0, 0, returndatasize())');
-  c.addFallbackCode('  if eq(success, 0) {');
-  c.addFallbackCode('      revert(0, returndatasize())');
-  c.addFallbackCode('  }');
-  c.addFallbackCode('  return(0, returndatasize())');
-  c.addFallbackCode('}');
 
-  setInfo(c, allOpts.contractInfo);
-
-  return c;
+    setInfo(c, allOpts.contractInfo);
+    return c;
 }
+
+const functions = defineFunctions({
+    setAddress: {
+        kind: 'external' as const,
+        args: [
+            { name: '_name', type: 'string memory' },
+            { name: '_address', type: 'with' },
+          ],
+    },
+  
+    getAddress: {
+      kind: 'external' as const,
+      args: [
+        { name: '_name', type: 'string memory' },
+      ],
+      returns: ['address'],
+      mutability: 'view',
+    },
+
+    _getNameHash: {
+        kind: 'internal' as const,
+        args: [
+          { name: '_name', type: 'string memory' },
+        ],
+        returns: ['bytes32'],
+        mutability: 'pure',
+      },
+
+
+  });

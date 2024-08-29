@@ -26,11 +26,9 @@ export function buildDeployGoverner(opts: SharedGovernerOptions): DeployContract
     const allOpts = withDeloyDefaults(opts);
   
     const c = new DeployBuilder(allOpts.deployName);
-
     addBase(c);
 
     const fn : BaseFunction = getDeployFunction();
-
     c.addFunctionCode(`vm.startBroadcast();`, fn);
 
     addVotes(c, fn);

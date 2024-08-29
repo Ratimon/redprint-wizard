@@ -48,51 +48,22 @@ function addBase(c: DeployBuilder) {
   };
   c.addParent(DeployScript, []);
 
-  const SafeProxyFactory = {
-    name: 'SafeProxyFactory',
-    path: '@redprint-safe-contracts/contracts/proxies/SafeProxyFactory.sol',
+  const AddressManager = {
+    name: 'AddressManager',
+    path: '@redprint-core/legacy/AddressManager.sol',
   };
-  c.addModule(SafeProxyFactory);
+  c.addModule(AddressManager);
 
-  const Safe = {
-    name: 'Safe',
-    path: '@redprint-safe-contracts/contracts/Safe.sol',
-  };
-  c.addModule(Safe);
-
-  const SafeProxy = {
-    name: 'SafeProxy',
-    path: '@redprint-safe-contracts/contracts/proxies/SafeProxy.sol',
-  };
-  c.addModule(SafeProxy);
+  const fn : BaseFunction = getDeployFunction();
+  c.addFunctionCode(`return AddressManager(deployer.deploy_AddressManager("AddressManager"));`, fn);
 
 }
-
-const chainModules = {
-  ethereum: {
-    safeProxyFactory: {
-      address: '0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2',
-    },
-    safeSingleton: {
-      address: '0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552',
-    }
-  },
-  optimism: {
-    safeProxyFactory: {
-      address: '0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2',
-    },
-    safeSingleton: {
-      address: '0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552',
-    }
-  },
-} as const;
-
 
 function getDeployFunction() {
   const fn = {
     name: 'deploy',
     args: [],
-    returns: ['SafeProxyFactory safeProxyFactory_', 'Safe safeSingleton_, SafeProxy safeProxy_' ] , 
+    returns: ['AddressManager' ] , 
     kind: 'external' as const,
   };
 

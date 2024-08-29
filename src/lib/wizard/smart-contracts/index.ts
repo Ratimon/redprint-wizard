@@ -13,4 +13,4 @@ export type { Info } from './set-info';
 
 export { defaults as contractInfoDefaults } from './set-info';
 
-export { governor, safe } from './api';
+export { governor, safe, addressManager } from './api';

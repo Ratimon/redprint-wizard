@@ -6,18 +6,19 @@
   
     import type { KindedAddressManagerOptions } from '$lib/wizard/shared';
   
-    import { safe } from '$lib/wizard/smart-contracts';
-    import { deploySafe } from '$lib/wizard/deploy-scripts';
+    import { addressManager } from '$lib/wizard/smart-contracts';
+    import { deployAddressManager } from '$lib/wizard/deploy-scripts';
   
-    const contractDefaults = safe.defaults;
-    const deployDefaults = deploySafe.defaults;
+    const contractDefaults = addressManager.defaults;
+    const deployDefaults = deployAddressManager.defaults;
   
     export let opts: Required<KindedAddressManagerOptions['AddressManager'] > = {
       kind: 'AddressManager',
       ...contractDefaults,
       ...deployDefaults,
-      //  to do 
-      contractInfo: {  securityContact: 'Consult full code at https://github.com/safe-global/safe-smart-account/blob/a9e3385bb38c29d45b3901ff7180b59fcee86ac9/contracts/proxies/SafeProxy.sol', license: 'MIT'  },
+
+      //  to do :
+      contractInfo: {  securityContact: 'Consult full code at https://github.com/ethereum-optimism/optimism/blob/v1.9.0/packages/contracts-bedrock/src/legacy/AddressManager.sol', license: 'MIT'  },
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
   

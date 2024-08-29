@@ -27,8 +27,8 @@
 
   let errorsAddressManager: { [k in KindAddressManager]?: OptionsErrorMessages } = {};
 
-  let contractAddressManager: Contract = new ContractBuilder('SafeProxy');
-  let deployContractAddressManager: DeployContract = new DeployBuilder('DeploySafeScript');
+  let contractAddressManager: Contract = new ContractBuilder('AddressManager');
+  let deployContractAddressManager: DeployContract = new DeployBuilder('DeployAddressManagerScript');
 
   $: optsAddressManager = allContractsAddressManagerOpts[contractAddressManagerTab];
   $: {
@@ -70,6 +70,7 @@
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>"
+  "AddressManager": "<ADDRESS_4>"
 }
   \`\`\`
   `);
@@ -120,7 +121,7 @@
         <Background color="bg-base-200">
           <OverflowMenu>
             <button class:selected={contractAddressManagerTab === 'AddressManager'} on:click={() => contractAddressManagerTab = 'AddressManager'}>
-              MultiSig
+              AddressManager
             </button>      
           </OverflowMenu>
         </Background>
