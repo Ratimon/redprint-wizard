@@ -1,26 +1,26 @@
 import type { Contract, BaseFunction} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-option-address-manager";
-import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-option-proxy-admin";
+import type { SharedProxyAdminOptions } from '../shared/2-option-proxy-admin';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";
 
 import { defineFunctions } from '../utils/define-functions';
 
-function withDefaults(opts: SharedAddressManagerOptions): Required<SharedAddressManagerOptions> {
+function withDefaults(opts: SharedProxyAdminOptions): Required<SharedProxyAdminOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printAddressManager(opts: SharedAddressManagerOptions = commonDefaults): string {
-  return printContract(buildAddressManager(opts));
+export function printProxyAdmin(opts: SharedProxyAdminOptions = commonDefaults): string {
+  return printContract(buildProxyAdmin(opts));
 }
 
-export function buildAddressManager(opts: SharedAddressManagerOptions): Contract {
+export function buildProxyAdmin(opts: SharedProxyAdminOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo
@@ -55,29 +55,31 @@ export function buildAddressManager(opts: SharedAddressManagerOptions): Contract
 }
 
 const functions = defineFunctions({
-  setAddress: {
+    setAddress: {
+        kind: 'external' as const,
+        args: [
+            { name: '_name', type: 'string memory' },
+            { name: '_address', type: 'with' },
+          ],
+    },
+  
+    getAddress: {
       kind: 'external' as const,
-      args: [
-          { name: '_name', type: 'string memory' },
-          { name: '_address', type: 'with' },
-        ],
-  },
-
-  getAddress: {
-    kind: 'external' as const,
-    args: [
-      { name: '_name', type: 'string memory' },
-    ],
-    returns: ['address'],
-    mutability: 'view',
-  },
-
-  _getNameHash: {
-      kind: 'internal' as const,
       args: [
         { name: '_name', type: 'string memory' },
       ],
-      returns: ['bytes32'],
-      mutability: 'pure',
+      returns: ['address'],
+      mutability: 'view',
     },
+
+    _getNameHash: {
+        kind: 'internal' as const,
+        args: [
+          { name: '_name', type: 'string memory' },
+        ],
+        returns: ['bytes32'],
+        mutability: 'pure',
+      },
+
+
   });

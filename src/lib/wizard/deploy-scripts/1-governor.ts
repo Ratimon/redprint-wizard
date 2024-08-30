@@ -1,8 +1,8 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-shared-governor-option";
+import type { SharedGovernerOptions} from '../shared/1-option-governor';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-option-governor";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";

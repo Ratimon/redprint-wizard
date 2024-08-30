@@ -1,15 +1,18 @@
-import type {  SharedSafeOptions } from '../shared/1-shared-safe-option';
-import {  defaults as safeDefaults } from '../shared/1-shared-safe-option';
-
-import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
-import {  defaults as governorDefaults } from '../shared/1-shared-governor-option';
-
-import type { SharedAddressManagerOptions } from '../shared/2-shared-address-manager-option';
-import {  defaults as addressManagerDefaults } from '../shared/2-shared-address-manager-option';
-
-import { printGovernor, isAccessControlRequired as governorIsAccessControlRequired } from './1-governor';
+import type {  SharedSafeOptions } from '../shared/1-option-safe';
+import {  defaults as safeDefaults } from '../shared/1-option-safe';
 import { printSafe } from './1-safe';
+
+import type { SharedGovernerOptions} from '../shared/1-option-governor';
+import {  defaults as governorDefaults } from '../shared/1-option-governor';
+import { printGovernor, isAccessControlRequired as governorIsAccessControlRequired } from './1-governor';
+
+import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';
+import {  defaults as addressManagerDefaults } from '../shared/2-option-address-manager';
 import { printAddressManager } from './2-address-manager';
+
+import type { SharedProxyAdminOptions } from '../shared/2-option-proxy-admin';
+import {  defaults as proxyAdminDefaults } from '../shared/2-option-proxy-admin';
+import { printProxyAdmin } from './2-proxy-admin';
 
 import type { CommonOptions } from '../shared/common-options';
 
@@ -30,21 +33,26 @@ export interface WizardContractAPI<Options extends CommonOptions> {
 }
 
 export type Governor = WizardContractAPI<SharedGovernerOptions>;
-export type Safe = WizardContractAPI<SharedSafeOptions>;
-export type AddressManager = WizardContractAPI<SharedAddressManagerOptions>;
-
 export const governor: Governor = {
   print: printGovernor,
   defaults: governorDefaults,
   isAccessControlRequired: governorIsAccessControlRequired
 }
 
+export type Safe = WizardContractAPI<SharedSafeOptions>;
 export const safe: Safe = {
   print: printSafe,
   defaults: safeDefaults
 }
 
+export type AddressManager = WizardContractAPI<SharedAddressManagerOptions>;
 export const addressManager: AddressManager = {
   print: printAddressManager,
   defaults: addressManagerDefaults
+}
+
+export type ProxyAdmin = WizardContractAPI<SharedProxyAdminOptions>;
+export const proxyAdmin: ProxyAdmin = {
+  print: printProxyAdmin,
+  defaults: proxyAdminDefaults
 }

@@ -1,4 +1,4 @@
-import type { GenericOptions, GenericGovernanceOptions, GenericAllStepOneOptions, GenericAddressManagerOptions } from './build-generic';
+import type { GenericOptions} from './build-generic';
 
 export type Kind = GenericOptions['kind'];
 
@@ -21,6 +21,8 @@ function isKind<T>(value: Kind | T): value is Kind {
         return true;
     case 'AddressManager':
       return true;
+    case 'ProxyAdmin':
+        return true;
 
     default: {
       // Static assert that we've checked all kinds.

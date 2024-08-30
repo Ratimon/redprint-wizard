@@ -3,16 +3,16 @@
   
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedAddressManagerOptions } from '$lib/wizard/shared';
+    import type { KindedProxyAdminOptions } from '$lib/wizard/shared';
   
-    import { addressManager } from '$lib/wizard/smart-contracts';
-    import { deployAddressManager } from '$lib/wizard/deploy-scripts';
+    import { proxyAdmin } from '$lib/wizard/smart-contracts';
+    import { deployProxyAdmin } from '$lib/wizard/deploy-scripts';
   
-    const contractDefaults = addressManager.defaults;
-    const deployDefaults = deployAddressManager.defaults;
+    const contractDefaults = proxyAdmin.defaults;
+    const deployDefaults = deployProxyAdmin.defaults;
   
-    export let opts: Required<KindedAddressManagerOptions['AddressManager'] > = {
-      kind: 'AddressManager',
+    export let opts: Required<KindedProxyAdminOptions['ProxyAdmin'] > = {
+      kind: 'ProxyAdmin',
       ...contractDefaults,
       ...deployDefaults,
 

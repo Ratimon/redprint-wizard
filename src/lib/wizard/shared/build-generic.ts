@@ -1,15 +1,17 @@
 
-import type { SharedSafeOptions} from '../shared/1-shared-safe-option';
-import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
-import type { SharedAllOptions} from './1-shared-all-option';
+import type { SharedSafeOptions} from './1-option-safe';
+import type { SharedGovernerOptions} from './1-option-governor';
+import type { SharedAllOptions} from './1-option-all';
 
-import type { SharedAddressManagerOptions } from '../shared/2-shared-address-manager-option';
+import type { SharedAddressManagerOptions } from './2-option-address-manager';
+import type { SharedProxyAdminOptions } from './2-option-proxy-admin';
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
   AllStepOne: { kind: 'AllStepOne' } & SharedAllOptions;
   AddressManager: { kind: 'AddressManager' } & SharedAddressManagerOptions;
+  ProxyAdmin: { kind: 'ProxyAdmin' } & SharedProxyAdminOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -35,3 +37,9 @@ export interface KindedAddressManagerOptions {
 }
 
 export type GenericAddressManagerOptions = KindedAddressManagerOptions[keyof KindedAddressManagerOptions];
+
+export interface KindedProxyAdminOptions {
+  ProxyAdmin: { kind: 'ProxyAdmin' } & SharedProxyAdminOptions;
+}
+
+export type GenericProxyAdminOptions = KindedProxyAdminOptions[keyof KindedProxyAdminOptions];

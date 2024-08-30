@@ -1,24 +1,24 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';
-import { withCommonDefaults, defaults } from "../shared/2-option-address-manager";
+import type { SharedProxyAdminOptions } from '../shared/2-option-proxy-admin';
+import { withCommonDefaults, defaults } from "../shared/2-option-proxy-admin";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
-function withDeployDefaults(opts: SharedAddressManagerOptions): Required<SharedAddressManagerOptions> {
+function withDeployDefaults(opts: SharedProxyAdminOptions): Required<SharedProxyAdminOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployAddressManager(opts: SharedAddressManagerOptions = defaults): string {
-  return printDeployContract(buildDeployAddressManager(opts));
+export function printDeployProxyAdmin(opts: SharedProxyAdminOptions = defaults): string {
+  return printDeployContract(buildDeployProxyAdmin(opts));
 }
 
-export function buildDeployAddressManager(opts: SharedAddressManagerOptions): DeployContract {
+export function buildDeployProxyAdmin(opts: SharedProxyAdminOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   

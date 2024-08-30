@@ -1,20 +1,24 @@
 import type { CommonOptions } from '../shared/common-options';
 
-import type { SharedGovernerOptions} from '../shared/1-shared-governor-option';
-import { defaults as governorDefaults } from '../shared/1-shared-governor-option';
+import type { SharedGovernerOptions} from '../shared/1-option-governor';
+import { defaults as governorDefaults } from '../shared/1-option-governor';
 import { printDeployGovernor} from './1-governor';
 
-import type {  SharedSafeOptions } from '../shared/1-shared-safe-option';
-import {  defaults as safeDefaults } from '../shared/1-shared-safe-option';
+import type {  SharedSafeOptions } from '../shared/1-option-safe';
+import {  defaults as safeDefaults } from '../shared/1-option-safe';
 import { printDeploySafe } from './1-safe';
 
-import type {  SharedAllOptions } from '../shared/1-shared-all-option';
-import {  defaults as allDefaults } from '../shared/1-shared-all-option';
+import type {  SharedAllOptions } from '../shared/1-option-all';
+import {  defaults as allDefaults } from '../shared/1-option-all';
 import { printDeployAllStepOne } from './1-all';
 
-import type { SharedAddressManagerOptions } from '../shared/2-shared-address-manager-option';
-import {  defaults as addressManagerDefaults } from '../shared/2-shared-address-manager-option';
+import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';
+import {  defaults as addressManagerDefaults } from '../shared/2-option-address-manager';
 import { printDeployAddressManager } from './2-address-manager';
+
+import type { SharedProxyAdminOptions } from '../shared/2-option-proxy-admin';
+import {  defaults as proxyAdminDefaults } from '../shared/2-option-proxy-admin';
+import { printDeployProxyAdmin } from './2-proxy-admin';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -55,4 +59,10 @@ export type DeployAddressManager = WizardAllAPI<SharedAddressManagerOptions>;
 export const deployAddressManager: DeployAddressManager = {
   print: printDeployAddressManager,
   defaults: addressManagerDefaults,
+}
+
+export type DeployProxyAdmin = WizardAllAPI<SharedProxyAdminOptions>;
+export const deployProxyAdmin: DeployProxyAdmin = {
+  print: printDeployProxyAdmin,
+  defaults: proxyAdminDefaults,
 }

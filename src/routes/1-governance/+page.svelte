@@ -1,13 +1,13 @@
 <script  lang="ts">
   import type { PageData } from "./$types";
 
-  import type { KindedGovernanceOptions, KindGovernance, KindedAllStepOneOptions, KindAllStepOne, OptionsErrorMessages } from '$lib/wizard/shared';
-  import {  sanitizeKindGovernance, sanitizeKindAllStepOne, OptionsError } from '$lib/wizard/shared';
-
   import type {  Contract } from '$lib/wizard/smart-contracts';
   import { ContractBuilder, buildContractGeneric } from '$lib/wizard/smart-contracts';
   import type {  DeployContract } from '$lib/wizard/deploy-scripts';
   import { DeployBuilder, buildDeployGeneric } from '$lib/wizard/deploy-scripts';
+
+  import type { KindedGovernanceOptions, KindGovernance, KindedAllStepOneOptions, KindAllStepOne, OptionsErrorMessages } from '$lib/wizard/shared';
+  import {  sanitizeKindGovernance, sanitizeKindAllStepOne, OptionsError } from '$lib/wizard/shared';
 
   import Background from '$lib/ui/background/Background.svelte';
   import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
@@ -21,6 +21,23 @@
 
   import MarkdownIt from "markdown-it";
   import hljs  from '$lib/ui/utils/highlightjs';
+
+  // to do : optimize bundler
+  const md = MarkdownIt({
+    html: true,
+    linkify: true,
+    highlight: function (str: string, lang: string) {
+    // to do : refactor : hljs to specify language
+    if (lang && hljs.getLanguage(lang)) {
+    try {
+        return hljs.highlight(str, { language: lang }).value;
+    } catch (err) {
+        // Handle error
+        }
+    }
+    return '';
+    }
+  });
 
   export let data : PageData;
 
@@ -75,23 +92,6 @@
           }
       }
   }
-
-  // to do : optimize bundler
-  const md = MarkdownIt({
-    html: true,
-    linkify: true,
-    highlight: function (str: string, lang: string) {
-    // to do : refactor : hljs to specify language
-    if (lang && hljs.getLanguage(lang)) {
-    try {
-        return hljs.highlight(str, { language: lang }).value;
-    } catch (err) {
-        // Handle error
-        }
-    }
-    return '';
-    }
-  });
 
   $: remmapingContent = md.render(`
   \`\`\`bash
