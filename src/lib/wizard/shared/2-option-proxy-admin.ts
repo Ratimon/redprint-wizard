@@ -2,6 +2,9 @@
 import type { CommonOptions} from './common-options';
 import { defaults as infoDefaults } from "./set-info";
 
+export const opSecOptions = [false, 'address', 'key', 'mnemonic'] as const;
+export type OpSec = typeof opSecOptions[number];
+
 export const commonDefaults: Required<CommonOptions> = {
   //contract
   access: false,
@@ -32,9 +35,10 @@ export const defaults: Required<SharedProxyAdminOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployProxyAdminScript',
+  deployName: 'DeployAndSetupProxyAdminScript',
 
-  deployInfo: commonDefaults.deployInfo
+  deployInfo: commonDefaults.deployInfo,
+  opSec: 'mnemonic',
 } as const;
 
 
@@ -42,4 +46,5 @@ export interface SharedProxyAdminOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;
+  opSec: OpSec;
 }

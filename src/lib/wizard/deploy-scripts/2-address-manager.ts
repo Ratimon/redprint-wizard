@@ -23,7 +23,6 @@ export function buildDeployAddressManager(opts: SharedAddressManagerOptions): De
   const c = new DeployBuilder(allOpts.deployName);
   
   addBase(c);
-  const fn : BaseFunction = getDeployFunction();
 
   setInfo(c, allOpts.deployInfo);
 
@@ -36,6 +35,7 @@ function addBase(c: DeployBuilder) {
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
   c.addLibrary(DeployFunctions, `IDeployer`);
+  
   const IDeployer = {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',

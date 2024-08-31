@@ -53,7 +53,7 @@ export interface ContractFunction extends BaseFunction {
   final: boolean;
 }
 
-export type FunctionKind = 'internal' | 'public' | 'external';
+export type FunctionKind = 'internal' | 'public' | 'external' | 'external payable';
 export type FunctionMutability = typeof mutabilityRank[number];
 
 // Order is important

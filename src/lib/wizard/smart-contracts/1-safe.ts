@@ -33,11 +33,9 @@ export function buildSafe(opts: SharedSafeOptions): Contract {
     name: 'IProxy',
     path: '@redprint-safe-contracts/contracts/proxies/SafeProxy.sol',
   };
-
   c.addModule(IProxy);
 
   c.addVariable(`address internal singleton;`);
-
   c.addConstructorArgument({
     type: 'address',
     name: '_singleton'

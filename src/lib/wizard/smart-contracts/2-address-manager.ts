@@ -30,13 +30,13 @@ export function buildAddressManager(opts: SharedAddressManagerOptions): Contract
         name: 'Ownable',
         path: '@redprint-openzeppelin/access/Ownable.sol',
     };
-
     c.addParent(Ownable, []);
     
     c.addVariable(`mapping(bytes32 => address) private addresses;`);
     c.addVariable(`event AddressSet(string indexed name, address newAddress, address oldAddress);`);
 
     // setAddress
+    //  to do : add only one time
     c.addModifier('whenNotPaused', functions.setAddress);
     c.addFunctionCode(`bytes32 nameHash = _getNameHash(_name);`, functions.setAddress);
     c.addFunctionCode(`address oldAddress = addresses[nameHash];`, functions.setAddress);
@@ -48,7 +48,6 @@ export function buildAddressManager(opts: SharedAddressManagerOptions): Contract
 
     // _getNameHash
     c.addFunctionCode(`return keccak256(abi.encodePacked(_name));`, functions._getNameHash);
-
 
     setInfo(c, allOpts.contractInfo);
     return c;

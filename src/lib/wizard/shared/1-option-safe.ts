@@ -48,7 +48,6 @@ export const defaults: Required<SharedSafeOptions> = {
 
 export interface SharedSafeOptions extends CommonOptions {
   contractName: string;
-  // chain: ChainsOptions;
 
   deployName: string;
   chain: Chain;
