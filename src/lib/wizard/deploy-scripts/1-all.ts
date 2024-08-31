@@ -26,8 +26,8 @@ export function buildDeployAllStepOne(opts: SharedAllOptions): DeployContract {
   
   addBase(c);
   const fn : BaseFunction = getDeployFunction();
-  c.addFunctionCode(`deployerProcedue = getDeployer();`, fn);
-  c.addFunctionCode(`deployerProcedue.setAutoSave(true);`, fn);
+  c.addFunctionCode(`deployerProcedue = getDeployer();
+        deployerProcedue.setAutoSave(true);`, fn);
   
   setSubDeployment(c, fn, allOpts.governance);
 
@@ -49,7 +49,6 @@ function addBase(c: DeployBuilder) {
         path: '@redprint-deploy/deployer/DeployerFunctions.sol',
     };
     c.addModule(IDeployer);
-
     c.addVariable(`IDeployer deployerProcedue;`);
 
 }
@@ -65,9 +64,9 @@ function setSubDeployment(c: DeployBuilder, fn: BaseFunction, gov: Governance) {
         };
         c.addModule(DeploySafeProxyScript);
 
-        c.addFunctionCode(`DeploySafeProxyScript safeDeployments = new DeploySafeProxyScript();`, fn);
-        c.addFunctionCode(`//1) set up Safe Multisig`, fn);
-        c.addFunctionCode(`safeDeployments.deploy();`, fn);
+        c.addFunctionCode(`DeploySafeProxyScript safeDeployments = new DeploySafeProxyScript();
+        //1) set up Safe Multisig
+        safeDeployments.deploy();`, fn);
 
         break;
       }
@@ -79,9 +78,9 @@ function setSubDeployment(c: DeployBuilder, fn: BaseFunction, gov: Governance) {
         };
 
         c.addModule(DeployGovernerScript);
-        c.addFunctionCode(`DeployGovernerScript govDeployments = new DeployGovernerScript();`, fn);
-        c.addFunctionCode(`//1) set up Governer`, fn);
-        c.addFunctionCode(`govDeployments.deploy();`, fn);
+        c.addFunctionCode(`DeployGovernerScript govDeployments = new DeployGovernerScript();
+        //1) set up Governer
+        govDeployments.deploy();`, fn);
         break;
       }
     }

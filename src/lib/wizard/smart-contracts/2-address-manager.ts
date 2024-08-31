@@ -36,12 +36,11 @@ export function buildAddressManager(opts: SharedAddressManagerOptions): Contract
     c.addVariable(`event AddressSet(string indexed name, address newAddress, address oldAddress);`);
 
     // setAddress
-    //  to do : add only one time
     c.addModifier('whenNotPaused', functions.setAddress);
-    c.addFunctionCode(`bytes32 nameHash = _getNameHash(_name);`, functions.setAddress);
-    c.addFunctionCode(`address oldAddress = addresses[nameHash];`, functions.setAddress);
-    c.addFunctionCode(`addresses[nameHash] = _address;`, functions.setAddress);
-    c.addFunctionCode(`emit AddressSet(_name, _address, oldAddress);`, functions.setAddress);
+    c.addFunctionCode(`bytes32 nameHash = _getNameHash(_name);
+        address oldAddress = addresses[nameHash];
+        addresses[nameHash] = _address;
+        emit AddressSet(_name, _address, oldAddress);`, functions.setAddress);
 
     // getAddress
     c.addFunctionCode(`return addresses[_getNameHash(_name)];`, functions.getAddress);

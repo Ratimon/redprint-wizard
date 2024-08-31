@@ -40,25 +40,26 @@ export function buildSafe(opts: SharedSafeOptions): Contract {
     type: 'address',
     name: '_singleton'
   });
-  c.addConstructorCode('require(_singleton != address(0), "Invalid singleton address provided");');
-  c.addConstructorCode('singleton = _singleton;');
 
-  c.addFallbackCode('// solhint-disable-next-line no-inline-assembly');
-  c.addFallbackCode('assembly {');
-  c.addFallbackCode('  let _singleton := sload(0)');
-  c.addFallbackCode('  // 0xa619486e == keccak("masterCopy()"). The value is right padded to 32-bytes with 0s');
-  c.addFallbackCode('  if eq(calldataload(0), 0xa619486e00000000000000000000000000000000000000000000000000000000) {');
-  c.addFallbackCode('      mstore(0, shr(12, shl(12, _singleton)))');
-  c.addFallbackCode('      return(0, 0x20)');
-  c.addFallbackCode('  }');
-  c.addFallbackCode('  calldatacopy(0, 0, calldatasize())');
-  c.addFallbackCode('  let success := delegatecall(gas(), _singleton, 0, calldatasize(), 0, 0)');
-  c.addFallbackCode('  returndatacopy(0, 0, returndatasize())');
-  c.addFallbackCode('  if eq(success, 0) {');
-  c.addFallbackCode('      revert(0, returndatasize())');
-  c.addFallbackCode('  }');
-  c.addFallbackCode('  return(0, returndatasize())');
-  c.addFallbackCode('}');
+  c.addConstructorCode(`require(_singleton != address(0), "Invalid singleton address provided");
+        singleton = _singleton;`);
+
+  c.addFallbackCode(`// solhint-disable-next-line no-inline-assembly
+        assembly {
+          let _singleton := sload(0)
+          // 0xa619486e == keccak("masterCopy()"). The value is right padded to 32-bytes with 0s
+          if eq(calldataload(0), 0xa619486e00000000000000000000000000000000000000000000000000000000) {
+              mstore(0, shr(12, shl(12, _singleton)))
+              return(0, 0x20)
+          }
+          calldatacopy(0, 0, calldatasize())
+          let success := delegatecall(gas(), _singleton, 0, calldatasize(), 0, 0)
+          returndatacopy(0, 0, returndatasize())
+          if eq(success, 0) {
+              revert(0, returndatasize())
+          }
+          return(0, returndatasize())
+        }`);
 
   setInfo(c, allOpts.contractInfo);
 

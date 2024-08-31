@@ -90,7 +90,6 @@ const chainModules = {
   },
 } as const;
 
-
 function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<SharedSafeOptions> , mnemonic = true,) {
   const chain = allOpts.chain;
 
@@ -99,17 +98,15 @@ function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<Shared
   }
   const { safeProxyFactory, safeSingleton } = chainModules[chain];
 
-  // to do : abstract into 2 functions ?
   setOpsec(c, allOpts.opSec);
-    
-  c.addFunctionCode(`address safeProxyFactory = ${safeProxyFactory.address};`, fn);
-  c.addFunctionCode(`address safeSingleton = ${safeSingleton.address};`, fn);
 
-  c.addFunctionCode(`safeProxyFactory.code.length == 0`, fn);
-  c.addFunctionCode(`    ? safeSingleton_ = Safe(deployer.deploy_Safe("SafeSingleton"))`, fn);
-  c.addFunctionCode(`    : safeSingleton_ = Safe(payable(safeSingleton));`, fn);
+  c.addFunctionCode(`address safeProxyFactory = ${safeProxyFactory.address};
+        address safeSingleton = ${safeSingleton.address};
+        safeProxyFactory.code.length == 0
+            ? safeSingleton_ = Safe(deployer.deploy_Safe("SafeSingleton"))
+            : safeSingleton_ = Safe(payable(safeSingleton));
+        safeProxy_ = SafeProxy(deployer.deploy_SystemOwnerSafe("SystemOwnerSafe", "SafeProxyFactory", "SafeSingleton", address(owner)));`, fn);
 
-  c.addFunctionCode(`safeProxy_ = SafeProxy(deployer.deploy_SystemOwnerSafe("SystemOwnerSafe", "SafeProxyFactory", "SafeSingleton", address(owner)));`, fn);
 }
 
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
