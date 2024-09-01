@@ -20,6 +20,10 @@ import type { SharedProxyAdminOptions } from '../shared/2-option-proxy-admin';
 import {  defaults as proxyAdminDefaults } from '../shared/2-option-proxy-admin';
 import { printDeployProxyAdmin } from './2-proxy-admin';
 
+import type { SharedSuperchainConfigProxyOptions } from '../shared/2-option-superchain-config-proxy';
+import {  defaults as superchainConfigProxyDefaults } from '../shared/2-option-superchain-config-proxy';
+import { printDeploySuperchainConfigProxy } from './2-superchain-config-proxy';
+
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
    * Returns a string representation of a contract generated using the provided options. If opts is not provided, uses `defaults`.
@@ -65,4 +69,10 @@ export type DeployProxyAdmin = WizardAllAPI<SharedProxyAdminOptions>;
 export const deployProxyAdmin: DeployProxyAdmin = {
   print: printDeployProxyAdmin,
   defaults: proxyAdminDefaults,
+}
+
+export type DeploySuperchainConfigProxy = WizardAllAPI<SharedSuperchainConfigProxyOptions>;
+export const deploySuperchainConfigProxy: DeploySuperchainConfigProxy = {
+  print: printDeploySuperchainConfigProxy,
+  defaults: superchainConfigProxyDefaults,
 }

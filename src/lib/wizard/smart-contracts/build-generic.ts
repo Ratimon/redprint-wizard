@@ -11,11 +11,15 @@ import { buildAddressManager } from './2-address-manager';
 import type { SharedProxyAdminOptions } from '../shared/2-option-proxy-admin';
 import { buildProxyAdmin } from './2-proxy-admin'
 
+import type { SharedSuperchainConfigProxyOptions } from '../shared/2-option-superchain-config-proxy';
+import { buildSuperchainConfigProxy } from './2-superchain-config-proxy';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
   AddressManager : { kind: 'AddressManager' } & SharedAddressManagerOptions;
   ProxyAdmin : { kind: 'ProxyAdmin' } & SharedProxyAdminOptions;
+  SuperchainConfigProxy : { kind: 'SuperchainConfigProxy'} & SharedSuperchainConfigProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -34,6 +38,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'ProxyAdmin':
         return  buildProxyAdmin(opts);
+
+    case 'SuperchainConfigProxy':
+        return buildSuperchainConfigProxy(opts);
 
     default:
       const _: never = opts;

@@ -25,10 +25,10 @@ export function load() {
 
     const dropDownLinks : Link[] = [
         {pathname: '/2-superchain/#2.0', title: '2.0) Prerequisites', navType: 'scroll' },
-        {pathname: '/2-superchain/#2.1', title: '2.1) AddressManager', navType: 'scroll'},
-        {pathname: '/2-superchain/#2.2', title: '2.2) ProxyAdmin', navType: 'scroll'},
-        {pathname: '/2-superchain/#2.3', title: '2.3) SuperchainConfigProxy', navType: 'scroll'},
-        {pathname: '/2-superchain/#2.4', title: '2.4) SuperchainConfig', navType: 'scroll'},
+        {pathname: '/2-superchain/#2.1A', title: '2.1A) AddressManager', navType: 'scroll'},
+        {pathname: '/2-superchain/#2.1B', title: '2.1B) ProxyAdmin', navType: 'scroll'},
+        {pathname: '/2-superchain/#2.2A', title: '2.2A) SuperchainConfigProxy', navType: 'scroll'},
+        {pathname: '/2-superchain/#2.2B', title: '2.2B) SuperchainConfig', navType: 'scroll'},
         {pathname: '/2-superchain/#all', title: 'Deploy All', navType: 'scroll'},
     ];
 

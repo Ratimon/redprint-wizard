@@ -7,7 +7,8 @@ export type Action =
                     'copy-contract-Governor'| 'copy-script-Governor' | 'download-contract-Governor' | 'download-script-Governor' |
                     'copy-contract-AllStepOne'| 'copy-script-AllStepOne' | 'download-contract-AllStepOne' | 'download-script-AllStepOne' |
                     'copy-contract-AddressManager'| 'copy-script-AddressManager' | 'download-contract-AddressManager' | 'download-script-AddressManager' |
-                    'copy-contract-ProxyAdmin'| 'copy-script-ProxyAdmin' | 'download-contract-ProxyAdmin' | 'download-script-ProxyAdmin'
+                    'copy-contract-ProxyAdmin'| 'copy-script-ProxyAdmin' | 'download-contract-ProxyAdmin' | 'download-script-ProxyAdmin' |
+                    'copy-contract-SuperchainConfigProxy'| 'copy-script-SuperchainConfigProxy' | 'download-contract-SuperchainConfigProxy' | 'download-script-SuperchainConfigProxy'
                     
 
 export type GaEvent = {

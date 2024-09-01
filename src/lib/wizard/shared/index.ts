@@ -3,7 +3,8 @@ export type {
     KindedGovernanceOptions, GenericGovernanceOptions,
     KindedAllStepOneOptions, GenericAllStepOneOptions,
     KindedAddressManagerOptions, GenericAddressManagerOptions,
-    KindedProxyAdminOptions, GenericProxyAdminOptions
+    KindedProxyAdminOptions, GenericProxyAdminOptions,
+    KindedSuperchainConfigProxyOptions, GenericSuperchainConfigProxyOptions
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -25,3 +26,6 @@ export { sanitizeKindAddressManager} from './2-kind-address-manager';
 
 export type { KindProxyAdmin} from './2-kind-proxy-admin';
 export { sanitizeKindProxyAdmin} from './2-kind-proxy-admin';
+
+export type { KindSuperchainConfigProxy} from './2-kind-superchain-config-proxy'
+export { sanitizeKindSuperchainConfigProxy} from './2-kind-superchain-config-proxy';

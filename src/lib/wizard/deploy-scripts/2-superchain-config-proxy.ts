@@ -1,32 +1,31 @@
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedProxyAdminOptions, OpSec } from '../shared/2-option-proxy-admin';
-import { withCommonDefaults, defaults } from "../shared/2-option-proxy-admin";
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-option-superchain-config-proxy";
+import type { SharedSuperchainConfigProxyOptions } from '../shared/2-option-superchain-config-proxy';
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
 import { defineFunctions } from '../utils/define-functions';
 
-function withDeployDefaults(opts: SharedProxyAdminOptions): Required<SharedProxyAdminOptions> {
+function withDeployDefaults(opts: SharedSuperchainConfigProxyOptions): Required<SharedSuperchainConfigProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployProxyAdmin(opts: SharedProxyAdminOptions = defaults): string {
-  return printDeployContract(buildDeployProxyAdmin(opts));
+
+export function printDeploySuperchainConfigProxy(opts: SharedSuperchainConfigProxyOptions = commonDefaults): string {
+  return printDeployContract(buildDeploySuperchainConfigProxy(opts));
 }
 
-export function buildDeployProxyAdmin(opts: SharedProxyAdminOptions): DeployContract {
+export function buildDeploySuperchainConfigProxy(opts: SharedSuperchainConfigProxyOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
   addBase(c);
-
-  setOpsec(c, allOpts.opSec);
 
   setInfo(c, allOpts.deployInfo);
 
@@ -100,29 +99,6 @@ function addBase(c: DeployBuilder) {
         }`, functions.initialize);
 
   
-}
-
-function setOpsec(c: DeployBuilder, opsec: OpSec) {
-  switch (opsec) {
-    case 'address': {
-      c.addVariable(`address owner = vm.envAddress("DEPLOYER_ADDRESS");`);
-
-      break;
-    }
-    case 'key': {
-      c.addVariable(`uint256 ownerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");`);
-      c.addVariable(`address owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`);
-
-      break;
-    }
-    case 'mnemonic': {
-      c.addVariable(`string mnemonic = vm.envString("MNEMONIC");`);
-      c.addVariable(`uint256 ownerPrivateKey = vm.deriveKey(mnemonic, "m/44'/60'/0'/0/", 1);`);
-      c.addVariable(`address owner = vm.envOr("DEPLOYER_ADDRESS", vm.addr(ownerPrivateKey));`);
-      
-      break;
-    }
-  }
 }
 
 const functions = defineFunctions({

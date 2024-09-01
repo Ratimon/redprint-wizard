@@ -9,11 +9,14 @@
   import type {
     KindedAddressManagerOptions, KindAddressManager,
     KindedProxyAdminOptions, KindProxyAdmin,
+    KindedSuperchainConfigProxyOptions, KindSuperchainConfigProxy,
     OptionsErrorMessages
   } from '$lib/wizard/shared';
 
-  import {  sanitizeKindAddressManager,
+  import {
+    sanitizeKindAddressManager,
     sanitizeKindProxyAdmin,
+    sanitizeKindSuperchainConfigProxy,
     OptionsError
   } from '$lib/wizard/shared';
 
@@ -23,6 +26,7 @@
 
   import AddressManagerControls from '$lib/ui/controls/2-AddressManagerControls.svelte';
   import ProxyAdminControls from '$lib/ui/controls/2-ProxyAdminControls.svelte';
+  import SuperchainConfigProxyControls from '$lib/ui/controls/2-SuperchainConfigProxyControls.svelte';
 
   import MarkdownIt from "markdown-it";
   import hljs  from '$lib/ui/utils/highlightjs';
@@ -80,8 +84,8 @@
       }
   }
 
-  let isArtifactStepOneModalOpen = false;
-  $: addressStepOneContent = md.render(`
+  let isArtifactStepOneAModalOpen = false;
+  $: addressStepOneAContent = md.render(`
   \`\`\`bash
 {
   "SafeProxyFactory": "<ADDRESS_1>",
@@ -116,15 +120,53 @@
       }
   }
 
-  let isArtifactStepTwoModalOpen = false;
-  $: addressStepTwoContent = md.render(`
+  let isArtifactStepOneBModalOpen = false;
+  $: addressStepOneBContent = md.render(`
   \`\`\`bash
 {
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>"
   "AddressManager": "<ADDRESS_4>"
-  "ProxyAdmin": "<ADDRESS_4>"
+  "ProxyAdmin": "<ADDRESS_5>"
+}
+  \`\`\`
+  `);
+
+  export let initialContractSuperchainConfigProxyTab: string | undefined = 'SuperchainConfigProxy';
+  export let contractSuperchainConfigProxyTab: KindSuperchainConfigProxy = sanitizeKindSuperchainConfigProxy(initialContractSuperchainConfigProxyTab);
+  let allContractsSuperchainConfigProxyOpts: { [k in KindSuperchainConfigProxy]?: Required<KindedSuperchainConfigProxyOptions [k]> } = {};
+  let errorsSuperchainConfigProxy: { [k in KindSuperchainConfigProxy]?: OptionsErrorMessages } = {};
+  let contractSuperchainConfigProxy: Contract = new ContractBuilder('SuperchainConfigProxy');
+  let deployContractSuperchainConfigProxy: DeployContract = new DeployBuilder('DeploySuperchainConfigProxyScript');
+
+  $: optsSuperchainConfigProxy = allContractsSuperchainConfigProxyOpts[contractSuperchainConfigProxyTab];
+  $: {
+  if (optsSuperchainConfigProxy) {
+          try {
+              contractSuperchainConfigProxy = buildContractGeneric(optsSuperchainConfigProxy);
+              deployContractSuperchainConfigProxy = buildDeployGeneric(optsSuperchainConfigProxy);
+              errorsSuperchainConfigProxy[contractSuperchainConfigProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsSuperchainConfigProxy[contractSuperchainConfigProxyTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepTwoAModalOpen = false;
+  $: addressStepTwoAContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>"
+  "AddressManager": "<ADDRESS_4>"
+  "ProxyAdmin": "<ADDRESS_5>"
+  "SuperchainConfigProxy": "<ADDRESS_6>"
 }
   \`\`\`
   `);
@@ -160,7 +202,6 @@
 </div>
 
 <!-- 201A_DeployAddressManager.s.sol -->
-
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[1].pathname}>
     <div class="divider divider-primary ">
@@ -186,7 +227,7 @@
 
   <div slot="control" >
        <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
           <div class:hidden={contractAddressManagerTab !== 'AddressManager'}>
               <AddressManagerControls bind:opts={allContractsAddressManagerOpts.AddressManager} />
           </div>
@@ -200,13 +241,13 @@
         After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
       </p>
     
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneModalOpen = true}>See the artifact's content example</button>
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneAModalOpen = true}>See the artifact's content example</button>
     
-      <div class="modal" class:modal-open={isArtifactStepOneModalOpen}>
+      <div class="modal" class:modal-open={isArtifactStepOneAModalOpen}>
         <div class="modal-box w-11/12 max-w-5xl">
     
           <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneModalOpen = false} >✕</button>
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneAModalOpen = false} >✕</button>
           </form>
     
           <h3 class="font-bold text-lg">Example!</h3>
@@ -214,7 +255,7 @@
           <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneContent)}
+              {@html md.render(addressStepOneAContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>
@@ -227,7 +268,6 @@
 </WizardDouble>
 
 <!-- 201B_DeployAndSetupProxyAdmin.s.sol -->
-
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[2].pathname}>
     <div class="divider divider-primary ">
@@ -265,13 +305,13 @@
         After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
       </p>
     
-      <button class="btn modal-button" on:click={()=>isArtifactStepTwoModalOpen = true}>See the artifact's content example</button>
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneBModalOpen = true}>See the artifact's content example</button>
     
-      <div class="modal" class:modal-open={isArtifactStepTwoModalOpen}>
+      <div class="modal" class:modal-open={isArtifactStepOneBModalOpen}>
         <div class="modal-box w-11/12 max-w-5xl">
     
           <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoModalOpen = false} >✕</button>
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneBModalOpen = false} >✕</button>
           </form>
     
           <h3 class="font-bold text-lg">Example!</h3>
@@ -279,7 +319,7 @@
           <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepTwoContent)}
+              {@html md.render(addressStepOneBContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>
@@ -292,6 +332,69 @@
 </WizardDouble>
 
 <!-- 202A_DeploySuperchainConfigProxy.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[3].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-2xl">2.2A : Deploy ASuperchainConfigProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+
+<WizardDouble conventionNumber={'202A'} initialContractTab={initialContractSuperchainConfigProxyTab} contractTab={contractSuperchainConfigProxyTab} opts={optsSuperchainConfigProxy} contract={contractSuperchainConfigProxy} deployContract={deployContractSuperchainConfigProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractSuperchainConfigProxyTab === 'SuperchainConfigProxy'} on:click={() => contractSuperchainConfigProxyTab = 'SuperchainConfigProxy'}>
+              SuperchainConfigProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractSuperchainConfigProxyTab !== 'SuperchainConfigProxy'}>
+              <SuperchainConfigProxyControls bind:opts={allContractsSuperchainConfigProxyOpts.SuperchainConfigProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoAModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoAModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoAModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoAContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
 
 <!-- 202B_DeployAndInitializeSuperchainConfig.s.sol -->
 

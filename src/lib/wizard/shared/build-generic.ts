@@ -5,6 +5,8 @@ import type { SharedAllOptions} from './1-option-all';
 
 import type { SharedAddressManagerOptions } from './2-option-address-manager';
 import type { SharedProxyAdminOptions } from './2-option-proxy-admin';
+import type { SharedSuperchainConfigProxyOptions } from './2-option-superchain-config-proxy';
+
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
@@ -12,6 +14,7 @@ export interface KindedOptions {
   AllStepOne: { kind: 'AllStepOne' } & SharedAllOptions;
   AddressManager: { kind: 'AddressManager' } & SharedAddressManagerOptions;
   ProxyAdmin: { kind: 'ProxyAdmin' } & SharedProxyAdminOptions;
+  SuperchainConfigProxy : { kind: 'SuperchainConfigProxy' } & SharedSuperchainConfigProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -43,3 +46,9 @@ export interface KindedProxyAdminOptions {
 }
 
 export type GenericProxyAdminOptions = KindedProxyAdminOptions[keyof KindedProxyAdminOptions];
+
+export interface KindedSuperchainConfigProxyOptions {
+  SuperchainConfigProxy: { kind: 'SuperchainConfigProxy' } & SharedSuperchainConfigProxyOptions;
+}
+
+export type GenericSuperchainConfigProxyOptions = KindedSuperchainConfigProxyOptions[keyof KindedSuperchainConfigProxyOptions];

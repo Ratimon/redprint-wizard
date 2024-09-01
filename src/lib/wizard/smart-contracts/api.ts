@@ -14,6 +14,10 @@ import type { SharedProxyAdminOptions } from '../shared/2-option-proxy-admin';
 import {  defaults as proxyAdminDefaults } from '../shared/2-option-proxy-admin';
 import { printProxyAdmin } from './2-proxy-admin';
 
+import type { SharedSuperchainConfigProxyOptions } from '../shared/2-option-superchain-config-proxy';
+import {  defaults as superchainConfigProxyDefaults } from '../shared/2-option-superchain-config-proxy';
+import { printSuperchainConfigProxy } from './2-superchain-config-proxy';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -55,4 +59,10 @@ export type ProxyAdmin = WizardContractAPI<SharedProxyAdminOptions>;
 export const proxyAdmin: ProxyAdmin = {
   print: printProxyAdmin,
   defaults: proxyAdminDefaults
+}
+
+export type SuperchainConfigProxy = WizardContractAPI<SharedSuperchainConfigProxyOptions>;
+export const superchainConfigProxy: SuperchainConfigProxy = {
+  print: printSuperchainConfigProxy,
+  defaults: superchainConfigProxyDefaults
 }

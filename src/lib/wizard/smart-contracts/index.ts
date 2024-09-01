@@ -17,5 +17,6 @@ export {
     governor,
     safe,
     addressManager,
-    proxyAdmin
+    proxyAdmin,
+    superchainConfigProxy
 } from './api';

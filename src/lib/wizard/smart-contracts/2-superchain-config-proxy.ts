@@ -1,26 +1,27 @@
 import type { Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-option-proxy-admin";
-import type { SharedProxyAdminOptions } from '../shared/2-option-proxy-admin';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-option-superchain-config-proxy";
+import type { SharedSuperchainConfigProxyOptions } from '../shared/2-option-superchain-config-proxy';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";
 
 import { defineFunctions } from '../utils/define-functions';
 
-function withDefaults(opts: SharedProxyAdminOptions): Required<SharedProxyAdminOptions> {
+function withDefaults(opts: SharedSuperchainConfigProxyOptions): Required<SharedSuperchainConfigProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printProxyAdmin(opts: SharedProxyAdminOptions = commonDefaults): string {
-  return printContract(buildProxyAdmin(opts));
+
+export function printSuperchainConfigProxy(opts: SharedSuperchainConfigProxyOptions = commonDefaults): string {
+  return printContract(buildSuperchainConfigProxy(opts));
 }
 
-export function buildProxyAdmin(opts: SharedProxyAdminOptions): Contract {
+export function buildSuperchainConfigProxy(opts: SharedSuperchainConfigProxyOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo
