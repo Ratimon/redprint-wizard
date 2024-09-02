@@ -47,6 +47,7 @@ export interface KindedProxyAdminOptions {
 
 export type GenericProxyAdminOptions = KindedProxyAdminOptions[keyof KindedProxyAdminOptions];
 
+
 export interface KindedSuperchainConfigProxyOptions {
   SuperchainConfigProxy: { kind: 'SuperchainConfigProxy' } & SharedSuperchainConfigProxyOptions;
 }

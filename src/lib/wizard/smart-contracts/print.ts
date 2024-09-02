@@ -1,6 +1,6 @@
 // import 'array.prototype.flatmap/auto';
 
-import type { Contract,ReferencedContract,  Parent, ContractFunction, FunctionArgument, Value, NatspecTag } from './contract';
+import type { Contract,ReferencedContract,  Parent, ContractFunction, FunctionArgument, Value, NatspecTag, ContractModifier } from './contract';
 
 import type { Options, Helpers }from './options';
 import { withHelpers } from './options';
@@ -10,8 +10,6 @@ import { formatLines, spaceBetween } from '../utils/format-lines';
 import { mapValues } from '../utils/map-values';
 import SOLIDITY_VERSION from './solidity-version.json';
 import { inferTranspiled } from './infer-transpiled';
-import { compatibleContractsSemver } from '../utils/version';
-
 
 export function printContract(contract: Contract, opts?: Options): string {
   const helpers = withHelpers(contract, opts);
@@ -19,6 +17,11 @@ export function printContract(contract: Contract, opts?: Options): string {
   const fns = mapValues(
     sortedFunctions(contract),
     fns => fns.map(fn => printFunction(fn, helpers)),
+  );
+
+  const mods = mapValues(
+    sortedModifiers(contract),
+    mods => mods.map(mod => printModifier(mod, helpers)),
   );
 
   const hasOverrides = fns.override.some(l => l.length > 0);
@@ -42,12 +45,14 @@ export function printContract(contract: Contract, opts?: Options): string {
         contract.usings.map(p => `using ${p.library.name} for ${p.usingFor} ;`),
         spaceBetween(
           contract.variables,
+          ...mods.code,
           printConstructor(contract, helpers),
+          printReceive(contract),
+          printFallback(contract),
           ...fns.code,
           ...fns.modifiers,
           hasOverrides ? [`// The following functions are overrides required by Solidity.`] : [],
           ...fns.override,
-          printFallback(contract),
         ),
 
         `}`,
@@ -55,7 +60,6 @@ export function printContract(contract: Contract, opts?: Options): string {
     ),
   );
 }
-
 
 function printInheritance(contract: Contract, { transformName }: Helpers): [] | [string] {
   if (contract.parents.length > 0) {
@@ -119,6 +123,19 @@ function hasInitializer(parent: Parent) {
   return !['Initializable'].includes(parent.contract.name);
 }
 
+type SortedModifiers = Record<'code', ContractModifier[]>;
+
+function sortedModifiers(contract: Contract): SortedModifiers {
+  const mods: SortedModifiers = { code: [] };
+
+  for (const mod of contract.modifiers) {
+    if (mod.code.length > 0) {
+      mods.code.push(mod);
+    } 
+  }
+  return mods;
+}
+
 type SortedFunctions = Record<'code' | 'modifiers' | 'override', ContractFunction[]>;
 
 // Functions with code first, then those with modifiers, then the rest
@@ -170,13 +187,32 @@ export function printValue(value: Value): string {
   }
 }
 
-function printFallback(contract: Contract): Lines[] {
+function printReceive(contract: Contract): Lines[] {
   // const hasParentParams = contract.parents.some(p => p.params.length > 0);
-  const hasFallbackCode = contract.fallbackCode.length > 0;
+  const hasReceiveCodeCode = contract.receiveCode.length > 0;
   // const parentsWithInitializers = contract.parents.filter(hasInitializer);
-  if (hasFallbackCode ) {
+  if (hasReceiveCodeCode ) {
     // const parents = parentsWithInitializers
     //   .flatMap(p => printParentConstructor(p, helpers));
+    const modifiers = ['external payable'];
+    const args: string[] = [];
+    const body = contract.receiveCode;
+    const head = 'receive'
+    const receive = printFunction2(
+      head,
+      args,
+      modifiers,
+      body,
+    );
+    return receive;
+  } else {
+    return [];
+  }
+}
+
+function printFallback(contract: Contract): Lines[] {
+  const hasFallbackCode = contract.fallbackCode.length > 0;
+  if (hasFallbackCode ) {
     const modifiers = ['external payable'];
     const args: string[] = [];
     const body = contract.fallbackCode;
@@ -188,6 +224,24 @@ function printFallback(contract: Contract): Lines[] {
       body,
     );
     return fallback;
+  } else {
+    return [];
+  }
+}
+
+function printModifier(mod: ContractModifier, helpers: Helpers): Lines[] {
+
+  const modifiers: string[] = [];
+  const code = [...mod.code];
+
+  if (mod.code.length >= 1) {
+
+    return printFunction2(
+      'modifier ' + mod.name,
+      mod.args.map(a => printArgument(a, helpers)),
+      modifiers,
+      code,
+    );
   } else {
     return [];
   }

@@ -24,7 +24,7 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
 
 export const defaults: Required<SharedSuperchainConfigProxyOptions> = {
   //contract
-  contractName: 'SuperchainConfigProxy',
+  contractName: 'Proxy',
   
   access: commonDefaults.access,
   upgradeable: commonDefaults.upgradeable,

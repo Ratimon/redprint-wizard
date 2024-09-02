@@ -1,4 +1,4 @@
-import type { Contract} from './contract';
+import type { BaseModifier, Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
 import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-option-superchain-config-proxy";
@@ -16,7 +16,6 @@ function withDefaults(opts: SharedSuperchainConfigProxyOptions): Required<Shared
   };
 }
 
-
 export function printSuperchainConfigProxy(opts: SharedSuperchainConfigProxyOptions = commonDefaults): string {
   return printContract(buildSuperchainConfigProxy(opts));
 }
@@ -27,250 +26,219 @@ export function buildSuperchainConfigProxy(opts: SharedSuperchainConfigProxyOpti
     // to do add note to highlight diff in op mono repo
     const c = new ContractBuilder(allOpts.contractName);
 
-    const IStaticERC1967Proxy = {
-      name: 'IStaticERC1967Proxy',
-      path: '@redprint-core/universal/ProxyAdmin.sol',
-    };
-    c.addModule(IStaticERC1967Proxy);
 
-    const IStaticL1ChugSplashProxy = {
-      name: 'IStaticL1ChugSplashProxy',
-      path: '@redprint-core/universal/ProxyAdmin.sol',
-    };
-    c.addModule(IStaticL1ChugSplashProxy);
-
-    const Ownable = {
-        name: 'Ownable',
-        path: '@redprint-openzeppelin/access/Ownable.sol',
-    };
-    c.addParent(Ownable, []);
-
-    const Proxy = {
-      name: 'Proxy',
-      path: '@redprint-core/universal/Proxy.sol',
-    };
-    c.addModule(Proxy);
-
-    const AddressManager = {
-      name: 'AddressManager',
-      path: '@redprint-core/legacy/AddressManager.sol',
-    };
-    c.addModule(AddressManager);
-
-    const L1ChugSplashProxy = {
-      name: 'L1ChugSplashProxy',
-      path: '@redprint-core/legacy/L1ChugSplashProxy.sol',
-    };
-    c.addModule(L1ChugSplashProxy);
-
-    const Constants = {
-      name: 'Constants',
-      path: '@redprint-core/libraries/Constants.sol',
-    };
-    c.addModule(Constants);
-
-    c.addVariable(`enum ProxyType {
-        ERC1967,
-        CHUGSPLASH,
-        RESOLVED
-    }`);
+    c.addVariable(`/**
+     * @notice The storage slot that holds the address of the implementation.
+     *         bytes32(uint256(keccak256('eip1967.proxy.implementation')) - 1)
+     */
+    bytes32 internal constant IMPLEMENTATION_KEY = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;}`);
     
-    c.addVariable(`mapping(address => ProxyType) public proxyType;`);
-    c.addVariable(`mapping(address => string) public implementationName;`);
-    c.addVariable(`AddressManager public addressManager;`);
-    c.addVariable(`bool internal upgrading;`);
+    c.addVariable(`/**
+     * @notice The storage slot that holds the address of the owner.
+     *         bytes32(uint256(keccak256('eip1967.proxy.admin')) - 1)
+     */
+    bytes32 internal constant OWNER_KEY = 0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103;`);
+
+    c.addVariable(`/**
+     * @notice An event that is emitted each time the implementation is changed. This event is part
+     *         of the EIP-1967 specification.
+     *
+     * @param implementation The address of the implementation contract
+     */
+    event Upgraded(address indexed implementation);`);
+
+    c.addVariable(`/**
+     * @notice An event that is emitted each time the owner is upgraded. This event is part of the
+     *         EIP-1967 specification.
+     *
+     * @param previousAdmin The previous owner of the contract
+     * @param newAdmin      The new owner of the contract
+     */
+    event AdminChanged(address previousAdmin, address newAdmin);`);
+
+    const mod : BaseModifier = getProxyCallIfNotAdminModifier();
+
+    c.addModiferCode(`if (msg.sender == _getAdmin() || msg.sender == address(0)) {
+            _;
+        } else {
+            // This WILL halt the call frame on completion.
+            _doProxyCall();
+        }`, mod)
 
     c.addConstructorArgument({
       type: 'address',
-      name: '_owner'
+      name: '_admin'
     });
-    c.addConstructorCode('_transferOwnership(_owner);');
+    c.addConstructorCode('_changeAdmin(_admin);');
 
-    // setProxyType
-    c.addModifier('onlyOwner', functions.setProxyType);
-    c.addFunctionCode(`proxyType[_address] = _type;`, functions.setProxyType);
+    c.addReceiveCode(`// Proxy call by default.
+        _doProxyCall();`)
 
-    // setImplementationName
-    c.addModifier('onlyOwner', functions.setImplementationName);
-    c.addFunctionCode(`implementationName[_address] = _name;`, functions.setImplementationName);
+    c.addFallbackCode(`// Proxy call by default.
+        _doProxyCall();`)
 
-    // setAddressManager
-    c.addModifier('onlyOwner', functions.setAddressManager);
-    c.addFunctionCode(`addressManager = _address;`, functions.setAddressManager);
+    // upgradeTo
+    c.addModifier('virtual', functions.upgradeTo);
+    c.addFunctionCode(`_setImplementation(_implementation);`, functions.upgradeTo);
 
-    // setAddress
-    c.addModifier('onlyOwner', functions.setAddress);
-    c.addFunctionCode(`addressManager.setAddress(_name, _address);`, functions.setAddress);
+    // upgradeToAndCall
+    c.addModifier('payable virtual proxyCallIfNotAdmin', functions.upgradeToAndCall);
+    c.addFunctionCode(`_setImplementation(_implementation);
+        (bool success, bytes memory returndata) = _implementation.delegatecall(_data);
+        require(success, "Proxy: delegatecall to new implementation contract failed");
+        return returndata;`, functions.upgradeToAndCall);
 
-    // setUpgrading
-    c.addModifier('onlyOwner', functions.setUpgrading);
-    c.addFunctionCode(`upgrading = _upgrading;`, functions.setUpgrading);
+    // changeAdmin
+    c.addModifier('virtual proxyCallIfNotAdmin', functions.changeAdmin);
+    c.addFunctionCode(`_changeAdmin(_admin);`, functions.changeAdmin);
 
-    // isUpgrading
-    c.addFunctionCode(`return upgrading;`, functions.isUpgrading);
+    // admin
+    c.addModifier('virtual proxyCallIfNotAdmin', functions.admin);
+    c.addFunctionCode(`return _getAdmin();`, functions.admin);
 
-    // getProxyImplementation
-    c.addFunctionCode(`ProxyType ptype = proxyType[_proxy];
-        if (ptype == ProxyType.ERC1967) {
-            return IStaticERC1967Proxy(_proxy).implementation();
-        } else if (ptype == ProxyType.CHUGSPLASH) {
-            return IStaticL1ChugSplashProxy(_proxy).getImplementation();
-        } else if (ptype == ProxyType.RESOLVED) {
-            return addressManager.getAddress(implementationName[_proxy]);
-        } else {
-            revert("ProxyAdmin: unknown proxy type");
-        }`, functions.getProxyImplementation);
+    // implementation
+    c.addModifier('virtual proxyCallIfNotAdmin', functions.implementation);
+    c.addFunctionCode(`return _getImplementation();`, functions.implementation);
 
-    // getProxyAdmin
-    c.addFunctionCode(`ProxyType ptype = proxyType[_proxy];
-      if (ptype == ProxyType.ERC1967) {
-          return IStaticERC1967Proxy(_proxy).admin();
-      } else if (ptype == ProxyType.CHUGSPLASH) {
-          return IStaticL1ChugSplashProxy(_proxy).getOwner();
-      } else if (ptype == ProxyType.RESOLVED) {
-          return addressManager.owner();
-      } else {
-          revert("ProxyAdmin: unknown proxy type");
-      }`, functions.getProxyAdmin);
 
-    // changeProxyAdmin
-    c.addModifier('onlyOwner', functions.changeProxyAdmin);
-    c.addFunctionCode(`ProxyType ptype = proxyType[_proxy];
-        if (ptype == ProxyType.ERC1967) {
-            Proxy(_proxy).changeAdmin(_newAdmin);
-        } else if (ptype == ProxyType.CHUGSPLASH) {
-            L1ChugSplashProxy(_proxy).setOwner(_newAdmin);
-        } else if (ptype == ProxyType.RESOLVED) {
-            addressManager.transferOwnership(_newAdmin);
-        } else {
-            revert("ProxyAdmin: unknown proxy type");
-        }`, functions.changeProxyAdmin);
+    // _setImplementation
+    c.addFunctionCode(`assembly {
+            sstore(IMPLEMENTATION_KEY, _implementation)
+        }
+        emit Upgraded(_implementation);`, functions._setImplementation);
 
-    // upgrade
-    c.addModifier('onlyOwner', functions.upgrade);
-    c.addFunctionCode(`ProxyType ptype = proxyType[_proxy];
-        if (ptype == ProxyType.ERC1967) {
-            Proxy(_proxy).upgradeTo(_implementation);
-        } else if (ptype == ProxyType.CHUGSPLASH) {
-            L1ChugSplashProxy(_proxy).setStorage(
-                Constants.PROXY_IMPLEMENTATION_ADDRESS, bytes32(uint256(uint160(_implementation)))
-            );
-        } else if (ptype == ProxyType.RESOLVED) {
-            string memory name = implementationName[_proxy];
-            addressManager.setAddress(name, _implementation);
-        } else {
-            // It should not be possible to retrieve a ProxyType value which is not matched by
-            // one of the previous conditions.
-            assert(false);
-        }`, functions.upgrade);
+    // _changeAdmin
+    c.addFunctionCode(`address previous = _getAdmin();
+        assembly {
+            sstore(OWNER_KEY, _admin)
+        }
+        emit AdminChanged(previous, _admin);`, functions._changeAdmin);
 
-    // upgradeAndCall
-    c.addModifier('onlyOwner', functions.upgradeAndCall);
-    c.addFunctionCode(`ProxyType ptype = proxyType[_proxy];
-        if (ptype == ProxyType.ERC1967) {
-            Proxy(_proxy).upgradeToAndCall{value: msg.value}(_implementation, _data);
-        } else {
-            // reverts if proxy type is unknown
-            upgrade(_proxy, _implementation);
-            (bool success,) = _proxy.call{value: msg.value}(_data);
-            require(success, "ProxyAdmin: call to proxy after upgrade failed");
-        }`, functions.upgradeAndCall);
+    // _doProxyCall
+    c.addFunctionCode(`address impl = _getImplementation();
+        require(impl != address(0), "Proxy: implementation not initialized");
+
+        assembly {
+            // Copy calldata into memory at 0x0....calldatasize.
+            calldatacopy(0x0, 0x0, calldatasize())
+
+            // Perform the delegatecall, make sure to pass all available gas.
+            let success := delegatecall(gas(), impl, 0x0, calldatasize(), 0x0, 0x0)
+
+            // Copy returndata into memory at 0x0....returndatasize. Note that this *will*
+            // overwrite the calldata that we just copied into memory but that doesn't really
+            // matter because we'll be returning in a second anyway.
+            returndatacopy(0x0, 0x0, returndatasize())
+
+            // Success == 0 means a revert. We'll revert too and pass the data up.
+            if iszero(success) { revert(0x0, returndatasize()) }
+
+            // Otherwise we'll just return and pass the data up.
+            return(0x0, returndatasize())
+        }`, functions._doProxyCall);
+
+    // _getImplementation
+    c.addFunctionCode(`address impl;
+        assembly {
+            impl := sload(IMPLEMENTATION_KEY)
+        }
+        return impl;`, functions._getImplementation);
+
+    // _getAdmin
+    c.addFunctionCode(`address owner;
+        assembly {
+            owner := sload(OWNER_KEY)
+        }
+        return owner;`, functions._getAdmin);
 
     setInfo(c, allOpts.contractInfo);
     return c;
 }
 
+function getProxyCallIfNotAdminModifier() {
+    const mod = {
+      name: 'proxyCallIfNotAdmin',
+      args: [],
+    };
+  
+    return mod;
+  }
+
 const functions = defineFunctions({
-  setProxyType: {
-      kind: 'external' as const,
-      args: [
-          { name: '_address', type: 'address' },
-          { name: '_type', type: 'ProxyType' },
-        ],
-  },
 
-  setImplementationName: {
-    kind: 'external' as const,
-    args: [
-      { name: '_address', type: 'address' },
-      { name: '_name', type: 'string memory' },
-      ],
-  },
-
-  setAddressManager: {
-    kind: 'external' as const,
-    args: [
-      { name: '_address', type: 'AddressManager' },
-      ],
-  },
-
-  setAddress: {
-    kind: 'external' as const,
-    args: [
-      { name: '_name', type: 'string memory' },
-      { name: '_address', type: 'address' },
-    ],
-  },
-
-  setUpgrading: {
-    kind: 'external' as const,
-    args: [
-      { name: '_upgrading', type: 'bool' },
-    ],
-  },
-
-  isUpgrading: {
-    kind: 'external' as const,
-    args: [
-    ],
-    returns: ['bool'],
-    mutability: 'view',
-  },
-
-  getProxyImplementation: {
-    kind: 'external' as const,
-    args: [
-      { name: '_proxy', type: 'address' },
-    ],
-    returns: ['address'],
-    mutability: 'view',
-  },
-
-  getProxyAdmin: {
-    kind: 'external' as const,
-    args: [
-      { name: '_proxy', type: 'address payable' },
-    ],
-    returns: ['address'],
-    mutability: 'view',
-  },
-
-  changeProxyAdmin: {
-    kind: 'external' as const,
-    args: [
-      { name: '_proxy', type: 'address payable' },
-      { name: '_newAdmin', type: 'address' },
-    ],
-    returns: [],
-  },
-
-  upgrade: {
+  upgradeTo: {
     kind: 'public' as const,
     args: [
-      { name: '_proxy', type: 'address payable' },
-      { name: '_implementation', type: 'address' },
-    ],
-    returns: [],
+          { name: '_implementation', type: 'address' },
+        ],
+    returns: ['proxyCallIfNotAdmin']
   },
 
-  upgradeAndCall: {
-    kind: 'external payable' as const,
+  upgradeToAndCall: {
+    kind: 'public' as const,
     args: [
-      { name: '_proxy', type: 'address payable' },
       { name: '_implementation', type: 'address' },
-      { name: '_data', type: 'bytes memory' },
+      { name: '_data', type: 'bytes calldata' },
     ],
-    returns: [],
+    returns: ['bytes memory'],
+  },
+
+  changeAdmin: {
+    kind: 'public' as const,
+    args: [
+      { name: '_admin', type: 'address' },
+      ],
+  },
+
+  admin: {
+    kind: 'public' as const,
+    args: [
+    ],
+    returns: ['address']
+  },
+
+  implementation: {
+    kind: 'public' as const,
+    args: [
+    ],
+    returns: ['address']
+  },
+
+  
+  _setImplementation: {
+    kind: 'internal' as const,
+    args: [
+      { name: '_implementation', type: 'address' },
+      ],
+  },
+
+  _changeAdmin: {
+    kind: 'internal' as const,
+    args: [
+      { name: '_admin', type: 'address' },
+      ],
+  },
+
+  _doProxyCall: {
+    kind: 'internal' as const,
+    args: [
+      ],
+  },
+
+  _getImplementation: {
+    kind: 'internal' as const,
+    args: [
+    ],
+    returns: ['address'],
+    mutability: 'view',
+  },
+
+  _getAdmin: {
+    kind: 'internal' as const,
+    args: [
+    ],
+    returns: ['address'],
+    mutability: 'view',
   },
 
 });

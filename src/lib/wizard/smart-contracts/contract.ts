@@ -10,8 +10,10 @@ export interface Contract {
   modules: ParentContract[];
   dependencies: ParentContract[];
 
+  modifiers: ContractModifier[];
   functions: ContractFunction[];
   constructorCode: string[];
+  receiveCode: string[];
   fallbackCode: string[];
   constructorArgs: FunctionArgument[];
   variables: string[];
@@ -37,6 +39,15 @@ export interface ReferencedContract {
 export interface Using {
   library: ParentContract;
   usingFor: string;
+}
+
+export interface BaseModifier {
+  name: string;
+  args: FunctionArgument[];
+}
+
+export interface ContractModifier extends BaseModifier {
+  code: string[];
 }
 
 export interface BaseFunction {
@@ -88,11 +99,14 @@ export class ContractBuilder implements Contract {
 
   readonly constructorArgs: FunctionArgument[] = [];
   readonly constructorCode: string[] = [];
+  readonly receiveCode: string[] = [];
   readonly fallbackCode: string[] = [];
   readonly variableSet: Set<string> = new Set();
 
   private parentMap: Map<string, Parent> = new Map<string, Parent>();
+  private modifierMap: Map<string, ContractModifier> = new Map();
   private functionMap: Map<string, ContractFunction> = new Map();
+
 
   constructor(name: string) {
     this.name = toIdentifier(name, true);
@@ -137,6 +151,10 @@ export class ContractBuilder implements Contract {
     return [...this.using];
   }
 
+  get modifiers(): ContractModifier[] {
+    return [...this.modifierMap.values()];
+  }
+
   get functions(): ContractFunction[] {
     return [...this.functionMap.values()];
   }
@@ -178,6 +196,22 @@ export class ContractBuilder implements Contract {
     this.natspecTags.push({ key, value });
   }
 
+  private addContractModifier(baseMod: BaseModifier): ContractModifier {
+    const signature = [baseMod.name, '(', ...baseMod.args.map(a => a.name), ')'].join('');
+    const got = this.modifierMap.get(signature);
+    if (got !== undefined) {
+      return got;
+    } else {
+      const mod: ContractModifier = {
+        code: [],
+        ...baseMod,
+      };
+
+      this.modifierMap.set(signature, mod);
+      return mod;
+    }
+  }
+
   private addFunction(baseFn: BaseFunction): ContractFunction {
     const signature = [baseFn.name, '(', ...baseFn.args.map(a => a.name), ')'].join('');
     const got = this.functionMap.get(signature);
@@ -205,8 +239,17 @@ export class ContractBuilder implements Contract {
     this.constructorCode.push(code);
   }
 
+  addReceiveCode(code: string) {
+    this.receiveCode.push(code);
+  }
+
   addFallbackCode(code: string) {
     this.fallbackCode.push(code);
+  }
+
+  addModiferCode(code: string, baseMod: BaseModifier) {
+    const mod = this.addContractModifier(baseMod);
+    mod.code.push(code);
   }
 
   addFunctionCode(code: string, baseFn: BaseFunction, mutability?: FunctionMutability) {

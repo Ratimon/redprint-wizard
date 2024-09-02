@@ -16,7 +16,6 @@ function withDeployDefaults(opts: SharedSuperchainConfigProxyOptions): Required<
   };
 }
 
-
 export function printDeploySuperchainConfigProxy(opts: SharedSuperchainConfigProxyOptions = commonDefaults): string {
   return printDeployContract(buildDeploySuperchainConfigProxy(opts));
 }
@@ -50,67 +49,23 @@ function addBase(c: DeployBuilder) {
   };
   c.addParent(DeployScript, []);
 
-  const AddressManager = {
-    name: 'AddressManager',
-    path: '@redprint-core/legacy/AddressManager.sol',
+  const Proxy = {
+    name: 'Proxy',
+    path: '@redprint-core/universal/Proxy.sol',
   };
-  c.addModule(AddressManager);
-
-
-  const ProxyAdmin = {
-    name: 'ProxyAdmin',
-    path: '@redprint-core/universal/ProxyAdmin.sol',
-  };
-  c.addModule(ProxyAdmin);
-
-  c.addVariable(`ProxyAdmin proxyAdmin;`);
+  c.addModule(Proxy);
 
   // deploy
-  c.addFunctionCode(`proxyAdmin = deployer.deploy_ProxyAdmin("ProxyAdmin", address(owner));
-        require(proxyAdmin.owner() == address(owner));
-        return proxyAdmin;`, functions.deploy);
+  c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");
 
-  // initialize
-  c.addFunctionCode(`AddressManager addressManager = AddressManager(deployer.mustGetAddress("AddressManager"));
-        (VmSafe.CallerMode mode ,address msgSender, ) = vm.readCallers();
-        if (proxyAdmin.addressManager() != addressManager) {
-             if(mode != VmSafe.CallerMode.Broadcast && msgSender != owner) {
-                console.log("Pranking ower ...");
-                vm.prank(owner);
-             } else {
-                console.log("Broadcasting ...");
-                vm.broadcast(owner);
-             }
-            proxyAdmin.setAddressManager(addressManager);
-            console.log("AddressManager setted to : %s", address(addressManager));
-        }
-        address safe = deployer.mustGetAddress("SystemOwnerSafe");
-        if (proxyAdmin.owner() != safe) {
-            if(mode != VmSafe.CallerMode.Broadcast && msgSender != owner) {
-                console.log("Pranking ower ...");
-                vm.prank(owner);
-             } else {
-                console.log("Broadcasting ...");
-                vm.broadcast(owner);
-             }
-
-            proxyAdmin.transferOwnership(safe);
-            console.log("ProxyAdmin ownership transferred to Safe at: %s", safe);
-        }`, functions.initialize);
-
-  
+        return Proxy(deployer.deploy_ERC1967Proxy("SuperchainConfigProxy", proxyOwner));`, functions.deploy);
 }
 
 const functions = defineFunctions({
   deploy: {
       kind: 'external' as const,
       args: [],
-      returns: ['ProxyAdmin'],
-  },
-
-  initialize: {
-    kind: 'external' as const,
-    args: [],
+      returns: ['Proxy'],
   },
 
 });
