@@ -340,7 +340,6 @@
   </section>
 </Background>
 
-
 <WizardDouble conventionNumber={'202A'} initialContractTab={initialContractSuperchainConfigProxyTab} contractTab={contractSuperchainConfigProxyTab} opts={optsSuperchainConfigProxy} contract={contractSuperchainConfigProxy} deployContract={deployContractSuperchainConfigProxy}>
   <div slot="menu" >
       <div class="tab overflow-hidden">
