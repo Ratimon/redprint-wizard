@@ -76,6 +76,11 @@
     },
     // to do : reach out , email?
     {
+        title: "METRIC HUB",
+        path: "/blog/3-metric-hub",
+        iconName: "oui:app-metricbeat",
+    },
+    {
         title: "ABOUT US",
         path: "/about",
         iconName: "pajamas:status-health",

@@ -17,21 +17,21 @@ To align with Optimism’s value (` impact=profit`), we have refered to the belo
 
 <img data-pagefind-meta="image[src]" width="5085" height="776" alt="upstream and downstream" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-metric-hub/contributions.png" />
 
-They can be either `upstream` or `downstream` of Optimism blockspace.
+They are both `upstream` or `downstream` of Optimism blockspace.
 
 ## Upstream
-
 By definition, upstream contributions improve Optimism or OPStack itself.
 
-In our case, `Redprint Toolkit`'s contribution aids in usability and accessibility of the OPStack, and it could be fall into [Category 3: OP Stack Tooling](https://gov.optimism.io/t/retro-funding-5-op-stack-round-details/8612).
+In our case, `Redprint Toolkit`'s contribution aids in **usability** and **accessibility** of the OPStack, and it could, according to [Retro Funding 5: OP Stack - round details](https://gov.optimism.io/t/retro-funding-5-op-stack-round-details/8612/1), be fall into [Category 3: OP Stack Tooling](https://gov.optimism.io/t/retro-funding-5-op-stack-round-details/8612).
 
-this toolset aims in development and deployment of Optimism contracts, its  components is tailored for **OPStack**, NOT general smart contract. 
+This toolset aims in development and deployment of Optimism contracts, its  components is tailored for **OPStack**, NOT general smart contract. 
 
 The justifications are as follows:
-### 1. redprint-forge
-`redprint-forge` is a **deployer library** that facilitate the OPStack's contract deployment, and contract testing.
 
-Our aim is to implement a different version of **OPStack Deployer**.
+### 1. redprint-forge
+The `redprint-forge` is a **deployer library** that facilitate the OPStack's contract deployment, and contract testing.
+
+Our aim is to support different implementation of **OPStack Deployer**.
 
 #### Problem Statement + Context
 Some text copied from [OPStack 's design- 52](https://github.com/ethereum-optimism/design-docs/pull/52)
@@ -39,11 +39,11 @@ Some text copied from [OPStack 's design- 52](https://github.com/ethereum-optimi
 > The current L2 chain deployment approach originates from a time with Hardhat, single L1 target, and a single monolithic set of features.
 > Since then the system has migrated to Foundry and extended for more features, but remains centered around a single monolithic deploy-config for all its features.
 >
-> The interop team needs a way to configure new multi-L2 deployments: The number of ways to compose L2s in tests grows past what a single legacy config template can support.
->
 > Outside of interop, deployment also seems increasingly complex and opaque, while it does not have to be, due to the same configuration and composability troubles.
 
-Our solution involves restructuring OPStack's `DeploySuperchain`. You can see how `redprint-forge` lib tackles the problem by simplifling deployment and testing pipeline at this [demo](https://github.com/Ratimon/redprint-optimism-contracts-examples/blob/main/README.md?plain=1#L53-L151)
+Our solution involves restructuring OPStack's [`DeploySuperchain`]([`Deploy.s.sol`](https://github.com/ethereum-optimism/optimism/blob/abfc1e1f37a89405bacd08a3bb6363250d3f68f5/packages/contracts-bedrock/scripts/Deploy.s.sol).).
+
+You can see how `redprint-forge` lib tackles the problem by simplifying deployment and testing pipeline at this [Demo](https://github.com/Ratimon/redprint-optimism-contracts-examples/blob/main/README.md?plain=1#L53-L151)
 
 Therefore, this suggests alignment with Collective Intent 1 **“Progress towards technical decentralization”** due to different deployer implementations by different team.
 
@@ -56,8 +56,6 @@ Now, the versions release are at `v0.2.x`. In short, we have two working compone
 The relevant links are:
 - [Github's Version Released](https://github.com/Ratimon/redprint-forge/releases/tag/v0.2.1)
 - [Github's Closed Milestones](https://github.com/Ratimon/redprint-forge/milestones?state=closed)
-
-
 
 2. **Number of Github repo likes**
 
@@ -75,12 +73,12 @@ These figures (2, 3 ,and 4) can represent **accessibility** and **usability** of
 
 
 ### 2. Redprint Wizard
-`Redprint Wizard` can be thought as an interactive technical documentation and step-by-step tutorials to deploy OPStack components.
+The `Redprint Wizard` can be thought as an interactive technical documentation and step-by-step tutorials to deploy OPStack components.
 
 #### Metrics 's sources of truth
 The key metrics indicating **accessibility** and **usability** of the OPStack are:
 
-1. **Number of Monthly Visitor**: The number of developers who come to experiment our interactive turorial. It indicates **accessibility** of The OPStack.
+1. **Number of Monthly Visitor**: the number of developers who come to experiment our interactive turorial. It indicates **accessibility** of The OPStack.
 
 This figure can be represented by GA's `page_view` events. It was 635 views in July, and this event can be grouped into different OPStack components. They are :
 
@@ -92,9 +90,9 @@ This figure can be represented by GA's `page_view` events. It was 635 views in J
 > **Note**💡
 > These figures can be checked in [reports/](https://github.com/Ratimon/redprint-wizard/tree/main/reports/) directory.
 
-2. **Number of Link Clicks Toward the Code copy button** : The number of developers who come to experiment our interactive turorial. It shows **usability** of our tool to **modify** OPStack components.
+2. **Number of Link Clicks Toward the Code copy button** : the number of developers who come to experiment our interactive turorial. It shows **usability** of our tool to **modify** OPStack components.
 
-3. **Number of Downloaded code as zip file** : The number of developers who use our generated contract. It suggests **usability** of our tool to **deploy** OPStack components.
+3. **Number of Downloaded code as zip file** : the number of developers who use our generated contract. It suggests **usability** of our tool to **deploy** OPStack components.
 
 These figures can be represented by GA's  custoizrd events. They are :
 - `copy-contract-Safe`
@@ -117,15 +115,14 @@ These figures can be represented by GA's  custoizrd events. They are :
 
 This metric can be represented by GA's  events which are named by blog title For instance, they are :
 
-- `Introducing Redprint Wizard` page
-- `Introducing redprint-forge	` page
+- `Introducing Redprint Wizard` [page](https://redprint.ninja/blog/1-introduce-forge)
+- `Introducing redprint-forge	` [page](https://redprint.ninja/blog/2-introduce-wizard)
 
 > **Note**💡
 > These figures can be checked at Google Analytics 's Reports e.g. [July](https://analytics.google.com/analytics/web/#/p450975503/reports/reportinghub?params=_u.comparisonOption%3Ddisabled%26_u.date00%3D20240701%26_u.date01%3D20240731%26_u..nav%3Dmaui&collectionId=business-objectives) and [August](https://analytics.google.com/analytics/web/#/p450975503/reports/reportinghub?params=_u.comparisonOption%3Ddisabled%26_u.date00%3D20240801%26_u.date01%3D20240831%26_u..nav%3Dmaui&collectionId=business-objectives)
 
 
 ## Downstream [WIP]
-
 On the other hand, downstream contributions improve the experience of Optimism users, such as builders.
 
 Our tool also simplifies the complex **OPStack** smart contract deployment process & practice. Therefore, the developer can  even use OP mainnet as a base chain and ,then deploy their own rollup/ Appchain as a layer 2/3. This is aligned with Collective Intent: **Collective Intent 2 “Grow the Superchain”**  by bringing different layer 2 (s) or even layer 3 (s) out of the Ethereum base layer.
@@ -135,15 +132,12 @@ Our tool also simplifies the complex **OPStack** smart contract deployment proce
 #### Metrics 's sources of truth
 
 1. **Number of Github repo likes**
-
 [redprint-forge's Repo Link](https://github.com/Ratimon/redprint-forge)
 
 2. **Number of code repo forks**
-
 [redprint-forge'sRepo Link](https://github.com/Ratimon/redprint-forge)
 
 3. **Number of npm packages downloaded**
-
 [redprint-forge's Package Link](https://www.npmjs.com/package/redprint-forge)
 
 ### 2. Redprint Wizard
@@ -151,13 +145,10 @@ Our tool also simplifies the complex **OPStack** smart contract deployment proce
 #### Metrics 's sources of truth
 
 1. **Number of Github repo likes**
-
 [Redprint Wizard's Repo Link](https://github.com/Ratimon/redprint-wizard)
 
 2. **Number of code repo forks**
-
 [Redprint Wizard's Repo Link](https://github.com/Ratimon/redprint-wizard)
 
 3. **Number of npm packages downloaded**
-
 [Redprint Wizard's Package Link](https://www.npmjs.com/package/redprint-wizard)

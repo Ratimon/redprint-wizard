@@ -92,7 +92,7 @@ On the other hand, the second one is the original script from **Optimism**'s [`D
 │   ├──
 ```
 
-As you can see, the original script is a single file, containing more than 1000 lines of code for all deployment logics for all contracts. Meanwhile, [redprint-forge](https://github.com/Ratimon/redprint-forge) abstracts and separates them into modular components, enabling better readability.
+As you can see, the original script is a single file, containing more than 1000 lines of code for all deployment logics for all contracts. Meanwhile, [`redprint-forge`](https://github.com/Ratimon/redprint-forge) abstracts and separates them into modular components, enabling better readability.
 
 Using together with [`Redprint Wizard`](https://redprint.ninja/), the generated solidity code which consists of both smart contract parts and their relevant deploy scripts are displayed in customizable ways, leading to better developer experience and creativity.
 
