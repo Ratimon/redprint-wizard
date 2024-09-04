@@ -33,3 +33,6 @@ vite.config.ts.timestamp-*
 
 # pwag
 # static/pwa
+
+#
+/reports

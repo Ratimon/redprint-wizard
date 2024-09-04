@@ -1,0 +1,282 @@
+# ----------------------------------------
+# Report CSV Export
+# Account: redprint
+# Property: Redprint Wizard 
+# ----------------------------------------
+#  
+# Start date: 20240801
+# End date: 20240831
+Nth day,Users
+0000,3
+0001,1
+0002,1
+0003,2
+0004,0
+0005,1
+0006,0
+0007,1
+0008,1
+0009,2
+0010,0
+0011,1
+0012,5
+0013,2
+0014,2
+0015,3
+0016,9
+0017,0
+0018,2
+0019,2
+0020,1
+0021,1
+0022,1
+0023,1
+0024,1
+0025,3
+0026,2
+0027,2
+0028,2
+0029,1
+0030,1
+
+# Start date: 20240801
+# End date: 20240831
+Nth day,New users
+0000,2
+0001,1
+0002,1
+0003,1
+0004,0
+0005,1
+0006,0
+0007,1
+0008,1
+0009,1
+0010,0
+0011,0
+0012,3
+0013,1
+0014,0
+0015,2
+0016,8
+0017,0
+0018,0
+0019,0
+0020,0
+0021,0
+0022,0
+0023,1
+0024,0
+0025,1
+0026,0
+0027,1
+0028,1
+0029,0
+0030,0
+
+# Start date: 20240801
+# End date: 20240831
+Nth day,Average engagement time
+0000,1
+0001,0
+0002,0
+0003,17
+0004,0
+0005,7
+0006,0
+0007,33
+0008,798
+0009,75.5
+0010,0
+0011,16
+0012,545.4
+0013,65
+0014,692.5
+0015,1.3333333333333333
+0016,214.77777777777777
+0017,0
+0018,112.5
+0019,118
+0020,505
+0021,1720
+0022,345
+0023,40
+0024,0
+0025,483
+0026,834.5
+0027,44
+0028,526
+0029,474
+0030,533
+
+# Start date: 20240801
+# End date: 20240831
+Nth day,Total revenue
+0000,0
+0001,0
+0002,0
+0003,0
+0004,0
+0005,0
+0006,0
+0007,0
+0008,0
+0009,0
+0010,0
+0011,0
+0012,0
+0013,0
+0014,0
+0015,0
+0016,0
+0017,0
+0018,0
+0019,0
+0020,0
+0021,0
+0022,0
+0023,0
+0024,0
+0025,0
+0026,0
+0027,0
+0028,0
+0029,0
+0030,0
+
+# Where do your new users come from?
+# Start date: 20240801
+# End date: 20240831
+First user primary channel group (Default Channel Group),New users
+Direct,13
+Organic Social,9
+Organic Search,4
+Referral,1
+
+#  
+# Start date: 20240801
+# End date: 20240831
+Session primary channel group (Default Channel Group),Sessions
+Direct,100
+Organic Social,27
+Organic Search,8
+Referral,2
+
+#  
+# Start date: 20240801
+# End date: 20240831
+Country ID,Users
+HK,1
+IE,1
+JP,1
+PL,1
+RU,2
+TH,23
+US,2
+
+# Start date: 20240801
+# End date: 20240831
+Country,Users
+TH,23
+RU,2
+US,2
+HK,1
+IE,1
+JP,1
+PL,1
+
+# How are active users trending?
+# Start date: 20240801
+# End date: 20240831
+Nth day,30 days,7 days,1 day
+0000,107,57,3
+0001,108,39,1
+0002,109,33,1
+0003,110,34,2
+0004,110,33,0
+0005,111,34,1
+0006,111,8,0
+0007,112,6,1
+0008,113,6,1
+0009,114,7,2
+0010,114,5,0
+0011,114,5,1
+0012,117,8,5
+0013,118,9,2
+0014,118,8,2
+0015,120,9,3
+0016,128,16,9
+0017,128,16,0
+0018,128,16,2
+0019,128,13,2
+0020,128,12,1
+0021,119,12,1
+0022,92,10,1
+0023,80,4,1
+0024,62,4,1
+0025,56,5,3
+0026,55,4,2
+0027,55,5,2
+0028,56,6,2
+0029,31,6,1
+0030,28,5,1
+
+# How well do you retain your users?
+# Start date: 20240721
+# End date: 20240831
+Date,Week 0,Week 1,Week 2,Week 3,Week 4,Week 5
+Jul 21 - Jul 27,78,2,2,2,2,2
+Jul 28 - Aug 3,31,0,0,0,0,-1
+Aug 4 - Aug 10,5,0,0,0,-1,-1
+Aug 11 - Aug 17,14,1,0,-1,-1,-1
+Aug 18 - Aug 24,1,0,-1,-1,-1,-1
+Aug 25 - Aug 31,3,-1,-1,-1,-1,-1
+
+#  
+# Start date: 20240801
+# End date: 20240831
+Page title and screen class,Views
+Redprint Wizard | OPStack Deployer,468
+Set up Governance Layer | Redprint Wizard,340
+Set up Super Chain | Redprint Wizard,107
+Introducing Redprint Wizard,6
+Product Announcements | Redprint Wizard,2
+Rati Montreewat | Redprint Wizard,2
+Introducing redprint-forge,1
+Set up Plasma Chain | Redprint Wizard,1
+
+#  
+# Start date: 20240801
+# End date: 20240831
+Event name,Event count
+page_view,927
+scroll,315
+user_engagement,195
+session_start,137
+form_submit,61
+first_visit,27
+form_start,27
+click,12
+
+# What are your top conversions?
+# Start date: 20240801
+# End date: 20240831
+Event name,Key events
+
+
+# Where does your LTV come from?
+# Start date: 20240801
+# End date: 20240831
+First user primary channel group (Default Channel Group),Average 120d value
+
+
+#  
+# Start date: 20240801
+# End date: 20240831
+Item name,Items purchased
+
+
+# How does activity on your platforms compare?
+# Start date: 20240801
+# End date: 20240831
+Platform,Key events

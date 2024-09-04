@@ -1,7 +1,5 @@
 import type { MetaTagsProps } from 'svelte-meta-tags';
-import type { PostData } from '../../Blog.model';
 
-import {appName} from 'web-config';
 import { error } from '@sveltejs/kit'
 import { authors } from '../../Blog.data';
 
@@ -14,7 +12,7 @@ export async function load({ fetch, params }) {
 	
 		const pageMetaTags = Object.freeze({
 			title: title,
-			titleTemplate: `%s | ${appName}`,
+			titleTemplate: `%s | Blog`,
 			description: description,
 			openGraph: {
 				title: title,
