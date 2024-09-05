@@ -31,6 +31,7 @@ export function load() {
         {pathname: '#solution', title: 'Features', navType: 'scroll'},
         {pathname: '#resource', title: 'Resources', navType: 'scroll'},
         {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
+        {pathname: '/blog/3-metric-hub', title: 'Metric Hub', navType: 'tab'},
         {pathname: '/blog/1-introduce-forge', title: 'redprint-forge', navType: 'tab'},
         {pathname: '/blog/2-introduce-wizard', title: 'Redprint Wizard', navType: 'tab'},
         {pathname: '/', title: 'Home', navType: 'tab'},

@@ -24,7 +24,7 @@ By definition, upstream contributions improve Optimism or OPStack itself.
 
 In our case, `Redprint Toolkit`'s contribution aids in **usability** and **accessibility** of the OPStack, and it could, according to [Retro Funding 5: OP Stack - round details](https://gov.optimism.io/t/retro-funding-5-op-stack-round-details/8612/1), be fall into [Category 3: OP Stack Tooling](https://gov.optimism.io/t/retro-funding-5-op-stack-round-details/8612).
 
-This toolset aims in development and deployment of Optimism contracts, its  components is tailored for **OPStack**, NOT general smart contract. 
+This toolset aims in development and deployment, tailored for **OPStack**, NOT general smart contract. 
 
 The justifications are as follows:
 
@@ -51,7 +51,7 @@ Therefore, this suggests alignment with Collective Intent 1 **“Progress toward
 
 1. **Version Releases**
 
-Now, the versions release are at `v0.2.x`. In short, we have two working component (out of four).
+Now, the versions release are at `v0.2.x`. In short, we have two working component (Governance and superchain) (out of four).
 
 The relevant links are:
 - [Github's Version Released](https://github.com/Ratimon/redprint-forge/releases/tag/v0.2.1)
