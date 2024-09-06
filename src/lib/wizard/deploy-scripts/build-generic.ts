@@ -16,6 +16,9 @@ import { buildDeployProxyAdmin } from './2-proxy-admin'
 import type { SharedSuperchainConfigProxyOptions } from '../shared/2-option-superchain-config-proxy';
 import { buildDeploySuperchainConfigProxy } from './2-superchain-config-proxy';
 
+import type { SharedSuperchainConfigOptions } from '../shared/2-option-superchain-config';
+import { buildDeploySuperchainConfig } from './2-superchain-config';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -23,6 +26,7 @@ export interface DeployKindedOptions {
   AddressManager: {kind: 'AddressManager'} & SharedAddressManagerOptions;
   ProxyAdmin: {kind: 'ProxyAdmin'} & SharedProxyAdminOptions;
   SuperchainConfigProxy: {kind: 'SuperchainConfigProxy'} & SharedSuperchainConfigProxyOptions;
+  SuperchainConfig: {kind: 'SuperchainConfig'} & SharedSuperchainConfigOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -47,6 +51,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'SuperchainConfigProxy':
       return  buildDeploySuperchainConfigProxy(opts);
+
+    case 'SuperchainConfig':
+      return  buildDeploySuperchainConfig(opts);
 
     default:
       const _: never = opts;

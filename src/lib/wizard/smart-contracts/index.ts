@@ -18,5 +18,6 @@ export {
     safe,
     addressManager,
     proxyAdmin,
-    superchainConfigProxy
+    superchainConfigProxy,
+    superchainConfig
 } from './api';

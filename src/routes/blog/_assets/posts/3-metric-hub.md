@@ -1,6 +1,6 @@
 ---
 title: Impacts & Metric Hub
-description: A page contatining all sources of truth, relevant to impacts to public goods
+description: A page contatining all sources of truth, relevant to impacts of Redprint Wizard to public goods
 date: '2023-8-31'
 categories:
   - reports

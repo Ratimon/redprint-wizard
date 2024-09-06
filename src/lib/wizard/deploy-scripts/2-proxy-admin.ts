@@ -34,6 +34,24 @@ export function buildDeployProxyAdmin(opts: SharedProxyAdminOptions): DeployCont
 }
 
 function addBase(c: DeployBuilder) {
+
+  const console = {
+    name: 'console',
+    path: '@redprint-forge-std/console.sol',
+  };
+  c.addModule(console);
+
+  const Vm = {
+    name: 'Vm',
+    path: '@redprint-forge-std/Vm.sol',
+  };
+  c.addModule(Vm);
+  const VmSafe = {
+    name: 'VmSafe',
+    path: '@redprint-forge-std/Vm.sol',
+  };
+  c.addModule(VmSafe);
+
   const DeployFunctions = {
     name: 'DeployerFunctions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
@@ -56,7 +74,6 @@ function addBase(c: DeployBuilder) {
     path: '@redprint-core/legacy/AddressManager.sol',
   };
   c.addModule(AddressManager);
-
 
   const ProxyAdmin = {
     name: 'ProxyAdmin',
@@ -99,7 +116,6 @@ function addBase(c: DeployBuilder) {
             console.log("ProxyAdmin ownership transferred to Safe at: %s", safe);
         }`, functions.initialize);
 
-  
 }
 
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
@@ -136,5 +152,4 @@ const functions = defineFunctions({
     kind: 'external' as const,
     args: [],
   },
-
 });

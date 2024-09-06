@@ -204,7 +204,6 @@ const functions = defineFunctions({
     returns: ['address']
   },
 
-  
   _setImplementation: {
     kind: 'internal' as const,
     args: [

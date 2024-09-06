@@ -17,5 +17,6 @@ export {
     deployStepOneAll,
     deployAddressManager,
     deployProxyAdmin,
-    deploySuperchainConfigProxy
+    deploySuperchainConfigProxy,
+    deploySuperchainConfig
 } from './api';

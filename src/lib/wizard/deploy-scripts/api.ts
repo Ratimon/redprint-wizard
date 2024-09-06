@@ -24,6 +24,11 @@ import type { SharedSuperchainConfigProxyOptions } from '../shared/2-option-supe
 import {  defaults as superchainConfigProxyDefaults } from '../shared/2-option-superchain-config-proxy';
 import { printDeploySuperchainConfigProxy } from './2-superchain-config-proxy';
 
+import type { SharedSuperchainConfigOptions } from '../shared/2-option-superchain-config';
+import {  defaults as superchainConfigDefaults } from '../shared/2-option-superchain-config';
+import { printDeploySuperchainConfig } from './2-superchain-config';
+
+
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
    * Returns a string representation of a contract generated using the provided options. If opts is not provided, uses `defaults`.
@@ -75,4 +80,10 @@ export type DeploySuperchainConfigProxy = WizardAllAPI<SharedSuperchainConfigPro
 export const deploySuperchainConfigProxy: DeploySuperchainConfigProxy = {
   print: printDeploySuperchainConfigProxy,
   defaults: superchainConfigProxyDefaults,
+}
+
+export type DeploySuperchainConfig = WizardAllAPI<SharedSuperchainConfigOptions>;
+export const deploySuperchainConfig: DeploySuperchainConfig = {
+  print: printDeploySuperchainConfig,
+  defaults: superchainConfigDefaults,
 }

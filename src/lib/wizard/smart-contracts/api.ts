@@ -18,6 +18,10 @@ import type { SharedSuperchainConfigProxyOptions } from '../shared/2-option-supe
 import {  defaults as superchainConfigProxyDefaults } from '../shared/2-option-superchain-config-proxy';
 import { printSuperchainConfigProxy } from './2-superchain-config-proxy';
 
+import type { SharedSuperchainConfigOptions } from '../shared/2-option-superchain-config';
+import {  defaults as superchainConfigDefaults } from '../shared/2-option-superchain-config';
+import { printSuperchainConfig } from './2-superchain-config';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -65,4 +69,10 @@ export type SuperchainConfigProxy = WizardContractAPI<SharedSuperchainConfigProx
 export const superchainConfigProxy: SuperchainConfigProxy = {
   print: printSuperchainConfigProxy,
   defaults: superchainConfigProxyDefaults
+}
+
+export type SuperchainConfig = WizardContractAPI<SharedSuperchainConfigOptions>;
+export const superchainConfig: SuperchainConfig = {
+  print: printSuperchainConfig,
+  defaults: superchainConfigDefaults
 }
