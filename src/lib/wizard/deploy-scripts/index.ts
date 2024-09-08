@@ -18,5 +18,6 @@ export {
     deployAddressManager,
     deployProxyAdmin,
     deploySuperchainConfigProxy,
-    deploySuperchainConfig
+    deploySuperchainConfig,
+    deployProtocolVersionsProxy
 } from './api';

@@ -11,6 +11,7 @@
     KindedProxyAdminOptions, KindProxyAdmin,
     KindedSuperchainConfigProxyOptions, KindSuperchainConfigProxy,
     KindedSuperchainConfigOptions, KindSuperchainConfig,
+    KindedProtocolVersionsProxyOptions, KindProtocolVersionsProxy,
     OptionsErrorMessages
   } from '$lib/wizard/shared';
 
@@ -19,6 +20,7 @@
     sanitizeKindProxyAdmin,
     sanitizeKindSuperchainConfigProxy,
     sanitizeKindSuperchainConfig,
+    sanitizeKindProtocolVersionsProxy,
     OptionsError
   } from '$lib/wizard/shared';
 
@@ -30,7 +32,9 @@
   import ProxyAdminControls from '$lib/ui/controls/2-ProxyAdminControls.svelte';
   import SuperchainConfigProxyControls from '$lib/ui/controls/2-SuperchainConfigProxyControls.svelte';
   import SuperchainConfigControls from '$lib/ui/controls/2-SuperchainConfigControls.svelte';
+  import ProtocolVersionsProxyControls from '$lib/ui/controls/2-ProtocolVersionsProxyControls.svelte';
 
+  
   import MarkdownIt from "markdown-it";
   import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -209,6 +213,46 @@
   "ProxyAdmin": "<ADDRESS_5>",
   "SuperchainConfigProxy": "<ADDRESS_6>",
   "SuperchainConfig": "<ADDRESS_7>"
+}
+  \`\`\`
+  `);
+
+  export let initialContractProtocolVersionsProxyTab: string | undefined = 'ProtocolVersionsProxy';
+  export let contractProtocolVersionsProxyTab: KindProtocolVersionsProxy = sanitizeKindProtocolVersionsProxy(initialContractProtocolVersionsProxyTab);
+  let allContractsProtocolVersionsProxyOpts: { [k in KindProtocolVersionsProxy]?: Required<KindedProtocolVersionsProxyOptions [k]> } = {};
+  let errorsProtocolVersionsProxy: { [k in KindProtocolVersionsProxy]?: OptionsErrorMessages } = {};
+  let contractProtocolVersionsProxy: Contract = new ContractBuilder('ProtocolVersionsProxy');
+  let deployContractProtocolVersionsProxy: DeployContract = new DeployBuilder('DeployProtocolVersionsProxyScript');
+
+  $: optsProtocolVersionsProxy = allContractsProtocolVersionsProxyOpts[contractProtocolVersionsProxyTab];
+  $: {
+  if (optsProtocolVersionsProxy) {
+          try {
+              contractProtocolVersionsProxy = buildContractGeneric(optsProtocolVersionsProxy);
+              deployContractProtocolVersionsProxy = buildDeployGeneric(optsProtocolVersionsProxy);
+              errorsProtocolVersionsProxy[contractProtocolVersionsProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsProtocolVersionsProxy[contractProtocolVersionsProxyTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepThreeAModalOpen = false;
+  $: addressStepThreeAContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "AddressManager": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_7>"
 }
   \`\`\`
   `);
@@ -491,6 +535,70 @@
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
               {@html md.render(addressStepTwoBContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<!-- 203A_DeployProtocolVersionsProxy.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[5].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-2xl">2.3A : Deploy ProtocolVersionsProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+<WizardDouble conventionNumber={'203A'} initialContractTab={initialContractProtocolVersionsProxyTab} contractTab={contractProtocolVersionsProxyTab} opts={optsProtocolVersionsProxy} contract={contractProtocolVersionsProxy} deployContract={deployContractProtocolVersionsProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractProtocolVersionsProxyTab === 'ProtocolVersionsProxy'} on:click={() => contractProtocolVersionsProxyTab = 'ProtocolVersionsProxy'}>
+              ProtocolVersionsProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractProtocolVersionsProxyTab !== 'ProtocolVersionsProxy'}>
+              <ProtocolVersionsProxyControls bind:opts={allContractsProtocolVersionsProxyOpts.ProtocolVersionsProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepThreeAModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepThreeAModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepThreeAModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepThreeAContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>

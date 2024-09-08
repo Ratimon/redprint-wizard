@@ -7,6 +7,7 @@ import type { SharedAddressManagerOptions } from './2-option-address-manager';
 import type { SharedProxyAdminOptions } from './2-option-proxy-admin';
 import type { SharedSuperchainConfigProxyOptions } from './2-option-superchain-config-proxy';
 import type { SharedSuperchainConfigOptions } from './2-option-superchain-config';
+import type { SharedProtocolVersionsProxyOptions } from './2-option-versions-proxy';
 
 
 export interface KindedOptions {
@@ -17,6 +18,8 @@ export interface KindedOptions {
   ProxyAdmin: { kind: 'ProxyAdmin' } & SharedProxyAdminOptions;
   SuperchainConfigProxy : { kind: 'SuperchainConfigProxy' } & SharedSuperchainConfigProxyOptions;
   SuperchainConfig : { kind: 'SuperchainConfig' } & SharedSuperchainConfigOptions;
+  ProtocolVersionsProxy : { kind: 'ProtocolVersionsProxy' } & SharedProtocolVersionsProxyOptions;
+
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -63,3 +66,10 @@ export interface KindedSuperchainConfigOptions {
 }
 
 export type GenericSuperchainConfigOptions = KindedSuperchainConfigOptions[keyof KindedSuperchainConfigOptions];
+
+
+export interface KindedProtocolVersionsProxyOptions {
+  ProtocolVersionsProxy: { kind: 'ProtocolVersionsProxy' } & SharedProtocolVersionsProxyOptions;
+}
+
+export type GenericProtocolVersionsProxyOptions = KindedProtocolVersionsProxyOptions[keyof KindedProtocolVersionsProxyOptions];

@@ -28,6 +28,10 @@ import type { SharedSuperchainConfigOptions } from '../shared/2-option-superchai
 import {  defaults as superchainConfigDefaults } from '../shared/2-option-superchain-config';
 import { printDeploySuperchainConfig } from './2-superchain-config';
 
+import type { SharedProtocolVersionsProxyOptions } from '../shared/2-option-versions-proxy';
+import {  defaults as protocolVersionsProxyDefaults } from '../shared/2-option-versions-proxy';
+import { printDeployProtocolVersionsProxy } from './2-versions-proxy';
+
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -86,4 +90,10 @@ export type DeploySuperchainConfig = WizardAllAPI<SharedSuperchainConfigOptions>
 export const deploySuperchainConfig: DeploySuperchainConfig = {
   print: printDeploySuperchainConfig,
   defaults: superchainConfigDefaults,
+}
+
+export type DeployProtocolVersionsProxy = WizardAllAPI<SharedProtocolVersionsProxyOptions>;
+export const deployProtocolVersionsProxy: DeployProtocolVersionsProxy = {
+  print: printDeployProtocolVersionsProxy,
+  defaults: protocolVersionsProxyDefaults,
 }

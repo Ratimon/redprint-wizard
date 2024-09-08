@@ -17,6 +17,9 @@ import { buildSuperchainConfigProxy } from './2-superchain-config-proxy';
 import type { SharedSuperchainConfigOptions } from '../shared/2-option-superchain-config';
 import { buildSuperchainConfig } from './2-superchain-config';
 
+import type { SharedProtocolVersionsProxyOptions } from '../shared/2-option-versions-proxy';
+import { buildProtocolVersionsProxy } from './2-versions-proxy';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -24,6 +27,7 @@ export interface KindedOptions {
   ProxyAdmin : { kind: 'ProxyAdmin' } & SharedProxyAdminOptions;
   SuperchainConfigProxy : { kind: 'SuperchainConfigProxy'} & SharedSuperchainConfigProxyOptions;
   SuperchainConfig : { kind: 'SuperchainConfig'} & SharedSuperchainConfigOptions;
+  ProtocolVersionsProxy : {kind: 'ProtocolVersionsProxy' } & SharedProtocolVersionsProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -49,6 +53,9 @@ export function buildContractGeneric(opts: GenericOptions) {
     case 'SuperchainConfig':
         return buildSuperchainConfig(opts);
 
+    case 'ProtocolVersionsProxy':
+      return buildProtocolVersionsProxy(opts);
+  
     default:
       const _: never = opts;
       throw new Error('Unknown Contract');

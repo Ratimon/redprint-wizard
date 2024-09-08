@@ -19,5 +19,6 @@ export {
     addressManager,
     proxyAdmin,
     superchainConfigProxy,
-    superchainConfig
+    superchainConfig,
+    protocolVersionsProxy
 } from './api';
