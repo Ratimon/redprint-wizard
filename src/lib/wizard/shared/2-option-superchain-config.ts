@@ -34,7 +34,7 @@ export const defaults: Required<SharedSuperchainConfigOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployAndInitializeSuperchainConfig',
+  deployName: 'DeployAndInitializeSuperchainConfigScript',
 
   deployInfo: commonDefaults.deployInfo,
   opSec: 'mnemonic',

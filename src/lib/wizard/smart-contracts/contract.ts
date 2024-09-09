@@ -6,6 +6,7 @@ export interface Contract {
   parents: Parent[];
   natspecTags: NatspecTag[];
 
+  userDefinedTypes: UserDefinedType[];
   usings: Using[];
   modules: ParentContract[];
   dependencies: ParentContract[];
@@ -35,6 +36,13 @@ export interface ReferencedContract {
   name: string;
   transpiled?: boolean;
 }
+
+
+export interface UserDefinedType {
+  newType: string;
+  underlyingType: string;
+}
+
 
 export interface Using {
   library: ParentContract;
@@ -93,6 +101,7 @@ export class ContractBuilder implements Contract {
   license: string = 'MIT';
   upgradeable = false;
 
+  readonly userDefinedType: UserDefinedType[] = [];
   readonly using: Using[] = [];
   readonly modules: ParentContract[] = [];
   readonly natspecTags: NatspecTag[] = [];
@@ -147,6 +156,10 @@ export class ContractBuilder implements Contract {
     
   }
 
+  get userDefinedTypes(): UserDefinedType[] {
+    return [...this.userDefinedType];
+  }
+
   get usings(): Using[] {
     return [...this.using];
   }
@@ -161,6 +174,11 @@ export class ContractBuilder implements Contract {
 
   get variables(): string[] {
     return [...this.variableSet];
+  }
+
+  addType(newType: string, underlyingType: string ) {
+    const type : UserDefinedType = {newType : newType , underlyingType: underlyingType  } ;
+    this.userDefinedType.push(type);
   }
 
   addLibrary(contract: ParentContract, useFor: string ) {

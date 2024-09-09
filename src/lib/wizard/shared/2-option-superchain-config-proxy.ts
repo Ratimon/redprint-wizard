@@ -31,7 +31,7 @@ export const defaults: Required<SharedSuperchainConfigProxyOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeploySuperchainConfigProxy',
+  deployName: 'DeploySuperchainConfigProxyScript',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;

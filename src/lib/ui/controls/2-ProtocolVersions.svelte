@@ -3,20 +3,20 @@
   
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedProtocolVersionsProxyOptions } from '$lib/wizard/shared';
+    import type { KindedProtocolVersionsOptions } from '$lib/wizard/shared';
   
-    import { protocolVersionsProxy } from '$lib/wizard/smart-contracts';
-    import { deployProtocolVersionsProxy } from '$lib/wizard/deploy-scripts';
+    import { protocolVersions } from '$lib/wizard/smart-contracts';
+    import { deployProtocolVersions } from '$lib/wizard/deploy-scripts';
   
-    const contractDefaults = protocolVersionsProxy.defaults;
-    const deployDefaults = deployProtocolVersionsProxy.defaults;
+    const contractDefaults = protocolVersions.defaults;
+    const deployDefaults = deployProtocolVersions.defaults;
   
-    export let opts: Required<KindedProtocolVersionsProxyOptions['ProtocolVersionsProxy'] > = {
-      kind: 'ProtocolVersionsProxy',
+    export let opts: Required<KindedProtocolVersionsOptions['ProtocolVersions'] > = {
+      kind: 'ProtocolVersions',
       ...contractDefaults,
       ...deployDefaults,
 
-      contractInfo: {  securityContact: 'Consult full code at https://github.com/ethereum-optimism/optimism/blob/v1.9.0/packages/contracts-bedrock/src/universal/Proxy.sol', license: 'MIT'  },
+      contractInfo: {  securityContact: 'Consult full code at https://github.com/Ratimon/redprint-optimism-contracts-examples/blob/main/src/L1/ProtocolVersions.sol', license: 'MIT'  },
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
   

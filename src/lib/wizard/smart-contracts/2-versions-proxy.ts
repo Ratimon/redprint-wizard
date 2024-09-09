@@ -9,7 +9,6 @@ import { setInfo  } from "./set-info";
 
 import { defineFunctions } from '../utils/define-functions';
 
-//  todo : refactor versions proxy
 function withDefaults(opts: SharedProtocolVersionsProxyOptions): Required<SharedProtocolVersionsProxyOptions> {
   return {
     ...opts,

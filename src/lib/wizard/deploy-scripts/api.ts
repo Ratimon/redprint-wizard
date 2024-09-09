@@ -32,6 +32,10 @@ import type { SharedProtocolVersionsProxyOptions } from '../shared/2-option-vers
 import {  defaults as protocolVersionsProxyDefaults } from '../shared/2-option-versions-proxy';
 import { printDeployProtocolVersionsProxy } from './2-versions-proxy';
 
+import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions';
+import {  defaults as protocolVersionsDefaults } from '../shared/2-option-versions';
+import { printDeployProtocolVersions } from './2-versions';
+
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -96,4 +100,10 @@ export type DeployProtocolVersionsProxy = WizardAllAPI<SharedProtocolVersionsPro
 export const deployProtocolVersionsProxy: DeployProtocolVersionsProxy = {
   print: printDeployProtocolVersionsProxy,
   defaults: protocolVersionsProxyDefaults,
+}
+
+export type DeployProtocolVersions = WizardAllAPI<SharedProtocolVersionsOptions>;
+export const deployProtocolVersions: DeployProtocolVersions = {
+  print: printDeployProtocolVersions,
+  defaults: protocolVersionsDefaults,
 }

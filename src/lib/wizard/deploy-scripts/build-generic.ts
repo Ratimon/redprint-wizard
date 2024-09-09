@@ -22,6 +22,9 @@ import { buildDeploySuperchainConfig } from './2-superchain-config';
 import type { SharedProtocolVersionsProxyOptions } from '../shared/2-option-versions-proxy';
 import { buildDeployProtocolVersionsProxy } from './2-versions-proxy';
 
+import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions';
+import { buildDeployProtocolVersions } from './2-versions';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -31,6 +34,7 @@ export interface DeployKindedOptions {
   SuperchainConfigProxy: {kind: 'SuperchainConfigProxy'} & SharedSuperchainConfigProxyOptions;
   SuperchainConfig: {kind: 'SuperchainConfig'} & SharedSuperchainConfigOptions;
   ProtocolVersionsProxy : {kind: 'ProtocolVersionsProxy'} & SharedProtocolVersionsProxyOptions;
+  ProtocolVersions : {kind: 'ProtocolVersions'} & SharedProtocolVersionsOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -61,6 +65,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'ProtocolVersionsProxy':
       return  buildDeployProtocolVersionsProxy(opts);
+
+    case 'ProtocolVersions':
+      return  buildDeployProtocolVersions(opts);
 
     default:
       const _: never = opts;

@@ -6,7 +6,8 @@ export type {
     KindedProxyAdminOptions, GenericProxyAdminOptions,
     KindedSuperchainConfigProxyOptions, GenericSuperchainConfigProxyOptions,
     KindedSuperchainConfigOptions, GenericSuperchainConfigOptions,
-    KindedProtocolVersionsProxyOptions, GenericProtocolVersionsProxyOptions
+    KindedProtocolVersionsProxyOptions, GenericProtocolVersionsProxyOptions,
+    KindedProtocolVersionsOptions, GenericProtocolVersionsOptions
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -37,3 +38,6 @@ export { sanitizeKindSuperchainConfig} from './2-kind-superchain-config';
 
 export type { KindProtocolVersionsProxy} from './2-kind-versions-proxy';
 export { sanitizeKindProtocolVersionsProxy} from './2-kind-versions-proxy';
+
+export type { KindProtocolVersions} from './2-kind-versions';
+export { sanitizeKindProtocolVersions} from './2-kind-versions';

@@ -70,8 +70,7 @@ export function buildSuperchainConfig(opts: SharedSuperchainConfigOptions): Cont
     /// @custom:semver 1.1.0
     string public constant version = "1.1.0";`);
 
-
-    c.addConstructorCode('initialize({_guardian: address(0), _paused: false});');
+    c.addConstructorCode(`initialize({_guardian: address(0), _paused: false});`);
 
     // initialize
     c.addModifier('initializer', functions.initialize);

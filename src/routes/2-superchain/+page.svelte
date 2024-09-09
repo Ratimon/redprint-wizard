@@ -12,6 +12,7 @@
     KindedSuperchainConfigProxyOptions, KindSuperchainConfigProxy,
     KindedSuperchainConfigOptions, KindSuperchainConfig,
     KindedProtocolVersionsProxyOptions, KindProtocolVersionsProxy,
+    KindedProtocolVersionsOptions, KindProtocolVersions,
     OptionsErrorMessages
   } from '$lib/wizard/shared';
 
@@ -21,6 +22,7 @@
     sanitizeKindSuperchainConfigProxy,
     sanitizeKindSuperchainConfig,
     sanitizeKindProtocolVersionsProxy,
+    sanitizeKindProtocolVersions,
     OptionsError
   } from '$lib/wizard/shared';
 
@@ -33,8 +35,8 @@
   import SuperchainConfigProxyControls from '$lib/ui/controls/2-SuperchainConfigProxyControls.svelte';
   import SuperchainConfigControls from '$lib/ui/controls/2-SuperchainConfigControls.svelte';
   import ProtocolVersionsProxyControls from '$lib/ui/controls/2-ProtocolVersionsProxyControls.svelte';
+  import ProtocolVersionsControls from '$lib/ui/controls/2-ProtocolVersions.svelte';
 
-  
   import MarkdownIt from "markdown-it";
   import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -183,7 +185,7 @@
   let allContractsSuperchainConfigOpts: { [k in KindSuperchainConfig]?: Required<KindedSuperchainConfigOptions [k]> } = {};
   let errorsSuperchainConfig: { [k in KindSuperchainConfig]?: OptionsErrorMessages } = {};
   let contractSuperchainConfig: Contract = new ContractBuilder('SuperchainConfig');
-  let deployContractSuperchainConfig: DeployContract = new DeployBuilder('DeploySuperchainConfigScript');
+  let deployContractSuperchainConfig: DeployContract = new DeployBuilder('DeployAndInitializeSuperchainConfigScript');
 
   $: optsSuperchainConfig = allContractsSuperchainConfigOpts[contractSuperchainConfigTab];
   $: {
@@ -252,7 +254,48 @@
   "ProxyAdmin": "<ADDRESS_5>",
   "SuperchainConfigProxy": "<ADDRESS_6>",
   "SuperchainConfig": "<ADDRESS_7>",
-  "ProtocolVersionsProxy": "<ADDRESS_7>"
+  "ProtocolVersionsProxy": "<ADDRESS_8>"
+}
+  \`\`\`
+  `);
+
+  export let initialContractProtocolVersionsTab: string | undefined = 'ProtocolVersions';
+  export let contractProtocolVersionsTab: KindProtocolVersions = sanitizeKindProtocolVersions(initialContractProtocolVersionsTab);
+  let allContractsProtocolVersionsOpts: { [k in KindProtocolVersions]?: Required<KindedProtocolVersionsOptions [k]> } = {};
+  let errorsProtocolVersions: { [k in KindProtocolVersions]?: OptionsErrorMessages } = {};
+  let contractProtocolVersions: Contract = new ContractBuilder('ProtocolVersions');
+  let deployContractProtocolVersions: DeployContract = new DeployBuilder('DeployAndInitializeProtocolVersionsScript');
+
+  $: optsProtocolVersions = allContractsProtocolVersionsOpts[contractProtocolVersionsTab];
+  $: {
+  if (optsProtocolVersions) {
+          try {
+              contractProtocolVersions = buildContractGeneric(optsProtocolVersions);
+              deployContractProtocolVersions = buildDeployGeneric(optsProtocolVersions);
+              errorsProtocolVersions[contractProtocolVersionsTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsProtocolVersions[contractProtocolVersionsTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepThreeBModalOpen = false;
+  $: addressStepThreeBContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "AddressManager": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>"
 }
   \`\`\`
   `);
@@ -599,6 +642,70 @@
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
               {@html md.render(addressStepThreeAContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<!-- 203B_DeployAndInitializeProtocolVersions.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[6].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-2xl">2.3B : DeployAndInitializeProtocolVersions Contract</p>
+    </div>
+  </section>
+</Background>
+
+<WizardDouble conventionNumber={'203B'} initialContractTab={initialContractProtocolVersionsTab} contractTab={contractProtocolVersionsTab} opts={optsProtocolVersions} contract={contractProtocolVersions} deployContract={deployContractProtocolVersions}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractProtocolVersionsTab === 'ProtocolVersions'} on:click={() => contractProtocolVersionsTab = 'ProtocolVersions'}>
+              ProtocolVersions
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractProtocolVersionsTab !== 'ProtocolVersions'}>
+              <ProtocolVersionsControls bind:opts={allContractsProtocolVersionsOpts.ProtocolVersions} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepThreeBModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepThreeBModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepThreeBModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepThreeBContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>

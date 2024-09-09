@@ -39,6 +39,8 @@ export function printContract(contract: Contract, opts?: Options): string {
         return `import {${transformedNames}} from "${helpers.transformImport(p).path}";`;
       }),
 
+      contract.userDefinedTypes.map(p => `type ${p.newType} for ${p.underlyingType};`),
+
       [
         ...printNatspecTags(contract.natspecTags),
         [`contract ${contract.name}`, ...printInheritance(contract, helpers), '{'].join(' '),

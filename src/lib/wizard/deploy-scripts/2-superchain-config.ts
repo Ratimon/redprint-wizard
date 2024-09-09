@@ -25,9 +25,7 @@ export function buildDeploySuperchainConfig(opts: SharedSuperchainConfigOptions)
   const c = new DeployBuilder(allOpts.deployName);
   
   addBase(c);
-
   setOpsec(c, allOpts.opSec);
-
   setInfo(c, allOpts.deployInfo);
 
   return c;
@@ -52,30 +50,26 @@ function addBase(c: DeployBuilder) {
   };
   c.addModule(VmSafe);
 
-  const DeployFunctions = {
+  const DeployerFunctions = {
     name: 'DeployerFunctions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addLibrary(DeployFunctions, `IDeployer`);
-
-  const IDeployer = {
-    name: 'IDeployer',
-    path: '@redprint-deploy/deployer/DeployScript.sol',
-  };
-  c.addModule(IDeployer);
-
+  c.addLibrary(DeployerFunctions, `IDeployer`);
   const DeployOptions = {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
   c.addModule(DeployOptions);
-
-  
   const DeployScript = {
     name: 'DeployScript',
     path: '@redprint-deploy/deployer/DeployScript.sol',
   };
   c.addParent(DeployScript, []);
+  const IDeployer = {
+    name: 'IDeployer',
+    path: '@redprint-deploy/deployer/DeployScript.sol',
+  };
+  c.addModule(IDeployer);
 
   const SafeScript = {
     name: 'SafeScript',
@@ -129,7 +123,7 @@ function addBase(c: DeployBuilder) {
             vm.stopBroadcast();
         }`, functions.initialize);
 
-  // initialize
+  // initializeSuperchainConfig
   c.addFunctionCode(`console.log("Upgrading and initializing SuperchainConfig");
 
         address payable superchainConfigProxy = deployer.mustGetAddress("SuperchainConfigProxy");
