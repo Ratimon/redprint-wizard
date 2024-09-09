@@ -41,58 +41,6 @@
 
   export let data : PageData;
 
-  export let initialContractGovernanceTab: string | undefined = 'Safe';
-  export let contractGovernanceTab: KindGovernance = sanitizeKindGovernance(initialContractGovernanceTab);
-
-  let allContractsGovernanceOpts: { [k in KindGovernance]?: Required<KindedGovernanceOptions [k]> } = {};
-
-  let errorsGovernance: { [k in KindGovernance]?: OptionsErrorMessages } = {};
-
-  let contractGovernance: Contract = new ContractBuilder('SafeProxy');
-  let deployContractGovernance: DeployContract = new DeployBuilder('DeploySafeScript');
-
-  $: optsGovernance = allContractsGovernanceOpts[contractGovernanceTab];
-  $: {
-  if (optsGovernance) {
-          try {
-              contractGovernance = buildContractGeneric(optsGovernance);
-              deployContractGovernance = buildDeployGeneric(optsGovernance);
-              errorsGovernance[contractGovernanceTab] = undefined;
-          } catch (e: unknown) {
-              if (e instanceof OptionsError) {
-                errorsGovernance[contractGovernanceTab] = e.messages;
-              } else {
-              throw e;
-              }
-          }
-      }
-  }
-
-  export let initialContractStepTab: string | undefined = 'AllStepOne';
-  export let contractStepTab: KindAllStepOne = sanitizeKindAllStepOne(initialContractStepTab);
-
-  let allContractsStepOpts: { [k in KindAllStepOne]?: Required<KindedAllStepOneOptions [k]> } = {};
-
-  let errorsStep: { [k in KindAllStepOne]?: OptionsErrorMessages } = {};
-
-  let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
-
-  $: optsStep = allContractsStepOpts[contractStepTab];
-  $: {
-  if (optsStep) {
-          try {
-              deployContractStep = buildDeployGeneric(optsStep);
-              errorsStep[contractStepTab] = undefined;
-          } catch (e: unknown) {
-              if (e instanceof OptionsError) {
-                errorsStep[contractStepTab] = e.messages;
-              } else {
-              throw e;
-              }
-          }
-      }
-  }
-
   $: remmapingContent = md.render(`
   \`\`\`bash
 @redprint-core/=node_modules/redprint-forge/src
@@ -182,7 +130,7 @@ fs_permissions = [
   let isArtifactModalOpen = false;
 
   $: envContent = md.render(`
-  \`\`\`bash
+\`\`\`bash
 # -------------------------------------------------------------------------------------------------
 # IMPORTANT!
 # -------------------------------------------------------------------------------------------------
@@ -214,8 +162,61 @@ GS_BATCHER_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 GS_PROPOSER_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 GS_SEQUENCER_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 L1_RPC_URL=http://localhost:8545
-  \`\`\`
-  `);
+\`\`\`
+`);
+
+  export let initialContractGovernanceTab: string | undefined = 'Safe';
+  export let contractGovernanceTab: KindGovernance = sanitizeKindGovernance(initialContractGovernanceTab);
+
+  let allContractsGovernanceOpts: { [k in KindGovernance]?: Required<KindedGovernanceOptions [k]> } = {};
+
+  let errorsGovernance: { [k in KindGovernance]?: OptionsErrorMessages } = {};
+
+  let contractGovernance: Contract = new ContractBuilder('SafeProxy');
+  let deployContractGovernance: DeployContract = new DeployBuilder('DeploySafeScript');
+
+  $: optsGovernance = allContractsGovernanceOpts[contractGovernanceTab];
+  $: {
+  if (optsGovernance) {
+          try {
+              contractGovernance = buildContractGeneric(optsGovernance);
+              deployContractGovernance = buildDeployGeneric(optsGovernance);
+              errorsGovernance[contractGovernanceTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsGovernance[contractGovernanceTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  export let initialContractStepTab: string | undefined = 'AllStepOne';
+  export let contractStepTab: KindAllStepOne = sanitizeKindAllStepOne(initialContractStepTab);
+
+  let allContractsStepOpts: { [k in KindAllStepOne]?: Required<KindedAllStepOneOptions [k]> } = {};
+
+  let errorsStep: { [k in KindAllStepOne]?: OptionsErrorMessages } = {};
+
+  let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
+
+  $: optsStep = allContractsStepOpts[contractStepTab];
+  $: {
+  if (optsStep) {
+          try {
+              deployContractStep = buildDeployGeneric(optsStep);
+              errorsStep[contractStepTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsStep[contractStepTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
 
   let isEnvModalOpen = false;
 

@@ -27,6 +27,7 @@
   } from '$lib/wizard/shared';
 
   import Background from '$lib/ui/background/Background.svelte';
+  import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
   import WizardDouble from '$lib/ui/components/WizardDouble.svelte';
   import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
 
