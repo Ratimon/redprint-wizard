@@ -1,7 +1,7 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type {  SharedAllOptions, Governance } from '../shared/1-option-all';
+import type {  SharedAllStepOneOptions, Governance } from '../shared/1-option-all';
 import {  defaults } from '../shared/1-option-all';
 
 import { defaults as infoDefaults } from "./set-info";
@@ -9,18 +9,18 @@ import { defaults as infoDefaults } from "./set-info";
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
-function withDeployDefaults(opts: SharedAllOptions): Required<SharedAllOptions> {
+function withDeployDefaults(opts: SharedAllStepOneOptions): Required<SharedAllStepOneOptions> {
   return {
     ...opts,
     deployInfo: infoDefaults
   };
 }
 
-export function printDeployAllStepOne(opts: SharedAllOptions = defaults): string {
+export function printDeployAllStepOne(opts: SharedAllStepOneOptions = defaults): string {
   return printDeployContract(buildDeployAllStepOne(opts));
 }
 
-export function buildDeployAllStepOne(opts: SharedAllOptions): DeployContract {
+export function buildDeployAllStepOne(opts: SharedAllStepOneOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -29,7 +29,7 @@ export function buildDeployAllStepOne(opts: SharedAllOptions): DeployContract {
   c.addFunctionCode(`deployerProcedue = getDeployer();
         deployerProcedue.setAutoSave(true);`, fn);
   
-  setSubDeployment(c, fn, allOpts.governance);
+  setSafeDeployment(c, fn, allOpts.governance);
 
   setInfo(c, allOpts.deployInfo);
 
@@ -46,21 +46,27 @@ function addBase(c: DeployBuilder) {
       
     const IDeployer = {
         name: 'IDeployer',
-        path: '@redprint-deploy/deployer/DeployerFunctions.sol',
+        path: '@redprint-deploy/deployer/DeployScript.sol',
     };
     c.addModule(IDeployer);
+    const getDeployer = {
+      name: 'getDeployer',
+      path: '@redprint-deploy/deployer/DeployScript.sol',
+    };
+    c.addModule(getDeployer);
+
     c.addVariable(`IDeployer deployerProcedue;`);
 
 }
 
-function setSubDeployment(c: DeployBuilder, fn: BaseFunction, gov: Governance) {
+function setSafeDeployment(c: DeployBuilder, fn: BaseFunction, gov: Governance) {
 
     switch (gov) {
       case 'safe-multisig': {
 
         const DeploySafeProxyScript = {
             name: 'DeploySafeProxyScript',
-            path: '@script/100_DeploySafeProxyScript.s.sol',
+            path: '@script/101_DeploySafeProxyScript.s.sol',
         };
         c.addModule(DeploySafeProxyScript);
 

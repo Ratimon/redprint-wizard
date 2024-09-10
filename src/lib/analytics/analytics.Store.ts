@@ -11,7 +11,8 @@ export type Action =
                     'copy-contract-SuperchainConfigProxy'| 'copy-script-SuperchainConfigProxy' | 'download-contract-SuperchainConfigProxy' | 'download-script-SuperchainConfigProxy' |
                     'copy-contract-SuperchainConfig'| 'copy-script-SuperchainConfig' | 'download-contract-SuperchainConfig' | 'download-script-SuperchainConfig' |
                     'copy-contract-ProtocolVersionsProxy'| 'copy-script-ProtocolVersionsProxy' | 'download-contract-ProtocolVersionsProxy' | 'download-script-ProtocolVersionsProxy' |
-                    'copy-contract-ProtocolVersions'| 'copy-script-ProtocolVersions' | 'download-contract-ProtocolVersions' | 'download-script-ProtocolVersions' 
+                    'copy-contract-ProtocolVersions'| 'copy-script-ProtocolVersions' | 'download-contract-ProtocolVersions' | 'download-script-ProtocolVersions' |
+                    'copy-contract-AllStepTwo'| 'copy-script-AllStepTwo' | 'download-contract-AllStepTwo' | 'download-script-AllStepTwo'
                     
 
 export type GaEvent = {

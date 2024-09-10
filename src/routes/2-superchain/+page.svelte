@@ -13,6 +13,7 @@
     KindedSuperchainConfigOptions, KindSuperchainConfig,
     KindedProtocolVersionsProxyOptions, KindProtocolVersionsProxy,
     KindedProtocolVersionsOptions, KindProtocolVersions,
+    KindedAllStepTwoOptions, KindAllStepTwo,
     OptionsErrorMessages
   } from '$lib/wizard/shared';
 
@@ -23,6 +24,7 @@
     sanitizeKindSuperchainConfig,
     sanitizeKindProtocolVersionsProxy,
     sanitizeKindProtocolVersions,
+    sanitizeKindAllStepTwo,
     OptionsError
   } from '$lib/wizard/shared';
 
@@ -30,6 +32,7 @@
   import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
   import WizardDouble from '$lib/ui/components/WizardDouble.svelte';
   import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
+  import AllControls from '$lib/ui/controls/2-AllControls.svelte';
 
   import AddressManagerControls from '$lib/ui/controls/2-AddressManagerControls.svelte';
   import ProxyAdminControls from '$lib/ui/controls/2-ProxyAdminControls.svelte';
@@ -286,6 +289,48 @@
 
   let isArtifactStepThreeBModalOpen = false;
   $: addressStepThreeBContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "AddressManager": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>"
+}
+  \`\`\`
+  `);
+
+export let initialContractStepTab: string | undefined = 'AllStepTwo';
+export let contractStepTab: KindAllStepTwo = sanitizeKindAllStepTwo(initialContractStepTab);
+
+let allContractsStepOpts: { [k in KindAllStepTwo]?: Required<KindedAllStepTwoOptions [k]> } = {};
+
+let errorsStep: { [k in KindAllStepTwo]?: OptionsErrorMessages } = {};
+
+let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
+
+$: optsStep = allContractsStepOpts[contractStepTab];
+$: {
+if (optsStep) {
+        try {
+            deployContractStep = buildDeployGeneric(optsStep);
+            errorsStep[contractStepTab] = undefined;
+        } catch (e: unknown) {
+            if (e instanceof OptionsError) {
+              errorsStep[contractStepTab] = e.messages;
+            } else {
+            throw e;
+            }
+        }
+    }
+}
+
+let isArtifactStepAllModalOpen = false;
+  $: addressStepAllContent = md.render(`
   \`\`\`bash
 {
   "SafeProxyFactory": "<ADDRESS_1>",
@@ -718,8 +763,72 @@
   </div>
 </WizardDouble>
 
-
 <!-- 000_DeployAll.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[7].pathname}>
+    <div class="divider divider-primary">
+      <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
+    </div>
+  </section>
+</Background>
+
+<WizardSingle conventionNumber={'000'} initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsStep} deployContract={deployContractStep}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractStepTab === 'AllStepTwo'} on:click={() => contractStepTab = 'AllStepTwo'}>
+              DeployAll
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractStepTab !== 'AllStepTwo'}>
+              <AllControls bind:opts={allContractsStepOpts.AllStepTwo} />
+          </div>
+      </div>
+  </div>
+  
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepAllModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepAllModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepAllModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepAllContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</WizardSingle>
+
 
 <style lang="postcss">
 

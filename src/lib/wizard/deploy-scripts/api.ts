@@ -8,8 +8,8 @@ import type {  SharedSafeOptions } from '../shared/1-option-safe';
 import {  defaults as safeDefaults } from '../shared/1-option-safe';
 import { printDeploySafe } from './1-safe';
 
-import type {  SharedAllOptions } from '../shared/1-option-all';
-import {  defaults as allDefaults } from '../shared/1-option-all';
+import type {  SharedAllStepOneOptions } from '../shared/1-option-all';
+import {  defaults as allStepOneDefaults } from '../shared/1-option-all';
 import { printDeployAllStepOne } from './1-all';
 
 import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';
@@ -35,6 +35,10 @@ import { printDeployProtocolVersionsProxy } from './2-versions-proxy';
 import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions';
 import {  defaults as protocolVersionsDefaults } from '../shared/2-option-versions';
 import { printDeployProtocolVersions } from './2-versions';
+
+import type {  SharedAllStepTwoOptions } from '../shared/2-option-all';
+import {  defaults as allStepTwoDefaults } from '../shared/2-option-all';
+import { printDeployAllStepTwo } from './2-all';
 
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -66,10 +70,10 @@ export const deployGovernor: DeployGovernor = {
   defaults: governorDefaults,
 }
 
-export type DeployAll = WizardAllAPI<SharedAllOptions>;
-export const deployStepOneAll: DeployAll = {
+export type DeployStepOneAll = WizardAllAPI<SharedAllStepOneOptions>;
+export const deployStepOneAll: DeployStepOneAll = {
   print: printDeployAllStepOne,
-  defaults: allDefaults,
+  defaults: allStepOneDefaults,
 }
 
 export type DeployAddressManager = WizardAllAPI<SharedAddressManagerOptions>;
@@ -106,4 +110,10 @@ export type DeployProtocolVersions = WizardAllAPI<SharedProtocolVersionsOptions>
 export const deployProtocolVersions: DeployProtocolVersions = {
   print: printDeployProtocolVersions,
   defaults: protocolVersionsDefaults,
+}
+
+export type DeployStepTwoAll = WizardAllAPI<SharedAllStepTwoOptions>;
+export const deployStepTwoAll: DeployStepTwoAll = {
+  print: printDeployAllStepTwo,
+  defaults: allStepTwoDefaults,
 }

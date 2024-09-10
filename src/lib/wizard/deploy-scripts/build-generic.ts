@@ -4,7 +4,7 @@ import { buildDeploySafe } from './1-safe';
 import type { SharedGovernerOptions} from '../shared/1-option-governor';
 import { buildDeployGoverner } from './1-governor';
 
-import type { SharedAllOptions} from '../shared/1-option-all';
+import type { SharedAllStepOneOptions} from '../shared/1-option-all';
 import { buildDeployAllStepOne } from './1-all';
 
 import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';
@@ -25,16 +25,20 @@ import { buildDeployProtocolVersionsProxy } from './2-versions-proxy';
 import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions';
 import { buildDeployProtocolVersions } from './2-versions';
 
+import type { SharedAllStepTwoOptions} from '../shared/2-option-all';
+import { buildDeployAllStepTwo } from './2-all';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
-  AllStepOne: {kind: 'AllStepOne'} & SharedAllOptions;
+  AllStepOne: {kind: 'AllStepOne'} & SharedAllStepOneOptions;
   AddressManager: {kind: 'AddressManager'} & SharedAddressManagerOptions;
   ProxyAdmin: {kind: 'ProxyAdmin'} & SharedProxyAdminOptions;
   SuperchainConfigProxy: {kind: 'SuperchainConfigProxy'} & SharedSuperchainConfigProxyOptions;
   SuperchainConfig: {kind: 'SuperchainConfig'} & SharedSuperchainConfigOptions;
   ProtocolVersionsProxy : {kind: 'ProtocolVersionsProxy'} & SharedProtocolVersionsProxyOptions;
   ProtocolVersions : {kind: 'ProtocolVersions'} & SharedProtocolVersionsOptions;
+  AllStepTwo: {kind: 'AllStepTwo'} & SharedAllStepTwoOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -52,10 +56,10 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
       return buildDeployAllStepOne(opts);
 
     case 'AddressManager':
-        return  buildDeployAddressManager(opts);
+      return  buildDeployAddressManager(opts);
 
     case 'ProxyAdmin':
-        return  buildDeployProxyAdmin(opts);
+      return  buildDeployProxyAdmin(opts);
 
     case 'SuperchainConfigProxy':
       return  buildDeploySuperchainConfigProxy(opts);
@@ -68,6 +72,10 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'ProtocolVersions':
       return  buildDeployProtocolVersions(opts);
+
+    case 'AllStepTwo':
+      return  buildDeployAllStepTwo(opts);
+      
 
     default:
       const _: never = opts;

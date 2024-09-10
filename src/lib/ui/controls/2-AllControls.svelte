@@ -4,15 +4,15 @@
     import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedAllStepOneOptions } from '$lib/wizard/shared';
+    import type { KindedAllStepTwoOptions } from '$lib/wizard/shared';
   
-    import { deployStepOneAll } from '$lib/wizard/deploy-scripts';
+    import { deployStepTwoAll } from '$lib/wizard/deploy-scripts';
   
-    const deployStepOneAllDefaults = deployStepOneAll.defaults;
+    const deployStepTwoAllDefaults = deployStepTwoAll.defaults;
   
-    export let opts: Required<KindedAllStepOneOptions['AllStepOne'] > = {
-      kind: 'AllStepOne',
-      ...deployStepOneAllDefaults,
+    export let opts: Required<KindedAllStepTwoOptions['AllStepTwo'] > = {
+      kind: 'AllStepTwo',
+      ...deployStepTwoAllDefaults,
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
     
@@ -52,6 +52,15 @@
           Choose Governor Option
       </HelpTooltip>
     </label>
-
   </div>
+</section>
+
+<section class="controls-section">
+    <h1>Step 2</h1>
+    <span>AddressManager</span>
+    <span>ProxyAdmin</span>
+    <span>SuperchainConfigProxy</span>
+    <span>SuperchainConfig</span>
+    <span>ProtocolVersionsProxy</span>
+    <span>ProtocolVersions</span>
 </section>

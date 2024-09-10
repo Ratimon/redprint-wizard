@@ -20,5 +20,6 @@ export {
     deploySuperchainConfigProxy,
     deploySuperchainConfig,
     deployProtocolVersionsProxy,
-    deployProtocolVersions
+    deployProtocolVersions,
+    deployStepTwoAll
 } from './api';

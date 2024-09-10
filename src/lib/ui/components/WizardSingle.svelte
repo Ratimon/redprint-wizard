@@ -160,7 +160,10 @@
 
     <div class="output flex flex-col grow overflow-auto h-[calc(120vh-40px)]">
       <div class="badge badge-primary badge-outline badge-lg">
-        Deploy Script: {conventionNumber}_{deployContract.name}.s.sol
+        Deploy Script:
+      </div>
+      <div class="badge badge-primary badge-outline badge-lg">
+        {conventionNumber}_{deployContract.name}.s.sol
       </div>
 
       <pre class="flex flex-col grow basis-0 overflow-auto">

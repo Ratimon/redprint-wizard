@@ -23,6 +23,16 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'ProxyAdmin':
         return true;
+    case 'SuperchainConfigProxy':
+      return true;
+    case 'SuperchainConfig':
+      return true;
+    case 'ProtocolVersionsProxy':
+      return true;
+    case 'ProtocolVersions':
+      return true;
+    case 'AllStepTwo':
+      return true;
 
     default: {
       // Static assert that we've checked all kinds.
