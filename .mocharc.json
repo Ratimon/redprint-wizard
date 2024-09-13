@@ -1,0 +1,21 @@
+{
+    "require": "ts-node/register",
+    "diff": true,
+    "recursive": true,
+    "sort": true,
+    "timeout": 10000,
+    "extension": [
+      "ts"
+    ],
+    "node-option": [
+        "experimental-specifier-resolution=node",
+        "loader=ts-node/esm"
+      ],
+    "spec": [
+      "src/lib/wizard/**/*.test.ts"
+    ],
+    "watch-files": [
+      "src",
+      "test"
+    ]
+  }

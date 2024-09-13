@@ -7,7 +7,7 @@ import { withHelpers } from './options';
 import type { Lines} from '../utils/format-lines';
 import { formatLines, spaceBetween } from '../utils/format-lines';
 import { mapValues } from '../utils/map-values';
-import SOLIDITY_VERSION from './solidity-version.json';
+import SOLIDITY_VERSION from './solidity-version.json' assert { type: "json" };
 
 export function printDeployContract(contract: DeployContract, opts?: Options): string {
   const helpers = withHelpers(opts);
