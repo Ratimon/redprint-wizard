@@ -1,0 +1,10 @@
+[profile.default]
+src = "contract"
+out = "out"
+script = 'script'
+test = 'test'
+libs = ["lib"]
+solc_version = '0.8.20'
+
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

@@ -23,3 +23,13 @@ export {
     protocolVersionsProxy,
     protocolVersions
 } from './api';
+
+
+export { buildSafe } from './1-safe';
+export { buildGovernor } from './1-governor';
+export { buildAddressManager } from './2-address-manager';
+export { buildProxyAdmin } from './2-proxy-admin'
+export { buildSuperchainConfigProxy } from './2-superchain-config-proxy';
+export { buildSuperchainConfig } from './2-superchain-config';
+export { buildProtocolVersionsProxy } from './2-versions-proxy';
+export { buildProtocolVersions } from './2-versions';

@@ -12,7 +12,7 @@
         "loader=ts-node/esm"
       ],
     "spec": [
-      "src/lib/wizard/**/*.test.ts"
+      "test/**/*.test.ts"
     ],
     "watch-files": [
       "src",

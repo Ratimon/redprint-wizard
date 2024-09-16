@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate-contract": "ts-node generate_contract.ts"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "redprint-forge": "^0.2.2"
+  },
+  "dependencies": {
+    "import-single-ts": "^1.0.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}

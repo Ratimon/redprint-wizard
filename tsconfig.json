@@ -12,7 +12,7 @@
 		"moduleResolution": "bundler"
 	},
 	"files": ["./declare.d.ts"],
-	"include": ["./src/**/*.ts"]
+	"include": ["./src/**/*.ts", "test/**/*.ts"]
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	// except $lib which is handled by https://kit.svelte.dev/docs/configuration#files
 	//
