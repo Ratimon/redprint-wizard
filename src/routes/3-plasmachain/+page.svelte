@@ -2,4 +2,4 @@
     import Error from '$lib/ui/error/Error.svelte';
 </script>
 
-<Error></Error>
+<Error error={`This module is Optional`}></Error>

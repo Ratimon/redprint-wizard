@@ -3,7 +3,7 @@
   import Background from '$lib/ui/background/Background.svelte';
 
   export let error: string = 'error';
-
+  
 </script>
 
 <div class="h-screen w-full flex flex-col justify-center items-center text-center gap-6 p-6">
