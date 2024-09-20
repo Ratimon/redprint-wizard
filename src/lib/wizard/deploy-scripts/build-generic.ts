@@ -31,6 +31,9 @@ import { buildDeployAllStepTwo } from './2-all';
 import type { SharedOptimismPortalProxyOptions} from '../shared/4-option-optimism-portal-proxy';
 import { buildDeployOptimismPortalProxy } from './4-optimism-portal-proxy';
 
+import type { SharedSystemConfigProxyOptions} from '../shared/4-option-system-config-proxy';
+import { buildDeploySystemConfigProxy } from './4-system-config-proxy';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -43,6 +46,7 @@ export interface DeployKindedOptions {
   ProtocolVersions : {kind: 'ProtocolVersions'} & SharedProtocolVersionsOptions;
   AllStepTwo: {kind: 'AllStepTwo'} & SharedStepTwoAllOptions;
   OptimismPortalProxy: {kind: 'OptimismPortalProxy'} & SharedOptimismPortalProxyOptions;
+  SystemConfigProxy : {kind: 'SystemConfigProxy'} & SharedSystemConfigProxyOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -82,6 +86,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
    
     case 'OptimismPortalProxy':
       return  buildDeployOptimismPortalProxy(opts);
+
+    case 'SystemConfigProxy':
+      return  buildDeploySystemConfigProxy(opts);
 
     default:
       const _: never = opts;

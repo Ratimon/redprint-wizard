@@ -7,6 +7,39 @@
 </script>
 
 <div class="h-screen w-full flex flex-col justify-center items-center text-center gap-6 p-6">
+
+  <p class="font-medium md:text-xl md:font-semibold">
+    Working In Progress 🥲
+  </p>
+
+  <p class="text-red-500">{error}</p>
+
+  <div class="flex flex-wrap gap-4 justify-center">
+    <button class="btn btn-sm">
+
+    <!--  to do add support -->
+    <!-- <ButtonSupport /> -->
+
+    <!--  to do add link -->
+    <!--  add Home page -->
+
+    <a class="btn btn-sm"
+     href="/"
+    >
+     <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      class="w-5 h-5"
+      >
+        <path
+            d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z"
+        />
+      </svg>
+      Home
+    </a>
+  </div>
+  
   <Background color="bg-white">
     <div class="p-6 rounded-xl">
       <svg
@@ -124,35 +157,4 @@
     </div>
   </Background>
 
-    <p class="font-medium md:text-xl md:font-semibold">
-      Working In Progress 🥲
-    </p>
-
-    <p class="text-red-500">{error}</p>
-
-    <div class="flex flex-wrap gap-4 justify-center">
-      <button class="btn btn-sm">
-
-      <!--  to do add support -->
-      <!-- <ButtonSupport /> -->
-
-      <!--  to do add link -->
-      <!--  add Home page -->
-
-      <a class="btn btn-sm"
-       href="/"
-      >
-       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        class="w-5 h-5"
-        >
-          <path
-              d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z"
-          />
-        </svg>
-        Home
-      </a>
-    </div>
-  </div>
+</div>

@@ -12,6 +12,7 @@ import type { SharedProtocolVersionsOptions } from './2-option-versions';
 import type { SharedStepTwoAllOptions} from './2-option-all';
 
 import type { SharedOptimismPortalProxyOptions} from './4-option-optimism-portal-proxy';
+import type { SharedSystemConfigProxyOptions} from './4-option-system-config-proxy';
 
 
 export interface KindedOptions {
@@ -25,7 +26,8 @@ export interface KindedOptions {
   ProtocolVersionsProxy : { kind: 'ProtocolVersionsProxy' } & SharedProtocolVersionsProxyOptions;
   ProtocolVersions : { kind: 'ProtocolVersions' } & SharedProtocolVersionsOptions;
   AllStepTwo: { kind: 'AllStepTwo' } & SharedStepTwoAllOptions;
-  SharedOptimismPortalProxyOptions: { kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
+  OptimismPortalProxy: { kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
+  SystemConfigProxy: { kind: 'SystemConfigProxy' } & SharedSystemConfigProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -90,3 +92,8 @@ export interface KindedOptimismPortalProxyOptions {
   OptimismPortalProxy: { kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
 }
 export type GenericOptimismPortalProxyOptions = KindedOptimismPortalProxyOptions[keyof KindedOptimismPortalProxyOptions];
+
+export interface KindedSystemConfigProxyOptions {
+  SystemConfigProxy: { kind: 'SystemConfigProxy' } & SharedSystemConfigProxyOptions;
+}
+export type GenericSystemConfigProxyOptions = KindedSystemConfigProxyOptions[keyof KindedSystemConfigProxyOptions];

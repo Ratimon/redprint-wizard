@@ -34,6 +34,10 @@ import type { SharedOptimismPortalProxyOptions } from '../shared/4-option-optimi
 import {  defaults as optimismPortalProxyDefaults } from '../shared/4-option-optimism-portal-proxy';
 import { printOptimismPortalProxy } from './4-optimism-portal-proxy';
 
+import type { SharedSystemConfigProxyOptions } from '../shared/4-option-system-config-proxy';
+import {  defaults as systemConfigProxyDefaults } from '../shared/4-option-system-config-proxy';
+import { printSystemConfigProxy } from './4-system-config-proxy';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -105,4 +109,10 @@ export type OptimismPortalProxy = WizardContractAPI<SharedOptimismPortalProxyOpt
 export const optimismPortalProxy: OptimismPortalProxy = {
   print: printOptimismPortalProxy,
   defaults: optimismPortalProxyDefaults
+}
+
+export type SystemConfigProxy = WizardContractAPI<SharedSystemConfigProxyOptions>;
+export const systemConfigProxy: SystemConfigProxy = {
+  print: printSystemConfigProxy,
+  defaults: systemConfigProxyDefaults
 }

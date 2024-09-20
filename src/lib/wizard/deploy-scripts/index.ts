@@ -22,5 +22,6 @@ export {
     deployProtocolVersionsProxy,
     deployProtocolVersions,
     deployStepTwoAll,
-    deployOptimismPortalProxy
+    deployOptimismPortalProxy,
+    deploySystemConfigProxy
 } from './api';

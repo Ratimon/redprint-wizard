@@ -8,11 +8,13 @@
 
     import type {
         KindedOptimismPortalProxyOptions, KindOptimismPortalProxy,
+        KindedSystemConfigProxyOptions, KindSystemConfigProxy,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
     import {
         sanitizeKindOptimismPortalProxy,
+        sanitizeKindSystemConfigProxy,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -23,6 +25,7 @@
     import AllControls from '$lib/ui/controls/2-AllControls.svelte';
 
     import OptimismPortalProxyControls from '$lib/ui/controls/4-OptimismPortalProxyControls.svelte';
+    import SystemConfigProxyControls from '$lib/ui/controls/4-SystemConfigProxyControls.svelte';
 
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
@@ -62,7 +65,7 @@
   \`\`\`
   `);
 
-  // **** step 1 ***
+  // **** step 4.1A ***
 
   export let initialContractOptimismPortalProxyTab: string | undefined = 'OptimismPortalProxy';
   export let contractOptimismPortalProxyTab: KindOptimismPortalProxy = sanitizeKindOptimismPortalProxy(initialContractOptimismPortalProxyTab);
@@ -100,7 +103,50 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>"
+  \`\`\`
+  `);
+
+  // **** step 4.1B ***
+
+  export let initialContractSystemConfigProxyTab: string | undefined = 'SystemConfigProxy';
+  export let contractSystemConfigProxyTab: KindSystemConfigProxy = sanitizeKindSystemConfigProxy(initialContractSystemConfigProxyTab);
+  let allContractsSystemConfigProxyOpts: { [k in KindSystemConfigProxy]?: Required<KindedSystemConfigProxyOptions [k]> } = {};
+  let errorsSystemConfigProxy: { [k in KindSystemConfigProxy]?: OptionsErrorMessages } = {};
+  let contractSystemConfigProxy: Contract = new ContractBuilder('SystemConfigProxy');
+  let deployContractSystemConfigProxy: DeployContract = new DeployBuilder('DeploySystemConfigProxyScript');
+
+  $: optsSystemConfigProxy = allContractsSystemConfigProxyOpts[contractSystemConfigProxyTab];
+  $: {
+  if (optsSystemConfigProxy) {
+          try {
+              contractSystemConfigProxy = buildContractGeneric(optsSystemConfigProxy);
+              deployContractSystemConfigProxy = buildDeployGeneric(optsSystemConfigProxy);
+              errorsSystemConfigProxy[contractSystemConfigProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsSystemConfigProxy[contractSystemConfigProxyTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneBModalOpen = false;
+  $: addressStepOneBContent = md.render(`
+  \`\`\`bash
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
   "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>"
   \`\`\`
   `);
 
@@ -146,7 +192,7 @@
     </div>
 </Background>
 
-<WizardDouble conventionNumber={'201A'} initialContractTab={initialContractOptimismPortalProxyTab} contractTab={contractOptimismPortalProxyTab} opts={optsOptimismPortalProxy} contract={contractOptimismPortalProxy} deployContract={deployContractOptimismPortalProxy}>
+<WizardDouble conventionNumber={'401A'} initialContractTab={initialContractOptimismPortalProxyTab} contractTab={contractOptimismPortalProxyTab} opts={optsOptimismPortalProxy} contract={contractOptimismPortalProxy} deployContract={deployContractOptimismPortalProxy}>
     <div slot="menu" >
         <div class="tab overflow-hidden">
           <Background color="bg-base-200">
@@ -207,7 +253,60 @@
   </div>
 </Background>
 
+<WizardDouble conventionNumber={'401B'} initialContractTab={initialContractSystemConfigProxyTab} contractTab={contractSystemConfigProxyTab} opts={optsSystemConfigProxy} contract={contractSystemConfigProxy} deployContract={deployContractSystemConfigProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractSystemConfigProxyTab === 'SystemConfigProxy'} on:click={() => contractSystemConfigProxyTab = 'SystemConfigProxy'}>
+              SystemConfigProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
 
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractSystemConfigProxyTab !== 'SystemConfigProxy'}>
+              <SystemConfigProxyControls bind:opts={allContractsSystemConfigProxyOpts.SystemConfigProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneBModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneBModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneBModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneBContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[2].pathname}>
