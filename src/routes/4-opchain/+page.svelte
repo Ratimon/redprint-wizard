@@ -134,13 +134,16 @@
     </p>
 </div>
 
-<!-- 201A_DeployAddressManager.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
     <section id={data.dropDownLinks[1].pathname}>
       <div class="divider divider-primary ">
-        <p class="text-2xl">4.1A : Deploy AddressManager Contract</p>
+        <p class="text-2xl">4.1 : Deploy Proxies Contracts</p>
       </div>
     </section>
+    <!-- 401A_DeployOptimismPortalProxy -->
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1A : Deploy OptimismPortalProxy Contract</p>
+    </div>
 </Background>
 
 <WizardDouble conventionNumber={'201A'} initialContractTab={initialContractOptimismPortalProxyTab} contractTab={contractOptimismPortalProxyTab} opts={optsOptimismPortalProxy} contract={contractOptimismPortalProxy} deployContract={deployContractOptimismPortalProxy}>
@@ -197,3 +200,23 @@
   
     </div>
 </WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.1B : Deploy SystemConfigProxy Contract</p>
+  </div>
+</Background>
+
+
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[2].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-2xl">4.2 : Deploy Implementations Contracts</p>
+    </div>
+  </section>
+  <!-- 402A_ -->
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.2A : Deploy L1CrossDomainMessenger Contract</p>
+  </div>
+</Background>
