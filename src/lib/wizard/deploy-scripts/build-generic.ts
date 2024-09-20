@@ -4,7 +4,7 @@ import { buildDeploySafe } from './1-safe';
 import type { SharedGovernerOptions} from '../shared/1-option-governor';
 import { buildDeployGoverner } from './1-governor';
 
-import type { SharedAllStepOneOptions} from '../shared/1-option-all';
+import type { SharedStepOneAllOptions} from '../shared/1-option-all';
 import { buildDeployAllStepOne } from './1-all';
 
 import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';
@@ -25,20 +25,24 @@ import { buildDeployProtocolVersionsProxy } from './2-versions-proxy';
 import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions';
 import { buildDeployProtocolVersions } from './2-versions';
 
-import type { SharedAllStepTwoOptions} from '../shared/2-option-all';
+import type { SharedStepTwoAllOptions} from '../shared/2-option-all';
 import { buildDeployAllStepTwo } from './2-all';
+
+import type { SharedOptimismPortalProxyOptions} from '../shared/4-option-optimism-portal-proxy';
+import { buildDeployOptimismPortalProxy } from './4-optimism-portal-proxy';
 
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
-  AllStepOne: {kind: 'AllStepOne'} & SharedAllStepOneOptions;
+  AllStepOne: {kind: 'AllStepOne'} & SharedStepOneAllOptions;
   AddressManager: {kind: 'AddressManager'} & SharedAddressManagerOptions;
   ProxyAdmin: {kind: 'ProxyAdmin'} & SharedProxyAdminOptions;
   SuperchainConfigProxy: {kind: 'SuperchainConfigProxy'} & SharedSuperchainConfigProxyOptions;
   SuperchainConfig: {kind: 'SuperchainConfig'} & SharedSuperchainConfigOptions;
   ProtocolVersionsProxy : {kind: 'ProtocolVersionsProxy'} & SharedProtocolVersionsProxyOptions;
   ProtocolVersions : {kind: 'ProtocolVersions'} & SharedProtocolVersionsOptions;
-  AllStepTwo: {kind: 'AllStepTwo'} & SharedAllStepTwoOptions;
+  AllStepTwo: {kind: 'AllStepTwo'} & SharedStepTwoAllOptions;
+  OptimismPortalProxy: {kind: 'OptimismPortalProxy'} & SharedOptimismPortalProxyOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -75,7 +79,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'AllStepTwo':
       return  buildDeployAllStepTwo(opts);
-      
+   
+    case 'OptimismPortalProxy':
+      return  buildDeployOptimismPortalProxy(opts);
 
     default:
       const _: never = opts;

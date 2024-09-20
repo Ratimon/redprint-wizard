@@ -1,7 +1,7 @@
 
 import type { SharedSafeOptions} from './1-option-safe';
 import type { SharedGovernerOptions} from './1-option-governor';
-import type { SharedAllStepOneOptions} from './1-option-all';
+import type { SharedStepOneAllOptions} from './1-option-all';
 
 import type { SharedAddressManagerOptions } from './2-option-address-manager';
 import type { SharedProxyAdminOptions } from './2-option-proxy-admin';
@@ -9,21 +9,23 @@ import type { SharedSuperchainConfigProxyOptions } from './2-option-superchain-c
 import type { SharedSuperchainConfigOptions } from './2-option-superchain-config';
 import type { SharedProtocolVersionsProxyOptions } from './2-option-versions-proxy';
 import type { SharedProtocolVersionsOptions } from './2-option-versions';
-import type { SharedAllStepTwoOptions} from './2-option-all';
+import type { SharedStepTwoAllOptions} from './2-option-all';
 
+import type { SharedOptimismPortalProxyOptions} from './4-option-optimism-portal-proxy';
 
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
-  AllStepOne: { kind: 'AllStepOne' } & SharedAllStepOneOptions;
+  AllStepOne: { kind: 'AllStepOne' } & SharedStepOneAllOptions;
   AddressManager: { kind: 'AddressManager' } & SharedAddressManagerOptions;
   ProxyAdmin: { kind: 'ProxyAdmin' } & SharedProxyAdminOptions;
   SuperchainConfigProxy : { kind: 'SuperchainConfigProxy' } & SharedSuperchainConfigProxyOptions;
   SuperchainConfig : { kind: 'SuperchainConfig' } & SharedSuperchainConfigOptions;
   ProtocolVersionsProxy : { kind: 'ProtocolVersionsProxy' } & SharedProtocolVersionsProxyOptions;
   ProtocolVersions : { kind: 'ProtocolVersions' } & SharedProtocolVersionsOptions;
-  AllStepTwo: { kind: 'AllStepTwo' } & SharedAllStepTwoOptions;
+  AllStepTwo: { kind: 'AllStepTwo' } & SharedStepTwoAllOptions;
+  SharedOptimismPortalProxyOptions: { kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -37,7 +39,7 @@ export type GenericGovernanceOptions = KindedGovernanceOptions[keyof KindedGover
 
 
 export interface KindedAllStepOneOptions {
-  AllStepOne: { kind: 'AllStepOne' } & SharedAllStepOneOptions;
+  AllStepOne: { kind: 'AllStepOne' } & SharedStepOneAllOptions;
 }
 export type GenericAllStepOneOptions = KindedAllStepOneOptions[keyof KindedAllStepOneOptions];
 
@@ -77,7 +79,14 @@ export interface KindedProtocolVersionsOptions {
 }
 export type GenericProtocolVersionsOptions = KindedProtocolVersionsOptions[keyof KindedProtocolVersionsOptions];
 
+
 export interface KindedAllStepTwoOptions {
-  AllStepTwo: { kind: 'AllStepTwo' } & SharedAllStepTwoOptions;
+  AllStepTwo: { kind: 'AllStepTwo' } & SharedStepTwoAllOptions;
 }
 export type GenericAllStepTwoOptions = KindedAllStepTwoOptions[keyof KindedAllStepTwoOptions];
+
+
+export interface KindedOptimismPortalProxyOptions {
+  OptimismPortalProxy: { kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
+}
+export type GenericOptimismPortalProxyOptions = KindedOptimismPortalProxyOptions[keyof KindedOptimismPortalProxyOptions];

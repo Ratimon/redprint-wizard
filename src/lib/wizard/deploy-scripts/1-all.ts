@@ -1,7 +1,7 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type {  SharedAllStepOneOptions, Governance } from '../shared/1-option-all';
+import type {  SharedStepOneAllOptions, Governance } from '../shared/1-option-all';
 import {  defaults } from '../shared/1-option-all';
 
 import { defaults as infoDefaults } from "./set-info";
@@ -9,18 +9,18 @@ import { defaults as infoDefaults } from "./set-info";
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
-function withDeployDefaults(opts: SharedAllStepOneOptions): Required<SharedAllStepOneOptions> {
+function withDeployDefaults(opts: SharedStepOneAllOptions): Required<SharedStepOneAllOptions> {
   return {
     ...opts,
     deployInfo: infoDefaults
   };
 }
 
-export function printDeployAllStepOne(opts: SharedAllStepOneOptions = defaults): string {
+export function printDeployAllStepOne(opts: SharedStepOneAllOptions = defaults): string {
   return printDeployContract(buildDeployAllStepOne(opts));
 }
 
-export function buildDeployAllStepOne(opts: SharedAllStepOneOptions): DeployContract {
+export function buildDeployAllStepOne(opts: SharedStepOneAllOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   

@@ -8,7 +8,7 @@ import type {  SharedSafeOptions } from '../shared/1-option-safe';
 import {  defaults as safeDefaults } from '../shared/1-option-safe';
 import { printDeploySafe } from './1-safe';
 
-import type {  SharedAllStepOneOptions } from '../shared/1-option-all';
+import type {  SharedStepOneAllOptions } from '../shared/1-option-all';
 import {  defaults as allStepOneDefaults } from '../shared/1-option-all';
 import { printDeployAllStepOne } from './1-all';
 
@@ -36,9 +36,13 @@ import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions'
 import {  defaults as protocolVersionsDefaults } from '../shared/2-option-versions';
 import { printDeployProtocolVersions } from './2-versions';
 
-import type {  SharedAllStepTwoOptions } from '../shared/2-option-all';
+import type {  SharedStepTwoAllOptions } from '../shared/2-option-all';
 import {  defaults as allStepTwoDefaults } from '../shared/2-option-all';
 import { printDeployAllStepTwo } from './2-all';
+
+import type {  SharedOptimismPortalProxyOptions } from '../shared/4-option-optimism-portal-proxy';
+import {  defaults as optimismPortalProxyDefaults } from '../shared/4-option-optimism-portal-proxy';
+import { printDeployOptimismPortalProxy } from './4-optimism-portal-proxy';
 
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -70,7 +74,7 @@ export const deployGovernor: DeployGovernor = {
   defaults: governorDefaults,
 }
 
-export type DeployStepOneAll = WizardAllAPI<SharedAllStepOneOptions>;
+export type DeployStepOneAll = WizardAllAPI<SharedStepOneAllOptions>;
 export const deployStepOneAll: DeployStepOneAll = {
   print: printDeployAllStepOne,
   defaults: allStepOneDefaults,
@@ -112,8 +116,14 @@ export const deployProtocolVersions: DeployProtocolVersions = {
   defaults: protocolVersionsDefaults,
 }
 
-export type DeployStepTwoAll = WizardAllAPI<SharedAllStepTwoOptions>;
+export type DeployStepTwoAll = WizardAllAPI<SharedStepTwoAllOptions>;
 export const deployStepTwoAll: DeployStepTwoAll = {
   print: printDeployAllStepTwo,
   defaults: allStepTwoDefaults,
+}
+
+export type DeployOptimismPortalProxy = WizardAllAPI<SharedOptimismPortalProxyOptions>;
+export const deployOptimismPortalProxy: DeployOptimismPortalProxy = {
+  print: printDeployOptimismPortalProxy,
+  defaults: optimismPortalProxyDefaults,
 }

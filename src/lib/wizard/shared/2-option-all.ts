@@ -4,14 +4,14 @@ import { defaults as infoDefaults } from "./set-info";
 export const governanceOptions = [false, 'safe-multisig', 'governor'] as const;
 export type Governance = typeof governanceOptions[number];
 
-export const defaults: Required<SharedAllStepTwoOptions> = {
+export const defaults: Required<SharedStepTwoAllOptions> = {
   deployName: 'DeployAllScript',
   deployInfo: infoDefaults,
 
   governance: 'safe-multisig',
 } as const;
 
-export interface SharedAllStepTwoOptions  {
+export interface SharedStepTwoAllOptions  {
   deployName: string;
   deployInfo?: Info;
 

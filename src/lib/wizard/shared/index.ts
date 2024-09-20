@@ -9,6 +9,7 @@ export type {
     KindedProtocolVersionsProxyOptions, GenericProtocolVersionsProxyOptions,
     KindedProtocolVersionsOptions, GenericProtocolVersionsOptions,
     KindedAllStepTwoOptions, GenericAllStepTwoOptions,
+    KindedOptimismPortalProxyOptions, GenericOptimismPortalProxyOptions,
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -48,3 +49,6 @@ export { sanitizeKindProtocolVersions} from './2-kind-versions';
 
 export type { KindAllStepTwo } from './2-kind-all';
 export {  sanitizeKindAllStepTwo } from './2-kind-all';
+
+export type { KindOptimismPortalProxy } from './4-kind-optimism-portal-proxy';
+export {  sanitizeKindOptimismPortalProxy } from './4-kind-optimism-portal-proxy';

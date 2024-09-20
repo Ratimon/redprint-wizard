@@ -30,6 +30,10 @@ import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions'
 import {  defaults as protocolVersionsDefaults } from '../shared/2-option-versions';
 import { printProtocolVersions } from './2-versions';
 
+import type { SharedOptimismPortalProxyOptions } from '../shared/4-option-optimism-portal-proxy';
+import {  defaults as optimismPortalProxyDefaults } from '../shared/4-option-optimism-portal-proxy';
+import { printOptimismPortalProxy } from './4-optimism-portal-proxy';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -95,4 +99,10 @@ export type ProtocolVersions = WizardContractAPI<SharedProtocolVersionsOptions>;
 export const protocolVersions: ProtocolVersions = {
   print: printProtocolVersions,
   defaults: protocolVersionsDefaults
+}
+
+export type OptimismPortalProxy = WizardContractAPI<SharedOptimismPortalProxyOptions>;
+export const optimismPortalProxy: OptimismPortalProxy = {
+  print: printOptimismPortalProxy,
+  defaults: optimismPortalProxyDefaults
 }

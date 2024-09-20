@@ -21,7 +21,8 @@ export {
     superchainConfigProxy,
     superchainConfig,
     protocolVersionsProxy,
-    protocolVersions
+    protocolVersions,
+    optimismPortalProxy
 } from './api';
 
 
@@ -33,3 +34,4 @@ export { buildSuperchainConfigProxy } from './2-superchain-config-proxy';
 export { buildSuperchainConfig } from './2-superchain-config';
 export { buildProtocolVersionsProxy } from './2-versions-proxy';
 export { buildProtocolVersions } from './2-versions';
+export { buildOptimismPortalProxy } from './4-optimism-portal-proxy';

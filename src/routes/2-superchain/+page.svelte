@@ -73,6 +73,7 @@
   \`\`\`
   `);
 
+  // **** step 1 ***
   export let initialContractAddressManagerTab: string | undefined = 'AddressManager';
   export let contractAddressManagerTab: KindAddressManager = sanitizeKindAddressManager(initialContractAddressManagerTab);
   let allContractsAddressManagerOpts: { [k in KindAddressManager]?: Required<KindedAddressManagerOptions [k]> } = {};
@@ -109,6 +110,7 @@
   \`\`\`
   `);
 
+  // **** step 2 ***
   export let initialContractProxyAdminTab: string | undefined = 'ProxyAdmin';
   export let contractProxyAdminTab: KindProxyAdmin = sanitizeKindProxyAdmin(initialContractProxyAdminTab);
   let allContractsProxyAdminOpts: { [k in KindProxyAdmin]?: Required<KindedProxyAdminOptions [k]> } = {};
@@ -387,7 +389,6 @@ let isArtifactStepAllModalOpen = false;
 </Background>
 
 <!-- version control -->
-  
 <WizardDouble conventionNumber={'201A'} initialContractTab={initialContractAddressManagerTab} contractTab={contractAddressManagerTab} opts={optsAddressManager} contract={contractAddressManager} deployContract={deployContractAddressManager}>
   <div slot="menu" >
       <div class="tab overflow-hidden">
