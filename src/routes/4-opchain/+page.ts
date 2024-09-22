@@ -22,7 +22,6 @@ export function load() {
         {pathname: '/3-plasmachain', title: '3: PlasmaChain', navType: 'tab'},
     ];
 
-
     const dropDownLinks : Link[] = [
         {pathname: '/4-opchain/#4.0', title: '4.0) Prerequisites', navType: 'scroll' },
         {pathname: '/4-opchain/#4.1', title: '4.1: A-B) Deploy Proxies', navType: 'scroll'},

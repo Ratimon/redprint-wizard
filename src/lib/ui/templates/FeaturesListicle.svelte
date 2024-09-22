@@ -15,7 +15,7 @@
             "Safe's Multi-sig",
             "OpenZeppelin's Governor",
         ],
-        script: 'DeploySafe',
+        script: 'DeploySafeProxyScript',
         highlight : "Governance Layer",
         iconName: "material-symbols:how-to-vote",
     },
@@ -98,7 +98,6 @@
                   The simplest tool to build <b>experimental</b> and <b>innovational</b> features 
                   which aren't yet available on the production at all by composing different <b>OPStack</b> components TOGETHER.
                   This empowers developer to push the boundaries of what's possible beyond Optimism or Ethereum 's roadmaps.
-                  
                 </div>
         
                 <div class="pt-0.5 pb-4 justify-center">

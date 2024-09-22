@@ -7,7 +7,7 @@
 - [Acknowledgement](#acknowledgement)
 
 >[!NOTE]
-> You can find our alpha mvp and relevant examples [`here`](https://github.com/Ratimon/redprint-optimism-contracts-examples). Geneated contract code from the Redprint Wizard is stored here due to documentation and testing purpose.
+> You can find our relevant examples [`here`](https://github.com/Ratimon/redprint-optimism-contracts-examples). Geneated contract code from the Redprint Wizard is stored here due to documentation and testing purpose.
 
 ## Installation
 
