@@ -5,6 +5,7 @@
     import Hero from '$lib/ui/templates/Hero.svelte';
     import Problem from '$lib/ui/templates/Problem.svelte';
     import FeaturesListicle from '$lib/ui/templates/FeaturesListicle.svelte';
+    import Testimonials1 from "$lib/ui/testinomials/Testimonials1.svelte";
     import WithWithout from '$lib/ui/templates/WithWithout.svelte';
     import FeaturesGrid from '$lib/ui/templates/FeaturesGrid.svelte';
 
@@ -12,6 +13,10 @@
         {title: 'Wizard', owner : 'Ratimon', name: 'redprint-wizard' },
         {title: 'redprint-forge', owner : 'Ratimon', name: 'redprint-forge' },
     ];
+
+    let testimonialTitle: string = "Our growing wall of love ❤️"
+    let testimonialSubtitle: string = "TESTINOMIALS"
+    let testimonialDescription: string = "Join 30+ builders who use Redprint"
 
     let resourceTitle: string = "Everything you need to craft your own OPStack chain."
     let resourceSubtitle: string = "RESOURCES"
@@ -94,6 +99,12 @@
 <Problem></Problem>
 <FeaturesListicle keyToNav={'#solution'} ></FeaturesListicle>
 <WithWithout></WithWithout>
+<Testimonials1
+    keyToNav={'#testimonial'}
+    landingTitle={testimonialTitle}
+    landingSubtitle={testimonialSubtitle}
+    landingDescription={testimonialDescription}
+></Testimonials1>
 <FeaturesGrid
     keyToNav={'#resource'}
     landingTitle={resourceTitle}

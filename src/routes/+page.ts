@@ -29,6 +29,7 @@ export function load() {
 
     const footLinks : Link[] = [
         {pathname: '#solution', title: 'Features', navType: 'scroll'},
+        {pathname: '#testimonial', title: 'Testimonial', navType: 'scroll'},
         {pathname: '#resource', title: 'Resources', navType: 'scroll'},
         {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
         {pathname: '/blog/3-metric-hub', title: 'Metric Hub', navType: 'tab'},

@@ -80,9 +80,6 @@
 
 </script>
 
-<!-- to do : remove -->
-<!-- {#if keyToNav } -->
-
 <section id={keyToNav} class="py-24">
     <div class="max-w-3xl mx-auto">
         <Background color="bg-base-100">

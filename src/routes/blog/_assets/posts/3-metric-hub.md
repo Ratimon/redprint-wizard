@@ -28,7 +28,69 @@ This toolset aims in development and deployment, tailored for **OPStack**, NOT g
 
 The justifications are as follows:
 
-### 1. redprint-forge
+### 1. Redprint Wizard
+The `Redprint Wizard` can be thought as an interactive technical documentation and step-by-step tutorials to deploy OPStack components.
+
+#### Metrics 's sources of truth
+The key metrics indicating **accessibility** and **usability** of the OPStack are:
+
+1. **Feedback/ Testimonials**
+
+These are some of testimonials we have collected:
+
+- From `Billy191`: Founder @[catalyzt.tech](https://catalyzt.tech/) and @[retropgfhub](https://retropgfhub.com/) / 𝕏 Handle : [@billy191](https://x.com/billy191)
+
+> `I was really looking for a way to avoid spending countless hours poring over OP Stack's documentation and analyzing audit reports.` That’s when I discovered Redprint, and it has truly transformed my experience. As a developer, I appreciate how its visualization is not only simple but also intuitive, making complex concepts easy to understand at a glance. Redprint has streamlined my workflow, allowing me to focus on building rather than getting lost in documentation. It’s been a game-changer for me!
+
+<img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/1_bio.png" />
+
+
+2. **Number of Monthly Visitor**: the number of developers who come to experiment our interactive turorial. It indicates **accessibility** of The OPStack.
+
+This figure can be represented by GA's `page_view` events. It was 635 views in July, and this event can be grouped into different OPStack components. They are :
+
+- `Set up Governance Layer | Redprint Wizard` page
+- `Set up Super Chain | Redprint Wizard` page
+- `Set up Plasma Chain | Redprint Wizard` page
+- `Set up OP Chain | Redprint Wizard` page
+
+> **Note**💡
+> These figures can be checked in [reports/](https://github.com/Ratimon/redprint-wizard/tree/main/reports/) directory.
+
+3. **Number of Link Clicks Toward the Code copy button** : the number of developers who come to experiment our interactive turorial. It shows **usability** of our tool to **modify** OPStack components.
+
+4. **Number of Downloaded code as zip file** : the number of developers who use our generated contract. It suggests **usability** of our tool to **deploy** OPStack components.
+
+These figures can be represented by GA's  custoizrd events. They are :
+- `copy-contract-Safe`
+- `copy-contract-Governor`
+- `copy-script-Safe`
+- `copy-script-Governor`
+
+> **Note**💡
+> All events can be found in in [lib/analytics/analytics.Store.ts](https://github.com/Ratimon/redprint-wizard/blob/main/src/lib/analytics/analytics.Store.ts#L5).
+
+> **Note**💡
+> The convention is : `<event_name>`-`<contract_kind>`-`<contract_name>`
+
+> `<event_name>` could be either `copy` or `downloadd`
+> `<contract_kind>` could be either `contract` or `script`
+
+5. **Number of visitors to our technical articles in our blog** : The number of views on our blog/turorial. It indicates **accessibility** of The OPStack tool.
+
+<img data-pagefind-meta="image[src]" width="1120" height="1120" alt="GA Metrics" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-metric-hub/page-title.png" />
+
+This metric can be represented by GA's  events which are named by blog title For instance, they are :
+
+- `Introducing Redprint Wizard` [page](https://redprint.ninja/blog/1-introduce-forge)
+- `Introducing redprint-forge	` [page](https://redprint.ninja/blog/2-introduce-wizard)
+
+> **Note**💡
+> These figures can be checked at Google Analytics 's Reports e.g. [July](https://analytics.google.com/analytics/web/#/p450975503/reports/reportinghub?params=_u.comparisonOption%3Ddisabled%26_u.date00%3D20240701%26_u.date01%3D20240731%26_u..nav%3Dmaui&collectionId=business-objectives) and [August](https://analytics.google.com/analytics/web/#/p450975503/reports/reportinghub?params=_u.comparisonOption%3Ddisabled%26_u.date00%3D20240801%26_u.date01%3D20240831%26_u..nav%3Dmaui&collectionId=business-objectives)
+
+
+
+### 2. redprint-forge
 The `redprint-forge` is a **deployer library** that facilitate the OPStack's contract deployment, and contract testing.
 
 Our aim is to support different implementation of **OPStack Deployer**.
@@ -70,56 +132,6 @@ The relevant links are:
 [redprint-forge's Package Link](https://www.npmjs.com/package/redprint-forge)
 
 These figures (2, 3 ,and 4) can represent **accessibility** and **usability** of the OPStack.
-
-
-### 2. Redprint Wizard
-The `Redprint Wizard` can be thought as an interactive technical documentation and step-by-step tutorials to deploy OPStack components.
-
-#### Metrics 's sources of truth
-The key metrics indicating **accessibility** and **usability** of the OPStack are:
-
-1. **Number of Monthly Visitor**: the number of developers who come to experiment our interactive turorial. It indicates **accessibility** of The OPStack.
-
-This figure can be represented by GA's `page_view` events. It was 635 views in July, and this event can be grouped into different OPStack components. They are :
-
-- `Set up Governance Layer | Redprint Wizard` page
-- `Set up Super Chain | Redprint Wizard` page
-- `Set up Plasma Chain | Redprint Wizard` page
-- `Set up OP Chain | Redprint Wizard` page
-
-> **Note**💡
-> These figures can be checked in [reports/](https://github.com/Ratimon/redprint-wizard/tree/main/reports/) directory.
-
-2. **Number of Link Clicks Toward the Code copy button** : the number of developers who come to experiment our interactive turorial. It shows **usability** of our tool to **modify** OPStack components.
-
-3. **Number of Downloaded code as zip file** : the number of developers who use our generated contract. It suggests **usability** of our tool to **deploy** OPStack components.
-
-These figures can be represented by GA's  custoizrd events. They are :
-- `copy-contract-Safe`
-- `copy-contract-Governor`
-- `copy-script-Safe`
-- `copy-script-Governor`
-
-> **Note**💡
-> All events can be found in in [lib/analytics/analytics.Store.ts](https://github.com/Ratimon/redprint-wizard/blob/main/src/lib/analytics/analytics.Store.ts#L5).
-
-> **Note**💡
-> The convention is : `<event_name>`-`<contract_kind>`-`<contract_name>`
-
-> `<event_name>` could be either `copy` or `downloadd`
-> `<contract_kind>` could be either `contract` or `script`
-
-4. **Number of visitors to our technical articles in our blog** : The number of views on our blog/turorial. It indicates **accessibility** of The OPStack tool.
-
-<img data-pagefind-meta="image[src]" width="1120" height="1120" alt="Pages and screens: Page title and screen class" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-metric-hub/page-title.png" />
-
-This metric can be represented by GA's  events which are named by blog title For instance, they are :
-
-- `Introducing Redprint Wizard` [page](https://redprint.ninja/blog/1-introduce-forge)
-- `Introducing redprint-forge	` [page](https://redprint.ninja/blog/2-introduce-wizard)
-
-> **Note**💡
-> These figures can be checked at Google Analytics 's Reports e.g. [July](https://analytics.google.com/analytics/web/#/p450975503/reports/reportinghub?params=_u.comparisonOption%3Ddisabled%26_u.date00%3D20240701%26_u.date01%3D20240731%26_u..nav%3Dmaui&collectionId=business-objectives) and [August](https://analytics.google.com/analytics/web/#/p450975503/reports/reportinghub?params=_u.comparisonOption%3Ddisabled%26_u.date00%3D20240801%26_u.date01%3D20240831%26_u..nav%3Dmaui&collectionId=business-objectives)
 
 
 ## Downstream [WIP]
