@@ -38,15 +38,22 @@ The key metrics indicating **accessibility** and **usability** of the OPStack ar
 
 These are some of testimonials we have collected:
 
-- From `Billy191`: Founder @[catalyzt.tech](https://catalyzt.tech/) and @[retropgfhub](https://retropgfhub.com/) / 𝕏 Handle : [@billy191](https://x.com/billy191)
+- From `Billy191`: Founder @[catalyzt.tech](https://catalyzt.tech/)/ 𝕏 Handle : [@billy191](https://x.com/billy191)
 
 > `I was really looking for a way to avoid spending countless hours poring over OP Stack's documentation and analyzing audit reports.` That’s when I discovered Redprint, and it has truly transformed my experience. As a developer, I appreciate how its visualization is not only simple but also intuitive, making complex concepts easy to understand at a glance. Redprint has streamlined my workflow, allowing me to focus on building rather than getting lost in documentation. It’s been a game-changer for me!
 
 <img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/1_bio.png" />
 
+- From `wit03.eth`: Founder @[RetroPGF Hub](https://retropgfhub.com/) / 𝕏 Handle : [@witjarukit](https://x.com/witjarukit)
+
+> `Redprint accelerates the way I build on OPStack.` With an innovative interactive UI, I can easily setup and deploy contracts on OP.
+
+<img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/2_bio.png" />
+
 > **Note**💡
 > We use **senja.io** to collect the the testimonial. They can be checked at following links
 - [Billy191 's](https://senja.io/p/redprint/t/717b4ce1-716d-46df-8389-2010639a89af).
+- [wit03.eth 's](https://senja.io/p/redprint/t/a61ee842-a4f6-4686-8b5d-f7d7b582de93).
 
 
 

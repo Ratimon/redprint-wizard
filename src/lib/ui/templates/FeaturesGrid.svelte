@@ -11,7 +11,6 @@
     export let landingSubtitle: string = ""
     export let landingDescription: string = ""
 
-
     export let featureGridElements = [] as FeatureGridItem[];
 
 </script>
@@ -22,9 +21,7 @@
     description={landingDescription}
     yPadding="py-24"
 >
-    <!-- to do : remove -->
-    <!-- {#if keyToNav } -->
-    
+
     <div id={keyToNav} class={`grid grid-cols-1 gap-x-4 gap-y-24 sm:grid-cols-2 md:grid-cols-4`}>
 
         {#each featureGridElements as feature}
@@ -40,7 +37,5 @@
 
 	    {/each}
     </div>
-
-    <!-- {/if} -->
 
 </LandingSection>

@@ -1,15 +1,16 @@
 <script lang="ts">
-
   import type {GithubRepo } from '$lib/model/GithubRepo';
 
   import Background from '$lib/ui/background/Background.svelte';
-  
   import TestimonialsAvatars from "$lib/ui/testinomials/TestimonialsAvatars.svelte";
   import Stargazers from '$lib/ui/components/Stargazers.svelte';
-
   import ScrollLink from '$lib/ui/header/ScrollLink.svelte';
 
-  export let repositories: GithubRepo[]= [];
+  export let repositories: GithubRepo[]= [
+        {title: 'Wizard', owner : 'Ratimon', name: 'redprint-wizard' },
+        {title: 'redprint-forge', owner : 'Ratimon', name: 'redprint-forge' },
+  ];
+
 
 </script>
 

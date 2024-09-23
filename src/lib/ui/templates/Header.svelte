@@ -5,7 +5,6 @@
   
   import Background from '$lib/ui/background/Background.svelte';
   import ButtonPopoverCategories from  '$lib/ui/popover/ButtonPopoverCategories.svelte';
-  // import { Popover, PopoverContent, PopoverTrigger } from '$lib/ui/popover'
 
   import ButtonGradient from '$lib/ui/buttons/ButtonGradient.svelte';
 

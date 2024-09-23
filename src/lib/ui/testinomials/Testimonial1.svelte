@@ -1,16 +1,8 @@
 <script lang="ts">
 
-    import LandingSection from '$lib/ui/layouts/LandingSection.svelte';
-
-    export let landingTitle: string = ""
-    export let landingSubtitle: string = ""
-    export let landingDescription: string = ""
-
-    export let keyToNav: string = '#testimonial';
-
     export let quoteHighlighted: string = `I was really looking for a way to avoid spending countless hours poring over OP Stack's documentation and analyzing audit reports.`
-    export let quoteDetail: string = `That’s when I discovered Redprint, and it has truly transformed my experience.
-    As a developer, I appreciate how its visualization is not only simple but also intuitive,
+    export let quoteDetail1: string = `That’s when I discovered Redprint, and it has truly transformed my experience.`
+     export let quoteDetail2: string = `As a developer, I appreciate how its visualization is not only simple but also intuitive,
     making complex concepts easy to understand at a glance. Redprint has streamlined my workflow, allowing me to focus on building rather than getting lost in documentation. It’s been a game-changer for me!`
 
     export let name: string = `Billy191`
@@ -28,19 +20,9 @@
 
 </script>
 
-<LandingSection
-    title={landingTitle}
-    subtitle={landingSubtitle}
-    description={landingDescription}
-    yPadding="py-4"
->
-<section
-    class="relative isolate overflow-hidden bg-base-100 px-8 py-4 sm:py-8"
-    id={keyToNav}
-    >
-    <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.base-300),theme(colors.base-100))] opacity-20" />
-    <div class="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-base-100 shadow-lg ring-1 ring-base-content/10 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
-    <div class="mx-auto max-w-2xl lg:max-w-5xl">
+<div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.base-300),theme(colors.base-100))] opacity-20" />
+<div class="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-base-100 shadow-lg ring-1 ring-base-content/10 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
+<div class="mx-auto max-w-2xl lg:max-w-5xl">
     <figure class="mt-10">
         <div class="flex flex-col lg:flex-row items-center gap-12">
         <div class="relative rounded-xl border border-base-content/5 bg-base-content/5 p-1.5 sm:-rotate-1">
@@ -50,15 +32,20 @@
                 class="rounded-lg max-w-[320px] md:max-w-[280px] lg:max-w-[320px] object-center border-2 border-white/10 shadow-md"
                 src={bioImgPath}
                 alt="A testimonial from a happy customer"
-                />
+            />
         </div>
 
         <div>
             <blockquote class="bg-warning/25 px-1.5 text-xl font-medium text-base-content sm:text-2xl sm:leading-10">
                 {quoteHighlighted}
             </blockquote>
+            <br>
             <blockquote class="text-xl font-medium leading-8 text-base-content sm:text-2xl sm:leading-10">
-                {quoteDetail}
+                {quoteDetail1}
+            </blockquote>
+            <br>
+            <blockquote class="text-xl font-medium leading-8 text-base-content sm:text-2xl sm:leading-10">
+                {quoteDetail2}
             </blockquote>
             <figure>
                 <figcaption class="mt-10 flex items-center justify-start gap-5">
@@ -86,7 +73,4 @@
         </div>
         </div>
     </figure>
-    </div>
-</section>
-</LandingSection>
-
+</div>

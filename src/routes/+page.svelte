@@ -5,14 +5,10 @@
     import Hero from '$lib/ui/templates/Hero.svelte';
     import Problem from '$lib/ui/templates/Problem.svelte';
     import FeaturesListicle from '$lib/ui/templates/FeaturesListicle.svelte';
-    import Testimonials1 from "$lib/ui/testinomials/Testimonials1.svelte";
+
+    import  WallOfLove from "$lib/ui/templates/WallOfLove.svelte";
     import WithWithout from '$lib/ui/templates/WithWithout.svelte';
     import FeaturesGrid from '$lib/ui/templates/FeaturesGrid.svelte';
-
-    const repositories : GithubRepo[]  = [
-        {title: 'Wizard', owner : 'Ratimon', name: 'redprint-wizard' },
-        {title: 'redprint-forge', owner : 'Ratimon', name: 'redprint-forge' },
-    ];
 
     let testimonialTitle: string = "Our growing wall of love ❤️"
     let testimonialSubtitle: string = "TESTINOMIALS"
@@ -95,16 +91,17 @@
 
 </script>
 
-<Hero {repositories}></Hero>
+<Hero></Hero>
 <Problem></Problem>
 <FeaturesListicle keyToNav={'#solution'} ></FeaturesListicle>
 <WithWithout></WithWithout>
-<Testimonials1
+<WallOfLove
     keyToNav={'#testimonial'}
     landingTitle={testimonialTitle}
     landingSubtitle={testimonialSubtitle}
     landingDescription={testimonialDescription}
-></Testimonials1>
+>
+</WallOfLove>
 <FeaturesGrid
     keyToNav={'#resource'}
     landingTitle={resourceTitle}
