@@ -22,6 +22,8 @@ export function load() {
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},
         {pathname: '/4-opchain', title: '4: OP Chain', navType: 'tab'},
     ];
+
+    const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
     
     const footLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},
@@ -36,6 +38,7 @@ export function load() {
 		headLinks: headLinks,
         // menuTitle: "Blog",
         // dropDownLinks: categoryLinks,
+        actionLink: actionLink,
         footLinks: footLinks
 	};
 }

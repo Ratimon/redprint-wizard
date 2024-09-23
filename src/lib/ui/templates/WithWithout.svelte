@@ -13,7 +13,7 @@
 
 <Background color="bg-base-100">
     <section>
-        <div class="max-w-5xl mx-auto px-8 py-16 md:py-32 ">
+        <div class="max-w-5xl mx-auto px-8 py-4 md:py-8 ">
 
             <div class="text-center text-sm font-bold text-primary-500">
                 COMPARISONS

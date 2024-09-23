@@ -44,6 +44,11 @@ These are some of testimonials we have collected:
 
 <img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/1_bio.png" />
 
+> **Note**💡
+> We use **senja.io** to collect the the testimonial. They can be checked at following links
+- [Billy191 's](https://senja.io/p/redprint/t/717b4ce1-716d-46df-8389-2010639a89af).
+
+
 
 2. **Number of Monthly Visitor**: the number of developers who come to experiment our interactive turorial. It indicates **accessibility** of The OPStack.
 
