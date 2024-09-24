@@ -16,12 +16,12 @@
         name: string;
         bio: string;
         companyName: string;
-        companyLink: string;
-        socialPlatform: string;
-        socialAccount: string;
-        socialLink: string;
+        companyLink?: string;
+        socialPlatform?: string;
+        socialAccount?: string;
+        socialLink?: string;
         bioImgPath: string;
-        companyImgPath: string;
+        companyImgPath?: string;
     }[] = [
         {
             quoteHighlighted: `I was really looking for a way to avoid spending countless hours poring over OP Stack's documentation and analyzing audit reports.`,
@@ -56,9 +56,18 @@
             bioImgPath: `/testimonials/2_bio.png`,
             companyImgPath: `/testimonials/2_company.png`
         },
+        {
+            quoteHighlighted: `Redprint makes building on OPStack quicker and easier for blockchain developers.`,
+            quoteDetail1: `With clear, user-friendly documentation, it simplifies the process of setting up and deploying contracts.`,
+            quoteDetail2:``,
+            name: `Teraflops-droid`,
+            bio: `Software Engineer`,
+            companyName: `Accenture`,
+
+            bioImgPath: `/testimonials/3_bio.png`,
+        },
   	];
 
-  
 </script>
   
 <Background color="bg-base-100">
@@ -73,39 +82,53 @@
             class="relative isolate overflow-hidden bg-base-100 px-8 py-4 sm:py-8"
             id={keyToNav}
         >
-        <Testimonials1
-            quoteHighlighted={testimonials[0].quoteHighlighted}
-            quoteDetail1={testimonials[0].quoteDetail1}
-            quoteDetail2={testimonials[0].quoteDetail2}
-            name={testimonials[0].name}
-            bio={testimonials[0].bio}
-            companyName={testimonials[0].companyName}
-            companyLink={testimonials[0].companyLink}
-            socialPlatform={testimonials[0].socialPlatform}
-            socialAccount={testimonials[0].socialAccount}
-            socialLink={testimonials[0].socialLink}
-            bioImgPath={testimonials[0].bioImgPath}
-            companyImgPath={testimonials[0].companyImgPath}
-        ></Testimonials1>
-        <Testimonials1
-            quoteHighlighted={testimonials[1].quoteHighlighted}
-            quoteDetail1={testimonials[1].quoteDetail1}
-            quoteDetail2={testimonials[1].quoteDetail2}
-            name={testimonials[1].name}
-            bio={testimonials[1].bio}
-            companyName={testimonials[1].companyName}
-            companyLink={testimonials[1].companyLink}
-            socialPlatform={testimonials[1].socialPlatform}
-            socialAccount={testimonials[1].socialAccount}
-            socialLink={testimonials[1].socialLink}
-            bioImgPath={testimonials[1].bioImgPath}
-            companyImgPath={testimonials[1].companyImgPath}
-        >
+            <Testimonials1
+                quoteHighlighted={testimonials[0].quoteHighlighted}
+                quoteDetail1={testimonials[0].quoteDetail1}
+                quoteDetail2={testimonials[0].quoteDetail2}
+                name={testimonials[0].name}
+                bio={testimonials[0].bio}
+                companyName={testimonials[0].companyName}
+                companyLink={testimonials[0].companyLink}
+                socialPlatform={testimonials[0].socialPlatform}
+                socialAccount={testimonials[0].socialAccount}
+                socialLink={testimonials[0].socialLink}
+                bioImgPath={testimonials[0].bioImgPath}
+                companyImgPath={testimonials[0].companyImgPath}
+            ></Testimonials1>
+            <Testimonials1
+                quoteHighlighted={testimonials[1].quoteHighlighted}
+                quoteDetail1={testimonials[1].quoteDetail1}
+                quoteDetail2={testimonials[1].quoteDetail2}
+                name={testimonials[1].name}
+                bio={testimonials[1].bio}
+                companyName={testimonials[1].companyName}
+                companyLink={testimonials[1].companyLink}
+                socialPlatform={testimonials[1].socialPlatform}
+                socialAccount={testimonials[1].socialAccount}
+                socialLink={testimonials[1].socialLink}
+                bioImgPath={testimonials[1].bioImgPath}
+                companyImgPath={testimonials[1].companyImgPath}
+            >
+            </Testimonials1>
 
-        </Testimonials1>
+            <Testimonials1
+                quoteHighlighted={testimonials[2].quoteHighlighted}
+                quoteDetail1={testimonials[2].quoteDetail1}
+                quoteDetail2={testimonials[2].quoteDetail2}
+                name={testimonials[2].name}
+                bio={testimonials[2].bio}
+                companyName={testimonials[2].companyName}
+                companyLink={testimonials[2].companyLink}
+                socialPlatform={testimonials[2].socialPlatform}
+                socialAccount={testimonials[2].socialAccount}
+                socialLink={testimonials[2].socialLink}
+                bioImgPath={testimonials[2].bioImgPath}
+                companyImgPath={testimonials[2].companyImgPath}
+            >
+            </Testimonials1>
         
         </section>
-
 
     </LandingSection>
 </Background>

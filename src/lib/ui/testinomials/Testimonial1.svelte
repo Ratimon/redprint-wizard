@@ -1,22 +1,21 @@
 <script lang="ts">
 
-    export let quoteHighlighted: string = `I was really looking for a way to avoid spending countless hours poring over OP Stack's documentation and analyzing audit reports.`
-    export let quoteDetail1: string = `That’s when I discovered Redprint, and it has truly transformed my experience.`
-     export let quoteDetail2: string = `As a developer, I appreciate how its visualization is not only simple but also intuitive,
-    making complex concepts easy to understand at a glance. Redprint has streamlined my workflow, allowing me to focus on building rather than getting lost in documentation. It’s been a game-changer for me!`
+    export let quoteHighlighted: string = ``
+    export let quoteDetail1: string = ``
+    export let quoteDetail2: string = ``
 
-    export let name: string = `Billy191`
+    export let name: string = ``
 
-    export let bio: string = `CEO/Software Engineer`
-    export let companyName: string = `catalyzt.tech`
-    export let companyLink: string = `https://catalyzt.tech/`
+    export let bio: string = ``
+    export let companyName: string = ``
+    export let companyLink: string = ``
 
-    export let socialPlatform: string = `𝕏`
-    export let socialAccount: string = `@billy191`
-    export let socialLink: string = `https://x.com/billy191`
+    export let socialPlatform: string = ``
+    export let socialAccount: string = ``
+    export let socialLink: string = ``
 
-    export let bioImgPath: string = `/testimonials/1_bio.png`
-    export let companyImgPath: string = `/testimonials/1_company.png`
+    export let bioImgPath: string = ``
+    export let companyImgPath: string = ``
 
 </script>
 
@@ -43,30 +42,43 @@
             <blockquote class="text-xl font-medium leading-8 text-base-content sm:text-2xl sm:leading-10">
                 {quoteDetail1}
             </blockquote>
-            <br>
-            <blockquote class="text-xl font-medium leading-8 text-base-content sm:text-2xl sm:leading-10">
-                {quoteDetail2}
-            </blockquote>
+            {#if quoteDetail2}
+                <br>
+                <blockquote class="text-xl font-medium leading-8 text-base-content sm:text-2xl sm:leading-10">
+                    {quoteDetail2}
+                </blockquote>
+            {/if}
             <figure>
                 <figcaption class="mt-10 flex items-center justify-start gap-5">
                     <div class="text-base">
                         <div class="font-semibold text-base-content mb-0.5">
                             {name}
                         </div>
-                        <div class="text-base-content/60">
-                            {bio} @ <a class="bg-primary underline" href={companyLink} target="_blank" rel="noreferrer">{companyName}</a>
-                        </div>
-                        <div class="text-base-content/60">
-                            {socialPlatform} @ <a class="bg-secondary underline" href={socialLink} target="_blank" rel="noreferrer">{socialAccount}</a>
-                        </div>
+                        {#if companyLink}
+                            <div class="text-base-content/60">
+                                {bio} @ <a class="bg-primary underline" href={companyLink} target="_blank" rel="noreferrer">{companyName}</a>
+                            </div>
+                        {:else}
+                            <div class="text-base-content/60">
+                                {bio} @ {companyName}
+                            </div>
+                        {/if}
+
+                        {#if socialPlatform}
+                            <div class="text-base-content/60">
+                                {socialPlatform} @ <a class="bg-secondary underline" href={socialLink} target="_blank" rel="noreferrer">{socialAccount}</a>
+                            </div>
+                        {/if}
                     </div>
-                    <img
-                        width={150}
-                        height={50}
-                        class="w-20 md:w-24"
-                        src={companyImgPath}
-                        alt="Company logo"
-                    />
+                    {#if companyImgPath}
+                        <img
+                            width={150}
+                            height={50}
+                            class="w-20 md:w-24"
+                            src={companyImgPath}
+                            alt="Company logo"
+                        />
+                    {/if}
                 </figcaption>
             </figure>
 

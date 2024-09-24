@@ -3,6 +3,7 @@
 
   import Background from '$lib/ui/background/Background.svelte';
   import TestimonialsAvatars from "$lib/ui/testinomials/TestimonialsAvatars.svelte";
+
   import Stargazers from '$lib/ui/components/Stargazers.svelte';
   import ScrollLink from '$lib/ui/header/ScrollLink.svelte';
 
@@ -59,12 +60,12 @@
 
       <div class="flex flex-row gap-x-12 justify-center">
         <TestimonialsAvatars />
-        <ScrollLink
-          class='btn btn-secondary btn-wide'
-          href="#testimonial"
-        >
-         Check out testimonials!!
-        </ScrollLink>
+          <ScrollLink
+            class='btn btn-secondary btn-wide'
+            href="#testimonial"
+          >
+          Check out full testimonials!!
+          </ScrollLink>
       </div>
 
 

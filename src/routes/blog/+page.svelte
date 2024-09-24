@@ -7,6 +7,8 @@
 	import CardArticle from '$lib/ui/blog/CardArticle.svelte';
 	import CardCategory from '$lib/ui/blog/CardCategory.svelte';
 
+	import Testimonials3 from "$lib/ui/testinomials/Testimonials3.svelte";
+
 	export let data;
 
 	let allPosts : PostPresenter[];
@@ -64,4 +66,6 @@
 			></CardCategory>
 		{/each}
 	</div>
+
 </section>
+<Testimonials3></Testimonials3>

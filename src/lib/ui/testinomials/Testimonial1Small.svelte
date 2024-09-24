@@ -2,21 +2,21 @@
 
   import Background from '$lib/ui/background/Background.svelte';
 
-  export let quoteHighlighted: string = `Redprint accelerates the way I build on OPStack.`
-  export let quoteDetail1: string = `With an innovative interactive UI,`
-  export let quoteDetail2: string = `I can easily setup and deploy contracts on OP.`
-  export let name: string = `wit03.eth`
+  export let quoteHighlighted: string = ``
+  export let quoteDetail1: string = ``
+  export let quoteDetail2: string = ``
+  export let name: string = ``
 
-  export let bio: string = ` Co-founder`
-  export let companyName: string = `RetroPGF Hub`
-  export let companyLink: string = `https://retropgfhub.com/`
+  export let bio: string = ``
+  export let companyName: string = ``
+  export let companyLink: string = ``
 
-  export let socialPlatform: string = `𝕏`
-  export let socialAccount: string = `@witjarukit`
-  export let socialLink: string = `https://twitter.com/witjarukit`
+  export let socialPlatform: string = ``
+  export let socialAccount: string = ``
+  export let socialLink: string = ``
 
-  export let bioImgPath: string = `/testimonials/2_bio.png`
-  export let companyImgPath: string = `/testimonials/2_company.png`
+  export let bioImgPath: string = ``
+  export let companyImgPath: string = ``
 
 </script>
 

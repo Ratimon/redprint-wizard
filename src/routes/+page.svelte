@@ -1,5 +1,4 @@
 <script  lang="ts">
-    import type {GithubRepo } from '$lib/model/GithubRepo';
     import type {FeatureGridItem } from '$lib/model/Feature';
 
     import Hero from '$lib/ui/templates/Hero.svelte';
@@ -47,12 +46,11 @@
         path: "https://github.com/Ratimon/redprint-wizard/blob/main/CONTRIBUTING.md",
         iconName: "ion:git-commit-sharp",
     },
-    // to do : add github 's project
-    // {
-    //     title: "ROADMAP",
-    //     path: "https://github.com/Ratimon/redprint-wizard",
-    //     iconName: "streamline:arrow-roadmap",
-    // },
+    {
+        title: "ROADMAP",
+        path: "https://github.com/Ratimon/redprint-wizard/milestones",
+        iconName: "streamline:arrow-roadmap",
+    },
     ] as FeatureGridItem[];
 
     let contactTitle: string = "Find Us !!"

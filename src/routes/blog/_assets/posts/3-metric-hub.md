@@ -50,10 +50,17 @@ These are some of testimonials we have collected:
 
 <img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/2_bio.png" />
 
+- From `Teraflops-droid`: Software Engineer @ Accenture Thailand
+
+> `Redprint makes building on OPStack quicker and easier for blockchain developers.` With clear, user-friendly documentation, it simplifies the process of setting up and deploying contracts.
+
+<img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/3_bio.png" />
+
 > **Note**💡
 > We use **senja.io** to collect the the testimonial. They can be checked at following links
 - [Billy191 's](https://senja.io/p/redprint/t/717b4ce1-716d-46df-8389-2010639a89af).
 - [wit03.eth 's](https://senja.io/p/redprint/t/a61ee842-a4f6-4686-8b5d-f7d7b582de93).
+- [Teraflops-droid 's](https://senja.io/p/redprint/t/e5433f72-8010-4b11-a4a4-02e2260fb1a7).
 
 
 

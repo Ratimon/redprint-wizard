@@ -3,6 +3,39 @@
 	import Testimonial1Small from "$lib/ui/testinomials/Testimonial1Small.svelte";
 
 	import {appName} from 'web-config';
+
+	export let testimonial : {
+        quoteHighlighted: string;
+        quoteDetail1: string;
+        quoteDetail2: string;
+        name: string;
+        bio: string;
+        companyName: string;
+        companyLink?: string;
+        socialPlatform?: string;
+        socialAccount?: string;
+        socialLink?: string;
+        bioImgPath: string;
+        companyImgPath?: string;
+    } = 
+        {
+            quoteHighlighted: `Redprint accelerates the way I build on OPStack.`,
+            quoteDetail1:`With an innovative interactive UI,`,
+            quoteDetail2:`I can easily setup and deploy contracts on OP.`,
+            name: `wit03.eth`,
+            bio: `Co-founder`,
+            companyName: `RetroPGF Hub`,
+            companyLink: `https://retropgfhub.com/`,
+
+            socialPlatform: `𝕏`,
+            socialAccount: `@witjarukit`,
+            socialLink: `https://x.com/witjarukit`,
+
+            bioImgPath: `/testimonials/2_bio.png`,
+            companyImgPath: `/testimonials/2_company.png`
+        };
+
+
 </script>
 
 <section class="py-2 px-4 text-center">
@@ -60,8 +93,22 @@
 				>
 			</p>
 		</div>
-
-		<Testimonial1Small></Testimonial1Small>
+		
+		<Testimonial1Small
+			quoteHighlighted={testimonial.quoteHighlighted}
+			quoteDetail1={testimonial.quoteDetail1}
+			quoteDetail2={testimonial.quoteDetail2}
+			name={testimonial.name}
+			bio={testimonial.bio}
+			companyName={testimonial.companyName}
+			companyLink={testimonial.companyLink}
+			socialPlatform={testimonial.socialPlatform}
+			socialAccount={testimonial.socialAccount}
+			socialLink={testimonial.socialLink}
+			bioImgPath={testimonial.bioImgPath}
+			companyImgPath={testimonial.companyImgPath}
+		>
+		</Testimonial1Small>
        
 	</div>
 

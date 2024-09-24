@@ -3,7 +3,7 @@
     import type {FeatureGridItem } from '$lib/model/Feature';
     
     import LandingSection from '$lib/ui/layouts/LandingSection.svelte';
-    import FeatureGridElement from '$lib/ui/feature/FeatureGridElement.svelte';
+    import FeatureGridElement from '$lib/ui/elements/FeatureGridElement.svelte';
 
     export let keyToNav: string = '#resource';
 
