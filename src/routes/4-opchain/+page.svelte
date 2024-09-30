@@ -9,12 +9,14 @@
     import type {
         KindedOptimismPortalProxyOptions, KindOptimismPortalProxy,
         KindedSystemConfigProxyOptions, KindSystemConfigProxy,
+        KindedL1StandardBridgeProxyOptions, KindL1StandardBridgeProxy,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
     import {
         sanitizeKindOptimismPortalProxy,
         sanitizeKindSystemConfigProxy,
+        sanitizeKindL1StandardBridgeProxy,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -26,6 +28,7 @@
 
     import OptimismPortalProxyControls from '$lib/ui/controls/4-OptimismPortalProxyControls.svelte';
     import SystemConfigProxyControls from '$lib/ui/controls/4-SystemConfigProxyControls.svelte';
+    import L1StandardBridgeProxyControls from '$lib/ui/controls/4-L1StandardBridgeProxyControls.svelte';
 
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
@@ -108,7 +111,6 @@
   `);
 
   // **** step 4.1B ***
-
   export let initialContractSystemConfigProxyTab: string | undefined = 'SystemConfigProxy';
   export let contractSystemConfigProxyTab: KindSystemConfigProxy = sanitizeKindSystemConfigProxy(initialContractSystemConfigProxyTab);
   let allContractsSystemConfigProxyOpts: { [k in KindSystemConfigProxy]?: Required<KindedSystemConfigProxyOptions [k]> } = {};
@@ -150,6 +152,50 @@
   \`\`\`
   `);
 
+  // **** step 4.1C ***
+  export let initialContractL1StandardBridgeProxyTab: string | undefined = 'L1StandardBridgeProxy';
+  export let contractL1StandardBridgeProxyTab: KindL1StandardBridgeProxy = sanitizeKindL1StandardBridgeProxy(initialContractL1StandardBridgeProxyTab);
+  let allContractsL1StandardBridgeProxyOpts: { [k in KindL1StandardBridgeProxy]?: Required<KindedL1StandardBridgeProxyOptions [k]> } = {};
+  let errorsL1StandardBridgeProxy: { [k in KindL1StandardBridgeProxy]?: OptionsErrorMessages } = {};
+  let contractL1StandardBridgeProxy: Contract = new ContractBuilder('L1StandardBridgeProxy');
+  let deployContractL1StandardBridgeProxy: DeployContract = new DeployBuilder('DeployL1StandardBridgeProxyScript');
+
+  $: optsL1StandardBridgeProxy = allContractsL1StandardBridgeProxyOpts[contractL1StandardBridgeProxyTab];
+  $: {
+  if (optsL1StandardBridgeProxy) {
+          try {
+              contractL1StandardBridgeProxy = buildContractGeneric(optsL1StandardBridgeProxy);
+              deployContractL1StandardBridgeProxy = buildDeployGeneric(optsL1StandardBridgeProxy);
+              errorsL1StandardBridgeProxy[contractL1StandardBridgeProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsL1StandardBridgeProxy[contractL1StandardBridgeProxyTab] = e.messages;
+              } else {
+                throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneCModalOpen = false;
+  $: addressStepOneCContent = md.render(`
+  \`\`\`bash
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>"
+  \`\`\`
+  `);
+  
+  
 </script>
 
 <Background color="bg-base-100 pt-3 pb-4">
@@ -307,6 +353,73 @@
 
   </div>
 </WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.1C : Deploy L1StandardBridgeProxy Contract</p>
+  </div>
+</Background>
+
+<WizardDouble conventionNumber={'401C'} initialContractTab={initialContractL1StandardBridgeProxyTab} contractTab={contractL1StandardBridgeProxyTab} opts={optsL1StandardBridgeProxy} contract={contractL1StandardBridgeProxy} deployContract={deployContractL1StandardBridgeProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractL1StandardBridgeProxyTab === 'L1StandardBridgeProxy'} on:click={() => contractL1StandardBridgeProxyTab = 'L1StandardBridgeProxy'}>
+              L1StandardBridgeProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractL1StandardBridgeProxyTab !== 'L1StandardBridgeProxy'}>
+              <L1StandardBridgeProxyControls bind:opts={allContractsL1StandardBridgeProxyOpts.L1StandardBridgeProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneCModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneCModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneCModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneCContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.1D : Deploy L1CrossDomainMessengerProxy Contract</p>
+  </div>
+</Background>
 
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[2].pathname}>

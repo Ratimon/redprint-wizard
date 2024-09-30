@@ -34,6 +34,9 @@ import { buildDeployOptimismPortalProxy } from './4-optimism-portal-proxy';
 import type { SharedSystemConfigProxyOptions} from '../shared/4-option-system-config-proxy';
 import { buildDeploySystemConfigProxy } from './4-system-config-proxy';
 
+import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-option-l1-standard-bridge-proxy';
+import { buildDeployL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -47,6 +50,7 @@ export interface DeployKindedOptions {
   AllStepTwo: {kind: 'AllStepTwo'} & SharedStepTwoAllOptions;
   OptimismPortalProxy: {kind: 'OptimismPortalProxy'} & SharedOptimismPortalProxyOptions;
   SystemConfigProxy : {kind: 'SystemConfigProxy'} & SharedSystemConfigProxyOptions;
+  L1StandardBridgeProxy: {kind: 'L1StandardBridgeProxy'} & SharedL1StandardBridgeProxyOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -89,6 +93,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'SystemConfigProxy':
       return  buildDeploySystemConfigProxy(opts);
+    
+    case 'L1StandardBridgeProxy':
+      return  buildDeployL1StandardBridgeProxy(opts);
 
     default:
       const _: never = opts;

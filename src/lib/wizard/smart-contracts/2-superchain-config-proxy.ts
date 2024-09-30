@@ -162,7 +162,7 @@ function getProxyCallIfNotAdminModifier() {
     };
   
     return mod;
-  }
+}
 
 const functions = defineFunctions({
 

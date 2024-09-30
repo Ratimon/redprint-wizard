@@ -38,6 +38,10 @@ import type { SharedSystemConfigProxyOptions } from '../shared/4-option-system-c
 import {  defaults as systemConfigProxyDefaults } from '../shared/4-option-system-config-proxy';
 import { printSystemConfigProxy } from './4-system-config-proxy';
 
+import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-option-l1-standard-bridge-proxy';
+import {  defaults as l1StandardBridgeProxyDefaults } from '../shared/4-option-l1-standard-bridge-proxy';
+import { printL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -115,4 +119,10 @@ export type SystemConfigProxy = WizardContractAPI<SharedSystemConfigProxyOptions
 export const systemConfigProxy: SystemConfigProxy = {
   print: printSystemConfigProxy,
   defaults: systemConfigProxyDefaults
+}
+
+export type L1StandardBridgeProxy = WizardContractAPI<SharedL1StandardBridgeProxyOptions>;
+export const l1StandardBridgeProxy: L1StandardBridgeProxy = {
+  print: printL1StandardBridgeProxy,
+  defaults: l1StandardBridgeProxyDefaults
 }

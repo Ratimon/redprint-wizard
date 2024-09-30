@@ -1,4 +1,3 @@
-
 import type { SharedSafeOptions} from '../shared/1-option-safe';
 import { buildSafe } from './1-safe';
 
@@ -29,6 +28,9 @@ import { buildOptimismPortalProxy } from './4-optimism-portal-proxy';
 import type { SharedSystemConfigProxyOptions } from '../shared/4-option-system-config-proxy';
 import { buildSystemConfigProxy } from './4-system-config-proxy';
 
+import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-option-l1-standard-bridge-proxy';
+import { buildL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -40,6 +42,7 @@ export interface KindedOptions {
   ProtocolVersions : {kind: 'ProtocolVersions' } & SharedProtocolVersionsOptions;
   OptimismPortalProxy : {kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
   SystemConfigProxy : {kind: 'SystemConfigProxy' } & SharedSystemConfigProxyOptions;
+  L1StandardBridgeProxy : {kind: 'L1StandardBridgeProxy' } & SharedL1StandardBridgeProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -76,6 +79,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'SystemConfigProxy':
       return buildSystemConfigProxy(opts);
+    
+    case 'L1StandardBridgeProxy':
+      return buildL1StandardBridgeProxy(opts);
   
     default:
       const _: never = opts;

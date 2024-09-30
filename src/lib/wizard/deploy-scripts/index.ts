@@ -23,5 +23,6 @@ export {
     deployProtocolVersions,
     deployStepTwoAll,
     deployOptimismPortalProxy,
-    deploySystemConfigProxy
+    deploySystemConfigProxy,
+    deployL1StandardBridgeProxy
 } from './api';

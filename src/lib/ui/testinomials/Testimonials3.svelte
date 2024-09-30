@@ -16,7 +16,6 @@
         {
             quote: `Redprint accelerates the way I build on OPStack.`,
             name: `wit03.eth`,
-
             socialAccount: `@witjarukit`,
             bioImgPath: `/testimonials/2_bio.png`,
         },

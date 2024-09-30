@@ -23,7 +23,8 @@ export {
     protocolVersionsProxy,
     protocolVersions,
     optimismPortalProxy,
-    systemConfigProxy
+    systemConfigProxy,
+    l1StandardBridgeProxy
 } from './api';
 
 
@@ -37,3 +38,4 @@ export { buildProtocolVersionsProxy } from './2-versions-proxy';
 export { buildProtocolVersions } from './2-versions';
 export { buildOptimismPortalProxy } from './4-optimism-portal-proxy';
 export { buildSystemConfigProxy } from './4-system-config-proxy';
+export { buildL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
