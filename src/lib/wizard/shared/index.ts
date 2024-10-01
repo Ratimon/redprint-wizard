@@ -12,6 +12,7 @@ export type {
     KindedOptimismPortalProxyOptions, GenericOptimismPortalProxyOptions,
     KindedSystemConfigProxyOptions, GenericSystemConfigProxyOptions,
     KindedL1StandardBridgeProxyOptions, GenericL1StandardBridgeProxyOptions,
+    KindedL1CrossDomainMessengerProxyOptions, GenericL1CrossDomainMessengerProxyOptions,
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -60,3 +61,6 @@ export {  sanitizeKindSystemConfigProxy } from './4-kind-system-config-proxy';
 
 export type { KindL1StandardBridgeProxy } from './4-kind-l1-standard-bridge-proxy';
 export {  sanitizeKindL1StandardBridgeProxy } from './4-kind-l1-standard-bridge-proxy';
+
+export type { KindL1CrossDomainMessengerProxy } from './4-kind-l1-crossdomain-messenger-proxy';
+export {  sanitizeKindL1CrossDomainMessengerProxy } from './4-kind-l1-crossdomain-messenger-proxy';

@@ -31,6 +31,9 @@ import { buildSystemConfigProxy } from './4-system-config-proxy';
 import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-option-l1-standard-bridge-proxy';
 import { buildL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
 
+import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-option-l1-crossdomain-messenger-proxy';
+import { buildL1CrossDomainMessengerProxy } from './4-l1-crossdomain-messenger-proxy';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -43,6 +46,7 @@ export interface KindedOptions {
   OptimismPortalProxy : {kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
   SystemConfigProxy : {kind: 'SystemConfigProxy' } & SharedSystemConfigProxyOptions;
   L1StandardBridgeProxy : {kind: 'L1StandardBridgeProxy' } & SharedL1StandardBridgeProxyOptions;
+  L1CrossDomainMessengerProxy : {kind: 'L1CrossDomainMessengerProxy' } & SharedL1CrossDomainMessengerProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -82,6 +86,9 @@ export function buildContractGeneric(opts: GenericOptions) {
     
     case 'L1StandardBridgeProxy':
       return buildL1StandardBridgeProxy(opts);
+    
+    case 'L1CrossDomainMessengerProxy':
+      return buildL1CrossDomainMessengerProxy(opts);
   
     default:
       const _: never = opts;

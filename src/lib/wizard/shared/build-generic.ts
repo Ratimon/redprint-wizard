@@ -14,7 +14,7 @@ import type { SharedStepTwoAllOptions} from './2-option-all';
 import type { SharedOptimismPortalProxyOptions} from './4-option-optimism-portal-proxy';
 import type { SharedSystemConfigProxyOptions} from './4-option-system-config-proxy';
 import type { SharedL1StandardBridgeProxyOptions} from './4-option-l1-standard-bridge-proxy';
-
+import type { SharedL1CrossDomainMessengerProxyOptions } from './4-option-l1-crossdomain-messenger-proxy';
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
@@ -30,6 +30,7 @@ export interface KindedOptions {
   OptimismPortalProxy: { kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
   SystemConfigProxy: { kind: 'SystemConfigProxy' } & SharedSystemConfigProxyOptions;
   L1StandardBridgeProxy: { kind: 'L1StandardBridgeProxy' } & SharedL1StandardBridgeProxyOptions;
+  L1CrossDomainMessengerProxy: { kind: 'L1CrossDomainMessengerProxy' } & SharedL1CrossDomainMessengerProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -95,12 +96,20 @@ export interface KindedOptimismPortalProxyOptions {
 }
 export type GenericOptimismPortalProxyOptions = KindedOptimismPortalProxyOptions[keyof KindedOptimismPortalProxyOptions];
 
+
 export interface KindedSystemConfigProxyOptions {
   SystemConfigProxy: { kind: 'SystemConfigProxy' } & SharedSystemConfigProxyOptions;
 }
 export type GenericSystemConfigProxyOptions = KindedSystemConfigProxyOptions[keyof KindedSystemConfigProxyOptions];
 
+
 export interface KindedL1StandardBridgeProxyOptions {
   L1StandardBridgeProxy: { kind: 'L1StandardBridgeProxy' } & SharedL1StandardBridgeProxyOptions;
 }
 export type GenericL1StandardBridgeProxyOptions = KindedL1StandardBridgeProxyOptions[keyof KindedL1StandardBridgeProxyOptions];
+
+
+export interface KindedL1CrossDomainMessengerProxyOptions {
+  L1CrossDomainMessengerProxy: { kind: 'L1CrossDomainMessengerProxy' } & SharedL1CrossDomainMessengerProxyOptions;
+}
+export type GenericL1CrossDomainMessengerProxyOptions = KindedL1CrossDomainMessengerProxyOptions[keyof KindedL1CrossDomainMessengerProxyOptions];

@@ -25,7 +25,7 @@ export function load() {
     const dropDownLinks : Link[] = [
         {pathname: '/4-opchain/#4.0', title: '4.0) Prerequisites', navType: 'scroll' },
         {pathname: '/4-opchain/#4.1', title: '4.1: A-D) Deploy Proxies', navType: 'scroll'},
-        {pathname: '/4-opchain/#4.2', title: '4.2) Deploy Implementations', navType: 'scroll'},
+        {pathname: '/4-opchain/#4.2', title: '4.2: A-D) Deploy Implementations', navType: 'scroll'},
         {pathname: '/4-opchain/#4.3', title: '4.3) Initialize Implementations', navType: 'scroll'},
         {pathname: '/4-opchain/#4.3', title: '4.3) Set Fault Proof Implementation', navType: 'scroll'},
         {pathname: '/4-opchain/#all', title: 'Deploy All', navType: 'scroll'},

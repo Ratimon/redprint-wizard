@@ -42,6 +42,10 @@ import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-option-l1-s
 import {  defaults as l1StandardBridgeProxyDefaults } from '../shared/4-option-l1-standard-bridge-proxy';
 import { printL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
 
+import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-option-l1-crossdomain-messenger-proxy';
+import {  defaults as l1CrossDomainMessengerProxyDefaults } from '../shared/4-option-l1-crossdomain-messenger-proxy';
+import { printL1CrossDomainMessengerProxy } from './4-l1-crossdomain-messenger-proxy';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -125,4 +129,10 @@ export type L1StandardBridgeProxy = WizardContractAPI<SharedL1StandardBridgeProx
 export const l1StandardBridgeProxy: L1StandardBridgeProxy = {
   print: printL1StandardBridgeProxy,
   defaults: l1StandardBridgeProxyDefaults
+}
+
+export type L1CrossDomainMessengerProxy = WizardContractAPI<SharedL1CrossDomainMessengerProxyOptions>;
+export const l1CrossDomainMessengerProxy: L1CrossDomainMessengerProxy = {
+  print: printL1CrossDomainMessengerProxy,
+  defaults: l1CrossDomainMessengerProxyDefaults
 }

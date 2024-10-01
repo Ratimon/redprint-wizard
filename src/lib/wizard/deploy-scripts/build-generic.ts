@@ -37,6 +37,9 @@ import { buildDeploySystemConfigProxy } from './4-system-config-proxy';
 import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-option-l1-standard-bridge-proxy';
 import { buildDeployL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
 
+import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-option-l1-crossdomain-messenger-proxy';
+import { buildDeployL1CrossDomainMessengerProxy } from './4-l1-crossdomain-messenger-proxy';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -51,6 +54,7 @@ export interface DeployKindedOptions {
   OptimismPortalProxy: {kind: 'OptimismPortalProxy'} & SharedOptimismPortalProxyOptions;
   SystemConfigProxy : {kind: 'SystemConfigProxy'} & SharedSystemConfigProxyOptions;
   L1StandardBridgeProxy: {kind: 'L1StandardBridgeProxy'} & SharedL1StandardBridgeProxyOptions;
+  L1CrossDomainMessengerProxy: {kind: 'L1CrossDomainMessengerProxy'} & SharedL1CrossDomainMessengerProxyOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -96,6 +100,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
     
     case 'L1StandardBridgeProxy':
       return  buildDeployL1StandardBridgeProxy(opts);
+
+    case 'L1CrossDomainMessengerProxy':
+      return  buildDeployL1CrossDomainMessengerProxy(opts);
 
     default:
       const _: never = opts;

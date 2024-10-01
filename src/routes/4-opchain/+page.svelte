@@ -10,6 +10,7 @@
         KindedOptimismPortalProxyOptions, KindOptimismPortalProxy,
         KindedSystemConfigProxyOptions, KindSystemConfigProxy,
         KindedL1StandardBridgeProxyOptions, KindL1StandardBridgeProxy,
+        KindedL1CrossDomainMessengerProxyOptions, KindL1CrossDomainMessengerProxy,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
@@ -17,6 +18,7 @@
         sanitizeKindOptimismPortalProxy,
         sanitizeKindSystemConfigProxy,
         sanitizeKindL1StandardBridgeProxy,
+        sanitizeKindL1CrossDomainMessengerProxy,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -29,6 +31,7 @@
     import OptimismPortalProxyControls from '$lib/ui/controls/4-OptimismPortalProxyControls.svelte';
     import SystemConfigProxyControls from '$lib/ui/controls/4-SystemConfigProxyControls.svelte';
     import L1StandardBridgeProxyControls from '$lib/ui/controls/4-L1StandardBridgeProxyControls.svelte';
+    import L1CrossDomainMessengerProxyControls from '$lib/ui/controls/4-L1CrossDomainMessengerProxyControls.svelte'
 
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
@@ -194,6 +197,56 @@
   "L1StandardBridgeProxy": "<ADDRESS_12>"
   \`\`\`
   `);
+
+   // **** step 4.1D ***
+   export let initialContractL1CrossDomainMessengerProxyTab: string | undefined = 'L1CrossDomainMessengerProxy';
+   export let contractL1CrossDomainMessengerProxyTab: KindL1CrossDomainMessengerProxy = sanitizeKindL1CrossDomainMessengerProxy(initialContractL1CrossDomainMessengerProxyTab);
+   let allContractsL1CrossDomainMessengerProxyOpts: { [k in KindL1CrossDomainMessengerProxy]?: Required<KindedL1CrossDomainMessengerProxyOptions [k]> } = {};
+   let errorsL1CrossDomainMessengerProxy: { [k in KindL1CrossDomainMessengerProxy]?: OptionsErrorMessages } = {};
+   let contractL1CrossDomainMessengerProxy: Contract = new ContractBuilder('L1CrossDomainMessengerProxy');
+   let deployContractL1CrossDomainMessengerProxy: DeployContract = new DeployBuilder('DeployL1CrossDomainMessengerProxyScript');
+
+   $: optsL1CrossDomainMessengerProxy = allContractsL1CrossDomainMessengerProxyOpts[contractL1CrossDomainMessengerProxyTab];
+   $: {
+  if (optsL1CrossDomainMessengerProxy) {
+          try {
+              contractL1CrossDomainMessengerProxy = buildContractGeneric(optsL1CrossDomainMessengerProxy);
+              deployContractL1CrossDomainMessengerProxy = buildDeployGeneric(optsL1CrossDomainMessengerProxy);
+              errorsL1CrossDomainMessengerProxy[contractL1CrossDomainMessengerProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsL1CrossDomainMessengerProxy[contractL1CrossDomainMessengerProxyTab] = e.messages;
+              } else {
+                throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneDModalOpen = false;
+  $: addressStepOneDContent = md.render(`
+  \`\`\`bash
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>"
+  \`\`\`
+  `);
+
+  
+  
+  
+      
+
   
   
 </script>
@@ -420,6 +473,61 @@
     <p class="text-xl">4.1D : Deploy L1CrossDomainMessengerProxy Contract</p>
   </div>
 </Background>
+
+<WizardDouble conventionNumber={'401C'} initialContractTab={initialContractL1CrossDomainMessengerProxyTab} contractTab={contractL1CrossDomainMessengerProxyTab} opts={optsL1CrossDomainMessengerProxy} contract={contractL1CrossDomainMessengerProxy} deployContract={deployContractL1CrossDomainMessengerProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractL1CrossDomainMessengerProxyTab === 'L1CrossDomainMessengerProxy'} on:click={() => contractL1CrossDomainMessengerProxyTab = 'L1CrossDomainMessengerProxy'}>
+              L1CrossDomainMessengerProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractL1CrossDomainMessengerProxyTab !== 'L1CrossDomainMessengerProxy'}>
+              <L1CrossDomainMessengerProxyControls bind:opts={allContractsL1CrossDomainMessengerProxyOpts.L1CrossDomainMessengerProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneDModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneDModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneDModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneDContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[2].pathname}>

@@ -24,7 +24,8 @@ export {
     protocolVersions,
     optimismPortalProxy,
     systemConfigProxy,
-    l1StandardBridgeProxy
+    l1StandardBridgeProxy,
+    l1CrossDomainMessengerProxy
 } from './api';
 
 
@@ -39,3 +40,4 @@ export { buildProtocolVersions } from './2-versions';
 export { buildOptimismPortalProxy } from './4-optimism-portal-proxy';
 export { buildSystemConfigProxy } from './4-system-config-proxy';
 export { buildL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
+export { buildL1CrossDomainMessengerProxy } from './4-l1-crossdomain-messenger-proxy';

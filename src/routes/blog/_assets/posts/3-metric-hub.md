@@ -107,6 +107,7 @@ This metric can be represented by GA's  events which are named by blog title For
 > **Note**💡
 > These figures can be checked at Google Analytics 's Reports e.g. [July](https://analytics.google.com/analytics/web/#/p450975503/reports/reportinghub?params=_u.comparisonOption%3Ddisabled%26_u.date00%3D20240701%26_u.date01%3D20240731%26_u..nav%3Dmaui&collectionId=business-objectives) and [August](https://analytics.google.com/analytics/web/#/p450975503/reports/reportinghub?params=_u.comparisonOption%3Ddisabled%26_u.date00%3D20240801%26_u.date01%3D20240831%26_u..nav%3Dmaui&collectionId=business-objectives)
 
+> Projects launced before, but data collected for only 2 months
 
 
 ### 2. redprint-forge
