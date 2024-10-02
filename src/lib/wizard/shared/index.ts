@@ -13,6 +13,7 @@ export type {
     KindedSystemConfigProxyOptions, GenericSystemConfigProxyOptions,
     KindedL1StandardBridgeProxyOptions, GenericL1StandardBridgeProxyOptions,
     KindedL1CrossDomainMessengerProxyOptions, GenericL1CrossDomainMessengerProxyOptions,
+    KindedOptimismMintableERC20FactoryProxyOptions, GenericOptimismMintableERC20FactoryProxyOptions,
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -64,3 +65,6 @@ export {  sanitizeKindL1StandardBridgeProxy } from './4-kind-l1-standard-bridge-
 
 export type { KindL1CrossDomainMessengerProxy } from './4-kind-l1-crossdomain-messenger-proxy';
 export {  sanitizeKindL1CrossDomainMessengerProxy } from './4-kind-l1-crossdomain-messenger-proxy';
+
+export type { KindOptimismMintableERC20FactoryProxy } from './4-kind-optimism-mintable-ERC20-factory-proxy';
+export {  sanitizeKindOptimismMintableERC20FactoryProxy } from './4-kind-optimism-mintable-ERC20-factory-proxy';

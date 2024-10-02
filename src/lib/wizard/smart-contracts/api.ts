@@ -46,6 +46,10 @@ import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-optio
 import {  defaults as l1CrossDomainMessengerProxyDefaults } from '../shared/4-option-l1-crossdomain-messenger-proxy';
 import { printL1CrossDomainMessengerProxy } from './4-l1-crossdomain-messenger-proxy';
 
+import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../shared/4-option-optimism-mintable-ERC20-factory-proxy';
+import {  defaults as optimismMintableERC20FactoryProxyDefaults } from '../shared/4-option-optimism-mintable-ERC20-factory-proxy';
+import { printOptimismMintableERC20FactoryProxy } from './4-optimism-mintable-ERC20-factory-proxy';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -135,4 +139,10 @@ export type L1CrossDomainMessengerProxy = WizardContractAPI<SharedL1CrossDomainM
 export const l1CrossDomainMessengerProxy: L1CrossDomainMessengerProxy = {
   print: printL1CrossDomainMessengerProxy,
   defaults: l1CrossDomainMessengerProxyDefaults
+}
+
+export type OptimismMintableERC20FactoryProxy = WizardContractAPI<SharedOptimismMintableERC20FactoryProxyOptions>;
+export const optimismMintableERC20FactoryProxy: OptimismMintableERC20FactoryProxy = {
+  print: printOptimismMintableERC20FactoryProxy,
+  defaults: optimismMintableERC20FactoryProxyDefaults
 }

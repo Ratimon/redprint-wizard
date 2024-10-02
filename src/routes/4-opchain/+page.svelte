@@ -11,6 +11,7 @@
         KindedSystemConfigProxyOptions, KindSystemConfigProxy,
         KindedL1StandardBridgeProxyOptions, KindL1StandardBridgeProxy,
         KindedL1CrossDomainMessengerProxyOptions, KindL1CrossDomainMessengerProxy,
+        KindedOptimismMintableERC20FactoryProxyOptions, KindOptimismMintableERC20FactoryProxy,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
@@ -19,6 +20,7 @@
         sanitizeKindSystemConfigProxy,
         sanitizeKindL1StandardBridgeProxy,
         sanitizeKindL1CrossDomainMessengerProxy,
+        sanitizeKindOptimismMintableERC20FactoryProxy,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -31,8 +33,8 @@
     import OptimismPortalProxyControls from '$lib/ui/controls/4-OptimismPortalProxyControls.svelte';
     import SystemConfigProxyControls from '$lib/ui/controls/4-SystemConfigProxyControls.svelte';
     import L1StandardBridgeProxyControls from '$lib/ui/controls/4-L1StandardBridgeProxyControls.svelte';
-    import L1CrossDomainMessengerProxyControls from '$lib/ui/controls/4-L1CrossDomainMessengerProxyControls.svelte'
-
+    import L1CrossDomainMessengerProxyControls from '$lib/ui/controls/4-L1CrossDomainMessengerProxyControls.svelte';
+    import OptimismMintableERC20FactoryProxyControls from '$lib/ui/controls/4-OptimismMintableERC20FactoryProxyControls.svelte';
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -242,12 +244,50 @@
   \`\`\`
   `);
 
-  
-  
-  
-      
+  // **** step 4.1E ***
+  export let initialContractOptimismMintableERC20FactoryProxyTab: string | undefined = 'OptimismMintableERC20FactoryProxy';
+  export let contractOptimismMintableERC20FactoryProxyTab: KindOptimismMintableERC20FactoryProxy = sanitizeKindOptimismMintableERC20FactoryProxy(initialContractOptimismMintableERC20FactoryProxyTab);
+  let allContractsOptimismMintableERC20FactoryProxyOpts: { [k in KindOptimismMintableERC20FactoryProxy]?: Required<KindedOptimismMintableERC20FactoryProxyOptions [k]> } = {};
+  let errorsOptimismMintableERC20FactoryProxy: { [k in KindOptimismMintableERC20FactoryProxy]?: OptionsErrorMessages } = {};
+  let contractOptimismMintableERC20FactoryProxy: Contract = new ContractBuilder('OptimismMintableERC20FactoryProxy');
+  let deployContractOptimismMintableERC20FactoryProxy: DeployContract = new DeployBuilder('DeployOptimismMintableERC20FactoryProxyScript');
 
-  
+  $: optsOptimismMintableERC20FactoryProxy = allContractsOptimismMintableERC20FactoryProxyOpts[contractOptimismMintableERC20FactoryProxyTab];
+  $: {
+  if (optsOptimismMintableERC20FactoryProxy) {
+          try {
+              contractOptimismMintableERC20FactoryProxy = buildContractGeneric(optsOptimismMintableERC20FactoryProxy);
+              deployContractOptimismMintableERC20FactoryProxy = buildDeployGeneric(optsOptimismMintableERC20FactoryProxy);
+              errorsOptimismMintableERC20FactoryProxy[contractOptimismMintableERC20FactoryProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsOptimismMintableERC20FactoryProxy[contractOptimismMintableERC20FactoryProxyTab] = e.messages;
+              } else {
+                throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneEModalOpen = false;
+  $: addressStepOneEContent = md.render(`
+  \`\`\`bash
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>"
+  \`\`\`
+  `);
   
 </script>
 
@@ -474,7 +514,7 @@
   </div>
 </Background>
 
-<WizardDouble conventionNumber={'401C'} initialContractTab={initialContractL1CrossDomainMessengerProxyTab} contractTab={contractL1CrossDomainMessengerProxyTab} opts={optsL1CrossDomainMessengerProxy} contract={contractL1CrossDomainMessengerProxy} deployContract={deployContractL1CrossDomainMessengerProxy}>
+<WizardDouble conventionNumber={'401D'} initialContractTab={initialContractL1CrossDomainMessengerProxyTab} contractTab={contractL1CrossDomainMessengerProxyTab} opts={optsL1CrossDomainMessengerProxy} contract={contractL1CrossDomainMessengerProxy} deployContract={deployContractL1CrossDomainMessengerProxy}>
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
@@ -518,6 +558,67 @@
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
               {@html md.render(addressStepOneDContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.1E : Deploy OptimismMintableERC20FactoryProxy Contract</p>
+  </div>
+</Background>
+
+<WizardDouble conventionNumber={'401E'} initialContractTab={initialContractOptimismMintableERC20FactoryProxyTab} contractTab={contractOptimismMintableERC20FactoryProxyTab} opts={optsOptimismMintableERC20FactoryProxy} contract={contractOptimismMintableERC20FactoryProxy} deployContract={deployContractOptimismMintableERC20FactoryProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractOptimismMintableERC20FactoryProxyTab === 'OptimismMintableERC20FactoryProxy'} on:click={() => contractOptimismMintableERC20FactoryProxyTab = 'OptimismMintableERC20FactoryProxy'}>
+              OptimismMintableERC20FactoryProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractOptimismMintableERC20FactoryProxyTab !== 'OptimismMintableERC20FactoryProxy'}>
+              <OptimismMintableERC20FactoryProxyControls bind:opts={allContractsOptimismMintableERC20FactoryProxyOpts.OptimismMintableERC20FactoryProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneEModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneEModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneEModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneEContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>

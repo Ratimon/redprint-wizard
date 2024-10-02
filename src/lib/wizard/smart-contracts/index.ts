@@ -25,7 +25,8 @@ export {
     optimismPortalProxy,
     systemConfigProxy,
     l1StandardBridgeProxy,
-    l1CrossDomainMessengerProxy
+    l1CrossDomainMessengerProxy,
+    optimismMintableERC20FactoryProxy
 } from './api';
 
 
@@ -41,3 +42,4 @@ export { buildOptimismPortalProxy } from './4-optimism-portal-proxy';
 export { buildSystemConfigProxy } from './4-system-config-proxy';
 export { buildL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
 export { buildL1CrossDomainMessengerProxy } from './4-l1-crossdomain-messenger-proxy';
+export { buildOptimismMintableERC20FactoryProxy } from './4-optimism-mintable-ERC20-factory-proxy';

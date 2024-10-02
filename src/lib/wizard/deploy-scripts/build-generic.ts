@@ -40,6 +40,9 @@ import { buildDeployL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
 import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-option-l1-crossdomain-messenger-proxy';
 import { buildDeployL1CrossDomainMessengerProxy } from './4-l1-crossdomain-messenger-proxy';
 
+import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../shared/4-option-optimism-mintable-ERC20-factory-proxy';
+import { buildDeployOptimismMintableERC20FactoryProxy } from './4-optimism-mintable-ERC20-factory-proxy';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -55,6 +58,7 @@ export interface DeployKindedOptions {
   SystemConfigProxy : {kind: 'SystemConfigProxy'} & SharedSystemConfigProxyOptions;
   L1StandardBridgeProxy: {kind: 'L1StandardBridgeProxy'} & SharedL1StandardBridgeProxyOptions;
   L1CrossDomainMessengerProxy: {kind: 'L1CrossDomainMessengerProxy'} & SharedL1CrossDomainMessengerProxyOptions;
+  OptimismMintableERC20FactoryProxy: {kind: 'OptimismMintableERC20FactoryProxy'} & SharedOptimismMintableERC20FactoryProxyOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -103,6 +107,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'L1CrossDomainMessengerProxy':
       return  buildDeployL1CrossDomainMessengerProxy(opts);
+
+    case 'OptimismMintableERC20FactoryProxy':
+      return  buildDeployOptimismMintableERC20FactoryProxy(opts);
 
     default:
       const _: never = opts;

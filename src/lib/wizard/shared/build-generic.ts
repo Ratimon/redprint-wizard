@@ -15,6 +15,7 @@ import type { SharedOptimismPortalProxyOptions} from './4-option-optimism-portal
 import type { SharedSystemConfigProxyOptions} from './4-option-system-config-proxy';
 import type { SharedL1StandardBridgeProxyOptions} from './4-option-l1-standard-bridge-proxy';
 import type { SharedL1CrossDomainMessengerProxyOptions } from './4-option-l1-crossdomain-messenger-proxy';
+import type { SharedOptimismMintableERC20FactoryProxyOptions } from './4-option-optimism-mintable-ERC20-factory-proxy';
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
@@ -31,6 +32,7 @@ export interface KindedOptions {
   SystemConfigProxy: { kind: 'SystemConfigProxy' } & SharedSystemConfigProxyOptions;
   L1StandardBridgeProxy: { kind: 'L1StandardBridgeProxy' } & SharedL1StandardBridgeProxyOptions;
   L1CrossDomainMessengerProxy: { kind: 'L1CrossDomainMessengerProxy' } & SharedL1CrossDomainMessengerProxyOptions;
+  OptimismMintableERC20FactoryProxy: { kind: 'OptimismMintableERC20FactoryProxy' } & SharedOptimismMintableERC20FactoryProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -113,3 +115,9 @@ export interface KindedL1CrossDomainMessengerProxyOptions {
   L1CrossDomainMessengerProxy: { kind: 'L1CrossDomainMessengerProxy' } & SharedL1CrossDomainMessengerProxyOptions;
 }
 export type GenericL1CrossDomainMessengerProxyOptions = KindedL1CrossDomainMessengerProxyOptions[keyof KindedL1CrossDomainMessengerProxyOptions];
+
+
+export interface KindedOptimismMintableERC20FactoryProxyOptions {
+  OptimismMintableERC20FactoryProxy: { kind: 'OptimismMintableERC20FactoryProxy' } & SharedOptimismMintableERC20FactoryProxyOptions;
+}
+export type GenericOptimismMintableERC20FactoryProxyOptions = KindedOptimismMintableERC20FactoryProxyOptions[keyof KindedOptimismMintableERC20FactoryProxyOptions];

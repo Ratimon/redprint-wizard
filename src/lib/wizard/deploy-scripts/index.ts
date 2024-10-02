@@ -25,5 +25,6 @@ export {
     deployOptimismPortalProxy,
     deploySystemConfigProxy,
     deployL1StandardBridgeProxy,
-    deployL1CrossDomainMessengerProxy
+    deployL1CrossDomainMessengerProxy,
+    deployOptimismMintableERC20FactoryProxy
 } from './api';
