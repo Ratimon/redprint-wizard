@@ -60,6 +60,10 @@ import type {  SharedOptimismMintableERC20FactoryProxyOptions } from '../shared/
 import {  defaults as optimismMintableERC20FactoryProxyDefaults } from '../shared/4-option-optimism-mintable-ERC20-factory-proxy';
 import { printDeployOptimismMintableERC20FactoryProxy } from './4-optimism-mintable-ERC20-factory-proxy';
 
+import type {  SharedL1ERC721BridgeProxyOptions } from '../shared/4-option-l1-ERC721-bridge-proxy';
+import {  defaults as l1ERC721BridgeProxyDefaults } from '../shared/4-option-l1-ERC721-bridge-proxy';
+import { printDeployL1ERC721BridgeProxy } from './4-l1-ERC721-bridge-proxy';
+
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -166,4 +170,10 @@ export type DeployOptimismMintableERC20FactoryProxy = WizardAllAPI<SharedOptimis
 export const deployOptimismMintableERC20FactoryProxy: DeployOptimismMintableERC20FactoryProxy = {
   print: printDeployOptimismMintableERC20FactoryProxy,
   defaults: optimismMintableERC20FactoryProxyDefaults,
+}
+
+export type DeployL1ERC721BridgeProxy = WizardAllAPI<SharedL1ERC721BridgeProxyOptions>;
+export const deployL1ERC721BridgeProxy: DeployL1ERC721BridgeProxy = {
+  print: printDeployL1ERC721BridgeProxy,
+  defaults: l1ERC721BridgeProxyDefaults,
 }

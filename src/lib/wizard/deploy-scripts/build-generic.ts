@@ -43,6 +43,9 @@ import { buildDeployL1CrossDomainMessengerProxy } from './4-l1-crossdomain-messe
 import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../shared/4-option-optimism-mintable-ERC20-factory-proxy';
 import { buildDeployOptimismMintableERC20FactoryProxy } from './4-optimism-mintable-ERC20-factory-proxy';
 
+import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-option-l1-ERC721-bridge-proxy';
+import { buildDeployL1ERC721BridgeProxy } from './4-l1-ERC721-bridge-proxy';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -59,6 +62,7 @@ export interface DeployKindedOptions {
   L1StandardBridgeProxy: {kind: 'L1StandardBridgeProxy'} & SharedL1StandardBridgeProxyOptions;
   L1CrossDomainMessengerProxy: {kind: 'L1CrossDomainMessengerProxy'} & SharedL1CrossDomainMessengerProxyOptions;
   OptimismMintableERC20FactoryProxy: {kind: 'OptimismMintableERC20FactoryProxy'} & SharedOptimismMintableERC20FactoryProxyOptions;
+  L1ERC721BridgeProxy: {kind: 'L1ERC721BridgeProxy'} & SharedL1ERC721BridgeProxyOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -110,6 +114,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'OptimismMintableERC20FactoryProxy':
       return  buildDeployOptimismMintableERC20FactoryProxy(opts);
+
+    case 'L1ERC721BridgeProxy':
+      return  buildDeployL1ERC721BridgeProxy(opts);
 
     default:
       const _: never = opts;

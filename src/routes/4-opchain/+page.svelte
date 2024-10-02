@@ -12,6 +12,7 @@
         KindedL1StandardBridgeProxyOptions, KindL1StandardBridgeProxy,
         KindedL1CrossDomainMessengerProxyOptions, KindL1CrossDomainMessengerProxy,
         KindedOptimismMintableERC20FactoryProxyOptions, KindOptimismMintableERC20FactoryProxy,
+        KindedL1ERC721BridgeProxyOptions, KindL1ERC721BridgeProxy,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
@@ -21,6 +22,7 @@
         sanitizeKindL1StandardBridgeProxy,
         sanitizeKindL1CrossDomainMessengerProxy,
         sanitizeKindOptimismMintableERC20FactoryProxy,
+        sanitizeKindL1ERC721BridgeProxy,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -35,6 +37,7 @@
     import L1StandardBridgeProxyControls from '$lib/ui/controls/4-L1StandardBridgeProxyControls.svelte';
     import L1CrossDomainMessengerProxyControls from '$lib/ui/controls/4-L1CrossDomainMessengerProxyControls.svelte';
     import OptimismMintableERC20FactoryProxyControls from '$lib/ui/controls/4-OptimismMintableERC20FactoryProxyControls.svelte';
+    import L1ERC721BridgeProxyControls from '$lib/ui/controls/4-L1ERC721BridgeProxyControls.svelte';
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -74,7 +77,6 @@
   `);
 
   // **** step 4.1A ***
-
   export let initialContractOptimismPortalProxyTab: string | undefined = 'OptimismPortalProxy';
   export let contractOptimismPortalProxyTab: KindOptimismPortalProxy = sanitizeKindOptimismPortalProxy(initialContractOptimismPortalProxyTab);
   let allContractsOptimismPortalProxyOpts: { [k in KindOptimismPortalProxy]?: Required<KindedOptimismPortalProxyOptions [k]> } = {};
@@ -288,6 +290,55 @@
   "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>"
   \`\`\`
   `);
+
+  // **** step 4.1F ***
+  export let initialContractL1ERC721BridgeProxyTab: string | undefined = 'L1ERC721BridgeProxy';
+  export let contractL1ERC721BridgeProxyTab: KindL1ERC721BridgeProxy = sanitizeKindL1ERC721BridgeProxy(initialContractL1ERC721BridgeProxyTab);
+  let allContractsL1ERC721BridgeProxyOpts: { [k in KindL1ERC721BridgeProxy]?: Required<KindedL1ERC721BridgeProxyOptions [k]> } = {};
+  let errorsL1ERC721BridgeProxy: { [k in KindL1ERC721BridgeProxy]?: OptionsErrorMessages } = {};
+  let contractL1ERC721BridgeProxy: Contract = new ContractBuilder('L1ERC721BridgeProxy');
+  let deployContractL1ERC721BridgeProxy: DeployContract = new DeployBuilder('DeployL1ERC721BridgeProxyScript');
+
+  $: optsL1ERC721BridgeProxy = allContractsL1ERC721BridgeProxyOpts[contractL1ERC721BridgeProxyTab];
+  $: {
+  if (optsL1ERC721BridgeProxy) {
+          try {
+              contractL1ERC721BridgeProxy = buildContractGeneric(optsL1ERC721BridgeProxy);
+              deployContractL1ERC721BridgeProxy = buildDeployGeneric(optsL1ERC721BridgeProxy);
+              errorsL1ERC721BridgeProxy[contractL1ERC721BridgeProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsL1ERC721BridgeProxy[contractL1ERC721BridgeProxyTab] = e.messages;
+              } else {
+                throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneFModalOpen = false;
+  $: addressStepOneFContent = md.render(`
+  \`\`\`bash
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>"
+  \`\`\`
+  `);
+  
+  
+  
   
 </script>
 
@@ -619,6 +670,67 @@
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
               {@html md.render(addressStepOneEContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.1F : Deploy L1ERC721BridgeProxy Contract</p>
+  </div>
+</Background>
+
+<WizardDouble conventionNumber={'401F'} initialContractTab={initialContractL1ERC721BridgeProxyTab} contractTab={contractL1ERC721BridgeProxyTab} opts={optsL1ERC721BridgeProxy} contract={contractL1ERC721BridgeProxy} deployContract={deployContractL1ERC721BridgeProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractL1ERC721BridgeProxyTab === 'L1ERC721BridgeProxy'} on:click={() => contractL1ERC721BridgeProxyTab = 'L1ERC721BridgeProxy'}>
+              L1ERC721BridgeProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractL1ERC721BridgeProxyTab !== 'L1ERC721BridgeProxy'}>
+              <L1ERC721BridgeProxyControls bind:opts={allContractsL1ERC721BridgeProxyOpts.L1ERC721BridgeProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneFModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneFModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneFModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneFContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>
