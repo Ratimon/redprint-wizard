@@ -1,27 +1,26 @@
 import type { BaseModifier, Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-option-l1-ERC721-bridge-proxy';
-import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-option-l1-ERC721-bridge-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-option-dispute-game-factory-proxy';
+import type { SharedDisputeGameFactoryProxyOptions } from '../shared/4-option-dispute-game-factory-proxy';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";
 
-
 import { defineFunctions } from '../utils/define-functions';
 
-function withDefaults(opts: SharedL1ERC721BridgeProxyOptions): Required<SharedL1ERC721BridgeProxyOptions> {
+function withDefaults(opts: SharedDisputeGameFactoryProxyOptions): Required<SharedDisputeGameFactoryProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printL1ERC721BridgeProxy(opts: SharedL1ERC721BridgeProxyOptions = commonDefaults): string {
-  return printContract(buildL1ERC721BridgeProxy(opts));
+export function printDisputeGameFactoryProxy(opts: SharedDisputeGameFactoryProxyOptions = commonDefaults): string {
+  return printContract(buildDisputeGameFactoryProxy(opts));
 }
 
-export function buildL1ERC721BridgeProxy(opts: SharedL1ERC721BridgeProxyOptions): Contract {
+export function buildDisputeGameFactoryProxy(opts: SharedDisputeGameFactoryProxyOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo

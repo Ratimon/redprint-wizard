@@ -27,5 +27,6 @@ export {
     deployL1StandardBridgeProxy,
     deployL1CrossDomainMessengerProxy,
     deployOptimismMintableERC20FactoryProxy,
-    deployL1ERC721BridgeProxy
+    deployL1ERC721BridgeProxy,
+    deployDisputeGameFactoryProxy
 } from './api';

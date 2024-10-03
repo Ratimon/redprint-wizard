@@ -13,6 +13,7 @@
         KindedL1CrossDomainMessengerProxyOptions, KindL1CrossDomainMessengerProxy,
         KindedOptimismMintableERC20FactoryProxyOptions, KindOptimismMintableERC20FactoryProxy,
         KindedL1ERC721BridgeProxyOptions, KindL1ERC721BridgeProxy,
+        KindedDisputeGameFactoryProxyOptions, KindDisputeGameFactoryProxy,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
@@ -23,6 +24,7 @@
         sanitizeKindL1CrossDomainMessengerProxy,
         sanitizeKindOptimismMintableERC20FactoryProxy,
         sanitizeKindL1ERC721BridgeProxy,
+        sanitizeKindDisputeGameFactoryProxy,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -38,6 +40,7 @@
     import L1CrossDomainMessengerProxyControls from '$lib/ui/controls/4-L1CrossDomainMessengerProxyControls.svelte';
     import OptimismMintableERC20FactoryProxyControls from '$lib/ui/controls/4-OptimismMintableERC20FactoryProxyControls.svelte';
     import L1ERC721BridgeProxyControls from '$lib/ui/controls/4-L1ERC721BridgeProxyControls.svelte';
+    import DisputeGameFactoryProxyControls from '$lib/ui/controls/4-DisputeGameFactoryProxyControls.svelte'
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -336,7 +339,53 @@
   "L1ERC721BridgeProxy": "<ADDRESS_15>"
   \`\`\`
   `);
-  
+
+  // **** step 4.1G ***
+  export let initialContractDisputeGameFactoryProxyTab: string | undefined = 'DisputeGameFactoryProxy';
+  export let contractDisputeGameFactoryProxyTab: KindDisputeGameFactoryProxy = sanitizeKindDisputeGameFactoryProxy(initialContractDisputeGameFactoryProxyTab);
+  let allContractsDisputeGameFactoryProxyOpts: { [k in KindDisputeGameFactoryProxy]?: Required<KindedDisputeGameFactoryProxyOptions [k]> } = {};
+  let errorsDisputeGameFactoryProxy: { [k in KindDisputeGameFactoryProxy]?: OptionsErrorMessages } = {};
+  let contractDisputeGameFactoryProxy: Contract = new ContractBuilder('DisputeGameFactoryProxy');
+  let deployContractDisputeGameFactoryProxy: DeployContract = new DeployBuilder('DeployDisputeGameFactoryProxyScript');
+
+  $: optsDisputeGameFactoryProxy = allContractsDisputeGameFactoryProxyOpts[contractDisputeGameFactoryProxyTab];
+  $: {
+  if (optsDisputeGameFactoryProxy) {
+          try {
+              contractDisputeGameFactoryProxy = buildContractGeneric(optsDisputeGameFactoryProxy);
+              deployContractDisputeGameFactoryProxy = buildDeployGeneric(optsDisputeGameFactoryProxy);
+              errorsDisputeGameFactoryProxy[contractDisputeGameFactoryProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsDisputeGameFactoryProxy[contractDisputeGameFactoryProxyTab] = e.messages;
+              } else {
+                throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneGModalOpen = false;
+  $: addressStepOneGContent = md.render(`
+  \`\`\`bash
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>"
+  \`\`\`
+  `);
   
   
   
@@ -731,6 +780,67 @@
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
               {@html md.render(addressStepOneFContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.1K : Deploy DisputeGameFactoryProxy Contract</p>
+  </div>
+</Background>
+
+<WizardDouble conventionNumber={'401K'} initialContractTab={initialContractDisputeGameFactoryProxyTab} contractTab={contractDisputeGameFactoryProxyTab} opts={optsDisputeGameFactoryProxy} contract={contractDisputeGameFactoryProxy} deployContract={deployContractDisputeGameFactoryProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractDisputeGameFactoryProxyTab === 'DisputeGameFactoryProxy'} on:click={() => contractDisputeGameFactoryProxyTab = 'DisputeGameFactoryProxy'}>
+              DisputeGameFactoryProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractDisputeGameFactoryProxyTab !== 'DisputeGameFactoryProxy'}>
+              <DisputeGameFactoryProxyControls bind:opts={allContractsDisputeGameFactoryProxyOpts.DisputeGameFactoryProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneGModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneGModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneGModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneGContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>

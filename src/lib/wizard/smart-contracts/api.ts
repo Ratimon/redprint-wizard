@@ -54,6 +54,10 @@ import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-option-l1-ERC
 import {  defaults as l1ERC721BridgeProxyDefaults } from '../shared/4-option-l1-ERC721-bridge-proxy';
 import { printL1ERC721BridgeProxy } from './4-l1-ERC721-bridge-proxy';
 
+import type { SharedDisputeGameFactoryProxyOptions } from '../shared/4-option-dispute-game-factory-proxy';
+import {  defaults as disputeGameFactoryProxyDefaults } from '../shared/4-option-dispute-game-factory-proxy';
+import { printDisputeGameFactoryProxy } from './4-dispute-game-factory-proxy';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -155,4 +159,10 @@ export type L1ERC721BridgeProxy = WizardContractAPI<SharedL1ERC721BridgeProxyOpt
 export const l1ERC721BridgeProxy: L1ERC721BridgeProxy = {
   print: printL1ERC721BridgeProxy,
   defaults: l1ERC721BridgeProxyDefaults
+}
+
+export type DisputeGameFactoryProxy = WizardContractAPI<SharedDisputeGameFactoryProxyOptions>;
+export const disputeGameFactoryProxy: DisputeGameFactoryProxy = {
+  print: printDisputeGameFactoryProxy,
+  defaults: disputeGameFactoryProxyDefaults
 }
