@@ -49,6 +49,9 @@ import { buildDeployL1ERC721BridgeProxy } from './4-l1-ERC721-bridge-proxy';
 import type { SharedDisputeGameFactoryProxyOptions } from '../shared/4-option-dispute-game-factory-proxy';
 import { buildDeployDisputeGameFactoryProxy } from './4-dispute-game-factory-proxy';
 
+import type { SharedL2OutputOracleProxyOptions } from '../shared/4-option-l2-output-oracle-proxy';
+import { buildDeployL2OutputOracleProxy } from './4-l2-output-oracle-proxy';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -67,6 +70,7 @@ export interface DeployKindedOptions {
   OptimismMintableERC20FactoryProxy: {kind: 'OptimismMintableERC20FactoryProxy'} & SharedOptimismMintableERC20FactoryProxyOptions;
   L1ERC721BridgeProxy: {kind: 'L1ERC721BridgeProxy'} & SharedL1ERC721BridgeProxyOptions;
   DisputeGameFactoryProxy: {kind: 'DisputeGameFactoryProxy'} & SharedDisputeGameFactoryProxyOptions;
+  L2OutputOracleProxy: {kind: 'L2OutputOracleProxy'} & SharedL2OutputOracleProxyOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -124,6 +128,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'DisputeGameFactoryProxy':
       return  buildDeployDisputeGameFactoryProxy(opts);
+    
+    case 'L2OutputOracleProxy':
+      return  buildDeployL2OutputOracleProxy(opts);
 
     default:
       const _: never = opts;

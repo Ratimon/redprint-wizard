@@ -28,5 +28,6 @@ export {
     deployL1CrossDomainMessengerProxy,
     deployOptimismMintableERC20FactoryProxy,
     deployL1ERC721BridgeProxy,
-    deployDisputeGameFactoryProxy
+    deployDisputeGameFactoryProxy,
+    deployL2OutputOracleProxy
 } from './api';

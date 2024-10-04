@@ -16,6 +16,7 @@ export type {
     KindedOptimismMintableERC20FactoryProxyOptions, GenericOptimismMintableERC20FactoryProxyOptions,
     KindedL1ERC721BridgeProxyOptions, GenericL1ERC721BridgeProxyOptions,
     KindedDisputeGameFactoryProxyOptions, GenericDisputeGameFactoryProxyOptions,
+    KindedL2OutputOracleProxyOptions, GenericL2OutputOracleProxyOptions,
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -76,3 +77,6 @@ export {  sanitizeKindL1ERC721BridgeProxy } from './4-kind-l1-ERC721-bridge-prox
 
 export type { KindDisputeGameFactoryProxy } from './4-kind-dispute-game-factory-proxy';
 export {  sanitizeKindDisputeGameFactoryProxy } from './4-kind-dispute-game-factory-proxy';
+
+export type { KindL2OutputOracleProxy } from './4-kind-l2-output-oracle-proxy';
+export {  sanitizeKindL2OutputOracleProxy } from './4-kind-l2-output-oracle-proxy';

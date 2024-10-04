@@ -14,6 +14,7 @@
         KindedOptimismMintableERC20FactoryProxyOptions, KindOptimismMintableERC20FactoryProxy,
         KindedL1ERC721BridgeProxyOptions, KindL1ERC721BridgeProxy,
         KindedDisputeGameFactoryProxyOptions, KindDisputeGameFactoryProxy,
+        KindedL2OutputOracleProxyOptions, KindL2OutputOracleProxy,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
@@ -25,6 +26,7 @@
         sanitizeKindOptimismMintableERC20FactoryProxy,
         sanitizeKindL1ERC721BridgeProxy,
         sanitizeKindDisputeGameFactoryProxy,
+        sanitizeKindL2OutputOracleProxy,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -40,7 +42,8 @@
     import L1CrossDomainMessengerProxyControls from '$lib/ui/controls/4-L1CrossDomainMessengerProxyControls.svelte';
     import OptimismMintableERC20FactoryProxyControls from '$lib/ui/controls/4-OptimismMintableERC20FactoryProxyControls.svelte';
     import L1ERC721BridgeProxyControls from '$lib/ui/controls/4-L1ERC721BridgeProxyControls.svelte';
-    import DisputeGameFactoryProxyControls from '$lib/ui/controls/4-DisputeGameFactoryProxyControls.svelte'
+    import DisputeGameFactoryProxyControls from '$lib/ui/controls/4-DisputeGameFactoryProxyControls.svelte';
+    import L2OutputOracleProxyControls from '$lib/ui/controls/4-L2OutputOracleProxyControls.svelte';
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -386,8 +389,55 @@
   "DisputeGameFactoryProxy": "<ADDRESS_16>"
   \`\`\`
   `);
-  
-  
+
+  // **** step 4.1H **
+  export let initialContractL2OutputOracleProxyTab: string | undefined = 'L2OutputOracleProxy';
+  export let contractL2OutputOracleProxyTab: KindL2OutputOracleProxy = sanitizeKindL2OutputOracleProxy(initialContractL2OutputOracleProxyTab);
+  let allContractsL2OutputOracleProxyOpts: { [k in KindL2OutputOracleProxy]?: Required<KindedL2OutputOracleProxyOptions [k]> } = {};
+  let errorsL2OutputOracleProxy: { [k in KindL2OutputOracleProxy]?: OptionsErrorMessages } = {};
+  let contractL2OutputOracleProxy: Contract = new ContractBuilder('L2OutputOracleProxy');
+  let deployContractL2OutputOracleProxy: DeployContract = new DeployBuilder('DeployL2OutputOracleProxyScript');
+
+  $: optsL2OutputOracleProxy = allContractsL2OutputOracleProxyOpts[contractL2OutputOracleProxyTab];
+  $: {
+  if (optsL2OutputOracleProxy) {  
+          try {
+              contractL2OutputOracleProxy = buildContractGeneric(optsL2OutputOracleProxy);
+              deployContractL2OutputOracleProxy = buildDeployGeneric(optsL2OutputOracleProxy);
+              errorsL2OutputOracleProxy[contractL2OutputOracleProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsL2OutputOracleProxy[contractL2OutputOracleProxyTab] = e.messages;
+              } else {
+                throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneHModalOpen = false;
+  $: addressStepOneHContent = md.render(`
+  \`\`\`bash
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>"
+  \`\`\`
+  `);
+
   
 </script>
 
@@ -793,11 +843,11 @@
 
 <Background color="bg-base-100 pt-3 pb-4">
   <div class="divider divider-primary ">
-    <p class="text-xl">4.1K : Deploy DisputeGameFactoryProxy Contract</p>
+    <p class="text-xl">4.1G : Deploy DisputeGameFactoryProxy Contract</p>
   </div>
 </Background>
 
-<WizardDouble conventionNumber={'401K'} initialContractTab={initialContractDisputeGameFactoryProxyTab} contractTab={contractDisputeGameFactoryProxyTab} opts={optsDisputeGameFactoryProxy} contract={contractDisputeGameFactoryProxy} deployContract={deployContractDisputeGameFactoryProxy}>
+<WizardDouble conventionNumber={'401G'} initialContractTab={initialContractDisputeGameFactoryProxyTab} contractTab={contractDisputeGameFactoryProxyTab} opts={optsDisputeGameFactoryProxy} contract={contractDisputeGameFactoryProxy} deployContract={deployContractDisputeGameFactoryProxy}>
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
@@ -841,6 +891,67 @@
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
               {@html md.render(addressStepOneGContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.1H : Deploy L2OutputOracleProxy Contract</p>
+  </div>
+</Background>
+
+<WizardDouble conventionNumber={'401H'} initialContractTab={initialContractL2OutputOracleProxyTab} contractTab={contractL2OutputOracleProxyTab} opts={optsL2OutputOracleProxy} contract={contractL2OutputOracleProxy} deployContract={deployContractL2OutputOracleProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractL2OutputOracleProxyTab === 'L2OutputOracleProxy'} on:click={() => contractL2OutputOracleProxyTab = 'L2OutputOracleProxy'}>
+              L2OutputOracleProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractL2OutputOracleProxyTab !== 'L2OutputOracleProxy'}>
+              <L2OutputOracleProxyControls bind:opts={allContractsL2OutputOracleProxyOpts.L2OutputOracleProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneHModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneHModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneHModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneHContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>

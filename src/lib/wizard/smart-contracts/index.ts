@@ -28,7 +28,8 @@ export {
     l1CrossDomainMessengerProxy,
     optimismMintableERC20FactoryProxy,
     l1ERC721BridgeProxy,
-    disputeGameFactoryProxy
+    disputeGameFactoryProxy,
+    l2OutputOracleProxy
 } from './api';
 
 
@@ -47,3 +48,4 @@ export { buildL1CrossDomainMessengerProxy } from './4-l1-crossdomain-messenger-p
 export { buildOptimismMintableERC20FactoryProxy } from './4-optimism-mintable-ERC20-factory-proxy';
 export { buildL1ERC721BridgeProxy } from './4-l1-ERC721-bridge-proxy';
 export { buildDisputeGameFactoryProxy } from './4-dispute-game-factory-proxy';
+export { buildL2OutputOracleProxy } from './4-l2-output-oracle-proxy';

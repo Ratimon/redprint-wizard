@@ -18,6 +18,7 @@ import type { SharedL1CrossDomainMessengerProxyOptions } from './4-option-l1-cro
 import type { SharedOptimismMintableERC20FactoryProxyOptions } from './4-option-optimism-mintable-ERC20-factory-proxy';
 import type { SharedL1ERC721BridgeProxyOptions } from './4-option-l1-ERC721-bridge-proxy';
 import type { SharedDisputeGameFactoryProxyOptions } from './4-option-dispute-game-factory-proxy';
+import type { SharedL2OutputOracleProxyOptions } from './4-option-l2-output-oracle-proxy';
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
@@ -37,6 +38,7 @@ export interface KindedOptions {
   OptimismMintableERC20FactoryProxy: { kind: 'OptimismMintableERC20FactoryProxy' } & SharedOptimismMintableERC20FactoryProxyOptions;
   L1ERC721BridgeProxy: { kind: 'L1ERC721BridgeProxy' } & SharedL1ERC721BridgeProxyOptions;
   DisputeGameFactoryProxy: { kind: 'DisputeGameFactoryProxy' } & SharedDisputeGameFactoryProxyOptions;
+  L2OutputOracleProxy: { kind: 'L2OutputOracleProxy' } & SharedL2OutputOracleProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -137,3 +139,9 @@ export interface KindedDisputeGameFactoryProxyOptions {
   DisputeGameFactoryProxy: { kind: 'DisputeGameFactoryProxy' } & SharedDisputeGameFactoryProxyOptions;
 }
 export type GenericDisputeGameFactoryProxyOptions = KindedDisputeGameFactoryProxyOptions[keyof KindedDisputeGameFactoryProxyOptions];
+
+
+export interface KindedL2OutputOracleProxyOptions {
+  L2OutputOracleProxy: { kind: 'L2OutputOracleProxy' } & SharedL2OutputOracleProxyOptions;
+}
+export type GenericL2OutputOracleProxyOptions = KindedL2OutputOracleProxyOptions[keyof KindedL2OutputOracleProxyOptions];

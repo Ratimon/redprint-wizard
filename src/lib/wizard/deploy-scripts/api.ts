@@ -68,6 +68,10 @@ import type {  SharedDisputeGameFactoryProxyOptions } from '../shared/4-option-d
 import {  defaults as disputeGameFactoryProxyDefaults } from '../shared/4-option-dispute-game-factory-proxy';
 import { printDeployDisputeGameFactoryProxy } from './4-dispute-game-factory-proxy';
 
+import type {  SharedL2OutputOracleProxyOptions } from '../shared/4-option-l2-output-oracle-proxy';
+import {  defaults as l2OutputOracleProxyDefaults } from '../shared/4-option-l2-output-oracle-proxy';
+import { printDeployL2OutputOracleProxy } from './4-l2-output-oracle-proxy';
+
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -186,4 +190,10 @@ export type DeployDisputeGameFactoryProxy = WizardAllAPI<SharedDisputeGameFactor
 export const deployDisputeGameFactoryProxy: DeployDisputeGameFactoryProxy = {
   print: printDeployDisputeGameFactoryProxy,
   defaults: disputeGameFactoryProxyDefaults,
+}
+
+export type DeployL2OutputOracleProxy = WizardAllAPI<SharedL2OutputOracleProxyOptions>;
+export const deployL2OutputOracleProxy: DeployL2OutputOracleProxy = {
+  print: printDeployL2OutputOracleProxy,
+  defaults: l2OutputOracleProxyDefaults,
 }
