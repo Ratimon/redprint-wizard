@@ -19,6 +19,7 @@ export type {
     KindedL2OutputOracleProxyOptions, GenericL2OutputOracleProxyOptions,
     KindedDelayedWETHProxyOptions, GenericDelayedWETHProxyOptions,
     KindedPermissionedDelayedWETHProxyOptions, GenericPermissionedDelayedWETHProxyOptions,
+    KindedAnchorStateRegistryProxyOptions, GenericAnchorStateRegistryProxyOptions,
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -88,3 +89,6 @@ export {  sanitizeKindDelayedWETHProxy } from './4-kind-delayed-WETH-proxy';
 
 export type { KindPermissionedDelayedWETHProxy } from './4-kind-permissioned-delayed-WETH-proxy';
 export {  sanitizeKindPermissionedDelayedWETHProxy } from './4-kind-permissioned-delayed-WETH-proxy';
+
+export type { KindAnchorStateRegistryProxy } from './4-kind-anchor-state-registry-proxy';
+export {  sanitizeKindAnchorStateRegistryProxy } from './4-kind-anchor-state-registry-proxy';

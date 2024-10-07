@@ -31,5 +31,6 @@ export {
     deployDisputeGameFactoryProxy,
     deployL2OutputOracleProxy,
     deployDelayedWETHProxy,
-    deployPermissionedDelayedWETHProxy
+    deployPermissionedDelayedWETHProxy,
+    deployAnchorStateRegistryProxy
 } from './api';

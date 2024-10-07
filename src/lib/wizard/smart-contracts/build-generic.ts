@@ -52,6 +52,9 @@ import { buildDelayedWETHProxy } from './4-delayed-WETH-proxy';
 import type { SharedPermissionedDelayedWETHProxyOptions } from '../shared/4-option-permissioned-delayed-WETH-proxy';
 import { buildPermissionedDelayedWETHProxy } from './4-permissioned-delayed-WETH-proxy';
 
+import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-option-anchor-state-registry-proxy';
+import { buildAnchorStateRegistryProxy } from './4-anchor-state-registry-proxy';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -71,6 +74,7 @@ export interface KindedOptions {
   L2OutputOracleProxy : {kind: 'L2OutputOracleProxy' } & SharedL2OutputOracleProxyOptions;
   DelayedWETHProxy : {kind: 'DelayedWETHProxy' } & SharedDelayedWETHProxyOptions;
   PermissionedDelayedWETHProxy : {kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
+  AnchorStateRegistryProxy : {kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -131,6 +135,9 @@ export function buildContractGeneric(opts: GenericOptions) {
     
     case 'PermissionedDelayedWETHProxy':
       return buildPermissionedDelayedWETHProxy(opts);
+
+    case 'AnchorStateRegistryProxy':
+      return buildAnchorStateRegistryProxy(opts);
       
     default:
       const _: never = opts;

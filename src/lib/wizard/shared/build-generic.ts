@@ -21,6 +21,7 @@ import type { SharedDisputeGameFactoryProxyOptions } from './4-option-dispute-ga
 import type { SharedL2OutputOracleProxyOptions } from './4-option-l2-output-oracle-proxy';
 import type { SharedDelayedWETHProxyOptions } from './4-option-delayed-WETH-proxy';
 import type { SharedPermissionedDelayedWETHProxyOptions } from './4-option-permissioned-delayed-WETH-proxy';
+import type { SharedAnchorStateRegistryProxyOptions } from './4-option-anchor-state-registry-proxy';
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
@@ -43,6 +44,7 @@ export interface KindedOptions {
   L2OutputOracleProxy: { kind: 'L2OutputOracleProxy' } & SharedL2OutputOracleProxyOptions;
   DelayedWETHProxy: { kind: 'DelayedWETHProxy' } & SharedDelayedWETHProxyOptions;
   PermissionedDelayedWETHProxy: { kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
+  AnchorStateRegistryProxy: { kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -161,3 +163,9 @@ export interface KindedPermissionedDelayedWETHProxyOptions {
   PermissionedDelayedWETHProxy: { kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
 }
 export type GenericPermissionedDelayedWETHProxyOptions = KindedPermissionedDelayedWETHProxyOptions[keyof KindedPermissionedDelayedWETHProxyOptions];
+
+
+export interface KindedAnchorStateRegistryProxyOptions {
+  AnchorStateRegistryProxy: { kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
+}
+export type GenericAnchorStateRegistryProxyOptions = KindedAnchorStateRegistryProxyOptions[keyof KindedAnchorStateRegistryProxyOptions];

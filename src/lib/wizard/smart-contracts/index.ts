@@ -31,7 +31,8 @@ export {
     disputeGameFactoryProxy,
     l2OutputOracleProxy,
     delayedWETHProxy,
-    permissionedDelayedWETHProxy
+    permissionedDelayedWETHProxy,
+    anchorStateRegistryProxy
 } from './api';
 
 
@@ -53,3 +54,4 @@ export { buildDisputeGameFactoryProxy } from './4-dispute-game-factory-proxy';
 export { buildL2OutputOracleProxy } from './4-l2-output-oracle-proxy';
 export { buildDelayedWETHProxy } from './4-delayed-WETH-proxy';
 export { buildPermissionedDelayedWETHProxy } from './4-permissioned-delayed-WETH-proxy';
+export { buildAnchorStateRegistryProxy } from './4-anchor-state-registry-proxy';

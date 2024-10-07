@@ -70,6 +70,10 @@ import type { SharedPermissionedDelayedWETHProxyOptions } from '../shared/4-opti
 import {  defaults as permissionedDelayedWETHProxyDefaults } from '../shared/4-option-permissioned-delayed-WETH-proxy';
 import { printPermissionedDelayedWETHProxy } from './4-permissioned-delayed-WETH-proxy';
 
+import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-option-anchor-state-registry-proxy';
+import {  defaults as anchorStateRegistryProxyDefaults } from '../shared/4-option-anchor-state-registry-proxy';
+import { printAnchorStateRegistryProxy } from './4-anchor-state-registry-proxy';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -195,4 +199,10 @@ export type PermissionedDelayedWETHProxy = WizardContractAPI<SharedPermissionedD
 export const permissionedDelayedWETHProxy: PermissionedDelayedWETHProxy = {
   print: printPermissionedDelayedWETHProxy,
   defaults: permissionedDelayedWETHProxyDefaults
+}
+
+export type AnchorStateRegistryProxy = WizardContractAPI<SharedAnchorStateRegistryProxyOptions>;
+export const anchorStateRegistryProxy: AnchorStateRegistryProxy = {
+  print: printAnchorStateRegistryProxy,
+  defaults: anchorStateRegistryProxyDefaults
 }

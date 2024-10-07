@@ -17,6 +17,7 @@
         KindedL2OutputOracleProxyOptions, KindL2OutputOracleProxy,
         KindedDelayedWETHProxyOptions, KindDelayedWETHProxy,
         KindedPermissionedDelayedWETHProxyOptions, KindPermissionedDelayedWETHProxy,
+        KindedAnchorStateRegistryProxyOptions, KindAnchorStateRegistryProxy,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
@@ -31,6 +32,7 @@
         sanitizeKindL2OutputOracleProxy,
         sanitizeKindDelayedWETHProxy,
         sanitizeKindPermissionedDelayedWETHProxy,
+        sanitizeKindAnchorStateRegistryProxy,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -50,6 +52,7 @@
     import L2OutputOracleProxyControls from '$lib/ui/controls/4-L2OutputOracleProxyControls.svelte';
     import DelayedWETHProxyControls from '$lib/ui/controls/4-DelayedWETHProxyControls.svelte';
     import PermissionedDelayedWETHProxyControls from '$lib/ui/controls/4-PermissionedDelayedWETHProxyControls.svelte';
+    import AnchorStateRegistryProxyControls from '$lib/ui/controls/4-AnchorStateRegistryProxyControls.svelte';
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -116,6 +119,7 @@
   let isArtifactStepOneAModalOpen = false;
   $: addressStepOneAContent = md.render(`
   \`\`\`bash
+{
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>",
@@ -126,6 +130,7 @@
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
   "OptimismPortalProxy": "<ADDRESS_10>"
+}
   \`\`\`
   `);
 
@@ -157,8 +162,9 @@
   let isArtifactStepOneBModalOpen = false;
   $: addressStepOneBContent = md.render(`
   \`\`\`bash
+{
   "SafeProxyFactory": "<ADDRESS_1>",
-  "SafeSingleton": "<ADDRESS_2>",
+  "SafeSingletosn": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>",
   "OptimismPortalProxy": "<ADDRESS_4>",
   "ProxyAdmin": "<ADDRESS_5>",
@@ -168,6 +174,7 @@
   "ProtocolVersions": "<ADDRESS_9>",
   "OptimismPortalProxy": "<ADDRESS_10>",
   "SystemConfigProxy": "<ADDRESS_11>"
+}
   \`\`\`
   `);
 
@@ -199,6 +206,7 @@
   let isArtifactStepOneCModalOpen = false;
   $: addressStepOneCContent = md.render(`
   \`\`\`bash
+{
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>",
@@ -211,6 +219,7 @@
   "OptimismPortalProxy": "<ADDRESS_10>",
   "SystemConfigProxy": "<ADDRESS_11>",
   "L1StandardBridgeProxy": "<ADDRESS_12>"
+}
   \`\`\`
   `);
 
@@ -242,6 +251,7 @@
   let isArtifactStepOneDModalOpen = false;
   $: addressStepOneDContent = md.render(`
   \`\`\`bash
+{
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>",
@@ -255,6 +265,7 @@
   "SystemConfigProxy": "<ADDRESS_11>",
   "L1StandardBridgeProxy": "<ADDRESS_12>",
   "L1CrossDomainMessengerProxy": "<ADDRESS_13>"
+}
   \`\`\`
   `);
 
@@ -286,6 +297,7 @@
   let isArtifactStepOneEModalOpen = false;
   $: addressStepOneEContent = md.render(`
   \`\`\`bash
+{
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>",
@@ -300,6 +312,7 @@
   "L1StandardBridgeProxy": "<ADDRESS_12>",
   "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
   "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>"
+}
   \`\`\`
   `);
 
@@ -331,6 +344,7 @@
   let isArtifactStepOneFModalOpen = false;
   $: addressStepOneFContent = md.render(`
   \`\`\`bash
+{
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>",
@@ -346,6 +360,7 @@
   "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
   "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
   "L1ERC721BridgeProxy": "<ADDRESS_15>"
+}
   \`\`\`
   `);
 
@@ -377,6 +392,7 @@
   let isArtifactStepOneGModalOpen = false;
   $: addressStepOneGContent = md.render(`
   \`\`\`bash
+{
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>",
@@ -393,6 +409,7 @@
   "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
   "L1ERC721BridgeProxy": "<ADDRESS_15>",
   "DisputeGameFactoryProxy": "<ADDRESS_16>"
+}
   \`\`\`
   `);
 
@@ -424,6 +441,7 @@
   let isArtifactStepOneHModalOpen = false;
   $: addressStepOneHContent = md.render(`
   \`\`\`bash
+{ 
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>",
@@ -441,6 +459,7 @@
   "L1ERC721BridgeProxy": "<ADDRESS_15>",
   "DisputeGameFactoryProxy": "<ADDRESS_16>",
   "L2OutputOracleProxy": "<ADDRESS_17>"
+}
   \`\`\`
   `);
 
@@ -472,6 +491,7 @@
   let isArtifactStepOneIModalOpen = false;
   $: addressStepOneIContent = md.render(`
   \`\`\`bash
+{
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>",
@@ -490,6 +510,7 @@
   "DisputeGameFactoryProxy": "<ADDRESS_16>",
   "L2OutputOracleProxy": "<ADDRESS_17>",
   "DelayedWETHProxy": "<ADDRESS_18>"
+}
   \`\`\`
   `);
 
@@ -521,6 +542,7 @@
   let isArtifactStepOneJModalOpen = false;
   $: addressStepOneJContent = md.render(`
   \`\`\`bash
+{ 
   "SafeProxyFactory": "<ADDRESS_1>",
   "SafeSingleton": "<ADDRESS_2>",
   "SystemOwnerSafe": "<ADDRESS_3>",
@@ -540,6 +562,60 @@
   "L2OutputOracleProxy": "<ADDRESS_17>",
   "DelayedWETHProxy": "<ADDRESS_18>",
   "PermissionedDelayedWETHProxy": "<ADDRESS_19>"
+}
+  \`\`\`
+  `);
+
+  // **** step 4.1K ***
+  export let initialContractAnchorStateRegistryProxyTab: string | undefined = 'AnchorStateRegistryProxy';
+  export let contractAnchorStateRegistryProxyTab: KindAnchorStateRegistryProxy = sanitizeKindAnchorStateRegistryProxy(initialContractAnchorStateRegistryProxyTab);
+  let allContractsAnchorStateRegistryProxyOpts: { [k in KindAnchorStateRegistryProxy]?: Required<KindedAnchorStateRegistryProxyOptions [k]> } = {};
+  let errorsAnchorStateRegistryProxy: { [k in KindAnchorStateRegistryProxy]?: OptionsErrorMessages } = {};
+  let contractAnchorStateRegistryProxy: Contract = new ContractBuilder('AnchorStateRegistryProxy');
+  let deployContractAnchorStateRegistryProxy: DeployContract = new DeployBuilder('DeployAnchorStateRegistryProxyScript');
+
+  $: optsAnchorStateRegistryProxy = allContractsAnchorStateRegistryProxyOpts[contractAnchorStateRegistryProxyTab];
+  $: {
+  if (optsAnchorStateRegistryProxy) {
+          try {
+              contractAnchorStateRegistryProxy = buildContractGeneric(optsAnchorStateRegistryProxy);
+              deployContractAnchorStateRegistryProxy = buildDeployGeneric(optsAnchorStateRegistryProxy);
+              errorsAnchorStateRegistryProxy[contractAnchorStateRegistryProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsAnchorStateRegistryProxy[contractAnchorStateRegistryProxyTab] = e.messages;
+              } else {
+                throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneKModalOpen = false;
+  $: addressStepOneKContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>"
+}
   \`\`\`
   `);
   
@@ -1189,6 +1265,68 @@
 
   </div>
 </WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.1K : Deploy AnchorStateRegistryProxy Contract</p>
+  </div>
+</Background>
+
+<WizardDouble conventionNumber={'401K'} initialContractTab={initialContractAnchorStateRegistryProxyTab} contractTab={contractAnchorStateRegistryProxyTab} opts={optsAnchorStateRegistryProxy} contract={contractAnchorStateRegistryProxy} deployContract={deployContractAnchorStateRegistryProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractAnchorStateRegistryProxyTab === 'AnchorStateRegistryProxy'} on:click={() => contractAnchorStateRegistryProxyTab = 'AnchorStateRegistryProxy'}>
+              AnchorStateRegistryProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractAnchorStateRegistryProxyTab !== 'AnchorStateRegistryProxy'}>
+              <AnchorStateRegistryProxyControls bind:opts={allContractsAnchorStateRegistryProxyOpts.AnchorStateRegistryProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneKModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneKModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneKModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneKContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
 
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[2].pathname}>
