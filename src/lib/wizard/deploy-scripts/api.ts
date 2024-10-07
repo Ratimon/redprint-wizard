@@ -76,6 +76,10 @@ import type {  SharedDelayedWETHProxyOptions } from '../shared/4-option-delayed-
 import {  defaults as delayedWETHProxyDefaults } from '../shared/4-option-delayed-WETH-proxy';
 import { printDeployDelayedWETHProxy } from './4-delayed-WETH-proxy';
 
+import type {  SharedPermissionedDelayedWETHProxyOptions } from '../shared/4-option-permissioned-delayed-WETH-proxy';
+import {  defaults as permissionedDelayedWETHProxyDefaults } from '../shared/4-option-permissioned-delayed-WETH-proxy';
+import { printDeployPermissionedDelayedWETHProxy } from './4-permissioned-delayed-WETH-proxy';
+
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -206,4 +210,10 @@ export type DeployDelayedWETHProxy = WizardAllAPI<SharedDelayedWETHProxyOptions>
 export const deployDelayedWETHProxy: DeployDelayedWETHProxy = {
   print: printDeployDelayedWETHProxy,
   defaults: delayedWETHProxyDefaults,
+}
+
+export type DeployPermissionedDelayedWETHProxy = WizardAllAPI<SharedPermissionedDelayedWETHProxyOptions>;
+export const deployPermissionedDelayedWETHProxy: DeployPermissionedDelayedWETHProxy = {
+  print: printDeployPermissionedDelayedWETHProxy,
+  defaults: permissionedDelayedWETHProxyDefaults,
 }

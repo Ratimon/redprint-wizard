@@ -16,6 +16,7 @@
         KindedDisputeGameFactoryProxyOptions, KindDisputeGameFactoryProxy,
         KindedL2OutputOracleProxyOptions, KindL2OutputOracleProxy,
         KindedDelayedWETHProxyOptions, KindDelayedWETHProxy,
+        KindedPermissionedDelayedWETHProxyOptions, KindPermissionedDelayedWETHProxy,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
@@ -29,6 +30,7 @@
         sanitizeKindDisputeGameFactoryProxy,
         sanitizeKindL2OutputOracleProxy,
         sanitizeKindDelayedWETHProxy,
+        sanitizeKindPermissionedDelayedWETHProxy,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -47,6 +49,7 @@
     import DisputeGameFactoryProxyControls from '$lib/ui/controls/4-DisputeGameFactoryProxyControls.svelte';
     import L2OutputOracleProxyControls from '$lib/ui/controls/4-L2OutputOracleProxyControls.svelte';
     import DelayedWETHProxyControls from '$lib/ui/controls/4-DelayedWETHProxyControls.svelte';
+    import PermissionedDelayedWETHProxyControls from '$lib/ui/controls/4-PermissionedDelayedWETHProxyControls.svelte';
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -487,6 +490,56 @@
   "DisputeGameFactoryProxy": "<ADDRESS_16>",
   "L2OutputOracleProxy": "<ADDRESS_17>",
   "DelayedWETHProxy": "<ADDRESS_18>"
+  \`\`\`
+  `);
+
+  // **** step 4.1J ***
+  export let initialContractPermissionedDelayedWETHProxyTab: string | undefined = 'PermissionedDelayedWETHProxy';
+  export let contractPermissionedDelayedWETHProxyTab: KindPermissionedDelayedWETHProxy = sanitizeKindPermissionedDelayedWETHProxy(initialContractPermissionedDelayedWETHProxyTab);
+  let allContractsPermissionedDelayedWETHProxyOpts: { [k in KindPermissionedDelayedWETHProxy]?: Required<KindedPermissionedDelayedWETHProxyOptions [k]> } = {};
+  let errorsPermissionedDelayedWETHProxy: { [k in KindPermissionedDelayedWETHProxy]?: OptionsErrorMessages } = {};
+  let contractPermissionedDelayedWETHProxy: Contract = new ContractBuilder('PermissionedDelayedWETHProxy');
+  let deployContractPermissionedDelayedWETHProxy: DeployContract = new DeployBuilder('DeployPermissionedDelayedWETHProxyScript');
+
+  $: optsPermissionedDelayedWETHProxy = allContractsPermissionedDelayedWETHProxyOpts[contractPermissionedDelayedWETHProxyTab];
+  $: {
+  if (optsPermissionedDelayedWETHProxy) {
+          try {
+              contractPermissionedDelayedWETHProxy = buildContractGeneric(optsPermissionedDelayedWETHProxy);
+              deployContractPermissionedDelayedWETHProxy = buildDeployGeneric(optsPermissionedDelayedWETHProxy);
+              errorsPermissionedDelayedWETHProxy[contractPermissionedDelayedWETHProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsPermissionedDelayedWETHProxy[contractPermissionedDelayedWETHProxyTab] = e.messages;
+              } else {
+                throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneJModalOpen = false;
+  $: addressStepOneJContent = md.render(`
+  \`\`\`bash
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>"
   \`\`\`
   `);
   
@@ -1065,6 +1118,67 @@
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
               {@html md.render(addressStepOneIContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.1J : Deploy PermissionedDelayedWETHProxy Contract</p>
+  </div>
+</Background>
+
+<WizardDouble conventionNumber={'401J'} initialContractTab={initialContractPermissionedDelayedWETHProxyTab} contractTab={contractPermissionedDelayedWETHProxyTab} opts={optsPermissionedDelayedWETHProxy} contract={contractPermissionedDelayedWETHProxy} deployContract={deployContractPermissionedDelayedWETHProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractPermissionedDelayedWETHProxyTab === 'PermissionedDelayedWETHProxy'} on:click={() => contractPermissionedDelayedWETHProxyTab = 'PermissionedDelayedWETHProxy'}>
+              PermissionedDelayedWETHProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractPermissionedDelayedWETHProxyTab !== 'PermissionedDelayedWETHProxy'}>
+              <PermissionedDelayedWETHProxyControls bind:opts={allContractsPermissionedDelayedWETHProxyOpts.PermissionedDelayedWETHProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneJModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneJModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneJModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneJContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>

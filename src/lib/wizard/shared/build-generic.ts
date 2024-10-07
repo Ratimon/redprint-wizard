@@ -20,6 +20,7 @@ import type { SharedL1ERC721BridgeProxyOptions } from './4-option-l1-ERC721-brid
 import type { SharedDisputeGameFactoryProxyOptions } from './4-option-dispute-game-factory-proxy';
 import type { SharedL2OutputOracleProxyOptions } from './4-option-l2-output-oracle-proxy';
 import type { SharedDelayedWETHProxyOptions } from './4-option-delayed-WETH-proxy';
+import type { SharedPermissionedDelayedWETHProxyOptions } from './4-option-permissioned-delayed-WETH-proxy';
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
@@ -41,6 +42,7 @@ export interface KindedOptions {
   DisputeGameFactoryProxy: { kind: 'DisputeGameFactoryProxy' } & SharedDisputeGameFactoryProxyOptions;
   L2OutputOracleProxy: { kind: 'L2OutputOracleProxy' } & SharedL2OutputOracleProxyOptions;
   DelayedWETHProxy: { kind: 'DelayedWETHProxy' } & SharedDelayedWETHProxyOptions;
+  PermissionedDelayedWETHProxy: { kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -153,3 +155,9 @@ export interface KindedDelayedWETHProxyOptions {
   DelayedWETHProxy: { kind: 'DelayedWETHProxy' } & SharedDelayedWETHProxyOptions;
 }
 export type GenericDelayedWETHProxyOptions = KindedDelayedWETHProxyOptions[keyof KindedDelayedWETHProxyOptions];
+
+
+export interface KindedPermissionedDelayedWETHProxyOptions {
+  PermissionedDelayedWETHProxy: { kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
+}
+export type GenericPermissionedDelayedWETHProxyOptions = KindedPermissionedDelayedWETHProxyOptions[keyof KindedPermissionedDelayedWETHProxyOptions];

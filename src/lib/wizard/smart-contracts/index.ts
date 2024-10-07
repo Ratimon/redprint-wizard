@@ -30,7 +30,8 @@ export {
     l1ERC721BridgeProxy,
     disputeGameFactoryProxy,
     l2OutputOracleProxy,
-    delayedWETHProxy
+    delayedWETHProxy,
+    permissionedDelayedWETHProxy
 } from './api';
 
 
@@ -50,3 +51,5 @@ export { buildOptimismMintableERC20FactoryProxy } from './4-optimism-mintable-ER
 export { buildL1ERC721BridgeProxy } from './4-l1-ERC721-bridge-proxy';
 export { buildDisputeGameFactoryProxy } from './4-dispute-game-factory-proxy';
 export { buildL2OutputOracleProxy } from './4-l2-output-oracle-proxy';
+export { buildDelayedWETHProxy } from './4-delayed-WETH-proxy';
+export { buildPermissionedDelayedWETHProxy } from './4-permissioned-delayed-WETH-proxy';

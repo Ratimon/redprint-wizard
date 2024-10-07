@@ -30,5 +30,6 @@ export {
     deployL1ERC721BridgeProxy,
     deployDisputeGameFactoryProxy,
     deployL2OutputOracleProxy,
-    deployDelayedWETHProxy
+    deployDelayedWETHProxy,
+    deployPermissionedDelayedWETHProxy
 } from './api';

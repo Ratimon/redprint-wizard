@@ -18,6 +18,7 @@ export type {
     KindedDisputeGameFactoryProxyOptions, GenericDisputeGameFactoryProxyOptions,
     KindedL2OutputOracleProxyOptions, GenericL2OutputOracleProxyOptions,
     KindedDelayedWETHProxyOptions, GenericDelayedWETHProxyOptions,
+    KindedPermissionedDelayedWETHProxyOptions, GenericPermissionedDelayedWETHProxyOptions,
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -84,3 +85,6 @@ export {  sanitizeKindL2OutputOracleProxy } from './4-kind-l2-output-oracle-prox
 
 export type { KindDelayedWETHProxy } from './4-kind-delayed-WETH-proxy';
 export {  sanitizeKindDelayedWETHProxy } from './4-kind-delayed-WETH-proxy';
+
+export type { KindPermissionedDelayedWETHProxy } from './4-kind-permissioned-delayed-WETH-proxy';
+export {  sanitizeKindPermissionedDelayedWETHProxy } from './4-kind-permissioned-delayed-WETH-proxy';
