@@ -52,6 +52,9 @@ import { buildDeployDisputeGameFactoryProxy } from './4-dispute-game-factory-pro
 import type { SharedL2OutputOracleProxyOptions } from '../shared/4-option-l2-output-oracle-proxy';
 import { buildDeployL2OutputOracleProxy } from './4-l2-output-oracle-proxy';
 
+import type { SharedDelayedWETHProxyOptions } from '../shared/4-option-delayed-WETH-proxy';
+import { buildDeployDelayedWETHProxy } from './4-delayed-WETH-proxy';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -71,6 +74,7 @@ export interface DeployKindedOptions {
   L1ERC721BridgeProxy: {kind: 'L1ERC721BridgeProxy'} & SharedL1ERC721BridgeProxyOptions;
   DisputeGameFactoryProxy: {kind: 'DisputeGameFactoryProxy'} & SharedDisputeGameFactoryProxyOptions;
   L2OutputOracleProxy: {kind: 'L2OutputOracleProxy'} & SharedL2OutputOracleProxyOptions;
+  DelayedWETHProxy: {kind: 'DelayedWETHProxy'} & SharedDelayedWETHProxyOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -131,6 +135,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
     
     case 'L2OutputOracleProxy':
       return  buildDeployL2OutputOracleProxy(opts);
+
+    case 'DelayedWETHProxy':
+      return  buildDeployDelayedWETHProxy(opts);
 
     default:
       const _: never = opts;

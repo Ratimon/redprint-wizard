@@ -60,7 +60,11 @@ import { printDisputeGameFactoryProxy } from './4-dispute-game-factory-proxy';
 
 import type { SharedL2OutputOracleProxyOptions } from '../shared/4-option-l2-output-oracle-proxy';
 import {  defaults as l2OutputOracleProxyDefaults } from '../shared/4-option-l2-output-oracle-proxy';
-import { printL2OutputOracleProxy } from './4-l2-output-oracle-proxy';  
+import { printL2OutputOracleProxy } from './4-l2-output-oracle-proxy';
+
+import type { SharedDelayedWETHProxyOptions } from '../shared/4-option-delayed-WETH-proxy';
+import {  defaults as delayedWETHProxyDefaults } from '../shared/4-option-delayed-WETH-proxy';
+import { printDelayedWETHProxy } from './4-delayed-WETH-proxy';
 
 import type { CommonOptions } from '../shared/common-options';
 
@@ -175,4 +179,10 @@ export type L2OutputOracleProxy = WizardContractAPI<SharedL2OutputOracleProxyOpt
 export const l2OutputOracleProxy: L2OutputOracleProxy = {
   print: printL2OutputOracleProxy,
   defaults: l2OutputOracleProxyDefaults
+}
+
+export type DelayedWETHProxy = WizardContractAPI<SharedDelayedWETHProxyOptions>;
+export const delayedWETHProxy: DelayedWETHProxy = {
+  print: printDelayedWETHProxy,
+  defaults: delayedWETHProxyDefaults
 }

@@ -15,6 +15,7 @@
         KindedL1ERC721BridgeProxyOptions, KindL1ERC721BridgeProxy,
         KindedDisputeGameFactoryProxyOptions, KindDisputeGameFactoryProxy,
         KindedL2OutputOracleProxyOptions, KindL2OutputOracleProxy,
+        KindedDelayedWETHProxyOptions, KindDelayedWETHProxy,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
@@ -27,6 +28,7 @@
         sanitizeKindL1ERC721BridgeProxy,
         sanitizeKindDisputeGameFactoryProxy,
         sanitizeKindL2OutputOracleProxy,
+        sanitizeKindDelayedWETHProxy,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -44,6 +46,7 @@
     import L1ERC721BridgeProxyControls from '$lib/ui/controls/4-L1ERC721BridgeProxyControls.svelte';
     import DisputeGameFactoryProxyControls from '$lib/ui/controls/4-DisputeGameFactoryProxyControls.svelte';
     import L2OutputOracleProxyControls from '$lib/ui/controls/4-L2OutputOracleProxyControls.svelte';
+    import DelayedWETHProxyControls from '$lib/ui/controls/4-DelayedWETHProxyControls.svelte';
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -438,6 +441,55 @@
   \`\`\`
   `);
 
+  // **** step 4.1I ***
+  export let initialContractDelayedWETHProxyTab: string | undefined = 'DelayedWETHProxy';
+  export let contractDelayedWETHProxyTab: KindDelayedWETHProxy = sanitizeKindDelayedWETHProxy(initialContractDelayedWETHProxyTab);
+  let allContractsDelayedWETHProxyOpts: { [k in KindDelayedWETHProxy]?: Required<KindedDelayedWETHProxyOptions [k]> } = {};
+  let errorsDelayedWETHProxy: { [k in KindDelayedWETHProxy]?: OptionsErrorMessages } = {};
+  let contractDelayedWETHProxy: Contract = new ContractBuilder('DelayedWETHProxy');
+  let deployContractDelayedWETHProxy: DeployContract = new DeployBuilder('DeployDelayedWETHProxyScript');
+
+  $: optsDelayedWETHProxy = allContractsDelayedWETHProxyOpts[contractDelayedWETHProxyTab];
+  $: {
+  if (optsDelayedWETHProxy) {
+          try {
+              contractDelayedWETHProxy = buildContractGeneric(optsDelayedWETHProxy);
+              deployContractDelayedWETHProxy = buildDeployGeneric(optsDelayedWETHProxy);
+              errorsDelayedWETHProxy[contractDelayedWETHProxyTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsDelayedWETHProxy[contractDelayedWETHProxyTab] = e.messages;
+              } else {
+                throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneIModalOpen = false;
+  $: addressStepOneIContent = md.render(`
+  \`\`\`bash
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>"
+  \`\`\`
+  `);
+  
   
 </script>
 
@@ -952,6 +1004,67 @@
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
               {@html md.render(addressStepOneHContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.1I : Deploy DelayedWETHProxy Contract</p>
+  </div>
+</Background>
+
+<WizardDouble conventionNumber={'401I'} initialContractTab={initialContractDelayedWETHProxyTab} contractTab={contractDelayedWETHProxyTab} opts={optsDelayedWETHProxy} contract={contractDelayedWETHProxy} deployContract={deployContractDelayedWETHProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractDelayedWETHProxyTab === 'DelayedWETHProxy'} on:click={() => contractDelayedWETHProxyTab = 'DelayedWETHProxy'}>
+              DelayedWETHProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractDelayedWETHProxyTab !== 'DelayedWETHProxy'}>
+              <DelayedWETHProxyControls bind:opts={allContractsDelayedWETHProxyOpts.DelayedWETHProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneIModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneIModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneIModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneIContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>

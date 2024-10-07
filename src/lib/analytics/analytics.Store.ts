@@ -22,8 +22,9 @@ export type Action =
                     'copy-contract-OptimismMintableERC20FactoryProxy'| 'copy-script-OptimismMintableERC20FactoryProxy' | 'download-contract-OptimismMintableERC20FactoryProxy' | 'download-script-OptimismMintableERC20FactoryProxy' |
                     'copy-contract-L1ERC721BridgeProxy'| 'copy-script-L1ERC721BridgeProxy' | 'download-contract-L1ERC721BridgeProxy' | 'download-script-L1ERC721BridgeProxy' |
                     'copy-contract-DisputeGameFactoryProxy'| 'copy-script-DisputeGameFactoryProxy' | 'download-contract-DisputeGameFactoryProxy' | 'download-script-DisputeGameFactoryProxy' |
-                    'copy-contract-L2OutputOracleProxy'| 'copy-script-L2OutputOracleProxy' | 'download-contract-L2OutputOracleProxy' | 'download-script-L2OutputOracleProxy'
-
+                    'copy-contract-L2OutputOracleProxy'| 'copy-script-L2OutputOracleProxy' | 'download-contract-L2OutputOracleProxy' | 'download-script-L2OutputOracleProxy' |
+                    'copy-contract-DelayedWETHProxy'| 'copy-script-DelayedWETHProxy' | 'download-contract-DelayedWETHProxy' | 'download-script-DelayedWETHProxy'
+                    
 export type GaEvent = {
     id: string;
     data: any;

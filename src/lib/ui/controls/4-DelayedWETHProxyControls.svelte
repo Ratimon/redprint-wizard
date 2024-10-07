@@ -3,16 +3,16 @@
   
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedL2OutputOracleProxyOptions } from '$lib/wizard/shared';
+    import type { KindedDelayedWETHProxyOptions } from '$lib/wizard/shared';
   
-    import { l2OutputOracleProxy } from '$lib/wizard/smart-contracts';
-    import { deployL2OutputOracleProxy } from '$lib/wizard/deploy-scripts';
+    import { delayedWETHProxy } from '$lib/wizard/smart-contracts';
+    import { deployDelayedWETHProxy } from '$lib/wizard/deploy-scripts';
   
-    const contractDefaults = l2OutputOracleProxy.defaults;
-    const deployDefaults = deployL2OutputOracleProxy.defaults;
+    const contractDefaults = delayedWETHProxy.defaults;
+    const deployDefaults = deployDelayedWETHProxy.defaults;
   
-    export let opts: Required<KindedL2OutputOracleProxyOptions['L2OutputOracleProxy'] > = {
-      kind: 'L2OutputOracleProxy',
+    export let opts: Required<KindedDelayedWETHProxyOptions['DelayedWETHProxy'] > = {
+      kind: 'DelayedWETHProxy',
       ...contractDefaults,
       ...deployDefaults,
 

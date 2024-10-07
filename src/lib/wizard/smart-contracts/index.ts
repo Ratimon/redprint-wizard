@@ -29,7 +29,8 @@ export {
     optimismMintableERC20FactoryProxy,
     l1ERC721BridgeProxy,
     disputeGameFactoryProxy,
-    l2OutputOracleProxy
+    l2OutputOracleProxy,
+    delayedWETHProxy
 } from './api';
 
 

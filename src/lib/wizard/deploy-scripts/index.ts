@@ -29,5 +29,6 @@ export {
     deployOptimismMintableERC20FactoryProxy,
     deployL1ERC721BridgeProxy,
     deployDisputeGameFactoryProxy,
-    deployL2OutputOracleProxy
+    deployL2OutputOracleProxy,
+    deployDelayedWETHProxy
 } from './api';

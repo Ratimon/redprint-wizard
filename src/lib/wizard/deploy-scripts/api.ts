@@ -72,6 +72,10 @@ import type {  SharedL2OutputOracleProxyOptions } from '../shared/4-option-l2-ou
 import {  defaults as l2OutputOracleProxyDefaults } from '../shared/4-option-l2-output-oracle-proxy';
 import { printDeployL2OutputOracleProxy } from './4-l2-output-oracle-proxy';
 
+import type {  SharedDelayedWETHProxyOptions } from '../shared/4-option-delayed-WETH-proxy';
+import {  defaults as delayedWETHProxyDefaults } from '../shared/4-option-delayed-WETH-proxy';
+import { printDeployDelayedWETHProxy } from './4-delayed-WETH-proxy';
+
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -196,4 +200,10 @@ export type DeployL2OutputOracleProxy = WizardAllAPI<SharedL2OutputOracleProxyOp
 export const deployL2OutputOracleProxy: DeployL2OutputOracleProxy = {
   print: printDeployL2OutputOracleProxy,
   defaults: l2OutputOracleProxyDefaults,
+}
+
+export type DeployDelayedWETHProxy = WizardAllAPI<SharedDelayedWETHProxyOptions>;
+export const deployDelayedWETHProxy: DeployDelayedWETHProxy = {
+  print: printDeployDelayedWETHProxy,
+  defaults: delayedWETHProxyDefaults,
 }
