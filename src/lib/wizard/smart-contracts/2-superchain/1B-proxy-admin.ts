@@ -1,13 +1,13 @@
-import type { Contract} from './contract';
-import {  ContractBuilder } from './contract';
+import type { Contract} from '../contract';
+import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/1B-option-proxy-admin";
-import type { SharedProxyAdminOptions } from '../shared/2-superchain/1B-option-proxy-admin';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/2-superchain/1B-option-proxy-admin";
+import type { SharedProxyAdminOptions } from '../../shared/2-superchain/1B-option-proxy-admin';
 
-import { printContract } from "./print";
-import { setInfo  } from "./set-info";
+import { printContract } from "../print";
+import { setInfo  } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
 function withDefaults(opts: SharedProxyAdminOptions): Required<SharedProxyAdminOptions> {
   return {

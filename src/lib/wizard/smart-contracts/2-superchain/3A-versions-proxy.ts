@@ -1,26 +1,26 @@
-import type { BaseModifier, Contract} from './contract';
-import {  ContractBuilder } from './contract';
+import type { BaseModifier, Contract} from '../contract';
+import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1K-option-anchor-state-registry-proxy';
-import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain/1K-option-anchor-state-registry-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/2-superchain/3A-option-versions-proxy";
+import type { SharedProtocolVersionsProxyOptions } from '../../shared/2-superchain/3A-option-versions-proxy';
 
-import { printContract } from "./print";
-import { setInfo  } from "./set-info";
+import { printContract } from "../print";
+import { setInfo  } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
-function withDefaults(opts: SharedAnchorStateRegistryProxyOptions): Required<SharedAnchorStateRegistryProxyOptions> {
+function withDefaults(opts: SharedProtocolVersionsProxyOptions): Required<SharedProtocolVersionsProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printAnchorStateRegistryProxy(opts: SharedAnchorStateRegistryProxyOptions = commonDefaults): string {
-  return printContract(buildAnchorStateRegistryProxy(opts));
+export function printProtocolVersionsProxy(opts: SharedProtocolVersionsProxyOptions = commonDefaults): string {
+  return printContract(buildProtocolVersionsProxy(opts));
 }
 
-export function buildAnchorStateRegistryProxy(opts: SharedAnchorStateRegistryProxyOptions): Contract {
+export function buildProtocolVersionsProxy(opts: SharedProtocolVersionsProxyOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo

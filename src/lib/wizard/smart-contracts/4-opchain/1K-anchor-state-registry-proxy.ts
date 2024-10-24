@@ -1,26 +1,26 @@
-import type { BaseModifier, Contract} from './contract';
-import {  ContractBuilder } from './contract';
+import type { BaseModifier, Contract} from '../contract';
+import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1H-option-l2-output-oracle-proxy';
-import type { SharedL2OutputOracleProxyOptions } from '../shared/4-opchain/1H-option-l2-output-oracle-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1K-option-anchor-state-registry-proxy';
+import type { SharedAnchorStateRegistryProxyOptions } from '../../shared/4-opchain/1K-option-anchor-state-registry-proxy';
 
-import { printContract } from "./print";
-import { setInfo  } from "./set-info";
+import { printContract } from "../print";
+import { setInfo  } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
-function withDefaults(opts: SharedL2OutputOracleProxyOptions): Required<SharedL2OutputOracleProxyOptions> {
+function withDefaults(opts: SharedAnchorStateRegistryProxyOptions): Required<SharedAnchorStateRegistryProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printL2OutputOracleProxy(opts: SharedL2OutputOracleProxyOptions = commonDefaults): string {
-  return printContract(buildL2OutputOracleProxy(opts));
+export function printAnchorStateRegistryProxy(opts: SharedAnchorStateRegistryProxyOptions = commonDefaults): string {
+  return printContract(buildAnchorStateRegistryProxy(opts));
 }
 
-export function buildL2OutputOracleProxy(opts: SharedL2OutputOracleProxyOptions): Contract {
+export function buildAnchorStateRegistryProxy(opts: SharedAnchorStateRegistryProxyOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo

@@ -1,26 +1,26 @@
-import type { BaseModifier, Contract} from './contract';
-import {  ContractBuilder } from './contract';
+import type { BaseModifier, Contract} from '../contract';
+import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1B-option-system-config-proxy';
-import type { SharedSystemConfigProxyOptions } from '../shared/4-opchain/1B-option-system-config-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1E-option-optimism-mintable-ERC20-factory-proxy';
+import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../../shared/4-opchain/1E-option-optimism-mintable-ERC20-factory-proxy';
 
-import { printContract } from "./print";
-import { setInfo  } from "./set-info";
+import { printContract } from "../print";
+import { setInfo  } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
-function withDefaults(opts: SharedSystemConfigProxyOptions): Required<SharedSystemConfigProxyOptions> {
+function withDefaults(opts: SharedOptimismMintableERC20FactoryProxyOptions): Required<SharedOptimismMintableERC20FactoryProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printSystemConfigProxy(opts: SharedSystemConfigProxyOptions = commonDefaults): string {
-  return printContract(buildSystemConfigProxy(opts));
+export function printOptimismMintableERC20FactoryProxy(opts: SharedOptimismMintableERC20FactoryProxyOptions = commonDefaults): string {
+  return printContract(buildOptimismMintableERC20FactoryProxy(opts));
 }
 
-export function buildSystemConfigProxy(opts: SharedSystemConfigProxyOptions): Contract {
+export function buildOptimismMintableERC20FactoryProxy(opts: SharedOptimismMintableERC20FactoryProxyOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo

@@ -1,26 +1,26 @@
-import type { BaseModifier, Contract} from './contract';
-import {  ContractBuilder } from './contract';
+import type { BaseModifier, Contract} from '../contract';
+import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1G-option-dispute-game-factory-proxy';
-import type { SharedDisputeGameFactoryProxyOptions } from '../shared/4-opchain/1G-option-dispute-game-factory-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1B-option-system-config-proxy';
+import type { SharedSystemConfigProxyOptions } from '../../shared/4-opchain/1B-option-system-config-proxy';
 
-import { printContract } from "./print";
-import { setInfo  } from "./set-info";
+import { printContract } from "../print";
+import { setInfo  } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
-function withDefaults(opts: SharedDisputeGameFactoryProxyOptions): Required<SharedDisputeGameFactoryProxyOptions> {
+function withDefaults(opts: SharedSystemConfigProxyOptions): Required<SharedSystemConfigProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printDisputeGameFactoryProxy(opts: SharedDisputeGameFactoryProxyOptions = commonDefaults): string {
-  return printContract(buildDisputeGameFactoryProxy(opts));
+export function printSystemConfigProxy(opts: SharedSystemConfigProxyOptions = commonDefaults): string {
+  return printContract(buildSystemConfigProxy(opts));
 }
 
-export function buildDisputeGameFactoryProxy(opts: SharedDisputeGameFactoryProxyOptions): Contract {
+export function buildSystemConfigProxy(opts: SharedSystemConfigProxyOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo

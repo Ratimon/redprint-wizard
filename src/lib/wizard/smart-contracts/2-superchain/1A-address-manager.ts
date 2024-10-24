@@ -1,13 +1,13 @@
-import type { Contract, BaseFunction} from './contract';
-import {  ContractBuilder } from './contract';
+import type { Contract, BaseFunction} from '../contract';
+import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/1A-option-address-manager";
-import type { SharedAddressManagerOptions } from '../shared/2-superchain/1A-option-address-manager';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/2-superchain/1A-option-address-manager";
+import type { SharedAddressManagerOptions } from '../../shared/2-superchain/1A-option-address-manager';
 
-import { printContract } from "./print";
-import { setInfo  } from "./set-info";
+import { printContract } from "../print";
+import { setInfo  } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
 function withDefaults(opts: SharedAddressManagerOptions): Required<SharedAddressManagerOptions> {
   return {

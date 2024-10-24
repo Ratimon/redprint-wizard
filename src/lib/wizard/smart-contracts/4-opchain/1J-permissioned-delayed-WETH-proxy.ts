@@ -1,27 +1,26 @@
-import type { BaseModifier, Contract} from './contract';
-import {  ContractBuilder } from './contract';
+import type { BaseModifier, Contract} from '../contract';
+import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
-import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1J-option-permissioned-delayed-WETH-proxy';
+import type { SharedPermissionedDelayedWETHProxyOptions } from '../../shared/4-opchain/1J-option-permissioned-delayed-WETH-proxy';
 
-import { printContract } from "./print";
-import { setInfo  } from "./set-info";
+import { printContract } from "../print";
+import { setInfo  } from "../set-info";
 
+import { defineFunctions } from '../../utils/define-functions';
 
-import { defineFunctions } from '../utils/define-functions';
-
-function withDefaults(opts: SharedL1ERC721BridgeProxyOptions): Required<SharedL1ERC721BridgeProxyOptions> {
+function withDefaults(opts: SharedPermissionedDelayedWETHProxyOptions): Required<SharedPermissionedDelayedWETHProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printL1ERC721BridgeProxy(opts: SharedL1ERC721BridgeProxyOptions = commonDefaults): string {
-  return printContract(buildL1ERC721BridgeProxy(opts));
+export function printPermissionedDelayedWETHProxy(opts: SharedPermissionedDelayedWETHProxyOptions = commonDefaults): string {
+  return printContract(buildPermissionedDelayedWETHProxy(opts));
 }
 
-export function buildL1ERC721BridgeProxy(opts: SharedL1ERC721BridgeProxyOptions): Contract {
+export function buildPermissionedDelayedWETHProxy(opts: SharedPermissionedDelayedWETHProxyOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo

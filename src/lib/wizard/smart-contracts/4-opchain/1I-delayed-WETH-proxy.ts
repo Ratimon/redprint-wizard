@@ -1,13 +1,13 @@
-import type { BaseModifier, Contract} from './contract';
-import {  ContractBuilder } from './contract';
+import type { BaseModifier, Contract} from '../contract';
+import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1I-option-delayed-WETH-proxy';
-import type { SharedDelayedWETHProxyOptions } from '../shared/4-opchain/1I-option-delayed-WETH-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1I-option-delayed-WETH-proxy';
+import type { SharedDelayedWETHProxyOptions } from '../../shared/4-opchain/1I-option-delayed-WETH-proxy';
 
-import { printContract } from "./print";
-import { setInfo  } from "./set-info";
+import { printContract } from "../print";
+import { setInfo  } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
 function withDefaults(opts: SharedDelayedWETHProxyOptions): Required<SharedDelayedWETHProxyOptions> {
   return {

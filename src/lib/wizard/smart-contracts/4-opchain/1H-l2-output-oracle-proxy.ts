@@ -1,26 +1,26 @@
-import type { BaseModifier, Contract} from './contract';
-import {  ContractBuilder } from './contract';
+import type { BaseModifier, Contract} from '../contract';
+import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/2A-option-superchain-config-proxy";
-import type { SharedSuperchainConfigProxyOptions } from '../shared/2-superchain/2A-option-superchain-config-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1H-option-l2-output-oracle-proxy';
+import type { SharedL2OutputOracleProxyOptions } from '../../shared/4-opchain/1H-option-l2-output-oracle-proxy';
 
-import { printContract } from "./print";
-import { setInfo  } from "./set-info";
+import { printContract } from "../print";
+import { setInfo  } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
-function withDefaults(opts: SharedSuperchainConfigProxyOptions): Required<SharedSuperchainConfigProxyOptions> {
+function withDefaults(opts: SharedL2OutputOracleProxyOptions): Required<SharedL2OutputOracleProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printSuperchainConfigProxy(opts: SharedSuperchainConfigProxyOptions = commonDefaults): string {
-  return printContract(buildSuperchainConfigProxy(opts));
+export function printL2OutputOracleProxy(opts: SharedL2OutputOracleProxyOptions = commonDefaults): string {
+  return printContract(buildL2OutputOracleProxy(opts));
 }
 
-export function buildSuperchainConfigProxy(opts: SharedSuperchainConfigProxyOptions): Contract {
+export function buildL2OutputOracleProxy(opts: SharedL2OutputOracleProxyOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo
@@ -162,7 +162,7 @@ function getProxyCallIfNotAdminModifier() {
     };
   
     return mod;
-}
+  }
 
 const functions = defineFunctions({
 

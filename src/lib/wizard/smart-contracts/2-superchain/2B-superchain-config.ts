@@ -1,13 +1,13 @@
-import type { BaseModifier, Contract} from './contract';
-import {  ContractBuilder } from './contract';
+import type { BaseModifier, Contract} from '../contract';
+import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/2B-option-superchain-config";
-import type { SharedSuperchainConfigOptions } from '../shared/2-superchain/2B-option-superchain-config';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/2-superchain/2B-option-superchain-config";
+import type { SharedSuperchainConfigOptions } from '../../shared/2-superchain/2B-option-superchain-config';
 
-import { printContract } from "./print";
-import { setInfo  } from "./set-info";
+import { printContract } from "../print";
+import { setInfo  } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
 function withDefaults(opts: SharedSuperchainConfigOptions): Required<SharedSuperchainConfigOptions> {
   return {

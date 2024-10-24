@@ -1,17 +1,17 @@
-import { supportsInterface } from "./common-functions";
+import { supportsInterface } from "../common-functions";
 
-import type { SharedGovernerOptions} from '../shared/1-governance/1-option-governor';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-governance/1-option-governor";
+import type { SharedGovernerOptions} from '../../shared/1-governance/1-option-governor';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/1-governance/1-option-governor";
 
-import type { Contract} from './contract';
-import { ContractBuilder } from "./contract";
-import { OptionsError } from "../shared/error";
-import { setAccessControl } from "./set-access-control";
-import { printContract } from "./print";
-import { setInfo } from "./set-info";
-import { setUpgradeable } from "./set-upgradeable";
-import { defineFunctions } from '../utils/define-functions';
-import { durationToBlocks } from "../utils/duration";
+import type { Contract} from '../contract';
+import { ContractBuilder } from "../contract";
+import { OptionsError } from "../../shared/error";
+import { setAccessControl } from "../set-access-control";
+import { printContract } from "../print";
+import { setInfo } from "../set-info";
+import { setUpgradeable } from "../set-upgradeable";
+import { defineFunctions } from '../../utils/define-functions';
+import { durationToBlocks } from "../../utils/duration";
 
 export const votesOptions = ['erc20votes', 'erc721votes'] as const;
 export type VotesOptions = typeof votesOptions[number];
