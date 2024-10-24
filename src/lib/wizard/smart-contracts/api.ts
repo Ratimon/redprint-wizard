@@ -1,9 +1,9 @@
-import type {  SharedSafeOptions } from '../shared/1-option-safe';
-import {  defaults as safeDefaults } from '../shared/1-option-safe';
+import type {  SharedSafeOptions } from '../shared/1-governance/option-safe';
+import {  defaults as safeDefaults } from '../shared/1-governance/option-safe';
 import { printSafe } from './1-safe';
 
-import type { SharedGovernerOptions} from '../shared/1-option-governor';
-import {  defaults as governorDefaults } from '../shared/1-option-governor';
+import type { SharedGovernerOptions} from '../shared/1-governance/option-governor';
+import {  defaults as governorDefaults } from '../shared/1-governance/option-governor';
 import { printGovernor, isAccessControlRequired as governorIsAccessControlRequired } from './1-governor';
 
 import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';

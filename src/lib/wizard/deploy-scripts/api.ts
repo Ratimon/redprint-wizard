@@ -1,15 +1,15 @@
 import type { CommonOptions } from '../shared/common-options';
 
-import type { SharedGovernerOptions} from '../shared/1-option-governor';
-import { defaults as governorDefaults } from '../shared/1-option-governor';
+import type { SharedGovernerOptions} from '../shared/1-governance/option-governor';
+import { defaults as governorDefaults } from '../shared/1-governance/option-governor';
 import { printDeployGovernor} from './1-governor';
 
-import type {  SharedSafeOptions } from '../shared/1-option-safe';
-import {  defaults as safeDefaults } from '../shared/1-option-safe';
+import type {  SharedSafeOptions } from '../shared/1-governance/option-safe';
+import {  defaults as safeDefaults } from '../shared/1-governance/option-safe';
 import { printDeploySafe } from './1-safe';
 
-import type {  SharedStepOneAllOptions } from '../shared/1-option-all';
-import {  defaults as stepOneAllDefaults } from '../shared/1-option-all';
+import type {  SharedStepOneAllOptions } from '../shared/1-governance/option-all';
+import {  defaults as stepOneAllDefaults } from '../shared/1-governance/option-all';
 import { printDeployStepOneAll } from './1-all';
 
 import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';

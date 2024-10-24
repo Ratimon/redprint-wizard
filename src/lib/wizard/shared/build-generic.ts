@@ -1,7 +1,7 @@
 
-import type { SharedSafeOptions} from './1-option-safe';
-import type { SharedGovernerOptions} from './1-option-governor';
-import type { SharedStepOneAllOptions} from './1-option-all';
+import type { SharedSafeOptions} from './1-governance/option-safe';
+import type { SharedGovernerOptions} from './1-governance/option-governor';
+import type { SharedStepOneAllOptions} from './1-governance/option-all';
 
 import type { SharedAddressManagerOptions } from './2-option-address-manager';
 import type { SharedProxyAdminOptions } from './2-option-proxy-admin';

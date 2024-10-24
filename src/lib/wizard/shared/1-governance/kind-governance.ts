@@ -1,4 +1,4 @@
-import type { GenericGovernanceOptions } from './build-generic';
+import type { GenericGovernanceOptions } from '../build-generic';
 
 export type KindGovernance = GenericGovernanceOptions['kind'];
 

@@ -1,7 +1,7 @@
 import { supportsInterface } from "./common-functions";
 
-import type { SharedGovernerOptions} from '../shared/1-option-governor';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-option-governor";
+import type { SharedGovernerOptions} from '../shared/1-governance/option-governor';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-governance/option-governor";
 
 import type { Contract} from './contract';
 import { ContractBuilder } from "./contract";

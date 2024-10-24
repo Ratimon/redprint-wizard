@@ -38,11 +38,11 @@ export { OptionsError } from './error';
 export type { Kind} from './0-kind-total';
 export { sanitizeKind} from './0-kind-total';
 
-export type { KindGovernance } from './1-kind-governance';
-export {  sanitizeKindGovernance } from './1-kind-governance';
+export type { KindGovernance } from './1-governance/kind-governance';
+export {  sanitizeKindGovernance } from './1-governance/kind-governance';
 
-export type { KindStepOneAll } from './1-kind-all';
-export {  sanitizeKindStepOneAll } from './1-kind-all';
+export type { KindStepOneAll } from './1-governance/kind-all';
+export {  sanitizeKindStepOneAll } from './1-governance/kind-all';
 
 export type { KindAddressManager} from './2-kind-address-manager';
 export { sanitizeKindAddressManager} from './2-kind-address-manager';

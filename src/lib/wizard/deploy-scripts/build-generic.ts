@@ -1,10 +1,10 @@
-import type { SharedSafeOptions} from '../shared/1-option-safe';
+import type { SharedSafeOptions} from '../shared/1-governance/option-safe';
 import { buildDeploySafe } from './1-safe';
 
-import type { SharedGovernerOptions} from '../shared/1-option-governor';
+import type { SharedGovernerOptions} from '../shared/1-governance/option-governor';
 import { buildDeployGoverner } from './1-governor';
 
-import type { SharedStepOneAllOptions} from '../shared/1-option-all';
+import type { SharedStepOneAllOptions} from '../shared/1-governance/option-all';
 import { buildDeployStepOneAll } from './1-all';
 
 import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';

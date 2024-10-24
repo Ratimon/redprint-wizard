@@ -1,8 +1,8 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type {  SharedStepOneAllOptions, Governance } from '../shared/1-option-all';
-import {  defaults } from '../shared/1-option-all';
+import type {  SharedStepOneAllOptions, Governance } from '../shared/1-governance/option-all';
+import {  defaults } from '../shared/1-governance/option-all';
 
 import { defaults as infoDefaults } from "./set-info";
 

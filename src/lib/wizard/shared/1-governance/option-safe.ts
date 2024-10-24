@@ -1,6 +1,6 @@
 
-import type { CommonOptions} from './common-options';
-import { defaults as infoDefaults } from "./set-info";
+import type { CommonOptions} from '../common-options';
+import { defaults as infoDefaults } from "../set-info";
 
 export const chainOptions = [false, 'ethereum', 'optimism'] as const;
 export type Chain = typeof chainOptions[number];
