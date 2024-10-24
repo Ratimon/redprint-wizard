@@ -12,36 +12,36 @@ import type {  SharedStepOneAllOptions } from '../shared/1-governance/option-all
 import {  defaults as stepOneAllDefaults } from '../shared/1-governance/option-all';
 import { printDeployStepOneAll } from './1-all';
 
-import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';
-import {  defaults as addressManagerDefaults } from '../shared/2-option-address-manager';
+import type { SharedAddressManagerOptions } from '../shared/2-superchain/option-address-manager';
+import {  defaults as addressManagerDefaults } from '../shared/2-superchain/option-address-manager';
 import { printDeployAddressManager } from './2-address-manager';
 
-import type { SharedProxyAdminOptions } from '../shared/2-option-proxy-admin';
-import {  defaults as proxyAdminDefaults } from '../shared/2-option-proxy-admin';
+import type { SharedProxyAdminOptions } from '../shared/2-superchain/option-proxy-admin';
+import {  defaults as proxyAdminDefaults } from '../shared/2-superchain/option-proxy-admin';
 import { printDeployProxyAdmin } from './2-proxy-admin';
 
-import type { SharedSuperchainConfigProxyOptions } from '../shared/2-option-superchain-config-proxy';
-import {  defaults as superchainConfigProxyDefaults } from '../shared/2-option-superchain-config-proxy';
+import type { SharedSuperchainConfigProxyOptions } from '../shared/2-superchain/option-superchain-config-proxy';
+import {  defaults as superchainConfigProxyDefaults } from '../shared/2-superchain/option-superchain-config-proxy';
 import { printDeploySuperchainConfigProxy } from './2-superchain-config-proxy';
 
-import type { SharedSuperchainConfigOptions } from '../shared/2-option-superchain-config';
-import {  defaults as superchainConfigDefaults } from '../shared/2-option-superchain-config';
+import type { SharedSuperchainConfigOptions } from '../shared/2-superchain/option-superchain-config';
+import {  defaults as superchainConfigDefaults } from '../shared/2-superchain/option-superchain-config';
 import { printDeploySuperchainConfig } from './2-superchain-config';
 
-import type { SharedProtocolVersionsProxyOptions } from '../shared/2-option-versions-proxy';
-import {  defaults as protocolVersionsProxyDefaults } from '../shared/2-option-versions-proxy';
+import type { SharedProtocolVersionsProxyOptions } from '../shared/2-superchain/option-versions-proxy';
+import {  defaults as protocolVersionsProxyDefaults } from '../shared/2-superchain/option-versions-proxy';
 import { printDeployProtocolVersionsProxy } from './2-versions-proxy';
 
-import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions';
-import {  defaults as protocolVersionsDefaults } from '../shared/2-option-versions';
+import type { SharedProtocolVersionsOptions } from '../shared/2-superchain/option-versions';
+import {  defaults as protocolVersionsDefaults } from '../shared/2-superchain/option-versions';
 import { printDeployProtocolVersions } from './2-versions';
 
-import type {  SharedStepTwoAllSubOptions } from '../shared/2-option-all-sub';
-import {  defaults as stepTwoAllSubDefaults } from '../shared/2-option-all-sub';
+import type {  SharedStepTwoAllSubOptions } from '../shared/2-superchain/option-all-sub';
+import {  defaults as stepTwoAllSubDefaults } from '../shared/2-superchain/option-all-sub';
 import { printDeployStepTwoAllSub } from './2-all-sub';
 
-import type {  SharedStepTwoAllOptions } from '../shared/2-option-all';
-import {  defaults as stepTwoAllDefaults } from '../shared/2-option-all';
+import type {  SharedStepTwoAllOptions } from '../shared/2-superchain/option-all';
+import {  defaults as stepTwoAllDefaults } from '../shared/2-superchain/option-all';
 import { printDeployStepTwoAll } from './2-all';
 
 import type {  SharedOptimismPortalProxyOptions } from '../shared/4-option-optimism-portal-proxy';

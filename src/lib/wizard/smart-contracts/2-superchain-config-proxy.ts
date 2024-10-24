@@ -1,8 +1,8 @@
 import type { BaseModifier, Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-option-superchain-config-proxy";
-import type { SharedSuperchainConfigProxyOptions } from '../shared/2-option-superchain-config-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/option-superchain-config-proxy";
+import type { SharedSuperchainConfigProxyOptions } from '../shared/2-superchain/option-superchain-config-proxy';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";

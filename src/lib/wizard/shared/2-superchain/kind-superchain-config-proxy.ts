@@ -1,4 +1,4 @@
-import type { GenericSuperchainConfigProxyOptions } from './build-generic';
+import type { GenericSuperchainConfigProxyOptions } from '../build-generic';
 
 export type KindSuperchainConfigProxy = GenericSuperchainConfigProxyOptions['kind'];
 

@@ -1,4 +1,4 @@
-import type { GenericProxyAdminOptions } from './build-generic';
+import type { GenericProxyAdminOptions } from '../build-generic';
 
 export type KindProxyAdmin = GenericProxyAdminOptions['kind'];
 

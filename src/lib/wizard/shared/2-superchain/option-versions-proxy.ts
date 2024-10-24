@@ -1,5 +1,5 @@
-import type { CommonOptions} from './common-options';
-import { defaults as infoDefaults } from "./set-info";
+import type { CommonOptions} from '../common-options';
+import { defaults as infoDefaults } from "../set-info";
 
 export const commonDefaults: Required<CommonOptions> = {
   //contract
@@ -22,7 +22,7 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
   };
 }
 
-export const defaults: Required<SharedSuperchainConfigProxyOptions> = {
+export const defaults: Required<SharedProtocolVersionsProxyOptions> = {
   //contract
   contractName: 'Proxy',
   
@@ -31,13 +31,13 @@ export const defaults: Required<SharedSuperchainConfigProxyOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeploySuperchainConfigProxyScript',
+  deployName: 'DeployProtocolVersionsProxyScript',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;
 
 
-export interface SharedSuperchainConfigProxyOptions extends CommonOptions {
+export interface SharedProtocolVersionsProxyOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;

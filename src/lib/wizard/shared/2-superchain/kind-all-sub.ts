@@ -1,4 +1,4 @@
-import type { GenericStepTwoAllSubOptions } from './build-generic';
+import type { GenericStepTwoAllSubOptions } from '../build-generic';
 
 export type KindStepTwoAllSub = GenericStepTwoAllSubOptions['kind'];
 

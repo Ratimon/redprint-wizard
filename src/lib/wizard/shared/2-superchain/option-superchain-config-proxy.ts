@@ -1,8 +1,5 @@
-import type { CommonOptions} from './common-options';
-import { defaults as infoDefaults } from "./set-info";
-
-export const opSecOptions = [false, 'address', 'key', 'mnemonic'] as const;
-export type OpSec = typeof opSecOptions[number];
+import type { CommonOptions} from '../common-options';
+import { defaults as infoDefaults } from "../set-info";
 
 export const commonDefaults: Required<CommonOptions> = {
   //contract
@@ -25,25 +22,23 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
   };
 }
 
-export const defaults: Required<SharedSuperchainConfigOptions> = {
+export const defaults: Required<SharedSuperchainConfigProxyOptions> = {
   //contract
-  contractName: 'SuperchainConfig',
+  contractName: 'Proxy',
   
   access: commonDefaults.access,
   upgradeable: commonDefaults.upgradeable,
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployAndInitializeSuperchainConfigScript',
+  deployName: 'DeploySuperchainConfigProxyScript',
 
   deployInfo: commonDefaults.deployInfo,
-  opSec: 'mnemonic',
 } as const;
 
 
-export interface SharedSuperchainConfigOptions extends CommonOptions {
+export interface SharedSuperchainConfigProxyOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;
-  opSec: OpSec;
 }

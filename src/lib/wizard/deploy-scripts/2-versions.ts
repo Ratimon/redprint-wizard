@@ -1,8 +1,8 @@
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedProtocolVersionsOptions, OpSec  } from '../shared/2-option-versions';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-option-versions";
+import type { SharedProtocolVersionsOptions, OpSec  } from '../shared/2-superchain/option-versions';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/option-versions";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";

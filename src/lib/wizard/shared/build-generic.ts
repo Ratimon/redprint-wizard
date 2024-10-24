@@ -3,14 +3,14 @@ import type { SharedSafeOptions} from './1-governance/option-safe';
 import type { SharedGovernerOptions} from './1-governance/option-governor';
 import type { SharedStepOneAllOptions} from './1-governance/option-all';
 
-import type { SharedAddressManagerOptions } from './2-option-address-manager';
-import type { SharedProxyAdminOptions } from './2-option-proxy-admin';
-import type { SharedSuperchainConfigProxyOptions } from './2-option-superchain-config-proxy';
-import type { SharedSuperchainConfigOptions } from './2-option-superchain-config';
-import type { SharedProtocolVersionsProxyOptions } from './2-option-versions-proxy';
-import type { SharedProtocolVersionsOptions } from './2-option-versions';
-import type { SharedStepTwoAllSubOptions } from './2-option-all-sub';
-import type { SharedStepTwoAllOptions} from './2-option-all';
+import type { SharedAddressManagerOptions } from './2-superchain/option-address-manager';
+import type { SharedProxyAdminOptions } from './2-superchain/option-proxy-admin';
+import type { SharedSuperchainConfigProxyOptions } from './2-superchain/option-superchain-config-proxy';
+import type { SharedSuperchainConfigOptions } from './2-superchain/option-superchain-config';
+import type { SharedProtocolVersionsProxyOptions } from './2-superchain/option-versions-proxy';
+import type { SharedProtocolVersionsOptions } from './2-superchain/option-versions';
+import type { SharedStepTwoAllSubOptions } from './2-superchain/option-all-sub';
+import type { SharedStepTwoAllOptions} from './2-superchain/option-all';
 
 import type { SharedOptimismPortalProxyOptions} from './4-option-optimism-portal-proxy';
 import type { SharedSystemConfigProxyOptions} from './4-option-system-config-proxy';

@@ -1,4 +1,4 @@
-import type { GenericProtocolVersionsOptions } from './build-generic';
+import type { GenericProtocolVersionsOptions } from '../build-generic';
 
 export type KindProtocolVersions = GenericProtocolVersionsOptions['kind'];
 

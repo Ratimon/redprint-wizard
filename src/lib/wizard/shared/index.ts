@@ -44,29 +44,29 @@ export {  sanitizeKindGovernance } from './1-governance/kind-governance';
 export type { KindStepOneAll } from './1-governance/kind-all';
 export {  sanitizeKindStepOneAll } from './1-governance/kind-all';
 
-export type { KindAddressManager} from './2-kind-address-manager';
-export { sanitizeKindAddressManager} from './2-kind-address-manager';
+export type { KindAddressManager} from './2-superchain/kind-address-manager';
+export { sanitizeKindAddressManager} from './2-superchain/kind-address-manager';
 
-export type { KindProxyAdmin} from './2-kind-proxy-admin';
-export { sanitizeKindProxyAdmin} from './2-kind-proxy-admin';
+export type { KindProxyAdmin} from './2-superchain/kind-proxy-admin';
+export { sanitizeKindProxyAdmin} from './2-superchain/kind-proxy-admin';
 
-export type { KindSuperchainConfigProxy} from './2-kind-superchain-config-proxy';
-export { sanitizeKindSuperchainConfigProxy} from './2-kind-superchain-config-proxy';
+export type { KindSuperchainConfigProxy} from './2-superchain/kind-superchain-config-proxy';
+export { sanitizeKindSuperchainConfigProxy} from './2-superchain/kind-superchain-config-proxy';
 
-export type { KindSuperchainConfig} from './2-kind-superchain-config';
-export { sanitizeKindSuperchainConfig} from './2-kind-superchain-config';
+export type { KindSuperchainConfig} from './2-superchain/kind-superchain-config';
+export { sanitizeKindSuperchainConfig} from './2-superchain/kind-superchain-config';
 
-export type { KindProtocolVersionsProxy} from './2-kind-versions-proxy';
-export { sanitizeKindProtocolVersionsProxy} from './2-kind-versions-proxy';
+export type { KindProtocolVersionsProxy} from './2-superchain/kind-versions-proxy';
+export { sanitizeKindProtocolVersionsProxy} from './2-superchain/kind-versions-proxy';
 
-export type { KindProtocolVersions} from './2-kind-versions';
-export { sanitizeKindProtocolVersions} from './2-kind-versions';
+export type { KindProtocolVersions} from './2-superchain/kind-versions';
+export { sanitizeKindProtocolVersions} from './2-superchain/kind-versions';
 
-export type { KindStepTwoAllSub } from './2-kind-all-sub';
-export {  sanitizeKindStepTwoAllSub } from './2-kind-all-sub';
+export type { KindStepTwoAllSub } from './2-superchain/kind-all-sub';
+export {  sanitizeKindStepTwoAllSub } from './2-superchain/kind-all-sub';
 
-export type { KindStepTwoAll } from './2-kind-all';
-export {  sanitizeKindStepTwoAll } from './2-kind-all';
+export type { KindStepTwoAll } from './2-superchain/kind-all';
+export {  sanitizeKindStepTwoAll } from './2-superchain/kind-all';
 
 export type { KindOptimismPortalProxy } from './4-kind-optimism-portal-proxy';
 export {  sanitizeKindOptimismPortalProxy } from './4-kind-optimism-portal-proxy';

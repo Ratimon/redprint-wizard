@@ -1,5 +1,8 @@
-import type { CommonOptions} from './common-options';
-import { defaults as infoDefaults } from "./set-info";
+import type { CommonOptions} from '../common-options';
+import { defaults as infoDefaults } from "../set-info";
+
+export const opSecOptions = [false, 'address', 'key', 'mnemonic'] as const;
+export type OpSec = typeof opSecOptions[number];
 
 export const commonDefaults: Required<CommonOptions> = {
   //contract
@@ -22,23 +25,25 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
   };
 }
 
-export const defaults: Required<SharedProtocolVersionsProxyOptions> = {
+export const defaults: Required<SharedProxyAdminOptions> = {
   //contract
-  contractName: 'Proxy',
+  contractName: 'ProxyAdmin',
   
   access: commonDefaults.access,
   upgradeable: commonDefaults.upgradeable,
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployProtocolVersionsProxyScript',
+  deployName: 'DeployAndSetupProxyAdminScript',
 
   deployInfo: commonDefaults.deployInfo,
+  opSec: 'mnemonic',
 } as const;
 
 
-export interface SharedProtocolVersionsProxyOptions extends CommonOptions {
+export interface SharedProxyAdminOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;
+  opSec: OpSec;
 }

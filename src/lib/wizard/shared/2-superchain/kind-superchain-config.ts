@@ -1,4 +1,4 @@
-import type { GenericSuperchainConfigOptions } from './build-generic';
+import type { GenericSuperchainConfigOptions } from '../build-generic';
 
 export type KindSuperchainConfig = GenericSuperchainConfigOptions['kind'];
 

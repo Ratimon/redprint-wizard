@@ -1,8 +1,8 @@
 import type { BaseModifier, Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-option-versions";
-import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/option-versions";
+import type { SharedProtocolVersionsOptions } from '../shared/2-superchain/option-versions';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";
