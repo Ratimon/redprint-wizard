@@ -9,8 +9,8 @@ import {  defaults as safeDefaults } from '../shared/1-option-safe';
 import { printDeploySafe } from './1-safe';
 
 import type {  SharedStepOneAllOptions } from '../shared/1-option-all';
-import {  defaults as allStepOneDefaults } from '../shared/1-option-all';
-import { printDeployAllStepOne } from './1-all';
+import {  defaults as stepOneAllDefaults } from '../shared/1-option-all';
+import { printDeployStepOneAll } from './1-all';
 
 import type { SharedAddressManagerOptions } from '../shared/2-option-address-manager';
 import {  defaults as addressManagerDefaults } from '../shared/2-option-address-manager';
@@ -128,8 +128,8 @@ export const deployGovernor: DeployGovernor = {
 
 export type DeployStepOneAll = WizardAllAPI<SharedStepOneAllOptions>;
 export const deployStepOneAll: DeployStepOneAll = {
-  print: printDeployAllStepOne,
-  defaults: allStepOneDefaults,
+  print: printDeployStepOneAll,
+  defaults: stepOneAllDefaults,
 }
 
 export type DeployAddressManager = WizardAllAPI<SharedAddressManagerOptions>;

@@ -16,11 +16,11 @@ function withDeployDefaults(opts: SharedStepOneAllOptions): Required<SharedStepO
   };
 }
 
-export function printDeployAllStepOne(opts: SharedStepOneAllOptions = defaults): string {
-  return printDeployContract(buildDeployAllStepOne(opts));
+export function printDeployStepOneAll(opts: SharedStepOneAllOptions = defaults): string {
+  return printDeployContract(buildDeployStepOneAll(opts));
 }
 
-export function buildDeployAllStepOne(opts: SharedStepOneAllOptions): DeployContract {
+export function buildDeployStepOneAll(opts: SharedStepOneAllOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   

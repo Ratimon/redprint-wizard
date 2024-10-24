@@ -1,7 +1,7 @@
 // to do : separate to 1- , 2-
 export type {
     KindedGovernanceOptions, GenericGovernanceOptions,
-    KindedAllStepOneOptions, GenericAllStepOneOptions,
+    KindedStepOneAllOptions, GenericStepOneAllOptions,
     KindedAddressManagerOptions, GenericAddressManagerOptions,
     KindedProxyAdminOptions, GenericProxyAdminOptions,
     KindedSuperchainConfigProxyOptions, GenericSuperchainConfigProxyOptions,
@@ -41,8 +41,8 @@ export { sanitizeKind} from './0-kind-total';
 export type { KindGovernance } from './1-kind-governance';
 export {  sanitizeKindGovernance } from './1-kind-governance';
 
-export type { KindAllStepOne } from './1-kind-all';
-export {  sanitizeKindAllStepOne } from './1-kind-all';
+export type { KindStepOneAll } from './1-kind-all';
+export {  sanitizeKindStepOneAll } from './1-kind-all';
 
 export type { KindAddressManager} from './2-kind-address-manager';
 export { sanitizeKindAddressManager} from './2-kind-address-manager';

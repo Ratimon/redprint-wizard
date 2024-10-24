@@ -6,8 +6,8 @@
   import type {  DeployContract } from '$lib/wizard/deploy-scripts';
   import { DeployBuilder, buildDeployGeneric } from '$lib/wizard/deploy-scripts';
 
-  import type { KindedGovernanceOptions, KindGovernance, KindedAllStepOneOptions, KindAllStepOne, OptionsErrorMessages } from '$lib/wizard/shared';
-  import {  sanitizeKindGovernance, sanitizeKindAllStepOne, OptionsError } from '$lib/wizard/shared';
+  import type { KindedGovernanceOptions, KindGovernance, KindedStepOneAllOptions, KindStepOneAll, OptionsErrorMessages } from '$lib/wizard/shared';
+  import {  sanitizeKindGovernance, sanitizeKindStepOneAll, OptionsError } from '$lib/wizard/shared';
 
   import Background from '$lib/ui/background/Background.svelte';
   import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
@@ -204,11 +204,11 @@ L1_RPC_URL=http://localhost:8545
 
 
   export let initialContractStepTab: string | undefined = 'AllStepOne';
-  export let contractStepTab: KindAllStepOne = sanitizeKindAllStepOne(initialContractStepTab);
+  export let contractStepTab: KindStepOneAll = sanitizeKindStepOneAll(initialContractStepTab);
 
-  let allContractsStepOpts: { [k in KindAllStepOne]?: Required<KindedAllStepOneOptions [k]> } = {};
+  let allContractsStepOpts: { [k in KindStepOneAll]?: Required<KindedStepOneAllOptions [k]> } = {};
 
-  let errorsStep: { [k in KindAllStepOne]?: OptionsErrorMessages } = {};
+  let errorsStep: { [k in KindStepOneAll]?: OptionsErrorMessages } = {};
 
   let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
 
@@ -434,7 +434,7 @@ L1_RPC_URL=http://localhost:8545
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
           <OverflowMenu>
-            <button class:selected={contractStepTab === 'AllStepOne'} on:click={() => contractStepTab = 'AllStepOne'}>
+            <button class:selected={contractStepTab === 'StepOneAll'} on:click={() => contractStepTab = 'StepOneAll'}>
               DeployAll
             </button>      
           </OverflowMenu>
@@ -445,8 +445,8 @@ L1_RPC_URL=http://localhost:8545
   <div slot="control" >
        <!-- w-64 -->
       <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
-          <div class:hidden={contractStepTab !== 'AllStepOne'}>
-              <AllControls bind:opts={allContractsStepOpts.AllStepOne} />
+          <div class:hidden={contractStepTab !== 'StepOneAll'}>
+              <AllControls bind:opts={allContractsStepOpts.StepOneAll} />
           </div>
       </div>
   </div>
