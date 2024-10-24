@@ -1,12 +1,12 @@
 import type { Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-governance/option-safe";
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-governance/1-option-safe";
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";
 
-import type { SharedSafeOptions} from '../shared/1-governance/option-safe';
+import type { SharedSafeOptions} from '../shared/1-governance/1-option-safe';
 
 function withDefaults(opts: SharedSafeOptions): Required<SharedSafeOptions> {
   return {

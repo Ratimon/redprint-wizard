@@ -1,8 +1,8 @@
 import type { BaseModifier, Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/option-dispute-game-factory-proxy';
-import type { SharedDisputeGameFactoryProxyOptions } from '../shared/4-opchain/option-dispute-game-factory-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1G-option-dispute-game-factory-proxy';
+import type { SharedDisputeGameFactoryProxyOptions } from '../shared/4-opchain/1G-option-dispute-game-factory-proxy';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";

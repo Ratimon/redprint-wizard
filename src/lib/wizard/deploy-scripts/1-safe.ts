@@ -1,8 +1,8 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedSafeOptions, OpSec} from '../shared/1-governance/option-safe';
-import { withCommonDefaults, defaults } from "../shared/1-governance/option-safe";
+import type { SharedSafeOptions, OpSec} from '../shared/1-governance/1-option-safe';
+import { withCommonDefaults, defaults } from "../shared/1-governance/1-option-safe";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";

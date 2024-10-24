@@ -1,58 +1,58 @@
-import type { SharedSafeOptions} from '../shared/1-governance/option-safe';
+import type { SharedSafeOptions} from '../shared/1-governance/1-option-safe';
 import { buildSafe } from './1-safe';
 
-import type { SharedGovernerOptions} from '../shared/1-governance/option-governor';
+import type { SharedGovernerOptions} from '../shared/1-governance/1-option-governor';
 import { buildGovernor } from './1-governor';
 
-import type { SharedAddressManagerOptions } from '../shared/2-superchain/option-address-manager';
+import type { SharedAddressManagerOptions } from '../shared/2-superchain/1A-option-address-manager';
 import { buildAddressManager } from './2-address-manager';
 
-import type { SharedProxyAdminOptions } from '../shared/2-superchain/option-proxy-admin';
+import type { SharedProxyAdminOptions } from '../shared/2-superchain/1B-option-proxy-admin';
 import { buildProxyAdmin } from './2-proxy-admin'
 
-import type { SharedSuperchainConfigProxyOptions } from '../shared/2-superchain/option-superchain-config-proxy';
+import type { SharedSuperchainConfigProxyOptions } from '../shared/2-superchain/2A-option-superchain-config-proxy';
 import { buildSuperchainConfigProxy } from './2-superchain-config-proxy';
 
-import type { SharedSuperchainConfigOptions } from '../shared/2-superchain/option-superchain-config';
+import type { SharedSuperchainConfigOptions } from '../shared/2-superchain/2B-option-superchain-config';
 import { buildSuperchainConfig } from './2-superchain-config';
 
-import type { SharedProtocolVersionsProxyOptions } from '../shared/2-superchain/option-versions-proxy';
+import type { SharedProtocolVersionsProxyOptions } from '../shared/2-superchain/3A-option-versions-proxy';
 import { buildProtocolVersionsProxy } from './2-versions-proxy';
 
-import type { SharedProtocolVersionsOptions } from '../shared/2-superchain/option-versions';
+import type { SharedProtocolVersionsOptions } from '../shared/2-superchain/3B-option-versions';
 import { buildProtocolVersions } from './2-versions';
 
-import type { SharedOptimismPortalProxyOptions } from '../shared/4-option-optimism-portal-proxy';
+import type { SharedOptimismPortalProxyOptions } from '../shared/4-opchain/1A-option-optimism-portal-proxy';
 import { buildOptimismPortalProxy } from './4-optimism-portal-proxy';
 
-import type { SharedSystemConfigProxyOptions } from '../shared/4-option-system-config-proxy';
+import type { SharedSystemConfigProxyOptions } from '../shared/4-opchain/1B-option-system-config-proxy';
 import { buildSystemConfigProxy } from './4-system-config-proxy';
 
-import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-option-l1-standard-bridge-proxy';
+import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
 import { buildL1StandardBridgeProxy } from './4-l1-standard-bridge-proxy';
 
-import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-option-l1-crossdomain-messenger-proxy';
+import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-opchain/1D-option-l1-crossdomain-messenger-proxy';
 import { buildL1CrossDomainMessengerProxy } from './4-l1-crossdomain-messenger-proxy';
 
-import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../shared/4-option-optimism-mintable-ERC20-factory-proxy';
+import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../shared/4-opchain/1E-option-optimism-mintable-ERC20-factory-proxy';
 import { buildOptimismMintableERC20FactoryProxy } from './4-optimism-mintable-ERC20-factory-proxy';
 
-import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-option-l1-ERC721-bridge-proxy';
+import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
 import { buildL1ERC721BridgeProxy } from './4-l1-ERC721-bridge-proxy';
 
-import type { SharedDisputeGameFactoryProxyOptions } from '../shared/4-option-dispute-game-factory-proxy';
+import type { SharedDisputeGameFactoryProxyOptions } from '../shared/4-opchain/1G-option-dispute-game-factory-proxy';
 import { buildDisputeGameFactoryProxy } from './4-dispute-game-factory-proxy';
 
-import type { SharedL2OutputOracleProxyOptions } from '../shared/4-option-l2-output-oracle-proxy';
+import type { SharedL2OutputOracleProxyOptions } from '../shared/4-opchain/1H-option-l2-output-oracle-proxy';
 import { buildL2OutputOracleProxy } from './4-l2-output-oracle-proxy';
 
-import type { SharedDelayedWETHProxyOptions } from '../shared/4-option-delayed-WETH-proxy';
+import type { SharedDelayedWETHProxyOptions } from '../shared/4-opchain/1I-option-delayed-WETH-proxy';
 import { buildDelayedWETHProxy } from './4-delayed-WETH-proxy';
 
-import type { SharedPermissionedDelayedWETHProxyOptions } from '../shared/4-option-permissioned-delayed-WETH-proxy';
+import type { SharedPermissionedDelayedWETHProxyOptions } from '../shared/4-opchain/1J-option-permissioned-delayed-WETH-proxy';
 import { buildPermissionedDelayedWETHProxy } from './4-permissioned-delayed-WETH-proxy';
 
-import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-option-anchor-state-registry-proxy';
+import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain/1K-option-anchor-state-registry-proxy';
 import { buildAnchorStateRegistryProxy } from './4-anchor-state-registry-proxy';
 
 export interface KindedOptions {

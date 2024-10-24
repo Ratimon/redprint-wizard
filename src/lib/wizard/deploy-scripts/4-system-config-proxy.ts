@@ -1,8 +1,8 @@
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedSystemConfigProxyOptions } from '../shared/4-opchain/option-system-config-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/4-opchain/option-system-config-proxy";
+import type { SharedSystemConfigProxyOptions } from '../shared/4-opchain/1B-option-system-config-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/4-opchain/1B-option-system-config-proxy";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";

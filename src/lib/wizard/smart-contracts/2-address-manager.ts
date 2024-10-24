@@ -1,8 +1,8 @@
 import type { Contract, BaseFunction} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/option-address-manager";
-import type { SharedAddressManagerOptions } from '../shared/2-superchain/option-address-manager';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/1A-option-address-manager";
+import type { SharedAddressManagerOptions } from '../shared/2-superchain/1A-option-address-manager';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";

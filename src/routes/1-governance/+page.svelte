@@ -195,9 +195,9 @@ L1_RPC_URL=http://localhost:8545
   $: addressStepOneContent = md.render(`
   \`\`\`bash
 {
-  "SafeProxyFactory": "0x41C3c259514f88211c4CA2fd805A93F8F9A57504",
-  "SafeSingleton": "0x0401911641c4781D93c41f9aa8094B171368E6a9",
-  "SystemOwnerSafe": "0x31Ce59Df6F742e1C83f00427F09DCAaF0765DF3b"
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>"
 }
   \`\`\`
   `);

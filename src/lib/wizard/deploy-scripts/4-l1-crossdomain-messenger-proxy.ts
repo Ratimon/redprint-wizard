@@ -1,8 +1,8 @@
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-opchain/option-l1-crossdomain-messenger-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/option-l1-crossdomain-messenger-proxy';
+import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-opchain/1D-option-l1-crossdomain-messenger-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1D-option-l1-crossdomain-messenger-proxy';
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";

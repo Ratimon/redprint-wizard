@@ -1,8 +1,8 @@
 import type { BaseModifier, Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/option-l1-ERC721-bridge-proxy';
-import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-opchain/option-l1-ERC721-bridge-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
+import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";

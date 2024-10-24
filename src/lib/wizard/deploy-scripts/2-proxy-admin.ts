@@ -1,8 +1,8 @@
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedProxyAdminOptions, OpSec } from '../shared/2-superchain/option-proxy-admin';
-import { withCommonDefaults, defaults } from "../shared/2-superchain/option-proxy-admin";
+import type { SharedProxyAdminOptions, OpSec } from '../shared/2-superchain/1B-option-proxy-admin';
+import { withCommonDefaults, defaults } from "../shared/2-superchain/1B-option-proxy-admin";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";

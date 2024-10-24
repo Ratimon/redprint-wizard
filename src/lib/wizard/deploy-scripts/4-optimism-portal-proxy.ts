@@ -1,8 +1,8 @@
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedOptimismPortalProxyOptions } from '../shared/4-opchain/option-optimism-portal-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/4-opchain/option-optimism-portal-proxy";
+import type { SharedOptimismPortalProxyOptions } from '../shared/4-opchain/1A-option-optimism-portal-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/4-opchain/1A-option-optimism-portal-proxy";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";

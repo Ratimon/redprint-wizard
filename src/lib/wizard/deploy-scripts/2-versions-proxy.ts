@@ -1,8 +1,8 @@
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedProtocolVersionsProxyOptions } from '../shared/2-superchain/option-versions-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/option-versions-proxy";
+import type { SharedProtocolVersionsProxyOptions } from '../shared/2-superchain/3A-option-versions-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/3A-option-versions-proxy";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";

@@ -1,8 +1,8 @@
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedL2OutputOracleProxyOptions } from '../shared/4-opchain/option-l2-output-oracle-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/option-l2-output-oracle-proxy';
+import type { SharedL2OutputOracleProxyOptions } from '../shared/4-opchain/1H-option-l2-output-oracle-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1H-option-l2-output-oracle-proxy';
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
