@@ -25,6 +25,8 @@
   import type { GaEvent } from '$lib/analytics/analytics.Store';
   import { analyticsStore } from '$lib/analytics/analytics.Store';
 
+  export let isShowingCommand: boolean = true;
+
   export let conventionNumber: string;
   $: codeCommand = `forge script script/${conventionNumber}_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast`
   $: optionCommand = `--mnemonic-derivation-paths \"m/44'/60'/0'/0/0\"`
@@ -105,29 +107,33 @@
 
 <div class="container flex flex-col gap-4 p-8 mx-8">
 
-  <div class="pt-3 pb-4 justify-center">
-    <h2 class="m-4 font-semibold">In your terminal, copy below contracts' codes and run deployment scripts to your prefered network:</h2>
-    <CopyBlock
-      boxClass="p-2 rounded-box font-black text-primary max-w-full mx-auto text-center"
-      class="mb-5"
-      background="bg-primary-content"
-      copiedBackground="bg-success"
-      copiedColor="text-success-content"
-      text={codeCommand}
-    />
-  </div>
+  {#if isShowingCommand}
 
-  <div class="pt-3 pb-4 justify-center">
-    <h2 class="m-4 font-semibold">(Optional), you can specify your derivation path:</h2>
-    <CopyBlock
-      boxClass="p-2 rounded-box font-black text-primary max-w-full mx-auto text-center"
-      class="mb-5"
-      background="bg-primary-content"
-      copiedBackground="bg-success"
-      copiedColor="text-success-content"
-      text={optionCommand}
-    />
-  </div>
+    <div class="pt-3 pb-4 justify-center">
+      <h2 class="m-4 font-semibold">In your terminal, copy below contracts' codes and run deployment scripts to your prefered network:</h2>
+      <CopyBlock
+        boxClass="p-2 rounded-box font-black text-primary max-w-full mx-auto text-center"
+        class="mb-5"
+        background="bg-primary-content"
+        copiedBackground="bg-success"
+        copiedColor="text-success-content"
+        text={codeCommand}
+      />
+    </div>
+
+    <div class="pt-3 pb-4 justify-center">
+      <h2 class="m-4 font-semibold">(Optional), you can specify your derivation path:</h2>
+      <CopyBlock
+        boxClass="p-2 rounded-box font-black text-primary max-w-full mx-auto text-center"
+        class="mb-5"
+        background="bg-primary-content"
+        copiedBackground="bg-success"
+        copiedColor="text-success-content"
+        text={optionCommand}
+      />
+    </div>
+  {/if}
+
 
   <div class="pt-3 pb-4 header flex flex-row justify-between">
 

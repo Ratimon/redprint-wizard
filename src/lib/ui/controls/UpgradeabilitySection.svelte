@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Upgradeable } from '$lib/wizard';
+  import type { Upgradeable } from '$lib/wizard/smart-contracts';
 
   import ToggleRadio from'$lib/ui/inputs/ToggleRadio.svelte';
   import HelpTooltip from './HelpTooltip.svelte';

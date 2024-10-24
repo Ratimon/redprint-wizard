@@ -21,6 +21,7 @@ export {
     deploySuperchainConfig,
     deployProtocolVersionsProxy,
     deployProtocolVersions,
+    deployStepTwoAllSub,
     deployStepTwoAll,
     deployOptimismPortalProxy,
     deploySystemConfigProxy,
@@ -32,5 +33,7 @@ export {
     deployL2OutputOracleProxy,
     deployDelayedWETHProxy,
     deployPermissionedDelayedWETHProxy,
-    deployAnchorStateRegistryProxy
+    deployAnchorStateRegistryProxy,
+    deployStepFourAllSub,
+    deployStepFourAll
 } from './api';

@@ -13,7 +13,8 @@
     KindedSuperchainConfigOptions, KindSuperchainConfig,
     KindedProtocolVersionsProxyOptions, KindProtocolVersionsProxy,
     KindedProtocolVersionsOptions, KindProtocolVersions,
-    KindedAllStepTwoOptions, KindAllStepTwo,
+    KindedStepTwoAllOptions, KindStepTwoAll,
+    KindedStepTwoAllSubOptions, KindStepTwoAllSub,
     OptionsErrorMessages
   } from '$lib/wizard/shared';
 
@@ -24,7 +25,8 @@
     sanitizeKindSuperchainConfig,
     sanitizeKindProtocolVersionsProxy,
     sanitizeKindProtocolVersions,
-    sanitizeKindAllStepTwo,
+    sanitizeKindStepTwoAll,
+    sanitizeKindStepTwoAllSub,
     OptionsError
   } from '$lib/wizard/shared';
 
@@ -32,6 +34,7 @@
   import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
   import WizardDouble from '$lib/ui/components/WizardDouble.svelte';
   import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
+  import AllSubControls from '$lib/ui/controls/2-AllSubControls.svelte';
   import AllControls from '$lib/ui/controls/2-AllControls.svelte';
 
   import AddressManagerControls from '$lib/ui/controls/2-AddressManagerControls.svelte';
@@ -306,12 +309,14 @@
   \`\`\`
   `);
 
-export let initialContractStepTab: string | undefined = 'AllStepTwo';
-export let contractStepTab: KindAllStepTwo = sanitizeKindAllStepTwo(initialContractStepTab);
 
-let allContractsStepOpts: { [k in KindAllStepTwo]?: Required<KindedAllStepTwoOptions [k]> } = {};
 
-let errorsStep: { [k in KindAllStepTwo]?: OptionsErrorMessages } = {};
+export let initialContractStepTab: string | undefined = 'StepTwoAll';
+export let contractStepTab: KindStepTwoAll = sanitizeKindStepTwoAll(initialContractStepTab);
+
+let allContractsStepOpts: { [k in KindStepTwoAll]?: Required<KindedStepTwoAllOptions [k]> } = {};
+
+let errorsStep: { [k in KindStepTwoAll]?: OptionsErrorMessages } = {};
 
 let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
 
@@ -347,6 +352,31 @@ let isArtifactStepAllModalOpen = false;
 }
   \`\`\`
   `);
+
+export let initialContractStepSubTab: string | undefined = 'StepTwoAllSub';
+export let contractStepSubTab: KindStepTwoAllSub = sanitizeKindStepTwoAllSub(initialContractStepSubTab);
+
+let allContractsStepSubOpts: { [k in KindStepTwoAllSub]?: Required<KindedStepTwoAllSubOptions [k]> } = {};
+
+let errorsStepSub: { [k in KindStepTwoAllSub]?: OptionsErrorMessages } = {};
+
+let deployContractStepSub: DeployContract = new DeployBuilder('SetupSuperchainScript');
+
+$: optsStepSub = allContractsStepSubOpts[contractStepSubTab];
+$: {
+if (optsStepSub) {
+        try {
+            deployContractStepSub = buildDeployGeneric(optsStepSub);
+            errorsStepSub[contractStepSubTab] = undefined;
+        } catch (e: unknown) {
+            if (e instanceof OptionsError) {
+              errorsStepSub[contractStepSubTab] = e.messages;
+            } else {
+            throw e;
+            }
+        }
+    }
+}
 
 
 </script>
@@ -764,6 +794,7 @@ let isArtifactStepAllModalOpen = false;
   </div>
 </WizardDouble>
 
+
 <!-- 000_DeployAll.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[7].pathname}>
@@ -773,13 +804,13 @@ let isArtifactStepAllModalOpen = false;
   </section>
 </Background>
 
-<WizardSingle conventionNumber={'000'} initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsStep} deployContract={deployContractStep}>
+<WizardSingle isShowingCommand={true} conventionNumber={'000'} initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsStep} deployContract={deployContractStep}>
 
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
           <OverflowMenu>
-            <button class:selected={contractStepTab === 'AllStepTwo'} on:click={() => contractStepTab = 'AllStepTwo'}>
+            <button class:selected={contractStepTab === 'StepTwoAll'} on:click={() => contractStepTab = 'StepTwoAll'}>
               DeployAll
             </button>      
           </OverflowMenu>
@@ -789,13 +820,38 @@ let isArtifactStepAllModalOpen = false;
 
   <div slot="control" >
        <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
-          <div class:hidden={contractStepTab !== 'AllStepTwo'}>
-              <AllControls bind:opts={allContractsStepOpts.AllStepTwo} />
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(120vh-80px)] overflow-auto">
+          <div class:hidden={contractStepTab !== 'StepTwoAll'}>
+              <AllControls bind:opts={allContractsStepOpts.StepTwoAll} />
           </div>
       </div>
   </div>
-  
+
+</WizardSingle>
+
+<WizardSingle isShowingCommand={false} conventionNumber={'200'} initialContractTab={initialContractStepSubTab} contractTab={contractStepSubTab} opts={optsStepSub} deployContract={deployContractStepSub}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractStepSubTab === 'StepTwoAllSub'} on:click={() => contractStepSubTab = 'StepTwoAllSub'}>
+              SetupSuperchain
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractStepSubTab !== 'StepTwoAllSub'}>
+              <AllSubControls bind:opts={allContractsStepSubOpts.StepTwoAllSub} />
+          </div>
+      </div>
+  </div>
+
   <div slot="artifact" >
 
     <div class="flex flex-col items-center">
@@ -827,7 +883,7 @@ let isArtifactStepAllModalOpen = false;
     </div>
 
   </div>
-
+  
 </WizardSingle>
 
 

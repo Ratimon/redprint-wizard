@@ -4,15 +4,15 @@
     import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedStepTwoAllOptions } from '$lib/wizard/shared';
+    import type { KindedStepFourAllSubOptions } from '$lib/wizard/shared';
   
-    import { deployStepTwoAll } from '$lib/wizard/deploy-scripts';
+    import { deployStepFourAllSub } from '$lib/wizard/deploy-scripts';
   
-    const deployStepTwoAllDefaults = deployStepTwoAll.defaults;
+    const deployStepFourAllSubDefaults = deployStepFourAllSub.defaults;
   
-    export let opts: Required<KindedStepTwoAllOptions['StepTwoAll'] > = {
-      kind: 'StepTwoAll',
-      ...deployStepTwoAllDefaults,
+    export let opts: Required<KindedStepFourAllSubOptions['StepFourAllSub'] > = {
+      kind: 'StepFourAllSub',
+      ...deployStepFourAllSubDefaults,
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
     
@@ -34,28 +34,6 @@
 <InfoSection bind:info={opts.deployInfo} />
 
 <section class="controls-section">
-  <h1>Step 1</h1>
-  <div class="checkbox-group">
-    <span>Owner </span>
-    <label class:checked={opts.governance === 'safe-multisig'}>
-      <input type="radio" bind:group={opts.governance} value='safe-multisig'>
-      safe-multisig
-      <HelpTooltip>
-        Choose Safe MultiSig Option
-      </HelpTooltip>
-    </label>
-
-    <label class:checked={opts.governance === 'governor'}>
-      <input type="radio" bind:group={opts.governance} value='governor'>
-      governor
-      <HelpTooltip>
-          Choose Governor Option
-      </HelpTooltip>
-    </label>
-  </div>
-</section>
-
-<section class="controls-section">
     <h1>Step 2</h1>
     <span>AddressManager</span>
     <span>ProxyAdmin</span>
@@ -63,4 +41,22 @@
     <span>SuperchainConfig</span>
     <span>ProtocolVersionsProxy</span>
     <span>ProtocolVersions</span>
+</section>
+
+<section class="controls-section">
+    <h1>Step 3</h1>
+</section>
+
+<section class="controls-section">
+    <h1>Step 4</h1>
+    <span>SystemConfigProxy</span>
+    <span>L1StandardBridgeProxy</span>
+    <span>L1CrossDomainMessengerProxy</span>
+    <span>OptimismMintableERC20FactoryProxy</span>
+    <span>L1ERC721BridgeProxy</span>
+    <span>DisputeGameFactoryProxy</span>
+    <span>L2OutputOracleProxy</span>
+    <span>DelayedWETHProxy</span>
+    <span>PermissionedDelayedWETHProxy</span>
+    <span>AnchorStateRegistryProxy</span>
 </section>

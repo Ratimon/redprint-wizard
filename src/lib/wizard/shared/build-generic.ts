@@ -9,6 +9,7 @@ import type { SharedSuperchainConfigProxyOptions } from './2-option-superchain-c
 import type { SharedSuperchainConfigOptions } from './2-option-superchain-config';
 import type { SharedProtocolVersionsProxyOptions } from './2-option-versions-proxy';
 import type { SharedProtocolVersionsOptions } from './2-option-versions';
+import type { SharedStepTwoAllSubOptions } from './2-option-all-sub';
 import type { SharedStepTwoAllOptions} from './2-option-all';
 
 import type { SharedOptimismPortalProxyOptions} from './4-option-optimism-portal-proxy';
@@ -22,6 +23,8 @@ import type { SharedL2OutputOracleProxyOptions } from './4-option-l2-output-orac
 import type { SharedDelayedWETHProxyOptions } from './4-option-delayed-WETH-proxy';
 import type { SharedPermissionedDelayedWETHProxyOptions } from './4-option-permissioned-delayed-WETH-proxy';
 import type { SharedAnchorStateRegistryProxyOptions } from './4-option-anchor-state-registry-proxy';
+import type { SharedStepFourAllSubOptions } from './4-option-all-sub';
+import type { SharedStepFourAllOptions } from './4-option-all'
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
@@ -33,7 +36,9 @@ export interface KindedOptions {
   SuperchainConfig : { kind: 'SuperchainConfig' } & SharedSuperchainConfigOptions;
   ProtocolVersionsProxy : { kind: 'ProtocolVersionsProxy' } & SharedProtocolVersionsProxyOptions;
   ProtocolVersions : { kind: 'ProtocolVersions' } & SharedProtocolVersionsOptions;
-  AllStepTwo: { kind: 'AllStepTwo' } & SharedStepTwoAllOptions;
+  StepTwoAllSub: { kind: 'StepTwoAllSub' } & SharedStepTwoAllSubOptions;
+  StepTwoAll: { kind: 'StepTwoAll' } & SharedStepTwoAllOptions;
+
   OptimismPortalProxy: { kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
   SystemConfigProxy: { kind: 'SystemConfigProxy' } & SharedSystemConfigProxyOptions;
   L1StandardBridgeProxy: { kind: 'L1StandardBridgeProxy' } & SharedL1StandardBridgeProxyOptions;
@@ -45,6 +50,8 @@ export interface KindedOptions {
   DelayedWETHProxy: { kind: 'DelayedWETHProxy' } & SharedDelayedWETHProxyOptions;
   PermissionedDelayedWETHProxy: { kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
   AnchorStateRegistryProxy: { kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
+  StepFourAllSub: { kind: 'StepFourAllSub' } & SharedStepFourAllSubOptions;
+  StepFourAll: { kind: 'StepFourAll' } & SharedStepFourAllOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -98,11 +105,15 @@ export interface KindedProtocolVersionsOptions {
 }
 export type GenericProtocolVersionsOptions = KindedProtocolVersionsOptions[keyof KindedProtocolVersionsOptions];
 
-
-export interface KindedAllStepTwoOptions {
-  AllStepTwo: { kind: 'AllStepTwo' } & SharedStepTwoAllOptions;
+export interface KindedStepTwoAllSubOptions {
+  StepTwoAllSub: { kind: 'StepTwoAllSub' } & SharedStepTwoAllSubOptions;
 }
-export type GenericAllStepTwoOptions = KindedAllStepTwoOptions[keyof KindedAllStepTwoOptions];
+export type GenericStepTwoAllSubOptions = KindedStepTwoAllSubOptions[keyof KindedStepTwoAllSubOptions];
+
+export interface KindedStepTwoAllOptions {
+  StepTwoAll: { kind: 'StepTwoAll' } & SharedStepTwoAllOptions;
+}
+export type GenericStepTwoAllOptions = KindedStepTwoAllOptions[keyof KindedStepTwoAllOptions];
 
 
 export interface KindedOptimismPortalProxyOptions {
@@ -169,3 +180,14 @@ export interface KindedAnchorStateRegistryProxyOptions {
   AnchorStateRegistryProxy: { kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
 }
 export type GenericAnchorStateRegistryProxyOptions = KindedAnchorStateRegistryProxyOptions[keyof KindedAnchorStateRegistryProxyOptions];
+
+
+export interface KindedStepFourAllSubOptions {
+  StepFourAllSub: { kind: 'StepFourAllSub' } & SharedStepFourAllSubOptions;
+}
+export type GenericStepFourAllSubOptions = KindedStepFourAllSubOptions[keyof KindedStepFourAllSubOptions];
+
+export interface KindedStepFourAllOptions {
+  StepFourAll: { kind: 'StepFourAll' } & SharedStepFourAllOptions;
+}
+export type GenericStepFourAllOptions = KindedStepFourAllOptions[keyof KindedStepFourAllOptions];

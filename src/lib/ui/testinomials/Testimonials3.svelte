@@ -36,7 +36,7 @@
       <div class="flex flex-col text-center w-full mb-20">
         <div class="mb-8">
           <h2 class="sm:text-5xl text-4xl font-extrabold text-base-content">
-            39 developers are already optimismtic !
+            48 developers are already optimismtic !
           </h2>
         </div>
         <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-base-content/80">

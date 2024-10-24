@@ -13,7 +13,8 @@ export type Action =
                     'copy-contract-SuperchainConfig'| 'copy-script-SuperchainConfig' | 'download-contract-SuperchainConfig' | 'download-script-SuperchainConfig' |
                     'copy-contract-ProtocolVersionsProxy'| 'copy-script-ProtocolVersionsProxy' | 'download-contract-ProtocolVersionsProxy' | 'download-script-ProtocolVersionsProxy' |
                     'copy-contract-ProtocolVersions'| 'copy-script-ProtocolVersions' | 'download-contract-ProtocolVersions' | 'download-script-ProtocolVersions' |
-                    'copy-contract-AllStepTwo'| 'copy-script-AllStepTwo' | 'download-contract-AllStepTwo' | 'download-script-AllStepTwo' |
+                    'copy-contract-StepTwoAllSub'| 'copy-script-StepTwoAllSub' | 'download-contract-StepTwoAllSub' | 'download-script-StepTwoAllSub' |
+                    'copy-contract-StepTwoAll'| 'copy-script-StepTwoAll' | 'download-contract-StepTwoAll' | 'download-script-StepTwoAll' |
 
                     'copy-contract-OptimismPortalProxy'| 'copy-script-OptimismPortalProxy' | 'download-contract-OptimismPortalProxy' | 'download-script-OptimismPortalProxy' |
                     'copy-contract-SystemConfigProxy'| 'copy-script-SystemConfigProxy' | 'download-contract-SystemConfigProxy' | 'download-script-SystemConfigProxy' |
@@ -25,7 +26,9 @@ export type Action =
                     'copy-contract-L2OutputOracleProxy'| 'copy-script-L2OutputOracleProxy' | 'download-contract-L2OutputOracleProxy' | 'download-script-L2OutputOracleProxy' |
                     'copy-contract-DelayedWETHProxy'| 'copy-script-DelayedWETHProxy' | 'download-contract-DelayedWETHProxy' | 'download-script-DelayedWETHProxy' |
                     'copy-contract-PermissionedDelayedWETHProxy'| 'copy-script-PermissionedDelayedWETHProxy' | 'download-contract-PermissionedDelayedWETHProxy' | 'download-script-PermissionedDelayedWETHProxy' |
-                    'copy-contract-AnchorStateRegistryProxy'| 'copy-script-AnchorStateRegistryProxy' | 'download-contract-AnchorStateRegistryProxy' | 'download-script-AnchorStateRegistryProxy'
+                    'copy-contract-AnchorStateRegistryProxy'| 'copy-script-AnchorStateRegistryProxy' | 'download-contract-AnchorStateRegistryProxy' | 'download-script-AnchorStateRegistryProxy' |
+                    'copy-contract-StepFourAllSub'| 'copy-script-StepFourAllSub' | 'download-contract-StepFourAllSub' | 'download-script-StepFourAllSub' |
+                    'copy-contract-StepFourAll'| 'copy-script-StepFourAll' | 'download-contract-StepFourAll' | 'download-script-StepFourAll'
                     
 export type GaEvent = {
     id: string;

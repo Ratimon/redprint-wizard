@@ -4,15 +4,15 @@
     import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedStepTwoAllOptions } from '$lib/wizard/shared';
+    import type { KindedStepFourAllOptions } from '$lib/wizard/shared';
   
-    import { deployStepTwoAll } from '$lib/wizard/deploy-scripts';
+    import { deployStepFourAll } from '$lib/wizard/deploy-scripts';
   
-    const deployStepTwoAllDefaults = deployStepTwoAll.defaults;
+    const deployStepFourAllDefaults = deployStepFourAll.defaults;
   
-    export let opts: Required<KindedStepTwoAllOptions['StepTwoAll'] > = {
-      kind: 'StepTwoAll',
-      ...deployStepTwoAllDefaults,
+    export let opts: Required<KindedStepFourAllOptions['StepFourAll'] > = {
+      kind: 'StepFourAll',
+      ...deployStepFourAllDefaults,
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
     
@@ -63,4 +63,19 @@
     <span>SuperchainConfig</span>
     <span>ProtocolVersionsProxy</span>
     <span>ProtocolVersions</span>
+</section>
+
+<section class="controls-section">
+    <h1>Step 4</h1>
+    <span>OptimismPortalProxy</span>
+    <span>SystemConfigProxy</span>
+    <span>L1StandardBridgeProxy</span>
+    <span>L1CrossDomainMessengerProxy</span>
+    <span>OptimismMintableERC20FactoryProxy</span>
+    <span>L1ERC721BridgeProxy</span>
+    <span>DisputeGameFactoryProxy</span>
+    <span>L2OutputOracleProxy</span>
+    <span>DelayedWETHProxy</span>
+    <span>PermissionedDelayedWETHProxy</span>
+    <span>AnchorStateRegistryProxy</span>
 </section>

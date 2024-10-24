@@ -25,8 +25,11 @@ import { buildDeployProtocolVersionsProxy } from './2-versions-proxy';
 import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions';
 import { buildDeployProtocolVersions } from './2-versions';
 
+import type { SharedStepTwoAllSubOptions } from '../shared/2-option-all-sub';
+import { buildDeployStepTwoAllSub } from './2-all-sub';
+
 import type { SharedStepTwoAllOptions} from '../shared/2-option-all';
-import { buildDeployAllStepTwo } from './2-all';
+import { buildDeployStepTwoAll } from './2-all';
 
 import type { SharedOptimismPortalProxyOptions} from '../shared/4-option-optimism-portal-proxy';
 import { buildDeployOptimismPortalProxy } from './4-optimism-portal-proxy';
@@ -61,6 +64,12 @@ import { buildDeployPermissionedDelayedWETHProxy } from './4-permissioned-delaye
 import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-option-anchor-state-registry-proxy';
 import { buildDeployAnchorStateRegistryProxy } from './4-anchor-state-registry-proxy';
 
+import type { SharedStepFourAllSubOptions } from '../shared/4-option-all-sub';
+import { buildDeployStepFourAllSub } from './4-all-sub';
+
+import type { SharedStepFourAllOptions } from '../shared/4-option-all';
+import { buildDeployStepFourAll } from './4-all';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -71,7 +80,8 @@ export interface DeployKindedOptions {
   SuperchainConfig: {kind: 'SuperchainConfig'} & SharedSuperchainConfigOptions;
   ProtocolVersionsProxy : {kind: 'ProtocolVersionsProxy'} & SharedProtocolVersionsProxyOptions;
   ProtocolVersions : {kind: 'ProtocolVersions'} & SharedProtocolVersionsOptions;
-  AllStepTwo: {kind: 'AllStepTwo'} & SharedStepTwoAllOptions;
+  StepTwoAllSub: {kind: 'StepTwoAllSub'} & SharedStepTwoAllSubOptions;
+  StepTwoAll: {kind: 'StepTwoAll'} & SharedStepTwoAllOptions;
   OptimismPortalProxy: {kind: 'OptimismPortalProxy'} & SharedOptimismPortalProxyOptions;
   SystemConfigProxy : {kind: 'SystemConfigProxy'} & SharedSystemConfigProxyOptions;
   L1StandardBridgeProxy: {kind: 'L1StandardBridgeProxy'} & SharedL1StandardBridgeProxyOptions;
@@ -83,6 +93,8 @@ export interface DeployKindedOptions {
   DelayedWETHProxy: {kind: 'DelayedWETHProxy'} & SharedDelayedWETHProxyOptions;
   PermissionedDelayedWETHProxy: {kind: 'PermissionedDelayedWETHProxy'} & SharedPermissionedDelayedWETHProxyOptions;
   AnchorStateRegistryProxy: {kind: 'AnchorStateRegistryProxy'} & SharedAnchorStateRegistryProxyOptions;
+  StepFourAllSub: {kind: 'StepFourAllSub'} & SharedStepFourAllSubOptions;
+  StepFourAll: {kind: 'StepFourAll'} & SharedStepFourAllOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -117,8 +129,11 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
     case 'ProtocolVersions':
       return  buildDeployProtocolVersions(opts);
 
-    case 'AllStepTwo':
-      return  buildDeployAllStepTwo(opts);
+    case 'StepTwoAllSub':
+      return  buildDeployStepTwoAllSub(opts);
+
+    case 'StepTwoAll':
+      return  buildDeployStepTwoAll(opts);
    
     case 'OptimismPortalProxy':
       return  buildDeployOptimismPortalProxy(opts);
@@ -152,6 +167,12 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'AnchorStateRegistryProxy':
       return  buildDeployAnchorStateRegistryProxy(opts);
+
+    case 'StepFourAllSub':
+      return  buildDeployStepFourAllSub(opts);
+
+    case 'StepFourAll':
+      return  buildDeployStepFourAll(opts);
 
     default:
       const _: never = opts;

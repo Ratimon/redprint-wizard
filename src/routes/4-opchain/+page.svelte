@@ -18,6 +18,8 @@
         KindedDelayedWETHProxyOptions, KindDelayedWETHProxy,
         KindedPermissionedDelayedWETHProxyOptions, KindPermissionedDelayedWETHProxy,
         KindedAnchorStateRegistryProxyOptions, KindAnchorStateRegistryProxy,
+        KindedStepFourAllOptions, KindStepFourAll,
+        KindedStepFourAllSubOptions, KindStepFourAllSub,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
@@ -33,6 +35,8 @@
         sanitizeKindDelayedWETHProxy,
         sanitizeKindPermissionedDelayedWETHProxy,
         sanitizeKindAnchorStateRegistryProxy,
+        sanitizeKindStepFourAll,
+        sanitizeKindStepFourAllSub,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -40,7 +44,6 @@
     import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
     import WizardDouble from '$lib/ui/components/WizardDouble.svelte';
     import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
-    import AllControls from '$lib/ui/controls/2-AllControls.svelte';
 
     import OptimismPortalProxyControls from '$lib/ui/controls/4-OptimismPortalProxyControls.svelte';
     import SystemConfigProxyControls from '$lib/ui/controls/4-SystemConfigProxyControls.svelte';
@@ -53,6 +56,10 @@
     import DelayedWETHProxyControls from '$lib/ui/controls/4-DelayedWETHProxyControls.svelte';
     import PermissionedDelayedWETHProxyControls from '$lib/ui/controls/4-PermissionedDelayedWETHProxyControls.svelte';
     import AnchorStateRegistryProxyControls from '$lib/ui/controls/4-AnchorStateRegistryProxyControls.svelte';
+
+    import AllSubControls from '$lib/ui/controls/4-AllSubControls.svelte';
+    import AllControls from '$lib/ui/controls/4-AllControls.svelte';
+
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -618,6 +625,85 @@
 }
   \`\`\`
   `);
+
+export let initialContractStepTab: string | undefined = 'StepFourAll';
+export let contractStepTab: KindStepFourAll = sanitizeKindStepFourAll(initialContractStepTab);
+
+let allContractsStepOpts: { [k in KindStepFourAll]?: Required<KindedStepFourAllOptions [k]> } = {};
+
+let errorsStep: { [k in KindStepFourAll]?: OptionsErrorMessages } = {};
+
+let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
+
+$: optsStep = allContractsStepOpts[contractStepTab];
+$: {
+if (optsStep) {
+        try {
+            deployContractStep = buildDeployGeneric(optsStep);
+            errorsStep[contractStepTab] = undefined;
+        } catch (e: unknown) {
+            if (e instanceof OptionsError) {
+              errorsStep[contractStepTab] = e.messages;
+            } else {
+            throw e;
+            }
+        }
+    }
+}
+
+let isArtifactStepAllModalOpen = false;
+  $: addressStepAllContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>"
+}
+  \`\`\`
+  `);
+
+export let initialContractStepSubTab: string | undefined = 'StepFourAllSub';
+export let contractStepSubTab: KindStepFourAllSub = sanitizeKindStepFourAllSub(initialContractStepSubTab);
+
+let allContractsStepSubOpts: { [k in KindStepFourAllSub]?: Required<KindedStepFourAllSubOptions [k]> } = {};
+
+let errorsStepSub: { [k in KindStepFourAllSub]?: OptionsErrorMessages } = {};
+
+let deployContractStepSub: DeployContract = new DeployBuilder('SetupSuperchainScript');
+
+$: optsStepSub = allContractsStepSubOpts[contractStepSubTab];
+$: {
+if (optsStepSub) {
+        try {
+            deployContractStepSub = buildDeployGeneric(optsStepSub);
+            errorsStepSub[contractStepSubTab] = undefined;
+        } catch (e: unknown) {
+            if (e instanceof OptionsError) {
+              errorsStepSub[contractStepSubTab] = e.messages;
+            } else {
+            throw e;
+            }
+        }
+    }
+}
+
   
   
 </script>
@@ -1327,6 +1413,98 @@
   </div>
 </WizardDouble>
 
+<!-- 000_DeployAll.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[5].pathname}>
+    <div class="divider divider-primary">
+      <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
+    </div>
+  </section>
+</Background>
+
+<WizardSingle isShowingCommand={true} conventionNumber={'000'} initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsStep} deployContract={deployContractStep}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractStepTab === 'StepFourAll'} on:click={() => contractStepTab = 'StepFourAll'}>
+              DeployAll
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractStepTab !== 'StepFourAll'}>
+              <AllControls bind:opts={allContractsStepOpts.StepFourAll} />
+          </div>
+      </div>
+  </div>
+  
+
+
+</WizardSingle>
+
+<WizardSingle isShowingCommand={false} conventionNumber={'400'} initialContractTab={initialContractStepSubTab} contractTab={contractStepSubTab} opts={optsStepSub} deployContract={deployContractStepSub}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractStepSubTab === 'StepFourAllSub'} on:click={() => contractStepSubTab = 'StepFourAllSub'}>
+              SetupOpchain
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractStepSubTab !== 'StepFourAllSub'}>
+              <AllSubControls bind:opts={allContractsStepSubOpts.StepFourAllSub} />
+          </div>
+      </div>
+  </div>
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepAllModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepAllModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepAllModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepAllContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+</WizardSingle>
 
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[2].pathname}>

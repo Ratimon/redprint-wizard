@@ -1,26 +1,26 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type {  SharedStepTwoAllOptions, Governance } from '../shared/2-option-all';
-import {  defaults } from '../shared/2-option-all';
+import type {  SharedStepFourAllOptions, Governance } from '../shared/4-option-all';
+import {  defaults } from '../shared/4-option-all';
 
 import { defaults as infoDefaults } from "./set-info";
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";
 
-function withDeployDefaults(opts: SharedStepTwoAllOptions): Required<SharedStepTwoAllOptions> {
+function withDeployDefaults(opts: SharedStepFourAllOptions): Required<SharedStepFourAllOptions> {
   return {
     ...opts,
     deployInfo: infoDefaults
   };
 }
 
-export function printDeployStepTwoAll(opts: SharedStepTwoAllOptions = defaults): string {
-  return printDeployContract(buildDeployStepTwoAll(opts));
+export function printDeployStepFourAll(opts: SharedStepFourAllOptions = defaults): string {
+  return printDeployContract(buildDeployStepFourAll(opts));
 }
 
-export function buildDeployStepTwoAll(opts: SharedStepTwoAllOptions): DeployContract {
+export function buildDeployStepFourAll(opts: SharedStepFourAllOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -29,6 +29,7 @@ export function buildDeployStepTwoAll(opts: SharedStepTwoAllOptions): DeployCont
   
   setGovernanceDeployment(c, fn, allOpts.governance);
   setSuperchainDeployment(c, fn);
+  setOpDeployment(c, fn);
 
   setInfo(c, allOpts.deployInfo);
 
@@ -80,16 +81,30 @@ function setGovernanceDeployment(c: DeployBuilder, fn: BaseFunction, gov: Govern
 
 function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
 
-    const SetupSuperchainScript = {
-        name: 'SetupSuperchainScript',
-        path: '@script/200_SetupSuperchain.s.sol',
-    };
-    c.addModule(SetupSuperchainScript);
+  const SetupSuperchainScript = {
+      name: 'SetupSuperchainScript',
+      path: '@script/200_SetupSuperchain.s.sol',
+  };
+  c.addModule(SetupSuperchainScript);
 
 
-    c.addFunctionCode(`SetupSuperchainScript superchainSetups = new SetupSuperchainScript();
+  c.addFunctionCode(`SetupSuperchainScript superchainSetups = new SetupSuperchainScript();
         superchainSetups.run();`, fn);
 
+}
+
+
+function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
+
+  const SetupOpchainScript = {
+      name: 'SetupOpchainScript',
+      path: '@script/400_SetupOpchain.s.sol',
+  };
+  c.addModule(SetupOpchainScript);
+
+
+  c.addFunctionCode(`SetupOpchainScript opchainSetups = new SetupOpchainScript();
+        opchainSetups.run();`, fn);
 }
 
 function getDeployFunction() {

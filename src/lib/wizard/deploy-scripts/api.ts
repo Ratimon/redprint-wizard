@@ -36,9 +36,13 @@ import type { SharedProtocolVersionsOptions } from '../shared/2-option-versions'
 import {  defaults as protocolVersionsDefaults } from '../shared/2-option-versions';
 import { printDeployProtocolVersions } from './2-versions';
 
+import type {  SharedStepTwoAllSubOptions } from '../shared/2-option-all-sub';
+import {  defaults as stepTwoAllSubDefaults } from '../shared/2-option-all-sub';
+import { printDeployStepTwoAllSub } from './2-all-sub';
+
 import type {  SharedStepTwoAllOptions } from '../shared/2-option-all';
-import {  defaults as allStepTwoDefaults } from '../shared/2-option-all';
-import { printDeployAllStepTwo } from './2-all';
+import {  defaults as stepTwoAllDefaults } from '../shared/2-option-all';
+import { printDeployStepTwoAll } from './2-all';
 
 import type {  SharedOptimismPortalProxyOptions } from '../shared/4-option-optimism-portal-proxy';
 import {  defaults as optimismPortalProxyDefaults } from '../shared/4-option-optimism-portal-proxy';
@@ -83,6 +87,14 @@ import { printDeployPermissionedDelayedWETHProxy } from './4-permissioned-delaye
 import type {  SharedAnchorStateRegistryProxyOptions } from '../shared/4-option-anchor-state-registry-proxy';
 import {  defaults as anchorStateRegistryProxyDefaults } from '../shared/4-option-anchor-state-registry-proxy';
 import { printDeployAnchorStateRegistryProxy } from './4-anchor-state-registry-proxy';
+
+import type {  SharedStepFourAllSubOptions } from '../shared/4-option-all-sub';
+import {  defaults as stepFourAllSubDefaults } from '../shared/4-option-all-sub';
+import { printDeployStepFourAllSub } from './4-all-sub';
+
+import type {  SharedStepFourAllOptions } from '../shared/4-option-all';
+import {  defaults as stepFourAllDefaults } from '../shared/4-option-all';
+import { printDeployStepFourAll } from './4-all';
 
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -156,10 +168,16 @@ export const deployProtocolVersions: DeployProtocolVersions = {
   defaults: protocolVersionsDefaults,
 }
 
+export type DeployStepTwoAllSub = WizardAllAPI<SharedStepTwoAllSubOptions>;
+export const deployStepTwoAllSub: DeployStepTwoAllSub = {
+  print: printDeployStepTwoAllSub,
+  defaults: stepTwoAllSubDefaults,
+}
+
 export type DeployStepTwoAll = WizardAllAPI<SharedStepTwoAllOptions>;
 export const deployStepTwoAll: DeployStepTwoAll = {
-  print: printDeployAllStepTwo,
-  defaults: allStepTwoDefaults,
+  print: printDeployStepTwoAll,
+  defaults: stepTwoAllDefaults,
 }
 
 export type DeployOptimismPortalProxy = WizardAllAPI<SharedOptimismPortalProxyOptions>;
@@ -226,4 +244,16 @@ export type DeployAnchorStateRegistryProxy = WizardAllAPI<SharedAnchorStateRegis
 export const deployAnchorStateRegistryProxy: DeployAnchorStateRegistryProxy = {
   print: printDeployAnchorStateRegistryProxy,
   defaults: anchorStateRegistryProxyDefaults,
+}
+
+export type DeployStepFourAllSub = WizardAllAPI<SharedStepFourAllSubOptions>;
+export const deployStepFourAllSub: DeployStepFourAllSub = {
+  print: printDeployStepFourAllSub,
+  defaults: stepFourAllSubDefaults,
+}
+
+export type DeployStepFourAll = WizardAllAPI<SharedStepFourAllOptions>;
+export const deployStepFourAll: DeployStepFourAll = {
+  print: printDeployStepFourAll,
+  defaults: stepFourAllDefaults,
 }

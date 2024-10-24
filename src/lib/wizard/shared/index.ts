@@ -8,7 +8,9 @@ export type {
     KindedSuperchainConfigOptions, GenericSuperchainConfigOptions,
     KindedProtocolVersionsProxyOptions, GenericProtocolVersionsProxyOptions,
     KindedProtocolVersionsOptions, GenericProtocolVersionsOptions,
-    KindedAllStepTwoOptions, GenericAllStepTwoOptions,
+    KindedStepTwoAllSubOptions, GenericStepTwoAllSubOptions,
+    KindedStepTwoAllOptions, GenericStepTwoAllOptions,
+
     KindedOptimismPortalProxyOptions, GenericOptimismPortalProxyOptions,
     KindedSystemConfigProxyOptions, GenericSystemConfigProxyOptions,
     KindedL1StandardBridgeProxyOptions, GenericL1StandardBridgeProxyOptions,
@@ -20,6 +22,9 @@ export type {
     KindedDelayedWETHProxyOptions, GenericDelayedWETHProxyOptions,
     KindedPermissionedDelayedWETHProxyOptions, GenericPermissionedDelayedWETHProxyOptions,
     KindedAnchorStateRegistryProxyOptions, GenericAnchorStateRegistryProxyOptions,
+
+    KindedStepFourAllSubOptions, GenericStepFourAllSubOptions,
+    KindedStepFourAllOptions, GenericStepFourAllOptions,
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -57,8 +62,11 @@ export { sanitizeKindProtocolVersionsProxy} from './2-kind-versions-proxy';
 export type { KindProtocolVersions} from './2-kind-versions';
 export { sanitizeKindProtocolVersions} from './2-kind-versions';
 
-export type { KindAllStepTwo } from './2-kind-all';
-export {  sanitizeKindAllStepTwo } from './2-kind-all';
+export type { KindStepTwoAllSub } from './2-kind-all-sub';
+export {  sanitizeKindStepTwoAllSub } from './2-kind-all-sub';
+
+export type { KindStepTwoAll } from './2-kind-all';
+export {  sanitizeKindStepTwoAll } from './2-kind-all';
 
 export type { KindOptimismPortalProxy } from './4-kind-optimism-portal-proxy';
 export {  sanitizeKindOptimismPortalProxy } from './4-kind-optimism-portal-proxy';
@@ -92,3 +100,9 @@ export {  sanitizeKindPermissionedDelayedWETHProxy } from './4-kind-permissioned
 
 export type { KindAnchorStateRegistryProxy } from './4-kind-anchor-state-registry-proxy';
 export {  sanitizeKindAnchorStateRegistryProxy } from './4-kind-anchor-state-registry-proxy';
+
+export type { KindStepFourAllSub } from './4-kind-all-sub';
+export {  sanitizeKindStepFourAllSub } from './4-kind-all-sub';
+
+export type { KindStepFourAll } from './4-kind-all';
+export {  sanitizeKindStepFourAll } from './4-kind-all';
