@@ -48,7 +48,9 @@ export function buildDeployGoverner(opts: SharedGovernerOptions): DeployContract
       c.addModule(MyGovernor);
     }
 
-    c.addFunctionCode(`vm.stopBroadcast();`, fn);
+    c.addFunctionCode(`vm.stopBroadcast();
+        // DONT forget to save the address of the governace layer
+        deployerProcedue.save("SystemOwnerSafe", address(governer));`, fn);
 
     setInfo(c, allOpts.deployInfo);
   
