@@ -1,26 +1,26 @@
-import type { DeployContract} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
+import type { SharedDisputeGameFactoryProxyOptions } from '../../shared/4-opchain/1G-option-dispute-game-factory-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1G-option-dispute-game-factory-proxy';
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedL1ERC721BridgeProxyOptions): Required<SharedL1ERC721BridgeProxyOptions> {
+function withDeployDefaults(opts: SharedDisputeGameFactoryProxyOptions): Required<SharedDisputeGameFactoryProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployL1ERC721BridgeProxy(opts: SharedL1ERC721BridgeProxyOptions = commonDefaults): string {
-  return printDeployContract(buildDeployL1ERC721BridgeProxy(opts));
+export function printDeployDisputeGameFactoryProxy(opts: SharedDisputeGameFactoryProxyOptions = commonDefaults): string {
+  return printDeployContract(buildDeployDisputeGameFactoryProxy(opts));
 }
 
-export function buildDeployL1ERC721BridgeProxy(opts: SharedL1ERC721BridgeProxyOptions): DeployContract {
+export function buildDeployDisputeGameFactoryProxy(opts: SharedDisputeGameFactoryProxyOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -58,7 +58,7 @@ function addBase(c: DeployBuilder) {
   // deploy
   c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");
 
-        return Proxy(deployer.deploy_ERC1967Proxy("L1ERC721BridgeProxy", proxyOwner));`, functions.deploy);
+        return Proxy(deployer.deploy_ERC1967Proxy("DisputeGameFactoryProxy", proxyOwner));`, functions.deploy);
 }
 
 const functions = defineFunctions({

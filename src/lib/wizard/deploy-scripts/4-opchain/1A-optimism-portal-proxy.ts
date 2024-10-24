@@ -1,26 +1,26 @@
-import type { DeployContract} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type { SharedL2OutputOracleProxyOptions } from '../shared/4-opchain/1H-option-l2-output-oracle-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1H-option-l2-output-oracle-proxy';
+import type { SharedOptimismPortalProxyOptions } from '../../shared/4-opchain/1A-option-optimism-portal-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/4-opchain/1A-option-optimism-portal-proxy";
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedL2OutputOracleProxyOptions): Required<SharedL2OutputOracleProxyOptions> {
+function withDeployDefaults(opts: SharedOptimismPortalProxyOptions): Required<SharedOptimismPortalProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployL2OutputOracleProxy(opts: SharedL2OutputOracleProxyOptions = commonDefaults): string {
-  return printDeployContract(buildDeployL2OutputOracleProxy(opts));
+export function printDeployOptimismPortalProxy(opts: SharedOptimismPortalProxyOptions = commonDefaults): string {
+  return printDeployContract(buildDeployOptimismPortalProxy(opts));
 }
 
-export function buildDeployL2OutputOracleProxy(opts: SharedL2OutputOracleProxyOptions): DeployContract {
+export function buildDeployOptimismPortalProxy(opts: SharedOptimismPortalProxyOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -58,7 +58,7 @@ function addBase(c: DeployBuilder) {
   // deploy
   c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");
 
-        return Proxy(deployer.deploy_ERC1967Proxy("L2OutputOracleProxy", proxyOwner));`, functions.deploy);
+        return Proxy(deployer.deploy_ERC1967Proxy("OptimismPortalProxy", proxyOwner));`, functions.deploy);
 }
 
 const functions = defineFunctions({

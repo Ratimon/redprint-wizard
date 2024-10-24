@@ -1,13 +1,13 @@
-import type { DeployContract, BaseFunction} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract, BaseFunction} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type {  SharedStepFourAllSubOptions } from '../shared/4-opchain/option-all-sub';
-import {  defaults } from '../shared/4-opchain/option-all-sub';
+import type {  SharedStepFourAllSubOptions } from '../../shared/4-opchain/option-all-sub';
+import {  defaults } from '../../shared/4-opchain/option-all-sub';
 
-import { defaults as infoDefaults } from "./set-info";
+import { defaults as infoDefaults } from "../set-info";
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
 function withDeployDefaults(opts: SharedStepFourAllSubOptions): Required<SharedStepFourAllSubOptions> {
   return {

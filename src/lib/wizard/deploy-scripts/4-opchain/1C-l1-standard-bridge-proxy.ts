@@ -1,13 +1,13 @@
-import type { DeployContract} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
+import type { SharedL1StandardBridgeProxyOptions } from '../../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
 function withDeployDefaults(opts: SharedL1StandardBridgeProxyOptions): Required<SharedL1StandardBridgeProxyOptions> {
   return {

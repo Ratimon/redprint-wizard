@@ -1,26 +1,26 @@
-import type { DeployContract} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type { SharedSystemConfigProxyOptions } from '../shared/4-opchain/1B-option-system-config-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/4-opchain/1B-option-system-config-proxy";
+import type { SharedDelayedWETHProxyOptions } from '../../shared/4-opchain/1I-option-delayed-WETH-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1I-option-delayed-WETH-proxy';
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedSystemConfigProxyOptions): Required<SharedSystemConfigProxyOptions> {
+function withDeployDefaults(opts: SharedDelayedWETHProxyOptions): Required<SharedDelayedWETHProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeploySystemConfigProxy(opts: SharedSystemConfigProxyOptions = commonDefaults): string {
-  return printDeployContract(buildDeploySystemConfigProxy(opts));
+export function printDeployDelayedWETHProxy(opts: SharedDelayedWETHProxyOptions = commonDefaults): string {
+  return printDeployContract(buildDeployDelayedWETHProxy(opts));
 }
 
-export function buildDeploySystemConfigProxy(opts: SharedSystemConfigProxyOptions): DeployContract {
+export function buildDeployDelayedWETHProxy(opts: SharedDelayedWETHProxyOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -58,7 +58,7 @@ function addBase(c: DeployBuilder) {
   // deploy
   c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");
 
-        return Proxy(deployer.deploy_ERC1967Proxy("SystemConfigProxy", proxyOwner));`, functions.deploy);
+        return Proxy(deployer.deploy_ERC1967Proxy("DelayedWETHProxy", proxyOwner));`, functions.deploy);
 }
 
 const functions = defineFunctions({

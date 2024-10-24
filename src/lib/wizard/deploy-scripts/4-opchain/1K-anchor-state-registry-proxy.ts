@@ -1,13 +1,13 @@
-import type { DeployContract} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain/1K-option-anchor-state-registry-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/1K-option-anchor-state-registry-proxy';
+import type { SharedAnchorStateRegistryProxyOptions } from '../../shared/4-opchain/1K-option-anchor-state-registry-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1K-option-anchor-state-registry-proxy';
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
 function withDeployDefaults(opts: SharedAnchorStateRegistryProxyOptions): Required<SharedAnchorStateRegistryProxyOptions> {
   return {

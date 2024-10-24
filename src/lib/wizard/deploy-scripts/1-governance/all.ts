@@ -1,13 +1,13 @@
-import type { DeployContract, BaseFunction} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract, BaseFunction} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type {  SharedStepOneAllOptions, Governance } from '../shared/1-governance/option-all';
-import {  defaults } from '../shared/1-governance/option-all';
+import type {  SharedStepOneAllOptions, Governance } from '../../shared/1-governance/option-all';
+import {  defaults } from '../../shared/1-governance/option-all';
 
-import { defaults as infoDefaults } from "./set-info";
+import { defaults as infoDefaults } from "../../shared/set-info";
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
 function withDeployDefaults(opts: SharedStepOneAllOptions): Required<SharedStepOneAllOptions> {
   return {

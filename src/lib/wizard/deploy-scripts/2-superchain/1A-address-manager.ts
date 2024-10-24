@@ -1,11 +1,11 @@
-import type { DeployContract, BaseFunction} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract, BaseFunction} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type { SharedAddressManagerOptions } from '../shared/2-superchain/1A-option-address-manager';
-import { withCommonDefaults, defaults } from "../shared/2-superchain/1A-option-address-manager";
+import type { SharedAddressManagerOptions } from '../../shared/2-superchain/1A-option-address-manager';
+import { withCommonDefaults, defaults } from "../../shared/2-superchain/1A-option-address-manager";
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
 function withDeployDefaults(opts: SharedAddressManagerOptions): Required<SharedAddressManagerOptions> {
   return {

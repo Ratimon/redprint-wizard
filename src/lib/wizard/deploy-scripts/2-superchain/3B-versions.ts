@@ -1,13 +1,13 @@
-import type { DeployContract} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type { SharedProtocolVersionsOptions, OpSec  } from '../shared/2-superchain/3B-option-versions';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/3B-option-versions";
+import type { SharedProtocolVersionsOptions, OpSec  } from '../../shared/2-superchain/3B-option-versions';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/2-superchain/3B-option-versions";
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
 function withDeployDefaults(opts: SharedProtocolVersionsOptions): Required<SharedProtocolVersionsOptions> {
   return {

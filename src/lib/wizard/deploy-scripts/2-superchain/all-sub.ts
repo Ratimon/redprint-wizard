@@ -1,13 +1,13 @@
-import type { DeployContract, BaseFunction} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract, BaseFunction} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type {  SharedStepTwoAllSubOptions } from '../shared/2-superchain/option-all-sub';
-import {  defaults } from '../shared/2-superchain/option-all';
+import type {  SharedStepTwoAllSubOptions } from '../../shared/2-superchain/option-all-sub';
+import {  defaults } from '../../shared/2-superchain/option-all';
 
-import { defaults as infoDefaults } from "./set-info";
+import { defaults as infoDefaults } from "../set-info";
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
 function withDeployDefaults(opts: SharedStepTwoAllSubOptions): Required<SharedStepTwoAllSubOptions> {
   return {

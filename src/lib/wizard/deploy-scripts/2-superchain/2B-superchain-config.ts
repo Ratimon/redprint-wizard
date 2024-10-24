@@ -1,13 +1,13 @@
-import type { DeployContract} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type { SharedSuperchainConfigOptions, OpSec } from '../shared/2-superchain/2B-option-superchain-config';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/2B-option-superchain-config";
+import type { SharedSuperchainConfigOptions, OpSec } from '../../shared/2-superchain/2B-option-superchain-config';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/2-superchain/2B-option-superchain-config";
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
 function withDeployDefaults(opts: SharedSuperchainConfigOptions): Required<SharedSuperchainConfigOptions> {
   return {

@@ -1,13 +1,13 @@
-import type { DeployContract} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/2-superchain/2A-option-superchain-config-proxy";
-import type { SharedSuperchainConfigProxyOptions } from '../shared/2-superchain/2A-option-superchain-config-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/2-superchain/2A-option-superchain-config-proxy";
+import type { SharedSuperchainConfigProxyOptions } from '../../shared/2-superchain/2A-option-superchain-config-proxy';
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
-import { defineFunctions } from '../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
 function withDeployDefaults(opts: SharedSuperchainConfigProxyOptions): Required<SharedSuperchainConfigProxyOptions> {
   return {

@@ -1,11 +1,11 @@
-import type { DeployContract, BaseFunction} from './contract';
-import { DeployBuilder } from "./contract";
+import type { DeployContract, BaseFunction} from '../contract';
+import { DeployBuilder } from "../contract";
 
-import type { SharedGovernerOptions} from '../shared/1-governance/1-option-governor';
-import { withCommonDefaults, defaults as commonDefaults } from "../shared/1-governance/1-option-governor";
+import type { SharedGovernerOptions} from '../../shared/1-governance/1-option-governor';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/1-governance/1-option-governor";
 
-import { printDeployContract } from "./print";
-import { setInfo } from "./set-info";
+import { printDeployContract } from "../print";
+import { setInfo } from "../set-info";
 
 export const timelockOptions = [false, 'openzeppelin', 'compound'] as const;
 export type TimelockOptions = typeof timelockOptions[number];
