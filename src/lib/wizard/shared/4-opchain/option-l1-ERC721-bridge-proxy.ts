@@ -1,5 +1,5 @@
-import type { CommonOptions} from './common-options';
-import { defaults as infoDefaults } from "./set-info";
+import type { CommonOptions} from '../common-options';
+import { defaults as infoDefaults } from "../set-info";
 
 export const commonDefaults: Required<CommonOptions> = {
   //contract
@@ -22,7 +22,7 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
   };
 }
 
-export const defaults: Required<SharedOptimismPortalProxyOptions> = {
+export const defaults: Required<SharedL1ERC721BridgeProxyOptions> = {
   //contract
   contractName: 'Proxy',
   
@@ -31,13 +31,13 @@ export const defaults: Required<SharedOptimismPortalProxyOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployOptimismPortalProxyScript',
+  deployName: 'DeployL1ERC721BridgeProxyScript',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;
 
 
-export interface SharedOptimismPortalProxyOptions extends CommonOptions {
+export interface SharedL1ERC721BridgeProxyOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;

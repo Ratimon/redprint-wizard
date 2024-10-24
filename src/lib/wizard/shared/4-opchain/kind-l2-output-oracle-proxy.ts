@@ -1,4 +1,4 @@
-import type { GenericL2OutputOracleProxyOptions } from './build-generic';
+import type { GenericL2OutputOracleProxyOptions } from '../build-generic';
 
 export type KindL2OutputOracleProxy = GenericL2OutputOracleProxyOptions['kind'];
 

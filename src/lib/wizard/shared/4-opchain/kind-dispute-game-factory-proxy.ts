@@ -1,4 +1,4 @@
-import type { GenericDisputeGameFactoryProxyOptions } from './build-generic';
+import type { GenericDisputeGameFactoryProxyOptions } from '../build-generic';
 
 export type KindDisputeGameFactoryProxy = GenericDisputeGameFactoryProxyOptions['kind'];
 

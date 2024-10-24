@@ -1,4 +1,4 @@
-import type { GenericAnchorStateRegistryProxyOptions } from './build-generic';
+import type { GenericAnchorStateRegistryProxyOptions } from '../build-generic';
 
 export type KindAnchorStateRegistryProxy = GenericAnchorStateRegistryProxyOptions['kind'];
 

@@ -12,19 +12,19 @@ import type { SharedProtocolVersionsOptions } from './2-superchain/option-versio
 import type { SharedStepTwoAllSubOptions } from './2-superchain/option-all-sub';
 import type { SharedStepTwoAllOptions} from './2-superchain/option-all';
 
-import type { SharedOptimismPortalProxyOptions} from './4-option-optimism-portal-proxy';
-import type { SharedSystemConfigProxyOptions} from './4-option-system-config-proxy';
-import type { SharedL1StandardBridgeProxyOptions} from './4-option-l1-standard-bridge-proxy';
-import type { SharedL1CrossDomainMessengerProxyOptions } from './4-option-l1-crossdomain-messenger-proxy';
-import type { SharedOptimismMintableERC20FactoryProxyOptions } from './4-option-optimism-mintable-ERC20-factory-proxy';
-import type { SharedL1ERC721BridgeProxyOptions } from './4-option-l1-ERC721-bridge-proxy';
-import type { SharedDisputeGameFactoryProxyOptions } from './4-option-dispute-game-factory-proxy';
-import type { SharedL2OutputOracleProxyOptions } from './4-option-l2-output-oracle-proxy';
-import type { SharedDelayedWETHProxyOptions } from './4-option-delayed-WETH-proxy';
-import type { SharedPermissionedDelayedWETHProxyOptions } from './4-option-permissioned-delayed-WETH-proxy';
-import type { SharedAnchorStateRegistryProxyOptions } from './4-option-anchor-state-registry-proxy';
-import type { SharedStepFourAllSubOptions } from './4-option-all-sub';
-import type { SharedStepFourAllOptions } from './4-option-all'
+import type { SharedOptimismPortalProxyOptions} from './4-opchain/option-optimism-portal-proxy';
+import type { SharedSystemConfigProxyOptions} from './4-opchain/option-system-config-proxy';
+import type { SharedL1StandardBridgeProxyOptions} from './4-opchain/option-l1-standard-bridge-proxy';
+import type { SharedL1CrossDomainMessengerProxyOptions } from './4-opchain/option-l1-crossdomain-messenger-proxy';
+import type { SharedOptimismMintableERC20FactoryProxyOptions } from './4-opchain/option-optimism-mintable-ERC20-factory-proxy';
+import type { SharedL1ERC721BridgeProxyOptions } from './4-opchain/option-l1-ERC721-bridge-proxy';
+import type { SharedDisputeGameFactoryProxyOptions } from './4-opchain/option-dispute-game-factory-proxy';
+import type { SharedL2OutputOracleProxyOptions } from './4-opchain/option-l2-output-oracle-proxy';
+import type { SharedDelayedWETHProxyOptions } from './4-opchain/option-delayed-WETH-proxy';
+import type { SharedPermissionedDelayedWETHProxyOptions } from './4-opchain/option-permissioned-delayed-WETH-proxy';
+import type { SharedAnchorStateRegistryProxyOptions } from './4-opchain/option-anchor-state-registry-proxy';
+import type { SharedStepFourAllSubOptions } from './4-opchain/option-all-sub';
+import type { SharedStepFourAllOptions } from './4-opchain/option-all';
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;

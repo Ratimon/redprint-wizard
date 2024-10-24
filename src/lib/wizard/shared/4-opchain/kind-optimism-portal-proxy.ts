@@ -1,4 +1,4 @@
-import type { GenericOptimismPortalProxyOptions } from './build-generic';
+import type { GenericOptimismPortalProxyOptions } from '../build-generic';
 
 export type KindOptimismPortalProxy = GenericOptimismPortalProxyOptions['kind'];
 

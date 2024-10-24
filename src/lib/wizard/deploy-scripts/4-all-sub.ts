@@ -1,8 +1,8 @@
 import type { DeployContract, BaseFunction} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type {  SharedStepFourAllSubOptions } from '../shared/4-option-all-sub';
-import {  defaults } from '../shared/4-option-all';
+import type {  SharedStepFourAllSubOptions } from '../shared/4-opchain/option-all-sub';
+import {  defaults } from '../shared/4-opchain/option-all-sub';
 
 import { defaults as infoDefaults } from "./set-info";
 

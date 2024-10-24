@@ -1,4 +1,4 @@
-import type { GenericL1CrossDomainMessengerProxyOptions } from './build-generic';
+import type { GenericL1CrossDomainMessengerProxyOptions } from '../build-generic';
 
 export type KindL1CrossDomainMessengerProxy = GenericL1CrossDomainMessengerProxyOptions['kind'];
 

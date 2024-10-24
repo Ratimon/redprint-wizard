@@ -1,8 +1,8 @@
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedDelayedWETHProxyOptions } from '../shared/4-option-delayed-WETH-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-option-delayed-WETH-proxy';
+import type { SharedDelayedWETHProxyOptions } from '../shared/4-opchain/option-delayed-WETH-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/option-delayed-WETH-proxy';
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";

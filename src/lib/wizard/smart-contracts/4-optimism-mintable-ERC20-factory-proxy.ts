@@ -1,8 +1,8 @@
 import type { BaseModifier, Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-option-optimism-mintable-ERC20-factory-proxy';
-import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../shared/4-option-optimism-mintable-ERC20-factory-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/option-optimism-mintable-ERC20-factory-proxy';
+import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../shared/4-opchain/option-optimism-mintable-ERC20-factory-proxy';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";

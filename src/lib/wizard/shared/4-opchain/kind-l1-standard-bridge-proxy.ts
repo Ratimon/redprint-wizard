@@ -1,4 +1,4 @@
-import type { GenericL1StandardBridgeProxyOptions } from './build-generic';
+import type { GenericL1StandardBridgeProxyOptions } from '../build-generic';
 
 export type KindL1StandardBridgeProxy = GenericL1StandardBridgeProxyOptions['kind'];
 

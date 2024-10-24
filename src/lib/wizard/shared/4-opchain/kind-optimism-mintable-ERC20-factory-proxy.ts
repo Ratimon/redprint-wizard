@@ -1,4 +1,4 @@
-import type { GenericOptimismMintableERC20FactoryProxyOptions } from './build-generic';
+import type { GenericOptimismMintableERC20FactoryProxyOptions } from '../build-generic';
 
 export type KindOptimismMintableERC20FactoryProxy = GenericOptimismMintableERC20FactoryProxyOptions['kind'];
 

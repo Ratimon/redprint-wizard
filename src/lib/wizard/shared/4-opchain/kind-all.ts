@@ -1,4 +1,4 @@
-import type { GenericStepFourAllOptions } from './build-generic';
+import type { GenericStepFourAllOptions } from '../build-generic';
 
 export type KindStepFourAll = GenericStepFourAllOptions['kind'];
 

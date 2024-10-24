@@ -1,4 +1,4 @@
-import type { GenericPermissionedDelayedWETHProxyOptions } from './build-generic';
+import type { GenericPermissionedDelayedWETHProxyOptions } from '../build-generic';
 
 export type KindPermissionedDelayedWETHProxy = GenericPermissionedDelayedWETHProxyOptions['kind'];
 

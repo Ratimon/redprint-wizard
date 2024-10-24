@@ -1,5 +1,5 @@
-import type { CommonOptions} from './common-options';
-import { defaults as infoDefaults } from "./set-info";
+import type { CommonOptions} from '../common-options';
+import { defaults as infoDefaults } from "../set-info";
 
 export const commonDefaults: Required<CommonOptions> = {
   //contract
@@ -22,7 +22,7 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
   };
 }
 
-export const defaults: Required<SharedSystemConfigProxyOptions> = {
+export const defaults: Required<SharedPermissionedDelayedWETHProxyOptions> = {
   //contract
   contractName: 'Proxy',
   
@@ -31,13 +31,13 @@ export const defaults: Required<SharedSystemConfigProxyOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeploySystemConfigProxyScript',
+  deployName: 'DeployPermissionedDelayedWETHProxy',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;
 
 
-export interface SharedSystemConfigProxyOptions extends CommonOptions {
+export interface SharedPermissionedDelayedWETHProxyOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;

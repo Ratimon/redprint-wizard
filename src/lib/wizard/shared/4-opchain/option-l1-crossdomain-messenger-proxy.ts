@@ -1,5 +1,5 @@
-import type { CommonOptions} from './common-options';
-import { defaults as infoDefaults } from "./set-info";
+import type { CommonOptions} from '../common-options';
+import { defaults as infoDefaults } from "../set-info";
 
 export const commonDefaults: Required<CommonOptions> = {
   //contract
@@ -22,22 +22,22 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
   };
 }
 
-export const defaults: Required<SharedDelayedWETHProxyOptions> = {
+export const defaults: Required<SharedL1CrossDomainMessengerProxyOptions> = {
   //contract
-  contractName: 'Proxy',
+  contractName: 'ResolvedDelegateProxy',
   
   access: commonDefaults.access,
   upgradeable: commonDefaults.upgradeable,
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployDelayedWETHProxy',
+  deployName: 'DeployL1CrossDomainMessengerProxy',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;
 
 
-export interface SharedDelayedWETHProxyOptions extends CommonOptions {
+export interface SharedL1CrossDomainMessengerProxyOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;

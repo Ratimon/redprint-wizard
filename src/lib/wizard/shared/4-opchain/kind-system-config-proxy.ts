@@ -1,4 +1,4 @@
-import type { GenericSystemConfigProxyOptions } from './build-generic';
+import type { GenericSystemConfigProxyOptions } from '../build-generic';
 
 export type KindSystemConfigProxy = GenericSystemConfigProxyOptions['kind'];
 

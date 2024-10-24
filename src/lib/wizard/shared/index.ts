@@ -68,41 +68,41 @@ export {  sanitizeKindStepTwoAllSub } from './2-superchain/kind-all-sub';
 export type { KindStepTwoAll } from './2-superchain/kind-all';
 export {  sanitizeKindStepTwoAll } from './2-superchain/kind-all';
 
-export type { KindOptimismPortalProxy } from './4-kind-optimism-portal-proxy';
-export {  sanitizeKindOptimismPortalProxy } from './4-kind-optimism-portal-proxy';
+export type { KindOptimismPortalProxy } from './4-opchain/kind-optimism-portal-proxy';
+export {  sanitizeKindOptimismPortalProxy } from './4-opchain/kind-optimism-portal-proxy';
 
-export type { KindSystemConfigProxy } from './4-kind-system-config-proxy';
-export {  sanitizeKindSystemConfigProxy } from './4-kind-system-config-proxy';
+export type { KindSystemConfigProxy } from './4-opchain/kind-system-config-proxy';
+export {  sanitizeKindSystemConfigProxy } from './4-opchain/kind-system-config-proxy';
 
-export type { KindL1StandardBridgeProxy } from './4-kind-l1-standard-bridge-proxy';
-export {  sanitizeKindL1StandardBridgeProxy } from './4-kind-l1-standard-bridge-proxy';
+export type { KindL1StandardBridgeProxy } from './4-opchain/kind-l1-standard-bridge-proxy';
+export {  sanitizeKindL1StandardBridgeProxy } from './4-opchain/kind-l1-standard-bridge-proxy';
 
-export type { KindL1CrossDomainMessengerProxy } from './4-kind-l1-crossdomain-messenger-proxy';
-export {  sanitizeKindL1CrossDomainMessengerProxy } from './4-kind-l1-crossdomain-messenger-proxy';
+export type { KindL1CrossDomainMessengerProxy } from './4-opchain/kind-l1-crossdomain-messenger-proxy';
+export {  sanitizeKindL1CrossDomainMessengerProxy } from './4-opchain/kind-l1-crossdomain-messenger-proxy';
 
-export type { KindOptimismMintableERC20FactoryProxy } from './4-kind-optimism-mintable-ERC20-factory-proxy';
-export {  sanitizeKindOptimismMintableERC20FactoryProxy } from './4-kind-optimism-mintable-ERC20-factory-proxy';
+export type { KindOptimismMintableERC20FactoryProxy } from './4-opchain/kind-optimism-mintable-ERC20-factory-proxy';
+export {  sanitizeKindOptimismMintableERC20FactoryProxy } from './4-opchain/kind-optimism-mintable-ERC20-factory-proxy';
 
-export type { KindL1ERC721BridgeProxy } from './4-kind-l1-ERC721-bridge-proxy';
-export {  sanitizeKindL1ERC721BridgeProxy } from './4-kind-l1-ERC721-bridge-proxy';
+export type { KindL1ERC721BridgeProxy } from './4-opchain/kind-l1-ERC721-bridge-proxy';
+export {  sanitizeKindL1ERC721BridgeProxy } from './4-opchain/kind-l1-ERC721-bridge-proxy';
 
-export type { KindDisputeGameFactoryProxy } from './4-kind-dispute-game-factory-proxy';
-export {  sanitizeKindDisputeGameFactoryProxy } from './4-kind-dispute-game-factory-proxy';
+export type { KindDisputeGameFactoryProxy } from './4-opchain/kind-dispute-game-factory-proxy';
+export {  sanitizeKindDisputeGameFactoryProxy } from './4-opchain/kind-dispute-game-factory-proxy';
 
-export type { KindL2OutputOracleProxy } from './4-kind-l2-output-oracle-proxy';
-export {  sanitizeKindL2OutputOracleProxy } from './4-kind-l2-output-oracle-proxy';
+export type { KindL2OutputOracleProxy } from './4-opchain/kind-l2-output-oracle-proxy';
+export {  sanitizeKindL2OutputOracleProxy } from './4-opchain/kind-l2-output-oracle-proxy';
 
-export type { KindDelayedWETHProxy } from './4-kind-delayed-WETH-proxy';
-export {  sanitizeKindDelayedWETHProxy } from './4-kind-delayed-WETH-proxy';
+export type { KindDelayedWETHProxy } from './4-opchain/kind-delayed-WETH-proxy';
+export {  sanitizeKindDelayedWETHProxy } from './4-opchain/kind-delayed-WETH-proxy';
 
-export type { KindPermissionedDelayedWETHProxy } from './4-kind-permissioned-delayed-WETH-proxy';
-export {  sanitizeKindPermissionedDelayedWETHProxy } from './4-kind-permissioned-delayed-WETH-proxy';
+export type { KindPermissionedDelayedWETHProxy } from './4-opchain/kind-permissioned-delayed-WETH-proxy';
+export {  sanitizeKindPermissionedDelayedWETHProxy } from './4-opchain/kind-permissioned-delayed-WETH-proxy';
 
-export type { KindAnchorStateRegistryProxy } from './4-kind-anchor-state-registry-proxy';
-export {  sanitizeKindAnchorStateRegistryProxy } from './4-kind-anchor-state-registry-proxy';
+export type { KindAnchorStateRegistryProxy } from './4-opchain/kind-anchor-state-registry-proxy';
+export {  sanitizeKindAnchorStateRegistryProxy } from './4-opchain/kind-anchor-state-registry-proxy';
 
-export type { KindStepFourAllSub } from './4-kind-all-sub';
-export {  sanitizeKindStepFourAllSub } from './4-kind-all-sub';
+export type { KindStepFourAllSub } from './4-opchain/kind-all-sub';
+export {  sanitizeKindStepFourAllSub } from './4-opchain/kind-all-sub';
 
-export type { KindStepFourAll } from './4-kind-all';
-export {  sanitizeKindStepFourAll } from './4-kind-all';
+export type { KindStepFourAll } from './4-opchain/kind-all';
+export {  sanitizeKindStepFourAll } from './4-opchain/kind-all';

@@ -1,8 +1,8 @@
 import type { BaseModifier, Contract} from './contract';
 import {  ContractBuilder } from './contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-option-system-config-proxy';
-import type { SharedSystemConfigProxyOptions } from '../shared/4-option-system-config-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/option-system-config-proxy';
+import type { SharedSystemConfigProxyOptions } from '../shared/4-opchain/option-system-config-proxy';
 
 import { printContract } from "./print";
 import { setInfo  } from "./set-info";

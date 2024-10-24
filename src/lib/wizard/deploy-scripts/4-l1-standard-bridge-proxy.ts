@@ -1,8 +1,8 @@
 import type { DeployContract} from './contract';
 import { DeployBuilder } from "./contract";
 
-import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-option-l1-standard-bridge-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-option-l1-standard-bridge-proxy';
+import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-opchain/option-l1-standard-bridge-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../shared/4-opchain/option-l1-standard-bridge-proxy';
 
 import { printDeployContract } from "./print";
 import { setInfo } from "./set-info";

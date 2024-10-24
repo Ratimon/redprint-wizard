@@ -1,4 +1,4 @@
-import type { GenericL1ERC721BridgeProxyOptions } from './build-generic';
+import type { GenericL1ERC721BridgeProxyOptions } from '../build-generic';
 
 export type KindL1ERC721BridgeProxy = GenericL1ERC721BridgeProxyOptions['kind'];
 

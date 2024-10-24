@@ -1,5 +1,5 @@
-import type { CommonOptions} from './common-options';
-import { defaults as infoDefaults } from "./set-info";
+import type { CommonOptions} from '../common-options';
+import { defaults as infoDefaults } from "../set-info";
 
 export const commonDefaults: Required<CommonOptions> = {
   //contract
@@ -22,22 +22,22 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
   };
 }
 
-export const defaults: Required<SharedL1CrossDomainMessengerProxyOptions> = {
+export const defaults: Required<SharedL2OutputOracleProxyOptions> = {
   //contract
-  contractName: 'ResolvedDelegateProxy',
+  contractName: 'Proxy',
   
   access: commonDefaults.access,
   upgradeable: commonDefaults.upgradeable,
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployL1CrossDomainMessengerProxy',
+  deployName: 'DeployL2OutputOracleProxyScript',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;
 
 
-export interface SharedL1CrossDomainMessengerProxyOptions extends CommonOptions {
+export interface SharedL2OutputOracleProxyOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;
