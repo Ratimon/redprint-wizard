@@ -29,7 +29,8 @@ import type { SharedStepFourAllOptions } from './4-option-all'
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
-  AllStepOne: { kind: 'AllStepOne' } & SharedStepOneAllOptions;
+  StepOneAll: { kind: 'StepOneAll' } & SharedStepOneAllOptions;
+  
   AddressManager: { kind: 'AddressManager' } & SharedAddressManagerOptions;
   ProxyAdmin: { kind: 'ProxyAdmin' } & SharedProxyAdminOptions;
   SuperchainConfigProxy : { kind: 'SuperchainConfigProxy' } & SharedSuperchainConfigProxyOptions;
@@ -64,10 +65,10 @@ export interface KindedGovernanceOptions {
 export type GenericGovernanceOptions = KindedGovernanceOptions[keyof KindedGovernanceOptions];
 
 
-export interface KindedAllStepOneOptions {
-  AllStepOne: { kind: 'AllStepOne' } & SharedStepOneAllOptions;
+export interface KindedStepOneAllOptions {
+  StepOneAll: { kind: 'StepOneAll' } & SharedStepOneAllOptions;
 }
-export type GenericAllStepOneOptions = KindedAllStepOneOptions[keyof KindedAllStepOneOptions];
+export type GenericStepOneAllOptions = KindedStepOneAllOptions[keyof KindedStepOneAllOptions];
 
 
 export interface KindedAddressManagerOptions {

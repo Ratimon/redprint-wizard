@@ -5,7 +5,7 @@ import { writable } from 'svelte/store';
 export type Action =
                     'copy-contract-Safe'| 'copy-script-Safe' | 'download-contract-Safe' | 'download-script-Safe' |
                     'copy-contract-Governor'| 'copy-script-Governor' | 'download-contract-Governor' | 'download-script-Governor' |
-                    'copy-contract-AllStepOne'| 'copy-script-AllStepOne' | 'download-contract-AllStepOne' | 'download-script-AllStepOne' |
+                    'copy-contract-StepOneAll'| 'copy-script-StepOneAll' | 'download-contract-StepOneAll' | 'download-script-StepOneAll' |
 
                     'copy-contract-AddressManager'| 'copy-script-AddressManager' | 'download-contract-AddressManager' | 'download-script-AddressManager' |
                     'copy-contract-ProxyAdmin'| 'copy-script-ProxyAdmin' | 'download-contract-ProxyAdmin' | 'download-script-ProxyAdmin' |

@@ -17,7 +17,7 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'Governor':
       return true;
-    case 'AllStepOne':
+    case 'StepOneAll':
         return true;
     case 'AddressManager':
       return true;
@@ -31,7 +31,35 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'ProtocolVersions':
       return true;
-    case 'AllStepTwo':
+    case 'StepTwoAll':
+      return true;
+    case 'StepTwoAllSub':
+      return true;
+    case 'OptimismPortalProxy':
+      return true;
+    case 'SystemConfigProxy':
+      return true;
+    case 'L1StandardBridgeProxy':
+      return true;
+    case 'L1CrossDomainMessengerProxy':
+      return true;
+    case 'OptimismMintableERC20FactoryProxy':
+      return true;
+    case 'L1ERC721BridgeProxy':
+      return true;
+    case 'DisputeGameFactoryProxy':
+      return true;
+    case 'L2OutputOracleProxy':
+      return true;
+    case 'DelayedWETHProxy':
+      return true;
+    case 'PermissionedDelayedWETHProxy':
+      return true;
+    case 'AnchorStateRegistryProxy':
+      return true;
+    case 'StepFourAll':
+      return true;
+    case 'StepFourAllSub':
       return true;
 
     default: {

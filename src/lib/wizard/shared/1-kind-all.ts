@@ -1,19 +1,19 @@
-import type { GenericAllStepOneOptions } from './build-generic';
+import type { GenericStepOneAllOptions } from './build-generic';
 
-export type KindAllStepOne = GenericAllStepOneOptions['kind'];
+export type KindStepOneAll = GenericStepOneAllOptions['kind'];
 
-export function sanitizeKindAllStepOne(kind: unknown): KindAllStepOne {
+export function sanitizeKindStepOneAll(kind: unknown): KindStepOneAll {
   if (typeof kind === 'string') {
     if (isKindAllStepOne(kind)) {
       return kind;
     }
   }
-  return 'AllStepOne';
+  return 'StepOneAll';
 }
 
-function isKindAllStepOne<T>(value: KindAllStepOne | T): value is KindAllStepOne {
+function isKindAllStepOne<T>(value: KindStepOneAll | T): value is KindStepOneAll {
   switch (value) {
-    case 'AllStepOne':
+    case 'StepOneAll':
       return true;
 
     default: {
