@@ -15,7 +15,7 @@
             "Safe's Multi-sig",
             "OpenZeppelin's Governor",
         ],
-        script: 'DeploySafeProxyScript',
+        script: '100_DeploySafeProxyScript',
         highlight : "Governance Layer",
         iconName: "material-symbols:how-to-vote",
     },
@@ -26,7 +26,7 @@
             "ERC20's Bridge",
             "ER721's Bridge",
         ],
-        script: 'SetupSuperchain',
+        script: '200_SetupSuperchain',
         highlight : "L1 's Smart Contract Layer",
         iconName: "formkit:ethereum",
     },
@@ -37,7 +37,7 @@
             "Super Low Fees",
             "Independent of blob demand"
         ],
-        script: 'SetupPlasmachain',
+        script: '300_SetupPlasmachain',
         highlight : "Plasma data availability",
         iconName: "hugeicons:blockchain-06", 
     },
@@ -49,7 +49,7 @@
             "DA challange on L1",
             "Custom Gas Token"
         ],
-        script: 'SetupOPchain',
+        script: '400_SetupOPchain',
         highlight : "L2 's Smart Contract Layer",
         iconName: "simple-icons:optimism",
     },
@@ -76,7 +76,7 @@
 
 
   $: deployCommand1 = `forge script -vvv scripts/deploy/Deploy.s.sol:Deploy`
-  $: deployCommand2 = `forge script script/100_${featureToDisplay?.script}.s.sol`
+  $: deployCommand2 = `forge script script/${featureToDisplay?.script}.s.sol`
 
 </script>
 

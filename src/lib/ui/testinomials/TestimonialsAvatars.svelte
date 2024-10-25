@@ -65,7 +65,7 @@
       </div>
 
       <div class="text-base text-base-content/80">
-        <span class="font-semibold text-base-content">39</span> Developers
+        <span class="font-semibold text-base-content">48</span> Developers
         <p>use our toolkit</p>
       </div>
     </div>
