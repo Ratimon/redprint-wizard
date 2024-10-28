@@ -9,6 +9,9 @@ import { defaults as infoDefaults } from "../set-info";
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
+import { defineFunctions } from '../../utils/define-functions';
+
+
 function withDeployDefaults(opts: SharedStepFourAllSubOptions): Required<SharedStepFourAllSubOptions> {
   return {
     ...opts,
@@ -25,7 +28,7 @@ export function buildDeployStepFourAllSub(opts: SharedStepFourAllSubOptions): De
   const c = new DeployBuilder(allOpts.deployName);
   
   addBase(c);
-  const fn : BaseFunction = getDeployFunction();
+  const fn : BaseFunction = functions.run;
   c.addFunctionCode(`deployerProcedue = getDeployer();
         deployerProcedue.setAutoSave(true);`, fn);
   
@@ -61,6 +64,18 @@ function addBase(c: DeployBuilder) {
         path: '@redprint-forge-std/Script.sol',
     };
     c.addParent(Script, []);
+
+    const Vm = {
+      name: 'Vm',
+      path: '@redprint-forge-std/Vm.sol',
+    };
+    c.addModule(Vm);
+
+    const VmSafe = {
+      name: 'VmSafe',
+      path: '@redprint-forge-std/Vm.sol',
+    };
+    c.addModule(VmSafe);
       
     const IDeployer = {
         name: 'IDeployer',
@@ -74,6 +89,12 @@ function addBase(c: DeployBuilder) {
     c.addModule(getDeployer);
 
     c.addVariable(`IDeployer deployerProcedue;`);
+
+    const AddressManager = {
+      name: 'AddressManager',
+      path: '@redprint-core/legacy/AddressManager.sol',
+    };
+    c.addModule(AddressManager);
 
 }
 
@@ -145,7 +166,6 @@ function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
   };
   c.addModule(DeployAnchorStateRegistryProxyScript);
 
-
   c.addFunctionCode(`
         DeployOptimismPortalProxyScript optimismPortalProxyDeployments = new DeployOptimismPortalProxyScript();
         DeploySystemConfigProxyScript systemConfigProxyDeployments = new DeploySystemConfigProxyScript();
@@ -169,19 +189,47 @@ function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
         l2OutputOracleProxyDeployments.deploy();
         delayedWETHProxyDeployments.deploy();
         permissionedDelayedWETHProxyDeployments.deploy();
-        anchorStateRegistryProxyDeployments.deploy();`, fn);
+        anchorStateRegistryProxyDeployments.deploy();
+        transferOwnership();`, fn);
+
+      c.addFunctionCode(`
+        console.log("Transferring AddressManager ownership to ProxyAdmin");
+        AddressManager addressManager = AddressManager(deployerProcedue.mustGetAddress("AddressManager"));
+        address owner = addressManager.owner();
+        address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
+        (VmSafe.CallerMode mode ,address msgSender, ) = vm.readCallers();
+
+        if (owner != proxyAdmin) {
+
+            if(mode != VmSafe.CallerMode.Broadcast && msgSender != owner) {
+                console.log("Pranking ower ...");
+                vm.prank(owner);
+             } else {
+                console.log("Broadcasting ...");
+                vm.broadcast(owner);
+             }
+
+            addressManager.transferOwnership(proxyAdmin);
+            console.log("AddressManager ownership transferred to %s", proxyAdmin);
+        }
+
+        require(addressManager.owner() == proxyAdmin);`, functions.transferOwnership);
 
 
 }
 
 
-function getDeployFunction() {
-  const fn = {
-    name: 'run',
+const functions = defineFunctions({
+
+  run :{
+    kind: 'public' as const,
     args: [],
     returns: [] , 
-    kind: 'public' as const,
-  };
+  },
+  transferOwnership: {
+    kind: 'internal' as const,
+    args: [],
+    returns: [],
+},
 
-  return fn;
-}
+});
