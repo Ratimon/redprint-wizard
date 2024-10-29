@@ -190,7 +190,7 @@ function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
         delayedWETHProxyDeployments.deploy();
         permissionedDelayedWETHProxyDeployments.deploy();
         anchorStateRegistryProxyDeployments.deploy();
-        transferOwnership();`, fn);
+        transferAddressManagerOwnership();`, fn);
 
       c.addFunctionCode(`
         console.log("Transferring AddressManager ownership to ProxyAdmin");
@@ -213,7 +213,7 @@ function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
             console.log("AddressManager ownership transferred to %s", proxyAdmin);
         }
 
-        require(addressManager.owner() == proxyAdmin);`, functions.transferOwnership);
+        require(addressManager.owner() == proxyAdmin);`, functions.transferAddressManagerOwnership);
 
 
 }
@@ -226,7 +226,7 @@ const functions = defineFunctions({
     args: [],
     returns: [] , 
   },
-  transferOwnership: {
+  transferAddressManagerOwnership: {
     kind: 'internal' as const,
     args: [],
     returns: [],
