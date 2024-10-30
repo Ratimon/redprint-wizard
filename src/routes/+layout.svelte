@@ -122,30 +122,37 @@
             <a href="/1-governance"
                 data-content="1"
                 class="step"
-                class:step-primary={$page.route.id?.match(/1-governance|2-superchain|3-plasmachain|4-opchain-proxies/g)}
+                class:step-primary={$page.route.id?.match(/1-governance|2-superchain|3-plasmachain|4-opchain-proxies|4-opchain-implementations/g)}
             >
                 Set up Governance Layer
             </a>
             <a href="/2-superchain"
                 data-content="2"
                 class="step"
-                class:step-primary={$page.route.id?.match(/2-superchain|3-plasmachain|4-opchain-proxies/g)}
+                class:step-primary={$page.route.id?.match(/2-superchain|3-plasmachain|4-opchain-proxies|4-opchain-implementations/g)}
             > 
                 Set up L1 Super Chain
             </a>
             <a href="/3-plasmachain"
                 data-content="3"
                 class="step"
-                class:step-primary={$page.route.id?.match(/3-plasmachain|4-opchain-proxies/g)}
+                class:step-primary={$page.route.id?.match(/3-plasmachain|4-opchain-proxies|4-opchain-implementations/g)}
             >
                 Set up Plasma Chain
             </a>
             <a href="/4-opchain-proxies"
-                data-content="4"
+                data-content="4.1"
                 class="step"
-                class:step-primary={$page.route.id?.includes("/4-opchain-proxies")}
+                class:step-primary={$page.route.id?.match(/4-opchain-proxies|4-opchain-implementations/g)}
                 >
-                Set up L2 OP Chain
+                Set up L2 OP Chain : Proxies
+            </a>
+            <a href="/4-opchain-implementations"
+                data-content="4.2"
+                class="step"
+                class:step-primary={$page.route.id?.includes("/4-opchain-implementations")}
+                >
+                Set up L2 OP Chain : Implementations
             </a>
         </ul>
 

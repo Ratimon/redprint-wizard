@@ -711,7 +711,7 @@ if (optsStepSub) {
 <Background color="bg-base-100 pt-3 pb-4">
     <section id={data.dropDownLinks[0].pathname}>
       <div class="divider divider-primary">
-        <h1 class="text-2xl ">4.0 : Prerequisites</h1>
+        <h1 class="text-2xl ">4.1 : Prerequisites</h1>
       </div>
     </section>
 </Background>
