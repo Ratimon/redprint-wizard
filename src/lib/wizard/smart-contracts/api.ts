@@ -30,49 +30,49 @@ import type { SharedProtocolVersionsOptions } from '../shared/2-superchain/3B-op
 import {  defaults as protocolVersionsDefaults } from '../shared/2-superchain/3B-option-versions';
 import { printProtocolVersions } from './2-superchain/3C-versions';
 
-import type { SharedOptimismPortalProxyOptions } from '../shared/4-opchain/1A-option-optimism-portal-proxy';
-import {  defaults as optimismPortalProxyDefaults } from '../shared/4-opchain/1A-option-optimism-portal-proxy';
-import { printOptimismPortalProxy } from './4-opchain/1A-optimism-portal-proxy';
+import type { SharedOptimismPortalProxyOptions } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
+import {  defaults as optimismPortalProxyDefaults } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
+import { printOptimismPortalProxy } from './4-opchain-proxies/1A-optimism-portal-proxy';
 
-import type { SharedSystemConfigProxyOptions } from '../shared/4-opchain/1B-option-system-config-proxy';
-import {  defaults as systemConfigProxyDefaults } from '../shared/4-opchain/1B-option-system-config-proxy';
-import { printSystemConfigProxy } from './4-opchain/1B-system-config-proxy';
+import type { SharedSystemConfigProxyOptions } from '../shared/4-opchain-proxies/1B-option-system-config-proxy';
+import {  defaults as systemConfigProxyDefaults } from '../shared/4-opchain-proxies/1B-option-system-config-proxy';
+import { printSystemConfigProxy } from './4-opchain-proxies/1B-system-config-proxy';
 
-import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
-import {  defaults as l1StandardBridgeProxyDefaults } from '../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
-import { printL1StandardBridgeProxy } from './4-opchain/1C-l1-standard-bridge-proxy';
+import type { SharedL1StandardBridgeProxyOptions } from '../shared/4-opchain-proxies/1C-option-l1-standard-bridge-proxy';
+import {  defaults as l1StandardBridgeProxyDefaults } from '../shared/4-opchain-proxies/1C-option-l1-standard-bridge-proxy';
+import { printL1StandardBridgeProxy } from './4-opchain-proxies/1C-l1-standard-bridge-proxy';
 
-import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-opchain/1D-option-l1-crossdomain-messenger-proxy';
-import {  defaults as l1CrossDomainMessengerProxyDefaults } from '../shared/4-opchain/1D-option-l1-crossdomain-messenger-proxy';
-import { printL1CrossDomainMessengerProxy } from './4-opchain/1D-l1-crossdomain-messenger-proxy';
+import type { SharedL1CrossDomainMessengerProxyOptions } from '../shared/4-opchain-proxies/1D-option-l1-crossdomain-messenger-proxy';
+import {  defaults as l1CrossDomainMessengerProxyDefaults } from '../shared/4-opchain-proxies/1D-option-l1-crossdomain-messenger-proxy';
+import { printL1CrossDomainMessengerProxy } from './4-opchain-proxies/1D-l1-crossdomain-messenger-proxy';
 
-import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../shared/4-opchain/1E-option-optimism-mintable-ERC20-factory-proxy';
-import {  defaults as optimismMintableERC20FactoryProxyDefaults } from '../shared/4-opchain/1E-option-optimism-mintable-ERC20-factory-proxy';
-import { printOptimismMintableERC20FactoryProxy } from './4-opchain/1E-optimism-mintable-ERC20-factory-proxy';
+import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../shared/4-opchain-proxies/1E-option-optimism-mintable-ERC20-factory-proxy';
+import {  defaults as optimismMintableERC20FactoryProxyDefaults } from '../shared/4-opchain-proxies/1E-option-optimism-mintable-ERC20-factory-proxy';
+import { printOptimismMintableERC20FactoryProxy } from './4-opchain-proxies/1E-optimism-mintable-ERC20-factory-proxy';
 
-import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
-import {  defaults as l1ERC721BridgeProxyDefaults } from '../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
-import { printL1ERC721BridgeProxy } from './4-opchain/1F-l1-ERC721-bridge-proxy';
+import type { SharedL1ERC721BridgeProxyOptions } from '../shared/4-opchain-proxies/1F-option-l1-ERC721-bridge-proxy';
+import {  defaults as l1ERC721BridgeProxyDefaults } from '../shared/4-opchain-proxies/1F-option-l1-ERC721-bridge-proxy';
+import { printL1ERC721BridgeProxy } from './4-opchain-proxies/1F-l1-ERC721-bridge-proxy';
 
-import type { SharedDisputeGameFactoryProxyOptions } from '../shared/4-opchain/1G-option-dispute-game-factory-proxy';
-import {  defaults as disputeGameFactoryProxyDefaults } from '../shared/4-opchain/1G-option-dispute-game-factory-proxy';
-import { printDisputeGameFactoryProxy } from './4-opchain/1G-dispute-game-factory-proxy';
+import type { SharedDisputeGameFactoryProxyOptions } from '../shared/4-opchain-proxies/1G-option-dispute-game-factory-proxy';
+import {  defaults as disputeGameFactoryProxyDefaults } from '../shared/4-opchain-proxies/1G-option-dispute-game-factory-proxy';
+import { printDisputeGameFactoryProxy } from './4-opchain-proxies/1G-dispute-game-factory-proxy';
 
-import type { SharedL2OutputOracleProxyOptions } from '../shared/4-opchain/1H-option-l2-output-oracle-proxy';
-import {  defaults as l2OutputOracleProxyDefaults } from '../shared/4-opchain/1H-option-l2-output-oracle-proxy';
-import { printL2OutputOracleProxy } from './4-opchain/1H-l2-output-oracle-proxy';
+import type { SharedL2OutputOracleProxyOptions } from '../shared/4-opchain-proxies/1H-option-l2-output-oracle-proxy';
+import {  defaults as l2OutputOracleProxyDefaults } from '../shared/4-opchain-proxies/1H-option-l2-output-oracle-proxy';
+import { printL2OutputOracleProxy } from './4-opchain-proxies/1H-l2-output-oracle-proxy';
 
-import type { SharedDelayedWETHProxyOptions } from '../shared/4-opchain/1I-option-delayed-WETH-proxy';
-import {  defaults as delayedWETHProxyDefaults } from '../shared/4-opchain/1I-option-delayed-WETH-proxy';
-import { printDelayedWETHProxy } from './4-opchain/1I-delayed-WETH-proxy';
+import type { SharedDelayedWETHProxyOptions } from '../shared/4-opchain-proxies/1I-option-delayed-WETH-proxy';
+import {  defaults as delayedWETHProxyDefaults } from '../shared/4-opchain-proxies/1I-option-delayed-WETH-proxy';
+import { printDelayedWETHProxy } from './4-opchain-proxies/1I-delayed-WETH-proxy';
 
-import type { SharedPermissionedDelayedWETHProxyOptions } from '../shared/4-opchain/1J-option-permissioned-delayed-WETH-proxy';
-import {  defaults as permissionedDelayedWETHProxyDefaults } from '../shared/4-opchain/1J-option-permissioned-delayed-WETH-proxy';
-import { printPermissionedDelayedWETHProxy } from './4-opchain/1J-permissioned-delayed-WETH-proxy';
+import type { SharedPermissionedDelayedWETHProxyOptions } from '../shared/4-opchain-proxies/1J-option-permissioned-delayed-WETH-proxy';
+import {  defaults as permissionedDelayedWETHProxyDefaults } from '../shared/4-opchain-proxies/1J-option-permissioned-delayed-WETH-proxy';
+import { printPermissionedDelayedWETHProxy } from './4-opchain-proxies/1J-permissioned-delayed-WETH-proxy';
 
-import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain/1K-option-anchor-state-registry-proxy';
-import {  defaults as anchorStateRegistryProxyDefaults } from '../shared/4-opchain/1K-option-anchor-state-registry-proxy';
-import { printAnchorStateRegistryProxy } from './4-opchain/1K-anchor-state-registry-proxy';
+import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain-proxies/1K-option-anchor-state-registry-proxy';
+import {  defaults as anchorStateRegistryProxyDefaults } from '../shared/4-opchain-proxies/1K-option-anchor-state-registry-proxy';
+import { printAnchorStateRegistryProxy } from './4-opchain-proxies/1K-anchor-state-registry-proxy';
 
 import type { CommonOptions } from '../shared/common-options';
 

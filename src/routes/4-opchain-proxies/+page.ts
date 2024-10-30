@@ -23,12 +23,12 @@ export function load() {
     ];
 
     const dropDownLinks : Link[] = [
-        {pathname: '/4-opchain/#4.0', title: '4.0) Prerequisites', navType: 'scroll' },
-        {pathname: '/4-opchain/#4.1', title: '4.1: A-K) Deploy Proxies', navType: 'scroll'},
-        {pathname: '/4-opchain/#4.2', title: '4.2: A-D) Deploy Implementations', navType: 'scroll'},
-        {pathname: '/4-opchain/#4.3', title: '4.3) Initialize Implementations', navType: 'scroll'},
-        {pathname: '/4-opchain/#4.3', title: '4.3) Set Fault Proof Implementation', navType: 'scroll'},
-        {pathname: '/4-opchain/#all', title: 'Deploy All', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.0', title: '4.0) Prerequisites', navType: 'scroll' },
+        {pathname: '/4-opchain-proxies/#4.1', title: '4.1: A-K) Deploy Proxies', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.2', title: '4.2: A-D) Deploy Implementations', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.3', title: '4.3) Initialize Implementations', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.3', title: '4.3) Set Fault Proof Implementation', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#all', title: 'Deploy All', navType: 'scroll'},
     ];
 
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
@@ -38,7 +38,7 @@ export function load() {
         {pathname: '/blog/3-metric-hub', title: 'Metric Hub', navType: 'tab'},
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},
         {pathname: '/3-plasmachain', title: '3: PlasmaChain', navType: 'tab'},
-        {pathname: '/4-opchain', title: '4: OP Chain', navType: 'tab'},
+        {pathname: '/4-opchain-proxies', title: '4: OP Chain : Proxies', navType: 'tab'},
     ];
 
 	return {

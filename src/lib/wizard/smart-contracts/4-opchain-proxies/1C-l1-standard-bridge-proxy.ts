@@ -1,8 +1,8 @@
 import type { BaseModifier, Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
-import type { SharedL1StandardBridgeProxyOptions } from '../../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-proxies/1C-option-l1-standard-bridge-proxy';
+import type { SharedL1StandardBridgeProxyOptions } from '../../shared/4-opchain-proxies/1C-option-l1-standard-bridge-proxy';
 
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";

@@ -1,26 +1,26 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedL1StandardBridgeProxyOptions } from '../../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1C-option-l1-standard-bridge-proxy';
+import type { SharedSystemConfigProxyOptions } from '../../shared/4-opchain-proxies/1B-option-system-config-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/4-opchain-proxies/1B-option-system-config-proxy";
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
 import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedL1StandardBridgeProxyOptions): Required<SharedL1StandardBridgeProxyOptions> {
+function withDeployDefaults(opts: SharedSystemConfigProxyOptions): Required<SharedSystemConfigProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployL1StandardBridgeProxy(opts: SharedL1StandardBridgeProxyOptions = commonDefaults): string {
-  return printDeployContract(buildDeployL1StandardBridgeProxy(opts));
+export function printDeploySystemConfigProxy(opts: SharedSystemConfigProxyOptions = commonDefaults): string {
+  return printDeployContract(buildDeploySystemConfigProxy(opts));
 }
 
-export function buildDeployL1StandardBridgeProxy(opts: SharedL1StandardBridgeProxyOptions): DeployContract {
+export function buildDeploySystemConfigProxy(opts: SharedSystemConfigProxyOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -49,23 +49,23 @@ function addBase(c: DeployBuilder) {
   };
   c.addParent(DeployScript, []);
 
-  const L1ChugSplashProxy = {
-    name: 'L1ChugSplashProxy',
-    path: '@redprint-core/legacy/L1ChugSplashProxy.sol',
+  const Proxy = {
+    name: 'Proxy',
+    path: '@redprint-core/universal/Proxy.sol',
   };
-  c.addModule(L1ChugSplashProxy);
+  c.addModule(Proxy);
 
   // deploy
   c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");
 
-        return L1ChugSplashProxy(deployer.deploy_L1ChugSplashProxy("L1StandardBridgeProxy", proxyOwner ));`, functions.deploy);
+        return Proxy(deployer.deploy_ERC1967Proxy("SystemConfigProxy", proxyOwner));`, functions.deploy);
 }
 
 const functions = defineFunctions({
   deploy: {
       kind: 'external' as const,
       args: [],
-      returns: ['L1ChugSplashProxy'],
+      returns: ['Proxy'],
   },
 
 });

@@ -1,26 +1,26 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedL1ERC721BridgeProxyOptions } from '../../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1F-option-l1-ERC721-bridge-proxy';
+import type { SharedL2OutputOracleProxyOptions } from '../../shared/4-opchain-proxies/1H-option-l2-output-oracle-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-proxies/1H-option-l2-output-oracle-proxy';
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
 import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedL1ERC721BridgeProxyOptions): Required<SharedL1ERC721BridgeProxyOptions> {
+function withDeployDefaults(opts: SharedL2OutputOracleProxyOptions): Required<SharedL2OutputOracleProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployL1ERC721BridgeProxy(opts: SharedL1ERC721BridgeProxyOptions = commonDefaults): string {
-  return printDeployContract(buildDeployL1ERC721BridgeProxy(opts));
+export function printDeployL2OutputOracleProxy(opts: SharedL2OutputOracleProxyOptions = commonDefaults): string {
+  return printDeployContract(buildDeployL2OutputOracleProxy(opts));
 }
 
-export function buildDeployL1ERC721BridgeProxy(opts: SharedL1ERC721BridgeProxyOptions): DeployContract {
+export function buildDeployL2OutputOracleProxy(opts: SharedL2OutputOracleProxyOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -58,7 +58,7 @@ function addBase(c: DeployBuilder) {
   // deploy
   c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");
 
-        return Proxy(deployer.deploy_ERC1967Proxy("L1ERC721BridgeProxy", proxyOwner));`, functions.deploy);
+        return Proxy(deployer.deploy_ERC1967Proxy("L2OutputOracleProxy", proxyOwner));`, functions.deploy);
 }
 
 const functions = defineFunctions({

@@ -1,26 +1,26 @@
 import type { BaseModifier, Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1E-option-optimism-mintable-ERC20-factory-proxy';
-import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../../shared/4-opchain/1E-option-optimism-mintable-ERC20-factory-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-proxies/1I-option-delayed-WETH-proxy';
+import type { SharedDelayedWETHProxyOptions } from '../../shared/4-opchain-proxies/1I-option-delayed-WETH-proxy';
 
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
 import { defineFunctions } from '../../utils/define-functions';
 
-function withDefaults(opts: SharedOptimismMintableERC20FactoryProxyOptions): Required<SharedOptimismMintableERC20FactoryProxyOptions> {
+function withDefaults(opts: SharedDelayedWETHProxyOptions): Required<SharedDelayedWETHProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printOptimismMintableERC20FactoryProxy(opts: SharedOptimismMintableERC20FactoryProxyOptions = commonDefaults): string {
-  return printContract(buildOptimismMintableERC20FactoryProxy(opts));
+export function printDelayedWETHProxy(opts: SharedDelayedWETHProxyOptions = commonDefaults): string {
+  return printContract(buildDelayedWETHProxy(opts));
 }
 
-export function buildOptimismMintableERC20FactoryProxy(opts: SharedOptimismMintableERC20FactoryProxyOptions): Contract {
+export function buildDelayedWETHProxy(opts: SharedDelayedWETHProxyOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo

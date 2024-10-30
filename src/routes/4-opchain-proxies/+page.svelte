@@ -1,5 +1,5 @@
 <script  lang="ts">
-    import type { PageData } from "./$types";
+    import type { PageData } from "../4-opchain-proxies/$types";
 
     import type {  Contract } from '$lib/wizard/smart-contracts';
     import { ContractBuilder, buildContractGeneric } from '$lib/wizard/smart-contracts';

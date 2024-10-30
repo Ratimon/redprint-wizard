@@ -1,26 +1,26 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedAnchorStateRegistryProxyOptions } from '../../shared/4-opchain/1K-option-anchor-state-registry-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1K-option-anchor-state-registry-proxy';
+import type { SharedDisputeGameFactoryProxyOptions } from '../../shared/4-opchain-proxies/1G-option-dispute-game-factory-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-proxies/1G-option-dispute-game-factory-proxy';
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
 import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedAnchorStateRegistryProxyOptions): Required<SharedAnchorStateRegistryProxyOptions> {
+function withDeployDefaults(opts: SharedDisputeGameFactoryProxyOptions): Required<SharedDisputeGameFactoryProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployAnchorStateRegistryProxy(opts: SharedAnchorStateRegistryProxyOptions = commonDefaults): string {
-  return printDeployContract(buildDeployAnchorStateRegistryProxy(opts));
+export function printDeployDisputeGameFactoryProxy(opts: SharedDisputeGameFactoryProxyOptions = commonDefaults): string {
+  return printDeployContract(buildDeployDisputeGameFactoryProxy(opts));
 }
 
-export function buildDeployAnchorStateRegistryProxy(opts: SharedAnchorStateRegistryProxyOptions): DeployContract {
+export function buildDeployDisputeGameFactoryProxy(opts: SharedDisputeGameFactoryProxyOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -58,7 +58,7 @@ function addBase(c: DeployBuilder) {
   // deploy
   c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");
 
-        return Proxy(deployer.deploy_ERC1967Proxy("AnchorStateRegistryProxy", proxyOwner));`, functions.deploy);
+        return Proxy(deployer.deploy_ERC1967Proxy("DisputeGameFactoryProxy", proxyOwner));`, functions.deploy);
 }
 
 const functions = defineFunctions({

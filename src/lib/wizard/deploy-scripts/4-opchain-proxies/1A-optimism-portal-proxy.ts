@@ -1,26 +1,26 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../../shared/4-opchain/1E-option-optimism-mintable-ERC20-factory-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1E-option-optimism-mintable-ERC20-factory-proxy';
+import type { SharedOptimismPortalProxyOptions } from '../../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/4-opchain-proxies/1A-option-optimism-portal-proxy";
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
 import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedOptimismMintableERC20FactoryProxyOptions): Required<SharedOptimismMintableERC20FactoryProxyOptions> {
+function withDeployDefaults(opts: SharedOptimismPortalProxyOptions): Required<SharedOptimismPortalProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployOptimismMintableERC20FactoryProxy(opts: SharedOptimismMintableERC20FactoryProxyOptions = commonDefaults): string {
-  return printDeployContract(buildDeployOptimismMintableERC20FactoryProxy(opts));
+export function printDeployOptimismPortalProxy(opts: SharedOptimismPortalProxyOptions = commonDefaults): string {
+  return printDeployContract(buildDeployOptimismPortalProxy(opts));
 }
 
-export function buildDeployOptimismMintableERC20FactoryProxy(opts: SharedOptimismMintableERC20FactoryProxyOptions): DeployContract {
+export function buildDeployOptimismPortalProxy(opts: SharedOptimismPortalProxyOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -58,7 +58,7 @@ function addBase(c: DeployBuilder) {
   // deploy
   c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");
 
-        return Proxy(deployer.deploy_ERC1967Proxy("OptimismMintableERC20FactoryProxy", proxyOwner));`, functions.deploy);
+        return Proxy(deployer.deploy_ERC1967Proxy("OptimismPortalProxy", proxyOwner));`, functions.deploy);
 }
 
 const functions = defineFunctions({

@@ -1,26 +1,26 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedDelayedWETHProxyOptions } from '../../shared/4-opchain/1I-option-delayed-WETH-proxy';
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1I-option-delayed-WETH-proxy';
+import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../../shared/4-opchain-proxies/1E-option-optimism-mintable-ERC20-factory-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-proxies/1E-option-optimism-mintable-ERC20-factory-proxy';
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
 import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedDelayedWETHProxyOptions): Required<SharedDelayedWETHProxyOptions> {
+function withDeployDefaults(opts: SharedOptimismMintableERC20FactoryProxyOptions): Required<SharedOptimismMintableERC20FactoryProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployDelayedWETHProxy(opts: SharedDelayedWETHProxyOptions = commonDefaults): string {
-  return printDeployContract(buildDeployDelayedWETHProxy(opts));
+export function printDeployOptimismMintableERC20FactoryProxy(opts: SharedOptimismMintableERC20FactoryProxyOptions = commonDefaults): string {
+  return printDeployContract(buildDeployOptimismMintableERC20FactoryProxy(opts));
 }
 
-export function buildDeployDelayedWETHProxy(opts: SharedDelayedWETHProxyOptions): DeployContract {
+export function buildDeployOptimismMintableERC20FactoryProxy(opts: SharedOptimismMintableERC20FactoryProxyOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -58,7 +58,7 @@ function addBase(c: DeployBuilder) {
   // deploy
   c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");
 
-        return Proxy(deployer.deploy_ERC1967Proxy("DelayedWETHProxy", proxyOwner));`, functions.deploy);
+        return Proxy(deployer.deploy_ERC1967Proxy("OptimismMintableERC20FactoryProxy", proxyOwner));`, functions.deploy);
 }
 
 const functions = defineFunctions({

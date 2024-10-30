@@ -1,26 +1,26 @@
 import type { BaseModifier, Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain/1B-option-system-config-proxy';
-import type { SharedSystemConfigProxyOptions } from '../../shared/4-opchain/1B-option-system-config-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-proxies/1H-option-l2-output-oracle-proxy';
+import type { SharedL2OutputOracleProxyOptions } from '../../shared/4-opchain-proxies/1H-option-l2-output-oracle-proxy';
 
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
 import { defineFunctions } from '../../utils/define-functions';
 
-function withDefaults(opts: SharedSystemConfigProxyOptions): Required<SharedSystemConfigProxyOptions> {
+function withDefaults(opts: SharedL2OutputOracleProxyOptions): Required<SharedL2OutputOracleProxyOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts),
   };
 }
 
-export function printSystemConfigProxy(opts: SharedSystemConfigProxyOptions = commonDefaults): string {
-  return printContract(buildSystemConfigProxy(opts));
+export function printL2OutputOracleProxy(opts: SharedL2OutputOracleProxyOptions = commonDefaults): string {
+  return printContract(buildL2OutputOracleProxy(opts));
 }
 
-export function buildSystemConfigProxy(opts: SharedSystemConfigProxyOptions): Contract {
+export function buildL2OutputOracleProxy(opts: SharedL2OutputOracleProxyOptions): Contract {
     const allOpts = withDefaults(opts);
     // to do add interface
     // to do add note to highlight diff in op mono repo
