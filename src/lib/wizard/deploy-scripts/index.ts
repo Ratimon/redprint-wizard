@@ -35,5 +35,6 @@ export {
     deployPermissionedDelayedWETHProxy,
     deployAnchorStateRegistryProxy,
     deployStepFourAllSub,
-    deployStepFourAll
+    deployStepFourAll,
+    deployL1CrossDomainMessenger
 } from './api';

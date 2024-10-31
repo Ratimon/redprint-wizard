@@ -50,16 +50,6 @@ function addBase(c: DeployBuilder) {
   };
   c.addModule(VmSafe);
 
-  const DeployerFunctions = {
-    name: 'DeployerFunctions',
-    path: '@redprint-deploy/deployer/DeployerFunctions.sol',
-  };
-  c.addLibrary(DeployerFunctions, `IDeployer`);
-  const DeployOptions = {
-    name: 'DeployOptions',
-    path: '@redprint-deploy/deployer/DeployerFunctions.sol',
-  };
-  c.addModule(DeployOptions);
   const DeployScript = {
     name: 'DeployScript',
     path: '@redprint-deploy/deployer/DeployScript.sol',
@@ -70,6 +60,17 @@ function addBase(c: DeployBuilder) {
     path: '@redprint-deploy/deployer/DeployScript.sol',
   };
   c.addModule(IDeployer);
+
+  const DeployerFunctions = {
+    name: 'DeployerFunctions',
+    path: '@redprint-deploy/deployer/DeployerFunctions.sol',
+  };
+  c.addLibrary(DeployerFunctions, `IDeployer`);
+  const DeployOptions = {
+    name: 'DeployOptions',
+    path: '@redprint-deploy/deployer/DeployerFunctions.sol',
+  };
+  c.addModule(DeployOptions);
 
   const SafeScript = {
     name: 'SafeScript',

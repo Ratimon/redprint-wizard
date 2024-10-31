@@ -22,22 +22,22 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
   };
 }
 
-export const defaults: Required<SharedL1StandardBridgeProxyOptions> = {
+export const defaults: Required<SharedL1CrossDomainMessengerOptions> = {
   //contract
-  contractName: 'L1ChugSplashProxy',
+  contractName: 'L1CrossDomainMessenger',
   
   access: commonDefaults.access,
   upgradeable: commonDefaults.upgradeable,
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployL1StandardBridgeProxyScript',
+  deployName: 'DeployL1CrossDomainMessengerScript',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;
 
 
-export interface SharedL1StandardBridgeProxyOptions extends CommonOptions {
+export interface SharedL1CrossDomainMessengerOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;

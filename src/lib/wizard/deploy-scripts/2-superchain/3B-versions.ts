@@ -50,16 +50,6 @@ function addBase(c: DeployBuilder) {
   };
   c.addModule(VmSafe);
 
-  const DeployerFunctions = {
-    name: 'DeployerFunctions',
-    path: '@redprint-deploy/deployer/DeployerFunctions.sol',
-  };
-  c.addLibrary(DeployerFunctions, `IDeployer`);
-  const DeployOptions = {
-    name: 'DeployOptions',
-    path: '@redprint-deploy/deployer/DeployerFunctions.sol',
-  };
-  c.addModule(DeployOptions);
   const DeployScript = {
     name: 'DeployScript',
     path: '@redprint-deploy/deployer/DeployScript.sol',
@@ -70,6 +60,18 @@ function addBase(c: DeployBuilder) {
     path: '@redprint-deploy/deployer/DeployScript.sol',
   };
   c.addModule(IDeployer);
+
+
+  const DeployerFunctions = {
+    name: 'DeployerFunctions',
+    path: '@redprint-deploy/deployer/DeployerFunctions.sol',
+  };
+  c.addLibrary(DeployerFunctions, `IDeployer`);
+  const DeployOptions = {
+    name: 'DeployOptions',
+    path: '@redprint-deploy/deployer/DeployerFunctions.sol',
+  };
+  c.addModule(DeployOptions);
 
 
   const SafeScript = {
@@ -112,7 +114,7 @@ function addBase(c: DeployBuilder) {
 
         versions = deployer.deploy_ProtocolVersions("ProtocolVersions", options);
 
-        Types.ContractSet memory contracts = _proxiesUnstrict();
+        Types.ContractSet memory contracts = deployer.getProxiesUnstrict();
         contracts.ProtocolVersions = address(versions);
         ChainAssertions.checkProtocolVersions({ _contracts: contracts, _cfg: deployer.getConfig(), _isProxy: false });
 
@@ -168,24 +170,8 @@ function addBase(c: DeployBuilder) {
         string memory version = _versions.version();
         console.log("ProtocolVersions version: %s", version);
 
-        ChainAssertions.checkProtocolVersions({ _contracts: _proxiesUnstrict(), _cfg: deployer.getConfig(), _isProxy: true });`, functions.initializeProtocolVersions);
+        ChainAssertions.checkProtocolVersions({ _contracts: deployer.getProxiesUnstrict(), _cfg: deployer.getConfig(), _isProxy: true });`, functions.initializeProtocolVersions);
 
-  // _proxiesUnstrict
-  c.addFunctionCode(`proxies_ = Types.ContractSet({
-            L1CrossDomainMessenger: deployer.getAddress("L1CrossDomainMessengerProxy"),
-            L1StandardBridge: deployer.getAddress("L1StandardBridgeProxy"),
-            L2OutputOracle: deployer.getAddress("L2OutputOracleProxy"),
-            DisputeGameFactory: deployer.getAddress("DisputeGameFactoryProxy"),
-            DelayedWETH: deployer.getAddress("DelayedWETHProxy"),
-            AnchorStateRegistry: deployer.getAddress("AnchorStateRegistryProxy"),
-            OptimismMintableERC20Factory: deployer.getAddress("OptimismMintableERC20FactoryProxy"),
-            OptimismPortal: deployer.getAddress("OptimismPortalProxy"),
-            OptimismPortal2: deployer.getAddress("OptimismPortalProxy"),
-            SystemConfig: deployer.getAddress("SystemConfigProxy"),
-            L1ERC721Bridge: deployer.getAddress("L1ERC721BridgeProxy"),
-            ProtocolVersions: deployer.getAddress("ProtocolVersionsProxy"),
-            SuperchainConfig: deployer.getAddress("SuperchainConfigProxy")
-        });`, functions._proxiesUnstrict);
 
 }
 
@@ -226,13 +212,6 @@ const functions = defineFunctions({
     kind: 'public' as const,
     args: [],
   },
-  _proxiesUnstrict: {
-    kind: 'internal' as const,
-    args: [
-    ],
-    returns: ['Types.ContractSet memory proxies_'],
-    mutability: 'view',
-},
 
   
 });

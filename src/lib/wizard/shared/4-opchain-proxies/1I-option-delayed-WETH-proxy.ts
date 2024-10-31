@@ -31,7 +31,7 @@ export const defaults: Required<SharedDelayedWETHProxyOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployDelayedWETHProxy',
+  deployName: 'DeployDelayedWETHProxyScript',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;

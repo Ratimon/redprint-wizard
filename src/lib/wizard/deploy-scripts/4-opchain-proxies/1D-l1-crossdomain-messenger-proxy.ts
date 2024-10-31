@@ -57,7 +57,7 @@ function addBase(c: DeployBuilder) {
 
   const ResolvedDelegateProxy = {
     name: 'ResolvedDelegateProxy',
-    path: '@redprint-core/legacy/L1ChugSplashProxy.sol',
+    path: '@redprint-core/legacy/ResolvedDelegateProxy.sol',
   };
   c.addModule(ResolvedDelegateProxy);
 

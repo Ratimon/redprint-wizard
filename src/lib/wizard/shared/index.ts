@@ -22,9 +22,10 @@ export type {
     KindedDelayedWETHProxyOptions, GenericDelayedWETHProxyOptions,
     KindedPermissionedDelayedWETHProxyOptions, GenericPermissionedDelayedWETHProxyOptions,
     KindedAnchorStateRegistryProxyOptions, GenericAnchorStateRegistryProxyOptions,
-
     KindedStepFourAllSubOptions, GenericStepFourAllSubOptions,
     KindedStepFourAllOptions, GenericStepFourAllOptions,
+
+    KindedL1CrossDomainMessengerOptions, GenericL1CrossDomainMessengerOptions,
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -106,3 +107,6 @@ export {  sanitizeKindStepFourAllSub } from './4-opchain-proxies/kind-all-sub';
 
 export type { KindStepFourAll } from './4-opchain-proxies/kind-all';
 export {  sanitizeKindStepFourAll } from './4-opchain-proxies/kind-all';
+
+export type { KindL1CrossDomainMessenger } from './4-opchain-implementations/2A-kind-l1-crossdomain-messenger';
+export {  sanitizeKindL1CrossDomainMessenger } from './4-opchain-implementations/2A-kind-l1-crossdomain-messenger';

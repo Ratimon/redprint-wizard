@@ -74,6 +74,10 @@ import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain-
 import {  defaults as anchorStateRegistryProxyDefaults } from '../shared/4-opchain-proxies/1K-option-anchor-state-registry-proxy';
 import { printAnchorStateRegistryProxy } from './4-opchain-proxies/1K-anchor-state-registry-proxy';
 
+import type { SharedL1CrossDomainMessengerOptions } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
+import {  defaults as l1CrossDomainMessengerDefaults } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
+import { printL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -205,4 +209,10 @@ export type AnchorStateRegistryProxy = WizardContractAPI<SharedAnchorStateRegist
 export const anchorStateRegistryProxy: AnchorStateRegistryProxy = {
   print: printAnchorStateRegistryProxy,
   defaults: anchorStateRegistryProxyDefaults
+}
+
+export type L1CrossDomainMessenger = WizardContractAPI<SharedL1CrossDomainMessengerOptions>;
+export const l1CrossDomainMessenger: L1CrossDomainMessenger = {
+  print: printL1CrossDomainMessenger,
+  defaults: l1CrossDomainMessengerDefaults
 }

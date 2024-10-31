@@ -32,7 +32,8 @@ export {
     l2OutputOracleProxy,
     delayedWETHProxy,
     permissionedDelayedWETHProxy,
-    anchorStateRegistryProxy
+    anchorStateRegistryProxy,
+    l1CrossDomainMessenger
 } from './api';
 
 
@@ -57,3 +58,4 @@ export { buildL2OutputOracleProxy } from './4-opchain-proxies/1H-l2-output-oracl
 export { buildDelayedWETHProxy } from './4-opchain-proxies/1I-delayed-WETH-proxy';
 export { buildPermissionedDelayedWETHProxy } from './4-opchain-proxies/1J-permissioned-delayed-WETH-proxy';
 export { buildAnchorStateRegistryProxy } from './4-opchain-proxies/1K-anchor-state-registry-proxy';
+export { buildL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';

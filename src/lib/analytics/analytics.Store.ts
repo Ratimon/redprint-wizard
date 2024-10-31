@@ -28,7 +28,9 @@ export type Action =
                     'copy-contract-PermissionedDelayedWETHProxy'| 'copy-script-PermissionedDelayedWETHProxy' | 'download-contract-PermissionedDelayedWETHProxy' | 'download-script-PermissionedDelayedWETHProxy' |
                     'copy-contract-AnchorStateRegistryProxy'| 'copy-script-AnchorStateRegistryProxy' | 'download-contract-AnchorStateRegistryProxy' | 'download-script-AnchorStateRegistryProxy' |
                     'copy-contract-StepFourAllSub'| 'copy-script-StepFourAllSub' | 'download-contract-StepFourAllSub' | 'download-script-StepFourAllSub' |
-                    'copy-contract-StepFourAll'| 'copy-script-StepFourAll' | 'download-contract-StepFourAll' | 'download-script-StepFourAll'
+                    'copy-contract-StepFourAll'| 'copy-script-StepFourAll' | 'download-contract-StepFourAll' | 'download-script-StepFourAll' |
+
+                    'copy-contract-L1CrossDomainMessenger'| 'copy-script-L1CrossDomainMessenger' | 'download-contract-L1CrossDomainMessenger' | 'download-script-L1CrossDomainMessenger'
                     
 export type GaEvent = {
     id: string;

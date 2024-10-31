@@ -55,6 +55,9 @@ import { buildPermissionedDelayedWETHProxy } from './4-opchain-proxies/1J-permis
 import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain-proxies/1K-option-anchor-state-registry-proxy';
 import { buildAnchorStateRegistryProxy } from './4-opchain-proxies/1K-anchor-state-registry-proxy';
 
+import type { SharedL1CrossDomainMessengerOptions } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
+import { buildL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -75,6 +78,7 @@ export interface KindedOptions {
   DelayedWETHProxy : {kind: 'DelayedWETHProxy' } & SharedDelayedWETHProxyOptions;
   PermissionedDelayedWETHProxy : {kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
   AnchorStateRegistryProxy : {kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
+  L1CrossDomainMessenger : {kind: 'L1CrossDomainMessenger' } & SharedL1CrossDomainMessengerOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -138,6 +142,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'AnchorStateRegistryProxy':
       return buildAnchorStateRegistryProxy(opts);
+
+    case 'L1CrossDomainMessenger':
+      return buildL1CrossDomainMessenger(opts);
       
     default:
       const _: never = opts;

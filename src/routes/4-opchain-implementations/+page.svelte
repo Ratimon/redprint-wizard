@@ -7,14 +7,14 @@
     import { DeployBuilder, buildDeployGeneric } from '$lib/wizard/deploy-scripts';
 
     import type {
-        KindedOptimismPortalProxyOptions, KindOptimismPortalProxy,
+        KindedL1CrossDomainMessengerOptions, KindL1CrossDomainMessenger,
         KindedStepFourAllOptions, KindStepFourAll,
         KindedStepFourAllSubOptions, KindStepFourAllSub,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
     import {
-        sanitizeKindOptimismPortalProxy,
+        sanitizeKindL1CrossDomainMessenger,
         sanitizeKindStepFourAll,
         sanitizeKindStepFourAllSub,
         OptionsError
@@ -25,8 +25,7 @@
     import WizardDouble from '$lib/ui/components/WizardDouble.svelte';
     import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
 
-    import OptimismPortalProxyControls from '$lib/ui/controls/4-OptimismPortalProxyControls.svelte';
-
+    import L1CrossDomainMessengerControls from '$lib/ui/controls/4-L1CrossDomainMessengerControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-AllControls.svelte';
 
@@ -80,23 +79,23 @@
   `);
 
   // **** step 4.2A ***
-  export let initialContractOptimismPortalProxyTab: string | undefined = 'OptimismPortalProxy';
-  export let contractOptimismPortalProxyTab: KindOptimismPortalProxy = sanitizeKindOptimismPortalProxy(initialContractOptimismPortalProxyTab);
-  let allContractsOptimismPortalProxyOpts: { [k in KindOptimismPortalProxy]?: Required<KindedOptimismPortalProxyOptions [k]> } = {};
-  let errorsOptimismPortalProxy: { [k in KindOptimismPortalProxy]?: OptionsErrorMessages } = {};
-  let contractOptimismPortalProxy: Contract = new ContractBuilder('OptimismPortalProxy');
-  let deployContractOptimismPortalProxy: DeployContract = new DeployBuilder('DeployOptimismPortalProxyScript');
+  export let initialContractL1CrossDomainMessengerTab: string | undefined = 'L1CrossDomainMessenger';
+  export let contractL1CrossDomainMessengerTab: KindL1CrossDomainMessenger = sanitizeKindL1CrossDomainMessenger(initialContractL1CrossDomainMessengerTab);
+  let allContractsL1CrossDomainMessengerOpts: { [k in KindL1CrossDomainMessenger]?: Required<KindedL1CrossDomainMessengerOptions [k]> } = {};
+  let errorsL1CrossDomainMessenger: { [k in KindL1CrossDomainMessenger]?: OptionsErrorMessages } = {};
+  let contractL1CrossDomainMessenger: Contract = new ContractBuilder('L1CrossDomainMessenger');
+  let deployContractL1CrossDomainMessenger: DeployContract = new DeployBuilder('DeployL1CrossDomainMessengerScript');
 
-  $: optsOptimismPortalProxy = allContractsOptimismPortalProxyOpts[contractOptimismPortalProxyTab];
+  $: optsL1CrossDomainMessenger = allContractsL1CrossDomainMessengerOpts[contractL1CrossDomainMessengerTab];
   $: {
-  if (optsOptimismPortalProxy) {
+  if (optsL1CrossDomainMessenger) {
           try {
-              contractOptimismPortalProxy = buildContractGeneric(optsOptimismPortalProxy);
-              deployContractOptimismPortalProxy = buildDeployGeneric(optsOptimismPortalProxy);
-              errorsOptimismPortalProxy[contractOptimismPortalProxyTab] = undefined;
+              contractL1CrossDomainMessenger = buildContractGeneric(optsL1CrossDomainMessenger);
+              deployContractL1CrossDomainMessenger = buildDeployGeneric(optsL1CrossDomainMessenger);
+              errorsL1CrossDomainMessenger[contractL1CrossDomainMessengerTab] = undefined;
           } catch (e: unknown) {
               if (e instanceof OptionsError) {
-                errorsOptimismPortalProxy[contractOptimismPortalProxyTab] = e.messages;
+                errorsL1CrossDomainMessenger[contractL1CrossDomainMessengerTab] = e.messages;
               } else {
               throw e;
               }
@@ -104,8 +103,8 @@
       }
   }
 
-  let isArtifactStepOneAModalOpen = false;
-  $: addressStepOneAContent = md.render(`
+  let isArtifactStepTwoAModalOpen = false;
+  $: addressStepTwoAContent = md.render(`
   \`\`\`bash
 {
   "SafeProxyFactory": "<ADDRESS_1>",
@@ -117,7 +116,17 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>"
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>"
 }
   \`\`\`
   `);
@@ -238,19 +247,18 @@ if (optsStepSub) {
         <p class="text-2xl">4.2 : Deploy Implementations Contracts</p>
       </div>
     </section>
-    <!-- 401A_DeployOptimismPortalProxy -->
     <div class="divider divider-primary ">
-      <p class="text-xl">4.2A : Deploy OptimismPortalProxy Contract</p>
+      <p class="text-xl">4.2A : Deploy L1CrossDomainMessenger Contract</p>
     </div>
 </Background>
 
-<WizardDouble conventionNumber={'401A'} initialContractTab={initialContractOptimismPortalProxyTab} contractTab={contractOptimismPortalProxyTab} opts={optsOptimismPortalProxy} contract={contractOptimismPortalProxy} deployContract={deployContractOptimismPortalProxy}>
+<WizardDouble conventionNumber={'401A'} initialContractTab={initialContractL1CrossDomainMessengerTab} contractTab={contractL1CrossDomainMessengerTab} opts={optsL1CrossDomainMessenger} contract={contractL1CrossDomainMessenger} deployContract={deployContractL1CrossDomainMessenger}>
     <div slot="menu" >
         <div class="tab overflow-hidden">
           <Background color="bg-base-200">
             <OverflowMenu>
-              <button class:selected={contractOptimismPortalProxyTab === 'OptimismPortalProxy'} on:click={() => contractOptimismPortalProxyTab = 'OptimismPortalProxy'}>
-                OptimismPortalProxy
+              <button class:selected={contractL1CrossDomainMessengerTab === 'L1CrossDomainMessenger'} on:click={() => contractL1CrossDomainMessengerTab = 'L1CrossDomainMessenger'}>
+                L1CrossDomainMessenger
               </button>      
             </OverflowMenu>
           </Background>
@@ -260,8 +268,8 @@ if (optsStepSub) {
     <div slot="control" >
          <!-- w-64 -->
         <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-            <div class:hidden={contractOptimismPortalProxyTab !== 'OptimismPortalProxy'}>
-                <OptimismPortalProxyControls bind:opts={allContractsOptimismPortalProxyOpts.OptimismPortalProxy} />
+            <div class:hidden={contractL1CrossDomainMessengerTab !== 'L1CrossDomainMessenger'}>
+                <L1CrossDomainMessengerControls bind:opts={allContractsL1CrossDomainMessengerOpts.L1CrossDomainMessenger} />
             </div>
         </div>
     </div> 
@@ -273,13 +281,13 @@ if (optsStepSub) {
           After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
         </p>
       
-        <button class="btn modal-button" on:click={()=>isArtifactStepOneAModalOpen = true}>See the artifact's content example</button>
+        <button class="btn modal-button" on:click={()=>isArtifactStepTwoAModalOpen = true}>See the artifact's content example</button>
       
-        <div class="modal" class:modal-open={isArtifactStepOneAModalOpen}>
+        <div class="modal" class:modal-open={isArtifactStepTwoAModalOpen}>
           <div class="modal-box w-11/12 max-w-5xl">
       
             <form method="dialog">
-              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneAModalOpen = false} >✕</button>
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoAModalOpen = false} >✕</button>
             </form>
       
             <h3 class="font-bold text-lg">Example!</h3>
@@ -287,7 +295,7 @@ if (optsStepSub) {
             <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
             <div class="output flex flex-col grow overflow-auto">
               <code class="hljs grow overflow-auto p-4">
-                {@html md.render(addressStepOneAContent)}
+                {@html md.render(addressStepTwoAContent)}
               </code>
             </div>
             <p class="py-4">click on ✕ button to close</p>
@@ -303,7 +311,7 @@ if (optsStepSub) {
 
 <!-- 000_DeployAll.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[5].pathname}>
+  <section id={data.dropDownLinks[2].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>
@@ -393,15 +401,3 @@ if (optsStepSub) {
   </div>
   
 </WizardSingle>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[2].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-2xl">4.2 : Deploy Implementations Contracts</p>
-    </div>
-  </section>
-  <!-- 402A_ -->
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.2A : Deploy L1CrossDomainMessenger Contract</p>
-  </div>
-</Background>

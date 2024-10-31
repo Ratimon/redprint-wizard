@@ -704,8 +704,6 @@ if (optsStepSub) {
     }
 }
 
-  
-  
 </script>
 
 <Background color="bg-base-100 pt-3 pb-4">
@@ -803,10 +801,13 @@ if (optsStepSub) {
     </div>
 </WizardDouble>
 
+
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.1B : Deploy SystemConfigProxy Contract</p>
-  </div>
+  <section id={data.dropDownLinks[2].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1B : Deploy SystemConfigProxy Contract</p>
+    </div>
+  </section>
 </Background>
 
 <WizardDouble conventionNumber={'401B'} initialContractTab={initialContractSystemConfigProxyTab} contractTab={contractSystemConfigProxyTab} opts={optsSystemConfigProxy} contract={contractSystemConfigProxy} deployContract={deployContractSystemConfigProxy}>
@@ -865,9 +866,12 @@ if (optsStepSub) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.1C : Deploy L1StandardBridgeProxy Contract</p>
-  </div>
+  <section id={data.dropDownLinks[3].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1C : Deploy L1StandardBridgeProxy Contract</p>
+    </div>
+  </section>
+
 </Background>
 
 <WizardDouble conventionNumber={'401C'} initialContractTab={initialContractL1StandardBridgeProxyTab} contractTab={contractL1StandardBridgeProxyTab} opts={optsL1StandardBridgeProxy} contract={contractL1StandardBridgeProxy} deployContract={deployContractL1StandardBridgeProxy}>
@@ -926,9 +930,11 @@ if (optsStepSub) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.1D : Deploy L1CrossDomainMessengerProxy Contract</p>
-  </div>
+  <section id={data.dropDownLinks[4].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1D : Deploy L1CrossDomainMessengerProxy Contract</p>
+    </div>
+  </section>
 </Background>
 
 <WizardDouble conventionNumber={'401D'} initialContractTab={initialContractL1CrossDomainMessengerProxyTab} contractTab={contractL1CrossDomainMessengerProxyTab} opts={optsL1CrossDomainMessengerProxy} contract={contractL1CrossDomainMessengerProxy} deployContract={deployContractL1CrossDomainMessengerProxy}>
@@ -987,9 +993,11 @@ if (optsStepSub) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.1E : Deploy OptimismMintableERC20FactoryProxy Contract</p>
-  </div>
+  <section id={data.dropDownLinks[5].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1E : Deploy OptimismMintableERC20FactoryProxy Contract</p>
+    </div>
+  </section>
 </Background>
 
 <WizardDouble conventionNumber={'401E'} initialContractTab={initialContractOptimismMintableERC20FactoryProxyTab} contractTab={contractOptimismMintableERC20FactoryProxyTab} opts={optsOptimismMintableERC20FactoryProxy} contract={contractOptimismMintableERC20FactoryProxy} deployContract={deployContractOptimismMintableERC20FactoryProxy}>
@@ -1048,9 +1056,11 @@ if (optsStepSub) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.1F : Deploy L1ERC721BridgeProxy Contract</p>
+  <section id={data.dropDownLinks[6].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1F : Deploy L1ERC721BridgeProxy Contract</p>
   </div>
+  </section>
 </Background>
 
 <WizardDouble conventionNumber={'401F'} initialContractTab={initialContractL1ERC721BridgeProxyTab} contractTab={contractL1ERC721BridgeProxyTab} opts={optsL1ERC721BridgeProxy} contract={contractL1ERC721BridgeProxy} deployContract={deployContractL1ERC721BridgeProxy}>
@@ -1109,9 +1119,11 @@ if (optsStepSub) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.1G : Deploy DisputeGameFactoryProxy Contract</p>
-  </div>
+  <section id={data.dropDownLinks[7].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1G : Deploy DisputeGameFactoryProxy Contract</p>
+    </div>
+  </section>
 </Background>
 
 <WizardDouble conventionNumber={'401G'} initialContractTab={initialContractDisputeGameFactoryProxyTab} contractTab={contractDisputeGameFactoryProxyTab} opts={optsDisputeGameFactoryProxy} contract={contractDisputeGameFactoryProxy} deployContract={deployContractDisputeGameFactoryProxy}>
@@ -1170,9 +1182,11 @@ if (optsStepSub) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.1H : Deploy L2OutputOracleProxy Contract</p>
-  </div>
+  <section id={data.dropDownLinks[8].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1H : Deploy L2OutputOracleProxy Contract</p>
+    </div>
+  </section>
 </Background>
 
 <WizardDouble conventionNumber={'401H'} initialContractTab={initialContractL2OutputOracleProxyTab} contractTab={contractL2OutputOracleProxyTab} opts={optsL2OutputOracleProxy} contract={contractL2OutputOracleProxy} deployContract={deployContractL2OutputOracleProxy}>
@@ -1231,9 +1245,11 @@ if (optsStepSub) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.1I : Deploy DelayedWETHProxy Contract</p>
-  </div>
+  <section id={data.dropDownLinks[9].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1I : Deploy DelayedWETHProxy Contract</p>
+    </div>
+  </section>
 </Background>
 
 <WizardDouble conventionNumber={'401I'} initialContractTab={initialContractDelayedWETHProxyTab} contractTab={contractDelayedWETHProxyTab} opts={optsDelayedWETHProxy} contract={contractDelayedWETHProxy} deployContract={deployContractDelayedWETHProxy}>
@@ -1292,9 +1308,11 @@ if (optsStepSub) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.1J : Deploy PermissionedDelayedWETHProxy Contract</p>
-  </div>
+  <section id={data.dropDownLinks[10].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1J : Deploy PermissionedDelayedWETHProxy Contract</p>
+    </div>
+  </section>
 </Background>
 
 <WizardDouble conventionNumber={'401J'} initialContractTab={initialContractPermissionedDelayedWETHProxyTab} contractTab={contractPermissionedDelayedWETHProxyTab} opts={optsPermissionedDelayedWETHProxy} contract={contractPermissionedDelayedWETHProxy} deployContract={deployContractPermissionedDelayedWETHProxy}>
@@ -1353,9 +1371,11 @@ if (optsStepSub) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.1K : Deploy AnchorStateRegistryProxy Contract</p>
-  </div>
+  <section id={data.dropDownLinks[11].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1K : Deploy AnchorStateRegistryProxy Contract</p>
+    </div>
+  </section>
 </Background>
 
 <WizardDouble conventionNumber={'401K'} initialContractTab={initialContractAnchorStateRegistryProxyTab} contractTab={contractAnchorStateRegistryProxyTab} opts={optsAnchorStateRegistryProxy} contract={contractAnchorStateRegistryProxy} deployContract={deployContractAnchorStateRegistryProxy}>
@@ -1415,7 +1435,7 @@ if (optsStepSub) {
 
 <!-- 000_DeployAll.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[5].pathname}>
+  <section id={data.dropDownLinks[12].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>
@@ -1505,15 +1525,3 @@ if (optsStepSub) {
   </div>
   
 </WizardSingle>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[2].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-2xl">4.2 : Deploy Implementations Contracts</p>
-    </div>
-  </section>
-  <!-- 402A_ -->
-  <div class="divider divider-primary ">
-    <p class="text-xl">4.2A : Deploy L1CrossDomainMessenger Contract</p>
-  </div>
-</Background>

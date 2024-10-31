@@ -70,10 +70,14 @@ import { buildDeployStepFourAllSub } from './4-opchain-proxies/all-sub';
 import type { SharedStepFourAllOptions } from '../shared/4-opchain-proxies/option-all';
 import { buildDeployStepFourAll } from './4-opchain-proxies/all';
 
+import type { SharedL1CrossDomainMessengerOptions } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
+import { buildDeployL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
   StepOneAll: {kind: 'StepOneAll'} & SharedStepOneAllOptions;
+
   AddressManager: {kind: 'AddressManager'} & SharedAddressManagerOptions;
   ProxyAdmin: {kind: 'ProxyAdmin'} & SharedProxyAdminOptions;
   SuperchainConfigProxy: {kind: 'SuperchainConfigProxy'} & SharedSuperchainConfigProxyOptions;
@@ -82,6 +86,7 @@ export interface DeployKindedOptions {
   ProtocolVersions : {kind: 'ProtocolVersions'} & SharedProtocolVersionsOptions;
   StepTwoAllSub: {kind: 'StepTwoAllSub'} & SharedStepTwoAllSubOptions;
   StepTwoAll: {kind: 'StepTwoAll'} & SharedStepTwoAllOptions;
+
   OptimismPortalProxy: {kind: 'OptimismPortalProxy'} & SharedOptimismPortalProxyOptions;
   SystemConfigProxy : {kind: 'SystemConfigProxy'} & SharedSystemConfigProxyOptions;
   L1StandardBridgeProxy: {kind: 'L1StandardBridgeProxy'} & SharedL1StandardBridgeProxyOptions;
@@ -95,6 +100,7 @@ export interface DeployKindedOptions {
   AnchorStateRegistryProxy: {kind: 'AnchorStateRegistryProxy'} & SharedAnchorStateRegistryProxyOptions;
   StepFourAllSub: {kind: 'StepFourAllSub'} & SharedStepFourAllSubOptions;
   StepFourAll: {kind: 'StepFourAll'} & SharedStepFourAllOptions;
+  L1CrossDomainMessenger: {kind: 'L1CrossDomainMessenger'} & SharedL1CrossDomainMessengerOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -173,6 +179,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'StepFourAll':
       return  buildDeployStepFourAll(opts);
+
+    case 'L1CrossDomainMessenger':
+      return  buildDeployL1CrossDomainMessenger(opts);
 
     default:
       const _: never = opts;

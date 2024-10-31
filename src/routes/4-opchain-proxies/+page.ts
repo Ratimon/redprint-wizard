@@ -20,14 +20,22 @@ export function load() {
     const headLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},
         {pathname: '/3-plasmachain', title: '3: PlasmaChain', navType: 'tab'},
+        {pathname: '/4-opchain-implementations', title: '4: OP Chain : Implementations', navType: 'tab'},
     ];
 
     const dropDownLinks : Link[] = [
-        {pathname: '/4-opchain-proxies/#4.0', title: '4.0) Prerequisites', navType: 'scroll' },
-        {pathname: '/4-opchain-proxies/#4.1', title: '4.1: A-K) Deploy Proxies', navType: 'scroll'},
-        {pathname: '/4-opchain-proxies/#4.2', title: '4.2: A-D) Deploy Implementations', navType: 'scroll'},
-        {pathname: '/4-opchain-proxies/#4.3', title: '4.3) Initialize Implementations', navType: 'scroll'},
-        {pathname: '/4-opchain-proxies/#4.3', title: '4.3) Set Fault Proof Implementation', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1', title: '4.0) Prerequisites', navType: 'scroll' },
+        {pathname: '/4-opchain-proxies/#4.1A', title: '4.1A) OptimismPortalProxy ', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1B', title: '4.1B) SystemConfigProxy', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1C', title: '4.1C) L1StandardBridgeProxy', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1D', title: '4.1D) L1CrossDomainMessengerProxy', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1E', title: '4.1E) OptimismMintableERC20FactoryProxy', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1F', title: '4.1F) L1ERC721BridgeProxy', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1G', title: '4.1G) DisputeGameFactoryProxy', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1H', title: '4.1H) L2OutputOracleProxy', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1I', title: '4.1I) DelayedWETHProxy', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1J', title: '4.1J) PermissionedDelayedWETHProxy', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1K', title: '4.1K) AnchorStateRegistryProxy', navType: 'scroll'},
         {pathname: '/4-opchain-proxies/#all', title: 'Deploy All', navType: 'scroll'},
     ];
 
@@ -39,6 +47,7 @@ export function load() {
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},
         {pathname: '/3-plasmachain', title: '3: PlasmaChain', navType: 'tab'},
         {pathname: '/4-opchain-proxies', title: '4: OP Chain : Proxies', navType: 'tab'},
+        {pathname: '/4-opchain-implementations', title: '4: OP Chain : Implementations', navType: 'tab'},   
     ];
 
 	return {

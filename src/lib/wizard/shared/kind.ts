@@ -61,6 +61,8 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'StepFourAllSub':
       return true;
+    case 'L1CrossDomainMessenger':
+      return true;
 
     default: {
       // Static assert that we've checked all kinds.

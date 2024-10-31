@@ -31,7 +31,7 @@ export const defaults: Required<SharedL1CrossDomainMessengerProxyOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployL1CrossDomainMessengerProxy',
+  deployName: 'DeployL1CrossDomainMessengerProxyScript',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;

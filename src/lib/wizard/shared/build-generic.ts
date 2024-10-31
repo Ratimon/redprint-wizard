@@ -26,6 +26,8 @@ import type { SharedAnchorStateRegistryProxyOptions } from './4-opchain-proxies/
 import type { SharedStepFourAllSubOptions } from './4-opchain-proxies/option-all-sub';
 import type { SharedStepFourAllOptions } from './4-opchain-proxies/option-all';
 
+import type { SharedL1CrossDomainMessengerOptions } from './4-opchain-implementations/2A-option-l1-crossdomain-messenger';
+
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -52,7 +54,10 @@ export interface KindedOptions {
   PermissionedDelayedWETHProxy: { kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
   AnchorStateRegistryProxy: { kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
   StepFourAllSub: { kind: 'StepFourAllSub' } & SharedStepFourAllSubOptions;
+  // to do : fix name
   StepFourAll: { kind: 'StepFourAll' } & SharedStepFourAllOptions;
+
+  L1CrossDomainMessenger: { kind: 'L1CrossDomainMessenger' } & SharedL1CrossDomainMessengerOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -192,3 +197,9 @@ export interface KindedStepFourAllOptions {
   StepFourAll: { kind: 'StepFourAll' } & SharedStepFourAllOptions;
 }
 export type GenericStepFourAllOptions = KindedStepFourAllOptions[keyof KindedStepFourAllOptions];
+
+
+export interface KindedL1CrossDomainMessengerOptions {
+  L1CrossDomainMessenger: { kind: 'L1CrossDomainMessenger' } & SharedL1CrossDomainMessengerOptions;
+}
+export type GenericL1CrossDomainMessengerOptions = KindedL1CrossDomainMessengerOptions[keyof KindedL1CrossDomainMessengerOptions];

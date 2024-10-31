@@ -96,6 +96,10 @@ import type {  SharedStepFourAllOptions } from '../shared/4-opchain-proxies/opti
 import {  defaults as stepFourAllDefaults } from '../shared/4-opchain-proxies/option-all';
 import { printDeployStepFourAll } from './4-opchain-proxies/all';
 
+import type {  SharedL1CrossDomainMessengerOptions } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
+import {  defaults as l1CrossDomainMessengerDefaults } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
+import { printDeployL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';
+
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -256,4 +260,10 @@ export type DeployStepFourAll = WizardAllAPI<SharedStepFourAllOptions>;
 export const deployStepFourAll: DeployStepFourAll = {
   print: printDeployStepFourAll,
   defaults: stepFourAllDefaults,
+}
+
+export type DeployL1CrossDomainMessenger = WizardAllAPI<SharedL1CrossDomainMessengerOptions>;
+export const deployL1CrossDomainMessenger: DeployL1CrossDomainMessenger = {
+  print: printDeployL1CrossDomainMessenger,
+  defaults: l1CrossDomainMessengerDefaults,
 }

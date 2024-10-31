@@ -31,7 +31,7 @@ export const defaults: Required<SharedDisputeGameFactoryProxyOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployDisputeGameFactoryProxy',
+  deployName: 'DeployDisputeGameFactoryProxyScript',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;
