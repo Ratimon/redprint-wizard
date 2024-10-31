@@ -57,9 +57,9 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'AnchorStateRegistryProxy':
       return true;
-    case 'StepFourAll':
+    case 'StepFourPointOneAll':
       return true;
-    case 'StepFourAllSub':
+    case 'StepFourPointOneAllSub':
       return true;
     case 'L1CrossDomainMessenger':
       return true;

@@ -58,6 +58,7 @@ Together with [`redprint-forge`](https://github.com/Ratimon/redprint-forge), it 
 │   │   ├── 2-superchain
 │   │   ├── 3-plasmachain
 │   │   ├── 4-opchain-proxies
+│   │   ├── 4-opchain-implementations
 │   │   ├── about
 │   │   ├── blog
 │   │   ├── privacy-policy

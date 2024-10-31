@@ -88,13 +88,13 @@ import type {  SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain
 import {  defaults as anchorStateRegistryProxyDefaults } from '../shared/4-opchain-proxies/1K-option-anchor-state-registry-proxy';
 import { printDeployAnchorStateRegistryProxy } from './4-opchain-proxies/1K-anchor-state-registry-proxy';
 
-import type {  SharedStepFourAllSubOptions } from '../shared/4-opchain-proxies/option-all-sub';
-import {  defaults as stepFourAllSubDefaults } from '../shared/4-opchain-proxies/option-all-sub';
-import { printDeployStepFourAllSub } from './4-opchain-proxies/all-sub';
+import type {  SharedStepFourPointOneAllSubOptions } from '../shared/4-opchain-proxies/option-all-sub';
+import {  defaults as stepFourPointOneAllSubDefaults } from '../shared/4-opchain-proxies/option-all-sub';
+import { printDeployStepFourPointOneAllSub } from './4-opchain-proxies/all-sub';
 
-import type {  SharedStepFourAllOptions } from '../shared/4-opchain-proxies/option-all';
-import {  defaults as stepFourAllDefaults } from '../shared/4-opchain-proxies/option-all';
-import { printDeployStepFourAll } from './4-opchain-proxies/all';
+import type {  SharedStepFourPointOneAllOptions } from '../shared/4-opchain-proxies/option-all';
+import {  defaults as stepFourPointOneAllDefaults } from '../shared/4-opchain-proxies/option-all';
+import { printDeployStepFourPointOneAll } from './4-opchain-proxies/all';
 
 import type {  SharedL1CrossDomainMessengerOptions } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
 import {  defaults as l1CrossDomainMessengerDefaults } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
@@ -250,16 +250,16 @@ export const deployAnchorStateRegistryProxy: DeployAnchorStateRegistryProxy = {
   defaults: anchorStateRegistryProxyDefaults,
 }
 
-export type DeployStepFourAllSub = WizardAllAPI<SharedStepFourAllSubOptions>;
-export const deployStepFourAllSub: DeployStepFourAllSub = {
-  print: printDeployStepFourAllSub,
-  defaults: stepFourAllSubDefaults,
+export type DeployStepFourPointOneAllSub = WizardAllAPI<SharedStepFourPointOneAllSubOptions>;
+export const deployStepFourPointOneAllSub: DeployStepFourPointOneAllSub = {
+  print: printDeployStepFourPointOneAllSub,
+  defaults: stepFourPointOneAllSubDefaults,
 }
 
-export type DeployStepFourAll = WizardAllAPI<SharedStepFourAllOptions>;
-export const deployStepFourAll: DeployStepFourAll = {
-  print: printDeployStepFourAll,
-  defaults: stepFourAllDefaults,
+export type DeployStepFourPointOneAll = WizardAllAPI<SharedStepFourPointOneAllOptions>;
+export const deployStepFourPointOneAll: DeployStepFourPointOneAll = {
+  print: printDeployStepFourPointOneAll,
+  defaults: stepFourPointOneAllDefaults,
 }
 
 export type DeployL1CrossDomainMessenger = WizardAllAPI<SharedL1CrossDomainMessengerOptions>;

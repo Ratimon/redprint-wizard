@@ -8,15 +8,15 @@
 
     import type {
         KindedL1CrossDomainMessengerOptions, KindL1CrossDomainMessenger,
-        KindedStepFourAllOptions, KindStepFourAll,
-        KindedStepFourAllSubOptions, KindStepFourAllSub,
+        KindedStepFourPointOneAllOptions, KindStepFourPointOneAll,
+        KindedStepFourPointOneAllSubOptions, KindStepFourPointOneAllSub,
         OptionsErrorMessages
     } from '$lib/wizard/shared';
 
     import {
         sanitizeKindL1CrossDomainMessenger,
-        sanitizeKindStepFourAll,
-        sanitizeKindStepFourAllSub,
+        sanitizeKindStepFourPointOneAll,
+        sanitizeKindStepFourPointOneAllSub,
         OptionsError
     } from '$lib/wizard/shared';
 
@@ -26,8 +26,8 @@
     import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
 
     import L1CrossDomainMessengerControls from '$lib/ui/controls/4-L1CrossDomainMessengerControls.svelte';
-    import AllSubControls from '$lib/ui/controls/4-AllSubControls.svelte';
-    import AllControls from '$lib/ui/controls/4-AllControls.svelte';
+    import AllSubControls from '$lib/ui/controls/4-1AllSubControls.svelte';
+    import AllControls from '$lib/ui/controls/4-1AllControls.svelte';
 
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
@@ -132,12 +132,12 @@
   `);
 
 
-export let initialContractStepTab: string | undefined = 'StepFourAll';
-export let contractStepTab: KindStepFourAll = sanitizeKindStepFourAll(initialContractStepTab);
+export let initialContractStepTab: string | undefined = 'StepFourPointOneAll';
+export let contractStepTab: KindStepFourPointOneAll = sanitizeKindStepFourPointOneAll(initialContractStepTab);
 
-let allContractsStepOpts: { [k in KindStepFourAll]?: Required<KindedStepFourAllOptions [k]> } = {};
+let allContractsStepOpts: { [k in KindStepFourPointOneAll]?: Required<KindedStepFourPointOneAllOptions [k]> } = {};
 
-let errorsStep: { [k in KindStepFourAll]?: OptionsErrorMessages } = {};
+let errorsStep: { [k in KindStepFourPointOneAll]?: OptionsErrorMessages } = {};
 
 let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
 
@@ -185,12 +185,12 @@ let isArtifactStepAllModalOpen = false;
   \`\`\`
   `);
 
-export let initialContractStepSubTab: string | undefined = 'StepFourAllSub';
-export let contractStepSubTab: KindStepFourAllSub = sanitizeKindStepFourAllSub(initialContractStepSubTab);
+export let initialContractStepSubTab: string | undefined = 'StepFourPointOneAllSub';
+export let contractStepSubTab: KindStepFourPointOneAllSub = sanitizeKindStepFourPointOneAllSub(initialContractStepSubTab);
 
-let allContractsStepSubOpts: { [k in KindStepFourAllSub]?: Required<KindedStepFourAllSubOptions [k]> } = {};
+let allContractsStepSubOpts: { [k in KindStepFourPointOneAllSub]?: Required<KindedStepFourPointOneAllSubOptions [k]> } = {};
 
-let errorsStepSub: { [k in KindStepFourAllSub]?: OptionsErrorMessages } = {};
+let errorsStepSub: { [k in KindStepFourPointOneAllSub]?: OptionsErrorMessages } = {};
 
 let deployContractStepSub: DeployContract = new DeployBuilder('SetupSuperchainScript');
 
@@ -223,7 +223,7 @@ if (optsStepSub) {
 
 <div class="container flex flex-col gap-4 p-8 mx-8">
     <h2 class="m-4 font-semibold">
-      Make sure you have run the <a class="bg-primary underline" href="/2-superchain/" target="_blank" rel="noreferrer">deploy script</a> for superchain layer:
+      Make sure you have run the <a class="bg-primary underline" href="/4-opchain-proxies/" target="_blank" rel="noreferrer">deploy script</a> for l2 OP Chain - Proxies :
     </h2>
   
     <h2 class="m-4 font-semibold">
@@ -324,7 +324,7 @@ if (optsStepSub) {
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
           <OverflowMenu>
-            <button class:selected={contractStepTab === 'StepFourAll'} on:click={() => contractStepTab = 'StepFourAll'}>
+            <button class:selected={contractStepTab === 'StepFourPointOneAll'} on:click={() => contractStepTab = 'StepFourPointOneAll'}>
               DeployAll
             </button>      
           </OverflowMenu>
@@ -335,8 +335,8 @@ if (optsStepSub) {
   <div slot="control" >
        <!-- w-64 -->
       <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
-          <div class:hidden={contractStepTab !== 'StepFourAll'}>
-              <AllControls bind:opts={allContractsStepOpts.StepFourAll} />
+          <div class:hidden={contractStepTab !== 'StepFourPointOneAll'}>
+              <AllControls bind:opts={allContractsStepOpts.StepFourPointOneAll} />
           </div>
       </div>
   </div>
@@ -351,7 +351,7 @@ if (optsStepSub) {
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
           <OverflowMenu>
-            <button class:selected={contractStepSubTab === 'StepFourAllSub'} on:click={() => contractStepSubTab = 'StepFourAllSub'}>
+            <button class:selected={contractStepSubTab === 'StepFourPointOneAllSub'} on:click={() => contractStepSubTab = 'StepFourPointOneAllSub'}>
               SetupOpchain
             </button>      
           </OverflowMenu>
@@ -362,8 +362,8 @@ if (optsStepSub) {
   <div slot="control" >
        <!-- w-64 -->
       <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
-          <div class:hidden={contractStepSubTab !== 'StepFourAllSub'}>
-              <AllSubControls bind:opts={allContractsStepSubOpts.StepFourAllSub} />
+          <div class:hidden={contractStepSubTab !== 'StepFourPointOneAllSub'}>
+              <AllSubControls bind:opts={allContractsStepSubOpts.StepFourPointOneAllSub} />
           </div>
       </div>
   </div>

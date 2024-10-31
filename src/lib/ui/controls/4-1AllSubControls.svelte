@@ -1,18 +1,17 @@
 <script lang="ts">
     import Background from '$lib/ui/background/Background.svelte';
   
-    import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedStepFourAllSubOptions } from '$lib/wizard/shared';
+    import type { KindedStepFourPointOneAllSubOptions } from '$lib/wizard/shared';
   
-    import { deployStepFourAllSub } from '$lib/wizard/deploy-scripts';
+    import { deployStepFourPointOneAllSub } from '$lib/wizard/deploy-scripts';
   
-    const deployStepFourAllSubDefaults = deployStepFourAllSub.defaults;
+    const deployStepFourPointOneAllSubDefaults = deployStepFourPointOneAllSub.defaults;
   
-    export let opts: Required<KindedStepFourAllSubOptions['StepFourAllSub'] > = {
-      kind: 'StepFourAllSub',
-      ...deployStepFourAllSubDefaults,
+    export let opts: Required<KindedStepFourPointOneAllSubOptions['StepFourPointOneAllSub'] > = {
+      kind: 'StepFourPointOneAllSub',
+      ...deployStepFourPointOneAllSubDefaults,
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
     

@@ -23,8 +23,8 @@ import type { SharedL2OutputOracleProxyOptions } from './4-opchain-proxies/1H-op
 import type { SharedDelayedWETHProxyOptions } from './4-opchain-proxies/1I-option-delayed-WETH-proxy';
 import type { SharedPermissionedDelayedWETHProxyOptions } from './4-opchain-proxies/1J-option-permissioned-delayed-WETH-proxy';
 import type { SharedAnchorStateRegistryProxyOptions } from './4-opchain-proxies/1K-option-anchor-state-registry-proxy';
-import type { SharedStepFourAllSubOptions } from './4-opchain-proxies/option-all-sub';
-import type { SharedStepFourAllOptions } from './4-opchain-proxies/option-all';
+import type { SharedStepFourPointOneAllSubOptions } from './4-opchain-proxies/option-all-sub';
+import type { SharedStepFourPointOneAllOptions } from './4-opchain-proxies/option-all';
 
 import type { SharedL1CrossDomainMessengerOptions } from './4-opchain-implementations/2A-option-l1-crossdomain-messenger';
 
@@ -53,9 +53,8 @@ export interface KindedOptions {
   DelayedWETHProxy: { kind: 'DelayedWETHProxy' } & SharedDelayedWETHProxyOptions;
   PermissionedDelayedWETHProxy: { kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
   AnchorStateRegistryProxy: { kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
-  StepFourAllSub: { kind: 'StepFourAllSub' } & SharedStepFourAllSubOptions;
-  // to do : fix name
-  StepFourAll: { kind: 'StepFourAll' } & SharedStepFourAllOptions;
+  StepFourPointOneAllSub: { kind: 'StepFourPointOneAllSub' } & SharedStepFourPointOneAllSubOptions;
+  StepFourPointOneAll: { kind: 'StepFourPointOneAll' } & SharedStepFourPointOneAllOptions;
 
   L1CrossDomainMessenger: { kind: 'L1CrossDomainMessenger' } & SharedL1CrossDomainMessengerOptions;
 }
@@ -188,15 +187,15 @@ export interface KindedAnchorStateRegistryProxyOptions {
 export type GenericAnchorStateRegistryProxyOptions = KindedAnchorStateRegistryProxyOptions[keyof KindedAnchorStateRegistryProxyOptions];
 
 
-export interface KindedStepFourAllSubOptions {
-  StepFourAllSub: { kind: 'StepFourAllSub' } & SharedStepFourAllSubOptions;
+export interface KindedStepFourPointOneAllSubOptions {
+  StepFourPointOneAllSub: { kind: 'StepFourPointOneAllSub' } & SharedStepFourPointOneAllSubOptions;
 }
-export type GenericStepFourAllSubOptions = KindedStepFourAllSubOptions[keyof KindedStepFourAllSubOptions];
+export type GenericStepFourPointOneAllSubOptions = KindedStepFourPointOneAllSubOptions[keyof KindedStepFourPointOneAllSubOptions];
 
-export interface KindedStepFourAllOptions {
-  StepFourAll: { kind: 'StepFourAll' } & SharedStepFourAllOptions;
+export interface KindedStepFourPointOneAllOptions {
+  StepFourPointOneAll: { kind: 'StepFourPointOneAll' } & SharedStepFourPointOneAllOptions;
 }
-export type GenericStepFourAllOptions = KindedStepFourAllOptions[keyof KindedStepFourAllOptions];
+export type GenericStepFourPointOneAllOptions = KindedStepFourPointOneAllOptions[keyof KindedStepFourPointOneAllOptions];
 
 
 export interface KindedL1CrossDomainMessengerOptions {

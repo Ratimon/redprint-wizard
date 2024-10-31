@@ -1,19 +1,19 @@
-import type { GenericStepFourAllOptions } from '../build-generic';
+import type { GenericStepFourPointOneAllOptions } from '../build-generic';
 
-export type KindStepFourAll = GenericStepFourAllOptions['kind'];
+export type KindStepFourPointOneAll = GenericStepFourPointOneAllOptions['kind'];
 
-export function sanitizeKindStepFourAll(kind: unknown): KindStepFourAll {
+export function sanitizeKindStepFourPointOneAll(kind: unknown): KindStepFourPointOneAll {
   if (typeof kind === 'string') {
-    if (isKindStepFourAll(kind)) {
+    if (isKindStepFourPointOneAll(kind)) {
       return kind;
     }
   }
-  return 'StepFourAll';
+  return 'StepFourPointOneAll';
 }
 
-function isKindStepFourAll<T>(value: KindStepFourAll | T): value is KindStepFourAll {
+function isKindStepFourPointOneAll<T>(value: KindStepFourPointOneAll | T): value is KindStepFourPointOneAll {
   switch (value) {
-    case 'StepFourAll':
+    case 'StepFourPointOneAll':
       return true;
 
     default: {

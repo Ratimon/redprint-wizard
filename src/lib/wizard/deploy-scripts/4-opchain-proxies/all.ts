@@ -1,7 +1,7 @@
 import type { DeployContract, BaseFunction} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type {  SharedStepFourAllOptions, Governance } from '../../shared/4-opchain-proxies/option-all';
+import type {  SharedStepFourPointOneAllOptions, Governance } from '../../shared/4-opchain-proxies/option-all';
 import {  defaults } from '../../shared/4-opchain-proxies/option-all';
 
 import { defaults as infoDefaults } from "../set-info";
@@ -9,18 +9,18 @@ import { defaults as infoDefaults } from "../set-info";
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
-function withDeployDefaults(opts: SharedStepFourAllOptions): Required<SharedStepFourAllOptions> {
+function withDeployDefaults(opts: SharedStepFourPointOneAllOptions): Required<SharedStepFourPointOneAllOptions> {
   return {
     ...opts,
     deployInfo: infoDefaults
   };
 }
 
-export function printDeployStepFourAll(opts: SharedStepFourAllOptions = defaults): string {
-  return printDeployContract(buildDeployStepFourAll(opts));
+export function printDeployStepFourPointOneAll(opts: SharedStepFourPointOneAllOptions = defaults): string {
+  return printDeployContract(buildDeployStepFourPointOneAll(opts));
 }
 
-export function buildDeployStepFourAll(opts: SharedStepFourAllOptions): DeployContract {
+export function buildDeployStepFourPointOneAll(opts: SharedStepFourPointOneAllOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   

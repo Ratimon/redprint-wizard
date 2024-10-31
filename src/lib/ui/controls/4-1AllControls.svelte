@@ -4,15 +4,15 @@
     import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedStepFourAllOptions } from '$lib/wizard/shared';
+    import type { KindedStepFourPointOneAllOptions } from '$lib/wizard/shared';
   
-    import { deployStepFourAll } from '$lib/wizard/deploy-scripts';
+    import { deployStepFourPointOneAll } from '$lib/wizard/deploy-scripts';
   
-    const deployStepFourAllDefaults = deployStepFourAll.defaults;
+    const deployStepFourPointOneAllDefaults = deployStepFourPointOneAll.defaults;
   
-    export let opts: Required<KindedStepFourAllOptions['StepFourAll'] > = {
-      kind: 'StepFourAll',
-      ...deployStepFourAllDefaults,
+    export let opts: Required<KindedStepFourPointOneAllOptions['StepFourPointOneAll'] > = {
+      kind: 'StepFourPointOneAll',
+      ...deployStepFourPointOneAllDefaults,
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
     

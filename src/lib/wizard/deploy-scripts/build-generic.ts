@@ -64,11 +64,11 @@ import { buildDeployPermissionedDelayedWETHProxy } from './4-opchain-proxies/1J-
 import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain-proxies/1K-option-anchor-state-registry-proxy';
 import { buildDeployAnchorStateRegistryProxy } from './4-opchain-proxies/1K-anchor-state-registry-proxy';
 
-import type { SharedStepFourAllSubOptions } from '../shared/4-opchain-proxies/option-all-sub';
-import { buildDeployStepFourAllSub } from './4-opchain-proxies/all-sub';
+import type { SharedStepFourPointOneAllSubOptions } from '../shared/4-opchain-proxies/option-all-sub';
+import { buildDeployStepFourPointOneAllSub } from './4-opchain-proxies/all-sub';
 
-import type { SharedStepFourAllOptions } from '../shared/4-opchain-proxies/option-all';
-import { buildDeployStepFourAll } from './4-opchain-proxies/all';
+import type { SharedStepFourPointOneAllOptions } from '../shared/4-opchain-proxies/option-all';
+import { buildDeployStepFourPointOneAll } from './4-opchain-proxies/all';
 
 import type { SharedL1CrossDomainMessengerOptions } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
 import { buildDeployL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';
@@ -98,8 +98,8 @@ export interface DeployKindedOptions {
   DelayedWETHProxy: {kind: 'DelayedWETHProxy'} & SharedDelayedWETHProxyOptions;
   PermissionedDelayedWETHProxy: {kind: 'PermissionedDelayedWETHProxy'} & SharedPermissionedDelayedWETHProxyOptions;
   AnchorStateRegistryProxy: {kind: 'AnchorStateRegistryProxy'} & SharedAnchorStateRegistryProxyOptions;
-  StepFourAllSub: {kind: 'StepFourAllSub'} & SharedStepFourAllSubOptions;
-  StepFourAll: {kind: 'StepFourAll'} & SharedStepFourAllOptions;
+  StepFourPointOneAllSub: {kind: 'StepFourPointOneAllSub'} & SharedStepFourPointOneAllSubOptions;
+  StepFourPointOneAll: {kind: 'StepFourPointOneAll'} & SharedStepFourPointOneAllOptions;
   L1CrossDomainMessenger: {kind: 'L1CrossDomainMessenger'} & SharedL1CrossDomainMessengerOptions;
 }
 
@@ -174,11 +174,11 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
     case 'AnchorStateRegistryProxy':
       return  buildDeployAnchorStateRegistryProxy(opts);
 
-    case 'StepFourAllSub':
-      return  buildDeployStepFourAllSub(opts);
+    case 'StepFourPointOneAllSub':
+      return  buildDeployStepFourPointOneAllSub(opts);
 
-    case 'StepFourAll':
-      return  buildDeployStepFourAll(opts);
+    case 'StepFourPointOneAll':
+      return  buildDeployStepFourPointOneAll(opts);
 
     case 'L1CrossDomainMessenger':
       return  buildDeployL1CrossDomainMessenger(opts);
