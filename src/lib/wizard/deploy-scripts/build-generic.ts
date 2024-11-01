@@ -73,6 +73,12 @@ import { buildDeployStepFourPointOneAll } from './4-opchain-proxies/all';
 import type { SharedL1CrossDomainMessengerOptions } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
 import { buildDeployL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';
 
+import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
+import { buildDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
+
+import type { SharedStepFourPointTwoAllOptions } from '../shared/4-opchain-implementations/option-all';
+import { buildDeployStepFourPointTwoAll } from './4-opchain-implementations/all';
+
 export interface DeployKindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -100,7 +106,10 @@ export interface DeployKindedOptions {
   AnchorStateRegistryProxy: {kind: 'AnchorStateRegistryProxy'} & SharedAnchorStateRegistryProxyOptions;
   StepFourPointOneAllSub: {kind: 'StepFourPointOneAllSub'} & SharedStepFourPointOneAllSubOptions;
   StepFourPointOneAll: {kind: 'StepFourPointOneAll'} & SharedStepFourPointOneAllOptions;
+
   L1CrossDomainMessenger: {kind: 'L1CrossDomainMessenger'} & SharedL1CrossDomainMessengerOptions;
+  StepFourPointTwoAllSub: {kind: 'StepFourPointTwoAllSub'} & SharedStepFourPointTwoAllSubOptions;
+  StepFourPointTwoAll: {kind: 'StepFourPointTwoAll'} & SharedStepFourPointTwoAllOptions;
 }
 
 export type DeployGenericOptions = DeployKindedOptions[keyof DeployKindedOptions];
@@ -182,6 +191,12 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'L1CrossDomainMessenger':
       return  buildDeployL1CrossDomainMessenger(opts);
+
+    case 'StepFourPointTwoAllSub':
+      return  buildDeployStepFourPointTwoAllSub(opts);
+
+    case 'StepFourPointTwoAll':
+      return  buildDeployStepFourPointTwoAll(opts);
 
     default:
       const _: never = opts;

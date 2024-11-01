@@ -27,6 +27,8 @@ import type { SharedStepFourPointOneAllSubOptions } from './4-opchain-proxies/op
 import type { SharedStepFourPointOneAllOptions } from './4-opchain-proxies/option-all';
 
 import type { SharedL1CrossDomainMessengerOptions } from './4-opchain-implementations/2A-option-l1-crossdomain-messenger';
+import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
+import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
@@ -57,6 +59,8 @@ export interface KindedOptions {
   StepFourPointOneAll: { kind: 'StepFourPointOneAll' } & SharedStepFourPointOneAllOptions;
 
   L1CrossDomainMessenger: { kind: 'L1CrossDomainMessenger' } & SharedL1CrossDomainMessengerOptions;
+  StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
+  StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -202,3 +206,15 @@ export interface KindedL1CrossDomainMessengerOptions {
   L1CrossDomainMessenger: { kind: 'L1CrossDomainMessenger' } & SharedL1CrossDomainMessengerOptions;
 }
 export type GenericL1CrossDomainMessengerOptions = KindedL1CrossDomainMessengerOptions[keyof KindedL1CrossDomainMessengerOptions];
+
+
+export interface KindedStepFourPointTwoAllSubOptions {
+  StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
+}
+export type GenericStepFourPointTwoAllSubOptions = KindedStepFourPointTwoAllSubOptions[keyof KindedStepFourPointTwoAllSubOptions];
+
+
+export interface KindedStepFourPointTwoAllOptions {
+  StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
+}
+export type GenericStepFourPointTwoAllOptions = KindedStepFourPointTwoAllOptions[keyof KindedStepFourPointTwoAllOptions];

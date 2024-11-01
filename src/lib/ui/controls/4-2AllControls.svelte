@@ -4,15 +4,15 @@
     import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedStepFourPointOneAllOptions } from '$lib/wizard/shared';
+    import type { KindedStepFourPointTwoAllOptions } from '$lib/wizard/shared';
   
-    import { deployStepFourPointOneAll } from '$lib/wizard/deploy-scripts';
+    import { deployStepFourPointTwoAll } from '$lib/wizard/deploy-scripts';
   
-    const deployStepFourPointOneAllDefaults = deployStepFourPointOneAll.defaults;
+    const deployStepFourPointTwoAllDefaults = deployStepFourPointTwoAll.defaults;
   
-    export let opts: Required<KindedStepFourPointOneAllOptions['StepFourPointOneAll'] > = {
-      kind: 'StepFourPointOneAll',
-      ...deployStepFourPointOneAllDefaults,
+    export let opts: Required<KindedStepFourPointTwoAllOptions['StepFourPointTwoAll'] > = {
+      kind: 'StepFourPointTwoAll',
+      ...deployStepFourPointTwoAllDefaults,
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
     
@@ -55,8 +55,9 @@
   </div>
 </section>
 
+
 <section class="controls-section">
-    <h1>Step 2</h1>
+  <h1>Step 2</h1>
 </section>
 
 <section class="controls-section">
@@ -65,4 +66,8 @@
 
 <section class="controls-section">
     <h1>Step 4.1</h1>
+</section>
+
+<section class="controls-section">
+    <h1>Step 4.2</h1>
 </section>

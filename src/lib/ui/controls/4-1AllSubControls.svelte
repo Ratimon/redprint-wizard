@@ -33,20 +33,6 @@
 <InfoSection bind:info={opts.deployInfo} />
 
 <section class="controls-section">
-    <h1>Step 2</h1>
-    <span>AddressManager</span>
-    <span>ProxyAdmin</span>
-    <span>SuperchainConfigProxy</span>
-    <span>SuperchainConfig</span>
-    <span>ProtocolVersionsProxy</span>
-    <span>ProtocolVersions</span>
-</section>
-
-<section class="controls-section">
-    <h1>Step 3</h1>
-</section>
-
-<section class="controls-section">
     <h1>Step 4</h1>
     <span>SystemConfigProxy</span>
     <span>L1StandardBridgeProxy</span>

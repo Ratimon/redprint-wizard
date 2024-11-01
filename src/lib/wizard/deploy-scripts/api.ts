@@ -100,6 +100,13 @@ import type {  SharedL1CrossDomainMessengerOptions } from '../shared/4-opchain-i
 import {  defaults as l1CrossDomainMessengerDefaults } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
 import { printDeployL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';
 
+import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
+import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
+import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
+
+import type { SharedStepFourPointTwoAllOptions } from '../shared/4-opchain-implementations/option-all';
+import {  defaults as stepFourPointTwoAllDefaults } from '../shared/4-opchain-implementations/option-all';
+import { printDeployStepFourPointTwoAll } from './4-opchain-implementations/all';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
   /**
@@ -266,4 +273,16 @@ export type DeployL1CrossDomainMessenger = WizardAllAPI<SharedL1CrossDomainMesse
 export const deployL1CrossDomainMessenger: DeployL1CrossDomainMessenger = {
   print: printDeployL1CrossDomainMessenger,
   defaults: l1CrossDomainMessengerDefaults,
+}
+
+export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;
+export const deployStepFourPointTwoAllSub: DeployStepFourPointTwoAllSub = {
+  print: printDeployStepFourPointTwoAllSub,
+  defaults: stepFourPointTwoAllSubDefaults,
+}
+
+export type DeployStepFourPointTwoAll = WizardAllAPI<SharedStepFourPointTwoAllOptions>;
+export const deployStepFourPointTwoAll: DeployStepFourPointTwoAll = {
+  print: printDeployStepFourPointTwoAll,
+  defaults: stepFourPointTwoAllDefaults,
 }

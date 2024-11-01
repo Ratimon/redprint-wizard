@@ -26,6 +26,8 @@ export type {
     KindedStepFourPointOneAllOptions, GenericStepFourPointOneAllOptions,
 
     KindedL1CrossDomainMessengerOptions, GenericL1CrossDomainMessengerOptions,
+    KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
+    KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
 
 export type { CommonOptions } from './common-options';
@@ -110,3 +112,9 @@ export {  sanitizeKindStepFourPointOneAll } from './4-opchain-proxies/kind-all';
 
 export type { KindL1CrossDomainMessenger } from './4-opchain-implementations/2A-kind-l1-crossdomain-messenger';
 export {  sanitizeKindL1CrossDomainMessenger } from './4-opchain-implementations/2A-kind-l1-crossdomain-messenger';
+
+export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
+export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
+
+export type { KindStepFourPointTwoAll } from './4-opchain-implementations/kind-all';
+export {  sanitizeKindStepFourPointTwoAll } from './4-opchain-implementations/kind-all';

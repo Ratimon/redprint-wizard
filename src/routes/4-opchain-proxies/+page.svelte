@@ -1439,6 +1439,9 @@ if (optsStepSub) {
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>
+    <div class="divider divider-primary">
+      <p class="text-2xs ">Note: This script is not completed yet. It is for illustration purpose. Use it at final step.</p>
+    </div>
   </section>
 </Background>
 

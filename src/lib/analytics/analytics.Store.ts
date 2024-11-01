@@ -30,7 +30,9 @@ export type Action =
                     'copy-contract-StepFourPointOneAllSub'| 'copy-script-StepFourPointOneAllSub' | 'download-contract-StepFourPointOneAllSub' | 'download-script-StepFourPointOneAllSub' |
                     'copy-contract-StepFourPointOneAll'| 'copy-script-StepFourPointOneAll' | 'download-contract-StepFourPointOneAll' | 'download-script-StepFourPointOneAll' |
 
-                    'copy-contract-L1CrossDomainMessenger'| 'copy-script-L1CrossDomainMessenger' | 'download-contract-L1CrossDomainMessenger' | 'download-script-L1CrossDomainMessenger'
+                    'copy-contract-L1CrossDomainMessenger'| 'copy-script-L1CrossDomainMessenger' | 'download-contract-L1CrossDomainMessenger' | 'download-script-L1CrossDomainMessenger' |
+                    'copy-contract-StepFourPointTwoAllSub'| 'copy-script-StepFourPointTwoAllSub' | 'download-contract-StepFourPointTwoAllSub' | 'download-script-StepFourPointTwoAllSub' |
+                    'copy-contract-StepFourPointTwoAll'| 'copy-script-StepFourPointTwoAll' | 'download-contract-StepFourPointTwoAll' | 'download-script-StepFourPointTwoAll'
                     
 export type GaEvent = {
     id: string;

@@ -36,5 +36,7 @@ export {
     deployAnchorStateRegistryProxy,
     deployStepFourPointOneAllSub,
     deployStepFourPointOneAll,
-    deployL1CrossDomainMessenger
+    deployL1CrossDomainMessenger,
+    deployStepFourPointTwoAllSub,
+    deployStepFourPointTwoAll
 } from './api';

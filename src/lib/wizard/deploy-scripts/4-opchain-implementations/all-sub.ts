@@ -1,8 +1,8 @@
 import type { DeployContract, BaseFunction} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type {  SharedStepFourPointOneAllSubOptions } from '../../shared/4-opchain-proxies/option-all-sub';
-import {  defaults } from '../../shared/4-opchain-proxies/option-all-sub';
+import type {  SharedStepFourPointTwoAllSubOptions } from '../../shared/4-opchain-implementations/option-all-sub';
+import {  defaults } from '../../shared/4-opchain-implementations/option-all-sub';
 
 import { defaults as infoDefaults } from "../set-info";
 
@@ -12,18 +12,18 @@ import { setInfo } from "../set-info";
 import { defineFunctions } from '../../utils/define-functions';
 
 
-function withDeployDefaults(opts: SharedStepFourPointOneAllSubOptions): Required<SharedStepFourPointOneAllSubOptions> {
+function withDeployDefaults(opts: SharedStepFourPointTwoAllSubOptions): Required<SharedStepFourPointTwoAllSubOptions> {
   return {
     ...opts,
     deployInfo: infoDefaults
   };
 }
 
-export function printDeployStepFourPointOneAllSub(opts: SharedStepFourPointOneAllSubOptions = defaults): string {
-  return printDeployContract(buildDeployStepFourPointOneAllSub(opts));
+export function printDeployStepFourPointTwoAllSub(opts: SharedStepFourPointTwoAllSubOptions = defaults): string {
+  return printDeployContract(buildDeployStepFourPointTwoAllSub(opts));
 }
 
-export function buildDeployStepFourPointOneAllSub(opts: SharedStepFourPointOneAllSubOptions): DeployContract {
+export function buildDeployStepFourPointTwoAllSub(opts: SharedStepFourPointTwoAllSubOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -32,7 +32,8 @@ export function buildDeployStepFourPointOneAllSub(opts: SharedStepFourPointOneAl
   c.addFunctionCode(`deployerProcedue = getDeployer();
         deployerProcedue.setAutoSave(true);`, fn);
   
-  setOpDeployment(c, fn);
+  setOpProxiesDeployment(c, fn);
+
 
   c.addFunctionCode(`
         console.log("OptimismPortalProxy at: ", deployerProcedue.getAddress("OptimismPortalProxy"));
@@ -43,8 +44,10 @@ export function buildDeployStepFourPointOneAllSub(opts: SharedStepFourPointOneAl
         console.log("DisputeGameFactoryProxy at: ", deployerProcedue.getAddress("DisputeGameFactoryProxy"));
         console.log("L2OutputOracleProxy at: ", deployerProcedue.getAddress("L2OutputOracleProxy"));
         console.log("DelayedWETHProxy at: ", deployerProcedue.getAddress("DelayedWETHProxy"));
-        console.log("PermissionedDelayedWETHProxy at: ", deployerProcedue.getAddress("PermissionedDelayedWETHProxy"));
+        console.log("PermissiTwodDelayedWETHProxy at: ", deployerProcedue.getAddress("PermissiTwodDelayedWETHProxy"));
         console.log("AnchorStateRegistryProxy at: ", deployerProcedue.getAddress("AnchorStateRegistryProxy"));`, fn);
+
+  setOpImplementationsDeployment(c, fn);
 
   setInfo(c, allOpts.deployInfo);
 
@@ -98,7 +101,22 @@ function addBase(c: DeployBuilder) {
 
 }
 
-function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
+function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction) {
+
+  const DeployL1CrossDomainMessengerScript = {
+    name: 'DeployL1CrossDomainMessengerScript',
+    path: '@script/402A_DeployL1CrossDomainMessengerScript.s.sol',
+  };
+  c.addModule(DeployL1CrossDomainMessengerScript);
+
+  c.addFunctionCode(`DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
+        l1CrossDomainMessengerDeployments.deploy();
+        
+        console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));`, fn);
+
+}
+
+function setOpProxiesDeployment(c: DeployBuilder, fn: BaseFunction) {
 
   const DeployOptimismPortalProxyScript = {
     name: 'DeployOptimismPortalProxyScript',
@@ -154,11 +172,11 @@ function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
   };
   c.addModule(DeployDelayedWETHProxyScript);
 
-  const DeployPermissionedDelayedWETHProxyScript = {
-    name: 'DeployPermissionedDelayedWETHProxyScript',
-    path: '@script/401J_DeployPermissionedDelayedWETHProxyScript.s.sol',
+  const DeployPermissiTwodDelayedWETHProxyScript = {
+    name: 'DeployPermissiTwodDelayedWETHProxyScript',
+    path: '@script/401J_DeployPermissiTwodDelayedWETHProxyScript.s.sol',
   };
-  c.addModule(DeployPermissionedDelayedWETHProxyScript);
+  c.addModule(DeployPermissiTwodDelayedWETHProxyScript);
 
   const DeployAnchorStateRegistryProxyScript = {
     name: 'DeployAnchorStateRegistryProxyScript',
