@@ -33,7 +33,8 @@ export {
     delayedWETHProxy,
     permissionedDelayedWETHProxy,
     anchorStateRegistryProxy,
-    l1CrossDomainMessenger
+    l1CrossDomainMessenger,
+    optimismMintableERC20Factory
 } from './api';
 
 
@@ -59,3 +60,4 @@ export { buildDelayedWETHProxy } from './4-opchain-proxies/1I-delayed-WETH-proxy
 export { buildPermissionedDelayedWETHProxy } from './4-opchain-proxies/1J-permissioned-delayed-WETH-proxy';
 export { buildAnchorStateRegistryProxy } from './4-opchain-proxies/1K-anchor-state-registry-proxy';
 export { buildL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';
+export { buildOptimismMintableERC20Factory } from './4-opchain-implementations/2B-optimism-mintable-ERC20-factory';

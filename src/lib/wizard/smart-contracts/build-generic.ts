@@ -58,6 +58,9 @@ import { buildAnchorStateRegistryProxy } from './4-opchain-proxies/1K-anchor-sta
 import type { SharedL1CrossDomainMessengerOptions } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
 import { buildL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';
 
+import type { SharedOptimismMintableERC20FactoryOptions } from '../shared/4-opchain-implementations/2B-option-optimism-mintable-ERC20-factory';
+import { buildOptimismMintableERC20Factory } from './4-opchain-implementations/2B-optimism-mintable-ERC20-factory';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -79,6 +82,7 @@ export interface KindedOptions {
   PermissionedDelayedWETHProxy : {kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
   AnchorStateRegistryProxy : {kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
   L1CrossDomainMessenger : {kind: 'L1CrossDomainMessenger' } & SharedL1CrossDomainMessengerOptions;
+  OptimismMintableERC20Factory : {kind: 'OptimismMintableERC20Factory' } & SharedOptimismMintableERC20FactoryOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -145,7 +149,10 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'L1CrossDomainMessenger':
       return buildL1CrossDomainMessenger(opts);
-      
+
+    case 'OptimismMintableERC20Factory':
+      return buildOptimismMintableERC20Factory(opts);
+
     default:
       const _: never = opts;
       throw new Error('Unknown Contract');

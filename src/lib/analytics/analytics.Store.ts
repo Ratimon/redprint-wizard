@@ -31,6 +31,7 @@ export type Action =
                     'copy-contract-StepFourPointOneAll'| 'copy-script-StepFourPointOneAll' | 'download-contract-StepFourPointOneAll' | 'download-script-StepFourPointOneAll' |
 
                     'copy-contract-L1CrossDomainMessenger'| 'copy-script-L1CrossDomainMessenger' | 'download-contract-L1CrossDomainMessenger' | 'download-script-L1CrossDomainMessenger' |
+                    'copy-contract-OptimismMintableERC20Factory'| 'copy-script-OptimismMintableERC20Factory' | 'download-contract-OptimismMintableERC20Factory' | 'download-script-OptimismMintableERC20Factory' |
                     'copy-contract-StepFourPointTwoAllSub'| 'copy-script-StepFourPointTwoAllSub' | 'download-contract-StepFourPointTwoAllSub' | 'download-script-StepFourPointTwoAllSub' |
                     'copy-contract-StepFourPointTwoAll'| 'copy-script-StepFourPointTwoAll' | 'download-contract-StepFourPointTwoAll' | 'download-script-StepFourPointTwoAll'
                     

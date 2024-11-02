@@ -8,6 +8,7 @@
 
     import type {
         KindedL1CrossDomainMessengerOptions, KindL1CrossDomainMessenger,
+        KindedOptimismMintableERC20FactoryOptions, KindOptimismMintableERC20Factory,
         KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
         KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
         OptionsErrorMessages
@@ -15,6 +16,7 @@
 
     import {
         sanitizeKindL1CrossDomainMessenger,
+        sanitizeKindOptimismMintableERC20Factory,
         sanitizeKindStepFourPointTwoAll,
         sanitizeKindStepFourPointTwoAllSub,
         OptionsError
@@ -26,6 +28,7 @@
     import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
 
     import L1CrossDomainMessengerControls from '$lib/ui/controls/4-L1CrossDomainMessengerControls.svelte';
+    import OptimismMintableERC20FactoryControls from '$lib/ui/controls/4-OptimismMintableERC20FactoryControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
 
@@ -126,7 +129,63 @@
   "L2OutputOracleProxy": "<ADDRESS_17>",
   "DelayedWETHProxy": "<ADDRESS_18>",
   "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
-  "AnchorStateRegistryProxy": "<ADDRESS_20>"
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L2OutputOracle": "<ADDRESS_21>"
+}
+  \`\`\`
+  `);
+
+  // **** step 4.2B ***
+  export let initialContractOptimismMintableERC20FactoryTab: string | undefined = 'OptimismMintableERC20Factory';
+  export let contractOptimismMintableERC20FactoryTab: KindOptimismMintableERC20Factory = sanitizeKindOptimismMintableERC20Factory(initialContractOptimismMintableERC20FactoryTab);
+  let allContractsOptimismMintableERC20FactoryOpts: { [k in KindOptimismMintableERC20Factory]?: Required<KindedOptimismMintableERC20FactoryOptions [k]> } = {};
+  let errorsOptimismMintableERC20Factory: { [k in KindOptimismMintableERC20Factory]?: OptionsErrorMessages } = {};
+  let contractOptimismMintableERC20Factory: Contract = new ContractBuilder('OptimismMintableERC20Factory');
+  let deployContractOptimismMintableERC20Factory: DeployContract = new DeployBuilder('DeployOptimismMintableERC20FactoryScript');
+
+  $: optsOptimismMintableERC20Factory = allContractsOptimismMintableERC20FactoryOpts[contractOptimismMintableERC20FactoryTab];
+  $: {
+  if (optsOptimismMintableERC20Factory) {
+          try {
+              contractOptimismMintableERC20Factory = buildContractGeneric(optsOptimismMintableERC20Factory);
+              deployContractOptimismMintableERC20Factory = buildDeployGeneric(optsOptimismMintableERC20Factory);
+              errorsOptimismMintableERC20Factory[contractOptimismMintableERC20FactoryTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsOptimismMintableERC20Factory[contractOptimismMintableERC20FactoryTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepTwoBModalOpen = false;
+  $: addressStepTwoBContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L2OutputOracle": "<ADDRESS_21>",
+  "OptimismMintableERC20Factory": "<ADDRESS_22>"
 }
   \`\`\`
   `);
@@ -307,6 +366,68 @@ if (optsStepSub) {
     </div>
 </WizardDouble>
 
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[2].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.2B : Deploy OptimismMintableERC20Factory Contract</p>
+    </div>
+  </section>
+</Background>
+
+<WizardDouble conventionNumber={'401A'} initialContractTab={initialContractOptimismMintableERC20FactoryTab} contractTab={contractOptimismMintableERC20FactoryTab} opts={optsOptimismMintableERC20Factory} contract={contractOptimismMintableERC20Factory} deployContract={deployContractOptimismMintableERC20Factory}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractOptimismMintableERC20FactoryTab === 'OptimismMintableERC20Factory'} on:click={() => contractOptimismMintableERC20FactoryTab = 'OptimismMintableERC20Factory'}>
+              OptimismMintableERC20Factory
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractOptimismMintableERC20FactoryTab !== 'OptimismMintableERC20Factory'}>
+              <OptimismMintableERC20FactoryControls bind:opts={allContractsOptimismMintableERC20FactoryOpts.OptimismMintableERC20Factory} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoBModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoBModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoBModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoBContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
 
 
 <!-- 000_DeployAll.s.sol -->

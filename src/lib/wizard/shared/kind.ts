@@ -63,6 +63,12 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'L1CrossDomainMessenger':
       return true;
+    case 'OptimismMintableERC20Factory':
+      return true;
+    case 'StepFourPointTwoAll':
+      return true;
+    case 'StepFourPointTwoAllSub':
+      return true;
 
     default: {
       // Static assert that we've checked all kinds.

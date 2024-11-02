@@ -100,6 +100,10 @@ import type {  SharedL1CrossDomainMessengerOptions } from '../shared/4-opchain-i
 import {  defaults as l1CrossDomainMessengerDefaults } from '../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
 import { printDeployL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-crossdomain-messenger';
 
+import type { SharedOptimismMintableERC20FactoryOptions } from '../shared/4-opchain-implementations/2B-option-optimism-mintable-ERC20-factory';
+import {  defaults as optimismMintableERC20FactoryDefaults } from '../shared/4-opchain-implementations/2B-option-optimism-mintable-ERC20-factory';
+import { printDeployOptimismMintableERC20Factory } from './4-opchain-implementations/2B-optimism-mintable-ERC20-factory';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -273,6 +277,12 @@ export type DeployL1CrossDomainMessenger = WizardAllAPI<SharedL1CrossDomainMesse
 export const deployL1CrossDomainMessenger: DeployL1CrossDomainMessenger = {
   print: printDeployL1CrossDomainMessenger,
   defaults: l1CrossDomainMessengerDefaults,
+}
+
+export type DeployOptimismMintableERC20Factory = WizardAllAPI<SharedOptimismMintableERC20FactoryOptions>;
+export const deployOptimismMintableERC20Factory: DeployOptimismMintableERC20Factory = {
+  print: printDeployOptimismMintableERC20Factory,
+  defaults: optimismMintableERC20FactoryDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

@@ -37,6 +37,7 @@ export {
     deployStepFourPointOneAllSub,
     deployStepFourPointOneAll,
     deployL1CrossDomainMessenger,
+    deployOptimismMintableERC20Factory,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';

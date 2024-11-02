@@ -26,6 +26,7 @@ export type {
     KindedStepFourPointOneAllOptions, GenericStepFourPointOneAllOptions,
 
     KindedL1CrossDomainMessengerOptions, GenericL1CrossDomainMessengerOptions,
+    KindedOptimismMintableERC20FactoryOptions, GenericOptimismMintableERC20FactoryOptions,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -112,6 +113,9 @@ export {  sanitizeKindStepFourPointOneAll } from './4-opchain-proxies/kind-all';
 
 export type { KindL1CrossDomainMessenger } from './4-opchain-implementations/2A-kind-l1-crossdomain-messenger';
 export {  sanitizeKindL1CrossDomainMessenger } from './4-opchain-implementations/2A-kind-l1-crossdomain-messenger';
+
+export type { KindOptimismMintableERC20Factory } from './4-opchain-implementations/2B-kind-optimism-mintable-ERC20-factory';
+export {  sanitizeKindOptimismMintableERC20Factory } from './4-opchain-implementations/2B-kind-optimism-mintable-ERC20-factory';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';

@@ -3,16 +3,16 @@
   
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedL1CrossDomainMessengerOptions } from '$lib/wizard/shared';
+    import type { KindedOptimismMintableERC20FactoryOptions } from '$lib/wizard/shared';
   
-    import { l1CrossDomainMessenger } from '$lib/wizard/smart-contracts';
-    import { deployL1CrossDomainMessenger } from '$lib/wizard/deploy-scripts';
+    import { optimismMintableERC20Factory } from '$lib/wizard/smart-contracts';
+    import { deployOptimismMintableERC20Factory } from '$lib/wizard/deploy-scripts';
   
-    const contractDefaults = l1CrossDomainMessenger.defaults;
-    const deployDefaults = deployL1CrossDomainMessenger.defaults;
+    const contractDefaults = optimismMintableERC20Factory.defaults;
+    const deployDefaults = deployOptimismMintableERC20Factory.defaults;
   
-    export let opts: Required<KindedL1CrossDomainMessengerOptions['L1CrossDomainMessenger'] > = {
-      kind: 'L1CrossDomainMessenger',
+    export let opts: Required<KindedOptimismMintableERC20FactoryOptions['OptimismMintableERC20Factory'] > = {
+      kind: 'OptimismMintableERC20Factory',
       ...contractDefaults,
       ...deployDefaults,
 
@@ -34,3 +34,4 @@
 
   </section>
   
+  <InfoSection bind:info={opts.contractInfo} />
