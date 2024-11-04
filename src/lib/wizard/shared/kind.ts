@@ -65,6 +65,8 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'OptimismMintableERC20Factory':
       return true;
+    case 'SystemConfig':
+      return true;
     case 'StepFourPointTwoAll':
       return true;
     case 'StepFourPointTwoAllSub':

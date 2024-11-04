@@ -9,6 +9,7 @@
     import type {
         KindedL1CrossDomainMessengerOptions, KindL1CrossDomainMessenger,
         KindedOptimismMintableERC20FactoryOptions, KindOptimismMintableERC20Factory,
+        KindedSystemConfigOptions, KindSystemConfig,
         KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
         KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
         OptionsErrorMessages
@@ -17,6 +18,7 @@
     import {
         sanitizeKindL1CrossDomainMessenger,
         sanitizeKindOptimismMintableERC20Factory,
+        sanitizeKindSystemConfig,
         sanitizeKindStepFourPointTwoAll,
         sanitizeKindStepFourPointTwoAllSub,
         OptionsError
@@ -29,6 +31,7 @@
 
     import L1CrossDomainMessengerControls from '$lib/ui/controls/4-L1CrossDomainMessengerControls.svelte';
     import OptimismMintableERC20FactoryControls from '$lib/ui/controls/4-OptimismMintableERC20FactoryControls.svelte';
+    import SystemConfigControls from '$lib/ui/controls/4-SystemConfigControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
 
@@ -190,6 +193,62 @@
   \`\`\`
   `);
 
+  // **** step 4.2C ***
+  export let initialContractSystemConfigTab: string | undefined = 'SystemConfig';
+  export let contractSystemConfigTab: KindSystemConfig = sanitizeKindSystemConfig(initialContractSystemConfigTab);
+  let allContractsSystemConfigOpts: { [k in KindSystemConfig]?: Required<KindedSystemConfigOptions [k]> } = {};
+  let errorsSystemConfig: { [k in KindSystemConfig]?: OptionsErrorMessages } = {};
+  let contractSystemConfig: Contract = new ContractBuilder('SystemConfig');
+  let deployContractSystemConfig: DeployContract = new DeployBuilder('DeploySystemConfigScript');
+
+  $: optsSystemConfig = allContractsSystemConfigOpts[contractSystemConfigTab];
+  $: {
+  if (optsSystemConfig) {
+          try {
+              contractSystemConfig = buildContractGeneric(optsSystemConfig);
+              deployContractSystemConfig = buildDeployGeneric(optsSystemConfig);
+              errorsSystemConfig[contractSystemConfigTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsSystemConfig[contractSystemConfigTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepTwoCModalOpen = false;
+  $: addressStepTwoCContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L2OutputOracle": "<ADDRESS_21>",
+  "OptimismMintableERC20Factory": "<ADDRESS_22>",
+  "SystemConfig": "<ADDRESS_23>"
+}
+  \`\`\`
+  `);
+
 
 export let initialContractStepTab: string | undefined = 'StepFourPointTwoAll';
 export let contractStepTab: KindStepFourPointTwoAll = sanitizeKindStepFourPointTwoAll(initialContractStepTab);
@@ -300,6 +359,7 @@ if (optsStepSub) {
     </p>
 </div>
 
+<!-- 401A_DeployL1CrossDomainMessenger.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
     <section id={data.dropDownLinks[1].pathname}>
       <div class="divider divider-primary ">
@@ -366,6 +426,7 @@ if (optsStepSub) {
     </div>
 </WizardDouble>
 
+<!-- 401B_DeployOptimismMintableERC20Factory.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[2].pathname}>
     <div class="divider divider-primary ">
@@ -374,7 +435,7 @@ if (optsStepSub) {
   </section>
 </Background>
 
-<WizardDouble conventionNumber={'401A'} initialContractTab={initialContractOptimismMintableERC20FactoryTab} contractTab={contractOptimismMintableERC20FactoryTab} opts={optsOptimismMintableERC20Factory} contract={contractOptimismMintableERC20Factory} deployContract={deployContractOptimismMintableERC20Factory}>
+<WizardDouble conventionNumber={'402B'} initialContractTab={initialContractOptimismMintableERC20FactoryTab} contractTab={contractOptimismMintableERC20FactoryTab} opts={optsOptimismMintableERC20Factory} contract={contractOptimismMintableERC20Factory} deployContract={deployContractOptimismMintableERC20Factory}>
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
@@ -429,6 +490,71 @@ if (optsStepSub) {
   </div>
 </WizardDouble>
 
+<!-- 401C_DeploySystemConfig.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[2].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.2C : Deploy SystemConfig Contract</p>
+    </div>
+  </section>
+</Background>
+
+<WizardDouble conventionNumber={'402C'} initialContractTab={initialContractSystemConfigTab} contractTab={contractSystemConfigTab} opts={optsSystemConfig} contract={contractSystemConfig} deployContract={deployContractSystemConfig}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractSystemConfigTab === 'SystemConfig'} on:click={() => contractSystemConfigTab = 'SystemConfig'}>
+              SystemConfig
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractSystemConfigTab !== 'SystemConfig'}>
+              <SystemConfigControls bind:opts={allContractsSystemConfigOpts.SystemConfig} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoCModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoCModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoCModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoCContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+
 
 <!-- 000_DeployAll.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
@@ -465,8 +591,6 @@ if (optsStepSub) {
       </div>
   </div>
   
-
-
 </WizardSingle>
 
 <WizardSingle isShowingCommand={false} conventionNumber={'400'} initialContractTab={initialContractStepSubTab} contractTab={contractStepSubTab} opts={optsStepSub} deployContract={deployContractStepSub}>

@@ -82,6 +82,10 @@ import type { SharedOptimismMintableERC20FactoryOptions } from '../shared/4-opch
 import {  defaults as optimismMintableERC20FactoryDefaults } from '../shared/4-opchain-implementations/2B-option-optimism-mintable-ERC20-factory';
 import { printOptimismMintableERC20Factory } from './4-opchain-implementations/2B-optimism-mintable-ERC20-factory';
 
+import type { SharedSystemConfigOptions } from '../shared/4-opchain-implementations/2C-option-system-config';
+import {  defaults as systemConfigDefaults } from '../shared/4-opchain-implementations/2C-option-system-config';
+import { printSystemConfig } from './4-opchain-implementations/2C-system-config';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -225,4 +229,10 @@ export type OptimismMintableERC20Factory = WizardContractAPI<SharedOptimismMinta
 export const optimismMintableERC20Factory: OptimismMintableERC20Factory = {
   print: printOptimismMintableERC20Factory,
   defaults: optimismMintableERC20FactoryDefaults
+}
+
+export type SystemConfig = WizardContractAPI<SharedSystemConfigOptions>;
+export const systemConfig: SystemConfig = {
+  print: printSystemConfig,
+  defaults: systemConfigDefaults
 }

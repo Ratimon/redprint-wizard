@@ -28,6 +28,7 @@ import type { SharedStepFourPointOneAllOptions } from './4-opchain-proxies/optio
 
 import type { SharedL1CrossDomainMessengerOptions } from './4-opchain-implementations/2A-option-l1-crossdomain-messenger';
 import type { SharedOptimismMintableERC20FactoryOptions } from './4-opchain-implementations/2B-option-optimism-mintable-ERC20-factory';
+import type { SharedSystemConfigOptions } from './4-opchain-implementations/2C-option-system-config';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
@@ -61,6 +62,7 @@ export interface KindedOptions {
 
   L1CrossDomainMessenger: { kind: 'L1CrossDomainMessenger' } & SharedL1CrossDomainMessengerOptions;
   OptimismMintableERC20Factory: { kind: 'OptimismMintableERC20Factory' } & SharedOptimismMintableERC20FactoryOptions;
+  SystemConfig: { kind: 'SystemConfig' } & SharedSystemConfigOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -209,6 +211,16 @@ export interface KindedL1CrossDomainMessengerOptions {
 }
 export type GenericL1CrossDomainMessengerOptions = KindedL1CrossDomainMessengerOptions[keyof KindedL1CrossDomainMessengerOptions];
 
+export interface KindedOptimismMintableERC20FactoryOptions {
+  OptimismMintableERC20Factory: { kind: 'OptimismMintableERC20Factory' } & SharedOptimismMintableERC20FactoryOptions;
+}
+export type GenericOptimismMintableERC20FactoryOptions = KindedOptimismMintableERC20FactoryOptions[keyof KindedOptimismMintableERC20FactoryOptions];
+
+export interface KindedSystemConfigOptions {
+  SystemConfig: { kind: 'SystemConfig' } & SharedSystemConfigOptions;
+}
+export type GenericSystemConfigOptions = KindedSystemConfigOptions[keyof KindedSystemConfigOptions];
+
 
 export interface KindedStepFourPointTwoAllSubOptions {
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
@@ -220,8 +232,3 @@ export interface KindedStepFourPointTwoAllOptions {
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
 export type GenericStepFourPointTwoAllOptions = KindedStepFourPointTwoAllOptions[keyof KindedStepFourPointTwoAllOptions];
-
-export interface KindedOptimismMintableERC20FactoryOptions {
-  OptimismMintableERC20Factory: { kind: 'OptimismMintableERC20Factory' } & SharedOptimismMintableERC20FactoryOptions;
-}
-export type GenericOptimismMintableERC20FactoryOptions = KindedOptimismMintableERC20FactoryOptions[keyof KindedOptimismMintableERC20FactoryOptions];

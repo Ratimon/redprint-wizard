@@ -40,7 +40,7 @@ export function buildOptimismMintableERC20Factory(opts: SharedOptimismMintableER
 
     const Initializable = {
         name: 'Initializable',
-        path: '@openzeppelin/contracts/proxy/utils/Initializable.sol',
+        path: '@redprint-openzeppelin/proxy/utils/Initializable.sol',
     };
     c.addParent(Initializable);
 
@@ -49,7 +49,6 @@ export function buildOptimismMintableERC20Factory(opts: SharedOptimismMintableER
         path: '@redprint-core/L2/interfaces/IOptimismERC20Factory.sol',
     };
     c.addParent(IOptimismERC20Factory);
-
 
     c.addVariable(`/// @custom:spacer OptimismMintableERC20Factory's initializer slot spacing
     /// @notice Spacer to avoid packing into the initializer slot

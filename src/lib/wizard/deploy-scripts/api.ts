@@ -104,6 +104,10 @@ import type { SharedOptimismMintableERC20FactoryOptions } from '../shared/4-opch
 import {  defaults as optimismMintableERC20FactoryDefaults } from '../shared/4-opchain-implementations/2B-option-optimism-mintable-ERC20-factory';
 import { printDeployOptimismMintableERC20Factory } from './4-opchain-implementations/2B-optimism-mintable-ERC20-factory';
 
+import type { SharedSystemConfigOptions } from '../shared/4-opchain-implementations/2C-option-system-config';
+import {  defaults as systemConfigDefaults } from '../shared/4-opchain-implementations/2C-option-system-config';
+import { printDeploySystemConfig } from './4-opchain-implementations/2C-system-config';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -283,6 +287,12 @@ export type DeployOptimismMintableERC20Factory = WizardAllAPI<SharedOptimismMint
 export const deployOptimismMintableERC20Factory: DeployOptimismMintableERC20Factory = {
   print: printDeployOptimismMintableERC20Factory,
   defaults: optimismMintableERC20FactoryDefaults,
+}
+
+export type DeploySystemConfig = WizardAllAPI<SharedSystemConfigOptions>;
+export const deploySystemConfig: DeploySystemConfig = {
+  print: printDeploySystemConfig,
+  defaults: systemConfigDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

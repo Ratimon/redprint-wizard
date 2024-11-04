@@ -76,6 +76,9 @@ import { buildDeployL1CrossDomainMessenger } from './4-opchain-implementations/2
 import type { SharedOptimismMintableERC20FactoryOptions } from '../shared/4-opchain-implementations/2B-option-optimism-mintable-ERC20-factory';
 import { buildDeployOptimismMintableERC20Factory } from './4-opchain-implementations/2B-optimism-mintable-ERC20-factory';
 
+import type { SharedSystemConfigOptions } from '../shared/4-opchain-implementations/2C-option-system-config';
+import { buildDeploySystemConfig } from './4-opchain-implementations/2C-system-config';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import { buildDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
 
@@ -112,6 +115,7 @@ export interface DeployKindedOptions {
 
   L1CrossDomainMessenger: {kind: 'L1CrossDomainMessenger'} & SharedL1CrossDomainMessengerOptions;
   OptimismMintableERC20Factory: {kind: 'OptimismMintableERC20Factory'} & SharedOptimismMintableERC20FactoryOptions;
+  SystemConfig: {kind: 'SystemConfig'} & SharedSystemConfigOptions;
   StepFourPointTwoAllSub: {kind: 'StepFourPointTwoAllSub'} & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: {kind: 'StepFourPointTwoAll'} & SharedStepFourPointTwoAllOptions;
 }
@@ -198,6 +202,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'OptimismMintableERC20Factory':
       return  buildDeployOptimismMintableERC20Factory(opts);
+    
+    case 'SystemConfig':
+      return  buildDeploySystemConfig(opts);
 
     case 'StepFourPointTwoAllSub':
       return  buildDeployStepFourPointTwoAllSub(opts);
