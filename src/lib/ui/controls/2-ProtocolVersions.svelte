@@ -16,7 +16,7 @@
       ...contractDefaults,
       ...deployDefaults,
 
-      contractInfo: {  securityContact: 'Consult full code at https://github.com/Ratimon/redprint-optimism-contracts-examples/blob/main/src/L1/ProtocolVersions.sol', license: 'MIT'  },
+      contractInfo: {  securityContact: 'Consult full code at https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/src/L1/ProtocolVersions.sol', license: 'MIT'  },
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
   
