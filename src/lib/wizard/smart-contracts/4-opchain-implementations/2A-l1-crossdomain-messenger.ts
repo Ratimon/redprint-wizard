@@ -1,4 +1,4 @@
-import type { BaseModifier, Contract} from '../contract';
+import type { Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
 import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2A-option-l1-crossdomain-messenger';
@@ -28,21 +28,9 @@ export function buildL1CrossDomainMessenger(opts: SharedL1CrossDomainMessengerOp
     // to do add note to highlight diff in op mono repo
     const c = new ContractBuilder(allOpts.contractName);
 
-    const Predeploys = {
-        name: 'Predeploys',
-        path: '@redprint-core/libraries/Predeploys.sol',
-    };
-    c.addModule(Predeploys);
-
-    const OptimismPortal = {
-      name: 'OptimismPortal',
-      path: '@redprint-core/L1/OptimismPortal.sol',
-    };
-    c.addModule(OptimismPortal);
-
     const CrossDomainMessenger = {
         name: 'CrossDomainMessenger',
-        path: '@redprint-core/L1/CrossDomainMessenger.sol',
+        path: '@redprint-core/universal/CrossDomainMessenger.sol',
     };
     c.addParent(CrossDomainMessenger, [{ lit: '' }]);
     c.addOverride(CrossDomainMessenger, functions.gasPayingToken);
@@ -52,42 +40,55 @@ export function buildL1CrossDomainMessenger(opts: SharedL1CrossDomainMessengerOp
     c.addOverride(CrossDomainMessenger, functions._isUnsafeTarget);
     c.addOverride(CrossDomainMessenger, functions.paused);
 
+    const Predeploys = {
+        name: 'Predeploys',
+        path: '@redprint-core/libraries/Predeploys.sol',
+    };
+    c.addModule(Predeploys);
+
     const ISemver = {
       name: 'ISemver',
-      path: '@redprint-core/universal/ISemver.sol',
+      path: '@redprint-core/universal/interfaces/ISemver.sol',
     };
     c.addParent(ISemver);
 
-    const SuperchainConfig = {
-      name: 'SuperchainConfig',
-      path: '@redprint-core/L1/SuperchainConfig.sol',
+    const ISuperchainConfig = {
+      name: 'ISuperchainConfig',
+      path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
     };
-    c.addModule(SuperchainConfig);
+    c.addModule(ISuperchainConfig);
 
-    const SystemConfig = {
-      name: 'SystemConfig',
-      path: '@redprint-core/L1/SystemConfig.sol',
+    const ISystemConfig = {
+      name: 'ISystemConfig',
+      path: '@redprint-core/L1/interfaces/ISystemConfig.sol',
     };
-    c.addModule(SystemConfig);
+    c.addModule(ISystemConfig);
 
-    c.addVariable(`//// @notice Contract of the SuperchainConfig.
-    SuperchainConfig public superchainConfig;`);
+    const IOptimismPortal = {
+      name: 'IOptimismPortal',
+      path: '@redprint-core/L1/interfaces/IOptimismPortal.sol',
+    };
+    c.addModule(IOptimismPortal);
+
+
+    c.addVariable(`/// @notice Contract of the SuperchainConfig.
+    ISuperchainConfig public superchainConfig;`);
 
     c.addVariable(`/// @notice Contract of the OptimismPortal.
     /// @custom:network-specific
-    OptimismPortal public portal;`);
+    IOptimismPortal public portal;`);
 
     c.addVariable(`/// @notice Address of the SystemConfig contract.
-    SystemConfig public systemConfig;`);
+    ISystemConfig public systemConfig;`);
 
     c.addVariable(`/// @notice Semantic version.
-    /// @custom:semver 2.4.0
-    string public constant version = "2.4.0";`);
+    /// @custom:semver 2.4.1-beta.2
+    string public constant version = "2.4.1-beta.2";`);
 
     c.addConstructorCode(`initialize({
-            _superchainConfig: SuperchainConfig(address(0)),
-            _portal: OptimismPortal(payable(address(0))),
-            _systemConfig: SystemConfig(address(0))
+            _superchainConfig: ISuperchainConfig(address(0)),
+            _portal: IOptimismPortal(payable(address(0))),
+            _systemConfig: ISystemConfig(address(0))
         });`);
 
     // initialize
@@ -99,7 +100,7 @@ export function buildL1CrossDomainMessenger(opts: SharedL1CrossDomainMessengerOp
 
 
     // gasPayingToken()
-    c.addFunctionCode(`(_addr, _decimals) = systemConfig.gasPayingToken();`, functions.gasPayingToken);
+    c.addFunctionCode(`(addr_, decimals_) = systemConfig.gasPayingToken();`, functions.gasPayingToken);
 
 
     // PORTAL()
@@ -135,20 +136,24 @@ const functions = defineFunctions({
 
     initialize: {
       kind: 'public' as const,
-      args: [],
+      args: [
+        { name: '_superchainConfig', type: 'ISuperchainConfig' },
+        { name: '_portal', type: 'IOptimismPortal' },
+        { name: '_systemConfig', type: 'ISystemConfig' },
+      ],
     },
 
     gasPayingToken : {
         kind: 'internal' as const,
         args: [],
-        returns: ['address _addr', 'uint8 _decimals'],
+        returns: ['address addr_', 'uint8 decimals_'],
         mutability: 'view',
       },
       
       PORTAL : {
         kind: 'external' as const,
         args: [],
-        returns: ['OptimismPortal'],
+        returns: ['IOptimismPortal'],
         mutability: 'view',
       },
 

@@ -1,4 +1,4 @@
-import type { BaseModifier, Contract} from '../contract';
+import type {  Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
 import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2C-option-system-config';
@@ -61,7 +61,7 @@ export function buildSystemConfig(opts: SharedSystemConfigOptions): Contract {
 
     const ISemver = {
         name: 'ISemver',
-        path: '@redprint-core/universal/ISemver.sol',
+        path: '@redprint-core/universal/interfaces/ISemver.sol',
     };
     c.addParent(ISemver);
     const IOptimismPortal = {

@@ -1,4 +1,4 @@
-import type { BaseModifier, Contract} from '../contract';
+import type {  Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
 import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2B-option-optimism-mintable-ERC20-factory';
@@ -34,7 +34,7 @@ export function buildOptimismMintableERC20Factory(opts: SharedOptimismMintableER
 
     const ISemver = {
         name: 'ISemver',
-        path: '@redprint-core/universal/ISemver.sol',
+        path: '@redprint-core/universal/interfaces/ISemver.sol',
     };
     c.addParent(ISemver);
 
