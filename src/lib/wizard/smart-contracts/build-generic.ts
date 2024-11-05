@@ -64,6 +64,9 @@ import { buildOptimismMintableERC20Factory } from './4-opchain-implementations/2
 import type { SharedSystemConfigOptions } from '../shared/4-opchain-implementations/2C-option-system-config';
 import { buildSystemConfig } from './4-opchain-implementations/2C-system-config';
 
+import type { SharedSystemConfigInteropOptions } from '../shared/4-opchain-implementations/2C-option-system-config-interop';
+import { buildSystemConfigInterop } from './4-opchain-implementations/2C-system-config-interop';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -87,6 +90,7 @@ export interface KindedOptions {
   L1CrossDomainMessenger : {kind: 'L1CrossDomainMessenger' } & SharedL1CrossDomainMessengerOptions;
   OptimismMintableERC20Factory : {kind: 'OptimismMintableERC20Factory' } & SharedOptimismMintableERC20FactoryOptions;
   SystemConfig : {kind: 'SystemConfig' } & SharedSystemConfigOptions;
+  SystemConfigInterop : {kind: 'SystemConfigInterop' } & SharedSystemConfigInteropOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -159,6 +163,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'SystemConfig':
       return buildSystemConfig(opts);
+
+    case 'SystemConfigInterop':
+      return buildSystemConfigInterop(opts);
 
     default:
       const _: never = opts;

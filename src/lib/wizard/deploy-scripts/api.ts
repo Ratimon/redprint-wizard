@@ -108,6 +108,10 @@ import type { SharedSystemConfigOptions } from '../shared/4-opchain-implementati
 import {  defaults as systemConfigDefaults } from '../shared/4-opchain-implementations/2C-option-system-config';
 import { printDeploySystemConfig } from './4-opchain-implementations/2C-system-config';
 
+import type { SharedSystemConfigInteropOptions } from '../shared/4-opchain-implementations/2C-option-system-config-interop';
+import {  defaults as systemConfigInteropDefaults } from '../shared/4-opchain-implementations/2C-option-system-config-interop';
+import { printDeploySystemConfigInterop } from './4-opchain-implementations/2C-system-config-interop';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -293,6 +297,12 @@ export type DeploySystemConfig = WizardAllAPI<SharedSystemConfigOptions>;
 export const deploySystemConfig: DeploySystemConfig = {
   print: printDeploySystemConfig,
   defaults: systemConfigDefaults,
+}
+
+export type DeploySystemConfigInterop = WizardAllAPI<SharedSystemConfigInteropOptions>;
+export const deploySystemConfigInterop: DeploySystemConfigInterop = {
+  print: printDeploySystemConfigInterop,
+  defaults: systemConfigInteropDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

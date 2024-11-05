@@ -15,6 +15,8 @@ function isKindSystemConfig<T>(value: KindSystemConfig | T): value is KindSystem
   switch (value) {
     case 'SystemConfig':
       return true;
+    case 'SystemConfigInterop':
+      return true;
 
     default: {
       // Static assert that we've checked all kinds.

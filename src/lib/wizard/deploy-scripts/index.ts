@@ -12,8 +12,8 @@ export type { Info } from './set-info';
 export { defaults as deployInfoDefaults } from './set-info';
 
 export {
-    deployGovernor,
     deploySafe,
+    deployGovernor,
     deployStepOneAll,
     deployAddressManager,
     deployProxyAdmin,
@@ -39,6 +39,7 @@ export {
     deployL1CrossDomainMessenger,
     deployOptimismMintableERC20Factory,
     deploySystemConfig,
+    deploySystemConfigInterop,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';

@@ -86,6 +86,10 @@ import type { SharedSystemConfigOptions } from '../shared/4-opchain-implementati
 import {  defaults as systemConfigDefaults } from '../shared/4-opchain-implementations/2C-option-system-config';
 import { printSystemConfig } from './4-opchain-implementations/2C-system-config';
 
+import type { SharedSystemConfigInteropOptions } from '../shared/4-opchain-implementations/2C-option-system-config-interop';
+import {  defaults as systemConfigInteropDefaults } from '../shared/4-opchain-implementations/2C-option-system-config-interop';
+import { printSystemConfigInterop } from './4-opchain-implementations/2C-system-config-interop';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -235,4 +239,10 @@ export type SystemConfig = WizardContractAPI<SharedSystemConfigOptions>;
 export const systemConfig: SystemConfig = {
   print: printSystemConfig,
   defaults: systemConfigDefaults
+}
+
+export type SystemConfigInterop = WizardContractAPI<SharedSystemConfigInteropOptions>;
+export const systemConfigInterop: SystemConfigInterop = {
+  print: printSystemConfigInterop,
+  defaults: systemConfigInteropDefaults
 }

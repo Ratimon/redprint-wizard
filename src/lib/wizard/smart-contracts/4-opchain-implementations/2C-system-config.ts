@@ -2,7 +2,7 @@ import type {  Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
 import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2C-option-system-config';
-import type { SharedSystemConfigOptions } from '../../shared/4-opchain-implementations//2C-option-system-config';
+import type { SharedSystemConfigOptions } from '../../shared/4-opchain-implementations/2C-option-system-config';
 
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";

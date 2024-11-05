@@ -29,6 +29,7 @@ import type { SharedStepFourPointOneAllOptions } from './4-opchain-proxies/optio
 import type { SharedL1CrossDomainMessengerOptions } from './4-opchain-implementations/2A-option-l1-crossdomain-messenger';
 import type { SharedOptimismMintableERC20FactoryOptions } from './4-opchain-implementations/2B-option-optimism-mintable-ERC20-factory';
 import type { SharedSystemConfigOptions } from './4-opchain-implementations/2C-option-system-config';
+import type { SharedSystemConfigInteropOptions } from './4-opchain-implementations/2C-option-system-config-interop';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
@@ -63,6 +64,7 @@ export interface KindedOptions {
   L1CrossDomainMessenger: { kind: 'L1CrossDomainMessenger' } & SharedL1CrossDomainMessengerOptions;
   OptimismMintableERC20Factory: { kind: 'OptimismMintableERC20Factory' } & SharedOptimismMintableERC20FactoryOptions;
   SystemConfig: { kind: 'SystemConfig' } & SharedSystemConfigOptions;
+  SystemConfigInterop: { kind: 'SystemConfigInterop' } & SharedSystemConfigInteropOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -218,6 +220,7 @@ export type GenericOptimismMintableERC20FactoryOptions = KindedOptimismMintableE
 
 export interface KindedSystemConfigOptions {
   SystemConfig: { kind: 'SystemConfig' } & SharedSystemConfigOptions;
+  SystemConfigInterop: { kind: 'SystemConfigInterop' } & SharedSystemConfigInteropOptions;
 }
 export type GenericSystemConfigOptions = KindedSystemConfigOptions[keyof KindedSystemConfigOptions];
 
