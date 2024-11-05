@@ -360,6 +360,11 @@ L1_RPC_URL=http://localhost:8545
 </Background>
 
 <WizardDouble conventionNumber={'101'} initialContractTab={initialContractGovernanceTab} contractTab={contractGovernanceTab} opts={optsGovernance} contract={contractGovernance} deployContract={deployContractGovernance}>
+
+  <div slot="caption" >
+    <h2 class="m-4 font-extrabold	">The default contract is <span class="bg-primary underline">MultiSig</span>.</h2>
+  </div>
+  
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">

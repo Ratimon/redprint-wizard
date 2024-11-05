@@ -140,7 +140,7 @@ function addBase(c: DeployBuilder) {
             _innerCallData: abi.encodeCall(SuperchainConfig.initialize, ( deployer.getConfig().superchainConfigGuardian(), false))
         });
 
-        ChainAssertions.checkSuperchainConfig({ _contracts: deployer.getProxiesUnstrict(), _cfg: deployer.getConfig(), _isPaused: false });`, functions.initializeSuperchainConfig);
+        ChainAssertions.checkSuperchainConfig({ _contracts: deployer.getProxiesUnstrict(), _cfg: deployer.getConfig(), _isPaused: false, _isProxy: true  });`, functions.initializeSuperchainConfig);
 
 }
 

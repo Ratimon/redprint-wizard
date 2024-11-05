@@ -151,6 +151,10 @@
     />
   </div>
 
+  <div class="pt-3 pb-4 justify-center">
+    <slot name="caption" />
+  </div>
+
   <div class="pt-3 pb-4 header flex flex-row justify-between">
 
     <slot name="menu" />

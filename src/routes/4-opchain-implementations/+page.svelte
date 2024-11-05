@@ -500,6 +500,10 @@ if (optsStepSub) {
 </Background>
 
 <WizardDouble conventionNumber={'402C'} initialContractTab={initialContractSystemConfigTab} contractTab={contractSystemConfigTab} opts={optsSystemConfig} contract={contractSystemConfig} deployContract={deployContractSystemConfig}>
+  <div slot="caption" >
+    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">SystemConfig</span>(Default). Otherwise, it is <span class="bg-primary underline">SystemConfigInterop</span>.</h2>
+  </div>
+
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">
@@ -553,7 +557,6 @@ if (optsStepSub) {
 
   </div>
 </WizardDouble>
-
 
 
 <!-- 000_DeployAll.s.sol -->
