@@ -40,6 +40,7 @@ export {
     deployOptimismMintableERC20Factory,
     deploySystemConfig,
     deploySystemConfigInterop,
+    deployL1StandardBridge,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';

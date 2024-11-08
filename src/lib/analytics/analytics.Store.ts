@@ -34,6 +34,7 @@ export type Action =
                     'copy-contract-OptimismMintableERC20Factory'| 'copy-script-OptimismMintableERC20Factory' | 'download-contract-OptimismMintableERC20Factory' | 'download-script-OptimismMintableERC20Factory' |
                     'copy-contract-SystemConfig'| 'copy-script-SystemConfig' | 'download-contract-SystemConfig' | 'download-script-SystemConfig' |
                     'copy-contract-SystemConfigInterop'| 'copy-script-SystemConfigInterop' | 'download-contract-SystemConfigInterop' | 'download-script-SystemConfigInterop' |
+                    'copy-contract-L1StandardBridge'| 'copy-script-L1StandardBridge' | 'download-contract-L1StandardBridge' | 'download-script-L1StandardBridge' |
                     'copy-contract-StepFourPointTwoAllSub'| 'copy-script-StepFourPointTwoAllSub' | 'download-contract-StepFourPointTwoAllSub' | 'download-script-StepFourPointTwoAllSub' |
                     'copy-contract-StepFourPointTwoAll'| 'copy-script-StepFourPointTwoAll' | 'download-contract-StepFourPointTwoAll' | 'download-script-StepFourPointTwoAll'
                     

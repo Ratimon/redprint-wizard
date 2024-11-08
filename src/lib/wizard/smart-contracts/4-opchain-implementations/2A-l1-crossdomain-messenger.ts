@@ -33,12 +33,6 @@ export function buildL1CrossDomainMessenger(opts: SharedL1CrossDomainMessengerOp
         path: '@redprint-core/universal/CrossDomainMessenger.sol',
     };
     c.addParent(CrossDomainMessenger, [{ lit: '' }]);
-    c.addOverride(CrossDomainMessenger, functions.gasPayingToken);
-    c.addOverride(CrossDomainMessenger, functions.PORTAL);
-    c.addOverride(CrossDomainMessenger, functions._sendMessage);
-    c.addOverride(CrossDomainMessenger, functions._isOtherMessenger);
-    c.addOverride(CrossDomainMessenger, functions._isUnsafeTarget);
-    c.addOverride(CrossDomainMessenger, functions.paused);
 
     const Predeploys = {
         name: 'Predeploys',
@@ -100,6 +94,7 @@ export function buildL1CrossDomainMessenger(opts: SharedL1CrossDomainMessengerOp
 
 
     // gasPayingToken()
+    c.addModifier('override', functions.gasPayingToken);
     c.addFunctionCode(`(addr_, decimals_) = systemConfig.gasPayingToken();`, functions.gasPayingToken);
 
 
@@ -107,6 +102,7 @@ export function buildL1CrossDomainMessenger(opts: SharedL1CrossDomainMessengerOp
     c.addFunctionCode(`return portal;`, functions.PORTAL);
 
     // _sendMessage()
+    c.addModifier('override', functions._sendMessage);
     c.addFunctionCode(`portal.depositTransaction{ value: _value }({
         _to: _to,
         _value: _value,
@@ -116,14 +112,17 @@ export function buildL1CrossDomainMessenger(opts: SharedL1CrossDomainMessengerOp
     });`, functions._sendMessage);
 
     // _isOtherMessenger()
+    c.addModifier('override', functions._isOtherMessenger);
     c.addFunctionCode(`return msg.sender == address(portal) && portal.l2Sender() == address(otherMessenger);`, functions._isOtherMessenger);
 
 
     // _isUnsafeTarget()
+    c.addModifier('override', functions._isUnsafeTarget);
     c.addFunctionCode(`return _target == address(this) || _target == address(portal);`, functions._isUnsafeTarget);
 
 
     // paused()
+    c.addModifier('override', functions.paused);
     c.addFunctionCode(`return superchainConfig.paused();`, functions.paused);
 
 
@@ -163,7 +162,7 @@ const functions = defineFunctions({
             { name: '_to', type: 'address' },
             { name: '_gasLimit', type: 'uint64' },
             { name: '_value', type: 'uint256' },
-            { name: 'bytes memory', type: 'bytes memory' },
+            { name: '_data', type: 'bytes memory' },
         ],
         returns: [],
       },

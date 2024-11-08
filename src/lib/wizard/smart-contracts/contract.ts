@@ -14,6 +14,7 @@ export interface Contract {
   modifiers: ContractModifier[];
   functions: ContractFunction[];
   constructorCode: string[];
+  receiveModifiers: string[];
   receiveCode: string[];
   fallbackCode: string[];
   constructorArgs: FunctionArgument[];
@@ -108,6 +109,7 @@ export class ContractBuilder implements Contract {
 
   readonly constructorArgs: FunctionArgument[] = [];
   readonly constructorCode: string[] = [];
+  readonly receiveModifier: string[] = [];
   readonly receiveCode: string[] = [];
   readonly fallbackCode: string[] = [];
   readonly variableSet: Set<string> = new Set();
@@ -172,6 +174,10 @@ export class ContractBuilder implements Contract {
     return [...this.functionMap.values()];
   }
 
+  get receiveModifiers(): string[] {
+    return [...this.receiveModifier];
+  }
+
   get variables(): string[] {
     return [...this.variableSet];
   }
@@ -207,6 +213,10 @@ export class ContractBuilder implements Contract {
   addModifier(modifier: string, baseFn: BaseFunction) {
     const fn = this.addFunction(baseFn);
     fn.modifiers.push(modifier);
+  }
+
+  addReceiveModifier(modifier: string) {
+    this.receiveModifier.push(modifier);
   }
 
   addNatspecTag(key: string, value: string) {

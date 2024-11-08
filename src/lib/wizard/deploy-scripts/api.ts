@@ -112,6 +112,10 @@ import type { SharedSystemConfigInteropOptions } from '../shared/4-opchain-imple
 import {  defaults as systemConfigInteropDefaults } from '../shared/4-opchain-implementations/2C-option-system-config-interop';
 import { printDeploySystemConfigInterop } from './4-opchain-implementations/2C-system-config-interop';
 
+import type { SharedL1StandardBridgeOptions } from '../shared/4-opchain-implementations/2D-option-l1-standard-bridge';
+import {  defaults as l1StandardBridgeDefaults } from '../shared/4-opchain-implementations/2D-option-l1-standard-bridge';
+import { printDeployL1StandardBridge } from './4-opchain-implementations/2D-l1-standard-bridge';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -303,6 +307,12 @@ export type DeploySystemConfigInterop = WizardAllAPI<SharedSystemConfigInteropOp
 export const deploySystemConfigInterop: DeploySystemConfigInterop = {
   print: printDeploySystemConfigInterop,
   defaults: systemConfigInteropDefaults,
+}
+
+export type DeployL1StandardBridge = WizardAllAPI<SharedL1StandardBridgeOptions>;
+export const deployL1StandardBridge: DeployL1StandardBridge = {
+  print: printDeployL1StandardBridge,
+  defaults: l1StandardBridgeDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

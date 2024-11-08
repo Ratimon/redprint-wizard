@@ -82,6 +82,9 @@ import { buildDeploySystemConfig } from './4-opchain-implementations/2C-system-c
 import type { SharedSystemConfigInteropOptions } from '../shared/4-opchain-implementations/2C-option-system-config-interop';
 import { buildDeploySystemConfigInterop } from './4-opchain-implementations/2C-system-config-interop';
 
+import type { SharedL1StandardBridgeOptions } from '../shared/4-opchain-implementations/2D-option-l1-standard-bridge';
+import { buildDeployL1StandardBridge } from './4-opchain-implementations/2D-l1-standard-bridge';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import { buildDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
 
@@ -120,6 +123,7 @@ export interface DeployKindedOptions {
   OptimismMintableERC20Factory: {kind: 'OptimismMintableERC20Factory'} & SharedOptimismMintableERC20FactoryOptions;
   SystemConfig: {kind: 'SystemConfig'} & SharedSystemConfigOptions;
   SystemConfigInterop: {kind: 'SystemConfigInterop'} & SharedSystemConfigInteropOptions;
+  L1StandardBridge: {kind: 'L1StandardBridge'} & SharedL1StandardBridgeOptions;
   StepFourPointTwoAllSub: {kind: 'StepFourPointTwoAllSub'} & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: {kind: 'StepFourPointTwoAll'} & SharedStepFourPointTwoAllOptions;
 }
@@ -212,6 +216,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'SystemConfigInterop':
       return  buildDeploySystemConfigInterop(opts);
+
+    case 'L1StandardBridge':
+      return  buildDeployL1StandardBridge(opts);
 
     case 'StepFourPointTwoAllSub':
       return  buildDeployStepFourPointTwoAllSub(opts);

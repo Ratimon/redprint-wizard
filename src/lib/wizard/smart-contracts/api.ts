@@ -90,6 +90,10 @@ import type { SharedSystemConfigInteropOptions } from '../shared/4-opchain-imple
 import {  defaults as systemConfigInteropDefaults } from '../shared/4-opchain-implementations/2C-option-system-config-interop';
 import { printSystemConfigInterop } from './4-opchain-implementations/2C-system-config-interop';
 
+import type { SharedL1StandardBridgeOptions } from '../shared/4-opchain-implementations/2D-option-l1-standard-bridge';
+import {  defaults as l1StandardBridgeDefaults } from '../shared/4-opchain-implementations/2D-option-l1-standard-bridge';
+import { printL1StandardBridge } from './4-opchain-implementations/2D-l1-standard-bridge';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -245,4 +249,10 @@ export type SystemConfigInterop = WizardContractAPI<SharedSystemConfigInteropOpt
 export const systemConfigInterop: SystemConfigInterop = {
   print: printSystemConfigInterop,
   defaults: systemConfigInteropDefaults
+}
+
+export type L1StandardBridge = WizardContractAPI<SharedL1StandardBridgeOptions>;
+export const l1StandardBridge: L1StandardBridge = {
+  print: printL1StandardBridge,
+  defaults: l1StandardBridgeDefaults
 }

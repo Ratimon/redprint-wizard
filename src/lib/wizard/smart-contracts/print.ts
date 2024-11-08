@@ -196,7 +196,9 @@ function printReceive(contract: Contract): Lines[] {
   if (hasReceiveCodeCode ) {
     // const parents = parentsWithInitializers
     //   .flatMap(p => printParentConstructor(p, helpers));
-    const modifiers = ['external payable'];
+
+    const modifiers: string[] = ['external payable', ...contract.receiveModifiers];
+
     const args: string[] = [];
     const body = contract.receiveCode;
     const head = 'receive'

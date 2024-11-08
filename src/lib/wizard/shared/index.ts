@@ -28,6 +28,7 @@ export type {
     KindedL1CrossDomainMessengerOptions, GenericL1CrossDomainMessengerOptions,
     KindedOptimismMintableERC20FactoryOptions, GenericOptimismMintableERC20FactoryOptions,
     KindedSystemConfigOptions, GenericSystemConfigOptions,
+    KindedL1StandardBridgeOptions, GenericL1StandardBridgeOptions,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -120,6 +121,9 @@ export {  sanitizeKindOptimismMintableERC20Factory } from './4-opchain-implement
 
 export type { KindSystemConfig } from './4-opchain-implementations/2C-kind-system-config';
 export {  sanitizeKindSystemConfig } from './4-opchain-implementations/2C-kind-system-config';
+
+export type { KindL1StandardBridge } from './4-opchain-implementations/2D-kind-l1-standard-bridge';
+export {  sanitizeKindL1StandardBridge } from './4-opchain-implementations/2D-kind-l1-standard-bridge';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';

@@ -45,7 +45,6 @@ export function buildSystemConfigInterop(opts: SharedSystemConfigInteropOptions)
       path: '@redprint-core/L1/SystemConfig.sol',
     };
     c.addParent(SystemConfig);
-    c.addOverride(SystemConfig, functions.version);
     c.addOverride(SystemConfig, functions._setGasPayingToken);
 
     const ConfigType = {
@@ -108,6 +107,7 @@ export function buildSystemConfigInterop(opts: SharedSystemConfigInteropOptions)
         Storage.setAddress(DEPENDENCY_MANAGER_SLOT, _dependencyManager);`, functions.initialize);
 
     // version
+    c.addModifier('override', functions.version);
     c.addFunctionCode(`return string.concat(super.version(), "+interop-beta.3");`, functions.version);
 
     // _setGasPayingToken
@@ -131,18 +131,20 @@ export function buildSystemConfigInterop(opts: SharedSystemConfigInteropOptions)
         );
     }`, functions._setGasPayingToken);
 
-
+    // addDependency
     c.addFunctionCode(`require(msg.sender == dependencyManager(), "SystemConfig: caller is not the dependency manager");
         IOptimismPortal(payable(optimismPortal())).setConfig(
             ConfigType.ADD_DEPENDENCY, StaticConfig.encodeAddDependency(_chainId)
         );`, functions.addDependency);
 
+    // removeDependency
     c.addFunctionCode(`require(msg.sender == dependencyManager(), "SystemConfig: caller is not the dependency manager");
         require(msg.sender == dependencyManager(), "SystemConfig: caller is not the dependency manager");
         IOptimismPortal(payable(optimismPortal())).setConfig(
             ConfigType.REMOVE_DEPENDENCY, StaticConfig.encodeRemoveDependency(_chainId)
         );`, functions.removeDependency);
 
+    // dependencyManager
     c.addFunctionCode(`return Storage.getAddress(DEPENDENCY_MANAGER_SLOT);`, functions.dependencyManager);
 
 
@@ -151,8 +153,6 @@ export function buildSystemConfigInterop(opts: SharedSystemConfigInteropOptions)
 }
 
 const functions = defineFunctions({
-
-
 
   initialize: {
     kind: 'external' as const,
@@ -206,10 +206,5 @@ const functions = defineFunctions({
     returns: ['address'],
     mutability: 'view',
   },
-
-
-
-
-
 
 });

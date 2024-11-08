@@ -36,7 +36,8 @@ export {
     l1CrossDomainMessenger,
     optimismMintableERC20Factory,
     systemConfig,
-    systemConfigInterop
+    systemConfigInterop,
+    l1StandardBridge
 } from './api';
 
 
@@ -65,3 +66,4 @@ export { buildL1CrossDomainMessenger } from './4-opchain-implementations/2A-l1-c
 export { buildOptimismMintableERC20Factory } from './4-opchain-implementations/2B-optimism-mintable-ERC20-factory';
 export { buildSystemConfig } from './4-opchain-implementations/2C-system-config';
 export { buildSystemConfigInterop } from './4-opchain-implementations/2C-system-config-interop';
+export { buildL1StandardBridge } from './4-opchain-implementations/2D-l1-standard-bridge';

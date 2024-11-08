@@ -27,6 +27,7 @@ export function load() {
         {pathname: '/4-opchain-implementations/#4.2A', title: '4.2A) L1CrossDomainMessenger', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#4.2B', title: '4.2B) OptimismMintableERC20Factory', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#4.2C', title: '4.2C) SystemConfig', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2D', title: '4.2D) L1StandardBridge', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#all', title: 'Deploy All', navType: 'scroll'},
     ];
 

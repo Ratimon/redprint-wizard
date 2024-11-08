@@ -35,7 +35,7 @@ export function buildSystemConfig(opts: SharedSystemConfigOptions): Contract {
       name: 'ERC20',
       path: '@redprint-openzeppelin/token/ERC20/ERC20.sol',
     };
-    c.addParent(ERC20);
+    c.addModule(ERC20);
 
 
     const Storage = {
@@ -55,7 +55,7 @@ export function buildSystemConfig(opts: SharedSystemConfigOptions): Contract {
     c.addModule(GasPayingToken);
     const IGasToken = {
       name: 'IGasToken',
-      path: '@redprint-core/libraries/IGasToken.sol',
+      path: '@redprint-core/libraries/GasPayingToken.sol',
     };
     c.addParent(IGasToken);
 
@@ -69,6 +69,12 @@ export function buildSystemConfig(opts: SharedSystemConfigOptions): Contract {
       path: '@redprint-core/L1/interfaces/IOptimismPortal.sol',
     };
     c.addModule(IOptimismPortal);
+
+    const IResourceMetering = {
+      name: 'IResourceMetering',
+      path: '@redprint-core/L1/interfaces/IResourceMetering.sol',
+    };
+    c.addModule(IResourceMetering);
 
 
     c.addVariable(`/// @notice Enum representing different types of updates.
@@ -311,7 +317,7 @@ export function buildSystemConfig(opts: SharedSystemConfigOptions): Contract {
 
     // setUnsafeBlockSigner
     c.addModifier('onlyOwner', functions.setUnsafeBlockSigner);
-    c.addFunctionCode(`setUnsafeBlockSigner(_unsafeBlockSigner);`, functions.setUnsafeBlockSigner);
+    c.addFunctionCode(`_setUnsafeBlockSigner(_unsafeBlockSigner);`, functions.setUnsafeBlockSigner);
 
     // _setUnsafeBlockSigner
     c.addFunctionCode(`Storage.setAddress(UNSAFE_BLOCK_SIGNER_SLOT, _unsafeBlockSigner);

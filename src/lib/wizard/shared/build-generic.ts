@@ -30,8 +30,10 @@ import type { SharedL1CrossDomainMessengerOptions } from './4-opchain-implementa
 import type { SharedOptimismMintableERC20FactoryOptions } from './4-opchain-implementations/2B-option-optimism-mintable-ERC20-factory';
 import type { SharedSystemConfigOptions } from './4-opchain-implementations/2C-option-system-config';
 import type { SharedSystemConfigInteropOptions } from './4-opchain-implementations/2C-option-system-config-interop';
+import type { SharedL1StandardBridgeOptions } from './4-opchain-implementations/2D-option-l1-standard-bridge';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
+
 
 export interface KindedOptions {
   Safe: { kind: 'Safe' } & SharedSafeOptions;
@@ -65,6 +67,7 @@ export interface KindedOptions {
   OptimismMintableERC20Factory: { kind: 'OptimismMintableERC20Factory' } & SharedOptimismMintableERC20FactoryOptions;
   SystemConfig: { kind: 'SystemConfig' } & SharedSystemConfigOptions;
   SystemConfigInterop: { kind: 'SystemConfigInterop' } & SharedSystemConfigInteropOptions;
+  L1StandardBridge: { kind: 'L1StandardBridge' } & SharedL1StandardBridgeOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -223,6 +226,12 @@ export interface KindedSystemConfigOptions {
   SystemConfigInterop: { kind: 'SystemConfigInterop' } & SharedSystemConfigInteropOptions;
 }
 export type GenericSystemConfigOptions = KindedSystemConfigOptions[keyof KindedSystemConfigOptions];
+
+
+export interface KindedL1StandardBridgeOptions {
+  L1StandardBridge: { kind: 'L1StandardBridge' } & SharedL1StandardBridgeOptions;
+}
+export type GenericL1StandardBridgeOptions = KindedL1StandardBridgeOptions[keyof KindedL1StandardBridgeOptions];
 
 
 export interface KindedStepFourPointTwoAllSubOptions {

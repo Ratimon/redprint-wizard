@@ -67,6 +67,9 @@ import { buildSystemConfig } from './4-opchain-implementations/2C-system-config'
 import type { SharedSystemConfigInteropOptions } from '../shared/4-opchain-implementations/2C-option-system-config-interop';
 import { buildSystemConfigInterop } from './4-opchain-implementations/2C-system-config-interop';
 
+import type { SharedL1StandardBridgeOptions } from '../shared/4-opchain-implementations/2D-option-l1-standard-bridge';
+import { buildL1StandardBridge } from './4-opchain-implementations/2D-l1-standard-bridge';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -91,6 +94,7 @@ export interface KindedOptions {
   OptimismMintableERC20Factory : {kind: 'OptimismMintableERC20Factory' } & SharedOptimismMintableERC20FactoryOptions;
   SystemConfig : {kind: 'SystemConfig' } & SharedSystemConfigOptions;
   SystemConfigInterop : {kind: 'SystemConfigInterop' } & SharedSystemConfigInteropOptions;
+  L1StandardBridge : {kind: 'L1StandardBridge' } & SharedL1StandardBridgeOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -166,6 +170,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'SystemConfigInterop':
       return buildSystemConfigInterop(opts);
+
+    case 'L1StandardBridge':
+      return buildL1StandardBridge(opts);
 
     default:
       const _: never = opts;
