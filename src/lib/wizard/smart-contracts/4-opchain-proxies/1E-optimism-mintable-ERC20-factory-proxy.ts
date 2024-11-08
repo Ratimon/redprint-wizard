@@ -7,7 +7,7 @@ import type { SharedOptimismMintableERC20FactoryProxyOptions } from '../../share
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
-import { buildProxy } from './proxy/proxy';
+import { buildProxy } from '../proxy/proxy';
 
 function withDefaults(opts: SharedOptimismMintableERC20FactoryProxyOptions): Required<SharedOptimismMintableERC20FactoryProxyOptions> {
   return {

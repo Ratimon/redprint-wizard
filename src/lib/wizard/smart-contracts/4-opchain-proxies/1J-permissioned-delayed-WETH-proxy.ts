@@ -7,7 +7,7 @@ import type { SharedPermissionedDelayedWETHProxyOptions } from '../../shared/4-o
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
-import { buildProxy } from './proxy/proxy';
+import { buildProxy } from '../proxy/proxy';
 
 function withDefaults(opts: SharedPermissionedDelayedWETHProxyOptions): Required<SharedPermissionedDelayedWETHProxyOptions> {
   return {

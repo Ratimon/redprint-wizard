@@ -26,41 +26,11 @@ export function buildProxyAdmin(opts: SharedProxyAdminOptions): Contract {
     // to do add note to highlight diff in op mono repo
     const c = new ContractBuilder(allOpts.contractName);
 
-    const IStaticERC1967Proxy = {
-      name: 'IStaticERC1967Proxy',
-      path: '@redprint-core/universal/ProxyAdmin.sol',
-    };
-    c.addModule(IStaticERC1967Proxy);
-
-    const IStaticL1ChugSplashProxy = {
-      name: 'IStaticL1ChugSplashProxy',
-      path: '@redprint-core/universal/ProxyAdmin.sol',
-    };
-    c.addModule(IStaticL1ChugSplashProxy);
-
     const Ownable = {
-        name: 'Ownable',
-        path: '@redprint-openzeppelin/access/Ownable.sol',
+      name: 'Ownable',
+      path: '@redprint-openzeppelin/access/Ownable.sol',
     };
-    c.addParent(Ownable, []);
-
-    const Proxy = {
-      name: 'Proxy',
-      path: '@redprint-core/universal/Proxy.sol',
-    };
-    c.addModule(Proxy);
-
-    const AddressManager = {
-      name: 'AddressManager',
-      path: '@redprint-core/legacy/AddressManager.sol',
-    };
-    c.addModule(AddressManager);
-
-    const L1ChugSplashProxy = {
-      name: 'L1ChugSplashProxy',
-      path: '@redprint-core/legacy/L1ChugSplashProxy.sol',
-    };
-    c.addModule(L1ChugSplashProxy);
+    c.addParent(Ownable, [{ lit: '' }]);
 
     const Constants = {
       name: 'Constants',
@@ -68,15 +38,53 @@ export function buildProxyAdmin(opts: SharedProxyAdminOptions): Contract {
     };
     c.addModule(Constants);
 
+    const IAddressManager = {
+      name: 'IAddressManager',
+      path: '@redprint-core/legacy/interfaces/IAddressManager.sol',
+    };
+    c.addModule(IAddressManager);
+
+    const IL1ChugSplashProxy = {
+      name: 'IL1ChugSplashProxy',
+      path: '@redprint-core/legacy/interfaces/IL1ChugSplashProxy.sol',
+    };
+    c.addModule(IL1ChugSplashProxy);
+
+    const IStaticL1ChugSplashProxy = {
+      name: 'IStaticL1ChugSplashProxy',
+      path: '@redprint-core/legacy/interfaces/IL1ChugSplashProxy.sol',
+    };
+    c.addModule(IStaticL1ChugSplashProxy);
+
+    const IStaticERC1967Proxy = {
+      name: 'IStaticERC1967Proxy',
+      path: '@redprint-core/universal/interfaces/IStaticERC1967Proxy.sol',
+    };
+    c.addModule(IStaticERC1967Proxy);
+
+
+    const IProxy = {
+      name: 'IProxy',
+      path: '@redprint-core/universal/interfaces/IProxy.sol',
+    };
+    c.addModule(IProxy);
+
+
     c.addVariable(`enum ProxyType {
         ERC1967,
         CHUGSPLASH,
         RESOLVED
     }`);
     
-    c.addVariable(`mapping(address => ProxyType) public proxyType;`);
-    c.addVariable(`mapping(address => string) public implementationName;`);
-    c.addVariable(`AddressManager public addressManager;`);
+    c.addVariable(` /// @notice A mapping of proxy types, used for backwards compatibility.
+    mapping(address => ProxyType) public proxyType;`);
+    c.addVariable(`/// @notice A reverse mapping of addresses to names held in the AddressManager. This must be
+    ///         manually kept up to date with changes in the AddressManager for this contract
+    ///         to be able to work as an admin for the ResolvedDelegateProxy type.
+    mapping(address => string) public implementationName;`);
+    c.addVariable(`/// @notice The address of the address manager, this is required to manage the
+    ///         ResolvedDelegateProxy type.
+    IAddressManager public addressManager;`);
     c.addVariable(`bool internal upgrading;`);
 
     c.addConstructorArgument({
@@ -122,23 +130,23 @@ export function buildProxyAdmin(opts: SharedProxyAdminOptions): Contract {
 
     // getProxyAdmin
     c.addFunctionCode(`ProxyType ptype = proxyType[_proxy];
-      if (ptype == ProxyType.ERC1967) {
-          return IStaticERC1967Proxy(_proxy).admin();
-      } else if (ptype == ProxyType.CHUGSPLASH) {
-          return IStaticL1ChugSplashProxy(_proxy).getOwner();
-      } else if (ptype == ProxyType.RESOLVED) {
-          return addressManager.owner();
-      } else {
-          revert("ProxyAdmin: unknown proxy type");
-      }`, functions.getProxyAdmin);
+        if (ptype == ProxyType.ERC1967) {
+            return IStaticERC1967Proxy(_proxy).admin();
+        } else if (ptype == ProxyType.CHUGSPLASH) {
+            return IStaticL1ChugSplashProxy(_proxy).getOwner();
+        } else if (ptype == ProxyType.RESOLVED) {
+            return addressManager.owner();
+        } else {
+            revert("ProxyAdmin: unknown proxy type");
+        }`, functions.getProxyAdmin);
 
     // changeProxyAdmin
     c.addModifier('onlyOwner', functions.changeProxyAdmin);
     c.addFunctionCode(`ProxyType ptype = proxyType[_proxy];
         if (ptype == ProxyType.ERC1967) {
-            Proxy(_proxy).changeAdmin(_newAdmin);
+            IProxy(_proxy).changeAdmin(_newAdmin);
         } else if (ptype == ProxyType.CHUGSPLASH) {
-            L1ChugSplashProxy(_proxy).setOwner(_newAdmin);
+            IL1ChugSplashProxy(_proxy).setOwner(_newAdmin);
         } else if (ptype == ProxyType.RESOLVED) {
             addressManager.transferOwnership(_newAdmin);
         } else {
@@ -149,9 +157,9 @@ export function buildProxyAdmin(opts: SharedProxyAdminOptions): Contract {
     c.addModifier('onlyOwner', functions.upgrade);
     c.addFunctionCode(`ProxyType ptype = proxyType[_proxy];
         if (ptype == ProxyType.ERC1967) {
-            Proxy(_proxy).upgradeTo(_implementation);
+            IProxy(_proxy).upgradeTo(_implementation);
         } else if (ptype == ProxyType.CHUGSPLASH) {
-            L1ChugSplashProxy(_proxy).setStorage(
+            IL1ChugSplashProxy(_proxy).setStorage(
                 Constants.PROXY_IMPLEMENTATION_ADDRESS, bytes32(uint256(uint160(_implementation)))
             );
         } else if (ptype == ProxyType.RESOLVED) {
@@ -167,11 +175,11 @@ export function buildProxyAdmin(opts: SharedProxyAdminOptions): Contract {
     c.addModifier('onlyOwner', functions.upgradeAndCall);
     c.addFunctionCode(`ProxyType ptype = proxyType[_proxy];
         if (ptype == ProxyType.ERC1967) {
-            Proxy(_proxy).upgradeToAndCall{value: msg.value}(_implementation, _data);
+            IProxy(_proxy).upgradeToAndCall{ value: msg.value }(_implementation, _data);
         } else {
             // reverts if proxy type is unknown
             upgrade(_proxy, _implementation);
-            (bool success,) = _proxy.call{value: msg.value}(_data);
+            (bool success,) = _proxy.call{ value: msg.value }(_data);
             require(success, "ProxyAdmin: call to proxy after upgrade failed");
         }`, functions.upgradeAndCall);
 
@@ -199,7 +207,7 @@ const functions = defineFunctions({
   setAddressManager: {
     kind: 'external' as const,
     args: [
-      { name: '_address', type: 'AddressManager' },
+      { name: '_address', type: 'IAddressManager' },
       ],
   },
 

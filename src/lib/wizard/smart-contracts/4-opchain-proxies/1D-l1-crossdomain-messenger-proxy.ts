@@ -7,7 +7,7 @@ import type { SharedL1CrossDomainMessengerProxyOptions } from '../../shared/4-op
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
-import { buildResolvedDelegateProxy } from './proxy/resolved-delegate-proxy';
+import { buildResolvedDelegateProxy } from '../proxy/resolved-delegate-proxy';
 
 function withDefaults(opts: SharedL1CrossDomainMessengerProxyOptions): Required<SharedL1CrossDomainMessengerProxyOptions> {
   return {

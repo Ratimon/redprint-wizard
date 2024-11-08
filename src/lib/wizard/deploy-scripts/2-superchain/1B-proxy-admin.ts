@@ -69,6 +69,12 @@ function addBase(c: DeployBuilder) {
   };
   c.addParent(DeployScript, []);
 
+  const IAddressManager = {
+    name: 'IAddressManager',
+    path: '@redprint-core/legacy/interfaces/IAddressManager.sol',
+  };
+  c.addModule(IAddressManager);
+
   const AddressManager = {
     name: 'AddressManager',
     path: '@redprint-core/legacy/AddressManager.sol',
@@ -91,7 +97,7 @@ function addBase(c: DeployBuilder) {
   // initialize
   c.addFunctionCode(`AddressManager addressManager = AddressManager(deployer.mustGetAddress("AddressManager"));
         (VmSafe.CallerMode mode ,address msgSender, ) = vm.readCallers();
-        if (proxyAdmin.addressManager() != addressManager) {
+        if ( address(proxyAdmin.addressManager()) != address(addressManager)) {
              if(mode != VmSafe.CallerMode.Broadcast && msgSender != owner) {
                 console.log("Pranking ower ...");
                 vm.prank(owner);
@@ -99,7 +105,7 @@ function addBase(c: DeployBuilder) {
                 console.log("Broadcasting ...");
                 vm.broadcast(owner);
              }
-            proxyAdmin.setAddressManager(addressManager);
+            proxyAdmin.setAddressManager( IAddressManager(address(addressManager)));
             console.log("AddressManager setted to : %s", address(addressManager));
         }
         address safe = deployer.mustGetAddress("SystemOwnerSafe");

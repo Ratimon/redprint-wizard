@@ -1,4 +1,4 @@
-import type { BaseModifier, Contract} from '../contract';
+import type { Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
 import { withCommonDefaults, defaults as commonDefaults } from "../../shared/2-superchain/3B-option-versions";
@@ -30,13 +30,13 @@ export function buildProtocolVersions(opts: SharedProtocolVersionsOptions): Cont
 
     const OwnableUpgradeable = {
         name: 'OwnableUpgradeable',
-        path: '@redprint-openzeppelin-upgradable/access/OwnableUpgradeable.sol',
+        path: '@redprint-openzeppelin-upgradeable/access/OwnableUpgradeable.sol',
     };
     c.addParent(OwnableUpgradeable, []);
 
     const ISemver = {
       name: 'ISemver',
-      path: '@redprint-core/universal/ISemver.sol',
+      path: '@redprint-core/universal/interfaces/ISemver.sol',
     };
     c.addParent(ISemver);
 
@@ -46,11 +46,6 @@ export function buildProtocolVersions(opts: SharedProtocolVersionsOptions): Cont
     };
     c.addModule(Storage);
 
-    const Constants = {
-        name: 'Constants',
-        path: '@redprint-core/libraries/Constants.sol',
-    };
-    c.addModule(Constants);
 
     c.addVariable(`/// @notice Enum representing different types of updates.
     /// @custom:value REQUIRED_PROTOCOL_VERSION              Represents an update to the required protocol version.
@@ -76,8 +71,8 @@ export function buildProtocolVersions(opts: SharedProtocolVersionsOptions): Cont
     event ConfigUpdate(uint256 indexed version, UpdateType indexed updateType, bytes data);`);
 
     c.addVariable(`/// @notice Semantic version.
-    /// @custom:semver 1.0.0
-    string public constant version = "1.0.0";`);
+    /// @custom:semver 1.0.1-beta.3
+    string public constant version = "1.0.1-beta.3";`);
 
     
     c.addConstructorCode(`initialize({

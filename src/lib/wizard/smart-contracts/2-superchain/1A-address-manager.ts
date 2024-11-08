@@ -36,7 +36,7 @@ export function buildAddressManager(opts: SharedAddressManagerOptions): Contract
     c.addVariable(`event AddressSet(string indexed name, address newAddress, address oldAddress);`);
 
     // setAddress
-    c.addModifier('whenNotPaused', functions.setAddress);
+    c.addModifier('onlyOwner', functions.setAddress);
     c.addFunctionCode(`bytes32 nameHash = _getNameHash(_name);
         address oldAddress = addresses[nameHash];
         addresses[nameHash] = _address;
@@ -57,7 +57,7 @@ const functions = defineFunctions({
       kind: 'external' as const,
       args: [
           { name: '_name', type: 'string memory' },
-          { name: '_address', type: 'with' },
+          { name: '_address', type: 'address' },
         ],
   },
 

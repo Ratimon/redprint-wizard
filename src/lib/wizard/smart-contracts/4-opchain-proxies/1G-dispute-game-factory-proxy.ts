@@ -7,7 +7,7 @@ import type { SharedDisputeGameFactoryProxyOptions } from '../../shared/4-opchai
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
-import { buildProxy } from './proxy/proxy';
+import { buildProxy } from '../proxy/proxy';
 
 function withDefaults(opts: SharedDisputeGameFactoryProxyOptions): Required<SharedDisputeGameFactoryProxyOptions> {
   return {

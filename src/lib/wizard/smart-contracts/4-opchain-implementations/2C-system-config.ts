@@ -28,7 +28,7 @@ export function buildSystemConfig(opts: SharedSystemConfigOptions): Contract {
 
     const OwnableUpgradeable = {
       name: 'OwnableUpgradeable',
-      path: '@redprint-openzeppelin-upgradable/access/OwnableUpgradeable.sol',
+      path: '@redprint-openzeppelin-upgradeable/access/OwnableUpgradeable.sol',
     };
     c.addParent(OwnableUpgradeable);
     const ERC20 = {

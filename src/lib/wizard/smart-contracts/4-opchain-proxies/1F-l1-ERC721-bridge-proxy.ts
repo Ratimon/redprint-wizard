@@ -7,7 +7,7 @@ import type { SharedL1ERC721BridgeProxyOptions } from '../../shared/4-opchain-pr
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
-import { buildProxy } from './proxy/proxy';
+import { buildProxy } from '../proxy/proxy';
 
 function withDefaults(opts: SharedL1ERC721BridgeProxyOptions): Required<SharedL1ERC721BridgeProxyOptions> {
   return {

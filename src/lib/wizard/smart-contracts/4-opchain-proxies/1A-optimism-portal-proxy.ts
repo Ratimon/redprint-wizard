@@ -7,7 +7,7 @@ import type { SharedOptimismPortalProxyOptions } from '../../shared/4-opchain-pr
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
-import { buildProxy } from './proxy/proxy';
+import { buildProxy } from '../proxy/proxy';
 
 function withDefaults(opts: SharedOptimismPortalProxyOptions): Required<SharedOptimismPortalProxyOptions> {
   return {

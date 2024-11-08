@@ -7,7 +7,7 @@ import type { SharedSystemConfigProxyOptions } from '../../shared/4-opchain-prox
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
-import { buildProxy } from './proxy/proxy';
+import { buildProxy } from '../proxy/proxy';
 
 function withDefaults(opts: SharedSystemConfigProxyOptions): Required<SharedSystemConfigProxyOptions> {
   return {

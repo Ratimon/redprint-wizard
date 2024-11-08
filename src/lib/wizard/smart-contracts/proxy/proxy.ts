@@ -1,7 +1,7 @@
-import type { ContractBuilder } from '../../contract';
-import type { BaseModifier} from '../../contract';
+import type { ContractBuilder } from '../contract';
+import type { BaseModifier} from '../contract';
 
-import { defineFunctions } from '../../../utils/define-functions';
+import { defineFunctions } from '../../utils/define-functions';
 
 export function buildProxy(c: ContractBuilder): void {
 

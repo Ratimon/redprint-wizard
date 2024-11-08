@@ -7,7 +7,7 @@ import type { SharedDelayedWETHProxyOptions } from '../../shared/4-opchain-proxi
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
-import { buildProxy } from './proxy/proxy';
+import { buildProxy } from '../proxy/proxy';
 
 function withDefaults(opts: SharedDelayedWETHProxyOptions): Required<SharedDelayedWETHProxyOptions> {
   return {

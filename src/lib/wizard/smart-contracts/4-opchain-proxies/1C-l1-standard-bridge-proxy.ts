@@ -7,7 +7,7 @@ import type { SharedL1StandardBridgeProxyOptions } from '../../shared/4-opchain-
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
-import { buildL1ChugSplashProxy } from './proxy/l1-chug-splash-proxy';
+import { buildL1ChugSplashProxy } from '../proxy/l1-chug-splash-proxy';
 
 function withDefaults(opts: SharedL1StandardBridgeProxyOptions): Required<SharedL1StandardBridgeProxyOptions> {
   return {

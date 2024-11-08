@@ -1,4 +1,4 @@
-import type { BaseModifier, Contract} from '../contract';
+import type {  Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
 import { withCommonDefaults, defaults as commonDefaults } from "../../shared/2-superchain/2B-option-superchain-config";
@@ -34,7 +34,7 @@ export function buildSuperchainConfig(opts: SharedSuperchainConfigOptions): Cont
 
     const ISemver = {
         name: 'ISemver',
-        path: '@redprint-core/universal/ISemver.sol',
+        path: '@redprint-core/universal/interfaces/ISemver.sol',
     };
     c.addParent(ISemver, []);
 
@@ -67,10 +67,10 @@ export function buildSuperchainConfig(opts: SharedSuperchainConfigOptions): Cont
     c.addVariable(`event ConfigUpdate(UpdateType indexed updateType, bytes data);`);
 
     c.addVariable(`/// @notice Semantic version.
-    /// @custom:semver 1.1.0
-    string public constant version = "1.1.0";`);
+    /// @custom:semver 1.1.1-beta.1
+    string public constant version = "1.1.1-beta.1";`);
 
-    c.addConstructorCode(`initialize({_guardian: address(0), _paused: false});`);
+    c.addConstructorCode(`initialize({ _guardian: address(0), _paused: false });`);
 
     // initialize
     c.addModifier('initializer', functions.initialize);

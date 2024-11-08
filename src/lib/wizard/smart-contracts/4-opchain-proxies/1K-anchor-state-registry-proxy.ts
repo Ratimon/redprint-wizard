@@ -7,7 +7,7 @@ import type { SharedAnchorStateRegistryProxyOptions } from '../../shared/4-opcha
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";
 
-import { buildProxy } from './proxy/proxy';
+import { buildProxy } from '../proxy/proxy';
 
 function withDefaults(opts: SharedAnchorStateRegistryProxyOptions): Required<SharedAnchorStateRegistryProxyOptions> {
   return {
