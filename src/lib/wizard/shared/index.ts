@@ -30,6 +30,7 @@ export type {
     KindedSystemConfigOptions, GenericSystemConfigOptions,
     KindedL1StandardBridgeOptions, GenericL1StandardBridgeOptions,
     KindedL1ERC721BridgeOptions, GenericL1ERC721BridgeOptions,
+    KindedOptimismPortalOptions, GenericOptimismPortalOptions,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -128,6 +129,9 @@ export {  sanitizeKindL1StandardBridge } from './4-opchain-implementations/2D-ki
 
 export type { KindL1ERC721Bridge } from './4-opchain-implementations/2E-kind-l1-ERC721-bridge';
 export {  sanitizeKindL1ERC721Bridge } from './4-opchain-implementations/2E-kind-l1-ERC721-bridge';
+
+export type { KindOptimismPortal } from './4-opchain-implementations/2F-kind-optimism-portal';
+export {  sanitizeKindOptimismPortal } from './4-opchain-implementations/2F-kind-optimism-portal';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';

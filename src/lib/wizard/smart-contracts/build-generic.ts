@@ -73,6 +73,9 @@ import { buildL1StandardBridge } from './4-opchain-implementations/2D-l1-standar
 import type { SharedL1ERC721BridgeOptions } from '../shared/4-opchain-implementations/2E-option-l1-ERC721-bridge';
 import { buildL1ERC721Bridge } from './4-opchain-implementations/2E-l1-ERC721-bridge';
 
+import type { SharedOptimismPortalOptions } from '../shared/4-opchain-implementations/2F-option-optimism-portal';
+import { buildOptimismPortal } from './4-opchain-implementations/2F-optimism-portal';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -99,6 +102,7 @@ export interface KindedOptions {
   SystemConfigInterop : {kind: 'SystemConfigInterop' } & SharedSystemConfigInteropOptions;
   L1StandardBridge : {kind: 'L1StandardBridge' } & SharedL1StandardBridgeOptions;
   L1ERC721Bridge : {kind: 'L1ERC721Bridge' } & SharedL1ERC721BridgeOptions;
+  OptimismPortal : {kind: 'OptimismPortal' } & SharedOptimismPortalOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -180,6 +184,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'L1ERC721Bridge':
       return buildL1ERC721Bridge(opts);
+
+    case 'OptimismPortal':
+      return buildOptimismPortal(opts);
 
     default:
       const _: never = opts;

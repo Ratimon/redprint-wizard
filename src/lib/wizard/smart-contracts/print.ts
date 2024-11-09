@@ -36,7 +36,7 @@ export function printContract(contract: Contract, opts?: Options): string {
       contract.dependencies.map(p => {
         const names = p.name.split(', ').map(name => ({ name } as ReferencedContract));
         const transformedNames = helpers.transformNames(names).join(', ');
-        return `import {${transformedNames}} from "${helpers.transformImport(p).path}";`;
+        return transformedNames === '' ? `import "${helpers.transformImport(p).path}";` : `import {${transformedNames}} from "${helpers.transformImport(p).path}";`;
       }),
 
       contract.userDefinedTypes.map(p => `type ${p.newType} is ${p.underlyingType};`),

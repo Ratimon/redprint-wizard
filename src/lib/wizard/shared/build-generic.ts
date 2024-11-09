@@ -32,6 +32,7 @@ import type { SharedSystemConfigOptions } from './4-opchain-implementations/2C-o
 import type { SharedSystemConfigInteropOptions } from './4-opchain-implementations/2C-option-system-config-interop';
 import type { SharedL1StandardBridgeOptions } from './4-opchain-implementations/2D-option-l1-standard-bridge';
 import type { SharedL1ERC721BridgeOptions } from './4-opchain-implementations/2E-option-l1-ERC721-bridge';
+import type { SharedOptimismPortalOptions } from './4-opchain-implementations/2F-option-optimism-portal';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
@@ -70,6 +71,7 @@ export interface KindedOptions {
   SystemConfigInterop: { kind: 'SystemConfigInterop' } & SharedSystemConfigInteropOptions;
   L1StandardBridge: { kind: 'L1StandardBridge' } & SharedL1StandardBridgeOptions;
   L1ERC721Bridge: { kind: 'L1ERC721Bridge' } & SharedL1ERC721BridgeOptions;
+  OptimismPortal: { kind: 'OptimismPortal' } & SharedOptimismPortalOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -240,6 +242,12 @@ export interface KindedL1ERC721BridgeOptions {
   L1ERC721Bridge: { kind: 'L1ERC721Bridge' } & SharedL1ERC721BridgeOptions;
 }
 export type GenericL1ERC721BridgeOptions = KindedL1ERC721BridgeOptions[keyof KindedL1ERC721BridgeOptions];
+
+
+export interface KindedOptimismPortalOptions {
+  OptimismPortal: { kind: 'OptimismPortal' } & SharedOptimismPortalOptions;
+}
+export type GenericOptimismPortalOptions = KindedOptimismPortalOptions[keyof KindedOptimismPortalOptions];
 
 
 export interface KindedStepFourPointTwoAllSubOptions {

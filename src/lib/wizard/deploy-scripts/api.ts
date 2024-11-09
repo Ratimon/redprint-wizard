@@ -120,6 +120,10 @@ import type { SharedL1ERC721BridgeOptions } from '../shared/4-opchain-implementa
 import {  defaults as l1ERC721BridgeDefaults } from '../shared/4-opchain-implementations/2E-option-l1-ERC721-bridge';
 import { printDeployL1ERC721Bridge } from './4-opchain-implementations/2E-l1-ERC721-bridge';
 
+import type { SharedOptimismPortalOptions } from '../shared/4-opchain-implementations/2F-option-optimism-portal';
+import {  defaults as optimismPortalDefaults } from '../shared/4-opchain-implementations/2F-option-optimism-portal';
+import { printDeployOptimismPortal } from './4-opchain-implementations/2F-optimism-portal';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -323,6 +327,12 @@ export type DeployL1ERC721Bridge = WizardAllAPI<SharedL1ERC721BridgeOptions>;
 export const deployL1ERC721Bridge: DeployL1ERC721Bridge = {
   print: printDeployL1ERC721Bridge,
   defaults: l1ERC721BridgeDefaults,
+}
+
+export type DeployOptimismPortal = WizardAllAPI<SharedOptimismPortalOptions>;
+export const deployOptimismPortal: DeployOptimismPortal = {
+  print: printDeployOptimismPortal,
+  defaults: optimismPortalDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

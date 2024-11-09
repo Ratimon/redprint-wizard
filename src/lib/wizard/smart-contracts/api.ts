@@ -98,6 +98,10 @@ import type { SharedL1ERC721BridgeOptions } from '../shared/4-opchain-implementa
 import {  defaults as l1ERC721BridgeDefaults } from '../shared/4-opchain-implementations/2E-option-l1-ERC721-bridge';
 import { printL1ERC721Bridge } from './4-opchain-implementations/2E-l1-ERC721-bridge';
 
+import type { SharedOptimismPortalOptions } from '../shared/4-opchain-implementations/2F-option-optimism-portal';
+import {  defaults as optimismPortalDefaults } from '../shared/4-opchain-implementations/2F-option-optimism-portal';
+import { printOptimismPortal } from './4-opchain-implementations/2F-optimism-portal';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -265,4 +269,11 @@ export type L1ERC721Bridge = WizardContractAPI<SharedL1ERC721BridgeOptions>;
 export const l1ERC721Bridge: L1ERC721Bridge = {
   print: printL1ERC721Bridge,
   defaults: l1ERC721BridgeDefaults
+}
+
+
+export type OptimismPortal = WizardContractAPI<SharedOptimismPortalOptions>;
+export const optimismPortal: OptimismPortal = {
+  print: printOptimismPortal,
+  defaults: optimismPortalDefaults
 }

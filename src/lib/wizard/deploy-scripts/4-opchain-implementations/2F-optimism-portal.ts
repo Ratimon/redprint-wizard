@@ -1,26 +1,26 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedSystemConfigOptions } from '../../shared/4-opchain-implementations/2C-option-system-config';
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2C-option-system-config';
+import type { SharedOptimismPortalOptions } from '../../shared/4-opchain-implementations/2F-option-optimism-portal';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2F-option-optimism-portal';
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
 import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedSystemConfigOptions): Required<SharedSystemConfigOptions> {
+function withDeployDefaults(opts: SharedOptimismPortalOptions): Required<SharedOptimismPortalOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeploySystemConfig(opts: SharedSystemConfigOptions = commonDefaults): string {
-  return printDeployContract(buildDeploySystemConfig(opts));
+export function printDeployOptimismPortal(opts: SharedOptimismPortalOptions = commonDefaults): string {
+  return printDeployContract(buildDeployOptimismPortal(opts));
 }
 
-export function buildDeploySystemConfig(opts: SharedSystemConfigOptions): DeployContract {
+export function buildDeployOptimismPortal(opts: SharedOptimismPortalOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -74,33 +74,35 @@ function addBase(c: DeployBuilder) {
   };
   c.addModule(ChainAssertions);
 
-  const SystemConfig = {
-    name: 'SystemConfig',
-    path: '@redprint-core/L1/SystemConfig.sol',
+  const OptimismPortal = {
+    name: 'OptimismPortal',
+    path: '@redprint-core/L1/OptimismPortal.sol',
   };
-  c.addModule(SystemConfig);
+  c.addModule(OptimismPortal);
 
-  c.addVariable(`SystemConfig systemConfig;`);
+  c.addVariable(`OptimismPortal optimismPortal;`);
 
   // deploy
-  c.addFunctionCode(`DeployConfig cfg = deployer.getConfig();
+  c.addFunctionCode(` DeployConfig cfg = deployer.getConfig();
 
         bytes32 _salt = DeployScript.implSalt();
         DeployOptions memory options = DeployOptions({salt:_salt});
 
-        systemConfig = deployer.deploy_SystemConfig("SystemConfig", options);
-        Types.ContractSet memory contracts =  deployer.getProxiesUnstrict();
-        contracts.SystemConfig = address(systemConfig);
-        ChainAssertions.checkSystemConfig({ _contracts: contracts, _cfg: cfg, _isProxy: false });
+        optimismPortal = deployer.deploy_OptimismPortal("OptimismPortal", options);
 
-        return systemConfig;`, functions.deploy);
+        Types.ContractSet memory contracts =  deployer.getProxiesUnstrict();
+       
+        contracts.OptimismPortal = address(optimismPortal);
+        ChainAssertions.checkOptimismPortal({ _contracts: contracts, _cfg: cfg, _isProxy: false });
+
+        return optimismPortal;`, functions.deploy);
 }
 
 const functions = defineFunctions({
   deploy: {
       kind: 'external' as const,
       args: [],
-      returns: ['SystemConfig'],
+      returns: ['OptimismPortal'],
   },
 
 });

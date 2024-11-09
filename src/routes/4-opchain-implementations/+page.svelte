@@ -12,6 +12,7 @@
         KindedSystemConfigOptions, KindSystemConfig,
         KindedL1StandardBridgeOptions, KindL1StandardBridge,
         KindedL1ERC721BridgeOptions, KindL1ERC721Bridge,
+        KindedOptimismPortalOptions, KindOptimismPortal,
         KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
         KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
         OptionsErrorMessages
@@ -23,6 +24,7 @@
         sanitizeKindSystemConfig,
         sanitizeKindL1StandardBridge,
         sanitizeKindL1ERC721Bridge,
+        sanitizeKindOptimismPortal,
         sanitizeKindStepFourPointTwoAll,
         sanitizeKindStepFourPointTwoAllSub,
         OptionsError
@@ -39,6 +41,7 @@
     import SystemConfigInteropControls from '$lib/ui/controls/4-SystemConfigInteropControls.svelte';
     import L1StandardBridgeControls from '$lib/ui/controls/4-L1StandardBridgeControls.svelte';
     import L1ERC721BridgeControls from '$lib/ui/controls/4-L1ERC721BridgeControls.svelte';
+    import OptimismPortalControls from '$lib/ui/controls/4-OptimismPortalControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
 
@@ -372,6 +375,65 @@
   \`\`\`
   `);
 
+  // **** step 4.2E ***
+  export let initialContractOptimismPortalTab: string | undefined = 'OptimismPortal';
+  export let contractOptimismPortalTab: KindOptimismPortal = sanitizeKindOptimismPortal(initialContractOptimismPortalTab);
+  let allContractsOptimismPortalOpts: { [k in KindOptimismPortal]?: Required<KindedOptimismPortalOptions [k]> } = {};
+  let errorsOptimismPortal: { [k in KindOptimismPortal]?: OptionsErrorMessages } = {};
+  let contractOptimismPortal: Contract = new ContractBuilder('OptimismPortal');
+  let deployContractOptimismPortal: DeployContract = new DeployBuilder('DeployOptimismPortalScript');
+
+  $: optsOptimismPortal = allContractsOptimismPortalOpts[contractOptimismPortalTab];
+  $: {
+  if (optsOptimismPortal) {
+          try {
+              contractOptimismPortal = buildContractGeneric(optsOptimismPortal);
+              deployContractOptimismPortal = buildDeployGeneric(optsOptimismPortal);
+              errorsOptimismPortal[contractOptimismPortalTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsOptimismPortal[contractOptimismPortalTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepTwoFModalOpen = false;
+  $: addressStepTwoFContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
+  "OptimismMintableERC20Factory": "<ADDRESS_22>",
+  "SystemConfig": "<ADDRESS_23>",
+  "L1StandardBridge": "<ADDRESS_24>",
+  "L1ERC721Bridge": "<ADDRESS_25>",
+  "OptimismPortal": "<ADDRESS_26>"
+}
+  \`\`\`
+  `);
+
 export let initialContractStepTab: string | undefined = 'StepFourPointTwoAll';
 export let contractStepTab: KindStepFourPointTwoAll = sanitizeKindStepFourPointTwoAll(initialContractStepTab);
 
@@ -425,7 +487,8 @@ let isArtifactStepAllModalOpen = false;
   "OptimismMintableERC20Factory": "<ADDRESS_22>",
   "SystemConfig": "<ADDRESS_23>",
   "L1StandardBridge": "<ADDRESS_24>",
-  "L1ERC721Bridge": "<ADDRESS_25>"
+  "L1ERC721Bridge": "<ADDRESS_25>",
+  "OptimismPortal": "<ADDRESS_26>"
 }
   \`\`\`
   `);
@@ -764,7 +827,7 @@ if (optsStepSub) {
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[4].pathname}>
     <div class="divider divider-primary ">
-      <p class="text-xl">4.2D : Deploy L1ERC721Bridge Contract</p>
+      <p class="text-xl">4.2E : Deploy L1ERC721Bridge Contract</p>
     </div>
   </section>
 </Background>
@@ -829,9 +892,78 @@ if (optsStepSub) {
   </div>
 </WizardDouble>
 
-<!-- 000_DeployAll.s.sol -->
+<!-- 401F_DeployOptimismPortal.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[5].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.2F : Deploy OptimismPortal Contract</p>
+    </div>
+  </section>
+</Background>
+
+<WizardDouble conventionNumber={'402D'} initialContractTab={initialContractOptimismPortalTab} contractTab={contractOptimismPortalTab} opts={optsOptimismPortal} contract={contractOptimismPortal} deployContract={deployContractOptimismPortal}>
+  <div slot="caption" >
+    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">OptimismPortal</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortalInterop</span>.</h2>
+  </div>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractOptimismPortalTab === 'OptimismPortal'} on:click={() => contractOptimismPortalTab = 'OptimismPortal'}>
+              OptimismPortal
+            </button>
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractOptimismPortalTab !== 'OptimismPortal'}>
+              <OptimismPortalControls bind:opts={allContractsOptimismPortalOpts.OptimismPortal} />
+          </div>
+
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoFModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoFModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoFModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoFContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<!-- 000_DeployAll.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[6].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>

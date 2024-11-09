@@ -42,6 +42,7 @@ export {
     deploySystemConfigInterop,
     deployL1StandardBridge,
     deployL1ERC721Bridge,
+    deployOptimismPortal,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';

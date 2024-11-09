@@ -38,7 +38,8 @@ export {
     systemConfig,
     systemConfigInterop,
     l1StandardBridge,
-    l1ERC721Bridge
+    l1ERC721Bridge,
+    optimismPortal
 } from './api';
 
 
@@ -69,3 +70,4 @@ export { buildSystemConfig } from './4-opchain-implementations/2C-system-config'
 export { buildSystemConfigInterop } from './4-opchain-implementations/2C-system-config-interop';
 export { buildL1StandardBridge } from './4-opchain-implementations/2D-l1-standard-bridge';
 export { buildL1ERC721Bridge } from './4-opchain-implementations/2E-l1-ERC721-bridge';
+export { buildOptimismPortal } from './4-opchain-implementations/2F-optimism-portal';

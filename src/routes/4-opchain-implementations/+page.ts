@@ -29,6 +29,7 @@ export function load() {
         {pathname: '/4-opchain-implementations/#4.2C', title: '4.2C) SystemConfig', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#4.2D', title: '4.2D) L1StandardBridge', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#4.2E', title: '4.2E) L1ERC721Bridge', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2F', title: '4.2F) OptimismPortal', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#all', title: 'Deploy All', navType: 'scroll'},
     ];
 
