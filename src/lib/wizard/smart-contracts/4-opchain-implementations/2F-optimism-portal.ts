@@ -72,7 +72,7 @@ export function buildOptimismPortal(opts: SharedOptimismPortalOptions): Contract
 
     const SecureMerkleTrie = {
         name: 'SecureMerkleTrie',
-        path: '@redprint-core/libraries/SecureMerkleTrie.sol',
+        path: '@redprint-core/libraries/trie/SecureMerkleTrie.sol',
     };
     c.addModule(SecureMerkleTrie);
 
@@ -132,7 +132,7 @@ export function buildOptimismPortal(opts: SharedOptimismPortalOptions): Contract
 
     const IL1Block = {
         name: 'IL1Block',
-        path: '@redprint-core/L1/interfaces/IL1Block.sol',
+        path: '@redprint-core/L2/interfaces/IL1Block.sol',
     };
     c.addModule(IL1Block);
     
@@ -670,7 +670,7 @@ const functions = defineFunctions({
     proveWithdrawalTransaction : {
         kind: 'external' as const,
         args: [
-            { name: '_tx', type: 'Types.WithdrawalTransaction' },
+            { name: '_tx', type: 'Types.WithdrawalTransaction memory' },
             { name: '_l2OutputIndex', type: 'uint256' },
             { name: '_outputRootProof', type: 'Types.OutputRootProof calldata' },
             { name: '_withdrawalProof', type: 'bytes[] calldata' },
