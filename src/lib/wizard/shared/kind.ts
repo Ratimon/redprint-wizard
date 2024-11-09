@@ -71,6 +71,8 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'L1StandardBridge':
       return true;
+    case 'L1ERC721Bridge':
+      return true;
     case 'StepFourPointTwoAll':
       return true;
     case 'StepFourPointTwoAllSub':

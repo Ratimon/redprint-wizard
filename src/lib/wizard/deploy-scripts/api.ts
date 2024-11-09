@@ -116,6 +116,10 @@ import type { SharedL1StandardBridgeOptions } from '../shared/4-opchain-implemen
 import {  defaults as l1StandardBridgeDefaults } from '../shared/4-opchain-implementations/2D-option-l1-standard-bridge';
 import { printDeployL1StandardBridge } from './4-opchain-implementations/2D-l1-standard-bridge';
 
+import type { SharedL1ERC721BridgeOptions } from '../shared/4-opchain-implementations/2E-option-l1-ERC721-bridge';
+import {  defaults as l1ERC721BridgeDefaults } from '../shared/4-opchain-implementations/2E-option-l1-ERC721-bridge';
+import { printDeployL1ERC721Bridge } from './4-opchain-implementations/2E-l1-ERC721-bridge';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -313,6 +317,12 @@ export type DeployL1StandardBridge = WizardAllAPI<SharedL1StandardBridgeOptions>
 export const deployL1StandardBridge: DeployL1StandardBridge = {
   print: printDeployL1StandardBridge,
   defaults: l1StandardBridgeDefaults,
+}
+
+export type DeployL1ERC721Bridge = WizardAllAPI<SharedL1ERC721BridgeOptions>;
+export const deployL1ERC721Bridge: DeployL1ERC721Bridge = {
+  print: printDeployL1ERC721Bridge,
+  defaults: l1ERC721BridgeDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

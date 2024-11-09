@@ -11,6 +11,7 @@
         KindedOptimismMintableERC20FactoryOptions, KindOptimismMintableERC20Factory,
         KindedSystemConfigOptions, KindSystemConfig,
         KindedL1StandardBridgeOptions, KindL1StandardBridge,
+        KindedL1ERC721BridgeOptions, KindL1ERC721Bridge,
         KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
         KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
         OptionsErrorMessages
@@ -21,6 +22,7 @@
         sanitizeKindOptimismMintableERC20Factory,
         sanitizeKindSystemConfig,
         sanitizeKindL1StandardBridge,
+        sanitizeKindL1ERC721Bridge,
         sanitizeKindStepFourPointTwoAll,
         sanitizeKindStepFourPointTwoAllSub,
         OptionsError
@@ -36,6 +38,7 @@
     import SystemConfigControls from '$lib/ui/controls/4-SystemConfigControls.svelte';
     import SystemConfigInteropControls from '$lib/ui/controls/4-SystemConfigInteropControls.svelte';
     import L1StandardBridgeControls from '$lib/ui/controls/4-L1StandardBridgeControls.svelte';
+    import L1ERC721BridgeControls from '$lib/ui/controls/4-L1ERC721BridgeControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
 
@@ -222,8 +225,8 @@
       }
   }
 
-  let isArtifactStepTwoDModalOpen = false;
-  $: addressStepTwoDContent = md.render(`
+  let isArtifactStepTwoCModalOpen = false;
+  $: addressStepTwoCContent = md.render(`
   \`\`\`bash
 {
   "SafeProxyFactory": "<ADDRESS_1>",
@@ -278,8 +281,8 @@
       }
   }
 
-  let isArtifactStepTwoCModalOpen = false;
-  $: addressStepTwoCContent = md.render(`
+  let isArtifactStepTwoDModalOpen = false;
+  $: addressStepTwoDContent = md.render(`
   \`\`\`bash
 {
   "SafeProxyFactory": "<ADDRESS_1>",
@@ -311,6 +314,63 @@
   `);
 
 
+  // **** step 4.2E ***
+  export let initialContractL1ERC721BridgeTab: string | undefined = 'L1ERC721Bridge';
+  export let contractL1ERC721BridgeTab: KindL1ERC721Bridge = sanitizeKindL1ERC721Bridge(initialContractL1ERC721BridgeTab);
+  let allContractsL1ERC721BridgeOpts: { [k in KindL1ERC721Bridge]?: Required<KindedL1ERC721BridgeOptions [k]> } = {};
+  let errorsL1ERC721Bridge: { [k in KindL1ERC721Bridge]?: OptionsErrorMessages } = {};
+  let contractL1ERC721Bridge: Contract = new ContractBuilder('L1ERC721Bridge');
+  let deployContractL1ERC721Bridge: DeployContract = new DeployBuilder('DeployL1ERC721BridgeScript');
+
+  $: optsL1ERC721Bridge = allContractsL1ERC721BridgeOpts[contractL1ERC721BridgeTab];
+  $: {
+  if (optsL1ERC721Bridge) {
+          try {
+              contractL1ERC721Bridge = buildContractGeneric(optsL1ERC721Bridge);
+              deployContractL1ERC721Bridge = buildDeployGeneric(optsL1ERC721Bridge);
+              errorsL1ERC721Bridge[contractL1ERC721BridgeTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsL1ERC721Bridge[contractL1ERC721BridgeTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepTwoEModalOpen = false;
+  $: addressStepTwoEContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
+  "OptimismMintableERC20Factory": "<ADDRESS_22>",
+  "SystemConfig": "<ADDRESS_23>",
+  "L1StandardBridge": "<ADDRESS_24>",
+  "L1ERC721Bridge": "<ADDRESS_25>"
+}
+  \`\`\`
+  `);
 
 export let initialContractStepTab: string | undefined = 'StepFourPointTwoAll';
 export let contractStepTab: KindStepFourPointTwoAll = sanitizeKindStepFourPointTwoAll(initialContractStepTab);
@@ -364,7 +424,8 @@ let isArtifactStepAllModalOpen = false;
   "L1CrossDomainMessenger": "<ADDRESS_21>",
   "OptimismMintableERC20Factory": "<ADDRESS_22>",
   "SystemConfig": "<ADDRESS_23>",
-  "L1StandardBridge": "<ADDRESS_24>"
+  "L1StandardBridge": "<ADDRESS_24>",
+  "L1ERC721Bridge": "<ADDRESS_25>"
 }
   \`\`\`
   `);
@@ -699,11 +760,78 @@ if (optsStepSub) {
   </div>
 </WizardDouble>
 
+<!-- 401E_DeployL1ERC721Bridge.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[4].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.2D : Deploy L1ERC721Bridge Contract</p>
+    </div>
+  </section>
+</Background>
 
+<WizardDouble conventionNumber={'402D'} initialContractTab={initialContractL1ERC721BridgeTab} contractTab={contractL1ERC721BridgeTab} opts={optsL1ERC721Bridge} contract={contractL1ERC721Bridge} deployContract={deployContractL1ERC721Bridge}>
+  <div slot="caption" >
+    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">L1ERC721Bridge</span>(Default). Otherwise, it is <span class="bg-primary underline">L1ERC721BridgeInterop</span>.</h2>
+  </div>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractL1ERC721BridgeTab === 'L1ERC721Bridge'} on:click={() => contractL1ERC721BridgeTab = 'L1ERC721Bridge'}>
+              L1ERC721Bridge
+            </button>
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractL1ERC721BridgeTab !== 'L1ERC721Bridge'}>
+              <L1ERC721BridgeControls bind:opts={allContractsL1ERC721BridgeOpts.L1ERC721Bridge} />
+          </div>
+
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoEModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoEModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoEModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoEContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
 
 <!-- 000_DeployAll.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[4].pathname}>
+  <section id={data.dropDownLinks[5].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>

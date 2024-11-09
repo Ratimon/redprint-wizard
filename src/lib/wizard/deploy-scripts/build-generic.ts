@@ -85,6 +85,9 @@ import { buildDeploySystemConfigInterop } from './4-opchain-implementations/2C-s
 import type { SharedL1StandardBridgeOptions } from '../shared/4-opchain-implementations/2D-option-l1-standard-bridge';
 import { buildDeployL1StandardBridge } from './4-opchain-implementations/2D-l1-standard-bridge';
 
+import type { SharedL1ERC721BridgeOptions } from '../shared/4-opchain-implementations/2E-option-l1-ERC721-bridge';
+import { buildDeployL1ERC721Bridge } from './4-opchain-implementations/2E-l1-ERC721-bridge';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import { buildDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
 
@@ -124,6 +127,7 @@ export interface DeployKindedOptions {
   SystemConfig: {kind: 'SystemConfig'} & SharedSystemConfigOptions;
   SystemConfigInterop: {kind: 'SystemConfigInterop'} & SharedSystemConfigInteropOptions;
   L1StandardBridge: {kind: 'L1StandardBridge'} & SharedL1StandardBridgeOptions;
+  L1ERC721Bridge: {kind: 'L1ERC721Bridge'} & SharedL1ERC721BridgeOptions;
   StepFourPointTwoAllSub: {kind: 'StepFourPointTwoAllSub'} & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: {kind: 'StepFourPointTwoAll'} & SharedStepFourPointTwoAllOptions;
 }
@@ -219,6 +223,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'L1StandardBridge':
       return  buildDeployL1StandardBridge(opts);
+
+    case 'L1ERC721Bridge':
+      return  buildDeployL1ERC721Bridge(opts);
 
     case 'StepFourPointTwoAllSub':
       return  buildDeployStepFourPointTwoAllSub(opts);

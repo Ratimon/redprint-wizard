@@ -29,6 +29,7 @@ export type {
     KindedOptimismMintableERC20FactoryOptions, GenericOptimismMintableERC20FactoryOptions,
     KindedSystemConfigOptions, GenericSystemConfigOptions,
     KindedL1StandardBridgeOptions, GenericL1StandardBridgeOptions,
+    KindedL1ERC721BridgeOptions, GenericL1ERC721BridgeOptions,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -124,6 +125,9 @@ export {  sanitizeKindSystemConfig } from './4-opchain-implementations/2C-kind-s
 
 export type { KindL1StandardBridge } from './4-opchain-implementations/2D-kind-l1-standard-bridge';
 export {  sanitizeKindL1StandardBridge } from './4-opchain-implementations/2D-kind-l1-standard-bridge';
+
+export type { KindL1ERC721Bridge } from './4-opchain-implementations/2E-kind-l1-ERC721-bridge';
+export {  sanitizeKindL1ERC721Bridge } from './4-opchain-implementations/2E-kind-l1-ERC721-bridge';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';

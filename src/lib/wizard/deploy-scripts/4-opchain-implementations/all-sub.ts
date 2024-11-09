@@ -120,10 +120,9 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, conf
 
       const DeploySystemConfigScript = {
           name: 'DeploySystemConfigScript',
-          path: '@script/402C_DeploySystemConfig.s.sol',
+          path: '@script/402C_DeploySystemConfigScript.s.sol',
       };
       c.addModule(DeploySystemConfigScript);
-      c.addFunctionCode(`DeploySystemConfigScript systemConfigDeployments = new DeploySystemConfigScript();`, fn);
 
       break;
     }
@@ -131,25 +130,55 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, conf
 
       const DeploySystemConfigInteropScript = {
           name: 'DeploySystemConfigInteropScript',
-          path: '@script/402C_DeploySystemConfigInterop.s.sol',
+          path: '@script/402C_DeploySystemConfigInteropScript.s.sol',
       };
 
       c.addModule(DeploySystemConfigInteropScript);
+      break;
+    }
+  }
+
+  const DeployL1StandardBridgeScript = {
+    name: 'DeployL1StandardBridgeScript',
+    path: '@script/402D_DeployL1StandardBridgeScript.s.sol',
+  };
+  c.addModule(DeployL1StandardBridgeScript);
+
+  const DeployL1ERC721BridgeScript = {
+    name: 'DeployL1ERC721BridgeScript',
+    path: '@script/402E_DeployL1ERC721BridgeScript.s.sol',
+  };
+  c.addModule(DeployL1ERC721BridgeScript);
+
+  c.addFunctionCode(`DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
+        DeployOptimismMintableERC20FactoryScript optimismMintableERC20FactoryDeployments = new DeployOptimismMintableERC20FactoryScript();`, fn);
+
+  switch (config) {
+    case 'system-config': {
+      c.addFunctionCode(`DeploySystemConfigScript systemConfigDeployments = new DeploySystemConfigScript();`, fn);
+
+      break;
+    }
+    case 'system-config-interop': {
       c.addFunctionCode(`DeploySystemConfigInteropScript systemConfigDeployments = new DeploySystemConfigInteropScript();;`, fn);
       break;
     }
   }
 
-  c.addFunctionCode(`DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
-        DeployOptimismMintableERC20FactoryScript optimismMintableERC20FactoryDeployments = new DeployOptimismMintableERC20FactoryScript();
+  c.addFunctionCode(`DeployL1StandardBridgeScript l1StandardBridgeDeployments = new DeployL1StandardBridgeScript();
+        DeployL1ERC721BridgeScript l1ERC721BridgeDeployments = new DeployL1ERC721BridgeScript();
 
         l1CrossDomainMessengerDeployments.deploy();
         optimismMintableERC20FactoryDeployments.deploy();
         systemConfigDeployments.deploy();
+        l1StandardBridgeDeployments.deploy();
+        l1ERC721BridgeDeployments.deploy();
         
         console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));
         console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));
-        console.log("SystemConfig at: ", deployerProcedue.getAddress("SystemConfig"));`, fn);
+        console.log("SystemConfig at: ", deployerProcedue.getAddress("SystemConfig"));
+        console.log("L1StandardBridge at: ", deployerProcedue.getAddress("L1StandardBridge"));
+        console.log("L1ERC721Bridge at: ", deployerProcedue.getAddress("L1ERC721Bridge"));`, fn);
 
 }
 

@@ -70,6 +70,9 @@ import { buildSystemConfigInterop } from './4-opchain-implementations/2C-system-
 import type { SharedL1StandardBridgeOptions } from '../shared/4-opchain-implementations/2D-option-l1-standard-bridge';
 import { buildL1StandardBridge } from './4-opchain-implementations/2D-l1-standard-bridge';
 
+import type { SharedL1ERC721BridgeOptions } from '../shared/4-opchain-implementations/2E-option-l1-ERC721-bridge';
+import { buildL1ERC721Bridge } from './4-opchain-implementations/2E-l1-ERC721-bridge';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -95,6 +98,7 @@ export interface KindedOptions {
   SystemConfig : {kind: 'SystemConfig' } & SharedSystemConfigOptions;
   SystemConfigInterop : {kind: 'SystemConfigInterop' } & SharedSystemConfigInteropOptions;
   L1StandardBridge : {kind: 'L1StandardBridge' } & SharedL1StandardBridgeOptions;
+  L1ERC721Bridge : {kind: 'L1ERC721Bridge' } & SharedL1ERC721BridgeOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -173,6 +177,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'L1StandardBridge':
       return buildL1StandardBridge(opts);
+
+    case 'L1ERC721Bridge':
+      return buildL1ERC721Bridge(opts);
 
     default:
       const _: never = opts;

@@ -94,6 +94,10 @@ import type { SharedL1StandardBridgeOptions } from '../shared/4-opchain-implemen
 import {  defaults as l1StandardBridgeDefaults } from '../shared/4-opchain-implementations/2D-option-l1-standard-bridge';
 import { printL1StandardBridge } from './4-opchain-implementations/2D-l1-standard-bridge';
 
+import type { SharedL1ERC721BridgeOptions } from '../shared/4-opchain-implementations/2E-option-l1-ERC721-bridge';
+import {  defaults as l1ERC721BridgeDefaults } from '../shared/4-opchain-implementations/2E-option-l1-ERC721-bridge';
+import { printL1ERC721Bridge } from './4-opchain-implementations/2E-l1-ERC721-bridge';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -255,4 +259,10 @@ export type L1StandardBridge = WizardContractAPI<SharedL1StandardBridgeOptions>;
 export const l1StandardBridge: L1StandardBridge = {
   print: printL1StandardBridge,
   defaults: l1StandardBridgeDefaults
+}
+
+export type L1ERC721Bridge = WizardContractAPI<SharedL1ERC721BridgeOptions>;
+export const l1ERC721Bridge: L1ERC721Bridge = {
+  print: printL1ERC721Bridge,
+  defaults: l1ERC721BridgeDefaults
 }

@@ -31,6 +31,7 @@ import type { SharedOptimismMintableERC20FactoryOptions } from './4-opchain-impl
 import type { SharedSystemConfigOptions } from './4-opchain-implementations/2C-option-system-config';
 import type { SharedSystemConfigInteropOptions } from './4-opchain-implementations/2C-option-system-config-interop';
 import type { SharedL1StandardBridgeOptions } from './4-opchain-implementations/2D-option-l1-standard-bridge';
+import type { SharedL1ERC721BridgeOptions } from './4-opchain-implementations/2E-option-l1-ERC721-bridge';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
@@ -68,6 +69,7 @@ export interface KindedOptions {
   SystemConfig: { kind: 'SystemConfig' } & SharedSystemConfigOptions;
   SystemConfigInterop: { kind: 'SystemConfigInterop' } & SharedSystemConfigInteropOptions;
   L1StandardBridge: { kind: 'L1StandardBridge' } & SharedL1StandardBridgeOptions;
+  L1ERC721Bridge: { kind: 'L1ERC721Bridge' } & SharedL1ERC721BridgeOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -232,6 +234,12 @@ export interface KindedL1StandardBridgeOptions {
   L1StandardBridge: { kind: 'L1StandardBridge' } & SharedL1StandardBridgeOptions;
 }
 export type GenericL1StandardBridgeOptions = KindedL1StandardBridgeOptions[keyof KindedL1StandardBridgeOptions];
+
+
+export interface KindedL1ERC721BridgeOptions {
+  L1ERC721Bridge: { kind: 'L1ERC721Bridge' } & SharedL1ERC721BridgeOptions;
+}
+export type GenericL1ERC721BridgeOptions = KindedL1ERC721BridgeOptions[keyof KindedL1ERC721BridgeOptions];
 
 
 export interface KindedStepFourPointTwoAllSubOptions {
