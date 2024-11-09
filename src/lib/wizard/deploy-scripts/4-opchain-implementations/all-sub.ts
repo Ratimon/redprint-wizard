@@ -109,10 +109,20 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction) {
   };
   c.addModule(DeployL1CrossDomainMessengerScript);
 
+  const DeployOptimismMintableERC20FactoryScript = {
+    name: 'DeployOptimismMintableERC20FactoryScript',
+    path: '@script/402B_DeployOptimismMintableERC20Factory.s.sol',
+  };
+  c.addModule(DeployOptimismMintableERC20FactoryScript);
+
   c.addFunctionCode(`DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
+        DeployOptimismMintableERC20FactoryScript optimismMintableERC20FactoryDeployments = new DeployOptimismMintableERC20FactoryScript();
+
         l1CrossDomainMessengerDeployments.deploy();
+        optimismMintableERC20FactoryDeployments.deploy();
         
-        console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));`, fn);
+        console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));
+        console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));`, fn);
 
 }
 
