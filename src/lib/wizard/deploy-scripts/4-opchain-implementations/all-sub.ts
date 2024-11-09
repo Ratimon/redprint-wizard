@@ -1,7 +1,7 @@
 import type { DeployContract, BaseFunction} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type {  SharedStepFourPointTwoAllSubOptions } from '../../shared/4-opchain-implementations/option-all-sub';
+import type {  SharedStepFourPointTwoAllSubOptions, SystemConfig } from '../../shared/4-opchain-implementations/option-all-sub';
 import {  defaults } from '../../shared/4-opchain-implementations/option-all-sub';
 
 import { defaults as infoDefaults } from "../set-info";
@@ -47,7 +47,7 @@ export function buildDeployStepFourPointTwoAllSub(opts: SharedStepFourPointTwoAl
         console.log("PermissiTwodDelayedWETHProxy at: ", deployerProcedue.getAddress("PermissiTwodDelayedWETHProxy"));
         console.log("AnchorStateRegistryProxy at: ", deployerProcedue.getAddress("AnchorStateRegistryProxy"));`, fn);
 
-  setOpImplementationsDeployment(c, fn);
+  setOpImplementationsDeployment(c, fn, allOpts.systemConfig );
 
   setInfo(c, allOpts.deployInfo);
 
@@ -101,7 +101,7 @@ function addBase(c: DeployBuilder) {
 
 }
 
-function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction) {
+function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, config: SystemConfig) {
 
   const DeployL1CrossDomainMessengerScript = {
     name: 'DeployL1CrossDomainMessengerScript',
@@ -115,14 +115,41 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction) {
   };
   c.addModule(DeployOptimismMintableERC20FactoryScript);
 
+  switch (config) {
+    case 'system-config': {
+
+      const DeploySystemConfigScript = {
+          name: 'DeploySystemConfigScript',
+          path: '@script/402C_DeploySystemConfig.s.sol',
+      };
+      c.addModule(DeploySystemConfigScript);
+      c.addFunctionCode(`DeploySystemConfigScript systemConfigDeployments = new DeploySystemConfigScript();`, fn);
+
+      break;
+    }
+    case 'system-config-interop': {
+
+      const DeploySystemConfigInteropScript = {
+          name: 'DeploySystemConfigInteropScript',
+          path: '@script/402C_DeploySystemConfigInterop.s.sol',
+      };
+
+      c.addModule(DeploySystemConfigInteropScript);
+      c.addFunctionCode(`DeploySystemConfigInteropScript systemConfigDeployments = new DeploySystemConfigInteropScript();;`, fn);
+      break;
+    }
+  }
+
   c.addFunctionCode(`DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
         DeployOptimismMintableERC20FactoryScript optimismMintableERC20FactoryDeployments = new DeployOptimismMintableERC20FactoryScript();
 
         l1CrossDomainMessengerDeployments.deploy();
         optimismMintableERC20FactoryDeployments.deploy();
+        systemConfigDeployments.deploy();
         
         console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));
-        console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));`, fn);
+        console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));
+        console.log("SystemConfig at: ", deployerProcedue.getAddress("SystemConfig"));`, fn);
 
 }
 
@@ -182,11 +209,11 @@ function setOpProxiesDeployment(c: DeployBuilder, fn: BaseFunction) {
   };
   c.addModule(DeployDelayedWETHProxyScript);
 
-  const DeployPermissiTwodDelayedWETHProxyScript = {
-    name: 'DeployPermissiTwodDelayedWETHProxyScript',
-    path: '@script/401J_DeployPermissiTwodDelayedWETHProxyScript.s.sol',
+  const DeployPermissionedDelayedWETHProxyScript = {
+    name: 'DeployPermissionedDelayedWETHProxyScript',
+    path: '@script/401J_DeployPermissionedDelayedWETHProxyScript.s.sol',
   };
-  c.addModule(DeployPermissiTwodDelayedWETHProxyScript);
+  c.addModule(DeployPermissionedDelayedWETHProxyScript);
 
   const DeployAnchorStateRegistryProxyScript = {
     name: 'DeployAnchorStateRegistryProxyScript',

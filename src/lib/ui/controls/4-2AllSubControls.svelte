@@ -2,6 +2,7 @@
     import Background from '$lib/ui/background/Background.svelte';
   
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
+    import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
   
     import type { KindedStepFourPointTwoAllSubOptions } from '$lib/wizard/shared';
   
@@ -36,7 +37,26 @@
     <h1>Step 4</h1>
     <span>L1CrossDomainMessenger</span>
     <span>OptimismMintableERC20Factory</span>
-    <span>SystemConfig</span>
+
+    <div class="checkbox-group">
+        <span>SystemConfig </span>
+        <label class:checked={opts.systemConfig === 'system-config'}>
+        <input type="radio" bind:group={opts.systemConfig} value='system-config'>
+            SystemConfig
+        <HelpTooltip>
+            Choose SystemConfig Option
+        </HelpTooltip>
+        </label>
+
+        <label class:checked={opts.systemConfig === 'system-config-interop'}>
+        <input type="radio" bind:group={opts.systemConfig} value='system-config-interop'>
+         SystemConfigInterop
+        <HelpTooltip>
+            Choose SystemConfigInterop Option
+        </HelpTooltip>
+        </label>
+    </div>
+
     <span>L1StandardBridge</span>
     <span>L1ERC721Bridge</span>
     <span>OptimismPortal</span>

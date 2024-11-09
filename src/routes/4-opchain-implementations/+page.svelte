@@ -137,7 +137,7 @@
   "DelayedWETHProxy": "<ADDRESS_18>",
   "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
   "AnchorStateRegistryProxy": "<ADDRESS_20>",
-  "L2OutputOracle": "<ADDRESS_21>"
+  "L1CrossDomainMessenger": "<ADDRESS_21>"
 }
   \`\`\`
   `);
@@ -191,7 +191,7 @@
   "DelayedWETHProxy": "<ADDRESS_18>",
   "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
   "AnchorStateRegistryProxy": "<ADDRESS_20>",
-  "L2OutputOracle": "<ADDRESS_21>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
   "OptimismMintableERC20Factory": "<ADDRESS_22>"
 }
   \`\`\`
@@ -246,7 +246,7 @@
   "DelayedWETHProxy": "<ADDRESS_18>",
   "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
   "AnchorStateRegistryProxy": "<ADDRESS_20>",
-  "L2OutputOracle": "<ADDRESS_21>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
   "OptimismMintableERC20Factory": "<ADDRESS_22>",
   "SystemConfig": "<ADDRESS_23>"
 }
@@ -302,7 +302,7 @@
   "DelayedWETHProxy": "<ADDRESS_18>",
   "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
   "AnchorStateRegistryProxy": "<ADDRESS_20>",
-  "L2OutputOracle": "<ADDRESS_21>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
   "OptimismMintableERC20Factory": "<ADDRESS_22>",
   "SystemConfig": "<ADDRESS_23>",
   "L1StandardBridge": "<ADDRESS_24>"
@@ -361,7 +361,7 @@ let isArtifactStepAllModalOpen = false;
   "DelayedWETHProxy": "<ADDRESS_18>",
   "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
   "AnchorStateRegistryProxy": "<ADDRESS_20>",
-    "L2OutputOracle": "<ADDRESS_21>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
   "OptimismMintableERC20Factory": "<ADDRESS_22>",
   "SystemConfig": "<ADDRESS_23>",
   "L1StandardBridge": "<ADDRESS_24>"

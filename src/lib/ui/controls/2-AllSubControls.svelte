@@ -1,7 +1,6 @@
 <script lang="ts">
     import Background from '$lib/ui/background/Background.svelte';
   
-    import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
     import type { KindedStepTwoAllSubOptions } from '$lib/wizard/shared';
