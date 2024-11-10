@@ -41,7 +41,7 @@ export function buildL1ERC721Bridge(opts: SharedL1ERC721BridgeOptions): Contract
 
     const IERC721 = {
         name: 'IERC721',
-        path: '@redprint-openzeppelin/contracts/token/ERC721/IERC721.sol',
+        path: '@redprint-openzeppelin/token/ERC721/IERC721.sol',
     };
     c.addModule(IERC721);
 
@@ -64,8 +64,8 @@ export function buildL1ERC721Bridge(opts: SharedL1ERC721BridgeOptions): Contract
     c.addModule(ISuperchainConfig);
 
     const IL2ERC721Bridge = {
-        name: 'L2ERC721Bridge',
-        path: '@redprint-core/L2/L2ERC721Bridge.sol',
+        name: 'IL2ERC721Bridge',
+        path: '@redprint-core/L2/interfaces/IL2ERC721Bridge.sol',
     };
     c.addModule(IL2ERC721Bridge);
     
@@ -76,7 +76,7 @@ export function buildL1ERC721Bridge(opts: SharedL1ERC721BridgeOptions): Contract
 
 
     c.addVariable(`/// @notice Address of the SuperchainConfig contract.
-    SuperchainConfig public superchainConfig;`);
+    ISuperchainConfig public superchainConfig;`);
 
     c.addVariable(`/// @notice Semantic version.
     /// @custom:semver 2.1.1-beta.4
@@ -143,7 +143,6 @@ const functions = defineFunctions({
     args: [
           { name: '_messenger', type: ' ICrossDomainMessenger' },
           { name: '_superchainConfig', type: 'ISuperchainConfig' },
-          { name: '_systemConfig', type: 'ISystemConfig' },
         ],
   },
 
