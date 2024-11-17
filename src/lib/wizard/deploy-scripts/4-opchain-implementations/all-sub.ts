@@ -150,6 +150,18 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, conf
   };
   c.addModule(DeployL1ERC721BridgeScript);
 
+  const DeployOptimismPortalScript = {
+    name: 'DeployOptimismPortalScript',
+    path: '@script/402F_DeployOptimismPortalScript.s.sol',
+  };
+  c.addModule(DeployOptimismPortalScript);
+
+  const DeployL2OutputOracleScript = {
+    name: 'DeployL2OutputOracleScript',
+    path: '@script/402G_DeployL2OutputOracleScript.s.sol',
+  };
+  c.addModule(DeployL2OutputOracleScript);
+
   c.addFunctionCode(`DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
         DeployOptimismMintableERC20FactoryScript optimismMintableERC20FactoryDeployments = new DeployOptimismMintableERC20FactoryScript();`, fn);
 
@@ -167,18 +179,24 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, conf
 
   c.addFunctionCode(`DeployL1StandardBridgeScript l1StandardBridgeDeployments = new DeployL1StandardBridgeScript();
         DeployL1ERC721BridgeScript l1ERC721BridgeDeployments = new DeployL1ERC721BridgeScript();
+        DeployOptimismPortalScript optimismPortalDeployments = new DeployOptimismPortalScript();
+        DeployL2OutputOracleScript l2OutputOracleDeployments = new DeployL2OutputOracleScript();
 
         l1CrossDomainMessengerDeployments.deploy();
         optimismMintableERC20FactoryDeployments.deploy();
         systemConfigDeployments.deploy();
         l1StandardBridgeDeployments.deploy();
         l1ERC721BridgeDeployments.deploy();
-        
+        optimismPortalDeployments.deploy();
+        l2OutputOracleDeployments.deploy();
+
         console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));
         console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));
         console.log("SystemConfig at: ", deployerProcedue.getAddress("SystemConfig"));
         console.log("L1StandardBridge at: ", deployerProcedue.getAddress("L1StandardBridge"));
-        console.log("L1ERC721Bridge at: ", deployerProcedue.getAddress("L1ERC721Bridge"));`, fn);
+        console.log("L1ERC721Bridge at: ", deployerProcedue.getAddress("L1ERC721Bridge"));
+        console.log("OptimismPortal at: ", deployerProcedue.getAddress("OptimismPortal"));
+        console.log("L2OutputOracle at: ", deployerProcedue.getAddress("L2OutputOracle"));`, fn);
 
 }
 
@@ -298,7 +316,6 @@ function setOpProxiesDeployment(c: DeployBuilder, fn: BaseFunction) {
         }
 
         require(addressManager.owner() == proxyAdmin);`, functions.transferAddressManagerOwnership);
-
 
 }
 
