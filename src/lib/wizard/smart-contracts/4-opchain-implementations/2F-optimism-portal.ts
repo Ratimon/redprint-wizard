@@ -32,7 +32,7 @@ export function buildOptimismPortal(opts: SharedOptimismPortalOptions): Contract
         name: 'Initializable',
         path: '@redprint-openzeppelin/proxy/utils/Initializable.sol',
     };
-    c.addModule(Initializable);
+    c.addParent(Initializable, []);
 
     const ResourceMetering = {
         name: 'ResourceMetering',
@@ -748,6 +748,5 @@ const functions = defineFunctions({
         mutability: 'view',
     },
 
-    
     
   });

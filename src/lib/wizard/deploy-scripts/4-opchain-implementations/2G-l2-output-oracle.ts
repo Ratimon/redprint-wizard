@@ -1,26 +1,26 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedOptimismPortalOptions } from '../../shared/4-opchain-implementations/2F-option-optimism-portal';
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2F-option-optimism-portal';
+import type { SharedL2OutputOracleOptions } from '../../shared/4-opchain-implementations/2G-option-l2-output-oracle';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2G-option-l2-output-oracle';
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
 import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedOptimismPortalOptions): Required<SharedOptimismPortalOptions> {
+function withDeployDefaults(opts: SharedL2OutputOracleOptions): Required<SharedL2OutputOracleOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployOptimismPortal(opts: SharedOptimismPortalOptions = commonDefaults): string {
-  return printDeployContract(buildDeployOptimismPortal(opts));
+export function printDeployL2OutputOracle(opts: SharedL2OutputOracleOptions = commonDefaults): string {
+  return printDeployContract(buildDeployL2OutputOracle(opts));
 }
 
-export function buildDeployOptimismPortal(opts: SharedOptimismPortalOptions): DeployContract {
+export function buildDeployL2OutputOracle(opts: SharedL2OutputOracleOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -74,13 +74,13 @@ function addBase(c: DeployBuilder) {
   };
   c.addModule(ChainAssertions);
 
-  const OptimismPortal = {
-    name: 'OptimismPortal',
-    path: '@redprint-core/L1/OptimismPortal.sol',
+  const L2OutputOracle = {
+    name: 'L2OutputOracle',
+    path: '@redprint-core/L1/L2OutputOracle.sol',
   };
-  c.addModule(OptimismPortal);
+  c.addModule(L2OutputOracle);
 
-  c.addVariable(`OptimismPortal optimismPortal;`);
+  c.addVariable(`L2OutputOracle l2OutputOracle;`);
 
   // deploy
   c.addFunctionCode(`DeployConfig cfg = deployer.getConfig();
@@ -88,21 +88,21 @@ function addBase(c: DeployBuilder) {
         bytes32 _salt = DeployScript.implSalt();
         DeployOptions memory options = DeployOptions({salt:_salt});
 
-        optimismPortal = deployer.deploy_OptimismPortal("OptimismPortal", options);
+        l2OutputOracle = deployer.deploy_L2OutputOracle("L2OutputOracle", options);
 
         Types.ContractSet memory contracts =  deployer.getProxiesUnstrict();
        
-        contracts.OptimismPortal = address(optimismPortal);
-        ChainAssertions.checkOptimismPortal({ _contracts: contracts, _cfg: cfg, _isProxy: false });
+        contracts.L2OutputOracle = address(l2OutputOracle);
+        ChainAssertions.checkL2OutputOracle({ _contracts: contracts, _cfg: cfg, _l2OutputOracleStartingTimestamp: 0, _isProxy: false });
 
-        return optimismPortal;`, functions.deploy);
+        return l2OutputOracle;`, functions.deploy);
 }
 
 const functions = defineFunctions({
   deploy: {
       kind: 'external' as const,
       args: [],
-      returns: ['OptimismPortal'],
+      returns: ['L2OutputOracle'],
   },
 
 });

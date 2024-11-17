@@ -37,6 +37,7 @@ export type Action =
                     'copy-contract-L1StandardBridge'| 'copy-script-L1StandardBridge' | 'download-contract-L1StandardBridge' | 'download-script-L1StandardBridge' |
                     'copy-contract-L1ERC721Bridge'| 'copy-script-L1ERC721Bridge' | 'download-contract-L1ERC721Bridge' | 'download-script-L1ERC721Bridge' |
                     'copy-contract-OptimismPortal'| 'copy-script-OptimismPortal' | 'download-contract-OptimismPortal' | 'download-script-OptimismPortal' |
+                    'copy-contract-L2OutputOracle'| 'copy-script-L2OutputOracle' | 'download-contract-L2OutputOracle' | 'download-script-L2OutputOracle' |
                     'copy-contract-StepFourPointTwoAllSub'| 'copy-script-StepFourPointTwoAllSub' | 'download-contract-StepFourPointTwoAllSub' | 'download-script-StepFourPointTwoAllSub' |
                     'copy-contract-StepFourPointTwoAll'| 'copy-script-StepFourPointTwoAll' | 'download-contract-StepFourPointTwoAll' | 'download-script-StepFourPointTwoAll'
                     

@@ -33,6 +33,7 @@ import type { SharedSystemConfigInteropOptions } from './4-opchain-implementatio
 import type { SharedL1StandardBridgeOptions } from './4-opchain-implementations/2D-option-l1-standard-bridge';
 import type { SharedL1ERC721BridgeOptions } from './4-opchain-implementations/2E-option-l1-ERC721-bridge';
 import type { SharedOptimismPortalOptions } from './4-opchain-implementations/2F-option-optimism-portal';
+import type { SharedL2OutputOracleOptions } from './4-opchain-implementations/2G-option-l2-output-oracle';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
@@ -72,6 +73,7 @@ export interface KindedOptions {
   L1StandardBridge: { kind: 'L1StandardBridge' } & SharedL1StandardBridgeOptions;
   L1ERC721Bridge: { kind: 'L1ERC721Bridge' } & SharedL1ERC721BridgeOptions;
   OptimismPortal: { kind: 'OptimismPortal' } & SharedOptimismPortalOptions;
+  L2OutputOracle: { kind: 'L2OutputOracle' } & SharedL2OutputOracleOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -248,6 +250,12 @@ export interface KindedOptimismPortalOptions {
   OptimismPortal: { kind: 'OptimismPortal' } & SharedOptimismPortalOptions;
 }
 export type GenericOptimismPortalOptions = KindedOptimismPortalOptions[keyof KindedOptimismPortalOptions];
+
+
+export interface KindedL2OutputOracleOptions {
+  L2OutputOracle: { kind: 'L2OutputOracle' } & SharedL2OutputOracleOptions;
+}
+export type GenericL2OutputOracleOptions = KindedL2OutputOracleOptions[keyof KindedL2OutputOracleOptions];
 
 
 export interface KindedStepFourPointTwoAllSubOptions {

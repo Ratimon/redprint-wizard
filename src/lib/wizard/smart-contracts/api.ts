@@ -102,6 +102,10 @@ import type { SharedOptimismPortalOptions } from '../shared/4-opchain-implementa
 import {  defaults as optimismPortalDefaults } from '../shared/4-opchain-implementations/2F-option-optimism-portal';
 import { printOptimismPortal } from './4-opchain-implementations/2F-optimism-portal';
 
+import type { SharedL2OutputOracleOptions } from '../shared/4-opchain-implementations/2G-option-l2-output-oracle';
+import {  defaults as l2OutputOracleDefaults } from '../shared/4-opchain-implementations/2G-option-l2-output-oracle';
+import { printL2OutputOracle } from './4-opchain-implementations/2G-l2-output-oracle';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -276,4 +280,10 @@ export type OptimismPortal = WizardContractAPI<SharedOptimismPortalOptions>;
 export const optimismPortal: OptimismPortal = {
   print: printOptimismPortal,
   defaults: optimismPortalDefaults
+}
+
+export type L2OutputOracle = WizardContractAPI<SharedL2OutputOracleOptions>;
+export const l2OutputOracle: L2OutputOracle = {
+  print: printL2OutputOracle,
+  defaults: l2OutputOracleDefaults
 }

@@ -43,6 +43,7 @@ export {
     deployL1StandardBridge,
     deployL1ERC721Bridge,
     deployOptimismPortal,
+    deployL2OutputOracle,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';
