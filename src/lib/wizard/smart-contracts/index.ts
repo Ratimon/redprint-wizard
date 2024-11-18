@@ -40,7 +40,8 @@ export {
     l1StandardBridge,
     l1ERC721Bridge,
     optimismPortal,
-    l2OutputOracle
+    l2OutputOracle,
+    optimismPortal2
 } from './api';
 
 
@@ -73,3 +74,4 @@ export { buildL1StandardBridge } from './4-opchain-implementations/2D-l1-standar
 export { buildL1ERC721Bridge } from './4-opchain-implementations/2E-l1-ERC721-bridge';
 export { buildOptimismPortal } from './4-opchain-implementations/2F-optimism-portal';
 export { buildL2OutputOracle } from './4-opchain-implementations/2G-l2-output-oracle';
+export { buildOptimismPortal2 } from './4-opchain-implementations/2H-optimism-portal2';

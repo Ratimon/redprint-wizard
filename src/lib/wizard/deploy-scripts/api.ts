@@ -128,6 +128,10 @@ import type { SharedL2OutputOracleOptions } from '../shared/4-opchain-implementa
 import {  defaults as l2OutputOracleDefaults } from '../shared/4-opchain-implementations/2G-option-l2-output-oracle';
 import { printDeployL2OutputOracle } from './4-opchain-implementations/2G-l2-output-oracle';
 
+import type { SharedOptimismPortal2Options } from '../shared/4-opchain-implementations/2H-option-optimism-portal2';
+import {  defaults as optimismPortal2Defaults } from '../shared/4-opchain-implementations/2H-option-optimism-portal2';
+import { printDeployOptimismPortal2 } from './4-opchain-implementations/2H-optimism-portal2';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -343,6 +347,12 @@ export type DeployL2OutputOracle = WizardAllAPI<SharedL2OutputOracleOptions>;
 export const deployL2OutputOracle: DeployL2OutputOracle = {
   print: printDeployL2OutputOracle,
   defaults: l2OutputOracleDefaults,
+}
+
+export type DeployOptimismPortal2 = WizardAllAPI<SharedOptimismPortal2Options>;
+export const deployOptimismPortal2: DeployOptimismPortal2 = {
+  print: printDeployOptimismPortal2,
+  defaults: optimismPortal2Defaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

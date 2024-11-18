@@ -152,7 +152,7 @@
                 class="step"
                 class:step-primary={$page.route.id?.includes("/4-opchain-implementations")}
                 >
-                Set up L2 OP Chain : Implementations
+                Set up L2 OP Chain : Implementations & Fault Proofs
             </a>
         </ul>
 

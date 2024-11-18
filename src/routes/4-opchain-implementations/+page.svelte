@@ -14,6 +14,7 @@
         KindedL1ERC721BridgeOptions, KindL1ERC721Bridge,
         KindedOptimismPortalOptions, KindOptimismPortal,
         KindedL2OutputOracleOptions, KindL2OutputOracle,
+        KindedOptimismPortal2Options, KindOptimismPortal2,
         KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
         KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
         OptionsErrorMessages
@@ -27,6 +28,7 @@
         sanitizeKindL1ERC721Bridge,
         sanitizeKindOptimismPortal,
         sanitizeKindL2OutputOracle,
+        sanitizeKindOptimismPortal2,
         sanitizeKindStepFourPointTwoAll,
         sanitizeKindStepFourPointTwoAllSub,
         OptionsError
@@ -45,6 +47,7 @@
     import L1ERC721BridgeControls from '$lib/ui/controls/4-L1ERC721BridgeControls.svelte';
     import OptimismPortalControls from '$lib/ui/controls/4-OptimismPortalControls.svelte';
     import L2OutputOracleControls from '$lib/ui/controls/4-L2OutputOracleControls.svelte';
+    import OptimismPortal2Controls from '$lib/ui/controls/4-OptimismPortal2Controls.svelte';
     import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
 
@@ -497,6 +500,67 @@
   \`\`\`
   `);
 
+  // **** step 4.2F ***
+  export let initialContractOptimismPortal2Tab: string | undefined = 'OptimismPortal2';
+  export let contractOptimismPortal2Tab: KindOptimismPortal2 = sanitizeKindOptimismPortal2(initialContractOptimismPortal2Tab);
+  let allContractsOptimismPortal2Opts: { [k in KindOptimismPortal2]?: Required<KindedOptimismPortal2Options [k]> } = {};
+  let errorsOptimismPortal2: { [k in KindOptimismPortal2]?: OptionsErrorMessages } = {};
+  let contractOptimismPortal2: Contract = new ContractBuilder('OptimismPortal2');
+  let deployContractOptimismPortal2: DeployContract = new DeployBuilder('DeployOptimismPortal2Script');
+
+  $: optsOptimismPortal2 = allContractsOptimismPortal2Opts[contractOptimismPortal2Tab];
+  $: {
+  if (optsOptimismPortal2) {
+          try {
+              contractOptimismPortal2 = buildContractGeneric(optsOptimismPortal2);
+              deployContractOptimismPortal2 = buildDeployGeneric(optsOptimismPortal2);
+              errorsOptimismPortal2[contractOptimismPortal2Tab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsOptimismPortal2[contractOptimismPortal2Tab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepTwoHModalOpen = false;
+  $: addressStepTwoHContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
+  "OptimismMintableERC20Factory": "<ADDRESS_22>",
+  "SystemConfig": "<ADDRESS_23>",
+  "L1StandardBridge": "<ADDRESS_24>",
+  "L1ERC721Bridge": "<ADDRESS_25>",
+  "OptimismPortal": "<ADDRESS_26>",
+  "L2OutputOracle": "<ADDRESS_27>",
+  "OptimismPortal2": "<ADDRESS_28>"
+}
+  \`\`\`
+  `);
+
 
 export let initialContractStepTab: string | undefined = 'StepFourPointTwoAll';
 export let contractStepTab: KindStepFourPointTwoAll = sanitizeKindStepFourPointTwoAll(initialContractStepTab);
@@ -613,11 +677,11 @@ if (optsStepSub) {
     </p>
 </div>
 
-<!-- 401A_DeployL1CrossDomainMessenger.s.sol -->
+<!-- 402A_DeployL1CrossDomainMessenger.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
     <section id={data.dropDownLinks[1].pathname}>
       <div class="divider divider-primary ">
-        <p class="text-2xl">4.2 : Deploy Implementations Contracts</p>
+        <p class="text-2xl">4.2 - Part 1 : Deploy Implementations Contracts</p>
       </div>
     </section>
     <div class="divider divider-primary ">
@@ -1094,9 +1158,82 @@ if (optsStepSub) {
   </div>
 </WizardDouble>
 
-<!-- 000_DeployAll.s.sol -->
+<!-- 401A_DeployOptimismPortal2Script.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[8].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-2xl">4.2 - Part 2 : Deploy Fault proofs System</p>
+    </div>
+  </section>
+  <div class="divider divider-primary ">
+    <p class="text-xl">4.2H : Deploy OptimismPortal2 Contract</p>
+  </div>
+</Background>
+
+<WizardDouble conventionNumber={'402H'} initialContractTab={initialContractOptimismPortal2Tab} contractTab={contractOptimismPortal2Tab} opts={optsOptimismPortal2} contract={contractOptimismPortal2} deployContract={deployContractOptimismPortal2}>
+  <div slot="caption" >
+    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">OptimismPortal2</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortal2Interop</span>.</h2>
+  </div>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractOptimismPortal2Tab === 'OptimismPortal2'} on:click={() => contractOptimismPortal2Tab = 'OptimismPortal2'}>
+              OptimismPortal2
+            </button>
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractOptimismPortal2Tab !== 'OptimismPortal2'}>
+              <OptimismPortal2Controls bind:opts={allContractsOptimismPortal2Opts.OptimismPortal2} />
+          </div>
+
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoHModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoHModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoHModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoHContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+
+<!-- 000_DeployAll.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[9].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>

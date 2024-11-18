@@ -32,6 +32,7 @@ export type {
     KindedL1ERC721BridgeOptions, GenericL1ERC721BridgeOptions,
     KindedOptimismPortalOptions, GenericOptimismPortalOptions,
     KindedL2OutputOracleOptions, GenericL2OutputOracleOptions,
+    KindedOptimismPortal2Options, GenericOptimismPortal2Options,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -136,6 +137,9 @@ export {  sanitizeKindOptimismPortal } from './4-opchain-implementations/2F-kind
 
 export type { KindL2OutputOracle } from './4-opchain-implementations/2G-kind-l2-output-oracle';
 export {  sanitizeKindL2OutputOracle } from './4-opchain-implementations/2G-kind-l2-output-oracle';
+
+export type { KindOptimismPortal2 } from './4-opchain-implementations/2H-kind-optimism-portal2';
+export {  sanitizeKindOptimismPortal2 } from './4-opchain-implementations/2H-kind-optimism-portal2';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';

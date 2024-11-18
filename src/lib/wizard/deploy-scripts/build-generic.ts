@@ -94,6 +94,9 @@ import { buildDeployOptimismPortal } from './4-opchain-implementations/2F-optimi
 import type { SharedL2OutputOracleOptions } from '../shared/4-opchain-implementations/2G-option-l2-output-oracle';
 import { buildDeployL2OutputOracle } from './4-opchain-implementations/2G-l2-output-oracle';
 
+import type { SharedOptimismPortal2Options } from '../shared/4-opchain-implementations/2H-option-optimism-portal2';
+import { buildDeployOptimismPortal2 } from './4-opchain-implementations/2H-optimism-portal2';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import { buildDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
 
@@ -136,6 +139,7 @@ export interface DeployKindedOptions {
   L1ERC721Bridge: {kind: 'L1ERC721Bridge'} & SharedL1ERC721BridgeOptions;
   OptimismPortal: {kind: 'OptimismPortal'} & SharedOptimismPortalOptions;
   L2OutputOracle: {kind: 'L2OutputOracle'} & SharedL2OutputOracleOptions;
+  OptimismPortal2: {kind: 'OptimismPortal2'} & SharedOptimismPortal2Options;
   StepFourPointTwoAllSub: {kind: 'StepFourPointTwoAllSub'} & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: {kind: 'StepFourPointTwoAll'} & SharedStepFourPointTwoAllOptions;
 }
@@ -240,6 +244,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'L2OutputOracle':
       return  buildDeployL2OutputOracle(opts);
+
+    case 'OptimismPortal2':
+      return  buildDeployOptimismPortal2(opts);
 
     case 'StepFourPointTwoAllSub':
       return  buildDeployStepFourPointTwoAllSub(opts);
