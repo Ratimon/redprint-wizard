@@ -616,7 +616,9 @@ let isArtifactStepAllModalOpen = false;
   "SystemConfig": "<ADDRESS_23>",
   "L1StandardBridge": "<ADDRESS_24>",
   "L1ERC721Bridge": "<ADDRESS_25>",
-  "OptimismPortal": "<ADDRESS_26>"
+  "OptimismPortal": "<ADDRESS_26>",
+  "L2OutputOracle": "<ADDRESS_27>",
+  "OptimismPortal2": "<ADDRESS_28>"
 }
   \`\`\`
   `);
