@@ -50,7 +50,7 @@
 
         <label class:checked={opts.systemConfig === 'system-config-interop'}>
         <input type="radio" bind:group={opts.systemConfig} value='system-config-interop'>
-         SystemConfigInterop
+            SystemConfigInterop
         <HelpTooltip>
             Choose SystemConfigInterop Option
         </HelpTooltip>
@@ -60,5 +60,24 @@
     <span>L1StandardBridge</span>
     <span>L1ERC721Bridge</span>
     <span>OptimismPortal</span>
-    <span>deployL2OutputOracle</span>
+    <span>L2OutputOracle</span>
+
+    <div class="checkbox-group">
+        <span>OptimismPortal2</span>
+        <label class:checked={opts.optimismPortal === 'optimism-portal'}>
+        <input type="radio" bind:group={opts.optimismPortal} value='optimism-portal'>
+            OptimismPortal
+        <HelpTooltip>
+            Choose OptimismPortal Option
+        </HelpTooltip>
+        </label>
+
+        <label class:checked={opts.optimismPortal === 'optimism-portal-interop'}>
+        <input type="radio" bind:group={opts.optimismPortal} value='optimism-portal-interop'>
+            OptimismPortalInterop
+        <HelpTooltip>
+            Choose OptimismPortalInterop Option
+        </HelpTooltip>
+        </label>
+    </div>
 </section>

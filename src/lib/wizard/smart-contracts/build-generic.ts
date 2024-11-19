@@ -82,6 +82,9 @@ import { buildL2OutputOracle } from './4-opchain-implementations/2G-l2-output-or
 import type { SharedOptimismPortal2Options } from '../shared/4-opchain-implementations/2H-option-optimism-portal2';``
 import { buildOptimismPortal2 } from './4-opchain-implementations/2H-optimism-portal2';
 
+import type { SharedOptimismPortalInteropOptions } from '../shared/4-opchain-implementations/2H-option-optimism-portal-interop';
+import { buildOptimismPortalInterop } from './4-opchain-implementations/2H-optimism-portal-interop';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -111,6 +114,7 @@ export interface KindedOptions {
   OptimismPortal : {kind: 'OptimismPortal' } & SharedOptimismPortalOptions;
   L2OutputOracle : {kind: 'L2OutputOracle' } & SharedL2OutputOracleOptions;
   OptimismPortal2 : {kind: 'OptimismPortal2' } & SharedOptimismPortal2Options;
+  OptimismPortalInterop : {kind: 'OptimismPortalInterop' } & SharedOptimismPortalInteropOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -201,6 +205,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'OptimismPortal2':
       return buildOptimismPortal2(opts);
+
+    case 'OptimismPortalInterop':
+      return buildOptimismPortalInterop(opts);
 
     default:
       const _: never = opts;

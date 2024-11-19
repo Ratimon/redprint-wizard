@@ -110,6 +110,10 @@ import type { SharedOptimismPortal2Options } from '../shared/4-opchain-implement
 import {  defaults as optimismPortal2Defaults } from '../shared/4-opchain-implementations/2H-option-optimism-portal2';
 import { printOptimismPortal2 } from './4-opchain-implementations/2H-optimism-portal2';
 
+import type { SharedOptimismPortalInteropOptions } from '../shared/4-opchain-implementations/2H-option-optimism-portal-interop';
+import {  defaults as optimismPortalInteropDefaults } from '../shared/4-opchain-implementations/2H-option-optimism-portal-interop';
+import { printOptimismPortalInterop } from './4-opchain-implementations/2H-optimism-portal-interop';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -279,7 +283,6 @@ export const l1ERC721Bridge: L1ERC721Bridge = {
   defaults: l1ERC721BridgeDefaults
 }
 
-
 export type OptimismPortal = WizardContractAPI<SharedOptimismPortalOptions>;
 export const optimismPortal: OptimismPortal = {
   print: printOptimismPortal,
@@ -296,4 +299,10 @@ export type OptimismPortal2 = WizardContractAPI<SharedOptimismPortal2Options>;
 export const optimismPortal2: OptimismPortal2 = {
   print: printOptimismPortal2,
   defaults: optimismPortal2Defaults
+}
+
+export type OptimismPortalInterop = WizardContractAPI<SharedOptimismPortalInteropOptions>;
+export const optimismPortalInterop: OptimismPortalInterop = {
+  print: printOptimismPortalInterop,
+  defaults: optimismPortalInteropDefaults
 }

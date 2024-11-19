@@ -34,6 +34,7 @@
 
 <section class="controls-section">
     <h1>Step 4</h1>
+    <span>OptimismPortalProxy</span>
     <span>SystemConfigProxy</span>
     <span>L1StandardBridgeProxy</span>
     <span>L1CrossDomainMessengerProxy</span>

@@ -48,6 +48,7 @@
     import OptimismPortalControls from '$lib/ui/controls/4-OptimismPortalControls.svelte';
     import L2OutputOracleControls from '$lib/ui/controls/4-L2OutputOracleControls.svelte';
     import OptimismPortal2Controls from '$lib/ui/controls/4-OptimismPortal2Controls.svelte';
+    import OptimismPortalInteropControls from '$lib/ui/controls/4-OptimismPortalInteropControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
 
@@ -894,9 +895,6 @@ if (optsStepSub) {
 </Background>
 
 <WizardDouble conventionNumber={'402D'} initialContractTab={initialContractL1StandardBridgeTab} contractTab={contractL1StandardBridgeTab} opts={optsL1StandardBridge} contract={contractL1StandardBridge} deployContract={deployContractL1StandardBridge}>
-  <div slot="caption" >
-    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">L1StandardBridge</span>(Default). Otherwise, it is <span class="bg-primary underline">L1StandardBridgeInterop</span>.</h2>
-  </div>
 
   <div slot="menu" >
       <div class="tab overflow-hidden">
@@ -963,9 +961,6 @@ if (optsStepSub) {
 </Background>
 
 <WizardDouble conventionNumber={'402E'} initialContractTab={initialContractL1ERC721BridgeTab} contractTab={contractL1ERC721BridgeTab} opts={optsL1ERC721Bridge} contract={contractL1ERC721Bridge} deployContract={deployContractL1ERC721Bridge}>
-  <div slot="caption" >
-    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">L1ERC721Bridge</span>(Default). Otherwise, it is <span class="bg-primary underline">L1ERC721BridgeInterop</span>.</h2>
-  </div>
 
   <div slot="menu" >
       <div class="tab overflow-hidden">
@@ -1032,9 +1027,6 @@ if (optsStepSub) {
 </Background>
 
 <WizardDouble conventionNumber={'402F'} initialContractTab={initialContractOptimismPortalTab} contractTab={contractOptimismPortalTab} opts={optsOptimismPortal} contract={contractOptimismPortal} deployContract={deployContractOptimismPortal}>
-  <div slot="caption" >
-    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">OptimismPortal</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortalInterop</span>.</h2>
-  </div>
 
   <div slot="menu" >
       <div class="tab overflow-hidden">
@@ -1101,9 +1093,6 @@ if (optsStepSub) {
 </Background>
 
 <WizardDouble conventionNumber={'402G'} initialContractTab={initialContractL2OutputOracleTab} contractTab={contractL2OutputOracleTab} opts={optsL2OutputOracle} contract={contractL2OutputOracle} deployContract={deployContractL2OutputOracle}>
-  <div slot="caption" >
-    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">L2OutputOracle</span>(Default). Otherwise, it is <span class="bg-primary underline">L2OutputOracleInterop</span>.</h2>
-  </div>
 
   <div slot="menu" >
       <div class="tab overflow-hidden">
@@ -1174,7 +1163,7 @@ if (optsStepSub) {
 
 <WizardDouble conventionNumber={'402H'} initialContractTab={initialContractOptimismPortal2Tab} contractTab={contractOptimismPortal2Tab} opts={optsOptimismPortal2} contract={contractOptimismPortal2} deployContract={deployContractOptimismPortal2}>
   <div slot="caption" >
-    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">OptimismPortal2</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortal2Interop</span>.</h2>
+    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">OptimismPortal2</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortalInterop</span>.</h2>
   </div>
 
   <div slot="menu" >
@@ -1184,6 +1173,9 @@ if (optsStepSub) {
             <button class:selected={contractOptimismPortal2Tab === 'OptimismPortal2'} on:click={() => contractOptimismPortal2Tab = 'OptimismPortal2'}>
               OptimismPortal2
             </button>
+            <button class:selected={contractOptimismPortal2Tab === 'OptimismPortalInterop'} on:click={() => contractOptimismPortal2Tab = 'OptimismPortalInterop'}>
+              OptimismPortalInterop
+            </button>     
           </OverflowMenu>
         </Background>
       </div>
@@ -1194,6 +1186,10 @@ if (optsStepSub) {
       <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
           <div class:hidden={contractOptimismPortal2Tab !== 'OptimismPortal2'}>
               <OptimismPortal2Controls bind:opts={allContractsOptimismPortal2Opts.OptimismPortal2} />
+          </div>
+
+          <div class:hidden={contractOptimismPortal2Tab !== 'OptimismPortalInterop'}>
+              <OptimismPortalInteropControls bind:opts={allContractsOptimismPortal2Opts.OptimismPortalInterop} />
           </div>
 
       </div>

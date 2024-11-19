@@ -39,6 +39,7 @@ export type Action =
                     'copy-contract-OptimismPortal'| 'copy-script-OptimismPortal' | 'download-contract-OptimismPortal' | 'download-script-OptimismPortal' |
                     'copy-contract-L2OutputOracle'| 'copy-script-L2OutputOracle' | 'download-contract-L2OutputOracle' | 'download-script-L2OutputOracle' |
                     'copy-contract-OptimismPortal2'| 'copy-script-OptimismPortal2' | 'download-contract-OptimismPortal2' | 'download-script-OptimismPortal2' |
+                    'copy-contract-OptimismPortalInterop'| 'copy-script-OptimismPortalInterop' | 'download-contract-OptimismPortalInterop' | 'download-script-OptimismPortalInterop' |
                     'copy-contract-StepFourPointTwoAllSub'| 'copy-script-StepFourPointTwoAllSub' | 'download-contract-StepFourPointTwoAllSub' | 'download-script-StepFourPointTwoAllSub' |
                     'copy-contract-StepFourPointTwoAll'| 'copy-script-StepFourPointTwoAll' | 'download-contract-StepFourPointTwoAll' | 'download-script-StepFourPointTwoAll'
                     

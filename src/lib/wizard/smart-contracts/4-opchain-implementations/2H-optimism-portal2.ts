@@ -880,7 +880,5 @@ const functions = defineFunctions({
         returns: ['uint256'],
         mutability: 'view',
     },
-
-
     
-  });
+});

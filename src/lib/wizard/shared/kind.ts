@@ -79,6 +79,8 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'OptimismPortal2':
       return true;
+    case 'OptimismPortalInterop':
+      return true;
     case 'StepFourPointTwoAll':
       return true;
     case 'StepFourPointTwoAllSub':

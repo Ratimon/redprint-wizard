@@ -1,7 +1,7 @@
 import type { DeployContract, BaseFunction} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type {  SharedStepFourPointTwoAllSubOptions, SystemConfig } from '../../shared/4-opchain-implementations/option-all-sub';
+import type {  SharedStepFourPointTwoAllSubOptions, SystemConfig, OptimismPortal } from '../../shared/4-opchain-implementations/option-all-sub';
 import {  defaults } from '../../shared/4-opchain-implementations/option-all-sub';
 
 import { defaults as infoDefaults } from "../set-info";
@@ -34,7 +34,6 @@ export function buildDeployStepFourPointTwoAllSub(opts: SharedStepFourPointTwoAl
   
   setOpProxiesDeployment(c, fn);
 
-
   c.addFunctionCode(`
         console.log("OptimismPortalProxy at: ", deployerProcedue.getAddress("OptimismPortalProxy"));
         console.log("SystemConfigProxy at: ", deployerProcedue.getAddress("SystemConfigProxy"));
@@ -47,7 +46,8 @@ export function buildDeployStepFourPointTwoAllSub(opts: SharedStepFourPointTwoAl
         console.log("PermissiTwodDelayedWETHProxy at: ", deployerProcedue.getAddress("PermissiTwodDelayedWETHProxy"));
         console.log("AnchorStateRegistryProxy at: ", deployerProcedue.getAddress("AnchorStateRegistryProxy"));`, fn);
 
-  setOpImplementationsDeployment(c, fn, allOpts.systemConfig );
+
+  setOpImplementationsDeployment(c, fn, allOpts.systemConfig, allOpts.optimismPortal );
 
   setInfo(c, allOpts.deployInfo);
 
@@ -101,7 +101,7 @@ function addBase(c: DeployBuilder) {
 
 }
 
-function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, config: SystemConfig) {
+function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, systemconfig: SystemConfig, optimismPortal: OptimismPortal) {
 
   const DeployL1CrossDomainMessengerScript = {
     name: 'DeployL1CrossDomainMessengerScript',
@@ -115,24 +115,20 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, conf
   };
   c.addModule(DeployOptimismMintableERC20FactoryScript);
 
-  switch (config) {
+  switch (systemconfig) {
     case 'system-config': {
-
       const DeploySystemConfigScript = {
           name: 'DeploySystemConfigScript',
           path: '@script/402C_DeploySystemConfigScript.s.sol',
       };
       c.addModule(DeploySystemConfigScript);
-
       break;
     }
     case 'system-config-interop': {
-
       const DeploySystemConfigInteropScript = {
           name: 'DeploySystemConfigInteropScript',
           path: '@script/402C_DeploySystemConfigInteropScript.s.sol',
       };
-
       c.addModule(DeploySystemConfigInteropScript);
       break;
     }
@@ -162,19 +158,33 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, conf
   };
   c.addModule(DeployL2OutputOracleScript);
 
-  const DeployOptimismPortal2Script = {
-    name: 'DeployOptimismPortal2Script',
-    path: '@script/402H_DeployOptimismPortal2Script.s.sol',
-  };
-  c.addModule(DeployOptimismPortal2Script);
 
+  switch (optimismPortal) {
+    case 'optimism-portal': {
+      const DeployOptimismPortal2Script = {
+        name: 'DeployOptimismPortal2Script',
+        path: '@script/402H_DeployOptimismPortal2Script.s.sol',
+      };
+      c.addModule(DeployOptimismPortal2Script);
+      break;
+    }
+    case 'optimism-portal-interop': {
+      const DeployOptimismPortalInteropScript = {
+          name: 'DeployOptimismPortalInteropScript',
+          path: '@script/402H_DeployOptimismPortalInteropScript.s.sol',
+      };
+      c.addModule(DeployOptimismPortalInteropScript);
+      break;
+    }
+  }
+
+  // start Deployments
   c.addFunctionCode(`DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
         DeployOptimismMintableERC20FactoryScript optimismMintableERC20FactoryDeployments = new DeployOptimismMintableERC20FactoryScript();`, fn);
 
-  switch (config) {
+  switch (systemconfig) {
     case 'system-config': {
       c.addFunctionCode(`DeploySystemConfigScript systemConfigDeployments = new DeploySystemConfigScript();`, fn);
-
       break;
     }
     case 'system-config-interop': {
@@ -182,14 +192,23 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, conf
       break;
     }
   }
-
   c.addFunctionCode(`DeployL1StandardBridgeScript l1StandardBridgeDeployments = new DeployL1StandardBridgeScript();
         DeployL1ERC721BridgeScript l1ERC721BridgeDeployments = new DeployL1ERC721BridgeScript();
         DeployOptimismPortalScript optimismPortalDeployments = new DeployOptimismPortalScript();
-        DeployL2OutputOracleScript l2OutputOracleDeployments = new DeployL2OutputOracleScript();
-        DeployOptimismPortal2Script optimismPortal2Deployments = new DeployOptimismPortal2Script();
+        DeployL2OutputOracleScript l2OutputOracleDeployments = new DeployL2OutputOracleScript();`, fn);
 
-        l1CrossDomainMessengerDeployments.deploy();
+  switch (optimismPortal) {
+    case 'optimism-portal': {
+      c.addFunctionCode(`DeployOptimismPortal2Script optimismPortal2Deployments = new DeployOptimismPortal2Script();`, fn);
+      break;
+    }
+    case 'optimism-portal-interop': {
+      c.addFunctionCode(`DeployOptimismPortalInteropScript optimismPortal2Deployments = new DeployOptimismPortalInteropScript();`, fn);
+      break;
+    }
+  }
+
+  c.addFunctionCode(`l1CrossDomainMessengerDeployments.deploy();
         optimismMintableERC20FactoryDeployments.deploy();
         systemConfigDeployments.deploy();
         l1StandardBridgeDeployments.deploy();

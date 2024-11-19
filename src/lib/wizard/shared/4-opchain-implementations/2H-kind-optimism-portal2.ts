@@ -15,6 +15,8 @@ function isKindOptimismPortal2<T>(value: KindOptimismPortal2 | T): value is Kind
   switch (value) {
     case 'OptimismPortal2':
       return true;
+    case 'OptimismPortalInterop':
+      return true;
 
     default: {
       // Static assert that we've checked all kinds.

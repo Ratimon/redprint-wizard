@@ -1,26 +1,26 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedOptimismPortal2Options } from '../../shared/4-opchain-implementations/2H-option-optimism-portal2';
-import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2H-option-optimism-portal2';
+import type { SharedOptimismPortalInteropOptions } from '../../shared/4-opchain-implementations/2H-option-optimism-portal-interop';
+import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2H-option-optimism-portal-interop';
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
 import { defineFunctions } from '../../utils/define-functions';
 
-function withDeployDefaults(opts: SharedOptimismPortal2Options): Required<SharedOptimismPortal2Options> {
+function withDeployDefaults(opts: SharedOptimismPortalInteropOptions): Required<SharedOptimismPortalInteropOptions> {
   return {
     ...opts,
     ...withCommonDefaults(opts)
   };
 }
 
-export function printDeployOptimismPortal2(opts: SharedOptimismPortal2Options = commonDefaults): string {
-  return printDeployContract(buildDeployOptimismPortal2(opts));
+export function printDeployOptimismPortalInterop(opts: SharedOptimismPortalInteropOptions = commonDefaults): string {
+  return printDeployContract(buildDeployOptimismPortalInterop(opts));
 }
 
-export function buildDeployOptimismPortal2(opts: SharedOptimismPortal2Options): DeployContract {
+export function buildDeployOptimismPortalInterop(opts: SharedOptimismPortalInteropOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -74,13 +74,13 @@ function addBase(c: DeployBuilder) {
   };
   c.addModule(ChainAssertions);
 
-  const OptimismPortal2 = {
-    name: 'OptimismPortal2',
-    path: '@redprint-core/L1/OptimismPortal2.sol',
+  const OptimismPortalInterop = {
+    name: 'OptimismPortalInterop',
+    path: '@redprint-core/L1/OptimismPortalInterop.sol',
   };
-  c.addModule(OptimismPortal2);
+  c.addModule(OptimismPortalInterop);
 
-  c.addVariable(`OptimismPortal2 optimismPortal;`);
+  c.addVariable(`OptimismPortalInterop optimismPortal;`);
 
   // deploy
   c.addFunctionCode(`DeployConfig cfg = deployer.getConfig();
@@ -92,7 +92,7 @@ function addBase(c: DeployBuilder) {
         bytes32 _salt = DeployScript.implSalt();
         DeployOptions memory options = DeployOptions({salt:_salt});
 
-        optimismPortal = deployer.deploy_OptimismPortal2("OptimismPortal2", cfg.proofMaturityDelaySeconds(), cfg.disputeGameFinalityDelaySeconds(), options);
+        optimismPortal = deployer.deploy_OptimismPortalInterop("OptimismPortal2", cfg.proofMaturityDelaySeconds(), cfg.disputeGameFinalityDelaySeconds(), options);
 
         Types.ContractSet memory contracts =  deployer.getProxiesUnstrict();
        
@@ -106,7 +106,7 @@ const functions = defineFunctions({
   deploy: {
       kind: 'external' as const,
       args: [],
-      returns: ['OptimismPortal2'],
+      returns: ['OptimismPortalInterop'],
   },
 
 });

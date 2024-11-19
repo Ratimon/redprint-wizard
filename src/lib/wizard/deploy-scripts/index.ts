@@ -45,6 +45,7 @@ export {
     deployOptimismPortal,
     deployL2OutputOracle,
     deployOptimismPortal2,
+    deployOptimismPortalInterop,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';
