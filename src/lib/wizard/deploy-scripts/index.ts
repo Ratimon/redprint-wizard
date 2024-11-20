@@ -48,6 +48,7 @@ export {
     deployOptimismPortalInterop,
     deployDisputeGameFactory,
     deployDelayedWETH,
+    deployPreimageOracle,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';

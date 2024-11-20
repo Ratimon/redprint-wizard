@@ -106,6 +106,9 @@ import { buildDeployDisputeGameFactory } from './4-opchain-implementations/2I-di
 import type { SharedDelayedWETHOptions } from '../shared/4-opchain-implementations/2J-option-delayed-WETH';
 import { buildDeployDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
 
+import type { SharedPreimageOracleOptions } from '../shared/4-opchain-implementations/2K-option-preimage-oracle';
+import { buildDeployPreimageOracle } from './4-opchain-implementations/2K-preimage-oracle'
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import { buildDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
 
@@ -152,6 +155,7 @@ export interface DeployKindedOptions {
   OptimismPortalInterop: {kind: 'OptimismPortalInterop'} & SharedOptimismPortalInteropOptions;
   DisputeGameFactory: {kind: 'DisputeGameFactory'} & SharedDisputeGameFactoryOptions;
   DelayedWETH: {kind: 'DelayedWETH'} & SharedDelayedWETHOptions;
+  PreimageOracle: {kind: 'PreimageOracle'} & SharedPreimageOracleOptions;
   StepFourPointTwoAllSub: {kind: 'StepFourPointTwoAllSub'} & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: {kind: 'StepFourPointTwoAll'} & SharedStepFourPointTwoAllOptions;
 }
@@ -268,6 +272,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'DelayedWETH':
       return  buildDeployDelayedWETH(opts);
+
+    case 'PreimageOracle':
+      return  buildDeployPreimageOracle(opts);
 
     case 'StepFourPointTwoAllSub':
       return  buildDeployStepFourPointTwoAllSub(opts);

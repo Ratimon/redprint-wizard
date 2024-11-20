@@ -45,6 +45,7 @@ export {
     optimismPortalInterop,
     disputeGameFactory,
     delayedWETH,
+    preimageOracle,
 } from './api';
 
 
@@ -81,3 +82,4 @@ export { buildOptimismPortal2 } from './4-opchain-implementations/2H-optimism-po
 export { buildOptimismPortalInterop } from './4-opchain-implementations/2H-optimism-portal-interop';
 export { buildDisputeGameFactory } from './4-opchain-implementations/2I-dispute-game-factory';
 export { buildDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
+export { buildPreimageOracle } from './4-opchain-implementations/2K-preimage-oracle';

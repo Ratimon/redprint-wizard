@@ -83,4 +83,5 @@
 
     <span>DisputeGameFactory</span>
     <span>DelayedWETH</span>
+    <span>PreimageOracle</span>
 </section>

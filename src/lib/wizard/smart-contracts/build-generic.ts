@@ -91,6 +91,9 @@ import { buildDisputeGameFactory } from './4-opchain-implementations/2I-dispute-
 import type { SharedDelayedWETHOptions } from '../shared/4-opchain-implementations/2J-option-delayed-WETH';
 import { buildDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
 
+import type { SharedPreimageOracleOptions } from '../shared/4-opchain-implementations/2K-option-preimage-oracle';
+import { buildPreimageOracle } from './4-opchain-implementations/2K-preimage-oracle';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -123,6 +126,7 @@ export interface KindedOptions {
   OptimismPortalInterop : {kind: 'OptimismPortalInterop' } & SharedOptimismPortalInteropOptions;
   DisputeGameFactory : {kind: 'DisputeGameFactory' } & SharedDisputeGameFactoryOptions;
   DelayedWETH : {kind: 'DelayedWETH' } & SharedDelayedWETHOptions;
+  PreimageOracle : {kind: 'PreimageOracle' } & SharedPreimageOracleOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -222,6 +226,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'DelayedWETH':
       return buildDelayedWETH(opts);
+
+    case 'PreimageOracle':
+      return buildPreimageOracle(opts);
 
     default:
       const _: never = opts;

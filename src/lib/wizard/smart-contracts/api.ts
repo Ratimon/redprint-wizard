@@ -122,6 +122,10 @@ import type { SharedDelayedWETHOptions } from '../shared/4-opchain-implementatio
 import {  defaults as delayedWETHDefaults } from '../shared/4-opchain-implementations/2J-option-delayed-WETH';
 import { printDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
 
+import type { SharedPreimageOracleOptions } from '../shared/4-opchain-implementations/2K-option-preimage-oracle';
+import {  defaults as preimageOracleDefaults } from '../shared/4-opchain-implementations/2K-option-preimage-oracle';
+import { printPreimageOracle } from './4-opchain-implementations/2K-preimage-oracle';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -325,4 +329,10 @@ export type DelayedWETH = WizardContractAPI<SharedDelayedWETHOptions>;
 export const delayedWETH: DelayedWETH = {
   print: printDelayedWETH,
   defaults: delayedWETHDefaults
+}
+
+export type PreimageOracle = WizardContractAPI<SharedPreimageOracleOptions>;
+export const preimageOracle: PreimageOracle = {
+  print: printPreimageOracle,
+  defaults: preimageOracleDefaults
 }

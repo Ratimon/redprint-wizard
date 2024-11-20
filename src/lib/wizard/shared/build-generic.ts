@@ -38,6 +38,7 @@ import type { SharedOptimismPortal2Options } from './4-opchain-implementations/2
 import type { SharedOptimismPortalInteropOptions } from './4-opchain-implementations/2H-option-optimism-portal-interop';
 import type { SharedDisputeGameFactoryOptions } from './4-opchain-implementations/2I-option-dispute-game-factory';
 import type { SharedDelayedWETHOptions } from './4-opchain-implementations/2J-option-delayed-WETH';
+import type { SharedPreimageOracleOptions } from './4-opchain-implementations/2K-option-preimage-oracle';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
@@ -82,6 +83,7 @@ export interface KindedOptions {
   OptimismPortalInterop: { kind: 'OptimismPortalInterop' } & SharedOptimismPortalInteropOptions;
   DisputeGameFactory: { kind: 'DisputeGameFactory' } & SharedDisputeGameFactoryOptions;
   DelayedWETH: { kind: 'DelayedWETH' } & SharedDelayedWETHOptions;
+  PreimageOracle: { kind: 'PreimageOracle' } & SharedPreimageOracleOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -283,6 +285,12 @@ export interface KindedDelayedWETHOptions {
   DelayedWETH: { kind: 'DelayedWETH' } & SharedDelayedWETHOptions;
 }
 export type GenericDelayedWETHOptions = KindedDelayedWETHOptions[keyof KindedDelayedWETHOptions];
+
+
+export interface KindedPreimageOracleOptions {
+  PreimageOracle: { kind: 'PreimageOracle' } & SharedPreimageOracleOptions;
+}
+export type GenericPreimageOracleOptions = KindedPreimageOracleOptions[keyof KindedPreimageOracleOptions];
 
 
 export interface KindedStepFourPointTwoAllSubOptions {

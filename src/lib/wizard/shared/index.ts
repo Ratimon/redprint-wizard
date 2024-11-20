@@ -34,6 +34,7 @@ export type {
     KindedOptimismPortal2Options, GenericOptimismPortal2Options,
     KindedDisputeGameFactoryOptions, GenericDisputeGameFactoryOptions,
     KindedDelayedWETHOptions, GenericDelayedWETHOptions,
+    KindedPreimageOracleOptions, GenericPreimageOracleOptions,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -147,6 +148,9 @@ export {  sanitizeKindDisputeGameFactory } from './4-opchain-implementations/2I-
 
 export type { KindDelayedWETH } from './4-opchain-implementations/2J-kind-delayed-WETH';
 export {  sanitizeKindDelayedWETH } from './4-opchain-implementations/2J-kind-delayed-WETH';
+
+export type { KindPreimageOracle } from './4-opchain-implementations/2K-kind-preimage-oracle';
+export {  sanitizeKindPreimageOracle } from './4-opchain-implementations/2K-kind-preimage-oracle';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';

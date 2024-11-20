@@ -144,6 +144,10 @@ import type { SharedDelayedWETHOptions } from '../shared/4-opchain-implementatio
 import {  defaults as delayedWETHDefaults } from '../shared/4-opchain-implementations/2J-option-delayed-WETH';
 import { printDeployDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
 
+import type { SharedPreimageOracleOptions } from '../shared/4-opchain-implementations/2K-option-preimage-oracle';
+import {  defaults as preimageOracleDefaults } from '../shared/4-opchain-implementations/2K-option-preimage-oracle';
+import { printDeployPreimageOracle } from './4-opchain-implementations/2K-preimage-oracle';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -383,6 +387,12 @@ export type DeployDelayedWETH = WizardAllAPI<SharedDelayedWETHOptions>;
 export const deployDelayedWETH: DeployDelayedWETH = {
   print: printDeployDelayedWETH,
   defaults: delayedWETHDefaults,
+}
+
+export type DeployPreimageOracle = WizardAllAPI<SharedPreimageOracleOptions>;
+export const deployPreimageOracle: DeployPreimageOracle = {
+  print: printDeployPreimageOracle,
+  defaults: preimageOracleDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;
