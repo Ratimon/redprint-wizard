@@ -33,6 +33,7 @@ export type {
     KindedOptimismPortalOptions, GenericOptimismPortalOptions,
     KindedL2OutputOracleOptions, GenericL2OutputOracleOptions,
     KindedOptimismPortal2Options, GenericOptimismPortal2Options,
+    KindedDisputeGameFactoryOptions, GenericDisputeGameFactoryOptions,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -140,6 +141,9 @@ export {  sanitizeKindL2OutputOracle } from './4-opchain-implementations/2G-kind
 
 export type { KindOptimismPortal2 } from './4-opchain-implementations/2H-kind-optimism-portal2';
 export {  sanitizeKindOptimismPortal2 } from './4-opchain-implementations/2H-kind-optimism-portal2';
+
+export type { KindDisputeGameFactory } from './4-opchain-implementations/2I-kind-dispute-game-factory';
+export {  sanitizeKindDisputeGameFactory } from './4-opchain-implementations/2I-kind-dispute-game-factory';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';

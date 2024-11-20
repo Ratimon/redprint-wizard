@@ -158,7 +158,6 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
   };
   c.addModule(DeployL2OutputOracleScript);
 
-
   switch (optimismPortal) {
     case 'optimism-portal': {
       const DeployOptimismPortal2Script = {
@@ -178,8 +177,15 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
     }
   }
 
+  const DeployDisputeGameFactoryScript = {
+    name: 'DeployDisputeGameFactoryScript',
+    path: '@script/402I_DeployDisputeGameFactoryScript.s.sol',
+  };
+  c.addModule(DeployDisputeGameFactoryScript);
+
   // start Deployments
-  c.addFunctionCode(`DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
+  c.addFunctionCode(`
+        DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
         DeployOptimismMintableERC20FactoryScript optimismMintableERC20FactoryDeployments = new DeployOptimismMintableERC20FactoryScript();`, fn);
 
   switch (systemconfig) {
@@ -208,6 +214,8 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
     }
   }
 
+  c.addFunctionCode(`DeployDisputeGameFactoryScript disputeGameFactoryDeployments = new DeployDisputeGameFactoryScript();`, fn);
+
   c.addFunctionCode(`l1CrossDomainMessengerDeployments.deploy();
         optimismMintableERC20FactoryDeployments.deploy();
         systemConfigDeployments.deploy();
@@ -216,6 +224,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         optimismPortalDeployments.deploy();
         l2OutputOracleDeployments.deploy();
         optimismPortal2Deployments.deploy();
+        disputeGameFactoryDeployments.deploy();
 
         console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));
         console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));
@@ -224,7 +233,8 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         console.log("L1ERC721Bridge at: ", deployerProcedue.getAddress("L1ERC721Bridge"));
         console.log("OptimismPortal at: ", deployerProcedue.getAddress("OptimismPortal"));
         console.log("L2OutputOracle at: ", deployerProcedue.getAddress("L2OutputOracle"));
-        console.log("OptimismPortal2 at: ", deployerProcedue.getAddress("OptimismPortal2"));`, fn);
+        console.log("OptimismPortal2 at: ", deployerProcedue.getAddress("OptimismPortal2"));
+        console.log("DisputeGameFactory at: ", deployerProcedue.getAddress("DisputeGameFactory"));`, fn);
 
 }
 

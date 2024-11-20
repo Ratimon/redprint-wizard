@@ -15,6 +15,7 @@
         KindedOptimismPortalOptions, KindOptimismPortal,
         KindedL2OutputOracleOptions, KindL2OutputOracle,
         KindedOptimismPortal2Options, KindOptimismPortal2,
+        KindedDisputeGameFactoryOptions, KindDisputeGameFactory,
         KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
         KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
         OptionsErrorMessages
@@ -29,6 +30,7 @@
         sanitizeKindOptimismPortal,
         sanitizeKindL2OutputOracle,
         sanitizeKindOptimismPortal2,
+        sanitizeKindDisputeGameFactory,
         sanitizeKindStepFourPointTwoAll,
         sanitizeKindStepFourPointTwoAllSub,
         OptionsError
@@ -49,6 +51,7 @@
     import L2OutputOracleControls from '$lib/ui/controls/4-L2OutputOracleControls.svelte';
     import OptimismPortal2Controls from '$lib/ui/controls/4-OptimismPortal2Controls.svelte';
     import OptimismPortalInteropControls from '$lib/ui/controls/4-OptimismPortalInteropControls.svelte';
+    import DisputeGameFactoryControls from '$lib/ui/controls/4-DisputeGameFactoryControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
 
@@ -501,7 +504,7 @@
   \`\`\`
   `);
 
-  // **** step 4.2F ***
+  // **** step 4.2H ***
   export let initialContractOptimismPortal2Tab: string | undefined = 'OptimismPortal2';
   export let contractOptimismPortal2Tab: KindOptimismPortal2 = sanitizeKindOptimismPortal2(initialContractOptimismPortal2Tab);
   let allContractsOptimismPortal2Opts: { [k in KindOptimismPortal2]?: Required<KindedOptimismPortal2Options [k]> } = {};
@@ -562,6 +565,69 @@
   \`\`\`
   `);
 
+  // **** step 4.2H ***
+  export let initialContractDisputeGameFactoryTab: string | undefined = 'DisputeGameFactory';
+  export let contractDisputeGameFactoryTab: KindDisputeGameFactory = sanitizeKindDisputeGameFactory(initialContractDisputeGameFactoryTab);
+  let allContractsDisputeGameFactoryOpts: { [k in KindDisputeGameFactory]?: Required<KindedDisputeGameFactoryOptions [k]> } = {};
+  let errorsDisputeGameFactory: { [k in KindDisputeGameFactory]?: OptionsErrorMessages } = {};
+  let contractDisputeGameFactory: Contract = new ContractBuilder('DisputeGameFactory');
+  let deployContractDisputeGameFactory: DeployContract = new DeployBuilder('DeployDisputeGameFactoryScript');
+
+  $: optsDisputeGameFactory = allContractsDisputeGameFactoryOpts[contractDisputeGameFactoryTab];
+  $: {
+  if (optsDisputeGameFactory) {
+          try {
+              contractDisputeGameFactory = buildContractGeneric(optsDisputeGameFactory);
+              deployContractDisputeGameFactory = buildDeployGeneric(optsDisputeGameFactory);
+              errorsDisputeGameFactory[contractDisputeGameFactoryTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsDisputeGameFactory[contractDisputeGameFactoryTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepTwoIModalOpen = false;
+  $: addressStepTwoIContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
+  "OptimismMintableERC20Factory": "<ADDRESS_22>",
+  "SystemConfig": "<ADDRESS_23>",
+  "L1StandardBridge": "<ADDRESS_24>",
+  "L1ERC721Bridge": "<ADDRESS_25>",
+  "OptimismPortal": "<ADDRESS_26>",
+  "L2OutputOracle": "<ADDRESS_27>",
+  "OptimismPortal2": "<ADDRESS_28>",
+  "DisputeGameFactory": "<ADDRESS_29>"
+}
+  \`\`\`
+  `);
+
+
 
 export let initialContractStepTab: string | undefined = 'StepFourPointTwoAll';
 export let contractStepTab: KindStepFourPointTwoAll = sanitizeKindStepFourPointTwoAll(initialContractStepTab);
@@ -619,7 +685,8 @@ let isArtifactStepAllModalOpen = false;
   "L1ERC721Bridge": "<ADDRESS_25>",
   "OptimismPortal": "<ADDRESS_26>",
   "L2OutputOracle": "<ADDRESS_27>",
-  "OptimismPortal2": "<ADDRESS_28>"
+  "OptimismPortal2": "<ADDRESS_28>",
+  "DisputeGameFactory": "<ADDRESS_29>"
 }
   \`\`\`
   `);
@@ -1149,7 +1216,7 @@ if (optsStepSub) {
   </div>
 </WizardDouble>
 
-<!-- 401A_DeployOptimismPortal2Script.s.sol -->
+<!-- 402H_DeployOptimismPortal2Script.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[8].pathname}>
     <div class="divider divider-primary ">
@@ -1228,10 +1295,77 @@ if (optsStepSub) {
   </div>
 </WizardDouble>
 
+<!-- 402I_DeployDisputeGameFactoryScript.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[9].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.2I : Deploy DisputeGameFactory Contract</p>
+    </div>
+  </section>
+</Background>
+
+<WizardDouble conventionNumber={'402I'} initialContractTab={initialContractDisputeGameFactoryTab} contractTab={contractDisputeGameFactoryTab} opts={optsDisputeGameFactory} contract={contractDisputeGameFactory} deployContract={deployContractDisputeGameFactory}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractDisputeGameFactoryTab === 'DisputeGameFactory'} on:click={() => contractDisputeGameFactoryTab = 'DisputeGameFactory'}>
+              DisputeGameFactory
+            </button> 
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractDisputeGameFactoryTab !== 'DisputeGameFactory'}>
+              <DisputeGameFactoryControls bind:opts={allContractsDisputeGameFactoryOpts.DisputeGameFactory} />
+          </div>
+
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoIModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoIModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoIModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoIContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+
 
 <!-- 000_DeployAll.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[9].pathname}>
+  <section id={data.dropDownLinks[10].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>

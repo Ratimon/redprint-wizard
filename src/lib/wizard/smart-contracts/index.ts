@@ -42,7 +42,8 @@ export {
     optimismPortal,
     l2OutputOracle,
     optimismPortal2,
-    optimismPortalInterop
+    optimismPortalInterop,
+    disputeGameFactory,
 } from './api';
 
 
@@ -77,3 +78,4 @@ export { buildOptimismPortal } from './4-opchain-implementations/2F-optimism-por
 export { buildL2OutputOracle } from './4-opchain-implementations/2G-l2-output-oracle';
 export { buildOptimismPortal2 } from './4-opchain-implementations/2H-optimism-portal2';
 export { buildOptimismPortalInterop } from './4-opchain-implementations/2H-optimism-portal-interop';
+export { buildDisputeGameFactory } from './4-opchain-implementations/2I-dispute-game-factory';

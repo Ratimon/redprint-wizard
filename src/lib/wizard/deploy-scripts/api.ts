@@ -136,6 +136,10 @@ import type { SharedOptimismPortalInteropOptions } from '../shared/4-opchain-imp
 import {  defaults as optimismPortalInteropDefaults } from '../shared/4-opchain-implementations/2H-option-optimism-portal-interop';
 import { printDeployOptimismPortalInterop } from './4-opchain-implementations/2H-optimism-portal-interop';
 
+import type { SharedDisputeGameFactoryOptions } from '../shared/4-opchain-implementations/2I-option-dispute-game-factory';
+import {  defaults as disputeGameFactoryDefaults } from '../shared/4-opchain-implementations/2I-option-dispute-game-factory';
+import { printDeployDisputeGameFactory } from './4-opchain-implementations/2I-dispute-game-factory';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -363,6 +367,12 @@ export type DeployOptimismPortalInterop = WizardAllAPI<SharedOptimismPortalInter
 export const deployOptimismPortalInterop: DeployOptimismPortalInterop = {
   print: printDeployOptimismPortalInterop,
   defaults: optimismPortalInteropDefaults,
+}
+
+export type DeployDisputeGameFactory = WizardAllAPI<SharedDisputeGameFactoryOptions>;
+export const deployDisputeGameFactory: DeployDisputeGameFactory = {
+  print: printDeployDisputeGameFactory,
+  defaults: disputeGameFactoryDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

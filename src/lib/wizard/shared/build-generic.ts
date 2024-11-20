@@ -36,6 +36,7 @@ import type { SharedOptimismPortalOptions } from './4-opchain-implementations/2F
 import type { SharedL2OutputOracleOptions } from './4-opchain-implementations/2G-option-l2-output-oracle';
 import type { SharedOptimismPortal2Options } from './4-opchain-implementations/2H-option-optimism-portal2';
 import type { SharedOptimismPortalInteropOptions } from './4-opchain-implementations/2H-option-optimism-portal-interop';
+import type { SharedDisputeGameFactoryOptions } from './4-opchain-implementations/2I-option-dispute-game-factory';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
@@ -78,6 +79,7 @@ export interface KindedOptions {
   L2OutputOracle: { kind: 'L2OutputOracle' } & SharedL2OutputOracleOptions;
   OptimismPortal2: { kind: 'OptimismPortal2' } & SharedOptimismPortal2Options;
   OptimismPortalInterop: { kind: 'OptimismPortalInterop' } & SharedOptimismPortalInteropOptions;
+  DisputeGameFactory: { kind: 'DisputeGameFactory' } & SharedDisputeGameFactoryOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -267,6 +269,12 @@ export interface KindedOptimismPortal2Options {
   OptimismPortalInterop: { kind: 'OptimismPortalInterop' } & SharedOptimismPortalInteropOptions;
 }
 export type GenericOptimismPortal2Options = KindedOptimismPortal2Options[keyof KindedOptimismPortal2Options];
+
+
+export interface KindedDisputeGameFactoryOptions {
+  DisputeGameFactory: { kind: 'DisputeGameFactory' } & SharedDisputeGameFactoryOptions;
+}
+export type GenericDisputeGameFactoryOptions = KindedDisputeGameFactoryOptions[keyof KindedDisputeGameFactoryOptions];
 
 
 export interface KindedStepFourPointTwoAllSubOptions {

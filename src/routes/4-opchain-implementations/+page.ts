@@ -32,6 +32,7 @@ export function load() {
         {pathname: '/4-opchain-implementations/#4.2F', title: '4.2F) OptimismPortal', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#4.2G', title: '4.2G) L2OutputOracle', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#4.2H', title: '4.2H) OptimismPortal2', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2I', title: '4.2I) DisputeGameFactory', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#all', title: 'Deploy All', navType: 'scroll'},
     ];
 

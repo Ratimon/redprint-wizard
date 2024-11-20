@@ -114,6 +114,10 @@ import type { SharedOptimismPortalInteropOptions } from '../shared/4-opchain-imp
 import {  defaults as optimismPortalInteropDefaults } from '../shared/4-opchain-implementations/2H-option-optimism-portal-interop';
 import { printOptimismPortalInterop } from './4-opchain-implementations/2H-optimism-portal-interop';
 
+import type { SharedDisputeGameFactoryOptions } from '../shared/4-opchain-implementations/2I-option-dispute-game-factory';
+import {  defaults as disputeGameFactoryDefaults } from '../shared/4-opchain-implementations/2I-option-dispute-game-factory';
+import { printDisputeGameFactory } from './4-opchain-implementations/2I-dispute-game-factory';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -305,4 +309,10 @@ export type OptimismPortalInterop = WizardContractAPI<SharedOptimismPortalIntero
 export const optimismPortalInterop: OptimismPortalInterop = {
   print: printOptimismPortalInterop,
   defaults: optimismPortalInteropDefaults
+}
+
+export type DisputeGameFactory = WizardContractAPI<SharedDisputeGameFactoryOptions>;
+export const disputeGameFactory: DisputeGameFactory = {
+  print: printDisputeGameFactory,
+  defaults: disputeGameFactoryDefaults
 }

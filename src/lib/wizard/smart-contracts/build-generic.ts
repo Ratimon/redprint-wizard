@@ -85,6 +85,9 @@ import { buildOptimismPortal2 } from './4-opchain-implementations/2H-optimism-po
 import type { SharedOptimismPortalInteropOptions } from '../shared/4-opchain-implementations/2H-option-optimism-portal-interop';
 import { buildOptimismPortalInterop } from './4-opchain-implementations/2H-optimism-portal-interop';
 
+import type { SharedDisputeGameFactoryOptions } from '../shared/4-opchain-implementations/2I-option-dispute-game-factory';
+import { buildDisputeGameFactory } from './4-opchain-implementations/2I-dispute-game-factory';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -115,6 +118,7 @@ export interface KindedOptions {
   L2OutputOracle : {kind: 'L2OutputOracle' } & SharedL2OutputOracleOptions;
   OptimismPortal2 : {kind: 'OptimismPortal2' } & SharedOptimismPortal2Options;
   OptimismPortalInterop : {kind: 'OptimismPortalInterop' } & SharedOptimismPortalInteropOptions;
+  DisputeGameFactory : {kind: 'DisputeGameFactory' } & SharedDisputeGameFactoryOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -208,6 +212,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'OptimismPortalInterop':
       return buildOptimismPortalInterop(opts);
+    
+    case 'DisputeGameFactory':
+      return buildDisputeGameFactory(opts);
 
     default:
       const _: never = opts;
