@@ -99,7 +99,7 @@ function addBase(c: DeployBuilder) {
         (VmSafe.CallerMode mode ,address msgSender, ) = vm.readCallers();
         if ( address(proxyAdmin.addressManager()) != address(addressManager)) {
              if(mode != VmSafe.CallerMode.Broadcast && msgSender != owner) {
-                console.log("Pranking ower ...");
+                console.log("Pranking owner ...");
                 vm.prank(owner);
              } else {
                 console.log("Broadcasting ...");
@@ -111,7 +111,7 @@ function addBase(c: DeployBuilder) {
         address safe = deployer.mustGetAddress("SystemOwnerSafe");
         if (proxyAdmin.owner() != safe) {
             if(mode != VmSafe.CallerMode.Broadcast && msgSender != owner) {
-                console.log("Pranking ower ...");
+                console.log("Pranking owner ...");
                 vm.prank(owner);
              } else {
                 console.log("Broadcasting ...");

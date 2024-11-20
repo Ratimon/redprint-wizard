@@ -202,7 +202,7 @@ function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
         if (owner != proxyAdmin) {
 
             if(mode != VmSafe.CallerMode.Broadcast && msgSender != owner) {
-                console.log("Pranking ower ...");
+                console.log("Pranking owner ...");
                 vm.prank(owner);
              } else {
                 console.log("Broadcasting ...");
