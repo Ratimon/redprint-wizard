@@ -183,6 +183,12 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
   };
   c.addModule(DeployDisputeGameFactoryScript);
 
+  const DeployDelayedWETHScript = {
+    name: 'DeployDelayedWETHScript',
+    path: '@script/402J_DeployDelayedWETHScript.s.sol',
+  };
+  c.addModule(DeployDelayedWETHScript);
+
   // start Deployments
   c.addFunctionCode(`
         DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
@@ -214,9 +220,11 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
     }
   }
 
-  c.addFunctionCode(`DeployDisputeGameFactoryScript disputeGameFactoryDeployments = new DeployDisputeGameFactoryScript();`, fn);
+  c.addFunctionCode(`DeployDisputeGameFactoryScript disputeGameFactoryDeployments = new DeployDisputeGameFactoryScript();
+        DeployDelayedWETHScript delayedWETHDeployments = new DeployDelayedWETHScript();`, fn);
 
-  c.addFunctionCode(`l1CrossDomainMessengerDeployments.deploy();
+  c.addFunctionCode(`
+        l1CrossDomainMessengerDeployments.deploy();
         optimismMintableERC20FactoryDeployments.deploy();
         systemConfigDeployments.deploy();
         l1StandardBridgeDeployments.deploy();
@@ -225,6 +233,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         l2OutputOracleDeployments.deploy();
         optimismPortal2Deployments.deploy();
         disputeGameFactoryDeployments.deploy();
+        delayedWETHDeployments.deploy();
 
         console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));
         console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));
@@ -234,7 +243,8 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         console.log("OptimismPortal at: ", deployerProcedue.getAddress("OptimismPortal"));
         console.log("L2OutputOracle at: ", deployerProcedue.getAddress("L2OutputOracle"));
         console.log("OptimismPortal2 at: ", deployerProcedue.getAddress("OptimismPortal2"));
-        console.log("DisputeGameFactory at: ", deployerProcedue.getAddress("DisputeGameFactory"));`, fn);
+        console.log("DisputeGameFactory at: ", deployerProcedue.getAddress("DisputeGameFactory"));
+        console.log("DelayedWETH at: ", deployerProcedue.getAddress("DelayedWETH"));`, fn);
 
 }
 

@@ -88,6 +88,9 @@ import { buildOptimismPortalInterop } from './4-opchain-implementations/2H-optim
 import type { SharedDisputeGameFactoryOptions } from '../shared/4-opchain-implementations/2I-option-dispute-game-factory';
 import { buildDisputeGameFactory } from './4-opchain-implementations/2I-dispute-game-factory';
 
+import type { SharedDelayedWETHOptions } from '../shared/4-opchain-implementations/2J-option-delayed-WETH';
+import { buildDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -119,6 +122,7 @@ export interface KindedOptions {
   OptimismPortal2 : {kind: 'OptimismPortal2' } & SharedOptimismPortal2Options;
   OptimismPortalInterop : {kind: 'OptimismPortalInterop' } & SharedOptimismPortalInteropOptions;
   DisputeGameFactory : {kind: 'DisputeGameFactory' } & SharedDisputeGameFactoryOptions;
+  DelayedWETH : {kind: 'DelayedWETH' } & SharedDelayedWETHOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -215,6 +219,9 @@ export function buildContractGeneric(opts: GenericOptions) {
     
     case 'DisputeGameFactory':
       return buildDisputeGameFactory(opts);
+
+    case 'DelayedWETH':
+      return buildDelayedWETH(opts);
 
     default:
       const _: never = opts;

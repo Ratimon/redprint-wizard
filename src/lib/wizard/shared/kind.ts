@@ -83,6 +83,8 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'DisputeGameFactory':
       return true;
+    case 'DelayedWETH':
+      return true;
     case 'StepFourPointTwoAll':
       return true;
     case 'StepFourPointTwoAllSub':

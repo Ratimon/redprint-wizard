@@ -118,6 +118,10 @@ import type { SharedDisputeGameFactoryOptions } from '../shared/4-opchain-implem
 import {  defaults as disputeGameFactoryDefaults } from '../shared/4-opchain-implementations/2I-option-dispute-game-factory';
 import { printDisputeGameFactory } from './4-opchain-implementations/2I-dispute-game-factory';
 
+import type { SharedDelayedWETHOptions } from '../shared/4-opchain-implementations/2J-option-delayed-WETH';
+import {  defaults as delayedWETHDefaults } from '../shared/4-opchain-implementations/2J-option-delayed-WETH';
+import { printDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -315,4 +319,10 @@ export type DisputeGameFactory = WizardContractAPI<SharedDisputeGameFactoryOptio
 export const disputeGameFactory: DisputeGameFactory = {
   print: printDisputeGameFactory,
   defaults: disputeGameFactoryDefaults
+}
+
+export type DelayedWETH = WizardContractAPI<SharedDelayedWETHOptions>;
+export const delayedWETH: DelayedWETH = {
+  print: printDelayedWETH,
+  defaults: delayedWETHDefaults
 }

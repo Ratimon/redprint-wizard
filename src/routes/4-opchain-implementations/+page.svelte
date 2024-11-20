@@ -16,6 +16,7 @@
         KindedL2OutputOracleOptions, KindL2OutputOracle,
         KindedOptimismPortal2Options, KindOptimismPortal2,
         KindedDisputeGameFactoryOptions, KindDisputeGameFactory,
+        KindedDelayedWETHOptions, KindDelayedWETH,
         KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
         KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
         OptionsErrorMessages
@@ -31,6 +32,7 @@
         sanitizeKindL2OutputOracle,
         sanitizeKindOptimismPortal2,
         sanitizeKindDisputeGameFactory,
+        sanitizeKindDelayedWETH,
         sanitizeKindStepFourPointTwoAll,
         sanitizeKindStepFourPointTwoAllSub,
         OptionsError
@@ -52,6 +54,7 @@
     import OptimismPortal2Controls from '$lib/ui/controls/4-OptimismPortal2Controls.svelte';
     import OptimismPortalInteropControls from '$lib/ui/controls/4-OptimismPortalInteropControls.svelte';
     import DisputeGameFactoryControls from '$lib/ui/controls/4-DisputeGameFactoryControls.svelte';
+    import DelayedWETHControls from '$lib/ui/controls/4-DelayedWETHControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
 
@@ -565,7 +568,7 @@
   \`\`\`
   `);
 
-  // **** step 4.2H ***
+  // **** step 4.2I ***
   export let initialContractDisputeGameFactoryTab: string | undefined = 'DisputeGameFactory';
   export let contractDisputeGameFactoryTab: KindDisputeGameFactory = sanitizeKindDisputeGameFactory(initialContractDisputeGameFactoryTab);
   let allContractsDisputeGameFactoryOpts: { [k in KindDisputeGameFactory]?: Required<KindedDisputeGameFactoryOptions [k]> } = {};
@@ -627,6 +630,68 @@
   \`\`\`
   `);
 
+  // **** step 4.2J ***
+  export let initialContractDelayedWETHTab: string | undefined = 'DelayedWETH';
+  export let contractDelayedWETHTab: KindDelayedWETH = sanitizeKindDelayedWETH(initialContractDelayedWETHTab);
+  let allContractsDelayedWETHOpts: { [k in KindDelayedWETH]?: Required<KindedDelayedWETHOptions [k]> } = {};
+  let errorsDelayedWETH: { [k in KindDelayedWETH]?: OptionsErrorMessages } = {};
+  let contractDelayedWETH: Contract = new ContractBuilder('DelayedWETH');
+  let deployContractDelayedWETH: DeployContract = new DeployBuilder('DeployDelayedWETHScript');
+
+  $: optsDelayedWETH = allContractsDelayedWETHOpts[contractDelayedWETHTab];
+  $: {
+  if (optsDelayedWETH) {
+          try {
+              contractDelayedWETH = buildContractGeneric(optsDelayedWETH);
+              deployContractDelayedWETH = buildDeployGeneric(optsDelayedWETH);
+              errorsDelayedWETH[contractDelayedWETHTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsDelayedWETH[contractDelayedWETHTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepTwoJModalOpen = false;
+  $: addressStepTwoJContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
+  "OptimismMintableERC20Factory": "<ADDRESS_22>",
+  "SystemConfig": "<ADDRESS_23>",
+  "L1StandardBridge": "<ADDRESS_24>",
+  "L1ERC721Bridge": "<ADDRESS_25>",
+  "OptimismPortal": "<ADDRESS_26>",
+  "L2OutputOracle": "<ADDRESS_27>",
+  "OptimismPortal2": "<ADDRESS_28>",
+  "DisputeGameFactory": "<ADDRESS_29>",
+  "DelayedWETH": "<ADDRESS_30>"
+}
+  \`\`\`
+  `);
 
 
 export let initialContractStepTab: string | undefined = 'StepFourPointTwoAll';
@@ -686,7 +751,8 @@ let isArtifactStepAllModalOpen = false;
   "OptimismPortal": "<ADDRESS_26>",
   "L2OutputOracle": "<ADDRESS_27>",
   "OptimismPortal2": "<ADDRESS_28>",
-  "DisputeGameFactory": "<ADDRESS_29>"
+  "DisputeGameFactory": "<ADDRESS_29>",
+  "DelayedWETH": "<ADDRESS_30>"
 }
   \`\`\`
   `);
@@ -1362,10 +1428,77 @@ if (optsStepSub) {
 </WizardDouble>
 
 
+<!-- 402J_DeployDelayedWETHScript.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[10].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.2J : Deploy DelayedWETH Contract</p>
+    </div>
+  </section>
+</Background>
+
+<WizardDouble conventionNumber={'402J'} initialContractTab={initialContractDelayedWETHTab} contractTab={contractDelayedWETHTab} opts={optsDelayedWETH} contract={contractDelayedWETH} deployContract={deployContractDelayedWETH}>
+  <div slot="caption" >
+    <h2 class="m-4 font-extrabold	">The default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L52C1-L53C1" target="_blank" rel="noreferrer">faultGameWithdrawalDelay</a> is <span class="bg-primary underline">604800</span>.</h2>
+  </div>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractDelayedWETHTab === 'DelayedWETH'} on:click={() => contractDelayedWETHTab = 'DelayedWETH'}>
+              DelayedWETH
+            </button> 
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractDelayedWETHTab !== 'DelayedWETH'}>
+              <DelayedWETHControls bind:opts={allContractsDelayedWETHOpts.DelayedWETH} />
+          </div>
+
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoJModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoJModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoJModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoJContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
 
 <!-- 000_DeployAll.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[10].pathname}>
+  <section id={data.dropDownLinks[11].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>

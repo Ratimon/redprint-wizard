@@ -140,6 +140,10 @@ import type { SharedDisputeGameFactoryOptions } from '../shared/4-opchain-implem
 import {  defaults as disputeGameFactoryDefaults } from '../shared/4-opchain-implementations/2I-option-dispute-game-factory';
 import { printDeployDisputeGameFactory } from './4-opchain-implementations/2I-dispute-game-factory';
 
+import type { SharedDelayedWETHOptions } from '../shared/4-opchain-implementations/2J-option-delayed-WETH';
+import {  defaults as delayedWETHDefaults } from '../shared/4-opchain-implementations/2J-option-delayed-WETH';
+import { printDeployDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -373,6 +377,12 @@ export type DeployDisputeGameFactory = WizardAllAPI<SharedDisputeGameFactoryOpti
 export const deployDisputeGameFactory: DeployDisputeGameFactory = {
   print: printDeployDisputeGameFactory,
   defaults: disputeGameFactoryDefaults,
+}
+
+export type DeployDelayedWETH = WizardAllAPI<SharedDelayedWETHOptions>;
+export const deployDelayedWETH: DeployDelayedWETH = {
+  print: printDeployDelayedWETH,
+  defaults: delayedWETHDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

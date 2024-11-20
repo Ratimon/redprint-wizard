@@ -41,6 +41,7 @@ export type Action =
                     'copy-contract-OptimismPortal2'| 'copy-script-OptimismPortal2' | 'download-contract-OptimismPortal2' | 'download-script-OptimismPortal2' |
                     'copy-contract-OptimismPortalInterop'| 'copy-script-OptimismPortalInterop' | 'download-contract-OptimismPortalInterop' | 'download-script-OptimismPortalInterop' |
                     'copy-contract-DisputeGameFactory'| 'copy-script-DisputeGameFactory' | 'download-contract-DisputeGameFactory' | 'download-script-DisputeGameFactory' |
+                    'copy-contract-DelayedWETH'| 'copy-script-DelayedWETH' | 'download-contract-DelayedWETH' | 'download-script-DelayedWETH' |
                     'copy-contract-StepFourPointTwoAllSub'| 'copy-script-StepFourPointTwoAllSub' | 'download-contract-StepFourPointTwoAllSub' | 'download-script-StepFourPointTwoAllSub' |
                     'copy-contract-StepFourPointTwoAll'| 'copy-script-StepFourPointTwoAll' | 'download-contract-StepFourPointTwoAll' | 'download-script-StepFourPointTwoAll'
                     

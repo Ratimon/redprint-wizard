@@ -80,4 +80,7 @@
         </HelpTooltip>
         </label>
     </div>
+
+    <span>DisputeGameFactory</span>
+    <span>DelayedWETH</span>
 </section>

@@ -44,6 +44,7 @@ export {
     optimismPortal2,
     optimismPortalInterop,
     disputeGameFactory,
+    delayedWETH,
 } from './api';
 
 
@@ -79,3 +80,4 @@ export { buildL2OutputOracle } from './4-opchain-implementations/2G-l2-output-or
 export { buildOptimismPortal2 } from './4-opchain-implementations/2H-optimism-portal2';
 export { buildOptimismPortalInterop } from './4-opchain-implementations/2H-optimism-portal-interop';
 export { buildDisputeGameFactory } from './4-opchain-implementations/2I-dispute-game-factory';
+export { buildDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';

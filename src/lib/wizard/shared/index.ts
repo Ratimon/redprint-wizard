@@ -1,4 +1,3 @@
-// to do : separate to 1- , 2-
 export type {
     KindedGovernanceOptions, GenericGovernanceOptions,
     KindedStepOneAllOptions, GenericStepOneAllOptions,
@@ -34,6 +33,7 @@ export type {
     KindedL2OutputOracleOptions, GenericL2OutputOracleOptions,
     KindedOptimismPortal2Options, GenericOptimismPortal2Options,
     KindedDisputeGameFactoryOptions, GenericDisputeGameFactoryOptions,
+    KindedDelayedWETHOptions, GenericDelayedWETHOptions,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -144,6 +144,9 @@ export {  sanitizeKindOptimismPortal2 } from './4-opchain-implementations/2H-kin
 
 export type { KindDisputeGameFactory } from './4-opchain-implementations/2I-kind-dispute-game-factory';
 export {  sanitizeKindDisputeGameFactory } from './4-opchain-implementations/2I-kind-dispute-game-factory';
+
+export type { KindDelayedWETH } from './4-opchain-implementations/2J-kind-delayed-WETH';
+export {  sanitizeKindDelayedWETH } from './4-opchain-implementations/2J-kind-delayed-WETH';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
