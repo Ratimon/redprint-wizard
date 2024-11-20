@@ -87,6 +87,8 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'PreimageOracle':
       return true;
+    case 'MIPS':
+      return true;
     case 'StepFourPointTwoAll':
       return true;
     case 'StepFourPointTwoAllSub':

@@ -18,6 +18,7 @@
         KindedDisputeGameFactoryOptions, KindDisputeGameFactory,
         KindedDelayedWETHOptions, KindDelayedWETH,
         KindedPreimageOracleOptions, KindPreimageOracle,
+        KindedMIPSOptions, KindMIPS,
         KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
         KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
         OptionsErrorMessages
@@ -35,6 +36,7 @@
         sanitizeKindDisputeGameFactory,
         sanitizeKindDelayedWETH,
         sanitizeKindPreimageOracle,
+        sanitizeKindMIPS,
         sanitizeKindStepFourPointTwoAll,
         sanitizeKindStepFourPointTwoAllSub,
         OptionsError
@@ -58,6 +60,7 @@
     import DisputeGameFactoryControls from '$lib/ui/controls/4-DisputeGameFactoryControls.svelte';
     import DelayedWETHControls from '$lib/ui/controls/4-DelayedWETHControls.svelte';
     import PreimageOracleControls from '$lib/ui/controls/4-PreimageOracleControls.svelte';
+    import MIPSControls from '$lib/ui/controls/4-MIPSControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
 
@@ -760,7 +763,70 @@
   \`\`\`
   `);
 
+  // **** step 4.2L ***
+  export let initialContractMIPSTab: string | undefined = 'MIPS';
+  export let contractMIPSTab: KindMIPS = sanitizeKindMIPS(initialContractMIPSTab);
+  let allContractsMIPSOpts: { [k in KindMIPS]?: Required<KindedMIPSOptions [k]> } = {};
+  let errorsMIPS: { [k in KindMIPS]?: OptionsErrorMessages } = {};
+  let contractMIPS: Contract = new ContractBuilder('MIPS');
+  let deployContractMIPS: DeployContract = new DeployBuilder('DeployMIPSScript');
 
+  $: optsMIPS = allContractsMIPSOpts[contractMIPSTab];
+  $: {
+  if (optsMIPS) {
+          try {
+              contractMIPS = buildContractGeneric(optsMIPS);
+              deployContractMIPS = buildDeployGeneric(optsMIPS);
+              errorsMIPS[contractMIPSTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsMIPS[contractMIPSTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepTwoLModalOpen = false;
+  $: addressStepTwoLContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
+  "OptimismMintableERC20Factory": "<ADDRESS_22>",
+  "SystemConfig": "<ADDRESS_23>",
+  "L1StandardBridge": "<ADDRESS_24>",
+  "L1ERC721Bridge": "<ADDRESS_25>",
+  "OptimismPortal": "<ADDRESS_26>",
+  "L2OutputOracle": "<ADDRESS_27>",
+  "OptimismPortal2": "<ADDRESS_28>",
+  "DisputeGameFactory": "<ADDRESS_29>",
+  "DelayedWETH": "<ADDRESS_30>",
+  "PreimageOracle" : "<ADDRESS_31>",
+  "Mips" : "<ADDRESS_32>"
+}
+  \`\`\`
+  `);
 
 export let initialContractStepTab: string | undefined = 'StepFourPointTwoAll';
 export let contractStepTab: KindStepFourPointTwoAll = sanitizeKindStepFourPointTwoAll(initialContractStepTab);
@@ -821,7 +887,8 @@ let isArtifactStepAllModalOpen = false;
   "OptimismPortal2": "<ADDRESS_28>",
   "DisputeGameFactory": "<ADDRESS_29>",
   "DelayedWETH": "<ADDRESS_30>",
-  "PreimageOracle" : "<ADDRESS_31>"
+  "PreimageOracle" : "<ADDRESS_31>",
+  "Mips" : "<ADDRESS_32>"
 }
   \`\`\`
   `);
@@ -1638,9 +1705,76 @@ if (optsStepSub) {
   </div>
 </WizardDouble>
 
-<!-- 000_DeployAll.s.sol -->
+<!-- 402L_DeployMIPSScript.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[12].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.2L : Deploy MIPS Contract</p>
+    </div>
+  </section>
+</Background>
+
+<WizardDouble conventionNumber={'402L'} initialContractTab={initialContractMIPSTab} contractTab={contractMIPSTab} opts={optsMIPS} contract={contractMIPS} deployContract={deployContractMIPS}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractMIPSTab === 'MIPS'} on:click={() => contractMIPSTab = 'MIPS'}>
+              MIPS
+            </button> 
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractMIPSTab !== 'MIPS'}>
+              <MIPSControls bind:opts={allContractsMIPSOpts.MIPS} />
+          </div>
+
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoLModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoLModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoLModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoLContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+
+<!-- 000_DeployAll.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[13].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>

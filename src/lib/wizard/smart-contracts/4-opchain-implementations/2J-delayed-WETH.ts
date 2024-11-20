@@ -184,14 +184,6 @@ const functions = defineFunctions({
         ],
     },
 
-    // withdraw: {
-    //     kind: 'public' as const,
-    //     args: [
-    //         { name: '_wad', type: 'uint256' },
-    //     ],
-    // },
-
-
     recover: {
         kind: 'external' as const,
         args: [

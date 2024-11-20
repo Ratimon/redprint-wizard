@@ -159,7 +159,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
   c.addModule(DeployL2OutputOracleScript);
 
   switch (optimismPortal) {
-    case 'optimism-portal': {
+    case 'optimism-portal-2': {
       const DeployOptimismPortal2Script = {
         name: 'DeployOptimismPortal2Script',
         path: '@script/402H_DeployOptimismPortal2Script.s.sol',
@@ -195,6 +195,12 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
   };
   c.addModule(DeployPreimageOracleScript);
 
+  const DeployMIPSScript = {
+    name: 'DeployMIPSScript',
+    path: '@script/402L_DeployMIPSScript.s.sol',
+  };
+  c.addModule(DeployMIPSScript);
+
   // start Deployments
   c.addFunctionCode(`
         DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
@@ -216,7 +222,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         DeployL2OutputOracleScript l2OutputOracleDeployments = new DeployL2OutputOracleScript();`, fn);
 
   switch (optimismPortal) {
-    case 'optimism-portal': {
+    case 'optimism-portal-2': {
       c.addFunctionCode(`DeployOptimismPortal2Script optimismPortal2Deployments = new DeployOptimismPortal2Script();`, fn);
       break;
     }
@@ -228,7 +234,8 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
 
   c.addFunctionCode(`DeployDisputeGameFactoryScript disputeGameFactoryDeployments = new DeployDisputeGameFactoryScript();
         DeployDelayedWETHScript delayedWETHDeployments = new DeployDelayedWETHScript();
-        DeployPreimageOracleScript preimageOracleDeployments = new DeployPreimageOracleScript();`, fn);
+        DeployPreimageOracleScript preimageOracleDeployments = new DeployPreimageOracleScript();
+        DeployMIPSScript mipsDeployments = new DeployMIPSScript();`, fn);
 
   c.addFunctionCode(`
         l1CrossDomainMessengerDeployments.deploy();
@@ -242,7 +249,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         disputeGameFactoryDeployments.deploy();
         delayedWETHDeployments.deploy();
         preimageOracleDeployments.deploy();
-
+        mipsDeployments.deploy();
         
         console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));
         console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));
@@ -254,7 +261,8 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         console.log("OptimismPortal2 at: ", deployerProcedue.getAddress("OptimismPortal2"));
         console.log("DisputeGameFactory at: ", deployerProcedue.getAddress("DisputeGameFactory"));
         console.log("DelayedWETH at: ", deployerProcedue.getAddress("DelayedWETH"));
-        console.log("PreimageOracle at: ", deployerProcedue.getAddress("PreimageOracle"));`, fn);
+        console.log("PreimageOracle at: ", deployerProcedue.getAddress("PreimageOracle"));
+        console.log("MIPS at: ", deployerProcedue.getAddress("MIPS"));`, fn);
 
 }
 

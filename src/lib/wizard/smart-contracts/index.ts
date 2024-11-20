@@ -46,6 +46,7 @@ export {
     disputeGameFactory,
     delayedWETH,
     preimageOracle,
+    mips,
 } from './api';
 
 
@@ -83,3 +84,4 @@ export { buildOptimismPortalInterop } from './4-opchain-implementations/2H-optim
 export { buildDisputeGameFactory } from './4-opchain-implementations/2I-dispute-game-factory';
 export { buildDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
 export { buildPreimageOracle } from './4-opchain-implementations/2K-preimage-oracle';
+export { buildMIPS } from './4-opchain-implementations/2L-mips';

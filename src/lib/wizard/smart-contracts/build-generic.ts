@@ -94,6 +94,9 @@ import { buildDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
 import type { SharedPreimageOracleOptions } from '../shared/4-opchain-implementations/2K-option-preimage-oracle';
 import { buildPreimageOracle } from './4-opchain-implementations/2K-preimage-oracle';
 
+import type { SharedMIPSOptions } from '../shared/4-opchain-implementations/2L-option-mips';
+import { buildMIPS } from './4-opchain-implementations/2L-mips';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -127,6 +130,7 @@ export interface KindedOptions {
   DisputeGameFactory : {kind: 'DisputeGameFactory' } & SharedDisputeGameFactoryOptions;
   DelayedWETH : {kind: 'DelayedWETH' } & SharedDelayedWETHOptions;
   PreimageOracle : {kind: 'PreimageOracle' } & SharedPreimageOracleOptions;
+  MIPS : {kind: 'MIPS' } & SharedMIPSOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -229,6 +233,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'PreimageOracle':
       return buildPreimageOracle(opts);
+
+    case 'MIPS':
+      return buildMIPS(opts);
 
     default:
       const _: never = opts;

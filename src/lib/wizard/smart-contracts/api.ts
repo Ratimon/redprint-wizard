@@ -126,6 +126,10 @@ import type { SharedPreimageOracleOptions } from '../shared/4-opchain-implementa
 import {  defaults as preimageOracleDefaults } from '../shared/4-opchain-implementations/2K-option-preimage-oracle';
 import { printPreimageOracle } from './4-opchain-implementations/2K-preimage-oracle';
 
+import type { SharedMIPSOptions } from '../shared/4-opchain-implementations/2L-option-mips';
+import {  defaults as mipsDefaults } from '../shared/4-opchain-implementations/2L-option-mips';
+import { printMIPS } from './4-opchain-implementations/2L-mips';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -335,4 +339,10 @@ export type PreimageOracle = WizardContractAPI<SharedPreimageOracleOptions>;
 export const preimageOracle: PreimageOracle = {
   print: printPreimageOracle,
   defaults: preimageOracleDefaults
+}
+
+export type MIPS = WizardContractAPI<SharedMIPSOptions>;
+export const mips: MIPS = {
+  print: printMIPS,
+  defaults: mipsDefaults
 }

@@ -35,6 +35,7 @@
 
 <section class="controls-section">
     <h1>Step 4</h1>
+    <h2 class="m-4 font-extrabold">Implementation</h2>
     <span>L1CrossDomainMessenger</span>
     <span>OptimismMintableERC20Factory</span>
 
@@ -62,11 +63,13 @@
     <span>OptimismPortal</span>
     <span>L2OutputOracle</span>
 
+    <h2 class="m-4 font-extrabold">Fault Proofs</h2>
+
     <div class="checkbox-group">
         <span>OptimismPortal2</span>
-        <label class:checked={opts.optimismPortal === 'optimism-portal'}>
+        <label class:checked={opts.optimismPortal === 'optimism-portal-2'}>
         <input type="radio" bind:group={opts.optimismPortal} value='optimism-portal'>
-            OptimismPortal
+            OptimismPortal2
         <HelpTooltip>
             Choose OptimismPortal Option
         </HelpTooltip>
@@ -84,4 +87,5 @@
     <span>DisputeGameFactory</span>
     <span>DelayedWETH</span>
     <span>PreimageOracle</span>
+    <span>MIPS</span>
 </section>

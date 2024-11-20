@@ -148,6 +148,10 @@ import type { SharedPreimageOracleOptions } from '../shared/4-opchain-implementa
 import {  defaults as preimageOracleDefaults } from '../shared/4-opchain-implementations/2K-option-preimage-oracle';
 import { printDeployPreimageOracle } from './4-opchain-implementations/2K-preimage-oracle';
 
+import type { SharedMIPSOptions } from '../shared/4-opchain-implementations/2L-option-mips';
+import {  defaults as mipsDefaults } from '../shared/4-opchain-implementations/2L-option-mips';
+import { printDeployMIPS } from './4-opchain-implementations/2L-mips';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -393,6 +397,12 @@ export type DeployPreimageOracle = WizardAllAPI<SharedPreimageOracleOptions>;
 export const deployPreimageOracle: DeployPreimageOracle = {
   print: printDeployPreimageOracle,
   defaults: preimageOracleDefaults,
+}
+
+export type DeployMIPS = WizardAllAPI<SharedMIPSOptions>;
+export const deployMIPS: DeployMIPS = {
+  print: printDeployMIPS,
+  defaults: mipsDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

@@ -35,6 +35,7 @@ export type {
     KindedDisputeGameFactoryOptions, GenericDisputeGameFactoryOptions,
     KindedDelayedWETHOptions, GenericDelayedWETHOptions,
     KindedPreimageOracleOptions, GenericPreimageOracleOptions,
+    KindedMIPSOptions, GenericMIPSOptions,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -151,6 +152,9 @@ export {  sanitizeKindDelayedWETH } from './4-opchain-implementations/2J-kind-de
 
 export type { KindPreimageOracle } from './4-opchain-implementations/2K-kind-preimage-oracle';
 export {  sanitizeKindPreimageOracle } from './4-opchain-implementations/2K-kind-preimage-oracle';
+
+export type { KindMIPS } from './4-opchain-implementations/2L-kind-mips';
+export {  sanitizeKindMIPS } from './4-opchain-implementations/2L-kind-mips';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';

@@ -49,6 +49,7 @@ export {
     deployDisputeGameFactory,
     deployDelayedWETH,
     deployPreimageOracle,
+    deployMIPS,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';
