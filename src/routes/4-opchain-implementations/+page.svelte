@@ -1366,6 +1366,9 @@ if (optsStepSub) {
 <WizardDouble conventionNumber={'402H'} initialContractTab={initialContractOptimismPortal2Tab} contractTab={contractOptimismPortal2Tab} opts={optsOptimismPortal2} contract={contractOptimismPortal2} deployContract={deployContractOptimismPortal2}>
   <div slot="caption" >
     <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/interop/overview.html" target="_blank" rel="noreferrer">useInterop=false</a>, the contract is <span class="bg-primary underline">OptimismPortal2</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortalInterop</span>.</h2>
+    <h2 class="m-4 font-extrabold	">The mainnet default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L55" target="_blank" rel="noreferrer">proofMaturityDelaySeconds</a> is <span class="bg-primary underline">604800</span>.</h2>
+    <h2 class="m-4 font-extrabold	">The mainnet default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L56" target="_blank" rel="noreferrer">disputeGameFinalityDelaySeconds</a> is <span class="bg-primary underline">302400</span>.</h2>
+    
   </div>
 
   <div slot="menu" >
@@ -1508,7 +1511,7 @@ if (optsStepSub) {
 
 <WizardDouble conventionNumber={'402J'} initialContractTab={initialContractDelayedWETHTab} contractTab={contractDelayedWETHTab} opts={optsDelayedWETH} contract={contractDelayedWETH} deployContract={deployContractDelayedWETH}>
   <div slot="caption" >
-    <h2 class="m-4 font-extrabold	">The default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L52C1-L53C1" target="_blank" rel="noreferrer">faultGameWithdrawalDelay</a> is <span class="bg-primary underline">604800</span>.</h2>
+    <h2 class="m-4 font-extrabold	">The mainnet default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L52" target="_blank" rel="noreferrer">faultGameWithdrawalDelay</a> is <span class="bg-primary underline">604800</span>.</h2>
   </div>
   <div slot="menu" >
       <div class="tab overflow-hidden">
@@ -1576,8 +1579,8 @@ if (optsStepSub) {
 
 <WizardDouble conventionNumber={'402K'} initialContractTab={initialContractPreimageOracleTab} contractTab={contractPreimageOracleTab} opts={optsPreimageOracle} contract={contractPreimageOracle} deployContract={deployContractPreimageOracle}>
   <div slot="caption" >
-    <h2 class="m-4 font-extrabold	">The default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L52C1-L53C1" target="_blank" rel="noreferrer">preimageOracleMinProposalSize</a> is <span class="bg-primary underline">1800000</span>.</h2>
-    <h2 class="m-4 font-extrabold	">The default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L52C1-L53C1" target="_blank" rel="noreferrer">preimageOracleChallengePeriod</a> is <span class="bg-primary underline">86400</span>.</h2>
+    <h2 class="m-4 font-extrabold	">The default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L53" target="_blank" rel="noreferrer">preimageOracleMinProposalSize</a> is <span class="bg-primary underline">1800000</span>.</h2>
+    <h2 class="m-4 font-extrabold	">The default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L54" target="_blank" rel="noreferrer">preimageOracleChallengePeriod</a> is <span class="bg-primary underline">126000</span>.</h2>
   </div>
 
   <div slot="menu" >
