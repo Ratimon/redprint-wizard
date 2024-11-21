@@ -1,4 +1,4 @@
-import type { Contract, BaseModifier} from '../contract';
+import type { Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
 import { withCommonDefaults, defaults as commonDefaults } from '../../shared/4-opchain-implementations/2H-option-optimism-portal-interop'

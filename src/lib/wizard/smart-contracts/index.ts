@@ -47,6 +47,7 @@ export {
     delayedWETH,
     preimageOracle,
     mips,
+    anchorStateRegistry,
 } from './api';
 
 
@@ -85,3 +86,4 @@ export { buildDisputeGameFactory } from './4-opchain-implementations/2I-dispute-
 export { buildDelayedWETH } from './4-opchain-implementations/2J-delayed-WETH';
 export { buildPreimageOracle } from './4-opchain-implementations/2K-preimage-oracle';
 export { buildMIPS } from './4-opchain-implementations/2L-mips';
+export { buildAnchorStateRegistry } from './4-opchain-implementations/2M-anchor-state-registry';

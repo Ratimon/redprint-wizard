@@ -50,7 +50,6 @@ function addBase(c: DeployBuilder) {
   };
   c.addLibrary(DeployerFunctions, `IDeployer`);
 
-
   const DeployOptions = {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',

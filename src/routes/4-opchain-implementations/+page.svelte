@@ -19,6 +19,7 @@
         KindedDelayedWETHOptions, KindDelayedWETH,
         KindedPreimageOracleOptions, KindPreimageOracle,
         KindedMIPSOptions, KindMIPS,
+        KindedAnchorStateRegistryOptions, KindAnchorStateRegistry,
         KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
         KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
         OptionsErrorMessages
@@ -37,6 +38,7 @@
         sanitizeKindDelayedWETH,
         sanitizeKindPreimageOracle,
         sanitizeKindMIPS,
+        sanitizeKindAnchorStateRegistry,
         sanitizeKindStepFourPointTwoAll,
         sanitizeKindStepFourPointTwoAllSub,
         OptionsError
@@ -63,7 +65,7 @@
     import MIPSControls from '$lib/ui/controls/4-MIPSControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
-
+    import AnchorStateRegistryControls from '$lib/ui/controls/4-AnchorStateRegistryControls.svelte';
     import MarkdownIt from "markdown-it";
     import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -828,6 +830,72 @@
   \`\`\`
   `);
 
+  // **** step 4.2M ***
+  export let initialContractAnchorStateRegistryTab: string | undefined = 'AnchorStateRegistry';
+  export let contractAnchorStateRegistryTab: KindAnchorStateRegistry = sanitizeKindAnchorStateRegistry(initialContractAnchorStateRegistryTab);
+  let allContractsAnchorStateRegistryOpts: { [k in KindAnchorStateRegistry]?: Required<KindedAnchorStateRegistryOptions [k]> } = {};
+  let errorsAnchorStateRegistry: { [k in KindAnchorStateRegistry]?: OptionsErrorMessages } = {};
+  let contractAnchorStateRegistry: Contract = new ContractBuilder('AnchorStateRegistry');
+  let deployContractAnchorStateRegistry: DeployContract = new DeployBuilder('DeployAnchorStateRegistryScript');
+
+  $: optsAnchorStateRegistry = allContractsAnchorStateRegistryOpts[contractAnchorStateRegistryTab];
+  $: {
+  if (optsAnchorStateRegistry) {
+          try {
+              contractAnchorStateRegistry = buildContractGeneric(optsAnchorStateRegistry);
+              deployContractAnchorStateRegistry = buildDeployGeneric(optsAnchorStateRegistry);
+              errorsAnchorStateRegistry[contractAnchorStateRegistryTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsAnchorStateRegistry[contractAnchorStateRegistryTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepTwoMModalOpen = false;
+  $: addressStepTwoMContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
+  "OptimismMintableERC20Factory": "<ADDRESS_22>",
+  "SystemConfig": "<ADDRESS_23>",
+  "L1StandardBridge": "<ADDRESS_24>",
+  "L1ERC721Bridge": "<ADDRESS_25>",
+  "OptimismPortal": "<ADDRESS_26>",
+  "L2OutputOracle": "<ADDRESS_27>",
+  "OptimismPortal2": "<ADDRESS_28>",
+  "DisputeGameFactory": "<ADDRESS_29>",
+  "DelayedWETH": "<ADDRESS_30>",
+  "PreimageOracle" : "<ADDRESS_31>",
+  "Mips" : "<ADDRESS_32>",
+  "AnchorStateRegistry" : "<ADDRESS_33>"
+}
+  \`\`\`
+  `);
+
 export let initialContractStepTab: string | undefined = 'StepFourPointTwoAll';
 export let contractStepTab: KindStepFourPointTwoAll = sanitizeKindStepFourPointTwoAll(initialContractStepTab);
 
@@ -888,7 +956,8 @@ let isArtifactStepAllModalOpen = false;
   "DisputeGameFactory": "<ADDRESS_29>",
   "DelayedWETH": "<ADDRESS_30>",
   "PreimageOracle" : "<ADDRESS_31>",
-  "Mips" : "<ADDRESS_32>"
+  "Mips" : "<ADDRESS_32>",
+  "AnchorStateRegistry" : "<ADDRESS_33>"
 }
   \`\`\`
   `);
@@ -1771,10 +1840,76 @@ if (optsStepSub) {
   </div>
 </WizardDouble>
 
+<!-- 402M_DeployAnchorStateRegistryScript.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[13].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.2M : Deploy AnchorStateRegistry Contract</p>
+    </div>
+  </section>
+</Background>
+
+<WizardDouble conventionNumber={'402M'} initialContractTab={initialContractAnchorStateRegistryTab} contractTab={contractAnchorStateRegistryTab} opts={optsAnchorStateRegistry} contract={contractAnchorStateRegistry} deployContract={deployContractAnchorStateRegistry}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractAnchorStateRegistryTab === 'AnchorStateRegistry'} on:click={() => contractAnchorStateRegistryTab = 'AnchorStateRegistry'}>
+              AnchorStateRegistry
+            </button>
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractAnchorStateRegistryTab !== 'AnchorStateRegistry'}>
+              <AnchorStateRegistryControls bind:opts={allContractsAnchorStateRegistryOpts.AnchorStateRegistry} />
+          </div>
+
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoMModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoMModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoMModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoMContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
 
 <!-- 000_DeployAll.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[13].pathname}>
+  <section id={data.dropDownLinks[14].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>

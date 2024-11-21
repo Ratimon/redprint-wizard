@@ -112,6 +112,9 @@ import { buildDeployPreimageOracle } from './4-opchain-implementations/2K-preima
 import type { SharedMIPSOptions } from '../shared/4-opchain-implementations/2L-option-mips';
 import { buildDeployMIPS } from './4-opchain-implementations/2L-mips';
 
+import type { SharedAnchorStateRegistryOptions } from '../shared/4-opchain-implementations/2M-option-anchor-state-registry';
+import { buildDeployAnchorStateRegistry } from './4-opchain-implementations/2M-anchor-state-registry';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import { buildDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
 
@@ -160,6 +163,7 @@ export interface DeployKindedOptions {
   DelayedWETH: {kind: 'DelayedWETH'} & SharedDelayedWETHOptions;
   PreimageOracle: {kind: 'PreimageOracle'} & SharedPreimageOracleOptions;
   MIPS: {kind: 'MIPS'} & SharedMIPSOptions;
+  AnchorStateRegistry: {kind: 'AnchorStateRegistry'} & SharedAnchorStateRegistryOptions;
   StepFourPointTwoAllSub: {kind: 'StepFourPointTwoAllSub'} & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: {kind: 'StepFourPointTwoAll'} & SharedStepFourPointTwoAllOptions;
 }
@@ -282,6 +286,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'MIPS':
       return  buildDeployMIPS(opts);
+
+    case 'AnchorStateRegistry':
+      return  buildDeployAnchorStateRegistry(opts);
 
     case 'StepFourPointTwoAllSub':
       return  buildDeployStepFourPointTwoAllSub(opts);

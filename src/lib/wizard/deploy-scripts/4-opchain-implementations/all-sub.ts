@@ -201,6 +201,12 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
   };
   c.addModule(DeployMIPSScript);
 
+  const DeployAnchorStateRegistryScript = {
+    name: 'DeployAnchorStateRegistryScript',
+    path: '@script/402M_DeployAnchorStateRegistryScript.s.sol',
+  };
+  c.addModule(DeployAnchorStateRegistryScript);
+
   // start Deployments
   c.addFunctionCode(`
         DeployL1CrossDomainMessengerScript l1CrossDomainMessengerDeployments = new DeployL1CrossDomainMessengerScript();
@@ -235,7 +241,8 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
   c.addFunctionCode(`DeployDisputeGameFactoryScript disputeGameFactoryDeployments = new DeployDisputeGameFactoryScript();
         DeployDelayedWETHScript delayedWETHDeployments = new DeployDelayedWETHScript();
         DeployPreimageOracleScript preimageOracleDeployments = new DeployPreimageOracleScript();
-        DeployMIPSScript mipsDeployments = new DeployMIPSScript();`, fn);
+        DeployMIPSScript mipsDeployments = new DeployMIPSScript();
+        DeployAnchorStateRegistryScript anchorStateRegistryDeployments = new DeployAnchorStateRegistryScript();`, fn);
 
   c.addFunctionCode(`
         l1CrossDomainMessengerDeployments.deploy();
@@ -250,7 +257,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         delayedWETHDeployments.deploy();
         preimageOracleDeployments.deploy();
         mipsDeployments.deploy();
-        
+        anchorStateRegistryDeployments.deploy();
         console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));
         console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));
         console.log("SystemConfig at: ", deployerProcedue.getAddress("SystemConfig"));
@@ -262,7 +269,8 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         console.log("DisputeGameFactory at: ", deployerProcedue.getAddress("DisputeGameFactory"));
         console.log("DelayedWETH at: ", deployerProcedue.getAddress("DelayedWETH"));
         console.log("PreimageOracle at: ", deployerProcedue.getAddress("PreimageOracle"));
-        console.log("MIPS at: ", deployerProcedue.getAddress("MIPS"));`, fn);
+        console.log("MIPS at: ", deployerProcedue.getAddress("MIPS"));
+        console.log("AnchorStateRegistry at: ", deployerProcedue.getAddress("AnchorStateRegistry"));`, fn);
 
 }
 

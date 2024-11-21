@@ -130,6 +130,10 @@ import type { SharedMIPSOptions } from '../shared/4-opchain-implementations/2L-o
 import {  defaults as mipsDefaults } from '../shared/4-opchain-implementations/2L-option-mips';
 import { printMIPS } from './4-opchain-implementations/2L-mips';
 
+import type { SharedAnchorStateRegistryOptions } from '../shared/4-opchain-implementations/2M-option-anchor-state-registry';
+import {  defaults as anchorStateRegistryDefaults } from '../shared/4-opchain-implementations/2M-option-anchor-state-registry';
+import { printAnchorStateRegistry } from './4-opchain-implementations/2M-anchor-state-registry';
+
 import type { CommonOptions } from '../shared/common-options';
 
 export interface WizardContractAPI<Options extends CommonOptions> {
@@ -345,4 +349,10 @@ export type MIPS = WizardContractAPI<SharedMIPSOptions>;
 export const mips: MIPS = {
   print: printMIPS,
   defaults: mipsDefaults
+}
+
+export type AnchorStateRegistry = WizardContractAPI<SharedAnchorStateRegistryOptions>;
+export const anchorStateRegistry: AnchorStateRegistry = {
+  print: printAnchorStateRegistry,
+  defaults: anchorStateRegistryDefaults
 }

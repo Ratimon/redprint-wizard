@@ -88,4 +88,5 @@
     <span>DelayedWETH</span>
     <span>PreimageOracle</span>
     <span>MIPS</span>
+    <span>AnchorStateRegistry</span>
 </section>

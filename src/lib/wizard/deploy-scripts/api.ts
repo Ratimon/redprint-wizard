@@ -152,6 +152,10 @@ import type { SharedMIPSOptions } from '../shared/4-opchain-implementations/2L-o
 import {  defaults as mipsDefaults } from '../shared/4-opchain-implementations/2L-option-mips';
 import { printDeployMIPS } from './4-opchain-implementations/2L-mips';
 
+import type { SharedAnchorStateRegistryOptions } from '../shared/4-opchain-implementations/2M-option-anchor-state-registry';
+import {  defaults as anchorStateRegistryDefaults } from '../shared/4-opchain-implementations/2M-option-anchor-state-registry';
+import { printDeployAnchorStateRegistry } from './4-opchain-implementations/2M-anchor-state-registry';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -403,6 +407,12 @@ export type DeployMIPS = WizardAllAPI<SharedMIPSOptions>;
 export const deployMIPS: DeployMIPS = {
   print: printDeployMIPS,
   defaults: mipsDefaults,
+}
+
+export type DeployAnchorStateRegistry = WizardAllAPI<SharedAnchorStateRegistryOptions>;
+export const deployAnchorStateRegistry: DeployAnchorStateRegistry = {
+  print: printDeployAnchorStateRegistry,
+  defaults: anchorStateRegistryDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

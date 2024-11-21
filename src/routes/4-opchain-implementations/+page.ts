@@ -36,6 +36,7 @@ export function load() {
         {pathname: '/4-opchain-implementations/#4.2J', title: '4.2J) DelayedWETH', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#4.2K', title: '4.2K) PreimageOracle', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#4.2L', title: '4.2L) MIPS', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2M', title: '4.2M) AnchorStateRegistry', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#all', title: 'Deploy All', navType: 'scroll'},
     ];
 

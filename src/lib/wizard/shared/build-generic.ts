@@ -40,6 +40,7 @@ import type { SharedDisputeGameFactoryOptions } from './4-opchain-implementation
 import type { SharedDelayedWETHOptions } from './4-opchain-implementations/2J-option-delayed-WETH';
 import type { SharedPreimageOracleOptions } from './4-opchain-implementations/2K-option-preimage-oracle';
 import type { SharedMIPSOptions } from './4-opchain-implementations/2L-option-mips';
+import type { SharedAnchorStateRegistryOptions } from './4-opchain-implementations/2M-option-anchor-state-registry';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
@@ -86,6 +87,7 @@ export interface KindedOptions {
   DelayedWETH: { kind: 'DelayedWETH' } & SharedDelayedWETHOptions;
   PreimageOracle: { kind: 'PreimageOracle' } & SharedPreimageOracleOptions;
   MIPS: { kind: 'MIPS' } & SharedMIPSOptions;
+  AnchorStateRegistry: { kind: 'AnchorStateRegistry' } & SharedAnchorStateRegistryOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -299,6 +301,12 @@ export interface KindedMIPSOptions {
   MIPS: { kind: 'MIPS' } & SharedMIPSOptions;
 }
 export type GenericMIPSOptions = KindedMIPSOptions[keyof KindedMIPSOptions];
+
+
+export interface KindedAnchorStateRegistryOptions {
+  AnchorStateRegistry: { kind: 'AnchorStateRegistry' } & SharedAnchorStateRegistryOptions;
+}
+export type GenericAnchorStateRegistryOptions = KindedAnchorStateRegistryOptions[keyof KindedAnchorStateRegistryOptions];
 
 
 export interface KindedStepFourPointTwoAllSubOptions {

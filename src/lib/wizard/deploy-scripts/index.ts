@@ -50,6 +50,7 @@ export {
     deployDelayedWETH,
     deployPreimageOracle,
     deployMIPS,
+    deployAnchorStateRegistry,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';

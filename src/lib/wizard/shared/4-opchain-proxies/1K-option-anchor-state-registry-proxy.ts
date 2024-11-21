@@ -31,7 +31,7 @@ export const defaults: Required<SharedAnchorStateRegistryProxyOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployAnchorStateRegistryProxy',
+  deployName: 'DeployAnchorStateRegistryProxyScript',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;

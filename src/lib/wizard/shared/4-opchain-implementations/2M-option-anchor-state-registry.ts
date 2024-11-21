@@ -22,22 +22,22 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
   };
 }
 
-export const defaults: Required<SharedPermissionedDelayedWETHProxyOptions> = {
+export const defaults: Required<SharedAnchorStateRegistryOptions> = {
   //contract
-  contractName: 'Proxy',
+  contractName: 'AnchorStateRegistry',
   
   access: commonDefaults.access,
   upgradeable: commonDefaults.upgradeable,
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployPermissionedDelayedWETHProxyScript',
+  deployName: 'DeployAnchorStateRegistryScript',
 
   deployInfo: commonDefaults.deployInfo,
 } as const;
 
 
-export interface SharedPermissionedDelayedWETHProxyOptions extends CommonOptions {
+export interface SharedAnchorStateRegistryOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;

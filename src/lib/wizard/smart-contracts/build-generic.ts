@@ -97,6 +97,9 @@ import { buildPreimageOracle } from './4-opchain-implementations/2K-preimage-ora
 import type { SharedMIPSOptions } from '../shared/4-opchain-implementations/2L-option-mips';
 import { buildMIPS } from './4-opchain-implementations/2L-mips';
 
+import type { SharedAnchorStateRegistryOptions } from '../shared/4-opchain-implementations/2M-option-anchor-state-registry';
+import { buildAnchorStateRegistry } from './4-opchain-implementations/2M-anchor-state-registry';
+
 export interface KindedOptions {
   Safe:  { kind: 'Safe' }  & SharedSafeOptions;
   Governor: { kind: 'Governor' } & SharedGovernerOptions;
@@ -131,6 +134,7 @@ export interface KindedOptions {
   DelayedWETH : {kind: 'DelayedWETH' } & SharedDelayedWETHOptions;
   PreimageOracle : {kind: 'PreimageOracle' } & SharedPreimageOracleOptions;
   MIPS : {kind: 'MIPS' } & SharedMIPSOptions;
+  AnchorStateRegistry : {kind: 'AnchorStateRegistry' } & SharedAnchorStateRegistryOptions;
 }
 
 export type GenericOptions = KindedOptions[keyof KindedOptions];
@@ -236,6 +240,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'MIPS':
       return buildMIPS(opts);
+
+    case 'AnchorStateRegistry':
+      return buildAnchorStateRegistry(opts);
 
     default:
       const _: never = opts;
