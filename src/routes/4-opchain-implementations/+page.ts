@@ -23,21 +23,21 @@ export function load() {
     ];
 
     const dropDownLinks : Link[] = [
-        {pathname: '/4-opchain-implementations/#4.2', title: '4.2) Prerequisites', navType: 'scroll' },
-        {pathname: '/4-opchain-implementations/#4.2A', title: '4.2A) L1CrossDomainMessenger', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2B', title: '4.2B) OptimismMintableERC20Factory', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2C', title: '4.2C) SystemConfig', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2D', title: '4.2D) L1StandardBridge', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2E', title: '4.2E) L1ERC721Bridge', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2F', title: '4.2F) OptimismPortal', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2G', title: '4.2G) L2OutputOracle', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2H', title: '4.2H) OptimismPortal2', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2I', title: '4.2I) DisputeGameFactory', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2J', title: '4.2J) DelayedWETH', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2K', title: '4.2K) PreimageOracle', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2L', title: '4.2L) MIPS', navType: 'scroll'},
-        {pathname: '/4-opchain-implementations/#4.2M', title: '4.2M) AnchorStateRegistry', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2', title: '4.2 : Prerequisites', navType: 'scroll' },
         {pathname: '/4-opchain-implementations/#all', title: 'Deploy All', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2A', title: 'Part 1 : 4.2A', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2B', title: '4.2B', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2C', title: '4.2C', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2D', title: '4.2D', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2E', title: '4.2E', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2F', title: '4.2F', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2G', title: '4.2G', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2H', title: 'Part 2 : 4.2H', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2I', title: '4.2I', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2J', title: '4.2J', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2K', title: '4.2K', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2L', title: '4.2L', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2M', title: '4.2M', navType: 'scroll'},
     ];
 
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };

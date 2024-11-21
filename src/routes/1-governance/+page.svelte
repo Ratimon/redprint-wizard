@@ -10,6 +10,7 @@
   import {  sanitizeKindGovernance, sanitizeKindStepOneAll, OptionsError } from '$lib/wizard/shared';
 
   import Background from '$lib/ui/background/Background.svelte';
+  import QuickGuide from '$lib/ui/templates/QuickGuide.svelte';
   import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
   import WizardDouble from '$lib/ui/components/WizardDouble.svelte';
   import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
@@ -49,6 +50,8 @@
 @redprint-openzeppelin/=node_modules/redprint-forge/lib/openzeppelin-4_9_4/contracts
 @redprint-openzeppelin-upgradeable/=node_modules/redprint-forge/lib/openzeppelin-upgradeable-4_9_4/contracts
 @redprint-safe-contracts/=node_modules/redprint-forge/lib/safe-smart-account/contracts
+@redprint-lib-keccak/=node_modules/redprint-forge/lib/lib-keccak/contracts/lib/
+@redprint-solad/=node_modules/redprint-forge/lib/solady/src/
   \`\`\`
   `);
 
@@ -164,6 +167,42 @@ L1_RPC_URL=http://localhost:8545
 \`\`\`
 `);
 
+  export let initialContractStepTab: string | undefined = 'AllStepOne';
+  export let contractStepTab: KindStepOneAll = sanitizeKindStepOneAll(initialContractStepTab);
+
+  let allContractsStepOpts: { [k in KindStepOneAll]?: Required<KindedStepOneAllOptions [k]> } = {};
+
+  let errorsStep: { [k in KindStepOneAll]?: OptionsErrorMessages } = {};
+
+  let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
+
+  $: optsStep = allContractsStepOpts[contractStepTab];
+  $: {
+  if (optsStep) {
+          try {
+              deployContractStep = buildDeployGeneric(optsStep);
+              errorsStep[contractStepTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsStep[contractStepTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepAllModalOpen = false;
+  $: addressStepAllContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "0x41C3c259514f88211c4CA2fd805A93F8F9A57504",
+  "SafeSingleton": "0x0401911641c4781D93c41f9aa8094B171368E6a9",
+  "SystemOwnerSafe": "0x31Ce59Df6F742e1C83f00427F09DCAaF0765DF3b"
+}
+  \`\`\`
+  `);
+
   export let initialContractGovernanceTab: string | undefined = 'Safe';
   export let contractGovernanceTab: KindGovernance = sanitizeKindGovernance(initialContractGovernanceTab);
 
@@ -203,49 +242,14 @@ L1_RPC_URL=http://localhost:8545
   `);
 
 
-  export let initialContractStepTab: string | undefined = 'AllStepOne';
-  export let contractStepTab: KindStepOneAll = sanitizeKindStepOneAll(initialContractStepTab);
-
-  let allContractsStepOpts: { [k in KindStepOneAll]?: Required<KindedStepOneAllOptions [k]> } = {};
-
-  let errorsStep: { [k in KindStepOneAll]?: OptionsErrorMessages } = {};
-
-  let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
-
-  $: optsStep = allContractsStepOpts[contractStepTab];
-  $: {
-  if (optsStep) {
-          try {
-              deployContractStep = buildDeployGeneric(optsStep);
-              errorsStep[contractStepTab] = undefined;
-          } catch (e: unknown) {
-              if (e instanceof OptionsError) {
-                errorsStep[contractStepTab] = e.messages;
-              } else {
-              throw e;
-              }
-          }
-      }
-  }
-
-  let isArtifactStepAllModalOpen = false;
-  $: addressStepAllContent = md.render(`
-  \`\`\`bash
-{
-  "SafeProxyFactory": "0x41C3c259514f88211c4CA2fd805A93F8F9A57504",
-  "SafeSingleton": "0x0401911641c4781D93c41f9aa8094B171368E6a9",
-  "SystemOwnerSafe": "0x31Ce59Df6F742e1C83f00427F09DCAaF0765DF3b"
-}
-  \`\`\`
-  `);
-
-
 </script>
+
+<QuickGuide path1={data.dropDownLinks[0].pathname} path2={data.dropDownLinks[1].pathname} path3={data.dropDownLinks[2].pathname} />
 
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[0].pathname}>
     <div class="divider divider-primary">
-      <h1 class="text-2xl ">1.0 : Prerequisites</h1>
+      <h1 class="btn btn-ghost text-2xl ">1.0 : Prerequisites</h1>
     </div>
   </section>
 </Background>
@@ -353,8 +357,77 @@ L1_RPC_URL=http://localhost:8545
 
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[1].pathname}>
+    <div class="divider divider-primary">
+      <h1 class="btn btn-primary text-2xl ">One-Click Governance Layer Deployment</h1>
+    </div>
+    <div class="divider divider-default">
+    </div>
+    <div class="divider divider-primary">
+      <p class="text-2xs ">Note: This script is not completed yet. It is for one layer only. Check our <a class="bg-accent underline" href="/4-opchain-implementations" target="_blank" rel="noreferrer">final script</a> for full deployment.</p>
+    </div>
+  </section>
+</Background>
+
+<WizardSingle conventionNumber={'000'} initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsStep} deployContract={deployContractStep}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractStepTab === 'StepOneAll'} on:click={() => contractStepTab = 'StepOneAll'}>
+              DeployAll
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractStepTab !== 'StepOneAll'}>
+              <AllControls bind:opts={allContractsStepOpts.StepOneAll} />
+          </div>
+      </div>
+  </div>
+  
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepAllModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepAllModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepAllModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepAllContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardSingle>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[2].pathname}>
     <div class="divider divider-primary ">
-      <p class="text-2xl">1.1 : Deploy Governance Contract</p>
+      <p class="btn btn-accent text-2xl">1.1 : Deploy Governance Contract</p>
     </div>
   </section>
 </Background>
@@ -424,74 +497,6 @@ L1_RPC_URL=http://localhost:8545
 
   </div>
 </WizardDouble>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[2].pathname}>
-    <div class="divider divider-primary">
-      <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
-    </div>
-    <div class="divider divider-primary">
-      <p class="text-2xs ">Note: This script is not completed yet. It is for illustration purpose. Use it at final step.</p>
-    </div>
-  </section>
-</Background>
-
-<WizardSingle conventionNumber={'000'} initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsStep} deployContract={deployContractStep}>
-
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractStepTab === 'StepOneAll'} on:click={() => contractStepTab = 'StepOneAll'}>
-              DeployAll
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
-          <div class:hidden={contractStepTab !== 'StepOneAll'}>
-              <AllControls bind:opts={allContractsStepOpts.StepOneAll} />
-          </div>
-      </div>
-  </div>
-  
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepAllModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepAllModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepAllModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepAllContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</WizardSingle>
 
 <style lang="postcss">
 

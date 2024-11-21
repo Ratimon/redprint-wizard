@@ -43,6 +43,8 @@
     } from '$lib/wizard/shared';
 
     import Background from '$lib/ui/background/Background.svelte';
+    import QuickGuide from '$lib/ui/templates/QuickGuide.svelte';
+    import ScrollStep from '$lib/ui/templates/ScrollStep.svelte';
     import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
     import WizardDouble from '$lib/ui/components/WizardDouble.svelte';
     import OverflowMenu from '$lib/ui/layouts/OverflowMenu.svelte';
@@ -99,6 +101,85 @@
 }
   \`\`\`
   `);
+
+  export let initialContractStepTab: string | undefined = 'StepFourPointOneAll';
+  export let contractStepTab: KindStepFourPointOneAll = sanitizeKindStepFourPointOneAll(initialContractStepTab);
+
+  let allContractsStepOpts: { [k in KindStepFourPointOneAll]?: Required<KindedStepFourPointOneAllOptions [k]> } = {};
+
+  let errorsStep: { [k in KindStepFourPointOneAll]?: OptionsErrorMessages } = {};
+
+  let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
+
+  $: optsStep = allContractsStepOpts[contractStepTab];
+  $: {
+  if (optsStep) {
+          try {
+              deployContractStep = buildDeployGeneric(optsStep);
+              errorsStep[contractStepTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsStep[contractStepTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  export let initialContractStepSubTab: string | undefined = 'StepFourPointOneAllSub';
+  export let contractStepSubTab: KindStepFourPointOneAllSub = sanitizeKindStepFourPointOneAllSub(initialContractStepSubTab);
+
+  let allContractsStepSubOpts: { [k in KindStepFourPointOneAllSub]?: Required<KindedStepFourPointOneAllSubOptions [k]> } = {};
+
+  let errorsStepSub: { [k in KindStepFourPointOneAllSub]?: OptionsErrorMessages } = {};
+
+  let deployContractStepSub: DeployContract = new DeployBuilder('SetupSuperchainScript');
+
+  $: optsStepSub = allContractsStepSubOpts[contractStepSubTab];
+  $: {
+  if (optsStepSub) {
+          try {
+              deployContractStepSub = buildDeployGeneric(optsStepSub);
+              errorsStepSub[contractStepSubTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsStepSub[contractStepSubTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepAllModalOpen = false;
+  $: addressStepAllContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>"
+}
+  \`\`\`
+  `);
+
 
   // **** step 4.1A ***
   export let initialContractOptimismPortalProxyTab: string | undefined = 'OptimismPortalProxy';
@@ -628,31 +709,6 @@
   \`\`\`
   `);
 
-export let initialContractStepTab: string | undefined = 'StepFourPointOneAll';
-export let contractStepTab: KindStepFourPointOneAll = sanitizeKindStepFourPointOneAll(initialContractStepTab);
-
-let allContractsStepOpts: { [k in KindStepFourPointOneAll]?: Required<KindedStepFourPointOneAllOptions [k]> } = {};
-
-let errorsStep: { [k in KindStepFourPointOneAll]?: OptionsErrorMessages } = {};
-
-let deployContractStep: DeployContract = new DeployBuilder('DeployAllScript');
-
-$: optsStep = allContractsStepOpts[contractStepTab];
-$: {
-if (optsStep) {
-        try {
-            deployContractStep = buildDeployGeneric(optsStep);
-            errorsStep[contractStepTab] = undefined;
-        } catch (e: unknown) {
-            if (e instanceof OptionsError) {
-              errorsStep[contractStepTab] = e.messages;
-            } else {
-            throw e;
-            }
-        }
-    }
-}
-
 
 export let initialContractTransferAddressManagerOwnershipTab: string | undefined = 'TransferAddressManagerOwnership';
 export let contractTransferAddressManagerOwnershipTab: KindTransferAddressManagerOwnership = sanitizeKindTransferAddressManagerOwnership(initialContractTransferAddressManagerOwnershipTab);
@@ -679,65 +735,14 @@ if (optsTransferAddressManagerOwnership) {
     }
 }
 
-let isArtifactStepAllModalOpen = false;
-  $: addressStepAllContent = md.render(`
-  \`\`\`bash
-{
-  "SafeProxyFactory": "<ADDRESS_1>",
-  "SafeSingleton": "<ADDRESS_2>",
-  "SystemOwnerSafe": "<ADDRESS_3>",
-  "OptimismPortalProxy": "<ADDRESS_4>",
-  "ProxyAdmin": "<ADDRESS_5>",
-  "SuperchainConfigProxy": "<ADDRESS_6>",
-  "SuperchainConfig": "<ADDRESS_7>",
-  "ProtocolVersionsProxy": "<ADDRESS_8>",
-  "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>",
-  "L1StandardBridgeProxy": "<ADDRESS_12>",
-  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
-  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
-  "L1ERC721BridgeProxy": "<ADDRESS_15>",
-  "DisputeGameFactoryProxy": "<ADDRESS_16>",
-  "L2OutputOracleProxy": "<ADDRESS_17>",
-  "DelayedWETHProxy": "<ADDRESS_18>",
-  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
-  "AnchorStateRegistryProxy": "<ADDRESS_20>"
-}
-  \`\`\`
-  `);
-
-export let initialContractStepSubTab: string | undefined = 'StepFourPointOneAllSub';
-export let contractStepSubTab: KindStepFourPointOneAllSub = sanitizeKindStepFourPointOneAllSub(initialContractStepSubTab);
-
-let allContractsStepSubOpts: { [k in KindStepFourPointOneAllSub]?: Required<KindedStepFourPointOneAllSubOptions [k]> } = {};
-
-let errorsStepSub: { [k in KindStepFourPointOneAllSub]?: OptionsErrorMessages } = {};
-
-let deployContractStepSub: DeployContract = new DeployBuilder('SetupSuperchainScript');
-
-$: optsStepSub = allContractsStepSubOpts[contractStepSubTab];
-$: {
-if (optsStepSub) {
-        try {
-            deployContractStepSub = buildDeployGeneric(optsStepSub);
-            errorsStepSub[contractStepSubTab] = undefined;
-        } catch (e: unknown) {
-            if (e instanceof OptionsError) {
-              errorsStepSub[contractStepSubTab] = e.messages;
-            } else {
-            throw e;
-            }
-        }
-    }
-}
-
 </script>
+
+<QuickGuide path1={data.dropDownLinks[0].pathname} path2={data.dropDownLinks[1].pathname} path3={data.dropDownLinks[2].pathname} />
 
 <Background color="bg-base-100 pt-3 pb-4">
     <section id={data.dropDownLinks[0].pathname}>
       <div class="divider divider-primary">
-        <h1 class="text-2xl ">4.1 : Prerequisites</h1>
+        <h1 class="btn btn-ghost text-2xl ">4.1 : Prerequisites</h1>
       </div>
     </section>
 </Background>
@@ -762,750 +767,20 @@ if (optsStepSub) {
     </p>
 </div>
 
-<Background color="bg-base-100 pt-3 pb-4">
-    <section id={data.dropDownLinks[1].pathname}>
-      <div class="divider divider-primary ">
-        <p class="text-2xl">4.1 : Deploy Proxies Contracts</p>
-      </div>
-    </section>
-    <!-- 401A_DeployOptimismPortalProxy -->
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1A : Deploy OptimismPortalProxy Contract</p>
-    </div>
-</Background>
-
-<WizardDouble conventionNumber={'401A'} initialContractTab={initialContractOptimismPortalProxyTab} contractTab={contractOptimismPortalProxyTab} opts={optsOptimismPortalProxy} contract={contractOptimismPortalProxy} deployContract={deployContractOptimismPortalProxy}>
-    <div slot="menu" >
-        <div class="tab overflow-hidden">
-          <Background color="bg-base-200">
-            <OverflowMenu>
-              <button class:selected={contractOptimismPortalProxyTab === 'OptimismPortalProxy'} on:click={() => contractOptimismPortalProxyTab = 'OptimismPortalProxy'}>
-                OptimismPortalProxy
-              </button>      
-            </OverflowMenu>
-          </Background>
-        </div>
-    </div> 
-  
-    <div slot="control" >
-         <!-- w-64 -->
-        <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-            <div class:hidden={contractOptimismPortalProxyTab !== 'OptimismPortalProxy'}>
-                <OptimismPortalProxyControls bind:opts={allContractsOptimismPortalProxyOpts.OptimismPortalProxy} />
-            </div>
-        </div>
-    </div> 
-  
-    <div slot="artifact" >
-  
-      <div class="flex flex-col items-center">
-        <p class="m-4 font-semibold">
-          After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-        </p>
-      
-        <button class="btn modal-button" on:click={()=>isArtifactStepOneAModalOpen = true}>See the artifact's content example</button>
-      
-        <div class="modal" class:modal-open={isArtifactStepOneAModalOpen}>
-          <div class="modal-box w-11/12 max-w-5xl">
-      
-            <form method="dialog">
-              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneAModalOpen = false} >✕</button>
-            </form>
-      
-            <h3 class="font-bold text-lg">Example!</h3>
-            <p class="py-4"> Your saved address will be different. </p>
-            <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-            <div class="output flex flex-col grow overflow-auto">
-              <code class="hljs grow overflow-auto p-4">
-                {@html md.render(addressStepOneAContent)}
-              </code>
-            </div>
-            <p class="py-4">click on ✕ button to close</p>
-      
-          </div>
-        </div>
-      </div>
-  
-    </div>
-</WizardDouble>
-
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[2].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1B : Deploy SystemConfigProxy Contract</p>
-    </div>
-  </section>
-</Background>
-
-<WizardDouble conventionNumber={'401B'} initialContractTab={initialContractSystemConfigProxyTab} contractTab={contractSystemConfigProxyTab} opts={optsSystemConfigProxy} contract={contractSystemConfigProxy} deployContract={deployContractSystemConfigProxy}>
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractSystemConfigProxyTab === 'SystemConfigProxy'} on:click={() => contractSystemConfigProxyTab = 'SystemConfigProxy'}>
-              SystemConfigProxy
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-          <div class:hidden={contractSystemConfigProxyTab !== 'SystemConfigProxy'}>
-              <SystemConfigProxyControls bind:opts={allContractsSystemConfigProxyOpts.SystemConfigProxy} />
-          </div>
-      </div>
-  </div> 
-
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneBModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepOneBModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneBModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneBContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</WizardDouble>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[3].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1C : Deploy L1StandardBridgeProxy Contract</p>
-    </div>
-  </section>
-
-</Background>
-
-<WizardDouble conventionNumber={'401C'} initialContractTab={initialContractL1StandardBridgeProxyTab} contractTab={contractL1StandardBridgeProxyTab} opts={optsL1StandardBridgeProxy} contract={contractL1StandardBridgeProxy} deployContract={deployContractL1StandardBridgeProxy}>
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractL1StandardBridgeProxyTab === 'L1StandardBridgeProxy'} on:click={() => contractL1StandardBridgeProxyTab = 'L1StandardBridgeProxy'}>
-              L1StandardBridgeProxy
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-          <div class:hidden={contractL1StandardBridgeProxyTab !== 'L1StandardBridgeProxy'}>
-              <L1StandardBridgeProxyControls bind:opts={allContractsL1StandardBridgeProxyOpts.L1StandardBridgeProxy} />
-          </div>
-      </div>
-  </div> 
-
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneCModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepOneCModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneCModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneCContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</WizardDouble>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[4].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1D : Deploy L1CrossDomainMessengerProxy Contract</p>
-    </div>
-  </section>
-</Background>
-
-<WizardDouble conventionNumber={'401D'} initialContractTab={initialContractL1CrossDomainMessengerProxyTab} contractTab={contractL1CrossDomainMessengerProxyTab} opts={optsL1CrossDomainMessengerProxy} contract={contractL1CrossDomainMessengerProxy} deployContract={deployContractL1CrossDomainMessengerProxy}>
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractL1CrossDomainMessengerProxyTab === 'L1CrossDomainMessengerProxy'} on:click={() => contractL1CrossDomainMessengerProxyTab = 'L1CrossDomainMessengerProxy'}>
-              L1CrossDomainMessengerProxy
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-          <div class:hidden={contractL1CrossDomainMessengerProxyTab !== 'L1CrossDomainMessengerProxy'}>
-              <L1CrossDomainMessengerProxyControls bind:opts={allContractsL1CrossDomainMessengerProxyOpts.L1CrossDomainMessengerProxy} />
-          </div>
-      </div>
-  </div> 
-
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneDModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepOneDModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneDModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneDContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</WizardDouble>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[5].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1E : Deploy OptimismMintableERC20FactoryProxy Contract</p>
-    </div>
-  </section>
-</Background>
-
-<WizardDouble conventionNumber={'401E'} initialContractTab={initialContractOptimismMintableERC20FactoryProxyTab} contractTab={contractOptimismMintableERC20FactoryProxyTab} opts={optsOptimismMintableERC20FactoryProxy} contract={contractOptimismMintableERC20FactoryProxy} deployContract={deployContractOptimismMintableERC20FactoryProxy}>
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractOptimismMintableERC20FactoryProxyTab === 'OptimismMintableERC20FactoryProxy'} on:click={() => contractOptimismMintableERC20FactoryProxyTab = 'OptimismMintableERC20FactoryProxy'}>
-              OptimismMintableERC20FactoryProxy
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-          <div class:hidden={contractOptimismMintableERC20FactoryProxyTab !== 'OptimismMintableERC20FactoryProxy'}>
-              <OptimismMintableERC20FactoryProxyControls bind:opts={allContractsOptimismMintableERC20FactoryProxyOpts.OptimismMintableERC20FactoryProxy} />
-          </div>
-      </div>
-  </div> 
-
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneEModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepOneEModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneEModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneEContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</WizardDouble>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[6].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1F : Deploy L1ERC721BridgeProxy Contract</p>
-  </div>
-  </section>
-</Background>
-
-<WizardDouble conventionNumber={'401F'} initialContractTab={initialContractL1ERC721BridgeProxyTab} contractTab={contractL1ERC721BridgeProxyTab} opts={optsL1ERC721BridgeProxy} contract={contractL1ERC721BridgeProxy} deployContract={deployContractL1ERC721BridgeProxy}>
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractL1ERC721BridgeProxyTab === 'L1ERC721BridgeProxy'} on:click={() => contractL1ERC721BridgeProxyTab = 'L1ERC721BridgeProxy'}>
-              L1ERC721BridgeProxy
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-          <div class:hidden={contractL1ERC721BridgeProxyTab !== 'L1ERC721BridgeProxy'}>
-              <L1ERC721BridgeProxyControls bind:opts={allContractsL1ERC721BridgeProxyOpts.L1ERC721BridgeProxy} />
-          </div>
-      </div>
-  </div> 
-
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneFModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepOneFModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneFModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneFContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</WizardDouble>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[7].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1G : Deploy DisputeGameFactoryProxy Contract</p>
-    </div>
-  </section>
-</Background>
-
-<WizardDouble conventionNumber={'401G'} initialContractTab={initialContractDisputeGameFactoryProxyTab} contractTab={contractDisputeGameFactoryProxyTab} opts={optsDisputeGameFactoryProxy} contract={contractDisputeGameFactoryProxy} deployContract={deployContractDisputeGameFactoryProxy}>
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractDisputeGameFactoryProxyTab === 'DisputeGameFactoryProxy'} on:click={() => contractDisputeGameFactoryProxyTab = 'DisputeGameFactoryProxy'}>
-              DisputeGameFactoryProxy
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-          <div class:hidden={contractDisputeGameFactoryProxyTab !== 'DisputeGameFactoryProxy'}>
-              <DisputeGameFactoryProxyControls bind:opts={allContractsDisputeGameFactoryProxyOpts.DisputeGameFactoryProxy} />
-          </div>
-      </div>
-  </div> 
-
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneGModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepOneGModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneGModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneGContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</WizardDouble>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[8].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1H : Deploy L2OutputOracleProxy Contract</p>
-    </div>
-  </section>
-</Background>
-
-<WizardDouble conventionNumber={'401H'} initialContractTab={initialContractL2OutputOracleProxyTab} contractTab={contractL2OutputOracleProxyTab} opts={optsL2OutputOracleProxy} contract={contractL2OutputOracleProxy} deployContract={deployContractL2OutputOracleProxy}>
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractL2OutputOracleProxyTab === 'L2OutputOracleProxy'} on:click={() => contractL2OutputOracleProxyTab = 'L2OutputOracleProxy'}>
-              L2OutputOracleProxy
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-          <div class:hidden={contractL2OutputOracleProxyTab !== 'L2OutputOracleProxy'}>
-              <L2OutputOracleProxyControls bind:opts={allContractsL2OutputOracleProxyOpts.L2OutputOracleProxy} />
-          </div>
-      </div>
-  </div> 
-
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneHModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepOneHModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneHModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneHContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</WizardDouble>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[9].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1I : Deploy DelayedWETHProxy Contract</p>
-    </div>
-  </section>
-</Background>
-
-<WizardDouble conventionNumber={'401I'} initialContractTab={initialContractDelayedWETHProxyTab} contractTab={contractDelayedWETHProxyTab} opts={optsDelayedWETHProxy} contract={contractDelayedWETHProxy} deployContract={deployContractDelayedWETHProxy}>
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractDelayedWETHProxyTab === 'DelayedWETHProxy'} on:click={() => contractDelayedWETHProxyTab = 'DelayedWETHProxy'}>
-              DelayedWETHProxy
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-          <div class:hidden={contractDelayedWETHProxyTab !== 'DelayedWETHProxy'}>
-              <DelayedWETHProxyControls bind:opts={allContractsDelayedWETHProxyOpts.DelayedWETHProxy} />
-          </div>
-      </div>
-  </div> 
-
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneIModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepOneIModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneIModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneIContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</WizardDouble>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[10].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1J : Deploy PermissionedDelayedWETHProxy Contract</p>
-    </div>
-  </section>
-</Background>
-
-<WizardDouble conventionNumber={'401J'} initialContractTab={initialContractPermissionedDelayedWETHProxyTab} contractTab={contractPermissionedDelayedWETHProxyTab} opts={optsPermissionedDelayedWETHProxy} contract={contractPermissionedDelayedWETHProxy} deployContract={deployContractPermissionedDelayedWETHProxy}>
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractPermissionedDelayedWETHProxyTab === 'PermissionedDelayedWETHProxy'} on:click={() => contractPermissionedDelayedWETHProxyTab = 'PermissionedDelayedWETHProxy'}>
-              PermissionedDelayedWETHProxy
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-          <div class:hidden={contractPermissionedDelayedWETHProxyTab !== 'PermissionedDelayedWETHProxy'}>
-              <PermissionedDelayedWETHProxyControls bind:opts={allContractsPermissionedDelayedWETHProxyOpts.PermissionedDelayedWETHProxy} />
-          </div>
-      </div>
-  </div> 
-
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneJModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepOneJModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneJModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneJContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</WizardDouble>
-
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[11].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1K : Deploy AnchorStateRegistryProxy Contract</p>
-    </div>
-  </section>
-</Background>
-
-<WizardDouble conventionNumber={'401K'} initialContractTab={initialContractAnchorStateRegistryProxyTab} contractTab={contractAnchorStateRegistryProxyTab} opts={optsAnchorStateRegistryProxy} contract={contractAnchorStateRegistryProxy} deployContract={deployContractAnchorStateRegistryProxy}>
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractAnchorStateRegistryProxyTab === 'AnchorStateRegistryProxy'} on:click={() => contractAnchorStateRegistryProxyTab = 'AnchorStateRegistryProxy'}>
-              AnchorStateRegistryProxy
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
-          <div class:hidden={contractAnchorStateRegistryProxyTab !== 'AnchorStateRegistryProxy'}>
-              <AnchorStateRegistryProxyControls bind:opts={allContractsAnchorStateRegistryProxyOpts.AnchorStateRegistryProxy} />
-          </div>
-      </div>
-  </div> 
-
-  <div slot="artifact" >
-
-    <div class="flex flex-col items-center">
-      <p class="m-4 font-semibold">
-        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
-      </p>
-    
-      <button class="btn modal-button" on:click={()=>isArtifactStepOneKModalOpen = true}>See the artifact's content example</button>
-    
-      <div class="modal" class:modal-open={isArtifactStepOneKModalOpen}>
-        <div class="modal-box w-11/12 max-w-5xl">
-    
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneKModalOpen = false} >✕</button>
-          </form>
-    
-          <h3 class="font-bold text-lg">Example!</h3>
-          <p class="py-4"> Your saved address will be different. </p>
-          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
-          <div class="output flex flex-col grow overflow-auto">
-            <code class="hljs grow overflow-auto p-4">
-              {@html md.render(addressStepOneKContent)}
-            </code>
-          </div>
-          <p class="py-4">click on ✕ button to close</p>
-    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</WizardDouble>
-
-<!-- 401L_TransferAddressManagerOwnership.s.sol -->
-<Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[12].pathname}>
-    <div class="divider divider-primary ">
-      <p class="text-xl">4.1L : Transfer AddressManager Ownership</p>
-    </div>
-  </section>
-</Background>
-
-<WizardSingle isShowingCommand={true} conventionNumber={'401L'} initialContractTab={initialContractTransferAddressManagerOwnershipTab} contractTab={contractTransferAddressManagerOwnershipTab} opts={optsTransferAddressManagerOwnership} deployContract={deployContractTransferAddressManagerOwnership}>
-
-  <div slot="menu" >
-      <div class="tab overflow-hidden">
-        <Background color="bg-base-200">
-          <OverflowMenu>
-            <button class:selected={contractTransferAddressManagerOwnershipTab === 'TransferAddressManagerOwnership'} on:click={() => contractTransferAddressManagerOwnershipTab = 'TransferAddressManagerOwnership'}>
-              TransferAddressManagerOwnership
-            </button>      
-          </OverflowMenu>
-        </Background>
-      </div>
-  </div> 
-
-  <div slot="control" >
-       <!-- w-64 -->
-      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
-          <div class:hidden={contractTransferAddressManagerOwnershipTab !== 'TransferAddressManagerOwnership'}>
-              <TransferAddressManagerOwnershipControls bind:opts={allContractsTransferAddressManagerOwnershipOpts.TransferAddressManagerOwnership} />
-          </div>
-      </div>
-  </div>
-  
-</WizardSingle>
-
 <!-- 000_DeployAll.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[13].pathname}>
+  <section id={data.dropDownLinks[1].pathname}>
     <div class="divider divider-primary">
-      <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
+      <h1 class="btn btn-primary text-2xl ">One-Click L2 Opchain (Proxies) Deployment</h1>
+    </div>
+    <div class="divider divider-default">
     </div>
     <div class="divider divider-primary">
-      <p class="text-2xs ">Note: This script is not completed yet. It is for illustration purpose. Use it at final step.</p>
+      <p class="text-2xs ">Note: This script is not completed yet. It is for one layer only. Check our <a class="bg-accent underline" href="/4-opchain-implementations" target="_blank" rel="noreferrer">final script</a> for full deployment.</p>
     </div>
   </section>
 </Background>
+
 
 <WizardSingle isShowingCommand={true} conventionNumber={'000'} initialContractTab={initialContractStepTab} contractTab={contractStepTab} opts={optsStep} deployContract={deployContractStep}>
 
@@ -1585,6 +860,768 @@ if (optsStepSub) {
       </div>
     </div>
 
+  </div>
+  
+</WizardSingle>
+
+ <!-- 401A_DeployOptimismPortalProxy -->
+<Background color="bg-base-100 pt-3 pb-4">
+    <section id={data.dropDownLinks[2].pathname}>
+      <div class="divider divider-primary ">
+        <p class="btn btn-accent text-2xl">4.1 : Deploy Proxies Contracts</p>
+      </div>
+    </section>
+    <div class="divider divider-default">
+    </div>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1A : Deploy OptimismPortalProxy Contract</p>
+    </div>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[2].title} />
+
+<WizardDouble conventionNumber={'401A'} initialContractTab={initialContractOptimismPortalProxyTab} contractTab={contractOptimismPortalProxyTab} opts={optsOptimismPortalProxy} contract={contractOptimismPortalProxy} deployContract={deployContractOptimismPortalProxy}>
+    <div slot="menu" >
+        <div class="tab overflow-hidden">
+          <Background color="bg-base-200">
+            <OverflowMenu>
+              <button class:selected={contractOptimismPortalProxyTab === 'OptimismPortalProxy'} on:click={() => contractOptimismPortalProxyTab = 'OptimismPortalProxy'}>
+                OptimismPortalProxy
+              </button>      
+            </OverflowMenu>
+          </Background>
+        </div>
+    </div> 
+  
+    <div slot="control" >
+         <!-- w-64 -->
+        <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+            <div class:hidden={contractOptimismPortalProxyTab !== 'OptimismPortalProxy'}>
+                <OptimismPortalProxyControls bind:opts={allContractsOptimismPortalProxyOpts.OptimismPortalProxy} />
+            </div>
+        </div>
+    </div> 
+  
+    <div slot="artifact" >
+  
+      <div class="flex flex-col items-center">
+        <p class="m-4 font-semibold">
+          After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+        </p>
+      
+        <button class="btn modal-button" on:click={()=>isArtifactStepOneAModalOpen = true}>See the artifact's content example</button>
+      
+        <div class="modal" class:modal-open={isArtifactStepOneAModalOpen}>
+          <div class="modal-box w-11/12 max-w-5xl">
+      
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneAModalOpen = false} >✕</button>
+            </form>
+      
+            <h3 class="font-bold text-lg">Example!</h3>
+            <p class="py-4"> Your saved address will be different. </p>
+            <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+            <div class="output flex flex-col grow overflow-auto">
+              <code class="hljs grow overflow-auto p-4">
+                {@html md.render(addressStepOneAContent)}
+              </code>
+            </div>
+            <p class="py-4">click on ✕ button to close</p>
+      
+          </div>
+        </div>
+      </div>
+  
+    </div>
+</WizardDouble>
+
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[3].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1B : Deploy SystemConfigProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[3].title} />
+
+<WizardDouble conventionNumber={'401B'} initialContractTab={initialContractSystemConfigProxyTab} contractTab={contractSystemConfigProxyTab} opts={optsSystemConfigProxy} contract={contractSystemConfigProxy} deployContract={deployContractSystemConfigProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractSystemConfigProxyTab === 'SystemConfigProxy'} on:click={() => contractSystemConfigProxyTab = 'SystemConfigProxy'}>
+              SystemConfigProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractSystemConfigProxyTab !== 'SystemConfigProxy'}>
+              <SystemConfigProxyControls bind:opts={allContractsSystemConfigProxyOpts.SystemConfigProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneBModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneBModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneBModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneBContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[4].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1C : Deploy L1StandardBridgeProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[4].title} />
+
+
+<WizardDouble conventionNumber={'401C'} initialContractTab={initialContractL1StandardBridgeProxyTab} contractTab={contractL1StandardBridgeProxyTab} opts={optsL1StandardBridgeProxy} contract={contractL1StandardBridgeProxy} deployContract={deployContractL1StandardBridgeProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractL1StandardBridgeProxyTab === 'L1StandardBridgeProxy'} on:click={() => contractL1StandardBridgeProxyTab = 'L1StandardBridgeProxy'}>
+              L1StandardBridgeProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractL1StandardBridgeProxyTab !== 'L1StandardBridgeProxy'}>
+              <L1StandardBridgeProxyControls bind:opts={allContractsL1StandardBridgeProxyOpts.L1StandardBridgeProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneCModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneCModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneCModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneCContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[5].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1D : Deploy L1CrossDomainMessengerProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[5].title} />
+
+<WizardDouble conventionNumber={'401D'} initialContractTab={initialContractL1CrossDomainMessengerProxyTab} contractTab={contractL1CrossDomainMessengerProxyTab} opts={optsL1CrossDomainMessengerProxy} contract={contractL1CrossDomainMessengerProxy} deployContract={deployContractL1CrossDomainMessengerProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractL1CrossDomainMessengerProxyTab === 'L1CrossDomainMessengerProxy'} on:click={() => contractL1CrossDomainMessengerProxyTab = 'L1CrossDomainMessengerProxy'}>
+              L1CrossDomainMessengerProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractL1CrossDomainMessengerProxyTab !== 'L1CrossDomainMessengerProxy'}>
+              <L1CrossDomainMessengerProxyControls bind:opts={allContractsL1CrossDomainMessengerProxyOpts.L1CrossDomainMessengerProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneDModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneDModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneDModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneDContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[6].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1E : Deploy OptimismMintableERC20FactoryProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[6].title} />
+
+<WizardDouble conventionNumber={'401E'} initialContractTab={initialContractOptimismMintableERC20FactoryProxyTab} contractTab={contractOptimismMintableERC20FactoryProxyTab} opts={optsOptimismMintableERC20FactoryProxy} contract={contractOptimismMintableERC20FactoryProxy} deployContract={deployContractOptimismMintableERC20FactoryProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractOptimismMintableERC20FactoryProxyTab === 'OptimismMintableERC20FactoryProxy'} on:click={() => contractOptimismMintableERC20FactoryProxyTab = 'OptimismMintableERC20FactoryProxy'}>
+              OptimismMintableERC20FactoryProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractOptimismMintableERC20FactoryProxyTab !== 'OptimismMintableERC20FactoryProxy'}>
+              <OptimismMintableERC20FactoryProxyControls bind:opts={allContractsOptimismMintableERC20FactoryProxyOpts.OptimismMintableERC20FactoryProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneEModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneEModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneEModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneEContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[7].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1F : Deploy L1ERC721BridgeProxy Contract</p>
+  </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[7].title} />
+
+<WizardDouble conventionNumber={'401F'} initialContractTab={initialContractL1ERC721BridgeProxyTab} contractTab={contractL1ERC721BridgeProxyTab} opts={optsL1ERC721BridgeProxy} contract={contractL1ERC721BridgeProxy} deployContract={deployContractL1ERC721BridgeProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractL1ERC721BridgeProxyTab === 'L1ERC721BridgeProxy'} on:click={() => contractL1ERC721BridgeProxyTab = 'L1ERC721BridgeProxy'}>
+              L1ERC721BridgeProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractL1ERC721BridgeProxyTab !== 'L1ERC721BridgeProxy'}>
+              <L1ERC721BridgeProxyControls bind:opts={allContractsL1ERC721BridgeProxyOpts.L1ERC721BridgeProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneFModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneFModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneFModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneFContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[8].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1G : Deploy DisputeGameFactoryProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[8].title} />
+
+<WizardDouble conventionNumber={'401G'} initialContractTab={initialContractDisputeGameFactoryProxyTab} contractTab={contractDisputeGameFactoryProxyTab} opts={optsDisputeGameFactoryProxy} contract={contractDisputeGameFactoryProxy} deployContract={deployContractDisputeGameFactoryProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractDisputeGameFactoryProxyTab === 'DisputeGameFactoryProxy'} on:click={() => contractDisputeGameFactoryProxyTab = 'DisputeGameFactoryProxy'}>
+              DisputeGameFactoryProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractDisputeGameFactoryProxyTab !== 'DisputeGameFactoryProxy'}>
+              <DisputeGameFactoryProxyControls bind:opts={allContractsDisputeGameFactoryProxyOpts.DisputeGameFactoryProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneGModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneGModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneGModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneGContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[9].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1H : Deploy L2OutputOracleProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[9].title} />
+
+
+<WizardDouble conventionNumber={'401H'} initialContractTab={initialContractL2OutputOracleProxyTab} contractTab={contractL2OutputOracleProxyTab} opts={optsL2OutputOracleProxy} contract={contractL2OutputOracleProxy} deployContract={deployContractL2OutputOracleProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractL2OutputOracleProxyTab === 'L2OutputOracleProxy'} on:click={() => contractL2OutputOracleProxyTab = 'L2OutputOracleProxy'}>
+              L2OutputOracleProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractL2OutputOracleProxyTab !== 'L2OutputOracleProxy'}>
+              <L2OutputOracleProxyControls bind:opts={allContractsL2OutputOracleProxyOpts.L2OutputOracleProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneHModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneHModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneHModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneHContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[10].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1I : Deploy DelayedWETHProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[10].title} />
+
+<WizardDouble conventionNumber={'401I'} initialContractTab={initialContractDelayedWETHProxyTab} contractTab={contractDelayedWETHProxyTab} opts={optsDelayedWETHProxy} contract={contractDelayedWETHProxy} deployContract={deployContractDelayedWETHProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractDelayedWETHProxyTab === 'DelayedWETHProxy'} on:click={() => contractDelayedWETHProxyTab = 'DelayedWETHProxy'}>
+              DelayedWETHProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractDelayedWETHProxyTab !== 'DelayedWETHProxy'}>
+              <DelayedWETHProxyControls bind:opts={allContractsDelayedWETHProxyOpts.DelayedWETHProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneIModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneIModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneIModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneIContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[11].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1J : Deploy PermissionedDelayedWETHProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[11].title} />
+
+<WizardDouble conventionNumber={'401J'} initialContractTab={initialContractPermissionedDelayedWETHProxyTab} contractTab={contractPermissionedDelayedWETHProxyTab} opts={optsPermissionedDelayedWETHProxy} contract={contractPermissionedDelayedWETHProxy} deployContract={deployContractPermissionedDelayedWETHProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractPermissionedDelayedWETHProxyTab === 'PermissionedDelayedWETHProxy'} on:click={() => contractPermissionedDelayedWETHProxyTab = 'PermissionedDelayedWETHProxy'}>
+              PermissionedDelayedWETHProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractPermissionedDelayedWETHProxyTab !== 'PermissionedDelayedWETHProxy'}>
+              <PermissionedDelayedWETHProxyControls bind:opts={allContractsPermissionedDelayedWETHProxyOpts.PermissionedDelayedWETHProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneJModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneJModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneJModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneJContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[12].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1K : Deploy AnchorStateRegistryProxy Contract</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[12].title} />
+
+
+<WizardDouble conventionNumber={'401K'} initialContractTab={initialContractAnchorStateRegistryProxyTab} contractTab={contractAnchorStateRegistryProxyTab} opts={optsAnchorStateRegistryProxy} contract={contractAnchorStateRegistryProxy} deployContract={deployContractAnchorStateRegistryProxy}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractAnchorStateRegistryProxyTab === 'AnchorStateRegistryProxy'} on:click={() => contractAnchorStateRegistryProxyTab = 'AnchorStateRegistryProxy'}>
+              AnchorStateRegistryProxy
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractAnchorStateRegistryProxyTab !== 'AnchorStateRegistryProxy'}>
+              <AnchorStateRegistryProxyControls bind:opts={allContractsAnchorStateRegistryProxyOpts.AnchorStateRegistryProxy} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneKModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneKModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneKModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneKContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<!-- 401L_TransferAddressManagerOwnership.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[13].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1L : Transfer AddressManager Ownership</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[13].title} />
+
+
+<WizardSingle isShowingCommand={true} conventionNumber={'401L'} initialContractTab={initialContractTransferAddressManagerOwnershipTab} contractTab={contractTransferAddressManagerOwnershipTab} opts={optsTransferAddressManagerOwnership} deployContract={deployContractTransferAddressManagerOwnership}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractTransferAddressManagerOwnershipTab === 'TransferAddressManagerOwnership'} on:click={() => contractTransferAddressManagerOwnershipTab = 'TransferAddressManagerOwnership'}>
+              TransferAddressManagerOwnership
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractTransferAddressManagerOwnershipTab !== 'TransferAddressManagerOwnership'}>
+              <TransferAddressManagerOwnershipControls bind:opts={allContractsTransferAddressManagerOwnershipOpts.TransferAddressManagerOwnership} />
+          </div>
+      </div>
   </div>
   
 </WizardSingle>

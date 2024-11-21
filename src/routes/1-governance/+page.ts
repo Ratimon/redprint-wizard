@@ -22,9 +22,9 @@ export function load() {
     ];
 
     const dropDownLinks : Link[] = [
-        {pathname: '/1-governance/#1.0', title: '1.0) Prerequisites', navType: 'scroll' },
-        {pathname: '/1-governance/#1.1', title: '1.1) Governance', navType: 'scroll'},
+        {pathname: '/1-governance/#1.0', title: '1.0 : Prerequisites', navType: 'scroll' },
         {pathname: '/1-governance/#all', title: 'Deploy All', navType: 'scroll'},
+        {pathname: '/1-governance/#1.1', title: '1.1 : Governance', navType: 'scroll'},
     ];
 
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };

@@ -47,10 +47,9 @@
         [
             "Low-cost data availability",
             "DA challange on L1",
-            "Custom Gas Token"
         ],
         script: '400_SetupOPchain',
-        highlight : "L2 's Smart Contract Layer",
+        highlight : "Fault Proofs 's Smart Contract",
         iconName: "simple-icons:optimism",
     },
     ] as FeatureListItem[];
@@ -88,7 +87,7 @@
                     SOLUTIONS
                 </div>
                 <h2 class="font-extrabold text-3xl lg:text-5xl tracking-tight mb-8">
-                  Abstract your app chain, visualize logic, and supercharge your development power
+                  Abstract your chain, visualize logic, and supercharge your development power
                 </h2>
                 
                 <div class="text-base-content/80 leading-relaxed mb-8 lg:text-lg">
