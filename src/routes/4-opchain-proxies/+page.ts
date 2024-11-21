@@ -36,6 +36,7 @@ export function load() {
         {pathname: '/4-opchain-proxies/#4.1I', title: '4.1I) DelayedWETHProxy', navType: 'scroll'},
         {pathname: '/4-opchain-proxies/#4.1J', title: '4.1J) PermissionedDelayedWETHProxy', navType: 'scroll'},
         {pathname: '/4-opchain-proxies/#4.1K', title: '4.1K) AnchorStateRegistryProxy', navType: 'scroll'},
+        {pathname: '/4-opchain-proxies/#4.1L', title: '4.1L) TransferAddressManagerOwnership', navType: 'scroll'},
         {pathname: '/4-opchain-proxies/#all', title: 'Deploy All', navType: 'scroll'},
     ];
 

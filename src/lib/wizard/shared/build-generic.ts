@@ -23,6 +23,7 @@ import type { SharedL2OutputOracleProxyOptions } from './4-opchain-proxies/1H-op
 import type { SharedDelayedWETHProxyOptions } from './4-opchain-proxies/1I-option-delayed-WETH-proxy';
 import type { SharedPermissionedDelayedWETHProxyOptions } from './4-opchain-proxies/1J-option-permissioned-delayed-WETH-proxy';
 import type { SharedAnchorStateRegistryProxyOptions } from './4-opchain-proxies/1K-option-anchor-state-registry-proxy';
+import type { SharedTransferAddressManagerOwnershipOptions } from './4-opchain-proxies/1L-option-transfer-address-manager-ownership';
 import type { SharedStepFourPointOneAllSubOptions } from './4-opchain-proxies/option-all-sub';
 import type { SharedStepFourPointOneAllOptions } from './4-opchain-proxies/option-all';
 
@@ -70,6 +71,7 @@ export interface KindedOptions {
   DelayedWETHProxy: { kind: 'DelayedWETHProxy' } & SharedDelayedWETHProxyOptions;
   PermissionedDelayedWETHProxy: { kind: 'PermissionedDelayedWETHProxy' } & SharedPermissionedDelayedWETHProxyOptions;
   AnchorStateRegistryProxy: { kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
+  TransferAddressManagerOwnership: { kind: 'TransferAddressManagerOwnership' } & SharedTransferAddressManagerOwnershipOptions;
   StepFourPointOneAllSub: { kind: 'StepFourPointOneAllSub' } & SharedStepFourPointOneAllSubOptions;
   StepFourPointOneAll: { kind: 'StepFourPointOneAll' } & SharedStepFourPointOneAllOptions;
 
@@ -218,6 +220,12 @@ export interface KindedAnchorStateRegistryProxyOptions {
   AnchorStateRegistryProxy: { kind: 'AnchorStateRegistryProxy' } & SharedAnchorStateRegistryProxyOptions;
 }
 export type GenericAnchorStateRegistryProxyOptions = KindedAnchorStateRegistryProxyOptions[keyof KindedAnchorStateRegistryProxyOptions];
+
+
+export interface KindedTransferAddressManagerOwnershipOptions {
+  TransferAddressManagerOwnership: { kind: 'TransferAddressManagerOwnership' } & SharedTransferAddressManagerOwnershipOptions;
+}
+export type GenericTransferAddressManagerOwnershipOptions = KindedTransferAddressManagerOwnershipOptions[keyof KindedTransferAddressManagerOwnershipOptions];
 
 
 export interface KindedStepFourPointOneAllSubOptions {

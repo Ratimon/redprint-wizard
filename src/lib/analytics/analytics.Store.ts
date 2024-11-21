@@ -27,6 +27,7 @@ export type Action =
                     'copy-contract-DelayedWETHProxy'| 'copy-script-DelayedWETHProxy' | 'download-contract-DelayedWETHProxy' | 'download-script-DelayedWETHProxy' |
                     'copy-contract-PermissionedDelayedWETHProxy'| 'copy-script-PermissionedDelayedWETHProxy' | 'download-contract-PermissionedDelayedWETHProxy' | 'download-script-PermissionedDelayedWETHProxy' |
                     'copy-contract-AnchorStateRegistryProxy'| 'copy-script-AnchorStateRegistryProxy' | 'download-contract-AnchorStateRegistryProxy' | 'download-script-AnchorStateRegistryProxy' |
+                    'copy-contract-TransferAddressManagerOwnership'| 'copy-script-TransferAddressManagerOwnership' | 'download-contract-TransferAddressManagerOwnership' | 'download-script-TransferAddressManagerOwnership' |
                     'copy-contract-StepFourPointOneAllSub'| 'copy-script-StepFourPointOneAllSub' | 'download-contract-StepFourPointOneAllSub' | 'download-script-StepFourPointOneAllSub' |
                     'copy-contract-StepFourPointOneAll'| 'copy-script-StepFourPointOneAll' | 'download-contract-StepFourPointOneAll' | 'download-script-StepFourPointOneAll' |
 

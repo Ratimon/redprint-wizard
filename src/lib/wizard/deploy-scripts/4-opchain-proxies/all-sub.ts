@@ -32,7 +32,7 @@ export function buildDeployStepFourPointOneAllSub(opts: SharedStepFourPointOneAl
   c.addFunctionCode(`deployerProcedue = getDeployer();
         deployerProcedue.setAutoSave(true);`, fn);
   
-  setOpDeployment(c, fn);
+  setOpProxiesDeployment(c, fn);
 
   c.addFunctionCode(`
         console.log("OptimismPortalProxy at: ", deployerProcedue.getAddress("OptimismPortalProxy"));
@@ -98,7 +98,7 @@ function addBase(c: DeployBuilder) {
 
 }
 
-function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
+function setOpProxiesDeployment(c: DeployBuilder, fn: BaseFunction) {
 
   const DeployOptimismPortalProxyScript = {
     name: 'DeployOptimismPortalProxyScript',
@@ -166,6 +166,12 @@ function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
   };
   c.addModule(DeployAnchorStateRegistryProxyScript);
 
+  const TransferAddressManagerOwnershipScript = {
+    name: 'TransferAddressManagerOwnershipScript',
+    path: '@script/401L_TransferAddressManagerOwnershipScript.s.sol',
+  };
+  c.addModule(TransferAddressManagerOwnershipScript);
+
   c.addFunctionCode(`
         DeployOptimismPortalProxyScript optimismPortalProxyDeployments = new DeployOptimismPortalProxyScript();
         DeploySystemConfigProxyScript systemConfigProxyDeployments = new DeploySystemConfigProxyScript();
@@ -178,6 +184,7 @@ function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
         DeployDelayedWETHProxyScript delayedWETHProxyDeployments = new DeployDelayedWETHProxyScript();
         DeployPermissionedDelayedWETHProxyScript permissionedDelayedWETHProxyDeployments = new DeployPermissionedDelayedWETHProxyScript();
         DeployAnchorStateRegistryProxyScript anchorStateRegistryProxyDeployments = new DeployAnchorStateRegistryProxyScript();
+        TransferAddressManagerOwnershipScript transferAddressManagerOwnership = new TransferAddressManagerOwnershipScript();
 
         optimismPortalProxyDeployments.deploy();
         systemConfigProxyDeployments.deploy();
@@ -190,31 +197,7 @@ function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
         delayedWETHProxyDeployments.deploy();
         permissionedDelayedWETHProxyDeployments.deploy();
         anchorStateRegistryProxyDeployments.deploy();
-        transferAddressManagerOwnership();`, fn);
-
-      c.addFunctionCode(`
-        console.log("Transferring AddressManager ownership to ProxyAdmin");
-        AddressManager addressManager = AddressManager(deployerProcedue.mustGetAddress("AddressManager"));
-        address owner = addressManager.owner();
-        address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
-        (VmSafe.CallerMode mode ,address msgSender, ) = vm.readCallers();
-
-        if (owner != proxyAdmin) {
-
-            if(mode != VmSafe.CallerMode.Broadcast && msgSender != owner) {
-                console.log("Pranking owner ...");
-                vm.prank(owner);
-             } else {
-                console.log("Broadcasting ...");
-                vm.broadcast(owner);
-             }
-
-            addressManager.transferOwnership(proxyAdmin);
-            console.log("AddressManager ownership transferred to %s", proxyAdmin);
-        }
-
-        require(addressManager.owner() == proxyAdmin);`, functions.transferAddressManagerOwnership);
-
+        transferAddressManagerOwnership.run();`, fn);
 
 }
 
@@ -226,10 +209,5 @@ const functions = defineFunctions({
     args: [],
     returns: [] , 
   },
-  transferAddressManagerOwnership: {
-    kind: 'internal' as const,
-    args: [],
-    returns: [],
-},
 
 });

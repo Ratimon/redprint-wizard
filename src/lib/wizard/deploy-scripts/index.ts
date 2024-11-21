@@ -34,6 +34,7 @@ export {
     deployDelayedWETHProxy,
     deployPermissionedDelayedWETHProxy,
     deployAnchorStateRegistryProxy,
+    deployTransferAddressManagerOwnership,
     deployStepFourPointOneAllSub,
     deployStepFourPointOneAll,
     deployL1CrossDomainMessenger,

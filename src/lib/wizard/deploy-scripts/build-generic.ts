@@ -64,6 +64,9 @@ import { buildDeployPermissionedDelayedWETHProxy } from './4-opchain-proxies/1J-
 import type { SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain-proxies/1K-option-anchor-state-registry-proxy';
 import { buildDeployAnchorStateRegistryProxy } from './4-opchain-proxies/1K-anchor-state-registry-proxy';
 
+import type { SharedTransferAddressManagerOwnershipOptions } from '../shared/4-opchain-proxies/1L-option-transfer-address-manager-ownership';
+import { buildTransferAddressManagerOwnership } from './4-opchain-proxies/1L-transfer-address-manager-ownership';
+
 import type { SharedStepFourPointOneAllSubOptions } from '../shared/4-opchain-proxies/option-all-sub';
 import { buildDeployStepFourPointOneAllSub } from './4-opchain-proxies/all-sub';
 
@@ -146,6 +149,7 @@ export interface DeployKindedOptions {
   DelayedWETHProxy: {kind: 'DelayedWETHProxy'} & SharedDelayedWETHProxyOptions;
   PermissionedDelayedWETHProxy: {kind: 'PermissionedDelayedWETHProxy'} & SharedPermissionedDelayedWETHProxyOptions;
   AnchorStateRegistryProxy: {kind: 'AnchorStateRegistryProxy'} & SharedAnchorStateRegistryProxyOptions;
+  TransferAddressManagerOwnership: {kind: 'TransferAddressManagerOwnership'} & SharedTransferAddressManagerOwnershipOptions;
   StepFourPointOneAllSub: {kind: 'StepFourPointOneAllSub'} & SharedStepFourPointOneAllSubOptions;
   StepFourPointOneAll: {kind: 'StepFourPointOneAll'} & SharedStepFourPointOneAllOptions;
 
@@ -238,6 +242,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'AnchorStateRegistryProxy':
       return  buildDeployAnchorStateRegistryProxy(opts);
+
+    case 'TransferAddressManagerOwnership':
+      return  buildTransferAddressManagerOwnership(opts);
 
     case 'StepFourPointOneAllSub':
       return  buildDeployStepFourPointOneAllSub(opts);

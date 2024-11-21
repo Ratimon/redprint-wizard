@@ -258,6 +258,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         preimageOracleDeployments.deploy();
         mipsDeployments.deploy();
         anchorStateRegistryDeployments.deploy();
+
         console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));
         console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));
         console.log("SystemConfig at: ", deployerProcedue.getAddress("SystemConfig"));
@@ -342,6 +343,12 @@ function setOpProxiesDeployment(c: DeployBuilder, fn: BaseFunction) {
   };
   c.addModule(DeployAnchorStateRegistryProxyScript);
 
+  const TransferAddressManagerOwnershipScript = {
+    name: 'TransferAddressManagerOwnershipScript',
+    path: '@script/401L_TransferAddressManagerOwnershipScript.s.sol',
+  };
+  c.addModule(TransferAddressManagerOwnershipScript);
+
   c.addFunctionCode(`
         DeployOptimismPortalProxyScript optimismPortalProxyDeployments = new DeployOptimismPortalProxyScript();
         DeploySystemConfigProxyScript systemConfigProxyDeployments = new DeploySystemConfigProxyScript();
@@ -354,6 +361,7 @@ function setOpProxiesDeployment(c: DeployBuilder, fn: BaseFunction) {
         DeployDelayedWETHProxyScript delayedWETHProxyDeployments = new DeployDelayedWETHProxyScript();
         DeployPermissionedDelayedWETHProxyScript permissionedDelayedWETHProxyDeployments = new DeployPermissionedDelayedWETHProxyScript();
         DeployAnchorStateRegistryProxyScript anchorStateRegistryProxyDeployments = new DeployAnchorStateRegistryProxyScript();
+        TransferAddressManagerOwnershipScript transferAddressManagerOwnership = new TransferAddressManagerOwnershipScript();
 
         optimismPortalProxyDeployments.deploy();
         systemConfigProxyDeployments.deploy();
@@ -366,33 +374,9 @@ function setOpProxiesDeployment(c: DeployBuilder, fn: BaseFunction) {
         delayedWETHProxyDeployments.deploy();
         permissionedDelayedWETHProxyDeployments.deploy();
         anchorStateRegistryProxyDeployments.deploy();
-        transferAddressManagerOwnership();`, fn);
-
-      c.addFunctionCode(`
-        console.log("Transferring AddressManager ownership to ProxyAdmin");
-        AddressManager addressManager = AddressManager(deployerProcedue.mustGetAddress("AddressManager"));
-        address owner = addressManager.owner();
-        address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
-        (VmSafe.CallerMode mode ,address msgSender, ) = vm.readCallers();
-
-        if (owner != proxyAdmin) {
-
-            if(mode != VmSafe.CallerMode.Broadcast && msgSender != owner) {
-                console.log("Pranking owner ...");
-                vm.prank(owner);
-             } else {
-                console.log("Broadcasting ...");
-                vm.broadcast(owner);
-             }
-
-            addressManager.transferOwnership(proxyAdmin);
-            console.log("AddressManager ownership transferred to %s", proxyAdmin);
-        }
-
-        require(addressManager.owner() == proxyAdmin);`, functions.transferAddressManagerOwnership);
+        transferAddressManagerOwnership.run();`, fn);
 
 }
-
 
 const functions = defineFunctions({
 
@@ -401,10 +385,5 @@ const functions = defineFunctions({
     args: [],
     returns: [] , 
   },
-  transferAddressManagerOwnership: {
-    kind: 'internal' as const,
-    args: [],
-    returns: [],
-},
 
 });

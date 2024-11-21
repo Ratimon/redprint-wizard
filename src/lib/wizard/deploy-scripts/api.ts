@@ -88,6 +88,10 @@ import type {  SharedAnchorStateRegistryProxyOptions } from '../shared/4-opchain
 import {  defaults as anchorStateRegistryProxyDefaults } from '../shared/4-opchain-proxies/1K-option-anchor-state-registry-proxy';
 import { printDeployAnchorStateRegistryProxy } from './4-opchain-proxies/1K-anchor-state-registry-proxy';
 
+import type {  SharedTransferAddressManagerOwnershipOptions } from '../shared/4-opchain-proxies/1L-option-transfer-address-manager-ownership';
+import {  defaults as transferAddressManagerOwnershipDefaults } from '../shared/4-opchain-proxies/1L-option-transfer-address-manager-ownership';
+import { printTransferAddressManagerOwnership } from './4-opchain-proxies/1L-transfer-address-manager-ownership';
+
 import type {  SharedStepFourPointOneAllSubOptions } from '../shared/4-opchain-proxies/option-all-sub';
 import {  defaults as stepFourPointOneAllSubDefaults } from '../shared/4-opchain-proxies/option-all-sub';
 import { printDeployStepFourPointOneAllSub } from './4-opchain-proxies/all-sub';
@@ -311,6 +315,12 @@ export type DeployAnchorStateRegistryProxy = WizardAllAPI<SharedAnchorStateRegis
 export const deployAnchorStateRegistryProxy: DeployAnchorStateRegistryProxy = {
   print: printDeployAnchorStateRegistryProxy,
   defaults: anchorStateRegistryProxyDefaults,
+}
+
+export type DeployTransferAddressManagerOwnership = WizardAllAPI<SharedTransferAddressManagerOwnershipOptions>;
+export const deployTransferAddressManagerOwnership: DeployTransferAddressManagerOwnership = {
+  print: printTransferAddressManagerOwnership,
+  defaults: transferAddressManagerOwnershipDefaults,
 }
 
 export type DeployStepFourPointOneAllSub = WizardAllAPI<SharedStepFourPointOneAllSubOptions>;

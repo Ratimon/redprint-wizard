@@ -21,6 +21,7 @@ export type {
     KindedDelayedWETHProxyOptions, GenericDelayedWETHProxyOptions,
     KindedPermissionedDelayedWETHProxyOptions, GenericPermissionedDelayedWETHProxyOptions,
     KindedAnchorStateRegistryProxyOptions, GenericAnchorStateRegistryProxyOptions,
+    KindedTransferAddressManagerOwnershipOptions, GenericTransferAddressManagerOwnershipOptions,
     KindedStepFourPointOneAllSubOptions, GenericStepFourPointOneAllSubOptions,
     KindedStepFourPointOneAllOptions, GenericStepFourPointOneAllOptions,
 
@@ -114,6 +115,9 @@ export {  sanitizeKindPermissionedDelayedWETHProxy } from './4-opchain-proxies/1
 
 export type { KindAnchorStateRegistryProxy } from './4-opchain-proxies/1K-kind-anchor-state-registry-proxy';
 export {  sanitizeKindAnchorStateRegistryProxy } from './4-opchain-proxies/1K-kind-anchor-state-registry-proxy';
+
+export type { KindTransferAddressManagerOwnership } from './4-opchain-proxies/1L-kind-transfer-address-manager-ownership';
+export {  sanitizeKindTransferAddressManagerOwnership } from './4-opchain-proxies/1L-kind-transfer-address-manager-ownership';
 
 export type { KindStepFourPointOneAllSub } from './4-opchain-proxies/kind-all-sub';
 export {  sanitizeKindStepFourPointOneAllSub } from './4-opchain-proxies/kind-all-sub';

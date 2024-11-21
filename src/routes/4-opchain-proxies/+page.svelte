@@ -18,6 +18,7 @@
         KindedDelayedWETHProxyOptions, KindDelayedWETHProxy,
         KindedPermissionedDelayedWETHProxyOptions, KindPermissionedDelayedWETHProxy,
         KindedAnchorStateRegistryProxyOptions, KindAnchorStateRegistryProxy,
+        KindedTransferAddressManagerOwnershipOptions, KindTransferAddressManagerOwnership,
         KindedStepFourPointOneAllOptions, KindStepFourPointOneAll,
         KindedStepFourPointOneAllSubOptions, KindStepFourPointOneAllSub,
         OptionsErrorMessages
@@ -35,6 +36,7 @@
         sanitizeKindDelayedWETHProxy,
         sanitizeKindPermissionedDelayedWETHProxy,
         sanitizeKindAnchorStateRegistryProxy,
+        sanitizeKindTransferAddressManagerOwnership,
         sanitizeKindStepFourPointOneAll,
         sanitizeKindStepFourPointOneAllSub,
         OptionsError
@@ -56,7 +58,7 @@
     import DelayedWETHProxyControls from '$lib/ui/controls/4-DelayedWETHProxyControls.svelte';
     import PermissionedDelayedWETHProxyControls from '$lib/ui/controls/4-PermissionedDelayedWETHProxyControls.svelte';
     import AnchorStateRegistryProxyControls from '$lib/ui/controls/4-AnchorStateRegistryProxyControls.svelte';
-
+    import TransferAddressManagerOwnershipControls from '$lib/ui/controls/4-TransferAddressManagerOwnershipControls.svelte';
     import AllSubControls from '$lib/ui/controls/4-1AllSubControls.svelte';
     import AllControls from '$lib/ui/controls/4-1AllControls.svelte';
 
@@ -644,6 +646,32 @@ if (optsStep) {
         } catch (e: unknown) {
             if (e instanceof OptionsError) {
               errorsStep[contractStepTab] = e.messages;
+            } else {
+            throw e;
+            }
+        }
+    }
+}
+
+
+export let initialContractTransferAddressManagerOwnershipTab: string | undefined = 'TransferAddressManagerOwnership';
+export let contractTransferAddressManagerOwnershipTab: KindTransferAddressManagerOwnership = sanitizeKindTransferAddressManagerOwnership(initialContractTransferAddressManagerOwnershipTab);
+
+let allContractsTransferAddressManagerOwnershipOpts: { [k in KindTransferAddressManagerOwnership]?: Required<KindedTransferAddressManagerOwnershipOptions [k]> } = {};
+
+let errorsTransferAddressManagerOwnership: { [k in KindTransferAddressManagerOwnership]?: OptionsErrorMessages } = {};
+
+let deployContractTransferAddressManagerOwnership: DeployContract = new DeployBuilder('TransferAddressManagerOwnershipScript');
+
+$: optsTransferAddressManagerOwnership = allContractsTransferAddressManagerOwnershipOpts[contractTransferAddressManagerOwnershipTab];
+$: {
+if (optsTransferAddressManagerOwnership) {
+        try {
+            deployContractTransferAddressManagerOwnership = buildDeployGeneric(optsTransferAddressManagerOwnership);
+            errorsTransferAddressManagerOwnership[contractTransferAddressManagerOwnershipTab] = undefined;
+        } catch (e: unknown) {
+            if (e instanceof OptionsError) {
+              errorsTransferAddressManagerOwnership[contractTransferAddressManagerOwnershipTab] = e.messages;
             } else {
             throw e;
             }
@@ -1433,9 +1461,43 @@ if (optsStepSub) {
   </div>
 </WizardDouble>
 
-<!-- 000_DeployAll.s.sol -->
+<!-- 401L_TransferAddressManagerOwnership.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={data.dropDownLinks[12].pathname}>
+    <div class="divider divider-primary ">
+      <p class="text-xl">4.1L : Transfer AddressManager Ownership</p>
+    </div>
+  </section>
+</Background>
+
+<WizardSingle isShowingCommand={true} conventionNumber={'401L'} initialContractTab={initialContractTransferAddressManagerOwnershipTab} contractTab={contractTransferAddressManagerOwnershipTab} opts={optsTransferAddressManagerOwnership} deployContract={deployContractTransferAddressManagerOwnership}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractTransferAddressManagerOwnershipTab === 'TransferAddressManagerOwnership'} on:click={() => contractTransferAddressManagerOwnershipTab = 'TransferAddressManagerOwnership'}>
+              TransferAddressManagerOwnership
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractTransferAddressManagerOwnershipTab !== 'TransferAddressManagerOwnership'}>
+              <TransferAddressManagerOwnershipControls bind:opts={allContractsTransferAddressManagerOwnershipOpts.TransferAddressManagerOwnership} />
+          </div>
+      </div>
+  </div>
+  
+</WizardSingle>
+
+<!-- 000_DeployAll.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={data.dropDownLinks[13].pathname}>
     <div class="divider divider-primary">
       <h1 class="text-2xl ">(Alternative) : Deploy All</h1>
     </div>
@@ -1468,8 +1530,6 @@ if (optsStepSub) {
       </div>
   </div>
   
-
-
 </WizardSingle>
 
 <WizardSingle isShowingCommand={false} conventionNumber={'400'} initialContractTab={initialContractStepSubTab} contractTab={contractStepSubTab} opts={optsStepSub} deployContract={deployContractStepSub}>
