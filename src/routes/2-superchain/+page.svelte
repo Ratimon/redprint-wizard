@@ -67,6 +67,7 @@
   });
 
   export let data : PageData;
+  $: stepLinks  = data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 6, 2));
 
   $: addressPreContent = md.render(`
   \`\`\`bash
@@ -518,7 +519,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 6, 2))} titleHighlighted={data.dropDownLinks[2].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[0].title} />
 
 <WizardDouble conventionNumber={'201A'} initialContractTab={initialContractAddressManagerTab} contractTab={contractAddressManagerTab} opts={optsAddressManager} contract={contractAddressManager} deployContract={deployContractAddressManager}>
   <div slot="menu" >
@@ -584,7 +585,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 6, 2))} titleHighlighted={data.dropDownLinks[3].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[1].title} />
 
 <WizardDouble conventionNumber={'201B'} initialContractTab={initialContractProxyAdminTab} contractTab={contractProxyAdminTab} opts={optsProxyAdmin} contract={contractProxyAdmin} deployContract={deployContractProxyAdmin}>
   <div slot="menu" >
@@ -650,7 +651,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 6, 2))} titleHighlighted={data.dropDownLinks[4].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[2].title} />
 
 <WizardDouble conventionNumber={'202A'} initialContractTab={initialContractSuperchainConfigProxyTab} contractTab={contractSuperchainConfigProxyTab} opts={optsSuperchainConfigProxy} contract={contractSuperchainConfigProxy} deployContract={deployContractSuperchainConfigProxy}>
   <div slot="menu" >
@@ -716,7 +717,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 6, 2))} titleHighlighted={data.dropDownLinks[5].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[3].title} />
 
 <WizardDouble conventionNumber={'202B'} initialContractTab={initialContractSuperchainConfigTab} contractTab={contractSuperchainConfigTab} opts={optsSuperchainConfig} contract={contractSuperchainConfig} deployContract={deployContractSuperchainConfig}>
   <div slot="menu" >
@@ -782,7 +783,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 6, 2))} titleHighlighted={data.dropDownLinks[6].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[4].title} />
 
 <WizardDouble conventionNumber={'203A'} initialContractTab={initialContractProtocolVersionsProxyTab} contractTab={contractProtocolVersionsProxyTab} opts={optsProtocolVersionsProxy} contract={contractProtocolVersionsProxy} deployContract={deployContractProtocolVersionsProxy}>
   <div slot="menu" >
@@ -848,7 +849,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 6, 2))} titleHighlighted={data.dropDownLinks[7].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[5].title} />
 
 <WizardDouble conventionNumber={'203B'} initialContractTab={initialContractProtocolVersionsTab} contractTab={contractProtocolVersionsTab} opts={optsProtocolVersions} contract={contractProtocolVersions} deployContract={deployContractProtocolVersions}>
   <div slot="menu" >

@@ -85,6 +85,7 @@
     });
 
     export let data : PageData;
+    $: stepLinks  = data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))
 
     $: addressPreContent = md.render(`
   \`\`\`bash
@@ -878,7 +879,7 @@ if (optsTransferAddressManagerOwnership) {
     </div>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[2].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[0].title} />
 
 <WizardDouble conventionNumber={'401A'} initialContractTab={initialContractOptimismPortalProxyTab} contractTab={contractOptimismPortalProxyTab} opts={optsOptimismPortalProxy} contract={contractOptimismPortalProxy} deployContract={deployContractOptimismPortalProxy}>
     <div slot="menu" >
@@ -944,7 +945,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[3].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[1].title} />
 
 <WizardDouble conventionNumber={'401B'} initialContractTab={initialContractSystemConfigProxyTab} contractTab={contractSystemConfigProxyTab} opts={optsSystemConfigProxy} contract={contractSystemConfigProxy} deployContract={deployContractSystemConfigProxy}>
   <div slot="menu" >
@@ -1009,7 +1010,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[4].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[2].title} />
 
 
 <WizardDouble conventionNumber={'401C'} initialContractTab={initialContractL1StandardBridgeProxyTab} contractTab={contractL1StandardBridgeProxyTab} opts={optsL1StandardBridgeProxy} contract={contractL1StandardBridgeProxy} deployContract={deployContractL1StandardBridgeProxy}>
@@ -1075,7 +1076,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[5].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[3].title} />
 
 <WizardDouble conventionNumber={'401D'} initialContractTab={initialContractL1CrossDomainMessengerProxyTab} contractTab={contractL1CrossDomainMessengerProxyTab} opts={optsL1CrossDomainMessengerProxy} contract={contractL1CrossDomainMessengerProxy} deployContract={deployContractL1CrossDomainMessengerProxy}>
   <div slot="menu" >
@@ -1140,7 +1141,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[6].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[4].title} />
 
 <WizardDouble conventionNumber={'401E'} initialContractTab={initialContractOptimismMintableERC20FactoryProxyTab} contractTab={contractOptimismMintableERC20FactoryProxyTab} opts={optsOptimismMintableERC20FactoryProxy} contract={contractOptimismMintableERC20FactoryProxy} deployContract={deployContractOptimismMintableERC20FactoryProxy}>
   <div slot="menu" >
@@ -1205,7 +1206,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[7].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[5].title} />
 
 <WizardDouble conventionNumber={'401F'} initialContractTab={initialContractL1ERC721BridgeProxyTab} contractTab={contractL1ERC721BridgeProxyTab} opts={optsL1ERC721BridgeProxy} contract={contractL1ERC721BridgeProxy} deployContract={deployContractL1ERC721BridgeProxy}>
   <div slot="menu" >
@@ -1270,7 +1271,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[8].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[6].title} />
 
 <WizardDouble conventionNumber={'401G'} initialContractTab={initialContractDisputeGameFactoryProxyTab} contractTab={contractDisputeGameFactoryProxyTab} opts={optsDisputeGameFactoryProxy} contract={contractDisputeGameFactoryProxy} deployContract={deployContractDisputeGameFactoryProxy}>
   <div slot="menu" >
@@ -1335,8 +1336,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[9].title} />
-
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[7].title} />
 
 <WizardDouble conventionNumber={'401H'} initialContractTab={initialContractL2OutputOracleProxyTab} contractTab={contractL2OutputOracleProxyTab} opts={optsL2OutputOracleProxy} contract={contractL2OutputOracleProxy} deployContract={deployContractL2OutputOracleProxy}>
   <div slot="menu" >
@@ -1401,7 +1401,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[10].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[8].title} />
 
 <WizardDouble conventionNumber={'401I'} initialContractTab={initialContractDelayedWETHProxyTab} contractTab={contractDelayedWETHProxyTab} opts={optsDelayedWETHProxy} contract={contractDelayedWETHProxy} deployContract={deployContractDelayedWETHProxy}>
   <div slot="menu" >
@@ -1466,7 +1466,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[11].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[9].title} />
 
 <WizardDouble conventionNumber={'401J'} initialContractTab={initialContractPermissionedDelayedWETHProxyTab} contractTab={contractPermissionedDelayedWETHProxyTab} opts={optsPermissionedDelayedWETHProxy} contract={contractPermissionedDelayedWETHProxy} deployContract={deployContractPermissionedDelayedWETHProxy}>
   <div slot="menu" >
@@ -1531,7 +1531,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[12].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[10].title} />
 
 
 <WizardDouble conventionNumber={'401K'} initialContractTab={initialContractAnchorStateRegistryProxyTab} contractTab={contractAnchorStateRegistryProxyTab} opts={optsAnchorStateRegistryProxy} contract={contractAnchorStateRegistryProxy} deployContract={deployContractAnchorStateRegistryProxy}>
@@ -1598,8 +1598,7 @@ if (optsTransferAddressManagerOwnership) {
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 12, 2))} titleHighlighted={data.dropDownLinks[13].title} />
-
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[11].title} />
 
 <WizardSingle isShowingCommand={true} conventionNumber={'401L'} initialContractTab={initialContractTransferAddressManagerOwnershipTab} contractTab={contractTransferAddressManagerOwnershipTab} opts={optsTransferAddressManagerOwnership} deployContract={deployContractTransferAddressManagerOwnership}>
 

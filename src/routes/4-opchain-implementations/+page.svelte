@@ -89,6 +89,7 @@
   });
 
   export let data : PageData;
+  $: stepLinks  = data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))
 
   $: addressPreContent = md.render(`
   \`\`\`bash
@@ -1128,7 +1129,7 @@
     </div>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[2].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[0].title} />
 
 <WizardDouble conventionNumber={'401A'} initialContractTab={initialContractL1CrossDomainMessengerTab} contractTab={contractL1CrossDomainMessengerTab} opts={optsL1CrossDomainMessenger} contract={contractL1CrossDomainMessenger} deployContract={deployContractL1CrossDomainMessenger}>
     <div slot="menu" >
@@ -1194,7 +1195,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[3].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[1].title} />
 
 <WizardDouble conventionNumber={'402B'} initialContractTab={initialContractOptimismMintableERC20FactoryTab} contractTab={contractOptimismMintableERC20FactoryTab} opts={optsOptimismMintableERC20Factory} contract={contractOptimismMintableERC20Factory} deployContract={deployContractOptimismMintableERC20Factory}>
   <div slot="menu" >
@@ -1260,7 +1261,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[4].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[2].title} />
 
 <WizardDouble conventionNumber={'402C'} initialContractTab={initialContractSystemConfigTab} contractTab={contractSystemConfigTab} opts={optsSystemConfig} contract={contractSystemConfig} deployContract={deployContractSystemConfig}>
   <div slot="caption" >
@@ -1336,7 +1337,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[5].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[3].title} />
 
 <WizardDouble conventionNumber={'402D'} initialContractTab={initialContractL1StandardBridgeTab} contractTab={contractL1StandardBridgeTab} opts={optsL1StandardBridge} contract={contractL1StandardBridge} deployContract={deployContractL1StandardBridge}>
 
@@ -1404,7 +1405,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[6].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[4].title} />
 
 <WizardDouble conventionNumber={'402E'} initialContractTab={initialContractL1ERC721BridgeTab} contractTab={contractL1ERC721BridgeTab} opts={optsL1ERC721Bridge} contract={contractL1ERC721Bridge} deployContract={deployContractL1ERC721Bridge}>
 
@@ -1472,7 +1473,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[7].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[5].title} />
 
 <WizardDouble conventionNumber={'402F'} initialContractTab={initialContractOptimismPortalTab} contractTab={contractOptimismPortalTab} opts={optsOptimismPortal} contract={contractOptimismPortal} deployContract={deployContractOptimismPortal}>
 
@@ -1540,7 +1541,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[8].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[6].title} />
 
 <WizardDouble conventionNumber={'402G'} initialContractTab={initialContractL2OutputOracleTab} contractTab={contractL2OutputOracleTab} opts={optsL2OutputOracle} contract={contractL2OutputOracle} deployContract={deployContractL2OutputOracle}>
 
@@ -1613,7 +1614,7 @@
   </div>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[9].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[7].title} />
 
 <WizardDouble conventionNumber={'402H'} initialContractTab={initialContractOptimismPortal2Tab} contractTab={contractOptimismPortal2Tab} opts={optsOptimismPortal2} contract={contractOptimismPortal2} deployContract={deployContractOptimismPortal2}>
   <div slot="caption" >
@@ -1694,7 +1695,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[10].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[8].title} />
 
 <WizardDouble conventionNumber={'402I'} initialContractTab={initialContractDisputeGameFactoryTab} contractTab={contractDisputeGameFactoryTab} opts={optsDisputeGameFactory} contract={contractDisputeGameFactory} deployContract={deployContractDisputeGameFactory}>
 
@@ -1763,7 +1764,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[11].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[9].title} />
 
 <WizardDouble conventionNumber={'402J'} initialContractTab={initialContractDelayedWETHTab} contractTab={contractDelayedWETHTab} opts={optsDelayedWETH} contract={contractDelayedWETH} deployContract={deployContractDelayedWETH}>
   <div slot="caption" >
@@ -1833,7 +1834,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[12].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[10].title} />
 
 <WizardDouble conventionNumber={'402K'} initialContractTab={initialContractPreimageOracleTab} contractTab={contractPreimageOracleTab} opts={optsPreimageOracle} contract={contractPreimageOracle} deployContract={deployContractPreimageOracle}>
   <div slot="caption" >
@@ -1905,7 +1906,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[13].title} />
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[11].title} />
 
 <WizardDouble conventionNumber={'402L'} initialContractTab={initialContractMIPSTab} contractTab={contractMIPSTab} opts={optsMIPS} contract={contractMIPS} deployContract={deployContractMIPS}>
 
@@ -1973,8 +1974,7 @@
   </section>
 </Background>
 
-<ScrollStep links={data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))} titleHighlighted={data.dropDownLinks[14].title} />
-
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[12].title} />
 
 <WizardDouble conventionNumber={'402M'} initialContractTab={initialContractAnchorStateRegistryTab} contractTab={contractAnchorStateRegistryTab} opts={optsAnchorStateRegistry} contract={contractAnchorStateRegistry} deployContract={deployContractAnchorStateRegistry}>
 
