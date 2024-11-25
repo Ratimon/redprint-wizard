@@ -45,7 +45,7 @@
   } from '$lib/wizard/shared';
 
   import Background from '$lib/ui/background/Background.svelte';
-  import QuickGuide from '$lib/ui/templates/QuickGuide.svelte';
+  import QuickGuide from '$lib/ui/components/QuickGuide.svelte';
   import ScrollStep from '$lib/ui/templates/ScrollStep.svelte';  
   import WizardSingle from '$lib/ui/components/WizardSingle.svelte';
   import WizardDouble from '$lib/ui/components/WizardDouble.svelte';

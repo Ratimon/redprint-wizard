@@ -1,12 +1,12 @@
 <script lang="ts">
-    import ScrollLink from '$lib/ui/header/ScrollLink.svelte';
+  import ScrollLink from '$lib/ui/header/ScrollLink.svelte';
 
-    export let title: string = `Quick Guide !!`
-    export let quote: string = `We have prepared a set of scripts to deploy all contracts in one click. Otherwise, you can look into and customize each contract as you like.`
-  
-    export let path1: string= '/';
-    export let path2: string= '/';
-    export let path3: string= '/';
+  export let title: string = `Quick Guide !!`
+  export let quote: string = `We have prepared a set of scripts to deploy all contracts in one click. Otherwise, you can look into and customize each contract as you like.`
+
+  export let path1: string= '/';
+  export let path2: string= '/';
+  export let path3: string= '/';
   
 </script>
 
