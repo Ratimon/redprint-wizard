@@ -37,8 +37,8 @@
             socialAccount: `@billy191`,
             socialLink: `https://x.com/billy191`,
 
-            bioImgPath: `/testimonials/1_bio.png`,
-            companyImgPath: `/testimonials/1_company.png`
+            bioImgPath: `/testimonials/1_bio.webp`,
+            companyImgPath: `/testimonials/1_company.webp`
         },
         {
             quoteHighlighted: `Redprint accelerates the way I build on OPStack.`,
@@ -53,8 +53,8 @@
             socialAccount: `@witjarukit`,
             socialLink: `https://x.com/witjarukit`,
 
-            bioImgPath: `/testimonials/2_bio.png`,
-            companyImgPath: `/testimonials/2_company.png`
+            bioImgPath: `/testimonials/2_bio.webp`,
+            companyImgPath: `/testimonials/2_company.webp`
         },
         {
             quoteHighlighted: `Redprint makes building on OPStack quicker and easier for blockchain developers.`,
@@ -64,7 +64,7 @@
             bio: `Software Engineer`,
             companyName: `Accenture`,
 
-            bioImgPath: `/testimonials/3_bio.png`,
+            bioImgPath: `/testimonials/3_bio.webp`,
         },
   	];
 

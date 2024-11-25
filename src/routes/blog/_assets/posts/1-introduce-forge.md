@@ -8,7 +8,7 @@ categories:
 author:
   - 'Rati'
 published: true
-imgSrc: /blog/1-introduce-forge/header.png
+imgSrc: /blog/1-introduce-forge/header.webp
 imgAlt: Introducting redprint-forge
 ---
 

@@ -31,8 +31,8 @@
             socialAccount: `@witjarukit`,
             socialLink: `https://x.com/witjarukit`,
 
-            bioImgPath: `/testimonials/2_bio.png`,
-            companyImgPath: `/testimonials/2_company.png`
+            bioImgPath: `/testimonials/2_bio.webp`,
+            companyImgPath: `/testimonials/2_company.webp`
         };
 
 

@@ -11,13 +11,13 @@
             quote: `As a developer, I appreciate how its visualization is not only simple but also intuitive.`,
             name: `Billy191`,
             socialAccount: `@billy191`,
-            bioImgPath: `/testimonials/1_bio.png`,
+            bioImgPath: `/testimonials/1_bio.webp`,
         },
         {
             quote: `Redprint accelerates the way I build on OPStack.`,
             name: `wit03.eth`,
             socialAccount: `@witjarukit`,
-            bioImgPath: `/testimonials/2_bio.png`,
+            bioImgPath: `/testimonials/2_bio.webp`,
         },
         {
             quote: `Redprint accelerates the way I build on OPStack.`,
@@ -25,7 +25,7 @@
 
             socialAccount: `@witjarukit`,
 
-            bioImgPath: `/testimonials/2_bio.png`,
+            bioImgPath: `/testimonials/2_bio.webp`,
         },
   	];
 

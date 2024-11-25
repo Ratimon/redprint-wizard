@@ -7,7 +7,7 @@ categories:
 author:
   - 'Rati'
 published: true
-imgSrc: /blog/3-metric-hub/header.png
+imgSrc: /blog/3-metric-hub/header.webp
 imgAlt: Metric Hub
 ---
 
@@ -15,7 +15,7 @@ imgAlt: Metric Hub
 
 To align with Optimism’s value (` impact=profit`), we have refered to the below framework which the Foundation applies in order to categorize different types of impact.
 
-<img data-pagefind-meta="image[src]" width="5085" height="776" alt="upstream and downstream" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-metric-hub/contributions.png" />
+<img data-pagefind-meta="image[src]" width="5085" height="776" alt="upstream and downstream" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-metric-hub/contributions.webp" />
 
 They are both `upstream` or `downstream` of Optimism blockspace.
 
@@ -42,19 +42,19 @@ These are some of testimonials we have collected:
 
 > `I was really looking for a way to avoid spending countless hours poring over OP Stack's documentation and analyzing audit reports.` That’s when I discovered Redprint, and it has truly transformed my experience. As a developer, I appreciate how its visualization is not only simple but also intuitive, making complex concepts easy to understand at a glance. Redprint has streamlined my workflow, allowing me to focus on building rather than getting lost in documentation. It’s been a game-changer for me!
 
-<img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/1_bio.png" />
+<img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/1_bio.webp" />
 
 - From `wit03.eth`: Founder @[RetroPGF Hub](https://retropgfhub.com/) / 𝕏 Handle : [@witjarukit](https://x.com/witjarukit)
 
 > `Redprint accelerates the way I build on OPStack.` With an innovative interactive UI, I can easily setup and deploy contracts on OP.
 
-<img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/2_bio.png" />
+<img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/2_bio.webp" />
 
 - From `Teraflops-droid`: Software Engineer @ Accenture Thailand
 
 > `Redprint makes building on OPStack quicker and easier for blockchain developers.` With clear, user-friendly documentation, it simplifies the process of setting up and deploying contracts.
 
-<img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/3_bio.png" />
+<img data-pagefind-meta="image[src]" width="320" height="320" alt="Bio" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="../testimonials/3_bio.webp" />
 
 > **Note**💡
 > We use **senja.io** to collect the the testimonial. They can be checked at following links
@@ -97,7 +97,7 @@ These figures can be represented by GA's  custoizrd events. They are :
 
 5. **Number of visitors to our technical articles in our blog** : The number of views on our blog/turorial. It indicates **accessibility** of The OPStack tool.
 
-<img data-pagefind-meta="image[src]" width="1120" height="1120" alt="GA Metrics" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-metric-hub/page-title.png" />
+<img data-pagefind-meta="image[src]" width="1120" height="1120" alt="GA Metrics" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-metric-hub/page-title.webp" />
 
 This metric can be represented by GA's  events which are named by blog title For instance, they are :
 

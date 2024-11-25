@@ -105,7 +105,7 @@ export const categories: CategoryPresenter[] = [
 		description:
 		"Rati is a blockchain developer and an entrepreneur.",
 		// The avatar of the author to display in the author's bio and avatar badge. It's better to use a local image, but you can also use an external image (https://...)
-		avatarSrc: "/blog/authors/rati.png",
+		avatarSrc: "/blog/authors/rati.webp",
 		// A list of social links to display in the author's bio.
 		socials: [
 		{

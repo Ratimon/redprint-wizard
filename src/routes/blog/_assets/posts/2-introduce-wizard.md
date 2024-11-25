@@ -9,7 +9,7 @@ categories:
 author:
   - 'Rati'
 published: true
-imgSrc: /blog/2-introduce-wizard/header.png
+imgSrc: /blog/2-introduce-wizard/header.webp
 imgAlt: Introducting Redprint Wizard
 ---
 
@@ -27,7 +27,7 @@ To realize visions of both Ethereum and Optimism, we are thrilled to release [`R
 
 It can be seen below that there are several options to choose in own desired layers. In our example, it is step 1 of the **governance** Layer and the [`Governor-style contract`](https://docs.openzeppelin.com/contracts/5.x/api/governance) is picked over the [`Safe's Multi-sig`](https://github.com/safe-global/safe-smart-account).
 
-<img data-pagefind-meta="image[src]" width="1600" height="900" alt="Redprint ui" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="2-introduce-wizard/wizard_ui.png" />
+<img data-pagefind-meta="image[src]" width="1600" height="900" alt="Redprint ui" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="2-introduce-wizard/wizard_ui.webp" />
 
 
 To be more specific, when it comes to **Compound-style contract**,different sets of parameters can be selected based on the preference. This includes **Voting Delay**, **Voting Period**, **Time Lock Period** and etc.

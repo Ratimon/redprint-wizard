@@ -26,19 +26,19 @@ export const load = ( { url} : {url:any} ) => {
             type: 'image/jpeg'
           },
           {
-            url: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/1-introduce-forge/header.png',
+            url: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/1-introduce-forge/header.webp',
             alt: 'redprint-forge',
             width: 1280,
             height: 720,
-            secureUrl: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/1-introduce-forge/header.png',
+            secureUrl: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/1-introduce-forge/header.webp',
             type: 'image/jpeg'
           },
           {
-            url: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/2-introduce-wizard/header.png',
+            url: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/2-introduce-wizard/header.webp',
             alt: 'Redprint Wizard',
             width: 1280,
             height: 720,
-            secureUrl: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/2-introduce-wizard/header.png',
+            secureUrl: 'https://github.com/Ratimon/redprint-wizard/blob/main/static/blog/2-introduce-wizard/header.webp',
             type: 'image/jpeg'
           }
         ],

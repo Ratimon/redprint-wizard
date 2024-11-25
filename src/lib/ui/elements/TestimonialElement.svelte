@@ -5,7 +5,7 @@
     export let name: string = ``
 
     export let socialAccount: string = ``
-    export let bioImgPath: string = `/testimonials/1_bio.png`
+    export let bioImgPath: string = `/testimonials/1_bio.webp`
 
 </script>
 
