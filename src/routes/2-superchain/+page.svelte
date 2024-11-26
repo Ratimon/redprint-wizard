@@ -512,7 +512,7 @@
 
 <!-- 201A_DeployAddressManager.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[2].pathname}>
+  <section id={stepLinks[0].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-2xl">2.1A : Deploy AddressManager Contract</p>
     </div>
@@ -578,7 +578,7 @@
 
 <!-- 201B_DeployAndSetupProxyAdmin.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[3].pathname}>
+  <section id={stepLinks[1].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-2xl">2.1B : Deploy And Setup ProxyAdmin Contract</p>
     </div>
@@ -644,7 +644,7 @@
 
 <!-- 202A_DeploySuperchainConfigProxy.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[4].pathname}>
+  <section id={stepLinks[2].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-2xl">2.2A : Deploy SuperchainConfigProxy Contract</p>
     </div>
@@ -710,7 +710,7 @@
 
 <!-- 202B_DeployAndInitializeSuperchainConfig.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[5].pathname}>
+  <section id={stepLinks[3].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-2xl">2.2B : DeployAndInitializeSuperchainConfig Contract</p>
     </div>
@@ -776,7 +776,7 @@
 
 <!-- 203A_DeployProtocolVersionsProxy.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[6].pathname}>
+  <section id={stepLinks[4].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-2xl">2.3A : Deploy ProtocolVersionsProxy Contract</p>
     </div>
@@ -842,7 +842,7 @@
 
 <!-- 203B_DeployAndInitializeProtocolVersions.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[7].pathname}>
+  <section id={stepLinks[5].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-2xl">2.3B : DeployAndInitializeProtocolVersions Contract</p>
     </div>

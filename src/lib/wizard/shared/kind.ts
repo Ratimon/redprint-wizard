@@ -93,6 +93,8 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'AnchorStateRegistry':
       return true;
+    case 'InitializeImplementations':
+      return true;
     case 'StepFourPointTwoAll':
       return true;
     case 'StepFourPointTwoAllSub':

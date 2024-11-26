@@ -867,7 +867,7 @@ if (optsTransferAddressManagerOwnership) {
 
  <!-- 401A_DeployOptimismPortalProxy -->
 <Background color="bg-base-100 pt-3 pb-4">
-    <section id={data.dropDownLinks[2].pathname}>
+    <section id={stepLinks[0].pathname}>
       <div class="divider divider-primary ">
         <p class="btn btn-accent text-2xl">4.1 : Deploy Proxies Contracts</p>
       </div>
@@ -938,7 +938,7 @@ if (optsTransferAddressManagerOwnership) {
 
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[3].pathname}>
+  <section id={stepLinks[1].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1B : Deploy SystemConfigProxy Contract</p>
     </div>
@@ -1003,7 +1003,7 @@ if (optsTransferAddressManagerOwnership) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[4].pathname}>
+  <section id={stepLinks[2].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1C : Deploy L1StandardBridgeProxy Contract</p>
     </div>
@@ -1069,7 +1069,7 @@ if (optsTransferAddressManagerOwnership) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[5].pathname}>
+  <section id={stepLinks[3].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1D : Deploy L1CrossDomainMessengerProxy Contract</p>
     </div>
@@ -1134,7 +1134,7 @@ if (optsTransferAddressManagerOwnership) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[6].pathname}>
+  <section id={stepLinks[4].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1E : Deploy OptimismMintableERC20FactoryProxy Contract</p>
     </div>
@@ -1199,7 +1199,7 @@ if (optsTransferAddressManagerOwnership) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[7].pathname}>
+  <section id={stepLinks[5].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1F : Deploy L1ERC721BridgeProxy Contract</p>
   </div>
@@ -1264,7 +1264,7 @@ if (optsTransferAddressManagerOwnership) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[8].pathname}>
+  <section id={stepLinks[6].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1G : Deploy DisputeGameFactoryProxy Contract</p>
     </div>
@@ -1329,7 +1329,7 @@ if (optsTransferAddressManagerOwnership) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[9].pathname}>
+  <section id={stepLinks[7].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1H : Deploy L2OutputOracleProxy Contract</p>
     </div>
@@ -1394,7 +1394,7 @@ if (optsTransferAddressManagerOwnership) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[10].pathname}>
+  <section id={stepLinks[8].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1I : Deploy DelayedWETHProxy Contract</p>
     </div>
@@ -1459,7 +1459,7 @@ if (optsTransferAddressManagerOwnership) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[11].pathname}>
+  <section id={stepLinks[9].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1J : Deploy PermissionedDelayedWETHProxy Contract</p>
     </div>
@@ -1524,7 +1524,7 @@ if (optsTransferAddressManagerOwnership) {
 </WizardDouble>
 
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[12].pathname}>
+  <section id={stepLinks[10].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1K : Deploy AnchorStateRegistryProxy Contract</p>
     </div>
@@ -1591,7 +1591,7 @@ if (optsTransferAddressManagerOwnership) {
 
 <!-- 401L_TransferAddressManagerOwnership.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[13].pathname}>
+  <section id={stepLinks[11].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.1L : Transfer AddressManager Ownership</p>
     </div>

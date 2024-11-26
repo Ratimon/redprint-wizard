@@ -4,38 +4,32 @@
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
     import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
   
-    import type { KindedSuperchainConfigOptions } from '$lib/wizard/shared';
+    import type { KindedInitializeImplementationsOptions } from '$lib/wizard/shared';
   
-    import { superchainConfig } from '$lib/wizard/smart-contracts';
-    import { deploySuperchainConfig } from '$lib/wizard/deploy-scripts';
+    import { deployInitializeImplementations } from '$lib/wizard/deploy-scripts';
   
-    const contractDefaults = superchainConfig.defaults;
-    const deployDefaults = deploySuperchainConfig.defaults;
+    const deployInitializeImplementationsDefaults = deployInitializeImplementations.defaults;
   
-    export let opts: Required<KindedSuperchainConfigOptions['SuperchainConfig'] > = {
-      kind: 'SuperchainConfig',
-      ...contractDefaults,
-      ...deployDefaults,
-
-      contractInfo: {  securityContact: 'Consult full code at https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/src/L1/SuperchainConfig.sol', license: 'MIT'  },
+    export let opts: Required<KindedInitializeImplementationsOptions['InitializeImplementations'] > = {
+      kind: 'InitializeImplementations',
+      ...deployInitializeImplementationsDefaults,
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
-  
-  </script>
     
-  <section class="controls-section">
+</script>
+    
+<section class="controls-section">
     <Background color="bg-neutral-content">
-      <h1 >Contract Settings</h1>
+        <h1 >Contract Settings</h1>
     </Background>
-    
+
     <label class="labeled-input">
-      <span>Name</span>
-      <input bind:value={opts.contractName}>
+        <span>Name</span>
+        <input bind:value={opts.deployName}>
     </label>
+</section>
 
-  </section>
-
-  <section class="controls-section">
+<section class="controls-section">
     <h1>OpSec Management</h1>
     <div class="checkbox-group">
       <span>Owner </span>
@@ -63,6 +57,11 @@
         </HelpTooltip>
       </label>
     </div>
-  </section>
-  
-  <InfoSection bind:info={opts.contractInfo} />
+</section>
+
+<InfoSection bind:info={opts.deployInfo} />
+
+<section class="controls-section">
+    <h2 class="m-4 font-extrabold">Initialize Implementations</h2>
+    <span>initializeOptimismPortal2</span>
+</section>

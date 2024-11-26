@@ -38,6 +38,7 @@ export type {
     KindedPreimageOracleOptions, GenericPreimageOracleOptions,
     KindedMIPSOptions, GenericMIPSOptions,
     KindedAnchorStateRegistryOptions, GenericAnchorStateRegistryOptions,
+    KindedInitializeImplementationsOptions, GenericInitializeImplementationsOptions,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -163,6 +164,9 @@ export {  sanitizeKindMIPS } from './4-opchain-implementations/2L-kind-mips';
 
 export type { KindAnchorStateRegistry } from './4-opchain-implementations/2M-kind-anchor-state-registry';
 export {  sanitizeKindAnchorStateRegistry } from './4-opchain-implementations/2M-kind-anchor-state-registry';
+
+export type { KindInitializeImplementations } from './4-opchain-implementations/2N-kind-initialize-implementations';
+export {  sanitizeKindInitializeImplementations } from './4-opchain-implementations/2N-kind-initialize-implementations';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';

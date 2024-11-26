@@ -42,6 +42,7 @@ import type { SharedDelayedWETHOptions } from './4-opchain-implementations/2J-op
 import type { SharedPreimageOracleOptions } from './4-opchain-implementations/2K-option-preimage-oracle';
 import type { SharedMIPSOptions } from './4-opchain-implementations/2L-option-mips';
 import type { SharedAnchorStateRegistryOptions } from './4-opchain-implementations/2M-option-anchor-state-registry';
+import type { SharedInitializeImplementationsOptions } from './4-opchain-implementations/2N-option-initialize-implementations';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
@@ -90,6 +91,7 @@ export interface KindedOptions {
   PreimageOracle: { kind: 'PreimageOracle' } & SharedPreimageOracleOptions;
   MIPS: { kind: 'MIPS' } & SharedMIPSOptions;
   AnchorStateRegistry: { kind: 'AnchorStateRegistry' } & SharedAnchorStateRegistryOptions;
+  InitializeImplementations: { kind: 'InitializeImplementations' } & SharedInitializeImplementationsOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -315,6 +317,12 @@ export interface KindedAnchorStateRegistryOptions {
   AnchorStateRegistry: { kind: 'AnchorStateRegistry' } & SharedAnchorStateRegistryOptions;
 }
 export type GenericAnchorStateRegistryOptions = KindedAnchorStateRegistryOptions[keyof KindedAnchorStateRegistryOptions];
+
+
+export interface KindedInitializeImplementationsOptions {
+  InitializeImplementations: { kind: 'InitializeImplementations' } & SharedInitializeImplementationsOptions;
+}
+export type GenericInitializeImplementationsOptions = KindedInitializeImplementationsOptions[keyof KindedInitializeImplementationsOptions];
 
 
 export interface KindedStepFourPointTwoAllSubOptions {

@@ -52,6 +52,7 @@ export {
     deployPreimageOracle,
     deployMIPS,
     deployAnchorStateRegistry,
+    deployInitializeImplementations,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';

@@ -20,6 +20,7 @@
       KindedPreimageOracleOptions, KindPreimageOracle,
       KindedMIPSOptions, KindMIPS,
       KindedAnchorStateRegistryOptions, KindAnchorStateRegistry,
+      KindedInitializeImplementationsOptions, KindInitializeImplementations,
       KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
       KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
       OptionsErrorMessages
@@ -39,6 +40,7 @@
       sanitizeKindPreimageOracle,
       sanitizeKindMIPS,
       sanitizeKindAnchorStateRegistry,
+      sanitizeKindInitializeImplementations,
       sanitizeKindStepFourPointTwoAll,
       sanitizeKindStepFourPointTwoAllSub,
       OptionsError
@@ -68,6 +70,7 @@
   import AllSubControls from '$lib/ui/controls/4-2AllSubControls.svelte';
   import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
   import AnchorStateRegistryControls from '$lib/ui/controls/4-AnchorStateRegistryControls.svelte';
+  import InitializeImplementationsControls from '$lib/ui/controls/4-InitializeImplementationsControls.svelte';
   import MarkdownIt from "markdown-it";
   import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -89,7 +92,7 @@
   });
 
   export let data : PageData;
-  $: stepLinks  = data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 13, 2))
+  $: stepLinks  = data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 14, 2))
 
   $: addressPreContent = md.render(`
   \`\`\`bash
@@ -989,6 +992,31 @@
 }
   \`\`\`
   `);
+
+  export let initialContractInitializeImplementationsTab: string | undefined = 'InitializeImplementations';
+  export let contractInitializeImplementationsTab: KindInitializeImplementations = sanitizeKindInitializeImplementations(initialContractInitializeImplementationsTab);
+
+  let allContractsInitializeImplementationsOpts: { [k in KindInitializeImplementations]?: Required<KindedInitializeImplementationsOptions [k]> } = {};
+
+  let errorsInitializeImplementations: { [k in KindInitializeImplementations]?: OptionsErrorMessages } = {};
+
+  let deployContractInitializeImplementations: DeployContract = new DeployBuilder('InitializeImplementationsScript');
+
+  $: optsInitializeImplementations = allContractsInitializeImplementationsOpts[contractInitializeImplementationsTab];
+  $: {
+  if (optsInitializeImplementations) {
+          try {
+              deployContractInitializeImplementations = buildDeployGeneric(optsInitializeImplementations);
+              errorsInitializeImplementations[contractInitializeImplementationsTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsInitializeImplementations[contractInitializeImplementationsTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
   
 </script>
 
@@ -1117,7 +1145,7 @@
 
 <!-- 402A_DeployL1CrossDomainMessenger.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-    <section id={data.dropDownLinks[2].pathname}>
+    <section id={stepLinks[0].pathname}>
       <div class="divider divider-primary ">
         <p class="btn btn-accent text-2xl">4.2 - Part 1 : Deploy Implementations Contracts</p>
       </div>
@@ -1188,7 +1216,7 @@
 
 <!-- 401B_DeployOptimismMintableERC20Factory.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[3].pathname}>
+  <section id={stepLinks[1].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2B : Deploy OptimismMintableERC20Factory Contract</p>
     </div>
@@ -1254,7 +1282,7 @@
 
 <!-- 401C_DeploySystemConfig.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[4].pathname}>
+  <section id={stepLinks[2].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2C : Deploy SystemConfig Contract</p>
     </div>
@@ -1330,7 +1358,7 @@
 
 <!-- 401D_DeployL1StandardBridge.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[5].pathname}>
+  <section id={stepLinks[3].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2D : Deploy L1StandardBridge Contract</p>
     </div>
@@ -1398,7 +1426,7 @@
 
 <!-- 401E_DeployL1ERC721Bridge.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[6].pathname}>
+  <section id={stepLinks[4].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2E : Deploy L1ERC721Bridge Contract</p>
     </div>
@@ -1466,7 +1494,7 @@
 
 <!-- 401F_DeployOptimismPortal.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[7].pathname}>
+  <section id={stepLinks[5].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2F : Deploy OptimismPortal Contract</p>
     </div>
@@ -1534,7 +1562,7 @@
 
 <!-- 401G_DeployL2OutputOracle.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[8].pathname}>
+  <section id={stepLinks[6].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2G : Deploy L2OutputOracle Contract</p>
     </div>
@@ -1602,7 +1630,7 @@
 
 <!-- 402H_DeployOptimismPortal2Script.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[9].pathname}>
+  <section id={stepLinks[7].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-2xl">4.2 - Part 2 : Deploy Fault proofs System</p>
     </div>
@@ -1688,7 +1716,7 @@
 
 <!-- 402I_DeployDisputeGameFactoryScript.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[10].pathname}>
+  <section id={stepLinks[8].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2I : Deploy DisputeGameFactory Contract</p>
     </div>
@@ -1757,7 +1785,7 @@
 
 <!-- 402J_DeployDelayedWETHScript.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[11].pathname}>
+  <section id={stepLinks[9].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2J : Deploy DelayedWETH Contract</p>
     </div>
@@ -1827,7 +1855,7 @@
 
 <!-- 402K_DeployPreimageOracleScript.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[12].pathname}>
+  <section id={stepLinks[10].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2K : Deploy PreimageOracle Contract</p>
     </div>
@@ -1899,7 +1927,7 @@
 
 <!-- 402L_DeployMIPSScript.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[13].pathname}>
+  <section id={stepLinks[11].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2L : Deploy MIPS Contract</p>
     </div>
@@ -1967,7 +1995,7 @@
 
 <!-- 402M_DeployAnchorStateRegistryScript.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
-  <section id={data.dropDownLinks[14].pathname}>
+  <section id={stepLinks[12].pathname}>
     <div class="divider divider-primary ">
       <p class="btn btn-accent text-xl">4.2M : Deploy AnchorStateRegistry Contract</p>
     </div>
@@ -2032,6 +2060,42 @@
 
   </div>
 </WizardDouble>
+
+<!-- 401N_InitializeImplementations.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={stepLinks[13].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.1N : Initialize Implementations</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[13].title} />
+
+<WizardSingle isShowingCommand={true} conventionNumber={'401N'} initialContractTab={initialContractInitializeImplementationsTab} contractTab={contractInitializeImplementationsTab} opts={optsInitializeImplementations} deployContract={deployContractInitializeImplementations}>
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractInitializeImplementationsTab === 'InitializeImplementations'} on:click={() => contractInitializeImplementationsTab = 'InitializeImplementations'}>
+              InitializeImplementations
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractInitializeImplementationsTab !== 'InitializeImplementations'}>
+              <InitializeImplementationsControls bind:opts={allContractsInitializeImplementationsOpts.InitializeImplementations} />
+          </div>
+      </div>
+  </div>
+  
+</WizardSingle>
 
 
 <style lang="postcss">

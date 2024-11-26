@@ -89,4 +89,5 @@
     <span>PreimageOracle</span>
     <span>MIPS</span>
     <span>AnchorStateRegistry</span>
+    <span>InitializeImplementations</span>
 </section>

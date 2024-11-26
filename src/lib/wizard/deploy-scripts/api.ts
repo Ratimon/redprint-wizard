@@ -160,6 +160,10 @@ import type { SharedAnchorStateRegistryOptions } from '../shared/4-opchain-imple
 import {  defaults as anchorStateRegistryDefaults } from '../shared/4-opchain-implementations/2M-option-anchor-state-registry';
 import { printDeployAnchorStateRegistry } from './4-opchain-implementations/2M-anchor-state-registry';
 
+import type { SharedInitializeImplementationsOptions } from '../shared/4-opchain-implementations/2N-option-initialize-implementations';
+import {  defaults as initializeImplementationsDefaults } from '../shared/4-opchain-implementations/2N-option-initialize-implementations';
+import { printDeployInitializeImplementations } from './4-opchain-implementations/2N-initialize-implementations';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -423,6 +427,12 @@ export type DeployAnchorStateRegistry = WizardAllAPI<SharedAnchorStateRegistryOp
 export const deployAnchorStateRegistry: DeployAnchorStateRegistry = {
   print: printDeployAnchorStateRegistry,
   defaults: anchorStateRegistryDefaults,
+}
+
+export type DeployInitializeImplementations = WizardAllAPI<SharedInitializeImplementationsOptions>;
+export const deployInitializeImplementations: DeployInitializeImplementations = {
+  print: printDeployInitializeImplementations,
+  defaults: initializeImplementationsDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;
