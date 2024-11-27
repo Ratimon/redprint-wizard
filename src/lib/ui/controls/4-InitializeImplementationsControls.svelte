@@ -32,8 +32,7 @@
 <section class="controls-section">
   <h2 class="m-4 font-extrabold">Initialize Implementations</h2>
   <div class="checkbox-group">
-    <span>OptimismPortal</span>
-
+    <h1>OptimismPortal</h1>
 
     <label class:checked={opts.useFaultProofs === 'no-optimism-portal'}>
       <input type="radio" bind:group={opts.useFaultProofs} value='no-optimism-portal'>
@@ -54,30 +53,37 @@
   </div>
 </section>
 
-<div class="checkbox-group">
-  <span>System Config</span>
+<section class="controls-section">
+  <h1>SystemConfig</h1>
+  <div class="checkbox-group">
+    
+    <label class:checked={opts.useCustomToken === 'no-custom-token'}>
+      <input type="radio" bind:group={opts.useCustomToken} value='no-custom-token'>
+      Without Custom Token
+      <HelpTooltip>
+        cfg.useCustomGasToken==false
+      </HelpTooltip>
+    </label>
   
-  <label class:checked={opts.useCustomToken === 'no-custom-token'}>
-    <input type="radio" bind:group={opts.useCustomToken} value='no-custom-token'>
-    Without Custom Token
-    <HelpTooltip>
-      cfg.useCustomGasToken==false
-    </HelpTooltip>
+    <label class:checked={opts.useCustomToken === 'yes-custom-token'}>
+      <input type="radio" bind:group={opts.useCustomToken} value='yes-custom-token'>
+      With Custom Token
+      <HelpTooltip>
+        cfg.useCustomGasToken==true
+      </HelpTooltip>
+    </label>
+  
+    <label class="labeled-input">
+      <span>Custom Gas Token Address</span>
+      <input bind:value={opts.customGasTokenaddress}>
   </label>
+  </div>
+</section>
 
-  <label class:checked={opts.useCustomToken === 'yes-custom-token'}>
-    <input type="radio" bind:group={opts.useCustomToken} value='yes-custom-token'>
-    With Custom Token
-    <HelpTooltip>
-      cfg.useCustomGasToken==true
-    </HelpTooltip>
-  </label>
+<section class="controls-section">
+  <h1>L1StandardBridge</h1>
+</section>
 
-  <label class="labeled-input">
-    <span>Custom Gas Token Address</span>
-    <input bind:value={opts.customGasTokenaddress}>
-</label>
-</div>
 
 <section class="controls-section">
     <h1>OpSec Management</h1>

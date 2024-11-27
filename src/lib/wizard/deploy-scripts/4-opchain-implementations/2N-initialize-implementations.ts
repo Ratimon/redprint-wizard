@@ -32,8 +32,9 @@ export function buildDeployInitializeImplementations(opts: SharedInitializeImple
   const c = new DeployBuilder(allOpts.deployName);
   
   addBase(c , allOpts.useFaultProofs, allOpts.useCustomToken, allOpts.customGasTokenaddress);
-  setFaultProofsOptions(c, allOpts.useFaultProofs);
-  setCustomTokenOptions(c);
+  setOptimismPortalWithFaultProofsOptions(c, allOpts.useFaultProofs);
+  setSystemConfigWithCustomTokenOptions(c);
+  setL1StandardBridge(c);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
 
@@ -180,6 +181,30 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
         path: '@redprint-core/L1/SystemConfig.sol',
     };
     c.addModule(SystemConfig);
+
+    const IL1CrossDomainMessenger = {
+        name: 'IL1CrossDomainMessenger',
+        path: '@redprint-core/L1/interfaces/IL1CrossDomainMessenger.sol',
+    };
+    c.addModule(IL1CrossDomainMessenger);
+
+    const ProxyAdmin = {
+        name: 'ProxyAdmin',
+        path: '@redprint-core/universal/ProxyAdmin.sol',
+    };
+    c.addModule(ProxyAdmin);
+
+    const Safe = {
+        name: 'Safe',
+        path: '@redprint-safe-contracts/Safe.sol',
+    };
+    c.addModule(Safe);
+
+    const L1StandardBridge = {
+        name: 'L1StandardBridge',
+        path: '@redprint-core/L1/L1StandardBridge.sol',
+    };
+    c.addModule(L1StandardBridge);
   
 
     c.addVariable(`IDeployer deployerProcedue;`);
@@ -251,7 +276,7 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
 
 }
 
-function setFaultProofsOptions(c: DeployBuilder, useFaultProofs: UseFaultProofs ) {
+function setOptimismPortalWithFaultProofsOptions(c: DeployBuilder, useFaultProofs: UseFaultProofs ) {
     switch (useFaultProofs) {
         case 'yes-optimism-portal-2': {
             // initializeOptimismPortal2
@@ -337,7 +362,7 @@ function setFaultProofsOptions(c: DeployBuilder, useFaultProofs: UseFaultProofs 
     }
 }
 
-function setCustomTokenOptions(c: DeployBuilder) {
+function setSystemConfigWithCustomTokenOptions(c: DeployBuilder) {
 
     // initializeSystemConfig
     c.addFunctionCode(`console.log("Upgrading and initializing SystemConfig proxy");
@@ -351,7 +376,6 @@ function setCustomTokenOptions(c: DeployBuilder) {
         DeployConfig cfg = deployerProcedue.getConfig();
 
         bytes32 batcherHash = bytes32(uint256(uint160(cfg.batchSenderAddress())));
-
 
         _upgradeAndCallViaSafe({
             _proxyAdmin: proxyAdmin,
@@ -392,6 +416,48 @@ function setCustomTokenOptions(c: DeployBuilder) {
 
 }
 
+function setL1StandardBridge(c: DeployBuilder) {
+
+    // initializeL1StandardBridge
+    c.addFunctionCode(`console.log("Upgrading and initializing L1StandardBridge proxy");
+        address proxyAdminAddress = deployerProcedue.mustGetAddress("ProxyAdmin");
+        address safeAddress = deployerProcedue.mustGetAddress("SystemOwnerSafe");
+
+        address l1StandardBridgeProxy = deployerProcedue.mustGetAddress("L1StandardBridgeProxy");
+        address l1StandardBridge = deployerProcedue.mustGetAddress("L1StandardBridge");
+        address l1CrossDomainMessengerProxy = deployerProcedue.mustGetAddress("L1CrossDomainMessengerProxy");
+        address superchainConfigProxy = deployerProcedue.mustGetAddress("SuperchainConfigProxy");
+        address systemConfigProxy = deployerProcedue.mustGetAddress("SystemConfigProxy");
+
+        uint256 proxyType = uint256(ProxyAdmin(proxyAdminAddress).proxyType(l1StandardBridgeProxy));
+
+        ProxyAdmin proxyAdmin = ProxyAdmin(proxyAdminAddress);
+        Safe safe = Safe(payable(safeAddress));
+
+        _upgradeAndCallViaSafe({
+            _proxyAdmin: address(proxyAdmin),
+            _safe: address(safe),
+            _owner: owner,
+            _proxy: payable(l1StandardBridgeProxy),
+            _implementation: l1StandardBridge,
+            _innerCallData: abi.encodeCall(
+                L1StandardBridge.initialize,
+                (
+                    IL1CrossDomainMessenger(l1CrossDomainMessengerProxy),
+                    ISuperchainConfig(superchainConfigProxy),
+                    ISystemConfig(systemConfigProxy)
+                )
+            )
+        });
+
+        string memory version = L1StandardBridge(payable(l1StandardBridgeProxy)).version();
+        console.log("L1StandardBridge version: %s", version);
+
+        Types.ContractSet memory proxies =  deployerProcedue.getProxies();
+        ChainAssertions.checkL1StandardBridge({ _contracts: proxies, _isProxy: true });`, functions.initializeL1StandardBridge);
+
+}
+
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
   switch (opsec) {
     case 'address': {
@@ -429,6 +495,10 @@ const functions = defineFunctions({
     args: [],
   },
   initializeSystemConfig: {
+    kind: 'internal' as const,
+    args: [],
+  },
+  initializeL1StandardBridge: {
     kind: 'internal' as const,
     args: [],
   },
