@@ -1,7 +1,12 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedInitializeImplementationsOptions, OpSec, UseFaultProofs } from '../../shared/4-opchain-implementations/2N-option-initialize-implementations';
+import type {
+    SharedInitializeImplementationsOptions,
+    OpSec,
+    UseFaultProofs,
+    UseCustomToken
+} from '../../shared/4-opchain-implementations/2N-option-initialize-implementations';
 import { defaults as commonDefaults } from '../../shared/4-opchain-implementations/2N-option-initialize-implementations'
 
 import { defaults as infoDefaults } from "../set-info";
@@ -26,15 +31,16 @@ export function buildDeployInitializeImplementations(opts: SharedInitializeImple
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
-  addBase(c , allOpts.useFaultProofs);
+  addBase(c , allOpts.useFaultProofs, allOpts.useCustomToken, allOpts.customGasTokenaddress);
   setFaultProofsOptions(c, allOpts.useFaultProofs);
+  setCustomTokenOptions(c);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
 
   return c;
 }
 
-function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs) {
+function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToken: UseCustomToken, customGasTokenaddress: string) {
     
     const Script = {
         name: 'Script',
@@ -97,6 +103,12 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs) {
         path: '@redprint-deploy/optimism/ChainAssertions.sol',
     };
     c.addModule(ChainAssertions);
+
+    const Constants = {
+        name: 'Constants',
+        path: '@redprint-core/libraries/Constants.sol',
+    };
+    c.addModule(Constants);
 
     switch (useFaultProofs) {
         case 'yes-optimism-portal-2': {
@@ -162,9 +174,26 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs) {
         break;
         }
     }
+
+    const SystemConfig = {
+        name: 'SystemConfig',
+        path: '@redprint-core/L1/SystemConfig.sol',
+    };
+    c.addModule(SystemConfig);
   
 
     c.addVariable(`IDeployer deployerProcedue;`);
+
+    switch (useCustomToken) {
+        case 'yes-custom-token': {
+            c.addVariable(`address public constant customGasTokenAddress = ${customGasTokenaddress};`);
+            break;
+        }
+        case 'no-custom-token': {
+            c.addVariable(`address public constant customGasTokenAddress = Constants.ETHER;`);
+            break;
+        }
+    }
 
     // run
     c.addFunctionCode(`deployerProcedue = getDeployer();
@@ -179,12 +208,14 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs) {
 
     switch (useFaultProofs) {
         case 'yes-optimism-portal-2': {
-            c.addFunctionCode(`    initializeOptimismPortal2();`, functions.run);
+            c.addFunctionCode(`    initializeOptimismPortal2();
+            initializeSystemConfig();`, functions.run);
             break;
             
         }
         case 'no-optimism-portal': {
-            c.addFunctionCode(`    initializeOptimismPortal();`, functions.run);
+            c.addFunctionCode(`    initializeOptimismPortal();
+            initializeSystemConfig();`, functions.run);
             break;
         }
     }
@@ -199,12 +230,14 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs) {
 
     switch (useFaultProofs) {
         case 'yes-optimism-portal-2': {
-            c.addFunctionCode(`    initializeOptimismPortal2();`, functions.run);
+            c.addFunctionCode(`    initializeOptimismPortal2();
+            initializeSystemConfig();`, functions.run);
             break;
             
         }
         case 'no-optimism-portal': {
-            c.addFunctionCode(`    initializeOptimismPortal();`, functions.run);
+            c.addFunctionCode(`    initializeOptimismPortal();
+            initializeSystemConfig();`, functions.run);
             break;
         }
     }
@@ -218,7 +251,7 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs) {
 
 }
 
-function setFaultProofsOptions(c: DeployBuilder, useFaultProofs: UseFaultProofs) {
+function setFaultProofsOptions(c: DeployBuilder, useFaultProofs: UseFaultProofs ) {
     switch (useFaultProofs) {
         case 'yes-optimism-portal-2': {
             // initializeOptimismPortal2
@@ -304,6 +337,61 @@ function setFaultProofsOptions(c: DeployBuilder, useFaultProofs: UseFaultProofs)
     }
 }
 
+function setCustomTokenOptions(c: DeployBuilder) {
+
+    // initializeSystemConfig
+    c.addFunctionCode(`console.log("Upgrading and initializing SystemConfig proxy");
+
+        address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
+        address safe = deployerProcedue.mustGetAddress("SystemOwnerSafe");
+
+        address systemConfigProxy = deployerProcedue.mustGetAddress("SystemConfigProxy");
+        address systemConfig = deployerProcedue.mustGetAddress("SystemConfig");
+
+        DeployConfig cfg = deployerProcedue.getConfig();
+
+        bytes32 batcherHash = bytes32(uint256(uint160(cfg.batchSenderAddress())));
+
+
+        _upgradeAndCallViaSafe({
+            _proxyAdmin: proxyAdmin,
+            _safe: safe,
+            _owner: owner,   
+            _proxy: payable(systemConfigProxy),
+            _implementation: systemConfig,
+            _innerCallData: abi.encodeCall(
+                SystemConfig.initialize,
+                (
+                    cfg.finalSystemOwner(),
+                    cfg.basefeeScalar(),
+                    cfg.blobbasefeeScalar(),
+                    batcherHash,
+                    uint64(cfg.l2GenesisBlockGasLimit()),
+                    cfg.p2pSequencerAddress(),
+                    Constants.DEFAULT_RESOURCE_CONFIG(),
+                    cfg.batchInboxAddress(),
+                    SystemConfig.Addresses({
+                        l1CrossDomainMessenger: deployerProcedue.mustGetAddress("L1CrossDomainMessengerProxy"),
+                        l1ERC721Bridge: deployerProcedue.mustGetAddress("L1ERC721BridgeProxy"),
+                        l1StandardBridge: deployerProcedue.mustGetAddress("L1StandardBridgeProxy"),
+                        disputeGameFactory: deployerProcedue.mustGetAddress("DisputeGameFactoryProxy"),
+                        optimismPortal: deployerProcedue.mustGetAddress("OptimismPortalProxy"),
+                        optimismMintableERC20Factory: deployerProcedue.mustGetAddress("OptimismMintableERC20FactoryProxy"),
+                        gasPayingToken: customGasTokenAddress 
+                    })
+                )
+            )
+        });
+
+        SystemConfig config = SystemConfig(systemConfigProxy);
+        string memory version = config.version();
+        console.log("SystemConfig version: %s", version);
+
+        Types.ContractSet memory proxies =  deployerProcedue.getProxies();
+        ChainAssertions.checkSystemConfig({ _contracts: proxies, _cfg: cfg, _isProxy: true });`, functions.initializeSystemConfig);
+
+}
+
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
   switch (opsec) {
     case 'address': {
@@ -337,6 +425,10 @@ const functions = defineFunctions({
     args: [],
   },
   initializeOptimismPortal: {
+    kind: 'internal' as const,
+    args: [],
+  },
+  initializeSystemConfig: {
     kind: 'internal' as const,
     args: [],
   },

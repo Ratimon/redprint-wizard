@@ -2076,6 +2076,8 @@
 
   <div slot="caption" >
     <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/fault-proof/index.html" target="_blank" rel="noreferrer">useFaultProofs==false</a>, we will initialize <span class="bg-primary underline">OptimismPortal</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortal2</span>.</h2>
+    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/experimental/custom-gas-token.html?highlight=custom#configuring-the-gas-paying-token" target="_blank" rel="noreferrer">useCustomGasToken==false</a>, we will use <span class="bg-primary underline">Ethereum</span> as gas (Default) . Otherwise, dont forget to config it as same as  <span class="bg-primary underline">cfg.customGasTokenAddress()</span> in <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/72eb3116c2f6ff573099a8cafc8f35415138850c/op-chain-ops/genesis/testdata/test-deploy-config-full.json#L9" target="_blank" rel="noreferrer">genesis file</a></h2>
+
   </div>
 
   <div slot="menu" >

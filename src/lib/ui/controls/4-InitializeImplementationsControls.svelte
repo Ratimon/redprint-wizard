@@ -33,13 +33,7 @@
   <h2 class="m-4 font-extrabold">Initialize Implementations</h2>
   <div class="checkbox-group">
     <span>OptimismPortal</span>
-    <label class:checked={opts.useFaultProofs === 'yes-optimism-portal-2'}>
-      <input type="radio" bind:group={opts.useFaultProofs} value='yes-optimism-portal-2'>
-      With Fault Proofs
-      <HelpTooltip>
-        cfg.useFaultProofs==true
-      </HelpTooltip>
-    </label>
+
 
     <label class:checked={opts.useFaultProofs === 'no-optimism-portal'}>
       <input type="radio" bind:group={opts.useFaultProofs} value='no-optimism-portal'>
@@ -48,8 +42,42 @@
         cfg.useFaultProofs==false
       </HelpTooltip>
     </label>
+
+    <label class:checked={opts.useFaultProofs === 'yes-optimism-portal-2'}>
+      <input type="radio" bind:group={opts.useFaultProofs} value='yes-optimism-portal-2'>
+      With Fault Proofs
+      <HelpTooltip>
+        cfg.useFaultProofs==true
+      </HelpTooltip>
+    </label>
+
   </div>
 </section>
+
+<div class="checkbox-group">
+  <span>System Config</span>
+  
+  <label class:checked={opts.useCustomToken === 'no-custom-token'}>
+    <input type="radio" bind:group={opts.useCustomToken} value='no-custom-token'>
+    Without Custom Token
+    <HelpTooltip>
+      cfg.useCustomGasToken==false
+    </HelpTooltip>
+  </label>
+
+  <label class:checked={opts.useCustomToken === 'yes-custom-token'}>
+    <input type="radio" bind:group={opts.useCustomToken} value='yes-custom-token'>
+    With Custom Token
+    <HelpTooltip>
+      cfg.useCustomGasToken==true
+    </HelpTooltip>
+  </label>
+
+  <label class="labeled-input">
+    <span>Custom Gas Token Address</span>
+    <input bind:value={opts.customGasTokenaddress}>
+</label>
+</div>
 
 <section class="controls-section">
     <h1>OpSec Management</h1>
