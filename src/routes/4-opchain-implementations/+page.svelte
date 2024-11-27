@@ -2074,6 +2074,10 @@
 
 <WizardSingle isShowingCommand={true} conventionNumber={'401N'} initialContractTab={initialContractInitializeImplementationsTab} contractTab={contractInitializeImplementationsTab} opts={optsInitializeImplementations} deployContract={deployContractInitializeImplementations}>
 
+  <div slot="caption" >
+    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/fault-proof/index.html" target="_blank" rel="noreferrer">useFaultProofs==false</a>, we will initialize <span class="bg-primary underline">OptimismPortal</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortal2</span>.</h2>
+  </div>
+
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">

@@ -1,7 +1,7 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedInitializeImplementationsOptions, OpSec } from '../../shared/4-opchain-implementations/2N-option-initialize-implementations';
+import type { SharedInitializeImplementationsOptions, OpSec, UseFaultProofs } from '../../shared/4-opchain-implementations/2N-option-initialize-implementations';
 import { defaults as commonDefaults } from '../../shared/4-opchain-implementations/2N-option-initialize-implementations'
 
 import { defaults as infoDefaults } from "../set-info";
@@ -26,14 +26,15 @@ export function buildDeployInitializeImplementations(opts: SharedInitializeImple
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
-  addBase(c);
+  addBase(c , allOpts.useFaultProofs);
+  setFaultProofsOptions(c, allOpts.useFaultProofs);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
 
   return c;
 }
 
-function addBase(c: DeployBuilder) {
+function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs) {
     
     const Script = {
         name: 'Script',
@@ -96,36 +97,72 @@ function addBase(c: DeployBuilder) {
         path: '@redprint-deploy/optimism/ChainAssertions.sol',
     };
     c.addModule(ChainAssertions);
+
+    switch (useFaultProofs) {
+        case 'yes-optimism-portal-2': {
+
+            const GameType = {
+                name: 'GameType',
+                path: '@redprint-core/dispute/lib/LibUDT.sol',
+            };
+            c.addModule(GameType);
+        
+            const IDisputeGameFactory = {
+                name: 'IDisputeGameFactory',
+                path: '@redprint-core/dispute/interfaces/IDisputeGameFactory.sol',
+            };
+            c.addModule(IDisputeGameFactory);
+        
+            const ISystemConfig = {
+                name: 'ISystemConfig',
+                path: '@redprint-core/L1/interfaces/ISystemConfig.sol',
+            };
+            c.addModule(ISystemConfig);
+        
+            const ISuperchainConfig = {
+                name: 'ISuperchainConfig',
+                path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
+            };
+            c.addModule(ISuperchainConfig);
+        
+            const OptimismPortal2 = {
+                name: 'OptimismPortal2',
+                path: '@redprint-core/L1/OptimismPortal2.sol',
+            };
+            c.addModule(OptimismPortal2);
+
+        break;
+        }
+        case 'no-optimism-portal': {
+
+            const IL2OutputOracle = {
+                name: 'IL2OutputOracle',
+                path: '@redprint-core/L1/interfaces/IL2OutputOracle.sol',
+            };
+            c.addModule(IL2OutputOracle);
+
+            const ISystemConfig = {
+                name: 'ISystemConfig',
+                path: '@redprint-core/L1/interfaces/ISystemConfig.sol',
+            };
+            c.addModule(ISystemConfig);
+        
+            const ISuperchainConfig = {
+                name: 'ISuperchainConfig',
+                path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
+            };
+            c.addModule(ISuperchainConfig);
+        
+            const OptimismPortal = {
+                name: 'OptimismPortal',
+                path: '@redprint-core/L1/OptimismPortal.sol',
+            };
+            c.addModule(OptimismPortal);
+
+        break;
+        }
+    }
   
-    const GameType = {
-        name: 'GameType',
-        path: '@redprint-core/dispute/lib/LibUDT.sol',
-    };
-    c.addModule(GameType);
-
-    const IDisputeGameFactory = {
-        name: 'IDisputeGameFactory',
-        path: '@redprint-core/dispute/interfaces/IDisputeGameFactory.sol',
-    };
-    c.addModule(IDisputeGameFactory);
-
-    const ISystemConfig = {
-        name: 'ISystemConfig',
-        path: '@redprint-core/L1/interfaces/ISystemConfig.sol',
-    };
-    c.addModule(ISystemConfig);
-
-    const ISuperchainConfig = {
-        name: 'ISuperchainConfig',
-        path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
-    };
-    c.addModule(ISuperchainConfig);
-
-    const OptimismPortal2 = {
-        name: 'OptimismPortal2',
-        path: '@redprint-core/L1/OptimismPortal2.sol',
-    };
-    c.addModule(OptimismPortal2);
 
     c.addVariable(`IDeployer deployerProcedue;`);
 
@@ -138,26 +175,54 @@ function addBase(c: DeployBuilder) {
         (VmSafe.CallerMode mode ,address msgSender, ) = vm.readCallers();
         if(mode != VmSafe.CallerMode.Broadcast && msgSender != owner) {
             console.log("Pranking owner ...");
-            vm.startPrank(owner);
+            vm.startPrank(owner);`, functions.run);
 
-            initializeOptimismPortal2();
-            console.log("Pranking Stopped ...");
+    switch (useFaultProofs) {
+        case 'yes-optimism-portal-2': {
+            c.addFunctionCode(`    initializeOptimismPortal2();`, functions.run);
+            break;
+            
+        }
+        case 'no-optimism-portal': {
+            c.addFunctionCode(`    initializeOptimismPortal();`, functions.run);
+            break;
+        }
+    }
+
+    // run
+    c.addFunctionCode(`    console.log("Pranking Stopped ...");
 
             vm.stopPrank();
         } else {
             console.log("Broadcasting ...");
-            vm.startBroadcast(owner);
+            vm.startBroadcast(owner);`, functions.run);
 
-            initializeOptimismPortal2();
-            console.log("Broadcasted");
+    switch (useFaultProofs) {
+        case 'yes-optimism-portal-2': {
+            c.addFunctionCode(`    initializeOptimismPortal2();`, functions.run);
+            break;
+            
+        }
+        case 'no-optimism-portal': {
+            c.addFunctionCode(`    initializeOptimismPortal();`, functions.run);
+            break;
+        }
+    }
+
+    // run
+    c.addFunctionCode(`    console.log("Broadcasted");
 
             vm.stopBroadcast();
         }`, functions.run);
 
 
+}
 
-    // initializeOptimismPortal2
-    c.addFunctionCode(`console.log("Upgrading and initializing OptimismPortal2 proxy");
+function setFaultProofsOptions(c: DeployBuilder, useFaultProofs: UseFaultProofs) {
+    switch (useFaultProofs) {
+        case 'yes-optimism-portal-2': {
+            // initializeOptimismPortal2
+            c.addFunctionCode(`console.log("Upgrading and initializing OptimismPortal2 proxy");
 
         address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
         address safe = deployerProcedue.mustGetAddress("SystemOwnerSafe");
@@ -194,7 +259,50 @@ function addBase(c: DeployBuilder) {
         Types.ContractSet memory proxies =  deployerProcedue.getProxies();
         ChainAssertions.checkOptimismPortal2({ _contracts: proxies, _cfg: cfg, _isProxy: true });`, functions.initializeOptimismPortal2);
 
+                break;
+        }
+        case 'no-optimism-portal': {
+
+            // initializeOptimismPortal
+            c.addFunctionCode(`console.log("Upgrading and initializing OptimismPortal2 proxy");
+
+        address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
+        address safe = deployerProcedue.mustGetAddress("SystemOwnerSafe");
+
+        address optimismPortalProxy = deployerProcedue.mustGetAddress("OptimismPortalProxy");
+        address optimismPortal = deployerProcedue.mustGetAddress("OptimismPortal");
+        address l2OutputOracleProxy = deployerProcedue.mustGetAddress("L2OutputOracleProxy");
+        address systemConfigProxy = deployerProcedue.mustGetAddress("SystemConfigProxy");
+        address superchainConfigProxy = deployerProcedue.mustGetAddress("SuperchainConfigProxy");
+
+        DeployConfig cfg = deployerProcedue.getConfig();
+
+        _upgradeAndCallViaSafe({
+            _proxyAdmin: proxyAdmin,
+            _safe: safe,
+            _owner: owner,   
+            _proxy: payable(optimismPortalProxy),
+            _implementation: optimismPortal,
+            _innerCallData: abi.encodeCall(
+                OptimismPortal.initialize,
+                    (
+                        IL2OutputOracle(l2OutputOracleProxy),
+                        ISystemConfig(systemConfigProxy),
+                        ISuperchainConfig(superchainConfigProxy)
+                    )
+            )
+        });
+
+        OptimismPortal portal = OptimismPortal(payable(optimismPortalProxy));
+        string memory version = portal.version();
+        console.log("OptimismPortal2 version: %s", version);
+
+        Types.ContractSet memory proxies =  deployerProcedue.getProxies();
+        ChainAssertions.checkOptimismPortal({ _contracts: proxies, _cfg: cfg, _isProxy: true });`, functions.initializeOptimismPortal);
+                break;
+        }
     }
+}
 
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
   switch (opsec) {
@@ -225,6 +333,10 @@ const functions = defineFunctions({
       args: [],
   },
   initializeOptimismPortal2: {
+    kind: 'internal' as const,
+    args: [],
+  },
+  initializeOptimismPortal: {
     kind: 'internal' as const,
     args: [],
   },

@@ -30,6 +30,28 @@
 </section>
 
 <section class="controls-section">
+  <h2 class="m-4 font-extrabold">Initialize Implementations</h2>
+  <div class="checkbox-group">
+    <span>OptimismPortal</span>
+    <label class:checked={opts.useFaultProofs === 'yes-optimism-portal-2'}>
+      <input type="radio" bind:group={opts.useFaultProofs} value='yes-optimism-portal-2'>
+      With Fault Proofs
+      <HelpTooltip>
+        cfg.useFaultProofs==true
+      </HelpTooltip>
+    </label>
+
+    <label class:checked={opts.useFaultProofs === 'no-optimism-portal'}>
+      <input type="radio" bind:group={opts.useFaultProofs} value='no-optimism-portal'>
+      Without Fault Proofs
+      <HelpTooltip>
+        cfg.useFaultProofs==false
+      </HelpTooltip>
+    </label>
+  </div>
+</section>
+
+<section class="controls-section">
     <h1>OpSec Management</h1>
     <div class="checkbox-group">
       <span>Owner </span>
@@ -60,8 +82,3 @@
 </section>
 
 <InfoSection bind:info={opts.deployInfo} />
-
-<section class="controls-section">
-    <h2 class="m-4 font-extrabold">Initialize Implementations</h2>
-    <span>initializeOptimismPortal2</span>
-</section>
