@@ -84,6 +84,10 @@
   <h1>L1StandardBridge</h1>
 </section>
 
+<section class="controls-section">
+  <h1>L1ERC721Bridge</h1>
+</section>
+
 
 <section class="controls-section">
     <h1>OpSec Management</h1>

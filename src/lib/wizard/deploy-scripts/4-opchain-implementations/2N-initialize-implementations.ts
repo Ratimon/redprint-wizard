@@ -35,6 +35,7 @@ export function buildDeployInitializeImplementations(opts: SharedInitializeImple
   setOptimismPortalWithFaultProofsOptions(c, allOpts.useFaultProofs);
   setSystemConfigWithCustomTokenOptions(c);
   setL1StandardBridge(c);
+  setL1ERC721Bridge(c);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
 
@@ -85,7 +86,6 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
     };
     c.addModule(getDeployer);
     
-
     const DeployConfig = {
         name: 'DeployConfig',
         path: '@redprint-deploy/deployer/DeployConfig.s.sol',
@@ -205,6 +205,12 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
         path: '@redprint-core/L1/L1StandardBridge.sol',
     };
     c.addModule(L1StandardBridge);
+
+    const L1ERC721Bridge = {
+        name: 'L1ERC721Bridge',
+        path: '@redprint-core/L1/L1ERC721Bridge.sol',
+    };
+    c.addModule(L1ERC721Bridge);
   
 
     c.addVariable(`IDeployer deployerProcedue;`);
@@ -246,7 +252,9 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
     }
 
     // run
-    c.addFunctionCode(`    console.log("Pranking Stopped ...");
+    c.addFunctionCode(`    initializeL1StandardBridge();
+            initializeL1ERC721Bridge();
+            console.log("Pranking Stopped ...");
 
             vm.stopPrank();
         } else {
@@ -268,7 +276,9 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
     }
 
     // run
-    c.addFunctionCode(`    console.log("Broadcasted");
+    c.addFunctionCode(`    initializeL1StandardBridge();
+            initializeL1ERC721Bridge();
+            console.log("Broadcasted");
 
             vm.stopBroadcast();
         }`, functions.run);
@@ -458,6 +468,44 @@ function setL1StandardBridge(c: DeployBuilder) {
 
 }
 
+function setL1ERC721Bridge(c: DeployBuilder) {
+
+    // initializeL1ERC721Bridge
+    c.addFunctionCode(`console.log("Upgrading and initializing L1ERC721Bridge proxy");
+        address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
+        address safe = deployerProcedue.mustGetAddress("SystemOwnerSafe");
+
+        address l1ERC721BridgeProxy = deployerProcedue.mustGetAddress("L1ERC721BridgeProxy");
+        address l1ERC721Bridge = deployerProcedue.mustGetAddress("L1ERC721Bridge");
+        address l1CrossDomainMessengerProxy = deployerProcedue.mustGetAddress("L1CrossDomainMessengerProxy");
+        address superchainConfigProxy = deployerProcedue.mustGetAddress("SuperchainConfigProxy");
+        address systemConfigProxy = deployerProcedue.mustGetAddress("SystemConfigProxy");
+
+        _upgradeAndCallViaSafe({
+            _proxyAdmin: proxyAdmin,
+            _safe: safe,
+            _owner: owner,
+            _proxy: payable(l1ERC721BridgeProxy),
+            _implementation: l1ERC721Bridge,
+            _innerCallData: abi.encodeCall(
+                L1ERC721Bridge.initialize,
+                (
+                    IL1CrossDomainMessenger(l1CrossDomainMessengerProxy),
+                    ISuperchainConfig(superchainConfigProxy)
+                )
+            )
+        });
+
+        L1ERC721Bridge bridge = L1ERC721Bridge(l1ERC721BridgeProxy);
+        string memory version = bridge.version();
+        console.log("L1ERC721Bridge version: %s", version);
+
+        Types.ContractSet memory proxies =  deployerProcedue.getProxies();
+
+        ChainAssertions.checkL1ERC721Bridge({ _contracts: proxies, _isProxy: true });`, functions.initializeL1ERC721Bridge);
+
+}
+
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
   switch (opsec) {
     case 'address': {
@@ -499,6 +547,10 @@ const functions = defineFunctions({
     args: [],
   },
   initializeL1StandardBridge: {
+    kind: 'internal' as const,
+    args: [],
+  },
+  initializeL1ERC721Bridge: {
     kind: 'internal' as const,
     args: [],
   },
