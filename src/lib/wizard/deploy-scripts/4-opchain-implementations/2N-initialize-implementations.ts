@@ -39,6 +39,7 @@ export function buildDeployInitializeImplementations(opts: SharedInitializeImple
   setL1CrossDomainMessenger(c);
   setL2OutputOracle(c);
   setDisputeGameFactory(c);
+  setDelayedWETH(c);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
 
@@ -244,6 +245,12 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
         path: '@redprint-core/dispute/DisputeGameFactory.sol',
     };
     c.addModule(DisputeGameFactory);
+
+    const DelayedWETH = {
+        name: 'DelayedWETH',
+        path: '@redprint-core/dispute/DelayedWETH.sol',
+    };
+    c.addModule(DelayedWETH);
   
 
     c.addVariable(`IDeployer deployerProcedue;`);
@@ -290,6 +297,7 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
             initializeL1CrossDomainMessenger();
             initializeL2OutputOracle();
             initializeDisputeGameFactory();
+            initializeDelayedWETH();
             console.log("Pranking Stopped ...");
 
             vm.stopPrank();
@@ -318,6 +326,7 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
             initializeL1CrossDomainMessenger();
             initializeL2OutputOracle();
             initializeDisputeGameFactory();
+            initializeDelayedWETH();
             console.log("Broadcasted");
 
             vm.stopBroadcast();
@@ -740,6 +749,46 @@ function setDisputeGameFactory(c: DeployBuilder) {
 
 }
 
+function setDelayedWETH(c: DeployBuilder) {
+
+    // initializeDelayedWETH
+    c.addFunctionCode(`console.log("Upgrading and initializing DelayedWETH proxy");
+        address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
+        address safe = deployerProcedue.mustGetAddress("SystemOwnerSafe");
+
+        address delayedWETHProxy = deployerProcedue.mustGetAddress("DelayedWETHProxy");
+        address delayedWETH = deployerProcedue.mustGetAddress("DelayedWETH");
+        address superchainConfigProxy = deployerProcedue.mustGetAddress("SuperchainConfigProxy");
+
+        DeployConfig cfg = deployerProcedue.getConfig();
+
+        _upgradeAndCallViaSafe({
+            _proxyAdmin: proxyAdmin,
+            _safe: safe,
+            _owner: owner,
+            _proxy: payable(delayedWETHProxy),
+            _implementation: delayedWETH,
+            _innerCallData: abi.encodeCall(
+                DelayedWETH.initialize, (
+                    owner,
+                    ISuperchainConfig(superchainConfigProxy)
+                )
+            )
+        });
+
+        string memory version = DelayedWETH(payable(delayedWETHProxy)).version();
+        console.log("DelayedWETH version: %s", version);
+
+        Types.ContractSet memory proxies =  deployerProcedue.getProxies();
+        ChainAssertions.checkDelayedWETH({
+            _contracts: proxies,
+            _cfg: cfg,
+            _isProxy: true,
+            _expectedOwner: owner
+        });`, functions.initializeDelayedWETH);
+
+}
+
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
   switch (opsec) {
     case 'address': {
@@ -801,6 +850,10 @@ const functions = defineFunctions({
     args: [],
   },
   initializeDisputeGameFactory: {
+    kind: 'internal' as const,
+    args: [],
+  },
+  initializeDelayedWETH: {
     kind: 'internal' as const,
     args: [],
   },
