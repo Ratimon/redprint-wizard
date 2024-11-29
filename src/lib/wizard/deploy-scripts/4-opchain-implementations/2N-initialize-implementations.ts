@@ -38,6 +38,7 @@ export function buildDeployInitializeImplementations(opts: SharedInitializeImple
   setOptimismMintableERC20Factory(c);
   setL1CrossDomainMessenger(c);
   setL2OutputOracle(c);
+  setDisputeGameFactory(c);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
 
@@ -237,6 +238,12 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
         path: '@redprint-core/L1/L2OutputOracle.sol',
     };
     c.addModule(L2OutputOracle);
+
+    const DisputeGameFactory = {
+        name: 'DisputeGameFactory',
+        path: '@redprint-core/dispute/DisputeGameFactory.sol',
+    };
+    c.addModule(DisputeGameFactory);
   
 
     c.addVariable(`IDeployer deployerProcedue;`);
@@ -268,7 +275,6 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
             c.addFunctionCode(`    initializeOptimismPortal2();
             initializeSystemConfig();`, functions.run);
             break;
-            
         }
         case 'no-optimism-portal': {
             c.addFunctionCode(`    initializeOptimismPortal();
@@ -283,6 +289,7 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
             initializeOptimismMintableERC20Factory();
             initializeL1CrossDomainMessenger();
             initializeL2OutputOracle();
+            initializeDisputeGameFactory();
             console.log("Pranking Stopped ...");
 
             vm.stopPrank();
@@ -310,6 +317,7 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
             initializeOptimismMintableERC20Factory();
             initializeL1CrossDomainMessenger();
             initializeL2OutputOracle();
+            initializeDisputeGameFactory();
             console.log("Broadcasted");
 
             vm.stopBroadcast();
@@ -705,6 +713,33 @@ function setL2OutputOracle(c: DeployBuilder) {
 
 }
 
+function setDisputeGameFactory(c: DeployBuilder) {
+
+    // initializeDisputeGameFactory
+    c.addFunctionCode(`console.log("Upgrading and initializing DisputeGameFactory proxy");
+        address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
+        address safe = deployerProcedue.mustGetAddress("SystemOwnerSafe");
+
+        address disputeGameFactoryProxy = deployerProcedue.mustGetAddress("DisputeGameFactoryProxy");
+        address disputeGameFactory = deployerProcedue.mustGetAddress("DisputeGameFactory");
+
+        _upgradeAndCallViaSafe({
+            _proxyAdmin: proxyAdmin,
+            _safe: safe,
+            _owner: owner,
+            _proxy: payable(disputeGameFactoryProxy),
+            _implementation: disputeGameFactory,
+            _innerCallData: abi.encodeCall(DisputeGameFactory.initialize, (msg.sender))
+        });
+
+        string memory version = DisputeGameFactory(disputeGameFactoryProxy).version();
+        console.log("DisputeGameFactory version: %s", version);
+
+        Types.ContractSet memory proxies =  deployerProcedue.getProxies();
+        ChainAssertions.checkDisputeGameFactory({ _contracts: proxies, _expectedOwner: msg.sender, _isProxy: true });`, functions.initializeDisputeGameFactory);
+
+}
+
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
   switch (opsec) {
     case 'address': {
@@ -762,6 +797,10 @@ const functions = defineFunctions({
     args: [],
   },
   initializeL2OutputOracle: {
+    kind: 'internal' as const,
+    args: [],
+  },
+  initializeDisputeGameFactory: {
     kind: 'internal' as const,
     args: [],
   },
