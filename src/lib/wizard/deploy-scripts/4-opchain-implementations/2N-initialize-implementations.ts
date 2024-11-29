@@ -37,6 +37,7 @@ export function buildDeployInitializeImplementations(opts: SharedInitializeImple
   setL1StandardBridge(c);
   setL1ERC721Bridge(c);
   setOptimismMintableERC20Factory(c);
+  setL1CrossDomainMessenger(c);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
 
@@ -218,6 +219,18 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
         path: '@redprint-core/universal/OptimismMintableERC20Factory.sol',
     };
     c.addModule(OptimismMintableERC20Factory);
+
+    const IOptimismPortal = {
+        name: 'IOptimismPortal',
+        path: '@redprint-core/L1/interfaces/IOptimismPortal.sol',
+    };
+    c.addModule(IOptimismPortal);
+
+    const L1CrossDomainMessenger = {
+        name: 'L1CrossDomainMessenger',
+        path: '@redprint-core/L1/L1CrossDomainMessenger.sol',
+    };
+    c.addModule(L1CrossDomainMessenger);
   
 
     c.addVariable(`IDeployer deployerProcedue;`);
@@ -453,6 +466,17 @@ function setL1StandardBridge(c: DeployBuilder) {
         ProxyAdmin proxyAdmin = ProxyAdmin(proxyAdminAddress);
         Safe safe = Safe(payable(safeAddress));
 
+        if (proxyType != uint256(ProxyAdmin.ProxyType.CHUGSPLASH)) {
+            _callViaSafe({
+                _safe: safe,
+                _owner: owner,
+                _target: address(proxyAdmin),
+                _data: abi.encodeCall(ProxyAdmin.setProxyType, (l1StandardBridgeProxy, ProxyAdmin.ProxyType.CHUGSPLASH))
+            });
+        }
+
+        require(uint256(proxyAdmin.proxyType(l1StandardBridgeProxy)) == uint256(ProxyAdmin.ProxyType.CHUGSPLASH),"Type not CHUGSPLASH");
+
         _upgradeAndCallViaSafe({
             _proxyAdmin: address(proxyAdmin),
             _safe: address(safe),
@@ -544,6 +568,86 @@ function setOptimismMintableERC20Factory(c: DeployBuilder) {
 
 }
 
+function setL1CrossDomainMessenger(c: DeployBuilder) {
+
+    // initializeL1CrossDomainMessenger
+    c.addFunctionCode(`console.log("Upgrading and initializing L1CrossDomainMessenger Proxy");
+        address proxyAdminAddress = deployerProcedue.mustGetAddress("ProxyAdmin");
+        address safeAddress = deployerProcedue.mustGetAddress("SystemOwnerSafe");
+
+        address l1CrossDomainMessengerProxy = deployerProcedue.mustGetAddress("L1CrossDomainMessengerProxy");
+        address l1CrossDomainMessenger = deployerProcedue.mustGetAddress("L1CrossDomainMessenger");
+        address superchainConfigProxy = deployerProcedue.mustGetAddress("SuperchainConfigProxy");
+        address optimismPortalProxy = deployerProcedue.mustGetAddress("OptimismPortalProxy");
+        address systemConfigProxy = deployerProcedue.mustGetAddress("SystemConfigProxy");
+
+        ProxyAdmin proxyAdmin = ProxyAdmin(proxyAdminAddress);
+        Safe safe = Safe(payable(safeAddress));
+
+        uint256 proxyType = uint256(proxyAdmin.proxyType(l1CrossDomainMessengerProxy));
+        
+        if (proxyType != uint256(ProxyAdmin.ProxyType.RESOLVED)) {
+            _callViaSafe({
+                _safe: safe,
+                _owner: owner,
+                _target: address(proxyAdmin),
+                _data: abi.encodeCall(
+                    ProxyAdmin.setProxyType,
+                    (
+                        l1CrossDomainMessengerProxy,
+                        ProxyAdmin.ProxyType.RESOLVED
+                    )
+                )
+            });
+        }
+        require(uint256(proxyAdmin.proxyType(l1CrossDomainMessengerProxy)) == uint256(ProxyAdmin.ProxyType.RESOLVED));
+
+        string memory contractName = "OVM_L1CrossDomainMessenger";
+        string memory implName = proxyAdmin.implementationName(l1CrossDomainMessenger);
+        if (keccak256(bytes(contractName)) != keccak256(bytes(implName))) {
+            _callViaSafe({
+                _safe: safe,
+                _owner: owner,
+                _target: address(proxyAdmin),
+                _data: abi.encodeCall(
+                    ProxyAdmin.setImplementationName,
+                    (
+                        l1CrossDomainMessengerProxy,
+                        contractName
+                    )
+                )
+            });
+        }
+        require(
+            keccak256(bytes(proxyAdmin.implementationName(l1CrossDomainMessengerProxy)))
+                == keccak256(bytes(contractName))
+        );
+
+        _upgradeAndCallViaSafe({
+            _proxyAdmin: address(proxyAdmin),
+            _safe: address(safe),
+            _owner: owner,
+            _proxy: payable(l1CrossDomainMessengerProxy),
+            _implementation: l1CrossDomainMessenger,
+            _innerCallData: abi.encodeCall(
+                L1CrossDomainMessenger.initialize,
+                (
+                    ISuperchainConfig(superchainConfigProxy),
+                    IOptimismPortal(payable(optimismPortalProxy)),
+                    ISystemConfig(systemConfigProxy)
+                )
+            )
+        });
+
+        L1CrossDomainMessenger messenger = L1CrossDomainMessenger(l1CrossDomainMessengerProxy);
+        string memory version = messenger.version();
+        console.log("L1CrossDomainMessenger version: %s", version);
+
+        Types.ContractSet memory proxies =  deployerProcedue.getProxies();
+        ChainAssertions.checkL1CrossDomainMessenger({ _contracts: proxies, _vm: vm, _isProxy: true });`, functions.initializeL1CrossDomainMessenger);
+
+}
+
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
   switch (opsec) {
     case 'address': {
@@ -593,6 +697,10 @@ const functions = defineFunctions({
     args: [],
   },
   initializeOptimismMintableERC20Factory: {
+    kind: 'internal' as const,
+    args: [],
+  },
+  initializeL1CrossDomainMessenger: {
     kind: 'internal' as const,
     args: [],
   },
