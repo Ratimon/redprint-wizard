@@ -8,7 +8,6 @@ import type {
     UseCustomToken
 } from '../../shared/4-opchain-implementations/2N-option-initialize-implementations';
 import { defaults as commonDefaults } from '../../shared/4-opchain-implementations/2N-option-initialize-implementations'
-
 import { defaults as infoDefaults } from "../set-info";
 
 import { printDeployContract } from "../print";
@@ -38,6 +37,7 @@ export function buildDeployInitializeImplementations(opts: SharedInitializeImple
   setL1ERC721Bridge(c);
   setOptimismMintableERC20Factory(c);
   setL1CrossDomainMessenger(c);
+  setL2OutputOracle(c);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
 
@@ -231,6 +231,12 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
         path: '@redprint-core/L1/L1CrossDomainMessenger.sol',
     };
     c.addModule(L1CrossDomainMessenger);
+
+    const L2OutputOracle = {
+        name: 'L2OutputOracle',
+        path: '@redprint-core/L1/L2OutputOracle.sol',
+    };
+    c.addModule(L2OutputOracle);
   
 
     c.addVariable(`IDeployer deployerProcedue;`);
@@ -275,6 +281,8 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
     c.addFunctionCode(`    initializeL1StandardBridge();
             initializeL1ERC721Bridge();
             initializeOptimismMintableERC20Factory();
+            initializeL1CrossDomainMessenger();
+            initializeL2OutputOracle();
             console.log("Pranking Stopped ...");
 
             vm.stopPrank();
@@ -300,6 +308,8 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
     c.addFunctionCode(`    initializeL1StandardBridge();
             initializeL1ERC721Bridge();
             initializeOptimismMintableERC20Factory();
+            initializeL1CrossDomainMessenger();
+            initializeL2OutputOracle();
             console.log("Broadcasted");
 
             vm.stopBroadcast();
@@ -648,6 +658,53 @@ function setL1CrossDomainMessenger(c: DeployBuilder) {
 
 }
 
+function setL2OutputOracle(c: DeployBuilder) {
+
+    // initializeL2OutputOracle
+    c.addFunctionCode(`console.log("Upgrading and initializing L2OutputOracle proxy");
+        address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
+        address safe = deployerProcedue.mustGetAddress("SystemOwnerSafe");
+
+        address l2OutputOracleProxy = deployerProcedue.mustGetAddress("L2OutputOracleProxy");
+        address l2OutputOracle = deployerProcedue.mustGetAddress("L2OutputOracle");
+
+        DeployConfig cfg = deployerProcedue.getConfig();
+
+        _upgradeAndCallViaSafe({
+            _proxyAdmin: proxyAdmin,
+            _safe: address(safe),
+            _owner: owner,
+            _proxy: payable(l2OutputOracleProxy),
+            _implementation: l2OutputOracle,
+            _innerCallData: abi.encodeCall(
+                L2OutputOracle.initialize,
+                (
+                    cfg.l2OutputOracleSubmissionInterval(),
+                    cfg.l2BlockTime(),
+                    cfg.l2OutputOracleStartingBlockNumber(),
+                    cfg.l2OutputOracleStartingTimestamp(),
+                    cfg.l2OutputOracleProposer(),
+                    cfg.l2OutputOracleChallenger(),
+                    cfg.finalizationPeriodSeconds()
+                )
+            )
+        });
+
+        L2OutputOracle oracle = L2OutputOracle(l2OutputOracleProxy);
+        string memory version = oracle.version();
+        console.log("L2OutputOracle version: %s", version);
+
+        Types.ContractSet memory proxies =  deployerProcedue.getProxies();
+
+        ChainAssertions.checkL2OutputOracle({
+            _contracts: proxies,
+            _cfg: cfg,
+            _l2OutputOracleStartingTimestamp: cfg.l2OutputOracleStartingTimestamp(),
+            _isProxy: true
+        });`, functions.initializeL2OutputOracle);
+
+}
+
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
   switch (opsec) {
     case 'address': {
@@ -701,6 +758,10 @@ const functions = defineFunctions({
     args: [],
   },
   initializeL1CrossDomainMessenger: {
+    kind: 'internal' as const,
+    args: [],
+  },
+  initializeL2OutputOracle: {
     kind: 'internal' as const,
     args: [],
   },
