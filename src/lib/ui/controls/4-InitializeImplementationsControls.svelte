@@ -113,6 +113,10 @@
 </section>
 
 <section class="controls-section">
+  <h1>AnchorStateRegistry</h1>
+</section>
+
+<section class="controls-section">
     <h1>OpSec Management</h1>
     <div class="checkbox-group">
       <span>Owner </span>

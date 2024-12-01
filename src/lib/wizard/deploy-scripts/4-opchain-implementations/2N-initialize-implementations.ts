@@ -41,6 +41,7 @@ export function buildDeployInitializeImplementations(opts: SharedInitializeImple
   setDisputeGameFactory(c);
   setDelayedWETH(c);
   setPermissionedDelayedWETH(c);
+  setAnchorStateRegistry(c);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
 
@@ -252,6 +253,30 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
         path: '@redprint-core/dispute/DelayedWETH.sol',
     };
     c.addModule(DelayedWETH);
+
+    const AnchorStateRegistry = {
+        name: 'AnchorStateRegistry',
+        path: '@redprint-core/dispute/AnchorStateRegistry.sol',
+    };
+    c.addModule(AnchorStateRegistry);
+
+    const GameTypes = {
+        name: 'GameTypes',
+        path: '@redprint-core/dispute/lib/Types.sol',
+    };
+    c.addModule(GameTypes);
+
+    const OutputRoot = {
+        name: 'OutputRoot',
+        path: '@redprint-core/dispute/lib/Types.sol',
+    };
+    c.addModule(OutputRoot);
+
+    const Hash = {
+        name: 'Hash',
+        path: '@redprint-core/dispute/lib/Types.sol',
+    };
+    c.addModule(Hash);
   
 
     c.addVariable(`IDeployer deployerProcedue;`);
@@ -300,6 +325,7 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
             initializeDisputeGameFactory();
             initializeDelayedWETH();
             initializePermissionedDelayedWETH();
+            initializeAnchorStateRegistry();
             console.log("Pranking Stopped ...");
 
             vm.stopPrank();
@@ -330,6 +356,7 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
             initializeDisputeGameFactory();
             initializeDelayedWETH();
             initializePermissionedDelayedWETH();
+            initializeAnchorStateRegistry();
             console.log("Broadcasted");
 
             vm.stopBroadcast();
@@ -793,7 +820,6 @@ function setDelayedWETH(c: DeployBuilder) {
 }
 
 function setPermissionedDelayedWETH(c: DeployBuilder) {
-
     // initializePermissionedDelayedWETH
     c.addFunctionCode(`console.log("Upgrading and initializing permissioned DelayedWETH proxy");
 
@@ -833,6 +859,71 @@ function setPermissionedDelayedWETH(c: DeployBuilder) {
         });`, functions.initializePermissionedDelayedWETH);
 
 }
+
+function setAnchorStateRegistry(c: DeployBuilder) {
+
+    // initializeAnchorStateRegistry
+    c.addFunctionCode(`console.log("Upgrading and initializing AnchorStateRegistry proxy");
+
+        address proxyAdmin = deployerProcedue.mustGetAddress("ProxyAdmin");
+        address safe = deployerProcedue.mustGetAddress("SystemOwnerSafe");
+
+        address anchorStateRegistryProxy = deployerProcedue.mustGetAddress("AnchorStateRegistryProxy");
+        address anchorStateRegistry = deployerProcedue.mustGetAddress("AnchorStateRegistry");
+        address superchainConfigProxy = deployerProcedue.mustGetAddress("SuperchainConfigProxy");
+
+        DeployConfig cfg = deployerProcedue.getConfig();
+
+        AnchorStateRegistry.StartingAnchorRoot[] memory roots = new AnchorStateRegistry.StartingAnchorRoot[](5);
+        roots[0] = AnchorStateRegistry.StartingAnchorRoot({
+            gameType: GameTypes.CANNON,
+            outputRoot: OutputRoot({
+                root: Hash.wrap(cfg.faultGameGenesisOutputRoot()),
+                l2BlockNumber: cfg.faultGameGenesisBlock()
+            })
+        });
+        roots[1] = AnchorStateRegistry.StartingAnchorRoot({
+            gameType: GameTypes.PERMISSIONED_CANNON,
+            outputRoot: OutputRoot({
+                root: Hash.wrap(cfg.faultGameGenesisOutputRoot()),
+                l2BlockNumber: cfg.faultGameGenesisBlock()
+            })
+        });
+        roots[2] = AnchorStateRegistry.StartingAnchorRoot({
+            gameType: GameTypes.ALPHABET,
+            outputRoot: OutputRoot({
+                root: Hash.wrap(cfg.faultGameGenesisOutputRoot()),
+                l2BlockNumber: cfg.faultGameGenesisBlock()
+            })
+        });
+        roots[3] = AnchorStateRegistry.StartingAnchorRoot({
+            gameType: GameTypes.ASTERISC,
+            outputRoot: OutputRoot({
+                root: Hash.wrap(cfg.faultGameGenesisOutputRoot()),
+                l2BlockNumber: cfg.faultGameGenesisBlock()
+            })
+        });
+        roots[4] = AnchorStateRegistry.StartingAnchorRoot({
+            gameType: GameTypes.FAST,
+            outputRoot: OutputRoot({
+                root: Hash.wrap(cfg.faultGameGenesisOutputRoot()),
+                l2BlockNumber: cfg.faultGameGenesisBlock()
+            })
+        });
+
+        _upgradeAndCallViaSafe({
+            _proxyAdmin: proxyAdmin,
+            _safe: safe,
+            _owner: owner,
+            _proxy: payable(anchorStateRegistryProxy),
+            _implementation: anchorStateRegistry,
+            _innerCallData: abi.encodeCall(AnchorStateRegistry.initialize, (roots, ISuperchainConfig(superchainConfigProxy)))
+        });
+
+        string memory version = AnchorStateRegistry(payable(anchorStateRegistryProxy)).version();
+        console.log("AnchorStateRegistry version: %s", version);`, functions.initializeAnchorStateRegistry);
+}
+
 
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
   switch (opsec) {
@@ -903,6 +994,10 @@ const functions = defineFunctions({
     args: [],
   },
   initializePermissionedDelayedWETH: {
+    kind: 'internal' as const,
+    args: [],
+  },
+  initializeAnchorStateRegistry: {
     kind: 'internal' as const,
     args: [],
   },
