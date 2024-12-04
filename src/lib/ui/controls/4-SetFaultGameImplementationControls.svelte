@@ -18,16 +18,23 @@
 </script>
     
 <section class="controls-section">
-<Background color="bg-neutral-content">
-    <h1 >Contract Settings</h1>
-</Background>
+    <Background color="bg-neutral-content">
+        <h1 >Contract Settings</h1>
+    </Background>
 
-<label class="labeled-input">
-    <span>Name</span>
-    <input bind:value={opts.deployName}>
-</label>
-
-
+    <label class="labeled-input">
+        <span>Name</span>
+        <input bind:value={opts.deployName}>
+    </label>
 </section>
+
+<section class="controls-section">
+    <h1>set AlphabetFaultGame Implementation</h1>
+</section>
+    
+<section class="controls-section">
+    <h1>set FastFaultGame Implementation</h1>
+</section>
+  
 
 <InfoSection bind:info={opts.deployInfo} />
