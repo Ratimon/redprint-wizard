@@ -39,6 +39,7 @@ export function load() {
         {pathname: '/4-opchain-implementations/#4.2L', title: '4.2L', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#4.2M', title: '4.2M', navType: 'scroll'},
         {pathname: '/4-opchain-implementations/#4.2N', title: '4.2N', navType: 'scroll'},
+        {pathname: '/4-opchain-implementations/#4.2O', title: '4.2O', navType: 'scroll'},
     ];
 
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };

@@ -164,6 +164,10 @@ import type { SharedInitializeImplementationsOptions } from '../shared/4-opchain
 import {  defaults as initializeImplementationsDefaults } from '../shared/4-opchain-implementations/2N-option-initialize-implementations';
 import { printDeployInitializeImplementations } from './4-opchain-implementations/2N-initialize-implementations';
 
+import type { SharedSetFaultGameImplementationOptions } from '../shared/4-opchain-implementations/2O-option-set-fault-game-implementation';
+import {  defaults as setFaultGameImplementationDefaults } from '../shared/4-opchain-implementations/2O-option-set-fault-game-implementation';
+import { printDeploySetFaultGameImplementation } from './4-opchain-implementations/2O-set-fault-game-implementation';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import {  defaults as stepFourPointTwoAllSubDefaults } from '../shared/4-opchain-implementations/option-all-sub';
 import { printDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
@@ -433,6 +437,12 @@ export type DeployInitializeImplementations = WizardAllAPI<SharedInitializeImple
 export const deployInitializeImplementations: DeployInitializeImplementations = {
   print: printDeployInitializeImplementations,
   defaults: initializeImplementationsDefaults,
+}
+
+export type DeploySetFaultGameImplementation = WizardAllAPI<SharedSetFaultGameImplementationOptions>;
+export const deploySetFaultGameImplementation: DeploySetFaultGameImplementation = {
+  print: printDeploySetFaultGameImplementation,
+  defaults: setFaultGameImplementationDefaults,
 }
 
 export type DeployStepFourPointTwoAllSub = WizardAllAPI<SharedStepFourPointTwoAllSubOptions>;

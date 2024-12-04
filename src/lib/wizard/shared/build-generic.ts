@@ -43,6 +43,7 @@ import type { SharedPreimageOracleOptions } from './4-opchain-implementations/2K
 import type { SharedMIPSOptions } from './4-opchain-implementations/2L-option-mips';
 import type { SharedAnchorStateRegistryOptions } from './4-opchain-implementations/2M-option-anchor-state-registry';
 import type { SharedInitializeImplementationsOptions } from './4-opchain-implementations/2N-option-initialize-implementations';
+import type { SharedSetFaultGameImplementationOptions } from './4-opchain-implementations/2O-option-set-fault-game-implementation';
 import type { SharedStepFourPointTwoAllSubOptions } from './4-opchain-implementations/option-all-sub';
 import type { SharedStepFourPointTwoAllOptions } from './4-opchain-implementations/option-all';
 
@@ -92,6 +93,7 @@ export interface KindedOptions {
   MIPS: { kind: 'MIPS' } & SharedMIPSOptions;
   AnchorStateRegistry: { kind: 'AnchorStateRegistry' } & SharedAnchorStateRegistryOptions;
   InitializeImplementations: { kind: 'InitializeImplementations' } & SharedInitializeImplementationsOptions;
+  SetFaultGameImplementation: { kind: 'SetFaultGameImplementation' } & SharedSetFaultGameImplementationOptions;
   StepFourPointTwoAllSub: { kind: 'StepFourPointTwoAllSub' } & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: { kind: 'StepFourPointTwoAll' } & SharedStepFourPointTwoAllOptions;
 }
@@ -323,6 +325,12 @@ export interface KindedInitializeImplementationsOptions {
   InitializeImplementations: { kind: 'InitializeImplementations' } & SharedInitializeImplementationsOptions;
 }
 export type GenericInitializeImplementationsOptions = KindedInitializeImplementationsOptions[keyof KindedInitializeImplementationsOptions];
+
+
+export interface KindedSetFaultGameImplementationOptions {
+  SetFaultGameImplementation: { kind: 'SetFaultGameImplementation' } & SharedSetFaultGameImplementationOptions;
+}
+export type GenericSetFaultGameImplementationOptions = KindedSetFaultGameImplementationOptions[keyof KindedSetFaultGameImplementationOptions];
 
 
 export interface KindedStepFourPointTwoAllSubOptions {

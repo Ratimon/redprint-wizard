@@ -90,4 +90,5 @@
     <span>MIPS</span>
     <span>AnchorStateRegistry</span>
     <span>InitializeImplementations</span>
+    <span>SetFaultGameImplementation</span>
 </section>

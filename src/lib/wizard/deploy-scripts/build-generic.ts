@@ -121,6 +121,9 @@ import { buildDeployAnchorStateRegistry } from './4-opchain-implementations/2M-a
 import type { SharedInitializeImplementationsOptions } from '../shared/4-opchain-implementations/2N-option-initialize-implementations';
 import { buildDeployInitializeImplementations } from './4-opchain-implementations/2N-initialize-implementations';
 
+import type { SharedSetFaultGameImplementationOptions } from '../shared/4-opchain-implementations/2O-option-set-fault-game-implementation';
+import { buildDeploySetFaultGameImplementation } from './4-opchain-implementations/2O-set-fault-game-implementation';
+
 import type { SharedStepFourPointTwoAllSubOptions } from '../shared/4-opchain-implementations/option-all-sub';
 import { buildDeployStepFourPointTwoAllSub } from './4-opchain-implementations/all-sub';
 
@@ -172,6 +175,7 @@ export interface DeployKindedOptions {
   MIPS: {kind: 'MIPS'} & SharedMIPSOptions;
   AnchorStateRegistry: {kind: 'AnchorStateRegistry'} & SharedAnchorStateRegistryOptions;
   InitializeImplementations: {kind: 'InitializeImplementations'} & SharedInitializeImplementationsOptions;
+  SetFaultGameImplementation: {kind: 'SetFaultGameImplementation'} & SharedSetFaultGameImplementationOptions;
   StepFourPointTwoAllSub: {kind: 'StepFourPointTwoAllSub'} & SharedStepFourPointTwoAllSubOptions;
   StepFourPointTwoAll: {kind: 'StepFourPointTwoAll'} & SharedStepFourPointTwoAllOptions;
 }
@@ -303,6 +307,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'InitializeImplementations':
       return  buildDeployInitializeImplementations(opts);
+
+    case 'SetFaultGameImplementation':
+      return  buildDeploySetFaultGameImplementation(opts);
 
     case 'StepFourPointTwoAllSub':
       return  buildDeployStepFourPointTwoAllSub(opts);

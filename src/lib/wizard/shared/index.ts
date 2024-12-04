@@ -39,6 +39,7 @@ export type {
     KindedMIPSOptions, GenericMIPSOptions,
     KindedAnchorStateRegistryOptions, GenericAnchorStateRegistryOptions,
     KindedInitializeImplementationsOptions, GenericInitializeImplementationsOptions,
+    KindedSetFaultGameImplementationOptions, GenericSetFaultGameImplementationOptions,
     KindedStepFourPointTwoAllSubOptions, GenericStepFourPointTwoAllSubOptions,
     KindedStepFourPointTwoAllOptions, GenericStepFourPointTwoAllOptions,
 } from './build-generic';
@@ -167,6 +168,9 @@ export {  sanitizeKindAnchorStateRegistry } from './4-opchain-implementations/2M
 
 export type { KindInitializeImplementations } from './4-opchain-implementations/2N-kind-initialize-implementations';
 export {  sanitizeKindInitializeImplementations } from './4-opchain-implementations/2N-kind-initialize-implementations';
+
+export type { KindSetFaultGameImplementation } from './4-opchain-implementations/2O-kind-fault-game-implementation';
+export {  sanitizeKindSetFaultGameImplementation } from './4-opchain-implementations/2O-kind-fault-game-implementation';
 
 export type { KindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';
 export {  sanitizeKindStepFourPointTwoAllSub } from './4-opchain-implementations/kind-all-sub';

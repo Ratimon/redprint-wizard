@@ -53,6 +53,7 @@ export {
     deployMIPS,
     deployAnchorStateRegistry,
     deployInitializeImplementations,
+    deploySetFaultGameImplementation,
     deployStepFourPointTwoAllSub,
     deployStepFourPointTwoAll
 } from './api';

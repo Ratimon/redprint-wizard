@@ -21,6 +21,7 @@
       KindedMIPSOptions, KindMIPS,
       KindedAnchorStateRegistryOptions, KindAnchorStateRegistry,
       KindedInitializeImplementationsOptions, KindInitializeImplementations,
+      KindedSetFaultGameImplementationOptions, KindSetFaultGameImplementation,
       KindedStepFourPointTwoAllOptions, KindStepFourPointTwoAll,
       KindedStepFourPointTwoAllSubOptions, KindStepFourPointTwoAllSub,
       OptionsErrorMessages
@@ -41,6 +42,7 @@
       sanitizeKindMIPS,
       sanitizeKindAnchorStateRegistry,
       sanitizeKindInitializeImplementations,
+      sanitizeKindSetFaultGameImplementation,
       sanitizeKindStepFourPointTwoAll,
       sanitizeKindStepFourPointTwoAllSub,
       OptionsError
@@ -71,6 +73,7 @@
   import AllControls from '$lib/ui/controls/4-2AllControls.svelte';
   import AnchorStateRegistryControls from '$lib/ui/controls/4-AnchorStateRegistryControls.svelte';
   import InitializeImplementationsControls from '$lib/ui/controls/4-InitializeImplementationsControls.svelte';
+  import SetFaultGameImplementationControls from '$lib/ui/controls/4-SetFaultGameImplementationControls.svelte';
   import MarkdownIt from "markdown-it";
   import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -92,7 +95,8 @@
   });
 
   export let data : PageData;
-  $: stepLinks  = data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 14, 2))
+  // always change x (for `data.dropDownLinks.length - x`) when adding more deployment step
+  $: stepLinks  = data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 15, 2))
 
   $: addressPreContent = md.render(`
   \`\`\`bash
@@ -1017,6 +1021,74 @@
           }
       }
   }
+
+export let initialContractSetFaultGameImplementationTab: string | undefined = 'SetFaultGameImplementation';
+export let contractSetFaultGameImplementationTab: KindSetFaultGameImplementation = sanitizeKindSetFaultGameImplementation(initialContractSetFaultGameImplementationTab);
+
+let allContractsSetFaultGameImplementationOpts: { [k in KindSetFaultGameImplementation]?: Required<KindedSetFaultGameImplementationOptions [k]> } = {};
+
+let errorsSetFaultGameImplementation: { [k in KindSetFaultGameImplementation]?: OptionsErrorMessages } = {};
+
+let deployContractSetFaultGameImplementation: DeployContract = new DeployBuilder('SetFaultGameImplementationScript');
+
+$: optsSetFaultGameImplementation = allContractsSetFaultGameImplementationOpts[contractSetFaultGameImplementationTab];
+$: {
+if (optsSetFaultGameImplementation) {
+        try {
+            deployContractSetFaultGameImplementation = buildDeployGeneric(optsSetFaultGameImplementation);
+            errorsSetFaultGameImplementation[contractSetFaultGameImplementationTab] = undefined;
+        } catch (e: unknown) {
+            if (e instanceof OptionsError) {
+              errorsSetFaultGameImplementation[contractSetFaultGameImplementationTab] = e.messages;
+            } else {
+            throw e;
+            }
+        }
+    }
+}
+
+let isArtifactStepTwoOModalOpen = false;
+  $: addressStepTwoOContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "OptimismPortalProxy": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "OptimismPortalProxy": "<ADDRESS_10>",
+  "SystemConfigProxy": "<ADDRESS_11>",
+  "L1StandardBridgeProxy": "<ADDRESS_12>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
+  "L1ERC721BridgeProxy": "<ADDRESS_15>",
+  "DisputeGameFactoryProxy": "<ADDRESS_16>",
+  "L2OutputOracleProxy": "<ADDRESS_17>",
+  "DelayedWETHProxy": "<ADDRESS_18>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
+  "AnchorStateRegistryProxy": "<ADDRESS_20>",
+  "L1CrossDomainMessenger": "<ADDRESS_21>",
+  "OptimismMintableERC20Factory": "<ADDRESS_22>",
+  "SystemConfig": "<ADDRESS_23>",
+  "L1StandardBridge": "<ADDRESS_24>",
+  "L1ERC721Bridge": "<ADDRESS_25>",
+  "OptimismPortal": "<ADDRESS_26>",
+  "L2OutputOracle": "<ADDRESS_27>",
+  "OptimismPortal2": "<ADDRESS_28>",
+  "DisputeGameFactory": "<ADDRESS_29>",
+  "DelayedWETH": "<ADDRESS_30>",
+  "PreimageOracle" : "<ADDRESS_31>",
+  "Mips" : "<ADDRESS_32>",
+  "AnchorStateRegistry" : "<ADDRESS_33>",
+  "FaultDisputeGame" : "<ADDRESS_34>",
+  "PermissionedDisputeGame" : "<ADDRESS_35>"
+}
+  \`\`\`
+  `);
   
 </script>
 
@@ -1632,7 +1704,7 @@
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={stepLinks[7].pathname}>
     <div class="divider divider-primary ">
-      <p class="btn btn-accent text-2xl">4.2 - Part 2 : Deploy Fault proofs System</p>
+      <p class="btn btn-accent text-2xl">4.2 - Part 2 : Deploy and Set up Fault proofs System</p>
     </div>
   </section>
   <div class="divider divider-default">
@@ -1867,7 +1939,7 @@
 <WizardDouble conventionNumber={'402K'} initialContractTab={initialContractPreimageOracleTab} contractTab={contractPreimageOracleTab} opts={optsPreimageOracle} contract={contractPreimageOracle} deployContract={deployContractPreimageOracle}>
   <div slot="caption" >
     <h2 class="m-4 font-extrabold	">The default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L53" target="_blank" rel="noreferrer">preimageOracleMinProposalSize</a> is <span class="bg-primary underline">1800000</span>.</h2>
-    <h2 class="m-4 font-extrabold	">The default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L54" target="_blank" rel="noreferrer">preimageOracleChallengePeriod</a> is <span class="bg-primary underline">126000</span>.</h2>
+    <h2 class="m-4 font-extrabold	">The default value of <a class="bg-secondary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/deploy-config/mainnet.json#L54" target="_blank" rel="noreferrer">preimageOracleChallengePeriod</a> is <span class="bg-primary underline">86400</span>.</h2>
   </div>
 
   <div slot="menu" >
@@ -2065,14 +2137,14 @@
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={stepLinks[13].pathname}>
     <div class="divider divider-primary ">
-      <p class="btn btn-accent text-xl">4.1N : Initialize Implementations</p>
+      <p class="btn btn-accent text-xl">4.2N : Initialize Implementations</p>
     </div>
   </section>
 </Background>
 
 <ScrollStep links={stepLinks} titleHighlighted={stepLinks[13].title} />
 
-<WizardSingle isShowingCommand={true} conventionNumber={'401N'} initialContractTab={initialContractInitializeImplementationsTab} contractTab={contractInitializeImplementationsTab} opts={optsInitializeImplementations} deployContract={deployContractInitializeImplementations}>
+<WizardSingle isShowingCommand={true} conventionNumber={'402N'} initialContractTab={initialContractInitializeImplementationsTab} contractTab={contractInitializeImplementationsTab} opts={optsInitializeImplementations} deployContract={deployContractInitializeImplementations}>
 
   <div slot="caption" >
     <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/fault-proof/index.html" target="_blank" rel="noreferrer">useFaultProofs==false</a>, we will initialize <span class="bg-primary underline">OptimismPortal</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortal2</span>.</h2>
@@ -2100,6 +2172,78 @@
               <InitializeImplementationsControls bind:opts={allContractsInitializeImplementationsOpts.InitializeImplementations} />
           </div>
       </div>
+  </div>
+  
+</WizardSingle>
+
+<!-- 402O_SetFaultGameImplementationScript.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={stepLinks[14].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-xl">4.2O : Set FaultGameImplementation</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[14].title} />
+
+<WizardSingle isShowingCommand={true} conventionNumber={'402O'} initialContractTab={initialContractSetFaultGameImplementationTab} contractTab={contractSetFaultGameImplementationTab} opts={optsSetFaultGameImplementation} deployContract={deployContractSetFaultGameImplementation}>
+
+  <!-- <div slot="caption" >
+    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/fault-proof/index.html" target="_blank" rel="noreferrer">useFaultProofs==false</a>, we will initialize <span class="bg-primary underline">OptimismPortal</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortal2</span>.</h2>
+  </div> -->
+
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractSetFaultGameImplementationTab === 'SetFaultGameImplementation'} on:click={() => contractSetFaultGameImplementationTab = 'SetFaultGameImplementation'}>
+              SetFaultGameImplementation
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
+          <div class:hidden={contractSetFaultGameImplementationTab !== 'SetFaultGameImplementation'}>
+              <SetFaultGameImplementationControls bind:opts={allContractsSetFaultGameImplementationOpts.SetFaultGameImplementation} />
+          </div>
+      </div>
+  </div>
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepTwoOModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepTwoOModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepTwoOModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepTwoOContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
   </div>
   
 </WizardSingle>

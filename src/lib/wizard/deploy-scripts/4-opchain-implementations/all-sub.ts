@@ -209,9 +209,15 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
 
   const InitializeImplementationsScript = {
     name: 'InitializeImplementationsScript',
-    path: '@script/@script/402N_InitializeImplementationsScript.s.sol',
+    path: '@script/402N_InitializeImplementationsScript.s.sol',
   };
   c.addModule(InitializeImplementationsScript);
+
+  const SetFaultGameImplementationScript = {
+    name: 'SetFaultGameImplementationScript',
+    path: '@script/402O_SetFaultGameImplementationScript.s.sol',
+  };
+  c.addModule(SetFaultGameImplementationScript);
 
   // start Deployments
   c.addFunctionCode(`
@@ -249,7 +255,8 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         DeployPreimageOracleScript preimageOracleDeployments = new DeployPreimageOracleScript();
         DeployMIPSScript mipsDeployments = new DeployMIPSScript();
         DeployAnchorStateRegistryScript anchorStateRegistryDeployments = new DeployAnchorStateRegistryScript();
-        InitializeImplementationsScript initializeImplementations = new InitializeImplementationsScript();`, fn);
+        InitializeImplementationsScript initializeImplementations = new InitializeImplementationsScript();
+        SetFaultGameImplementationScript setFaultGameImplementation = new SetFaultGameImplementationScript();`, fn);
 
   c.addFunctionCode(`
         l1CrossDomainMessengerDeployments.deploy();
@@ -266,6 +273,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
         mipsDeployments.deploy();
         anchorStateRegistryDeployments.deploy();
         initializeImplementations.run();
+        setFaultGameImplementation.run();
 
         console.log("L1CrossDomainMessenger at: ", deployerProcedue.getAddress("L1CrossDomainMessenger"));
         console.log("OptimismMintableERC20Factory at: ", deployerProcedue.getAddress("OptimismMintableERC20Factory"));

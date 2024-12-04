@@ -47,6 +47,7 @@ export type Action =
                     'copy-contract-MIPS'| 'copy-script-MIPS' | 'download-contract-MIPS' | 'download-script-MIPS' |
                     'copy-contract-AnchorStateRegistry'| 'copy-script-AnchorStateRegistry' | 'download-contract-AnchorStateRegistry' | 'download-script-AnchorStateRegistry' |
                     'copy-contract-InitializeImplementations'| 'copy-script-InitializeImplementations' | 'download-contract-InitializeImplementations' | 'download-script-InitializeImplementations' |
+                    'copy-contract-SetFaultGameImplementation'| 'copy-script-SetFaultGameImplementation' | 'download-contract-SetFaultGameImplementation' | 'download-script-SetFaultGameImplementation' |
                     'copy-contract-StepFourPointTwoAllSub'| 'copy-script-StepFourPointTwoAllSub' | 'download-contract-StepFourPointTwoAllSub' | 'download-script-StepFourPointTwoAllSub' |
                     'copy-contract-StepFourPointTwoAll'| 'copy-script-StepFourPointTwoAll' | 'download-contract-StepFourPointTwoAll' | 'download-script-StepFourPointTwoAll'
                     
