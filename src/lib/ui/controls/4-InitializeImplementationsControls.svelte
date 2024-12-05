@@ -74,9 +74,10 @@
     </label>
   
     <label class="labeled-input">
+
       <span>Custom Gas Token Address</span>
       <input bind:value={opts.customGasTokenaddress}>
-  </label>
+    </label>
   </div>
 </section>
 

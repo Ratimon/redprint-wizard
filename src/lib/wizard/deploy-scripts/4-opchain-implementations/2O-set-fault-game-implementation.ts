@@ -31,6 +31,7 @@ export function buildDeploySetFaultGameImplementation(opts: SharedSetFaultGameIm
   addBase(c );
   setAlphabetFaultGameImplementation(c);
   setFastFaultGameImplementation(c);
+  setCannonFaultGameImplementation(c, allOpts.prestateProofMtPath, allOpts.prestateProofStPath);
   setFaultGameImplementation(c);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
@@ -83,6 +84,23 @@ function addBase(c: DeployBuilder) {
     };
     c.addModule(DeployConfig);
 
+    const Chains = {
+        name: 'Chains',
+        path: '@redprint-deploy/libraries/Chains.sol',
+    };
+    c.addModule(Chains);
+
+    const Config = {
+        name: 'Config',
+        path: '@redprint-deploy/libraries/Config.sol',
+    };
+    c.addModule(Config);
+
+    const Process = {
+        name: 'Process',
+        path: '@redprint-deploy/libraries/Process.sol',
+    };
+    c.addModule(Process);
 
     const IBigStepper = {
         name: 'IBigStepper',
@@ -90,7 +108,6 @@ function addBase(c: DeployBuilder) {
     };
     c.addModule(IBigStepper);
     
-
     const GameType = {
         name: 'GameType',
         path: '@redprint-core/dispute/lib/Types.sol',
@@ -195,6 +212,7 @@ function addBase(c: DeployBuilder) {
             vm.startPrank(owner);
             setAlphabetFaultGameImplementation({ _allowUpgrade: false });
             setFastFaultGameImplementation({ _allowUpgrade: false });
+            setCannonFaultGameImplementation({ _allowUpgrade: false });
   
             console.log("Pranking Stopped ...");
 
@@ -204,6 +222,7 @@ function addBase(c: DeployBuilder) {
             vm.startBroadcast(owner);
             setAlphabetFaultGameImplementation({ _allowUpgrade: false });
             setFastFaultGameImplementation({ _allowUpgrade: false });
+            setCannonFaultGameImplementation({ _allowUpgrade: false });
    
             console.log("Broadcasted");
 
@@ -263,6 +282,89 @@ function setFastFaultGameImplementation(c: DeployBuilder ) {
                 maxClockDuration: Duration.wrap(0) // Resolvable immediately
              })
         });`, functions.setFastFaultGameImplementation);
+
+}
+
+
+
+function setCannonFaultGameImplementation(c: DeployBuilder, prestateProofMtPath: string, prestateProofStPath: string ) {
+
+    // setCannonFaultGameImplementation
+    c.addFunctionCode(`console.log("Setting Cannon FaultDisputeGame implementation");
+        DisputeGameFactory factory = DisputeGameFactory(deployerProcedue.mustGetAddress("DisputeGameFactoryProxy"));
+        IDelayedWETH weth = IDelayedWETH(deployerProcedue.mustGetAddress("DelayedWETHProxy"));
+
+        DeployConfig cfg = deployerProcedue.getConfig();
+
+        // Set the Cannon FaultDisputeGame implementation in the factory.
+        _setFaultGameImplementation({
+            _factory: factory,
+            _allowUpgrade: _allowUpgrade,
+            _params: FaultDisputeGameParams({
+                anchorStateRegistry: IAnchorStateRegistry(deployerProcedue.mustGetAddress("AnchorStateRegistryProxy")),
+                weth: weth,
+                gameType: GameTypes.CANNON,
+                absolutePrestate: loadMipsAbsolutePrestate(),
+                faultVm: IBigStepper(deployerProcedue.mustGetAddress("Mips")),
+                maxGameDepth: cfg.faultGameMaxDepth(),
+                maxClockDuration: Duration.wrap(uint64(cfg.faultGameMaxClockDuration()))
+            })
+        });`, functions.setCannonFaultGameImplementation);
+
+    // loadMipsAbsolutePrestate
+    //  note \\"present\\"" is actually \"present\""
+    c.addFunctionCode(`DeployConfig cfg = deployerProcedue.getConfig();
+
+        if (block.chainid == Chains.LocalDevnet || block.chainid == Chains.GethDevnet) {
+            if (Config.useMultithreadedCannon()) {
+                return _loadDevnetMtMipsAbsolutePrestate();
+            } else {
+                return _loadDevnetStMipsAbsolutePrestate();
+            }
+        } else {
+            console.log(
+                "[Cannon Dispute Game] Using absolute prestate from config: %x", cfg.faultGameAbsolutePrestate()
+            );
+            mipsAbsolutePrestate_ = Claim.wrap(bytes32(cfg.faultGameAbsolutePrestate()));
+        }`, functions.loadMipsAbsolutePrestate);
+
+    // _loadDevnetMtMipsAbsolutePrestate
+    c.addFunctionCode(`// Fetch the absolute prestate dump
+        string memory filePath = string.concat(vm.projectRoot(), "${prestateProofMtPath}");
+        string[] memory commands = new string[](3);
+        commands[0] = "bash";
+        commands[1] = "-c";
+        commands[2] = string.concat("[[ -f ", filePath, " ]] && echo \\"present\\"");
+        if (Process.run(commands).length == 0) {
+            revert(
+                "Deploy: MT-Cannon prestate dump not found, generate it with 'make cannon-prestate-mt' in the monorepo root"
+            );
+        }
+        commands[2] = string.concat("cat ", filePath, " | jq -r .pre");
+        mipsAbsolutePrestate_ = Claim.wrap(abi.decode(Process.run(commands), (bytes32)));
+        console.log(
+            "[MT-Cannon Dispute Game] Using devnet MIPS2 Absolute prestate: %s",
+            vm.toString(Claim.unwrap(mipsAbsolutePrestate_))
+        );`, functions._loadDevnetMtMipsAbsolutePrestate);
+
+    // _loadDevnetStMipsAbsolutePrestate
+    c.addFunctionCode(`// Fetch the absolute prestate dump
+        string memory filePath = string.concat(vm.projectRoot(), "${prestateProofStPath}");
+        string[] memory commands = new string[](3);
+        commands[0] = "bash";
+        commands[1] = "-c";
+        commands[2] = string.concat("[[ -f ", filePath, " ]] && echo \\"present\\"");
+        if (Process.run(commands).length == 0) {
+            revert(
+                "Deploy: cannon prestate dump not found, generate it with 'make cannon-prestate' in the monorepo root"
+            );
+        }
+        commands[2] = string.concat("cat ", filePath, " | jq -r .pre");
+        mipsAbsolutePrestate_ = Claim.wrap(abi.decode(Process.run(commands), (bytes32)));
+        console.log(
+            "[Cannon Dispute Game] Using devnet MIPS Absolute prestate: %s",
+            vm.toString(Claim.unwrap(mipsAbsolutePrestate_))
+        );`, functions._loadDevnetStMipsAbsolutePrestate);
 
 }
 
@@ -341,6 +443,8 @@ function setFaultGameImplementation(c: DeployBuilder ) {
 
 
 
+
+
 function setOpsec(c: DeployBuilder, opsec: OpSec) {
   switch (opsec) {
     case 'address': {
@@ -388,6 +492,27 @@ const functions = defineFunctions({
         { name: '_allowUpgrade', type: 'bool' },
         { name: '_params', type: 'FaultDisputeGameParams memory' }
     ],
+  },
+  setCannonFaultGameImplementation: {
+    kind: 'internal' as const,
+    args: [
+        { name: '_allowUpgrade', type: 'bool' }
+    ],
+  },
+  loadMipsAbsolutePrestate: {
+    kind: 'internal' as const,
+    args: [],
+    returns: ['Claim mipsAbsolutePrestate_'],
+  },
+  _loadDevnetMtMipsAbsolutePrestate: {
+    kind: 'internal' as const,
+    args: [],
+    returns: ['Claim mipsAbsolutePrestate_'],
+  },
+  _loadDevnetStMipsAbsolutePrestate: {
+    kind: 'internal' as const,
+    args: [],
+    returns: ['Claim mipsAbsolutePrestate_'],
   }
 
 });

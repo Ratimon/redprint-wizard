@@ -2189,10 +2189,10 @@ let isArtifactStepTwoOModalOpen = false;
 
 <WizardSingle isShowingCommand={true} conventionNumber={'402O'} initialContractTab={initialContractSetFaultGameImplementationTab} contractTab={contractSetFaultGameImplementationTab} opts={optsSetFaultGameImplementation} deployContract={deployContractSetFaultGameImplementation}>
 
-  <!-- <div slot="caption" >
-    <h2 class="m-4 font-extrabold	">When configuring <a class="bg-secondary underline" href="https://specs.optimism.io/fault-proof/index.html" target="_blank" rel="noreferrer">useFaultProofs==false</a>, we will initialize <span class="bg-primary underline">OptimismPortal</span>(Default). Otherwise, it is <span class="bg-primary underline">OptimismPortal2</span>.</h2>
-  </div> -->
-
+  <div slot="caption" >
+    <h2 class="m-4 font-extrabold	">When running <a class="bg-secondary underline" href="https://github.com/Ratimon/redprint-optimism-contracts-examples/blob/main/script/402O_SetFaultGameImplementationScript.s.sol#L135" target="_blank" rel="noreferrer">setCannonFaultGameImplementation</a>, it is required to generate <a class="bg-primary underline" href="https://github.com/Ratimon/redprint-optimism-contracts-examples/tree/main/bin" target="_blank" rel="noreferrer">MipsAbsolutePrestate</a>json files. The instruction is <a class="bg-primary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/op-program/README.md" target="_blank" rel="noreferrer">here</a>.
+  </div>
+  
   <div slot="menu" >
       <div class="tab overflow-hidden">
         <Background color="bg-base-200">

@@ -418,9 +418,9 @@ const functions = defineFunctions({
     oracle: {
       kind: 'external' as const,
       args: [
-          { name: 'oracle_', type: 'IPreimageOracle' },
         ],
         mutability: 'view',
+        returns: ['IPreimageOracle oracle_'],
     },
 
     outputState: {

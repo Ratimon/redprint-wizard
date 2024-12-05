@@ -35,6 +35,19 @@
 <section class="controls-section">
     <h1>set FastFaultGame Implementation</h1>
 </section>
+
+<section class="controls-section">
+    <h1>set CannonFaultGame Implementation</h1>
+    <div class="checkbox-group">
+    
+        <label class="labeled-input">
+          <span>Prestate Proof Mt Path</span>
+          <input bind:value={opts.prestateProofMtPath}>
+          <span>Prestate Proof St Path</span>
+          <input bind:value={opts.prestateProofStPath}>
+        </label>
+      </div>
+</section>
   
 
 <InfoSection bind:info={opts.deployInfo} />
