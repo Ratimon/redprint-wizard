@@ -38,6 +38,10 @@
 
 <section class="controls-section">
     <h1>set CannonFaultGame Implementation</h1>
+</section>
+
+<section class="controls-section">
+    <h1>set Permissioned CannonFaultGame Implementation</h1>
     <div class="checkbox-group">
     
         <label class="labeled-input">
@@ -46,7 +50,8 @@
           <span>Prestate Proof St Path</span>
           <input bind:value={opts.prestateProofStPath}>
         </label>
-      </div>
+
+    </div>
 </section>
   
 

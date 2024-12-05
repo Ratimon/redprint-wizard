@@ -31,7 +31,7 @@ export function buildDeploySetFaultGameImplementation(opts: SharedSetFaultGameIm
   addBase(c );
   setAlphabetFaultGameImplementation(c);
   setFastFaultGameImplementation(c);
-  setCannonFaultGameImplementation(c, allOpts.prestateProofMtPath, allOpts.prestateProofStPath);
+  setPermissionedCannonFaultGameImplementations(c, allOpts.prestateProofMtPath, allOpts.prestateProofStPath);
   setFaultGameImplementation(c);
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
@@ -287,7 +287,7 @@ function setFastFaultGameImplementation(c: DeployBuilder ) {
 
 
 
-function setCannonFaultGameImplementation(c: DeployBuilder, prestateProofMtPath: string, prestateProofStPath: string ) {
+function setPermissionedCannonFaultGameImplementations(c: DeployBuilder, prestateProofMtPath: string, prestateProofStPath: string ) {
 
     // setCannonFaultGameImplementation
     c.addFunctionCode(`console.log("Setting Cannon FaultDisputeGame implementation");
@@ -310,6 +310,28 @@ function setCannonFaultGameImplementation(c: DeployBuilder, prestateProofMtPath:
                 maxClockDuration: Duration.wrap(uint64(cfg.faultGameMaxClockDuration()))
             })
         });`, functions.setCannonFaultGameImplementation);
+
+    // setPermissionedCannonFaultGameImplementation
+    c.addFunctionCode(`console.log("Setting Cannon PermissionedDisputeGame implementation");
+        DisputeGameFactory factory = DisputeGameFactory(deployerProcedue.mustGetAddress("DisputeGameFactoryProxy"));
+        IDelayedWETH weth = IDelayedWETH(deployerProcedue.mustGetAddress("PermissionedDelayedWETHProxy"));
+
+        DeployConfig cfg = deployerProcedue.getConfig();
+
+        // Set the Cannon FaultDisputeGame implementation in the factory.
+        _setFaultGameImplementation({
+            _factory: factory,
+            _allowUpgrade: _allowUpgrade,
+            _params: FaultDisputeGameParams({
+                anchorStateRegistry: IAnchorStateRegistry(deployerProcedue.mustGetAddress("AnchorStateRegistryProxy")),
+                weth: weth,
+                gameType: GameTypes.PERMISSIONED_CANNON,
+                absolutePrestate: loadMipsAbsolutePrestate(),
+                faultVm: IBigStepper(deployerProcedue.mustGetAddress("Mips")),
+                maxGameDepth: cfg.faultGameMaxDepth(),
+                maxClockDuration: Duration.wrap(uint64(cfg.faultGameMaxClockDuration()))
+            })
+        });`, functions.setPermissionedCannonFaultGameImplementation);
 
     // loadMipsAbsolutePrestate
     //  note \\"present\\"" is actually \"present\""
@@ -494,6 +516,12 @@ const functions = defineFunctions({
     ],
   },
   setCannonFaultGameImplementation: {
+    kind: 'internal' as const,
+    args: [
+        { name: '_allowUpgrade', type: 'bool' }
+    ],
+  },
+  setPermissionedCannonFaultGameImplementation: {
     kind: 'internal' as const,
     args: [
         { name: '_allowUpgrade', type: 'bool' }
