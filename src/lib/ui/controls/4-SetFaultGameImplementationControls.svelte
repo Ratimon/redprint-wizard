@@ -53,6 +53,14 @@
 
     </div>
 </section>
+
+<section class="controls-section">
+    <h1>Transfer DisputeGameFactory Ownership</h1>
+</section>
+
+<section class="controls-section">
+    <h1>Transfer DelayedWETH Ownership</h1>
+</section>
   
 
 <InfoSection bind:info={opts.deployInfo} />

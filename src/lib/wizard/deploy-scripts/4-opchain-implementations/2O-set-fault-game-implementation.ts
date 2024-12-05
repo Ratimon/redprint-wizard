@@ -33,6 +33,9 @@ export function buildDeploySetFaultGameImplementation(opts: SharedSetFaultGameIm
   setFastFaultGameImplementation(c);
   setPermissionedCannonFaultGameImplementations(c, allOpts.prestateProofMtPath, allOpts.prestateProofStPath);
   setFaultGameImplementation(c);
+  setTransferDisputeGameFactoryOwnership(c);
+  setTransferDelayedWETHOwnership(c);
+
   setOpsec(c, allOpts.opSec);
   setInfo(c, allOpts.deployInfo);
 
@@ -83,6 +86,18 @@ function addBase(c: DeployBuilder) {
         path: '@redprint-deploy/deployer/DeployConfig.s.sol',
     };
     c.addModule(DeployConfig);
+
+    const Types = {
+        name: 'Types',
+        path: '@redprint-deploy/optimism/Types.sol',
+    };
+    c.addModule(Types);
+
+    const ChainAssertions = {
+        name: 'ChainAssertions',
+        path: '@redprint-deploy/optimism/ChainAssertions.sol',
+    };
+    c.addModule(ChainAssertions);
 
     const Chains = {
         name: 'Chains',
@@ -187,6 +202,12 @@ function addBase(c: DeployBuilder) {
     };
     c.addModule(PreimageOracle);
 
+    const IDisputeGameFactory = {
+        name: 'IDisputeGameFactory',
+        path: '@redprint-core/dispute/interfaces/IDisputeGameFactory.sol',
+    };
+    c.addModule(IDisputeGameFactory);
+
 
     c.addVariable(`IDeployer deployerProcedue;`);
 
@@ -213,6 +234,8 @@ function addBase(c: DeployBuilder) {
             setAlphabetFaultGameImplementation({ _allowUpgrade: false });
             setFastFaultGameImplementation({ _allowUpgrade: false });
             setCannonFaultGameImplementation({ _allowUpgrade: false });
+            transferDisputeGameFactoryOwnership();
+            transferDelayedWETHOwnership();
   
             console.log("Pranking Stopped ...");
 
@@ -223,6 +246,8 @@ function addBase(c: DeployBuilder) {
             setAlphabetFaultGameImplementation({ _allowUpgrade: false });
             setFastFaultGameImplementation({ _allowUpgrade: false });
             setCannonFaultGameImplementation({ _allowUpgrade: false });
+            transferDisputeGameFactoryOwnership();
+            transferDelayedWETHOwnership();
    
             console.log("Broadcasted");
 
@@ -463,6 +488,48 @@ function setFaultGameImplementation(c: DeployBuilder ) {
 
 }
 
+function setTransferDisputeGameFactoryOwnership(c: DeployBuilder) {
+    c.addFunctionCode(`console.log("Transferring DisputeGameFactory ownership to Safe");
+        IDisputeGameFactory disputeGameFactory = IDisputeGameFactory(deployerProcedue.mustGetAddress("DisputeGameFactoryProxy"));
+        address _owner = disputeGameFactory.owner();
+
+        DeployConfig cfg = deployerProcedue.getConfig();
+        address finalSystemOwner = cfg.finalSystemOwner();
+
+        if (_owner != finalSystemOwner) {
+            disputeGameFactory.transferOwnership(finalSystemOwner);
+            console.log("DisputeGameFactory ownership transferred to final system owner at: %s", finalSystemOwner);
+        }
+
+        Types.ContractSet memory proxies =  deployerProcedue.getProxies();
+        ChainAssertions.checkDisputeGameFactory({
+            _contracts: proxies,
+            _expectedOwner: finalSystemOwner,
+            _isProxy: true
+        });`, functions.transferDisputeGameFactoryOwnership);
+}
+
+function setTransferDelayedWETHOwnership(c: DeployBuilder) {
+    c.addFunctionCode(`console.log("Transferring DelayedWETH ownership to Safe");
+        IDelayedWETH weth = IDelayedWETH(deployerProcedue.mustGetAddress("DelayedWETHProxy"));
+        address _owner = weth.owner();
+
+        DeployConfig cfg = deployerProcedue.getConfig();
+        address finalSystemOwner = cfg.finalSystemOwner();
+        if (_owner != finalSystemOwner) {
+            weth.transferOwnership(finalSystemOwner);
+            console.log("DelayedWETH ownership transferred to final system owner at: %s", finalSystemOwner);
+        }
+        
+        Types.ContractSet memory proxies =  deployerProcedue.getProxies();
+        ChainAssertions.checkDelayedWETH({
+            _contracts: proxies,
+            _cfg: cfg,
+            _isProxy: true,
+            _expectedOwner: finalSystemOwner
+        });`, functions.transferDelayedWETHOwnership);
+}
+
 
 
 
@@ -526,6 +593,14 @@ const functions = defineFunctions({
     args: [
         { name: '_allowUpgrade', type: 'bool' }
     ],
+  },
+  transferDisputeGameFactoryOwnership: {
+    kind: 'internal' as const,
+    args: [],
+  },
+  transferDelayedWETHOwnership: {
+    kind: 'internal' as const,
+    args: [],
   },
   loadMipsAbsolutePrestate: {
     kind: 'internal' as const,

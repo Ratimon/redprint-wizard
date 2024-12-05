@@ -362,7 +362,6 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
             vm.stopBroadcast();
         }`, functions.run);
 
-
 }
 
 function setOptimismPortalWithFaultProofsOptions(c: DeployBuilder, useFaultProofs: UseFaultProofs ) {

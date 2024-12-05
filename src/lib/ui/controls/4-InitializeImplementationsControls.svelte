@@ -38,7 +38,7 @@
       <input type="radio" bind:group={opts.useFaultProofs} value='no-optimism-portal'>
       Without Fault Proofs
       <HelpTooltip>
-        cfg.useFaultProofs==false
+        Set cfg.useFaultProofs==false, OptimismPortal will be initialized without fault proofs.
       </HelpTooltip>
     </label>
 
@@ -46,7 +46,7 @@
       <input type="radio" bind:group={opts.useFaultProofs} value='yes-optimism-portal-2'>
       With Fault Proofs
       <HelpTooltip>
-        cfg.useFaultProofs==true
+        Set cfg.useFaultProofs==true, OptimismPortal2 will be initialized with fault proofs.
       </HelpTooltip>
     </label>
 
@@ -61,7 +61,7 @@
       <input type="radio" bind:group={opts.useCustomToken} value='no-custom-token'>
       Without Custom Token
       <HelpTooltip>
-        cfg.useCustomGasToken==false
+        Set cfg.useCustomGasToken==false, the contract will use the default gas token (Constants.ETHER).
       </HelpTooltip>
     </label>
   
@@ -69,7 +69,7 @@
       <input type="radio" bind:group={opts.useCustomToken} value='yes-custom-token'>
       With Custom Token
       <HelpTooltip>
-        cfg.useCustomGasToken==true
+        Set cfg.useCustomGasToken==true, the contract will use the custom gas token (specified below).
       </HelpTooltip>
     </label>
   
