@@ -10,6 +10,7 @@ export type {
     KindedStepTwoAllSubOptions, GenericStepTwoAllSubOptions,
     KindedStepTwoAllOptions, GenericStepTwoAllOptions,
 
+    KindedDataAvailabilityChallengeProxyOptions, GenericDataAvailabilityChallengeProxyOptions,
     KindedStepThreeAllSubOptions, GenericStepThreeAllSubOptions,
     KindedStepThreeAllOptions, GenericStepThreeAllOptions,
 
@@ -87,6 +88,9 @@ export {  sanitizeKindStepTwoAllSub } from './2-superchain/kind-all-sub';
 
 export type { KindStepTwoAll } from './2-superchain/kind-all';
 export {  sanitizeKindStepTwoAll } from './2-superchain/kind-all';
+
+export type { KindDataAvailabilityChallengeProxy } from './3-plasmachain/1A-kind-data-availability-challenge-proxy';
+export {  sanitizeKindDataAvailabilityChallengeProxy } from './3-plasmachain/1A-kind-data-availability-challenge-proxy';
 
 export type { KindStepThreeAllSub } from './3-plasmachain/kind-all-sub';
 export {  sanitizeKindStepThreeAllSub } from './3-plasmachain/kind-all-sub';

@@ -30,6 +30,10 @@ import type { SharedProtocolVersionsOptions } from '../shared/2-superchain/3B-op
 import {  defaults as protocolVersionsDefaults } from '../shared/2-superchain/3B-option-versions';
 import { printProtocolVersions } from './2-superchain/3C-versions';
 
+import type { SharedDataAvailabilityChallengeProxyOptions } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
+import {  defaults as dataAvailabilityChallengeProxyDefaults } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
+import { printDataAvailabilityChallengeProxy } from './3-plasmachain/1A-data-availability-challenge-proxy';
+
 import type { SharedOptimismPortalProxyOptions } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
 import {  defaults as optimismPortalProxyDefaults } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
 import { printOptimismPortalProxy } from './4-opchain-proxies/1A-optimism-portal-proxy';
@@ -199,6 +203,12 @@ export type ProtocolVersions = WizardContractAPI<SharedProtocolVersionsOptions>;
 export const protocolVersions: ProtocolVersions = {
   print: printProtocolVersions,
   defaults: protocolVersionsDefaults
+}
+
+export type DataAvailabilityChallengeProxy = WizardContractAPI<SharedDataAvailabilityChallengeProxyOptions>;
+export const dataAvailabilityChallengeProxy: DataAvailabilityChallengeProxy = {
+  print: printDataAvailabilityChallengeProxy,
+  defaults: dataAvailabilityChallengeProxyDefaults
 }
 
 export type OptimismPortalProxy = WizardContractAPI<SharedOptimismPortalProxyOptions>;

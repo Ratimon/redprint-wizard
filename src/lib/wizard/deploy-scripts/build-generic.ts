@@ -31,6 +31,8 @@ import { buildDeployStepTwoAllSub } from './2-superchain/all-sub';
 import type { SharedStepTwoAllOptions} from '../shared/2-superchain/option-all';
 import { buildDeployStepTwoAll } from './2-superchain/all';
 
+import type { SharedDataAvailabilityChallengeProxyOptions } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
+import { buildDeployDataAvailabilityChallengeProxy } from './3-plasmachain/1A-data-availability-challenge-proxy';
 
 import type { SharedStepThreeAllSubOptions } from '../shared/3-plasmachain/option-all-sub';
 import { buildDeployStepThreeAllSub } from './3-plasmachain/all-sub';
@@ -151,6 +153,7 @@ export interface DeployKindedOptions {
   StepTwoAllSub: {kind: 'StepTwoAllSub'} & SharedStepTwoAllSubOptions;
   StepTwoAll: {kind: 'StepTwoAll'} & SharedStepTwoAllOptions;
 
+  DataAvailabilityChallengeProxy: {kind: 'DataAvailabilityChallengeProxy'} & SharedDataAvailabilityChallengeProxyOptions;
   StepThreeAllSub: {kind: 'StepThreeAllSub'} & SharedStepThreeAllSubOptions;
   StepThreeAll: {kind: 'StepThreeAll'} & SharedStepThreeAllOptions;
 
@@ -227,6 +230,9 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'StepTwoAll':
       return  buildDeployStepTwoAll(opts);
+
+    case 'DataAvailabilityChallengeProxy':
+      return  buildDeployDataAvailabilityChallengeProxy(opts);
 
     case 'StepThreeAllSub':
       return  buildDeployStepThreeAllSub(opts);

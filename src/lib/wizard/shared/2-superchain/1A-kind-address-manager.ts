@@ -1,4 +1,4 @@
-import type { GenericAddressManagerOptions } from './build-generic';
+import type { GenericAddressManagerOptions } from '../build-generic';
 
 export type KindAddressManager = GenericAddressManagerOptions['kind'];
 

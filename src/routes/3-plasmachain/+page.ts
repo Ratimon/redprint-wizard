@@ -4,8 +4,8 @@ import {appName} from 'web-config';
 
 export function load() {
 
-    const title = "Set up Plasma Chain";
-    const description = "Deploy and set up Plasma Chain";
+    const title = "Set up OpAltDA Chain";
+    const description = "Deploy and set up OpAltDA Chain";
 
     const pageMetaTags = Object.freeze({
         title: title,
@@ -24,9 +24,9 @@ export function load() {
     ];
 
     const dropDownLinks : Link[] = [
-        {pathname: '/3-plasmachain/#3.0', title: '4.2 : Prerequisites', navType: 'scroll' },
+        {pathname: '/3-plasmachain/#3.0', title: '3.0 : Prerequisites', navType: 'scroll' },
         {pathname: '/3-plasmachain/#all', title: 'Deploy All', navType: 'scroll'},
-        {pathname: '/3-plasmachain/#3.1A', title: '2.1A : AddressManager', navType: 'scroll'},
+        {pathname: '/3-plasmachain/#3.1A', title: '3.1A : DataAvailabilityChallengeProxy', navType: 'scroll'},
     ];
 
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };

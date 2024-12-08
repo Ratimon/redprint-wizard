@@ -44,6 +44,10 @@ import type {  SharedStepTwoAllOptions } from '../shared/2-superchain/option-all
 import {  defaults as stepTwoAllDefaults } from '../shared/2-superchain/option-all';
 import { printDeployStepTwoAll } from './2-superchain/all';
 
+import type { SharedDataAvailabilityChallengeProxyOptions } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
+import {  defaults as dataAvailabilityChallengeProxyDefaults } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
+import { printDeployDataAvailabilityChallengeProxy } from './3-plasmachain/1A-data-availability-challenge-proxy';
+
 import type {  SharedStepThreeAllSubOptions } from '../shared/3-plasmachain/option-all-sub';
 import {  defaults as stepThreeAllSubDefaults } from '../shared/3-plasmachain/option-all-sub';
 import { printDeployStepThreeAllSub } from './3-plasmachain/all-sub';
@@ -265,6 +269,12 @@ export type DeployStepTwoAll = WizardAllAPI<SharedStepTwoAllOptions>;
 export const deployStepTwoAll: DeployStepTwoAll = {
   print: printDeployStepTwoAll,
   defaults: stepTwoAllDefaults,
+}
+
+export type DeployDataAvailabilityChallengeProxy = WizardAllAPI<SharedDataAvailabilityChallengeProxyOptions>;
+export const deployDataAvailabilityChallengeProxy: DeployDataAvailabilityChallengeProxy = {
+  print: printDeployDataAvailabilityChallengeProxy,
+  defaults: dataAvailabilityChallengeProxyDefaults,
 }
 
 export type DeployStepThreeAllSub = WizardAllAPI<SharedStepThreeAllSubOptions>;

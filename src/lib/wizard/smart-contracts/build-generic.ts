@@ -22,6 +22,9 @@ import { buildProtocolVersionsProxy } from './2-superchain/3A-versions-proxy';
 import type { SharedProtocolVersionsOptions } from '../shared/2-superchain/3B-option-versions';
 import { buildProtocolVersions } from './2-superchain/3C-versions';
 
+import type { SharedDataAvailabilityChallengeProxyOptions } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
+import { buildDataAvailabilityChallengeProxy } from './3-plasmachain/1A-data-availability-challenge-proxy';
+
 import type { SharedOptimismPortalProxyOptions } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
 import { buildOptimismPortalProxy } from './4-opchain-proxies/1A-optimism-portal-proxy';
 
@@ -109,6 +112,7 @@ export interface KindedOptions {
   SuperchainConfig : { kind: 'SuperchainConfig'} & SharedSuperchainConfigOptions;
   ProtocolVersionsProxy : {kind: 'ProtocolVersionsProxy' } & SharedProtocolVersionsProxyOptions;
   ProtocolVersions : {kind: 'ProtocolVersions' } & SharedProtocolVersionsOptions;
+  DataAvailabilityChallengeProxy : {kind: 'DataAvailabilityChallengeProxy' } & SharedDataAvailabilityChallengeProxyOptions;
   OptimismPortalProxy : {kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
   SystemConfigProxy : {kind: 'SystemConfigProxy' } & SharedSystemConfigProxyOptions;
   L1StandardBridgeProxy : {kind: 'L1StandardBridgeProxy' } & SharedL1StandardBridgeProxyOptions;
@@ -165,6 +169,9 @@ export function buildContractGeneric(opts: GenericOptions) {
 
     case 'ProtocolVersions':
       return buildProtocolVersions(opts);
+
+    case 'DataAvailabilityChallengeProxy':
+      return buildDataAvailabilityChallengeProxy(opts);
 
     case 'OptimismPortalProxy':
       return buildOptimismPortalProxy(opts);

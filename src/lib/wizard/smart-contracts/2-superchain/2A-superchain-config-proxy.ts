@@ -1,4 +1,4 @@
-import type { BaseModifier, Contract} from '../contract';
+import type { Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
 import { withCommonDefaults, defaults as commonDefaults } from "../../shared/2-superchain/2A-option-superchain-config-proxy";
@@ -31,13 +31,4 @@ export function buildSuperchainConfigProxy(opts: SharedSuperchainConfigProxyOpti
 
     setInfo(c, allOpts.contractInfo);
     return c;
-}
-
-function getProxyCallIfNotAdminModifier() {
-    const mod = {
-      name: 'proxyCallIfNotAdmin',
-      args: [],
-    };
-  
-    return mod;
 }

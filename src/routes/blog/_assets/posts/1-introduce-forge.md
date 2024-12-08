@@ -69,7 +69,7 @@ contract DeployAllScript is Script {
         safeDeployments.deploy();
         //2) set up superChain
         superchainSetups.run();
-        //3) TODO set up plasma
+        //3) TODO set up OpAltDA
         //4) TODO set up layer2 OP Chain
 
     }

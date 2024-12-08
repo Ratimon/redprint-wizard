@@ -23,6 +23,7 @@ export {
     deployProtocolVersions,
     deployStepTwoAllSub,
     deployStepTwoAll,
+    deployDataAvailabilityChallengeProxy,
     deployStepThreeAllSub,
     deployStepThreeAll,
     deployOptimismPortalProxy,

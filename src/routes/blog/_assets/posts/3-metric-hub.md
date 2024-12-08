@@ -70,7 +70,7 @@ This figure can be represented by GA's `page_view` events. It was 635 views in J
 
 - `Set up Governance Layer | Redprint Wizard` page
 - `Set up Super Chain | Redprint Wizard` page
-- `Set up Plasma Chain | Redprint Wizard` page
+- `Set up OpAltDA Chain | Redprint Wizard` page
 - `Set up OP Chain | Redprint Wizard` page
 
 > **Note**💡
