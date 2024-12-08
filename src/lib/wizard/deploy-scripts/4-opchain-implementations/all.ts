@@ -30,6 +30,7 @@ export function buildDeployStepFourPointTwoAll(opts: SharedStepFourPointTwoAllOp
   setGovernanceDeployment(c, fn, allOpts.governance);
   setSuperchainDeployment(c, fn);
   setOpDeployment(c, fn);
+  setPlasmachainDeployment(c, fn);
 
   setInfo(c, allOpts.deployInfo);
 
@@ -90,6 +91,20 @@ function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
 
   c.addFunctionCode(`SetupSuperchainScript superchainSetups = new SetupSuperchainScript();
         superchainSetups.run();`, fn);
+
+}
+
+function setPlasmachainDeployment(c: DeployBuilder, fn: BaseFunction) {
+
+  const SetupOpAltDAScript = {
+    name: 'SetupOpAltDAScript',
+    path: '@script/300_SetupOpAltDAScript.s.sol',
+  };
+  c.addModule(SetupOpAltDAScript);
+
+
+  c.addFunctionCode(`SetupOpAltDAScript opAltDASetups = new SetupOpAltDAScript();
+        opAltDASetups.run();`, fn);
 
 }
 

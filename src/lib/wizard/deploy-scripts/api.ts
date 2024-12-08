@@ -44,6 +44,14 @@ import type {  SharedStepTwoAllOptions } from '../shared/2-superchain/option-all
 import {  defaults as stepTwoAllDefaults } from '../shared/2-superchain/option-all';
 import { printDeployStepTwoAll } from './2-superchain/all';
 
+import type {  SharedStepThreeAllSubOptions } from '../shared/3-plasmachain/option-all-sub';
+import {  defaults as stepThreeAllSubDefaults } from '../shared/3-plasmachain/option-all-sub';
+import { printDeployStepThreeAllSub } from './3-plasmachain/all-sub';
+
+import type {  SharedStepThreeAllOptions } from '../shared/3-plasmachain/option-all';
+import {  defaults as stepThreeAllDefaults } from '../shared/3-plasmachain/option-all';
+import { printDeployStepThreeAll } from './3-plasmachain/all';
+
 import type {  SharedOptimismPortalProxyOptions } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
 import {  defaults as optimismPortalProxyDefaults } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
 import { printDeployOptimismPortalProxy } from './4-opchain-proxies/1A-optimism-portal-proxy';
@@ -257,6 +265,18 @@ export type DeployStepTwoAll = WizardAllAPI<SharedStepTwoAllOptions>;
 export const deployStepTwoAll: DeployStepTwoAll = {
   print: printDeployStepTwoAll,
   defaults: stepTwoAllDefaults,
+}
+
+export type DeployStepThreeAllSub = WizardAllAPI<SharedStepThreeAllSubOptions>;
+export const deployStepThreeAllSub: DeployStepThreeAllSub = {
+  print: printDeployStepThreeAllSub,
+  defaults: stepThreeAllSubDefaults,
+}
+
+export type DeployStepThreeAll = WizardAllAPI<SharedStepThreeAllOptions>;
+export const deployStepThreeAll: DeployStepThreeAll = {
+  print: printDeployStepThreeAll,
+  defaults: stepThreeAllDefaults,
 }
 
 export type DeployOptimismPortalProxy = WizardAllAPI<SharedOptimismPortalProxyOptions>;

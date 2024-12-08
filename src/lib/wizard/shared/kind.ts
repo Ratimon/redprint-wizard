@@ -35,6 +35,10 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'StepTwoAllSub':
       return true;
+    case 'StepThreeAll':
+      return true;
+    case 'StepThreeAllSub':
+      return true;
     case 'OptimismPortalProxy':
       return true;
     case 'SystemConfigProxy':

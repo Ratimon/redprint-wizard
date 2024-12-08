@@ -166,17 +166,19 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>",
-  "L1StandardBridgeProxy": "<ADDRESS_12>",
-  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
-  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
-  "L1ERC721BridgeProxy": "<ADDRESS_15>",
-  "DisputeGameFactoryProxy": "<ADDRESS_16>",
-  "L2OutputOracleProxy": "<ADDRESS_17>",
-  "DelayedWETHProxy": "<ADDRESS_18>",
-  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
-  "AnchorStateRegistryProxy": "<ADDRESS_20>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>",
+  "SystemConfigProxy": "<ADDRESS_13>",
+  "L1StandardBridgeProxy": "<ADDRESS_14>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_15>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_16>",
+  "L1ERC721BridgeProxy": "<ADDRESS_17>",
+  "DisputeGameFactoryProxy": "<ADDRESS_18>",
+  "L2OutputOracleProxy": "<ADDRESS_19>",
+  "DelayedWETHProxy": "<ADDRESS_20>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_21>",
+  "AnchorStateRegistryProxy": "<ADDRESS_22>"
 }
   \`\`\`
   `);
@@ -220,7 +222,9 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>"
 }
   \`\`\`
   `);
@@ -263,8 +267,10 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>",
+  "SystemConfigProxy": "<ADDRESS_13>"
 }
   \`\`\`
   `);
@@ -307,9 +313,11 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>",
-  "L1StandardBridgeProxy": "<ADDRESS_12>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>",
+  "SystemConfigProxy": "<ADDRESS_13>",
+  "L1StandardBridgeProxy": "<ADDRESS_14>"
 }
   \`\`\`
   `);
@@ -352,10 +360,12 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>",
-  "L1StandardBridgeProxy": "<ADDRESS_12>",
-  "L1CrossDomainMessengerProxy": "<ADDRESS_13>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>",
+  "SystemConfigProxy": "<ADDRESS_13>",
+  "L1StandardBridgeProxy": "<ADDRESS_14>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_15>"
 }
   \`\`\`
   `);
@@ -398,11 +408,13 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>",
-  "L1StandardBridgeProxy": "<ADDRESS_12>",
-  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
-  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>",
+  "SystemConfigProxy": "<ADDRESS_13>",
+  "L1StandardBridgeProxy": "<ADDRESS_14>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_15>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_16>"
 }
   \`\`\`
   `);
@@ -445,6 +457,8 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>" // optional
   "OptimismPortalProxy": "<ADDRESS_10>",
   "SystemConfigProxy": "<ADDRESS_11>",
   "L1StandardBridgeProxy": "<ADDRESS_12>",
@@ -493,13 +507,15 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>",
-  "L1StandardBridgeProxy": "<ADDRESS_12>",
-  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
-  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
-  "L1ERC721BridgeProxy": "<ADDRESS_15>",
-  "DisputeGameFactoryProxy": "<ADDRESS_16>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>",
+  "SystemConfigProxy": "<ADDRESS_13>",
+  "L1StandardBridgeProxy": "<ADDRESS_14>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_15>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_16>",
+  "L1ERC721BridgeProxy": "<ADDRESS_17>",
+  "DisputeGameFactoryProxy": "<ADDRESS_18>"
 }
   \`\`\`
   `);
@@ -542,14 +558,16 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>",
-  "L1StandardBridgeProxy": "<ADDRESS_12>",
-  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
-  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
-  "L1ERC721BridgeProxy": "<ADDRESS_15>",
-  "DisputeGameFactoryProxy": "<ADDRESS_16>",
-  "L2OutputOracleProxy": "<ADDRESS_17>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>",
+  "SystemConfigProxy": "<ADDRESS_13>",
+  "L1StandardBridgeProxy": "<ADDRESS_14>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_15>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_16>",
+  "L1ERC721BridgeProxy": "<ADDRESS_17>",
+  "DisputeGameFactoryProxy": "<ADDRESS_18>",
+  "L2OutputOracleProxy": "<ADDRESS_19>"
 }
   \`\`\`
   `);
@@ -592,15 +610,17 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>",
-  "L1StandardBridgeProxy": "<ADDRESS_12>",
-  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
-  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
-  "L1ERC721BridgeProxy": "<ADDRESS_15>",
-  "DisputeGameFactoryProxy": "<ADDRESS_16>",
-  "L2OutputOracleProxy": "<ADDRESS_17>",
-  "DelayedWETHProxy": "<ADDRESS_18>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>",
+  "SystemConfigProxy": "<ADDRESS_13>",
+  "L1StandardBridgeProxy": "<ADDRESS_14>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_15>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_16>",
+  "L1ERC721BridgeProxy": "<ADDRESS_17>",
+  "DisputeGameFactoryProxy": "<ADDRESS_18>",
+  "L2OutputOracleProxy": "<ADDRESS_19>",
+  "DelayedWETHProxy": "<ADDRESS_20>"
 }
   \`\`\`
   `);
@@ -643,16 +663,18 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>",
-  "L1StandardBridgeProxy": "<ADDRESS_12>",
-  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
-  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
-  "L1ERC721BridgeProxy": "<ADDRESS_15>",
-  "DisputeGameFactoryProxy": "<ADDRESS_16>",
-  "L2OutputOracleProxy": "<ADDRESS_17>",
-  "DelayedWETHProxy": "<ADDRESS_18>",
-  "PermissionedDelayedWETHProxy": "<ADDRESS_19>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>",
+  "SystemConfigProxy": "<ADDRESS_13>",
+  "L1StandardBridgeProxy": "<ADDRESS_14>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_15>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_16>",
+  "L1ERC721BridgeProxy": "<ADDRESS_17>",
+  "DisputeGameFactoryProxy": "<ADDRESS_18>",
+  "L2OutputOracleProxy": "<ADDRESS_19>",
+  "DelayedWETHProxy": "<ADDRESS_20>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_21>"
 }
   \`\`\`
   `);
@@ -695,17 +717,19 @@
   "SuperchainConfig": "<ADDRESS_7>",
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
-  "OptimismPortalProxy": "<ADDRESS_10>",
-  "SystemConfigProxy": "<ADDRESS_11>",
-  "L1StandardBridgeProxy": "<ADDRESS_12>",
-  "L1CrossDomainMessengerProxy": "<ADDRESS_13>",
-  "OptimismMintableERC20FactoryProxy": "<ADDRESS_14>",
-  "L1ERC721BridgeProxy": "<ADDRESS_15>",
-  "DisputeGameFactoryProxy": "<ADDRESS_16>",
-  "L2OutputOracleProxy": "<ADDRESS_17>",
-  "DelayedWETHProxy": "<ADDRESS_18>",
-  "PermissionedDelayedWETHProxy": "<ADDRESS_19>",
-  "AnchorStateRegistryProxy": "<ADDRESS_20>"
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+  "DataAvailabilityChallenge": "<ADDRESS_11>", // optional
+  "OptimismPortalProxy": "<ADDRESS_12>",
+  "SystemConfigProxy": "<ADDRESS_13>",
+  "L1StandardBridgeProxy": "<ADDRESS_14>",
+  "L1CrossDomainMessengerProxy": "<ADDRESS_15>",
+  "OptimismMintableERC20FactoryProxy": "<ADDRESS_16>",
+  "L1ERC721BridgeProxy": "<ADDRESS_17>",
+  "DisputeGameFactoryProxy": "<ADDRESS_18>",
+  "L2OutputOracleProxy": "<ADDRESS_19>",
+  "DelayedWETHProxy": "<ADDRESS_20>",
+  "PermissionedDelayedWETHProxy": "<ADDRESS_21>",
+  "AnchorStateRegistryProxy": "<ADDRESS_22>"
 }
   \`\`\`
   `);

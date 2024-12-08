@@ -1,26 +1,26 @@
 import type { DeployContract, BaseFunction} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type {  SharedStepFourPointOneAllOptions, Governance } from '../../shared/4-opchain-proxies/option-all';
-import {  defaults } from '../../shared/4-opchain-proxies/option-all';
+import type {  SharedStepThreeAllOptions, Governance } from '../../shared/3-plasmachain/option-all';
+import {  defaults } from '../../shared/3-plasmachain/option-all';
 
 import { defaults as infoDefaults } from "../set-info";
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
-function withDeployDefaults(opts: SharedStepFourPointOneAllOptions): Required<SharedStepFourPointOneAllOptions> {
+function withDeployDefaults(opts: SharedStepThreeAllOptions): Required<SharedStepThreeAllOptions> {
   return {
     ...opts,
     deployInfo: infoDefaults
   };
 }
 
-export function printDeployStepFourPointOneAll(opts: SharedStepFourPointOneAllOptions = defaults): string {
-  return printDeployContract(buildDeployStepFourPointOneAll(opts));
+export function printDeployStepThreeAll(opts: SharedStepThreeAllOptions = defaults): string {
+  return printDeployContract(buildDeployStepThreeAll(opts));
 }
 
-export function buildDeployStepFourPointOneAll(opts: SharedStepFourPointOneAllOptions): DeployContract {
+export function buildDeployStepThreeAll(opts: SharedStepThreeAllOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
   
@@ -30,7 +30,6 @@ export function buildDeployStepFourPointOneAll(opts: SharedStepFourPointOneAllOp
   setGovernanceDeployment(c, fn, allOpts.governance);
   setSuperchainDeployment(c, fn);
   setPlasmachainDeployment(c, fn);
-  setOpDeployment(c, fn);
 
   setInfo(c, allOpts.deployInfo);
 
@@ -82,14 +81,14 @@ function setGovernanceDeployment(c: DeployBuilder, fn: BaseFunction, gov: Govern
 
 function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
 
-  const SetupSuperchainScript = {
-      name: 'SetupSuperchainScript',
-      path: '@script/200_SetupSuperchain.s.sol',
-  };
-  c.addModule(SetupSuperchainScript);
+    const SetupSuperchainScript = {
+        name: 'SetupSuperchainScript',
+        path: '@script/200_SetupSuperchain.s.sol',
+    };
+    c.addModule(SetupSuperchainScript);
 
 
-  c.addFunctionCode(`SetupSuperchainScript superchainSetups = new SetupSuperchainScript();
+    c.addFunctionCode(`SetupSuperchainScript superchainSetups = new SetupSuperchainScript();
         superchainSetups.run();`, fn);
 
 }
@@ -108,19 +107,6 @@ function setPlasmachainDeployment(c: DeployBuilder, fn: BaseFunction) {
 
 }
 
-
-function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
-
-  const SetupOpchainScript = {
-      name: 'SetupOpchainScript',
-      path: '@script/400_SetupOpchain.s.sol',
-  };
-  c.addModule(SetupOpchainScript);
-
-
-  c.addFunctionCode(`SetupOpchainScript opchainSetups = new SetupOpchainScript();
-        opchainSetups.run();`, fn);
-}
 
 function getDeployFunction() {
   const fn = {

@@ -100,7 +100,8 @@ function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<Shared
 
   setOpsec(c, allOpts.opSec);
 
-  c.addFunctionCode(`address safeProxyFactory = ${safeProxyFactory.address};
+  c.addFunctionCode(`console.log("Setup Governance ... ");
+        address safeProxyFactory = ${safeProxyFactory.address};
         address safeSingleton = ${safeSingleton.address};
         safeProxyFactory.code.length == 0
             ? safeSingleton_ = Safe(deployer.deploy_Safe("SafeSingleton"))

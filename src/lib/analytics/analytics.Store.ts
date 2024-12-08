@@ -16,6 +16,9 @@ export type Action =
                     'copy-contract-StepTwoAllSub'| 'copy-script-StepTwoAllSub' | 'download-contract-StepTwoAllSub' | 'download-script-StepTwoAllSub' |
                     'copy-contract-StepTwoAll'| 'copy-script-StepTwoAll' | 'download-contract-StepTwoAll' | 'download-script-StepTwoAll' |
 
+                    'copy-contract-StepThreeAllSub'| 'copy-script-StepThreeAllSub' | 'download-contract-StepThreeAllSub' | 'download-script-StepThreeAllSub' |
+                    'copy-contract-StepThreeAll'| 'copy-script-StepThreeAll' | 'download-contract-StepThreeAll' | 'download-script-StepThreeAll' |
+
                     'copy-contract-OptimismPortalProxy'| 'copy-script-OptimismPortalProxy' | 'download-contract-OptimismPortalProxy' | 'download-script-OptimismPortalProxy' |
                     'copy-contract-SystemConfigProxy'| 'copy-script-SystemConfigProxy' | 'download-contract-SystemConfigProxy' | 'download-script-SystemConfigProxy' |
                     'copy-contract-L1StandardBridgeProxy'| 'copy-script-L1StandardBridgeProxy' | 'download-contract-L1StandardBridgeProxy' | 'download-script-L1StandardBridgeProxy' |

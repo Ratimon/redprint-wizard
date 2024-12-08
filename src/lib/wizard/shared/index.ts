@@ -10,6 +10,9 @@ export type {
     KindedStepTwoAllSubOptions, GenericStepTwoAllSubOptions,
     KindedStepTwoAllOptions, GenericStepTwoAllOptions,
 
+    KindedStepThreeAllSubOptions, GenericStepThreeAllSubOptions,
+    KindedStepThreeAllOptions, GenericStepThreeAllOptions,
+
     KindedOptimismPortalProxyOptions, GenericOptimismPortalProxyOptions,
     KindedSystemConfigProxyOptions, GenericSystemConfigProxyOptions,
     KindedL1StandardBridgeProxyOptions, GenericL1StandardBridgeProxyOptions,
@@ -84,6 +87,12 @@ export {  sanitizeKindStepTwoAllSub } from './2-superchain/kind-all-sub';
 
 export type { KindStepTwoAll } from './2-superchain/kind-all';
 export {  sanitizeKindStepTwoAll } from './2-superchain/kind-all';
+
+export type { KindStepThreeAllSub } from './3-plasmachain/kind-all-sub';
+export {  sanitizeKindStepThreeAllSub } from './3-plasmachain/kind-all-sub';
+
+export type { KindStepThreeAll } from './3-plasmachain/kind-all';
+export {  sanitizeKindStepThreeAll } from './3-plasmachain/kind-all';
 
 export type { KindOptimismPortalProxy } from './4-opchain-proxies/1A-kind-optimism-portal-proxy';
 export {  sanitizeKindOptimismPortalProxy } from './4-opchain-proxies/1A-kind-optimism-portal-proxy';

@@ -12,6 +12,9 @@ import type { SharedProtocolVersionsOptions } from './2-superchain/3B-option-ver
 import type { SharedStepTwoAllSubOptions } from './2-superchain/option-all-sub';
 import type { SharedStepTwoAllOptions} from './2-superchain/option-all';
 
+import type { SharedStepThreeAllSubOptions } from './3-plasmachain/option-all-sub';
+import type { SharedStepThreeAllOptions } from './3-plasmachain/option-all';
+
 import type { SharedOptimismPortalProxyOptions} from './4-opchain-proxies/1A-option-optimism-portal-proxy';
 import type { SharedSystemConfigProxyOptions} from './4-opchain-proxies/1B-option-system-config-proxy';
 import type { SharedL1StandardBridgeProxyOptions} from './4-opchain-proxies/1C-option-l1-standard-bridge-proxy';
@@ -61,6 +64,9 @@ export interface KindedOptions {
   ProtocolVersions : { kind: 'ProtocolVersions' } & SharedProtocolVersionsOptions;
   StepTwoAllSub: { kind: 'StepTwoAllSub' } & SharedStepTwoAllSubOptions;
   StepTwoAll: { kind: 'StepTwoAll' } & SharedStepTwoAllOptions;
+
+  StepThreeAllSub: { kind: 'StepThreeAllSub' } & SharedStepThreeAllSubOptions;
+  StepThreeAll: { kind: 'StepThreeAll' } & SharedStepThreeAllOptions;
 
   OptimismPortalProxy: { kind: 'OptimismPortalProxy' } & SharedOptimismPortalProxyOptions;
   SystemConfigProxy: { kind: 'SystemConfigProxy' } & SharedSystemConfigProxyOptions;
@@ -158,6 +164,18 @@ export interface KindedStepTwoAllOptions {
   StepTwoAll: { kind: 'StepTwoAll' } & SharedStepTwoAllOptions;
 }
 export type GenericStepTwoAllOptions = KindedStepTwoAllOptions[keyof KindedStepTwoAllOptions];
+
+
+export interface KindedStepThreeAllSubOptions {
+  StepThreeAllSub: { kind: 'StepThreeAllSub' } & SharedStepThreeAllSubOptions;
+}
+export type GenericStepThreeAllSubOptions = KindedStepThreeAllSubOptions[keyof KindedStepThreeAllSubOptions];
+
+
+export interface KindedStepThreeAllOptions {
+  StepThreeAll: { kind: 'StepThreeAll' } & SharedStepThreeAllOptions;
+}
+export type GenericStepThreeAllOptions = KindedStepThreeAllOptions[keyof KindedStepThreeAllOptions];
 
 
 export interface KindedOptimismPortalProxyOptions {

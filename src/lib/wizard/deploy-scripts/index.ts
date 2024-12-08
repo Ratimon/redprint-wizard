@@ -23,6 +23,8 @@ export {
     deployProtocolVersions,
     deployStepTwoAllSub,
     deployStepTwoAll,
+    deployStepThreeAllSub,
+    deployStepThreeAll,
     deployOptimismPortalProxy,
     deploySystemConfigProxy,
     deployL1StandardBridgeProxy,

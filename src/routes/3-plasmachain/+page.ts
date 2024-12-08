@@ -23,6 +23,12 @@ export function load() {
         {pathname: '/4-opchain-proxies', title: '4.1: OP Chain : Proxies', navType: 'tab'},
     ];
 
+    const dropDownLinks : Link[] = [
+        {pathname: '/3-plasmachain/#3.0', title: '4.2 : Prerequisites', navType: 'scroll' },
+        {pathname: '/3-plasmachain/#all', title: 'Deploy All', navType: 'scroll'},
+        {pathname: '/3-plasmachain/#3.1A', title: '2.1A : AddressManager', navType: 'scroll'},
+    ];
+
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
     
     const footLinks : Link[] = [
@@ -37,8 +43,8 @@ export function load() {
 	return {
         pageMetaTags: pageMetaTags,
 		headLinks: headLinks,
-        // menuTitle: "Blog",
-        // dropDownLinks: categoryLinks,
+        menuTitle: "Steps",
+        dropDownLinks: dropDownLinks,
         actionLink: actionLink,
         footLinks: footLinks
 	};

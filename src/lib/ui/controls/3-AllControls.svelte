@@ -4,15 +4,15 @@
     import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
   
-    import type { KindedStepTwoAllOptions } from '$lib/wizard/shared';
+    import type { KindedStepThreeAllOptions } from '$lib/wizard/shared';
   
-    import { deployStepTwoAll } from '$lib/wizard/deploy-scripts';
+    import { deployStepThreeAll } from '$lib/wizard/deploy-scripts';
   
-    const deployStepTwoAllDefaults = deployStepTwoAll.defaults;
+    const deployStepThreeAllDefaults = deployStepThreeAll.defaults;
   
-    export let opts: Required<KindedStepTwoAllOptions['StepTwoAll'] > = {
-      kind: 'StepTwoAll',
-      ...deployStepTwoAllDefaults,
+    export let opts: Required<KindedStepThreeAllOptions['StepThreeAll'] > = {
+      kind: 'StepThreeAll',
+      ...deployStepThreeAllDefaults,
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
     
@@ -56,5 +56,9 @@
 </section>
 
 <section class="controls-section">
-  <h1>Step 2</h1>
+    <h1>Step 2</h1>
+</section>
+
+<section class="controls-section">
+    <h1>Step 3</h1>
 </section>

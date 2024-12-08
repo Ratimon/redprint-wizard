@@ -35,6 +35,8 @@ export function buildDeployStepFourPointTwoAllSub(opts: SharedStepFourPointTwoAl
   setOpProxiesDeployment(c, fn);
 
   c.addFunctionCode(`
+        console.log("Setup Opchain ... ");
+        
         console.log("OptimismPortalProxy at: ", deployerProcedue.getAddress("OptimismPortalProxy"));
         console.log("SystemConfigProxy at: ", deployerProcedue.getAddress("SystemConfigProxy"));
         console.log("L1CrossDomainMessengerProxy at: ", deployerProcedue.getAddress("L1CrossDomainMessengerProxy"));

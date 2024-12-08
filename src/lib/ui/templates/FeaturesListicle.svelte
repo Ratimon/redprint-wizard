@@ -37,8 +37,8 @@
             "Super Low Fees",
             "Independent of blob demand"
         ],
-        script: '300_SetupPlasmachain',
-        highlight : "Plasma data availability",
+        script: '300_SetupOpAltDA',
+        highlight : " ( Previosly Plasma) alternate data availability",
         iconName: "hugeicons:blockchain-06", 
     },
     {

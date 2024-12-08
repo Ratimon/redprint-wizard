@@ -26,8 +26,6 @@ export function buildDeployStepOneAll(opts: SharedStepOneAllOptions): DeployCont
   
   addBase(c);
   const fn : BaseFunction = getDeployFunction();
-  c.addFunctionCode(`deployerProcedue = getDeployer();
-        deployerProcedue.setAutoSave(true);`, fn);
   
   setSafeDeployment(c, fn, allOpts.governance);
 
@@ -70,7 +68,10 @@ function setSafeDeployment(c: DeployBuilder, fn: BaseFunction, gov: Governance) 
         };
         c.addModule(DeploySafeProxyScript);
 
-        c.addFunctionCode(`DeploySafeProxyScript safeDeployments = new DeploySafeProxyScript();
+        c.addFunctionCode(`deployerProcedue = getDeployer();
+        deployerProcedue.setAutoSave(true);
+          
+        DeploySafeProxyScript safeDeployments = new DeploySafeProxyScript();
         //1) set up Safe Multisig
         safeDeployments.deploy();`, fn);
 
@@ -84,7 +85,10 @@ function setSafeDeployment(c: DeployBuilder, fn: BaseFunction, gov: Governance) 
         };
 
         c.addModule(DeployGovernerScript);
-        c.addFunctionCode(`DeployGovernerScript govDeployments = new DeployGovernerScript();
+        c.addFunctionCode(`deployerProcedue = getDeployer();
+        deployerProcedue.setAutoSave(true);
+        
+        DeployGovernerScript govDeployments = new DeployGovernerScript();
         //1) set up Governer
         govDeployments.deploy();`, fn);
         break;

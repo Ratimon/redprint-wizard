@@ -26,19 +26,10 @@ export function buildDeployStepTwoAllSub(opts: SharedStepTwoAllSubOptions): Depl
   
   addBase(c);
   const fn : BaseFunction = getDeployFunction();
-  c.addFunctionCode(`deployerProcedue = getDeployer();
-        deployerProcedue.setAutoSave(true);`, fn);
   
   setSuperchainDeployment(c, fn);
 
   setInfo(c, allOpts.deployInfo);
-
-  c.addFunctionCode(`
-        console.log("AddressManager at: ", deployerProcedue.getAddress("AddressManager"));
-        console.log("ProxyAdmin at: ", deployerProcedue.getAddress("ProxyAdmin"));
-        console.log("SuperchainConfigProxy at: ", deployerProcedue.getAddress("SuperchainConfigProxy"));
-        console.log("SuperchainConfig at: ", deployerProcedue.getAddress("SuperchainConfig"));
-        console.log("ProtocolVersionsProxy at: ", deployerProcedue.getAddress("ProtocolVersionsProxy"));`, fn);
 
   return c;
 }
@@ -110,7 +101,11 @@ function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
     };
     c.addModule(DeployAndInitializeProtocolVersionsScript);
 
-    c.addFunctionCode(`DeployAddressManagerScript addressManagerDeployments = new DeployAddressManagerScript();
+    c.addFunctionCode(`deployerProcedue = getDeployer();
+        deployerProcedue.setAutoSave(true);
+        console.log("Setup Superchain ... ");
+      
+        DeployAddressManagerScript addressManagerDeployments = new DeployAddressManagerScript();
         DeployAndSetupProxyAdminScript proxyAdminDeployments = new DeployAndSetupProxyAdminScript();
 
         DeploySuperchainConfigProxyScript superchainConfigProxyDeployments = new DeploySuperchainConfigProxyScript();
@@ -132,7 +127,13 @@ function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
         // Deploy the ProtocolVersionsProxy
         protocolVersionsProxyDeployments.deploy();
         protocolVersionsDeployments.deploy();
-        protocolVersionsDeployments.initialize();`, fn);
+        protocolVersionsDeployments.initialize();
+
+        console.log("AddressManager at: ", deployerProcedue.getAddress("AddressManager"));
+        console.log("ProxyAdmin at: ", deployerProcedue.getAddress("ProxyAdmin"));
+        console.log("SuperchainConfigProxy at: ", deployerProcedue.getAddress("SuperchainConfigProxy"));
+        console.log("SuperchainConfig at: ", deployerProcedue.getAddress("SuperchainConfig"));
+        console.log("ProtocolVersionsProxy at: ", deployerProcedue.getAddress("ProtocolVersionsProxy"));`, fn);
 
 }
 

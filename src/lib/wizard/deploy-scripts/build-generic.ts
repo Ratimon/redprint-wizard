@@ -31,6 +31,13 @@ import { buildDeployStepTwoAllSub } from './2-superchain/all-sub';
 import type { SharedStepTwoAllOptions} from '../shared/2-superchain/option-all';
 import { buildDeployStepTwoAll } from './2-superchain/all';
 
+
+import type { SharedStepThreeAllSubOptions } from '../shared/3-plasmachain/option-all-sub';
+import { buildDeployStepThreeAllSub } from './3-plasmachain/all-sub';
+
+import type { SharedStepThreeAllOptions } from '../shared/3-plasmachain/option-all';
+import { buildDeployStepThreeAll } from './3-plasmachain/all';
+
 import type { SharedOptimismPortalProxyOptions} from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
 import { buildDeployOptimismPortalProxy } from './4-opchain-proxies/1A-optimism-portal-proxy';
 
@@ -144,6 +151,9 @@ export interface DeployKindedOptions {
   StepTwoAllSub: {kind: 'StepTwoAllSub'} & SharedStepTwoAllSubOptions;
   StepTwoAll: {kind: 'StepTwoAll'} & SharedStepTwoAllOptions;
 
+  StepThreeAllSub: {kind: 'StepThreeAllSub'} & SharedStepThreeAllSubOptions;
+  StepThreeAll: {kind: 'StepThreeAll'} & SharedStepThreeAllOptions;
+
   OptimismPortalProxy: {kind: 'OptimismPortalProxy'} & SharedOptimismPortalProxyOptions;
   SystemConfigProxy : {kind: 'SystemConfigProxy'} & SharedSystemConfigProxyOptions;
   L1StandardBridgeProxy: {kind: 'L1StandardBridgeProxy'} & SharedL1StandardBridgeProxyOptions;
@@ -217,6 +227,12 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
 
     case 'StepTwoAll':
       return  buildDeployStepTwoAll(opts);
+
+    case 'StepThreeAllSub':
+      return  buildDeployStepThreeAllSub(opts);
+
+    case 'StepThreeAll':
+      return  buildDeployStepThreeAll(opts);
    
     case 'OptimismPortalProxy':
       return  buildDeployOptimismPortalProxy(opts);

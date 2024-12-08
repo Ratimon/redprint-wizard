@@ -4,14 +4,14 @@ export type KindStepTwoAll = GenericStepTwoAllOptions['kind'];
 
 export function sanitizeKindStepTwoAll(kind: unknown): KindStepTwoAll {
   if (typeof kind === 'string') {
-    if (isKindAllStepTwo(kind)) {
+    if (isKindStepTwoAll(kind)) {
       return kind;
     }
   }
   return 'StepTwoAll';
 }
 
-function isKindAllStepTwo<T>(value: KindStepTwoAll | T): value is KindStepTwoAll {
+function isKindStepTwoAll<T>(value: KindStepTwoAll | T): value is KindStepTwoAll {
   switch (value) {
     case 'StepTwoAll':
       return true;
