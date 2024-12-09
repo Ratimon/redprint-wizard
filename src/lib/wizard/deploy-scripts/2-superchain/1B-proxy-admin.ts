@@ -25,9 +25,7 @@ export function buildDeployProxyAdmin(opts: SharedProxyAdminOptions): DeployCont
   const c = new DeployBuilder(allOpts.deployName);
   
   addBase(c);
-
   setOpsec(c, allOpts.opSec);
-
   setInfo(c, allOpts.deployInfo);
 
   return c;

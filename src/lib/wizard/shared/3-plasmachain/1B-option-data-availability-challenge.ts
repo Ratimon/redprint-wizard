@@ -1,6 +1,9 @@
 import type { CommonOptions} from '../common-options';
 import { defaults as infoDefaults } from "../set-info";
 
+export const opSecOptions = [false, 'address', 'key', 'mnemonic'] as const;
+export type OpSec = typeof opSecOptions[number];
+
 export const commonDefaults: Required<CommonOptions> = {
   //contract
   access: false,
@@ -31,9 +34,10 @@ export const defaults: Required<SharedDataAvailabilityChallengeOptions> = {
   contractInfo: commonDefaults.contractInfo,
 
   //deploy
-  deployName: 'DeployDataAvailabilityChallengeScript',
-
+  deployName: 'DeployAndInitializeDataAvailabilityChallengeScript',
   deployInfo: commonDefaults.deployInfo,
+  opSec: 'mnemonic',
+
 } as const;
 
 
@@ -41,4 +45,5 @@ export interface SharedDataAvailabilityChallengeOptions extends CommonOptions {
   contractName: string;
 
   deployName: string;
+  opSec: OpSec;
 }

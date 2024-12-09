@@ -31,7 +31,7 @@
         iconName: "formkit:ethereum",
     },
     {
-        title: "3: Plasma Chain",
+        title: "3: Alt DA (Formerly Plasma)",
         descriptions:
         [
             "Super Low Fees",

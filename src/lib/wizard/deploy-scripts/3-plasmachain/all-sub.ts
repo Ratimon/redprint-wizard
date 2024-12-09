@@ -71,11 +71,11 @@ function setPlasmachainDeployment(c: DeployBuilder, fn: BaseFunction) {
     };
     c.addModule(DeployDataAvailabilityChallengeProxyScript);
 
-    const DeployDataAvailabilityChallengeScript = {
-      name: 'DeployDataAvailabilityChallengeScript',
-      path: '@script/301B_DeployDataAvailabilityChallengeScript.s.sol',
+    const DeployAndInitializeDataAvailabilityChallengeScript = {
+      name: 'DeployAndInitializeDataAvailabilityChallengeScript',
+      path: '@script/301B_DeployAndInitializeDataAvailabilityChallengeScript.s.sol',
     };
-    c.addModule(DeployDataAvailabilityChallengeScript);
+    c.addModule(DeployAndInitializeDataAvailabilityChallengeScript);
 
     c.addFunctionCode(`deployerProcedue = getDeployer();
         deployerProcedue.setAutoSave(true);
@@ -83,10 +83,11 @@ function setPlasmachainDeployment(c: DeployBuilder, fn: BaseFunction) {
         console.log("Setup Op Alt DA ... ");
 
         DeployDataAvailabilityChallengeProxyScript dataAvailabilityChallengeProxyDeployments = new DeployDataAvailabilityChallengeProxyScript();
-        DeployDataAvailabilityChallengeScript dataAvailabilityChallengeDeployments = new DeployDataAvailabilityChallengeScript();
+        DeployAndInitializeDataAvailabilityChallengeScript dataAvailabilityChallengeDeployments = new DeployAndInitializeDataAvailabilityChallengeScript();
 
         dataAvailabilityChallengeProxyDeployments.deploy();
         dataAvailabilityChallengeDeployments.deploy();
+        dataAvailabilityChallengeDeployments.initialize();
 
 
         console.log("DataAvailabilityChallengeProxy at: ", deployerProcedue.getAddress("DataAvailabilityChallengeProxy"));

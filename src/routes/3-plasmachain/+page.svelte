@@ -428,11 +428,11 @@
   </div>
 </WizardDouble>
 
-<!-- 301B_DeployDataAvailabilityChallenge.s.sol -->
+<!-- 301B_DeployAndInitializeDataAvailabilityChallengeScript.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={stepLinks[1].pathname}>
     <div class="divider divider-primary ">
-      <p class="btn btn-accent text-2xl">3.1B : Deploy DataAvailabilityChallenge Contract</p>
+      <p class="btn btn-accent text-2xl">3.1B : Deploy and Initialize DataAvailabilityChallenge Contract</p>
     </div>
   </section>
 </Background>

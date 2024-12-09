@@ -138,7 +138,7 @@
                 class="step"
                 class:step-primary={$page.route.id?.match(/3-plasmachain|4-opchain-proxies|4-opchain-implementations/g)}
             >
-                Set up OpAltDA Chain (Optional)
+                Set up OpAltDA Chain (Previously Plasmachain)
             </a>
             <a href="/4-opchain-proxies"
                 data-content="4.1"
