@@ -1,7 +1,7 @@
 {
 	"appName": "Redprint Wizard",
 	"appTitle": "Interactive Playgound for OPStack Developers",
-	"appDescription": "a code generator/ interactive developer to visialize ,modify and deploy OPStack ’s contracts",
+	"appDescription": "a code generator/ interactive developer to visualize ,modify and deploy OPStack ’s contracts",
 	"themeColor": "#FF4C4C",
 	"appleStatusBarStyle": "black-translucent",
 	"icon": "static/icon.svg",
