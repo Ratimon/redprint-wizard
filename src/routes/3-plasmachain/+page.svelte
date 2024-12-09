@@ -8,6 +8,7 @@
 
   import type {
     KindedDataAvailabilityChallengeProxyOptions, KindDataAvailabilityChallengeProxy,
+    KindedDataAvailabilityChallengeOptions, KindDataAvailabilityChallenge,
     KindedStepThreeAllOptions, KindStepThreeAll,
     KindedStepThreeAllSubOptions, KindStepThreeAllSub,
     OptionsErrorMessages
@@ -15,6 +16,7 @@
 
   import {
     sanitizeKindDataAvailabilityChallengeProxy,
+    sanitizeKindDataAvailabilityChallenge,
     sanitizeKindStepThreeAll,
     sanitizeKindStepThreeAllSub,
     OptionsError
@@ -32,7 +34,7 @@
   import Error from '$lib/ui/error/Error.svelte';
 
   import DataAvailabilityChallengeProxyControls from '$lib/ui/controls/3-DataAvailabilityChallengeProxyControls.svelte';
-
+  import DataAvailabilityChallengeControls from '$lib/ui/controls/3-DataAvailabilityChallengeControls.svelte';
   import MarkdownIt from "markdown-it";
   import hljs  from '$lib/ui/utils/highlightjs';
 
@@ -54,7 +56,7 @@
   });
 
   export let data : PageData;
-  $: stepLinks  = data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 1, 2));
+  $: stepLinks  = data.dropDownLinks.slice(Math.max(data.dropDownLinks.length - 2, 2));
 
   $: addressPreContent = md.render(`
   \`\`\`bash
@@ -180,6 +182,50 @@
   "ProtocolVersionsProxy": "<ADDRESS_8>",
   "ProtocolVersions": "<ADDRESS_9>",
   "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional
+}
+  \`\`\`
+  `);
+
+  // **** step 2 ***
+  export let initialContractDataAvailabilityChallengeTab: string | undefined = 'DataAvailabilityChallenge';
+  export let contractDataAvailabilityChallengeTab: KindDataAvailabilityChallenge = sanitizeKindDataAvailabilityChallenge(initialContractDataAvailabilityChallengeTab);
+  let allContractsDataAvailabilityChallengeOpts: { [k in KindDataAvailabilityChallenge]?: Required<KindedDataAvailabilityChallengeOptions [k]> } = {};
+  let errorsDataAvailabilityChallenge: { [k in KindDataAvailabilityChallenge]?: OptionsErrorMessages } = {};
+  let contractDataAvailabilityChallenge: Contract = new ContractBuilder('DataAvailabilityChallenge');
+  let deployContractDataAvailabilityChallenge: DeployContract = new DeployBuilder('DeployDataAvailabilityChallengeScript');
+
+  $: optsDataAvailabilityChallenge = allContractsDataAvailabilityChallengeOpts[contractDataAvailabilityChallengeTab];
+  $: {
+  if (optsDataAvailabilityChallenge) {
+          try {
+              contractDataAvailabilityChallenge = buildContractGeneric(optsDataAvailabilityChallenge);
+              deployContractDataAvailabilityChallenge = buildDeployGeneric(optsDataAvailabilityChallenge);
+              errorsDataAvailabilityChallenge[contractDataAvailabilityChallengeTab] = undefined;
+          } catch (e: unknown) {
+              if (e instanceof OptionsError) {
+                errorsDataAvailabilityChallenge[contractDataAvailabilityChallengeTab] = e.messages;
+              } else {
+              throw e;
+              }
+          }
+      }
+  }
+
+  let isArtifactStepOneBModalOpen = false;
+  $: addressStepOneBContent = md.render(`
+  \`\`\`bash
+{
+  "SafeProxyFactory": "<ADDRESS_1>",
+  "SafeSingleton": "<ADDRESS_2>",
+  "SystemOwnerSafe": "<ADDRESS_3>",
+  "AddressManager": "<ADDRESS_4>",
+  "ProxyAdmin": "<ADDRESS_5>",
+  "SuperchainConfigProxy": "<ADDRESS_6>",
+  "SuperchainConfig": "<ADDRESS_7>",
+  "ProtocolVersionsProxy": "<ADDRESS_8>",
+  "ProtocolVersions": "<ADDRESS_9>",
+  "DataAvailabilityChallengeProxy": "<ADDRESS_10>", // optional,
+  "DataAvailabilityChallenge": "<ADDRESS_11>" // optional
 }
   \`\`\`
   `);
@@ -371,6 +417,72 @@
           <div class="output flex flex-col grow overflow-auto">
             <code class="hljs grow overflow-auto p-4">
               {@html md.render(addressStepOneAContent)}
+            </code>
+          </div>
+          <p class="py-4">click on ✕ button to close</p>
+    
+        </div>
+      </div>
+    </div>
+
+  </div>
+</WizardDouble>
+
+<!-- 301B_DeployDataAvailabilityChallenge.s.sol -->
+<Background color="bg-base-100 pt-3 pb-4">
+  <section id={stepLinks[1].pathname}>
+    <div class="divider divider-primary ">
+      <p class="btn btn-accent text-2xl">3.1B : Deploy DataAvailabilityChallenge Contract</p>
+    </div>
+  </section>
+</Background>
+
+<ScrollStep links={stepLinks} titleHighlighted={stepLinks[1].title} />
+
+<WizardDouble conventionNumber={'301B'} initialContractTab={initialContractDataAvailabilityChallengeTab} contractTab={contractDataAvailabilityChallengeTab} opts={optsDataAvailabilityChallenge} contract={contractDataAvailabilityChallenge} deployContract={deployContractDataAvailabilityChallenge}>
+  <div slot="menu" >
+      <div class="tab overflow-hidden">
+        <Background color="bg-base-200">
+          <OverflowMenu>
+            <button class:selected={contractDataAvailabilityChallengeTab === 'DataAvailabilityChallenge'} on:click={() => contractDataAvailabilityChallengeTab = 'DataAvailabilityChallenge'}>
+              DataAvailabilityChallenge
+            </button>      
+          </OverflowMenu>
+        </Background>
+      </div>
+  </div> 
+
+  <div slot="control" >
+       <!-- w-64 -->
+      <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(100vh-80px)] overflow-auto">
+          <div class:hidden={contractDataAvailabilityChallengeTab !== 'DataAvailabilityChallenge'}>
+              <DataAvailabilityChallengeControls bind:opts={allContractsDataAvailabilityChallengeOpts.DataAvailabilityChallenge} />
+          </div>
+      </div>
+  </div> 
+
+  <div slot="artifact" >
+
+    <div class="flex flex-col items-center">
+      <p class="m-4 font-semibold">
+        After running the deploy script, the address deployed is saved at <span class="underline bg-secondary">deployments/31337/.save.json</span>. Otherwise, as specified in <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>.
+      </p>
+    
+      <button class="btn modal-button" on:click={()=>isArtifactStepOneBModalOpen = true}>See the artifact's content example</button>
+    
+      <div class="modal" class:modal-open={isArtifactStepOneBModalOpen}>
+        <div class="modal-box w-11/12 max-w-5xl">
+    
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" on:click={()=>isArtifactStepOneBModalOpen = false} >✕</button>
+          </form>
+    
+          <h3 class="font-bold text-lg">Example!</h3>
+          <p class="py-4"> Your saved address will be different. </p>
+          <p class="py-4"> You can change <span class="underline bg-secondary">DEPLOYMENT_OUTFILE=deployments/31337/.save.json</span> to reflect yours!</p>
+          <div class="output flex flex-col grow overflow-auto">
+            <code class="hljs grow overflow-auto p-4">
+              {@html md.render(addressStepOneBContent)}
             </code>
           </div>
           <p class="py-4">click on ✕ button to close</p>

@@ -13,6 +13,7 @@ import type { SharedStepTwoAllSubOptions } from './2-superchain/option-all-sub';
 import type { SharedStepTwoAllOptions} from './2-superchain/option-all';
 
 import type { SharedDataAvailabilityChallengeProxyOptions } from './3-plasmachain/1A-option-data-availability-challenge-proxy';
+import type { SharedDataAvailabilityChallengeOptions } from './3-plasmachain/1B-option-data-availability-challenge';
 import type { SharedStepThreeAllSubOptions } from './3-plasmachain/option-all-sub';
 import type { SharedStepThreeAllOptions } from './3-plasmachain/option-all';
 
@@ -67,6 +68,7 @@ export interface KindedOptions {
   StepTwoAll: { kind: 'StepTwoAll' } & SharedStepTwoAllOptions;
 
   DataAvailabilityChallengeProxy: { kind: 'DataAvailabilityChallengeProxy' } & SharedDataAvailabilityChallengeProxyOptions;
+  DataAvailabilityChallenge: { kind: 'DataAvailabilityChallenge' } & SharedDataAvailabilityChallengeOptions;
   StepThreeAllSub: { kind: 'StepThreeAllSub' } & SharedStepThreeAllSubOptions;
   StepThreeAll: { kind: 'StepThreeAll' } & SharedStepThreeAllOptions;
 
@@ -172,6 +174,12 @@ export interface KindedDataAvailabilityChallengeProxyOptions {
   DataAvailabilityChallengeProxy: { kind: 'DataAvailabilityChallengeProxy' } & SharedDataAvailabilityChallengeProxyOptions;
 }
 export type GenericDataAvailabilityChallengeProxyOptions = KindedDataAvailabilityChallengeProxyOptions[keyof KindedDataAvailabilityChallengeProxyOptions];
+
+
+export interface KindedDataAvailabilityChallengeOptions {
+  DataAvailabilityChallenge: { kind: 'DataAvailabilityChallenge' } & SharedDataAvailabilityChallengeOptions;
+}
+export type GenericDataAvailabilityChallengeOptions = KindedDataAvailabilityChallengeOptions[keyof KindedDataAvailabilityChallengeOptions];
 
 
 export interface KindedStepThreeAllSubOptions {

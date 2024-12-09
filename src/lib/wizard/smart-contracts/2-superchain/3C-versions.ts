@@ -55,7 +55,7 @@ export function buildProtocolVersions(opts: SharedProtocolVersionsOptions): Cont
         RECOMMENDED_PROTOCOL_VERSION
     }`);
     
-    c.addVariable(` /// @notice Version identifier, used for upgrades.
+    c.addVariable(`/// @notice Version identifier, used for upgrades.
     uint256 public constant VERSION = 0;`);
 
     c.addVariable(`/// @notice Storage slot that the required protocol version is stored at.

@@ -48,6 +48,10 @@ import type { SharedDataAvailabilityChallengeProxyOptions } from '../shared/3-pl
 import {  defaults as dataAvailabilityChallengeProxyDefaults } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
 import { printDeployDataAvailabilityChallengeProxy } from './3-plasmachain/1A-data-availability-challenge-proxy';
 
+import type { SharedDataAvailabilityChallengeOptions } from '../shared/3-plasmachain/1B-option-data-availability-challenge';
+import {  defaults as dataAvailabilityChallengeDefaults } from '../shared/3-plasmachain/1B-option-data-availability-challenge';
+import { printDeployDataAvailabilityChallenge } from './3-plasmachain/1B-data-availability-challenge';
+
 import type {  SharedStepThreeAllSubOptions } from '../shared/3-plasmachain/option-all-sub';
 import {  defaults as stepThreeAllSubDefaults } from '../shared/3-plasmachain/option-all-sub';
 import { printDeployStepThreeAllSub } from './3-plasmachain/all-sub';
@@ -275,6 +279,12 @@ export type DeployDataAvailabilityChallengeProxy = WizardAllAPI<SharedDataAvaila
 export const deployDataAvailabilityChallengeProxy: DeployDataAvailabilityChallengeProxy = {
   print: printDeployDataAvailabilityChallengeProxy,
   defaults: dataAvailabilityChallengeProxyDefaults,
+}
+
+export type DeployDataAvailabilityChallenge = WizardAllAPI<SharedDataAvailabilityChallengeOptions>;
+export const deployDataAvailabilityChallenge: DeployDataAvailabilityChallenge = {
+  print: printDeployDataAvailabilityChallenge,
+  defaults: dataAvailabilityChallengeDefaults,
 }
 
 export type DeployStepThreeAllSub = WizardAllAPI<SharedStepThreeAllSubOptions>;

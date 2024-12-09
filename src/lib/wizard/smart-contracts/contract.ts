@@ -19,6 +19,7 @@ export interface Contract {
   fallbackCode: string[];
   constructorArgs: FunctionArgument[];
   variables: string[];
+  outsideCode: string[];
   upgradeable: boolean;
 }
 
@@ -113,6 +114,7 @@ export class ContractBuilder implements Contract {
   readonly receiveCode: string[] = [];
   readonly fallbackCode: string[] = [];
   readonly variableSet: Set<string> = new Set();
+  readonly outsidecodeSet: Set<string> = new Set();
 
   private parentMap: Map<string, Parent> = new Map<string, Parent>();
   private modifierMap: Map<string, ContractModifier> = new Map();
@@ -180,6 +182,10 @@ export class ContractBuilder implements Contract {
 
   get variables(): string[] {
     return [...this.variableSet];
+  }
+
+  get outsideCode(): string[] {
+    return [...this.outsidecodeSet];
   }
 
   addType(newType: string, underlyingType: string ) {
@@ -311,5 +317,15 @@ export class ContractBuilder implements Contract {
     this.variableSet.add(code);
     return !present;
   }
+
+  /**
+ * Note: The type in the variable is not currently transpiled, even if it refers to a contract
+ */
+  addOutsidecode(code: string): boolean {
+    const present = this.variableSet.has(code);
+    this.outsidecodeSet.add(code);
+    return !present;
+  }
+  
 }
 

@@ -27,6 +27,7 @@ export function load() {
         {pathname: '/3-plasmachain/#3.0', title: '3.0 : Prerequisites', navType: 'scroll' },
         {pathname: '/3-plasmachain/#all', title: 'Deploy All', navType: 'scroll'},
         {pathname: '/3-plasmachain/#3.1A', title: '3.1A : DataAvailabilityChallengeProxy', navType: 'scroll'},
+        {pathname: '/3-plasmachain/#3.1B', title: '3.1B : DataAvailabilityChallenge', navType: 'scroll'},
     ];
 
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };

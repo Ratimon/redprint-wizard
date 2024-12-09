@@ -29,11 +29,15 @@ export function buildSafe(opts: SharedSafeOptions): Contract {
   // to do add interface
   const c = new ContractBuilder(allOpts.contractName);
 
-  const IProxy = {
-    name: 'IProxy',
-    path: '@redprint-safe-contracts/contracts/proxies/SafeProxy.sol',
-  };
-  c.addModule(IProxy);
+
+  c.addOutsidecode(`/**
+ * @title IProxy - Helper interface to access the singleton address of the Proxy on-chain.
+ * @author Richard Meissner - @rmeissner
+ */
+interface IProxy {
+    function masterCopy() external view returns (address);
+}`)
+
 
   c.addVariable(`address internal singleton;`);
   c.addConstructorArgument({

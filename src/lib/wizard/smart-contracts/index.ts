@@ -23,6 +23,7 @@ export {
     protocolVersionsProxy,
     protocolVersions,
     dataAvailabilityChallengeProxy,
+    dataAvailabilityChallenge,
     optimismPortalProxy,
     systemConfigProxy,
     l1StandardBridgeProxy,
@@ -62,6 +63,7 @@ export { buildSuperchainConfig } from './2-superchain/2B-superchain-config';
 export { buildProtocolVersionsProxy } from './2-superchain/3A-versions-proxy';
 export { buildProtocolVersions } from './2-superchain/3C-versions';
 export { buildDataAvailabilityChallengeProxy } from './3-plasmachain/1A-data-availability-challenge-proxy';
+export { buildDataAvailabilityChallenge } from './3-plasmachain/1B-data-availability-challenge';
 export { buildOptimismPortalProxy } from './4-opchain-proxies/1A-optimism-portal-proxy';
 export { buildSystemConfigProxy } from './4-opchain-proxies/1B-system-config-proxy';
 export { buildL1StandardBridgeProxy } from './4-opchain-proxies/1C-l1-standard-bridge-proxy';

@@ -37,6 +37,8 @@ function isKind<T>(value: Kind | T): value is Kind {
       return true;
     case 'DataAvailabilityChallengeProxy':
       return true;
+    case 'DataAvailabilityChallenge':
+      return true;
     case 'StepThreeAll':
       return true;
     case 'StepThreeAllSub':

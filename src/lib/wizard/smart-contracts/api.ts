@@ -34,6 +34,10 @@ import type { SharedDataAvailabilityChallengeProxyOptions } from '../shared/3-pl
 import {  defaults as dataAvailabilityChallengeProxyDefaults } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
 import { printDataAvailabilityChallengeProxy } from './3-plasmachain/1A-data-availability-challenge-proxy';
 
+import type { SharedDataAvailabilityChallengeOptions } from '../shared/3-plasmachain/1B-option-data-availability-challenge';
+import {  defaults as dataAvailabilityChallengeDefaults } from '../shared/3-plasmachain/1B-option-data-availability-challenge';
+import { printDataAvailabilityChallenge } from './3-plasmachain/1B-data-availability-challenge';
+
 import type { SharedOptimismPortalProxyOptions } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
 import {  defaults as optimismPortalProxyDefaults } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
 import { printOptimismPortalProxy } from './4-opchain-proxies/1A-optimism-portal-proxy';
@@ -209,6 +213,12 @@ export type DataAvailabilityChallengeProxy = WizardContractAPI<SharedDataAvailab
 export const dataAvailabilityChallengeProxy: DataAvailabilityChallengeProxy = {
   print: printDataAvailabilityChallengeProxy,
   defaults: dataAvailabilityChallengeProxyDefaults
+}
+
+export type DataAvailabilityChallenge = WizardContractAPI<SharedDataAvailabilityChallengeOptions>;
+export const dataAvailabilityChallenge: DataAvailabilityChallenge = {
+  print: printDataAvailabilityChallenge,
+  defaults: dataAvailabilityChallengeDefaults
 }
 
 export type OptimismPortalProxy = WizardContractAPI<SharedOptimismPortalProxyOptions>;

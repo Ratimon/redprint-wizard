@@ -17,6 +17,7 @@ export type Action =
                     'copy-contract-StepTwoAll'| 'copy-script-StepTwoAll' | 'download-contract-StepTwoAll' | 'download-script-StepTwoAll' |
 
                     'copy-contract-DataAvailabilityChallengeProxy'| 'copy-script-DataAvailabilityChallengeProxy' | 'download-contract-DataAvailabilityChallengeProxy' | 'download-script-DataAvailabilityChallengeProxy' |
+                    'copy-contract-DataAvailabilityChallenge'| 'copy-script-DataAvailabilityChallenge' | 'download-contract-DataAvailabilityChallenge' | 'download-script-DataAvailabilityChallenge' |
                     'copy-contract-StepThreeAllSub'| 'copy-script-StepThreeAllSub' | 'download-contract-StepThreeAllSub' | 'download-script-StepThreeAllSub' |
                     'copy-contract-StepThreeAll'| 'copy-script-StepThreeAll' | 'download-contract-StepThreeAll' | 'download-script-StepThreeAll' |
 

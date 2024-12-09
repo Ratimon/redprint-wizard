@@ -39,6 +39,8 @@ export function printContract(contract: Contract, opts?: Options): string {
         return transformedNames === '' ? `import "${helpers.transformImport(p).path}";` : `import {${transformedNames}} from "${helpers.transformImport(p).path}";`;
       }),
 
+      contract.outsideCode,
+
       contract.userDefinedTypes.map(p => `type ${p.newType} is ${p.underlyingType};`),
 
       [

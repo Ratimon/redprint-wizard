@@ -24,6 +24,7 @@ export {
     deployStepTwoAllSub,
     deployStepTwoAll,
     deployDataAvailabilityChallengeProxy,
+    deployDataAvailabilityChallenge,
     deployStepThreeAllSub,
     deployStepThreeAll,
     deployOptimismPortalProxy,
