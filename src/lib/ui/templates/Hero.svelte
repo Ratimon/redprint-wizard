@@ -26,7 +26,7 @@
       </h1>
 
       <p class="text-lg opacity-80 leading-relaxed">
-        - <b>Redprint Wizard</b> supports a space to visialize and build your own OPStack contract components.
+        - <b>Redprint Wizard</b> supports a space to visualize and build your own OPStack contract components.
       </p>
 
       <p class="text-lg opacity-80 leading-relaxed">

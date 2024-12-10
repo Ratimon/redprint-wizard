@@ -12,10 +12,10 @@ import type { SharedProtocolVersionsOptions } from './2-superchain/3B-option-ver
 import type { SharedStepTwoAllSubOptions } from './2-superchain/option-all-sub';
 import type { SharedStepTwoAllOptions} from './2-superchain/option-all';
 
-import type { SharedDataAvailabilityChallengeProxyOptions } from './3-plasmachain/1A-option-data-availability-challenge-proxy';
-import type { SharedDataAvailabilityChallengeOptions } from './3-plasmachain/1B-option-data-availability-challenge';
-import type { SharedStepThreeAllSubOptions } from './3-plasmachain/option-all-sub';
-import type { SharedStepThreeAllOptions } from './3-plasmachain/option-all';
+import type { SharedDataAvailabilityChallengeProxyOptions } from './3-alt-da/1A-option-data-availability-challenge-proxy';
+import type { SharedDataAvailabilityChallengeOptions } from './3-alt-da/1B-option-data-availability-challenge';
+import type { SharedStepThreeAllSubOptions } from './3-alt-da/option-all-sub';
+import type { SharedStepThreeAllOptions } from './3-alt-da/option-all';
 
 import type { SharedOptimismPortalProxyOptions} from './4-opchain-proxies/1A-option-optimism-portal-proxy';
 import type { SharedSystemConfigProxyOptions} from './4-opchain-proxies/1B-option-system-config-proxy';

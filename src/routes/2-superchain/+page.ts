@@ -20,7 +20,7 @@ export function load() {
     const headLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},
         {pathname: '/1-governance', title: '1: Governance', navType: 'tab'},
-        {pathname: '/3-plasmachain', title: '3: PlasmaChain', navType: 'tab'},
+        {pathname: '/3-alt-da', title: '3: Alternate DA', navType: 'tab'},
     ];
 
     const dropDownLinks : Link[] = [
@@ -40,7 +40,7 @@ export function load() {
         {pathname: '/', title: 'Home', navType: 'tab'},
         {pathname: '/blog/3-metric-hub', title: 'Metric Hub', navType: 'tab'},
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},
-        {pathname: '/3-plasmachain', title: '3: PlasmaChain', navType: 'tab'},
+        {pathname: '/3-alt-da', title: '3: Alternate DA', navType: 'tab'},
         {pathname: '/4-opchain-proxies', title: '4.1: OP Chain : Proxies', navType: 'tab'},
         {pathname: '/4-opchain-implementations', title: '4.2: OP Chain : Implementations', navType: 'tab'},
     ];

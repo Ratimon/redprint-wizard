@@ -44,21 +44,21 @@ import type {  SharedStepTwoAllOptions } from '../shared/2-superchain/option-all
 import {  defaults as stepTwoAllDefaults } from '../shared/2-superchain/option-all';
 import { printDeployStepTwoAll } from './2-superchain/all';
 
-import type { SharedDataAvailabilityChallengeProxyOptions } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
-import {  defaults as dataAvailabilityChallengeProxyDefaults } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
-import { printDeployDataAvailabilityChallengeProxy } from './3-plasmachain/1A-data-availability-challenge-proxy';
+import type { SharedDataAvailabilityChallengeProxyOptions } from '../shared/3-alt-da/1A-option-data-availability-challenge-proxy';
+import {  defaults as dataAvailabilityChallengeProxyDefaults } from '../shared/3-alt-da/1A-option-data-availability-challenge-proxy';
+import { printDeployDataAvailabilityChallengeProxy } from './3-alt-da/1A-data-availability-challenge-proxy';
 
-import type { SharedDataAvailabilityChallengeOptions } from '../shared/3-plasmachain/1B-option-data-availability-challenge';
-import {  defaults as dataAvailabilityChallengeDefaults } from '../shared/3-plasmachain/1B-option-data-availability-challenge';
-import { printDeployDataAvailabilityChallenge } from './3-plasmachain/1B-data-availability-challenge';
+import type { SharedDataAvailabilityChallengeOptions } from '../shared/3-alt-da/1B-option-data-availability-challenge';
+import {  defaults as dataAvailabilityChallengeDefaults } from '../shared/3-alt-da/1B-option-data-availability-challenge';
+import { printDeployDataAvailabilityChallenge } from './3-alt-da/1B-data-availability-challenge';
 
-import type {  SharedStepThreeAllSubOptions } from '../shared/3-plasmachain/option-all-sub';
-import {  defaults as stepThreeAllSubDefaults } from '../shared/3-plasmachain/option-all-sub';
-import { printDeployStepThreeAllSub } from './3-plasmachain/all-sub';
+import type {  SharedStepThreeAllSubOptions } from '../shared/3-alt-da/option-all-sub';
+import {  defaults as stepThreeAllSubDefaults } from '../shared/3-alt-da/option-all-sub';
+import { printDeployStepThreeAllSub } from './3-alt-da/all-sub';
 
-import type {  SharedStepThreeAllOptions } from '../shared/3-plasmachain/option-all';
-import {  defaults as stepThreeAllDefaults } from '../shared/3-plasmachain/option-all';
-import { printDeployStepThreeAll } from './3-plasmachain/all';
+import type {  SharedStepThreeAllOptions } from '../shared/3-alt-da/option-all';
+import {  defaults as stepThreeAllDefaults } from '../shared/3-alt-da/option-all';
+import { printDeployStepThreeAll } from './3-alt-da/all';
 
 import type {  SharedOptimismPortalProxyOptions } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
 import {  defaults as optimismPortalProxyDefaults } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';

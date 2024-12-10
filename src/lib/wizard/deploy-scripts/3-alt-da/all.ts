@@ -1,8 +1,8 @@
 import type { DeployContract, BaseFunction} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type {  SharedStepThreeAllOptions, Governance } from '../../shared/3-plasmachain/option-all';
-import {  defaults } from '../../shared/3-plasmachain/option-all';
+import type {  SharedStepThreeAllOptions, Governance } from '../../shared/3-alt-da/option-all';
+import {  defaults } from '../../shared/3-alt-da/option-all';
 
 import { defaults as infoDefaults } from "../set-info";
 
@@ -29,7 +29,7 @@ export function buildDeployStepThreeAll(opts: SharedStepThreeAllOptions): Deploy
   
   setGovernanceDeployment(c, fn, allOpts.governance);
   setSuperchainDeployment(c, fn);
-  setPlasmachainDeployment(c, fn);
+  setAlternateDADeployment(c, fn);
 
   setInfo(c, allOpts.deployInfo);
 
@@ -93,7 +93,7 @@ function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
 
 }
 
-function setPlasmachainDeployment(c: DeployBuilder, fn: BaseFunction) {
+function setAlternateDADeployment(c: DeployBuilder, fn: BaseFunction) {
 
   const SetupOpAltDAScript = {
     name: 'SetupOpAltDAScript',

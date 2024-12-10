@@ -22,11 +22,11 @@ import { buildProtocolVersionsProxy } from './2-superchain/3A-versions-proxy';
 import type { SharedProtocolVersionsOptions } from '../shared/2-superchain/3B-option-versions';
 import { buildProtocolVersions } from './2-superchain/3C-versions';
 
-import type { SharedDataAvailabilityChallengeProxyOptions } from '../shared/3-plasmachain/1A-option-data-availability-challenge-proxy';
-import { buildDataAvailabilityChallengeProxy } from './3-plasmachain/1A-data-availability-challenge-proxy';
+import type { SharedDataAvailabilityChallengeProxyOptions } from '../shared/3-alt-da/1A-option-data-availability-challenge-proxy';
+import { buildDataAvailabilityChallengeProxy } from './3-alt-da/1A-data-availability-challenge-proxy';
 
-import type { SharedDataAvailabilityChallengeOptions } from '../shared/3-plasmachain/1B-option-data-availability-challenge';
-import { buildDataAvailabilityChallenge } from './3-plasmachain/1B-data-availability-challenge';
+import type { SharedDataAvailabilityChallengeOptions } from '../shared/3-alt-da/1B-option-data-availability-challenge';
+import { buildDataAvailabilityChallenge } from './3-alt-da/1B-data-availability-challenge';
 
 import type { SharedOptimismPortalProxyOptions } from '../shared/4-opchain-proxies/1A-option-optimism-portal-proxy';
 import { buildOptimismPortalProxy } from './4-opchain-proxies/1A-optimism-portal-proxy';

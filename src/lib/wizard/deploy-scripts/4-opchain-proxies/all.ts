@@ -29,7 +29,7 @@ export function buildDeployStepFourPointOneAll(opts: SharedStepFourPointOneAllOp
   
   setGovernanceDeployment(c, fn, allOpts.governance);
   setSuperchainDeployment(c, fn);
-  setPlasmachainDeployment(c, fn);
+  setAlternateDADeployment(c, fn);
   setOpDeployment(c, fn);
 
   setInfo(c, allOpts.deployInfo);
@@ -94,7 +94,7 @@ function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
 
 }
 
-function setPlasmachainDeployment(c: DeployBuilder, fn: BaseFunction) {
+function setAlternateDADeployment(c: DeployBuilder, fn: BaseFunction) {
 
   const SetupOpAltDAScript = {
     name: 'SetupOpAltDAScript',

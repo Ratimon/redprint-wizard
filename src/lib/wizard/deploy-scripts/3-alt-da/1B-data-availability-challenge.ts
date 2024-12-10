@@ -1,8 +1,8 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import type { SharedDataAvailabilityChallengeOptions, OpSec, } from '../../shared/3-plasmachain/1B-option-data-availability-challenge';
-import { withCommonDefaults, defaults as commonDefaults } from "../../shared/3-plasmachain/1B-option-data-availability-challenge";
+import type { SharedDataAvailabilityChallengeOptions, OpSec, } from '../../shared/3-alt-da/1B-option-data-availability-challenge';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/3-alt-da/1B-option-data-availability-challenge";
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";

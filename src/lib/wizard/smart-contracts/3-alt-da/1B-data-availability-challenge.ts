@@ -1,8 +1,8 @@
 import type { Contract} from '../contract';
 import {  ContractBuilder } from '../contract';
 
-import { withCommonDefaults, defaults as commonDefaults } from "../../shared/3-plasmachain/1B-option-data-availability-challenge";
-import type { SharedDataAvailabilityChallengeOptions } from '../../shared/3-plasmachain/1B-option-data-availability-challenge';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/3-alt-da/1B-option-data-availability-challenge";
+import type { SharedDataAvailabilityChallengeOptions } from '../../shared/3-alt-da/1B-option-data-availability-challenge';
 
 import { printContract } from "../print";
 import { setInfo  } from "../set-info";

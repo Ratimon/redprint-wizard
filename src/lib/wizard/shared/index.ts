@@ -90,17 +90,17 @@ export {  sanitizeKindStepTwoAllSub } from './2-superchain/kind-all-sub';
 export type { KindStepTwoAll } from './2-superchain/kind-all';
 export {  sanitizeKindStepTwoAll } from './2-superchain/kind-all';
 
-export type { KindDataAvailabilityChallengeProxy } from './3-plasmachain/1A-kind-data-availability-challenge-proxy';
-export {  sanitizeKindDataAvailabilityChallengeProxy } from './3-plasmachain/1A-kind-data-availability-challenge-proxy';
+export type { KindDataAvailabilityChallengeProxy } from './3-alt-da/1A-kind-data-availability-challenge-proxy';
+export {  sanitizeKindDataAvailabilityChallengeProxy } from './3-alt-da/1A-kind-data-availability-challenge-proxy';
 
-export type { KindDataAvailabilityChallenge } from './3-plasmachain/1B-kind-data-availability-challenge';
-export {  sanitizeKindDataAvailabilityChallenge } from './3-plasmachain/1B-kind-data-availability-challenge';
+export type { KindDataAvailabilityChallenge } from './3-alt-da/1B-kind-data-availability-challenge';
+export {  sanitizeKindDataAvailabilityChallenge } from './3-alt-da/1B-kind-data-availability-challenge';
 
-export type { KindStepThreeAllSub } from './3-plasmachain/kind-all-sub';
-export {  sanitizeKindStepThreeAllSub } from './3-plasmachain/kind-all-sub';
+export type { KindStepThreeAllSub } from './3-alt-da/kind-all-sub';
+export {  sanitizeKindStepThreeAllSub } from './3-alt-da/kind-all-sub';
 
-export type { KindStepThreeAll } from './3-plasmachain/kind-all';
-export {  sanitizeKindStepThreeAll } from './3-plasmachain/kind-all';
+export type { KindStepThreeAll } from './3-alt-da/kind-all';
+export {  sanitizeKindStepThreeAll } from './3-alt-da/kind-all';
 
 export type { KindOptimismPortalProxy } from './4-opchain-proxies/1A-kind-optimism-portal-proxy';
 export {  sanitizeKindOptimismPortalProxy } from './4-opchain-proxies/1A-kind-optimism-portal-proxy';
