@@ -76,6 +76,7 @@ export interface ContractFunction extends BaseFunction {
   code: string[];
   mutability: FunctionMutability;
   final: boolean;
+  comments: string[];
 }
 
 export type FunctionKind = 'internal' | 'public' | 'external' | 'external payable';
@@ -270,6 +271,7 @@ export class ContractBuilder implements Contract {
         code: [],
         mutability: 'nonpayable',
         final: false,
+        comments: [],
         ...baseFn,
       };
       this.functionMap.set(signature, fn);
@@ -319,6 +321,14 @@ export class ContractBuilder implements Contract {
     if (mutability) {
       fn.mutability = mutability;
     }
+  }
+
+  setFunctionComments(comments: string[], baseFn: BaseFunction) {
+    const fn = this.addFunction(baseFn);
+    if (fn.comments.length > 0) {
+      throw new Error(`Function ${baseFn.name} already has comments`);
+    }
+    fn.comments = comments;
   }
 
   /**

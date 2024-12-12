@@ -1,6 +1,4 @@
-// import 'array.prototype.flatmap/auto';
-
-import type { Contract,ReferencedContract,  Parent, ContractFunction, FunctionArgument, Value, NatspecTag, ImportContract, ContractModifier } from './contract';
+import type { Contract, ReferencedContract,  Parent, ContractFunction, FunctionArgument, Value, NatspecTag, ImportContract, ContractModifier } from './contract';
 
 import type { Options, Helpers }from './options';
 import { withHelpers } from './options';
@@ -113,6 +111,7 @@ function printConstructor(contract: Contract, helpers: Helpers): Lines[] {
       : contract.constructorCode;
     const head = helpers.upgradeable ? 'function initialize' : 'constructor';
     const constructor = printFunction2(
+      [],
       head,
       args,
       modifiers,
@@ -228,6 +227,7 @@ function printReceive(contract: Contract): Lines[] {
     const body = contract.receiveCode;
     const head = 'receive'
     const receive = printFunction2(
+      [],
       head,
       args,
       modifiers,
@@ -247,6 +247,7 @@ function printFallback(contract: Contract): Lines[] {
     const body = contract.fallbackCode;
     const head = 'fallback'
     const fallback = printFunction2(
+      [],
       head,
       args,
       modifiers,
@@ -266,6 +267,7 @@ function printModifier(mod: ContractModifier, helpers: Helpers): Lines[] {
   if (mod.code.length >= 1) {
 
     return printFunction2(
+      [],
       'modifier ' + mod.name,
       mod.args.map(a => printArgument(a, helpers)),
       modifiers,
@@ -308,6 +310,7 @@ function printFunction(fn: ContractFunction, helpers: Helpers): Lines[] {
 
   if (modifiers.length + fn.code.length > 1) {
     return printFunction2(
+      fn.comments,
       'function ' + fn.name,
       fn.args.map(a => printArgument(a, helpers)),
       modifiers,
@@ -320,8 +323,8 @@ function printFunction(fn: ContractFunction, helpers: Helpers): Lines[] {
 
 // generic for functions and constructors
 // kindedName = 'function foo' or 'constructor'
-function printFunction2(kindedName: string, args: string[], modifiers: string[], code: Lines[]): Lines[] {
-  const fn = [];
+function printFunction2(comments: string[],kindedName: string, args: string[], modifiers: string[], code: Lines[]): Lines[] {
+  const fn: Lines[] = [ ...comments ];
 
   const headingLength = [kindedName, ...args, ...modifiers]
     .map(s => s.length)
