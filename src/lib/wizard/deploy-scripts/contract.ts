@@ -7,7 +7,7 @@ export interface DeployContract {
   natspecTags: NatspecTag[];
 
   usings: Using[];
-  // modules: ImportContract[];
+  modules: ImportContract[];
   imports: ImportContract[];
 
   functions: ContractFunction[];
@@ -81,7 +81,7 @@ export class DeployBuilder implements DeployContract {
   license: string = 'MIT';
 
   readonly using: Using[] = [];
-  // readonly modules: ImportContract[] = [];
+  readonly modules: ImportContract[] = [];
   readonly natspecTags: NatspecTag[] = [];
 
   readonly constructorArgs: FunctionArgument[] = [];
@@ -105,7 +105,7 @@ export class DeployBuilder implements DeployContract {
     const allContracts = [
       ...[...this.parentMap.values()].map(p => p.contract),
       ...this.using.map(u => u.library),
-      // ...this.modules,
+      ...this.modules,
     ];
 
     allContracts.forEach(contract => {
@@ -143,11 +143,16 @@ export class DeployBuilder implements DeployContract {
   //   this.modules.push(contract);
   // }
 
-  addImportOnly(contract: ImportContract): boolean {
-    const present = this.parentMap.has(contract.name);
-    this.parentMap.set(contract.name, { contract, params: [], importOnly: true });
-    return !present;
+  // addImportOnly(contract: ImportContract): boolean {
+  //   const present = this.parentMap.has(contract.name);
+  //   this.parentMap.set(contract.name, { contract, params: [], importOnly: true });
+  //   return !present;
+  // }
+
+  addImportOnly(contract: ImportContract) {
+    this.modules.push(contract);
   }
+
 
   addParent(contract: ImportContract, params: Value[] = []): boolean {
     const present = this.parentMap.has(contract.name);

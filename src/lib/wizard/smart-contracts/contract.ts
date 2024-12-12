@@ -9,6 +9,7 @@ export interface Contract {
   userDefinedTypes: UserDefinedType[];
   usings: Using[];
   // modules: ParentContract[];
+  modules: ImportContract[];
   imports: ImportContract[];
 
   modifiers: ContractModifier[];
@@ -106,7 +107,7 @@ export class ContractBuilder implements Contract {
 
   readonly userDefinedType: UserDefinedType[] = [];
   readonly using: Using[] = [];
-  // readonly modules: ParentContract[] = [];
+  readonly modules: ImportContract[] = [];
   readonly natspecTags: NatspecTag[] = [];
 
   readonly constructorArgs: FunctionArgument[] = [];
@@ -144,7 +145,7 @@ export class ContractBuilder implements Contract {
     const allContracts = [
       ...[...this.parentMap.values()].map(p => p.contract),
       ...this.using.map(u => u.library),
-      // ...this.modules,
+      ...this.modules,
     ];
 
     allContracts.forEach(contract => {
@@ -203,10 +204,14 @@ export class ContractBuilder implements Contract {
   //   this.modules.push(contract);
   // }
 
-  addImportOnly(contract: ImportContract): boolean {
-    const present = this.parentMap.has(contract.name);
-    this.parentMap.set(contract.name, { contract, params: [], importOnly: true });
-    return !present;
+  // addImportOnly(contract: ImportContract): boolean {
+  //   const present = this.parentMap.has(contract.name);
+  //   this.parentMap.set(contract.name, { contract, params: [], importOnly: true });
+  //   return !present;
+  // }
+
+  addImportOnly(contract: ImportContract) {
+    this.modules.push(contract);
   }
 
   addParent(contract: ImportContract, params: Value[] = []): boolean {

@@ -33,7 +33,7 @@ export function printContract(contract: Contract, opts?: Options): string {
         `pragma solidity ^${SOLIDITY_VERSION};`,
       ],
 
-      // contract.dependencies.map(p => {
+      // contract.imports.map(p => {
       //   const names = p.name.split(', ').map(name => ({ name } as ReferencedContract));
       //   const transformedNames = helpers.transformNames(names).join(', ');
       //   return transformedNames === '' ? `import "${helpers.transformImport(p).path}";` : `import {${transformedNames}} from "${helpers.transformImport(p).path}";`;
@@ -85,7 +85,12 @@ function printImports(imports: ImportContract[], helpers: Helpers): string[] {
   const lines: string[] = [];
   imports.map(p => {
     const importContract = helpers.transformImport(p);
-    lines.push(`import {${importContract.name}} from "${importContract.path}";`);
+
+    if (importContract.name === ''){
+      lines.push(`import "${importContract.path}";`);
+    } else{
+      lines.push(`import {${importContract.name}} from "${importContract.path}";`);
+    }
   });
   return lines;
 }

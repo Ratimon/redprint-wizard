@@ -45,8 +45,8 @@ export function buildDisputeGameFactory(opts: SharedDisputeGameFactoryOptions): 
     c.addImportOnly(Types);
 
     const Errors = {
-        name: '',
-        path: '@redprint-core/dispute/lib/Errors.sol',
+      name: '',
+      path: '@redprint-core/dispute/lib/Errors.sol',
     };    
     c.addImportOnly(Errors);
 
