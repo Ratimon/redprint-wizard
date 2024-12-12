@@ -60,19 +60,19 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
         name: 'console',
         path: '@redprint-forge-std/console.sol',
     };
-    c.addModule(console);
+    c.addImportOnly(console);
 
     const Vm = {
         name: 'Vm',
         path: '@redprint-forge-std/Vm.sol',
     };
-    c.addModule(Vm);
+    c.addImportOnly(Vm);
     
     const VmSafe = {
         name: 'VmSafe',
         path: '@redprint-forge-std/Vm.sol',
     };
-    c.addModule(VmSafe);
+    c.addImportOnly(VmSafe);
 
     const SafeScript = {
         name: 'SafeScript',
@@ -84,38 +84,38 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
         name: 'IDeployer',
         path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(IDeployer);
+    c.addImportOnly(IDeployer);
 
     const getDeployer = {
         name: 'getDeployer',
         path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(getDeployer);
+    c.addImportOnly(getDeployer);
     
     const DeployConfig = {
         name: 'DeployConfig',
         path: '@redprint-deploy/deployer/DeployConfig.s.sol',
     };
-    c.addModule(DeployConfig);
+    c.addImportOnly(DeployConfig);
     
 
     const Types = {
         name: 'Types',
         path: '@redprint-deploy/optimism/Types.sol',
     };
-    c.addModule(Types);
+    c.addImportOnly(Types);
     
     const ChainAssertions = {
         name: 'ChainAssertions',
         path: '@redprint-deploy/optimism/ChainAssertions.sol',
     };
-    c.addModule(ChainAssertions);
+    c.addImportOnly(ChainAssertions);
 
     const Constants = {
         name: 'Constants',
         path: '@redprint-core/libraries/Constants.sol',
     };
-    c.addModule(Constants);
+    c.addImportOnly(Constants);
 
     switch (useFaultProofs) {
         case 'yes-optimism-portal-2': {
@@ -124,31 +124,31 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
                 name: 'GameType',
                 path: '@redprint-core/dispute/lib/LibUDT.sol',
             };
-            c.addModule(GameType);
+            c.addImportOnly(GameType);
         
             const IDisputeGameFactory = {
                 name: 'IDisputeGameFactory',
                 path: '@redprint-core/dispute/interfaces/IDisputeGameFactory.sol',
             };
-            c.addModule(IDisputeGameFactory);
+            c.addImportOnly(IDisputeGameFactory);
         
             const ISystemConfig = {
                 name: 'ISystemConfig',
                 path: '@redprint-core/L1/interfaces/ISystemConfig.sol',
             };
-            c.addModule(ISystemConfig);
+            c.addImportOnly(ISystemConfig);
         
             const ISuperchainConfig = {
                 name: 'ISuperchainConfig',
                 path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
             };
-            c.addModule(ISuperchainConfig);
+            c.addImportOnly(ISuperchainConfig);
         
             const OptimismPortal2 = {
                 name: 'OptimismPortal2',
                 path: '@redprint-core/L1/OptimismPortal2.sol',
             };
-            c.addModule(OptimismPortal2);
+            c.addImportOnly(OptimismPortal2);
 
         break;
         }
@@ -158,25 +158,25 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
                 name: 'IL2OutputOracle',
                 path: '@redprint-core/L1/interfaces/IL2OutputOracle.sol',
             };
-            c.addModule(IL2OutputOracle);
+            c.addImportOnly(IL2OutputOracle);
 
             const ISystemConfig = {
                 name: 'ISystemConfig',
                 path: '@redprint-core/L1/interfaces/ISystemConfig.sol',
             };
-            c.addModule(ISystemConfig);
+            c.addImportOnly(ISystemConfig);
         
             const ISuperchainConfig = {
                 name: 'ISuperchainConfig',
                 path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
             };
-            c.addModule(ISuperchainConfig);
+            c.addImportOnly(ISuperchainConfig);
         
             const OptimismPortal = {
                 name: 'OptimismPortal',
                 path: '@redprint-core/L1/OptimismPortal.sol',
             };
-            c.addModule(OptimismPortal);
+            c.addImportOnly(OptimismPortal);
 
         break;
         }
@@ -186,97 +186,97 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
         name: 'SystemConfig',
         path: '@redprint-core/L1/SystemConfig.sol',
     };
-    c.addModule(SystemConfig);
+    c.addImportOnly(SystemConfig);
 
     const IL1CrossDomainMessenger = {
         name: 'IL1CrossDomainMessenger',
         path: '@redprint-core/L1/interfaces/IL1CrossDomainMessenger.sol',
     };
-    c.addModule(IL1CrossDomainMessenger);
+    c.addImportOnly(IL1CrossDomainMessenger);
 
     const ProxyAdmin = {
         name: 'ProxyAdmin',
         path: '@redprint-core/universal/ProxyAdmin.sol',
     };
-    c.addModule(ProxyAdmin);
+    c.addImportOnly(ProxyAdmin);
 
     const Safe = {
         name: 'Safe',
         path: '@redprint-safe-contracts/Safe.sol',
     };
-    c.addModule(Safe);
+    c.addImportOnly(Safe);
 
     const L1StandardBridge = {
         name: 'L1StandardBridge',
         path: '@redprint-core/L1/L1StandardBridge.sol',
     };
-    c.addModule(L1StandardBridge);
+    c.addImportOnly(L1StandardBridge);
 
     const L1ERC721Bridge = {
         name: 'L1ERC721Bridge',
         path: '@redprint-core/L1/L1ERC721Bridge.sol',
     };
-    c.addModule(L1ERC721Bridge);
+    c.addImportOnly(L1ERC721Bridge);
 
     const OptimismMintableERC20Factory = {
         name: 'OptimismMintableERC20Factory',
         path: '@redprint-core/universal/OptimismMintableERC20Factory.sol',
     };
-    c.addModule(OptimismMintableERC20Factory);
+    c.addImportOnly(OptimismMintableERC20Factory);
 
     const IOptimismPortal = {
         name: 'IOptimismPortal',
         path: '@redprint-core/L1/interfaces/IOptimismPortal.sol',
     };
-    c.addModule(IOptimismPortal);
+    c.addImportOnly(IOptimismPortal);
 
     const L1CrossDomainMessenger = {
         name: 'L1CrossDomainMessenger',
         path: '@redprint-core/L1/L1CrossDomainMessenger.sol',
     };
-    c.addModule(L1CrossDomainMessenger);
+    c.addImportOnly(L1CrossDomainMessenger);
 
     const L2OutputOracle = {
         name: 'L2OutputOracle',
         path: '@redprint-core/L1/L2OutputOracle.sol',
     };
-    c.addModule(L2OutputOracle);
+    c.addImportOnly(L2OutputOracle);
 
     const DisputeGameFactory = {
         name: 'DisputeGameFactory',
         path: '@redprint-core/dispute/DisputeGameFactory.sol',
     };
-    c.addModule(DisputeGameFactory);
+    c.addImportOnly(DisputeGameFactory);
 
     const DelayedWETH = {
         name: 'DelayedWETH',
         path: '@redprint-core/dispute/DelayedWETH.sol',
     };
-    c.addModule(DelayedWETH);
+    c.addImportOnly(DelayedWETH);
 
     const AnchorStateRegistry = {
         name: 'AnchorStateRegistry',
         path: '@redprint-core/dispute/AnchorStateRegistry.sol',
     };
-    c.addModule(AnchorStateRegistry);
+    c.addImportOnly(AnchorStateRegistry);
 
     const GameTypes = {
         name: 'GameTypes',
         path: '@redprint-core/dispute/lib/Types.sol',
     };
-    c.addModule(GameTypes);
+    c.addImportOnly(GameTypes);
 
     const OutputRoot = {
         name: 'OutputRoot',
         path: '@redprint-core/dispute/lib/Types.sol',
     };
-    c.addModule(OutputRoot);
+    c.addImportOnly(OutputRoot);
 
     const Hash = {
         name: 'Hash',
         path: '@redprint-core/dispute/lib/Types.sol',
     };
-    c.addModule(Hash);
+    c.addImportOnly(Hash);
   
 
     c.addVariable(`IDeployer deployerProcedue;`);

@@ -41,7 +41,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployScript = {
     name: 'DeployScript',
@@ -53,13 +53,13 @@ function addBase(c: DeployBuilder) {
     name: 'AddressManager',
     path: '@redprint-core/legacy/AddressManager.sol',
   };
-  c.addModule(AddressManager);
+  c.addImportOnly(AddressManager);
 
   const ResolvedDelegateProxy = {
     name: 'ResolvedDelegateProxy',
     path: '@redprint-core/legacy/ResolvedDelegateProxy.sol',
   };
-  c.addModule(ResolvedDelegateProxy);
+  c.addImportOnly(ResolvedDelegateProxy);
 
   // deploy
   c.addFunctionCode(`address addressManager = deployer.mustGetAddress("AddressManager");

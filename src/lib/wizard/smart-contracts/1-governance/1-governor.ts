@@ -208,7 +208,7 @@ function addVotes(c: ContractBuilder) {
     path: '@openzeppelin/contracts/governance/extensions/GovernorVotes.sol',
   };
 
-  c.addModule(IVotes);
+  c.addImportOnly(IVotes);
   
 }
 
@@ -326,7 +326,7 @@ function addTimelock(c: ContractBuilder, { timelock }: Required<SharedGovernerOp
     path: timelockParent.path,
   };
 
-  c.addModule(TimelockController);
+  c.addImportOnly(TimelockController);
 }
 
 function addStorage(c: ContractBuilder, { storage }: SharedGovernerOptions) {

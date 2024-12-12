@@ -59,7 +59,7 @@ function addBase(c: DeployBuilder) {
         name: 'console',
         path: '@redprint-forge-std/console.sol',
     };
-    c.addModule(console);
+    c.addImportOnly(console);
 
     const Script = {
         name: 'Script',
@@ -71,24 +71,24 @@ function addBase(c: DeployBuilder) {
       name: 'Vm',
       path: '@redprint-forge-std/Vm.sol',
     };
-    c.addModule(Vm);
+    c.addImportOnly(Vm);
 
     const VmSafe = {
       name: 'VmSafe',
       path: '@redprint-forge-std/Vm.sol',
     };
-    c.addModule(VmSafe);
+    c.addImportOnly(VmSafe);
       
     const IDeployer = {
         name: 'IDeployer',
         path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(IDeployer);
+    c.addImportOnly(IDeployer);
     const getDeployer = {
       name: 'getDeployer',
       path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(getDeployer);
+    c.addImportOnly(getDeployer);
 
     c.addVariable(`IDeployer deployerProcedue;`);
 
@@ -96,7 +96,7 @@ function addBase(c: DeployBuilder) {
       name: 'AddressManager',
       path: '@redprint-core/legacy/AddressManager.sol',
     };
-    c.addModule(AddressManager);
+    c.addImportOnly(AddressManager);
 
 }
 
@@ -106,73 +106,73 @@ function setOpProxiesDeployment(c: DeployBuilder, fn: BaseFunction) {
     name: 'DeployOptimismPortalProxyScript',
     path: '@script/401A_DeployOptimismPortalProxyScript.s.sol',
   };
-  c.addModule(DeployOptimismPortalProxyScript);
+  c.addImportOnly(DeployOptimismPortalProxyScript);
 
   const DeploySystemConfigProxyScript = {
     name: 'DeploySystemConfigProxyScript',
     path: '@script/401B_DeploySystemConfigProxyScript.s.sol',
   };
-  c.addModule(DeploySystemConfigProxyScript);
+  c.addImportOnly(DeploySystemConfigProxyScript);
 
   const DeployL1StandardBridgeProxyScript = {
     name: 'DeployL1StandardBridgeProxyScript',
     path: '@script/401C_DeployL1StandardBridgeProxyScript.s.sol',
   };
-  c.addModule(DeployL1StandardBridgeProxyScript);
+  c.addImportOnly(DeployL1StandardBridgeProxyScript);
 
   const DeployL1CrossDomainMessengerProxyScript = {
     name: 'DeployL1CrossDomainMessengerProxyScript',
     path: '@script/401D_DeployL1CrossDomainMessengerProxyScript.s.sol',
   };
-  c.addModule(DeployL1CrossDomainMessengerProxyScript);
+  c.addImportOnly(DeployL1CrossDomainMessengerProxyScript);
 
   const DeployOptimismMintableERC20FactoryProxyScript = {
     name: 'DeployOptimismMintableERC20FactoryProxyScript',
     path: '@script/401E_DeployOptimismMintableERC20FactoryProxyScript.s.sol',
   };
-  c.addModule(DeployOptimismMintableERC20FactoryProxyScript);
+  c.addImportOnly(DeployOptimismMintableERC20FactoryProxyScript);
 
   const DeployL1ERC721BridgeProxyScript = {
     name: 'DeployL1ERC721BridgeProxyScript',
     path: '@script/401F_DeployL1ERC721BridgeProxyScript.s.sol',
   };
-  c.addModule(DeployL1ERC721BridgeProxyScript);
+  c.addImportOnly(DeployL1ERC721BridgeProxyScript);
 
   const DeployDisputeGameFactoryProxyScript = {
     name: 'DeployDisputeGameFactoryProxyScript',
     path: '@script/401G_DeployDisputeGameFactoryProxyScript.s.sol',
   };
-  c.addModule(DeployDisputeGameFactoryProxyScript);
+  c.addImportOnly(DeployDisputeGameFactoryProxyScript);
 
   const DeployL2OutputOracleProxyScript = {
     name: 'DeployL2OutputOracleProxyScript',
     path: '@script/401H_DeployL2OutputOracleProxyScript.s.sol',
   };
-  c.addModule(DeployL2OutputOracleProxyScript);
+  c.addImportOnly(DeployL2OutputOracleProxyScript);
 
   const DeployDelayedWETHProxyScript = {
     name: 'DeployDelayedWETHProxyScript',
     path: '@script/401I_DeployDelayedWETHProxyScript.s.sol',
   };
-  c.addModule(DeployDelayedWETHProxyScript);
+  c.addImportOnly(DeployDelayedWETHProxyScript);
 
   const DeployPermissionedDelayedWETHProxyScript = {
     name: 'DeployPermissionedDelayedWETHProxyScript',
     path: '@script/401J_DeployPermissionedDelayedWETHProxyScript.s.sol',
   };
-  c.addModule(DeployPermissionedDelayedWETHProxyScript);
+  c.addImportOnly(DeployPermissionedDelayedWETHProxyScript);
 
   const DeployAnchorStateRegistryProxyScript = {
     name: 'DeployAnchorStateRegistryProxyScript',
     path: '@script/401K_DeployAnchorStateRegistryProxyScript.s.sol',
   };
-  c.addModule(DeployAnchorStateRegistryProxyScript);
+  c.addImportOnly(DeployAnchorStateRegistryProxyScript);
 
   const TransferAddressManagerOwnershipScript = {
     name: 'TransferAddressManagerOwnershipScript',
     path: '@script/401L_TransferAddressManagerOwnershipScript.s.sol',
   };
-  c.addModule(TransferAddressManagerOwnershipScript);
+  c.addImportOnly(TransferAddressManagerOwnershipScript);
 
   c.addFunctionCode(`
         DeployOptimismPortalProxyScript optimismPortalProxyDeployments = new DeployOptimismPortalProxyScript();

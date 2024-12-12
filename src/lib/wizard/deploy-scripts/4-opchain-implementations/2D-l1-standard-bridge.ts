@@ -42,7 +42,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployerFunctions = {
     name: 'DeployerFunctions',
@@ -55,25 +55,25 @@ function addBase(c: DeployBuilder) {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(DeployOptions);
+  c.addImportOnly(DeployOptions);
 
   const Types = {
     name: 'Types',
     path: '@redprint-deploy/optimism/Types.sol',
   };
-  c.addModule(Types);
+  c.addImportOnly(Types);
 
   const ChainAssertions = {
     name: 'ChainAssertions',
     path: '@redprint-deploy/optimism/ChainAssertions.sol',
   };
-  c.addModule(ChainAssertions);
+  c.addImportOnly(ChainAssertions);
 
   const L1StandardBridge = {
     name: 'L1StandardBridge',
     path: '@redprint-core/L1/L1StandardBridge.sol',
   };
-  c.addModule(L1StandardBridge);
+  c.addImportOnly(L1StandardBridge);
 
   c.addVariable(`L1StandardBridge l1StandardBridge;`);
 

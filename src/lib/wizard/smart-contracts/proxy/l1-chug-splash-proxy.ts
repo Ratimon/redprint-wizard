@@ -9,13 +9,13 @@ export function buildL1ChugSplashProxy(c: ContractBuilder): void {
         name: 'Constants',
         path: '@redprint-core/libraries/Constants.sol',
       };
-    c.addModule(Constants);
+    c.addImportOnly(Constants);
 
     const IL1ChugSplashDeployer = {
         name: 'IL1ChugSplashDeployer',
         path: '@redprint-core/legacy/L1ChugSplashProxy.sol',
       };
-    c.addModule(IL1ChugSplashDeployer);
+    c.addImportOnly(IL1ChugSplashDeployer);
    
     c.addVariable(`/// @notice "Magic" prefix. When prepended to some arbitrary bytecode and used to create a
     ///         contract, the appended bytecode will be deployed as given.

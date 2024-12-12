@@ -42,7 +42,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployerFunctions = {
     name: 'DeployerFunctions',
@@ -54,19 +54,19 @@ function addBase(c: DeployBuilder) {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(DeployOptions);
+  c.addImportOnly(DeployOptions);
 
   const IPreimageOracle = {
     name: 'IPreimageOracle',
     path: '@redprint-core/cannon/interfaces/IPreimageOracle.sol',
   };
-  c.addModule(IPreimageOracle);
+  c.addImportOnly(IPreimageOracle);
 
   const MIPS = {
     name: 'MIPS',
     path: '@redprint-core/cannon/MIPS.sol',
   };
-  c.addModule(MIPS);
+  c.addImportOnly(MIPS);
 
   c.addVariable(`MIPS mips;`);
 

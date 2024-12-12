@@ -1,4 +1,4 @@
-import type { ContractBuilder } from '../../contract';
+import type { ContractBuilder } from '../contract';
 
 export function buildResolvedDelegateProxy(c: ContractBuilder): void {
 
@@ -6,7 +6,7 @@ export function buildResolvedDelegateProxy(c: ContractBuilder): void {
         name: 'AddressManager',
         path: '@redprint-core/legacy/AddressManager.sol',
       };
-    c.addModule(AddressManager);
+    c.addImportOnly(AddressManager);
    
     c.addVariable(`/// @notice Mapping used to store the implementation name that corresponds to this contract. A
     ///         mapping was originally used as a way to bypass the same issue normally solved by

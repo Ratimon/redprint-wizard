@@ -56,7 +56,7 @@ function setGovernanceDeployment(c: DeployBuilder, fn: BaseFunction, gov: Govern
             name: 'DeploySafeProxyScript',
             path: '@script/101_DeploySafeProxyScript.s.sol',
         };
-        c.addModule(DeploySafeProxyScript);
+        c.addImportOnly(DeploySafeProxyScript);
 
         c.addFunctionCode(`DeploySafeProxyScript safeDeployments = new DeploySafeProxyScript();
         //1) set up Safe Multisig
@@ -71,7 +71,7 @@ function setGovernanceDeployment(c: DeployBuilder, fn: BaseFunction, gov: Govern
             path: '@script/100_DeployGovernerScript.s.sol',
         };
 
-        c.addModule(DeployGovernerScript);
+        c.addImportOnly(DeployGovernerScript);
         c.addFunctionCode(`DeployGovernerScript govDeployments = new DeployGovernerScript();
         //1) set up Governer
         govDeployments.deploy();`, fn);
@@ -86,7 +86,7 @@ function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
       name: 'SetupSuperchainScript',
       path: '@script/200_SetupSuperchain.s.sol',
   };
-  c.addModule(SetupSuperchainScript);
+  c.addImportOnly(SetupSuperchainScript);
 
 
   c.addFunctionCode(`SetupSuperchainScript superchainSetups = new SetupSuperchainScript();
@@ -100,7 +100,7 @@ function setAlternateDADeployment(c: DeployBuilder, fn: BaseFunction) {
     name: 'SetupOpAltDAScript',
     path: '@script/300_SetupOpAltDAScript.s.sol',
   };
-  c.addModule(SetupOpAltDAScript);
+  c.addImportOnly(SetupOpAltDAScript);
 
 
   c.addFunctionCode(`SetupOpAltDAScript opAltDASetups = new SetupOpAltDAScript();
@@ -115,7 +115,7 @@ function setOpDeployment(c: DeployBuilder, fn: BaseFunction) {
       name: 'SetupOpchainScript',
       path: '@script/400_SetupOpchain.s.sol',
   };
-  c.addModule(SetupOpchainScript);
+  c.addImportOnly(SetupOpchainScript);
 
 
   c.addFunctionCode(`SetupOpchainScript opchainSetups = new SetupOpchainScript();

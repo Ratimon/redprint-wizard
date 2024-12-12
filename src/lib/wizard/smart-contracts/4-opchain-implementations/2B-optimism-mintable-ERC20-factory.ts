@@ -30,7 +30,7 @@ export function buildOptimismMintableERC20Factory(opts: SharedOptimismMintableER
         name: 'OptimismMintableERC20',
         path: '@redprint-core/universal/OptimismMintableERC20.sol',
     };
-    c.addModule(OptimismMintableERC20);
+    c.addImportOnly(OptimismMintableERC20);
 
     const ISemver = {
         name: 'ISemver',

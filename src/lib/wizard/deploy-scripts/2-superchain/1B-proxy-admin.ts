@@ -37,18 +37,18 @@ function addBase(c: DeployBuilder) {
     name: 'console',
     path: '@redprint-forge-std/console.sol',
   };
-  c.addModule(console);
+  c.addImportOnly(console);
 
   const Vm = {
     name: 'Vm',
     path: '@redprint-forge-std/Vm.sol',
   };
-  c.addModule(Vm);
+  c.addImportOnly(Vm);
   const VmSafe = {
     name: 'VmSafe',
     path: '@redprint-forge-std/Vm.sol',
   };
-  c.addModule(VmSafe);
+  c.addImportOnly(VmSafe);
 
   const DeployFunctions = {
     name: 'DeployerFunctions',
@@ -59,7 +59,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployScript = {
     name: 'DeployScript',
@@ -71,19 +71,19 @@ function addBase(c: DeployBuilder) {
     name: 'IAddressManager',
     path: '@redprint-core/legacy/interfaces/IAddressManager.sol',
   };
-  c.addModule(IAddressManager);
+  c.addImportOnly(IAddressManager);
 
   const AddressManager = {
     name: 'AddressManager',
     path: '@redprint-core/legacy/AddressManager.sol',
   };
-  c.addModule(AddressManager);
+  c.addImportOnly(AddressManager);
 
   const ProxyAdmin = {
     name: 'ProxyAdmin',
     path: '@redprint-core/universal/ProxyAdmin.sol',
   };
-  c.addModule(ProxyAdmin);
+  c.addImportOnly(ProxyAdmin);
 
   c.addVariable(`ProxyAdmin proxyAdmin;`);
 

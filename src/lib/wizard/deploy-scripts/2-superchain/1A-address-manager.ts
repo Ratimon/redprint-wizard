@@ -40,7 +40,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployScript = {
     name: 'DeployScript',
@@ -52,7 +52,7 @@ function addBase(c: DeployBuilder) {
     name: 'AddressManager',
     path: '@redprint-core/legacy/AddressManager.sol',
   };
-  c.addModule(AddressManager);
+  c.addImportOnly(AddressManager);
 
   const fn : BaseFunction = getDeployFunction();
   c.addFunctionCode(`return AddressManager(deployer.deploy_AddressManager("AddressManager"));`, fn);

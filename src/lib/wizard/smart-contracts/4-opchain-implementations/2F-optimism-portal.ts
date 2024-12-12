@@ -50,55 +50,55 @@ export function buildOptimismPortal(opts: SharedOptimismPortalOptions): Contract
         name: 'SafeCall',
         path: '@redprint-core/libraries/SafeCall.sol',
     };
-    c.addModule(SafeCall);
+    c.addImportOnly(SafeCall);
 
     const Constants = {
         name: 'Constants',
         path: '@redprint-core/libraries/Constants.sol',
     };
-    c.addModule(Constants);
+    c.addImportOnly(Constants);
 
     const Types = {
         name: 'Types',
         path: '@redprint-core/libraries/Types.sol',
     };
-    c.addModule(Types);
+    c.addImportOnly(Types);
 
     const Hashing = {
         name: 'Hashing',
         path: '@redprint-core/libraries/Hashing.sol',
     };
-    c.addModule(Hashing);
+    c.addImportOnly(Hashing);
 
     const SecureMerkleTrie = {
         name: 'SecureMerkleTrie',
         path: '@redprint-core/libraries/trie/SecureMerkleTrie.sol',
     };
-    c.addModule(SecureMerkleTrie);
+    c.addImportOnly(SecureMerkleTrie);
 
     const Predeploys = {
         name: 'Predeploys',
         path: '@redprint-core/libraries/Predeploys.sol',
     };
-    c.addModule(Predeploys);
+    c.addImportOnly(Predeploys);
 
     const AddressAliasHelper = {
         name: 'AddressAliasHelper',
         path: '@redprint-core/vendor/AddressAliasHelper.sol',
     };
-    c.addModule(AddressAliasHelper);
+    c.addImportOnly(AddressAliasHelper);
 
     const PortalErrors = {
         name: '',
         path: '@redprint-core/libraries/PortalErrors.sol'
     };
-    c.addModule(PortalErrors);
+    c.addImportOnly(PortalErrors);
 
     const IERC20 = {
         name: 'IERC20',
         path: '@redprint-openzeppelin/token/ERC20/IERC20.sol',
     };
-    c.addModule(IERC20);
+    c.addImportOnly(IERC20);
 
     const ISemver = {
       name: 'ISemver',
@@ -110,31 +110,31 @@ export function buildOptimismPortal(opts: SharedOptimismPortalOptions): Contract
         name: 'IL2OutputOracle',
         path: '@redprint-core/L1/interfaces/IL2OutputOracle.sol',
     };
-    c.addModule(IL2OutputOracle);
+    c.addImportOnly(IL2OutputOracle);
 
     const ISystemConfig = {
         name: 'ISystemConfig',
         path: '@redprint-core/L1/interfaces/ISystemConfig.sol',
     };
-    c.addModule(ISystemConfig);
+    c.addImportOnly(ISystemConfig);
 
     const IResourceMetering = {
         name: 'IResourceMetering',
         path: '@redprint-core/L1/interfaces/IResourceMetering.sol',
     };
-    c.addModule(IResourceMetering);
+    c.addImportOnly(IResourceMetering);
 
     const ISuperchainConfig = {
       name: 'ISuperchainConfig',
       path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
     };
-    c.addModule(ISuperchainConfig);
+    c.addImportOnly(ISuperchainConfig);
 
     const IL1Block = {
         name: 'IL1Block',
         path: '@redprint-core/L2/interfaces/IL1Block.sol',
     };
-    c.addModule(IL1Block);
+    c.addImportOnly(IL1Block);
     
     c.addVariable(`/// @notice Represents a proven withdrawal.
     /// @custom:field outputRoot    Root of the L2 output this was proven against.

@@ -38,31 +38,31 @@ export function buildOptimismPortalInterop(opts: SharedOptimismPortalInteropOpti
         name: 'L1BlockInterop',
         path: '@redprint-core/L2/L1BlockInterop.sol',
     };
-    c.addModule(L1BlockInterop);
+    c.addImportOnly(L1BlockInterop);
 
     const ConfigType = {
         name: 'ConfigType',
         path: '@redprint-core/L2/L1BlockInterop.sol',
     };
-    c.addModule(ConfigType);
+    c.addImportOnly(ConfigType);
 
     const Predeploys = {
         name: 'Predeploys',
         path: '@redprint-core/libraries/Predeploys.sol',
     };
-    c.addModule(Predeploys);
+    c.addImportOnly(Predeploys);
 
     const Constants = {
         name: 'Constants',
         path: '@redprint-core/libraries/Constants.sol',
     };
-    c.addModule(Constants);
+    c.addImportOnly(Constants);
 
     const PortalErrors = {
         name: '',
         path: '@redprint-core/libraries/PortalErrors.sol'
     };
-    c.addModule(PortalErrors);
+    c.addImportOnly(PortalErrors);
 
     // version
     c.addModifier('override', functions.version);

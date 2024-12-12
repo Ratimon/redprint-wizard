@@ -41,7 +41,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployScript = {
     name: 'DeployScript',
@@ -53,7 +53,7 @@ function addBase(c: DeployBuilder) {
     name: 'Proxy',
     path: '@redprint-core/universal/Proxy.sol',
   };
-  c.addModule(Proxy);
+  c.addImportOnly(Proxy);
 
   // deploy
   c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");

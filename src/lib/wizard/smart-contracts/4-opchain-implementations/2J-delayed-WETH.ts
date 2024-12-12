@@ -48,7 +48,7 @@ export function buildDelayedWETH(opts: SharedDelayedWETHOptions): Contract {
         name: 'ISuperchainConfig',
         path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
     };    
-    c.addModule(ISuperchainConfig);
+    c.addImportOnly(ISuperchainConfig);
 
 
     c.addVariable(`/// @notice Represents a withdrawal request.

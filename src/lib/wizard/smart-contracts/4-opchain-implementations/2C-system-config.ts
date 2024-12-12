@@ -35,24 +35,24 @@ export function buildSystemConfig(opts: SharedSystemConfigOptions): Contract {
       name: 'ERC20',
       path: '@redprint-openzeppelin/token/ERC20/ERC20.sol',
     };
-    c.addModule(ERC20);
+    c.addImportOnly(ERC20);
 
 
     const Storage = {
       name: 'Storage',
       path: '@redprint-core/libraries/Storage.sol',
     };
-    c.addModule(Storage);
+    c.addImportOnly(Storage);
     const Constants = {
       name: 'Constants',
       path: '@redprint-core/libraries/Constants.sol',
     };
-    c.addModule(Constants);
+    c.addImportOnly(Constants);
     const GasPayingToken = {
       name: 'GasPayingToken',
       path: '@redprint-core/libraries/GasPayingToken.sol',
     };
-    c.addModule(GasPayingToken);
+    c.addImportOnly(GasPayingToken);
     const IGasToken = {
       name: 'IGasToken',
       path: '@redprint-core/libraries/GasPayingToken.sol',
@@ -68,13 +68,13 @@ export function buildSystemConfig(opts: SharedSystemConfigOptions): Contract {
       name: 'IOptimismPortal',
       path: '@redprint-core/L1/interfaces/IOptimismPortal.sol',
     };
-    c.addModule(IOptimismPortal);
+    c.addImportOnly(IOptimismPortal);
 
     const IResourceMetering = {
       name: 'IResourceMetering',
       path: '@redprint-core/L1/interfaces/IResourceMetering.sol',
     };
-    c.addModule(IResourceMetering);
+    c.addImportOnly(IResourceMetering);
 
 
     c.addVariable(`/// @notice Enum representing different types of updates.

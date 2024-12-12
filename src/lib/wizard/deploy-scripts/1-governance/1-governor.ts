@@ -45,7 +45,7 @@ export function buildDeployGoverner(opts: SharedGovernerOptions): DeployContract
         name: 'Upgrades',
         path: '@openzeppelin-foundry-upgrades/Upgrades.sol',
       };
-      c.addModule(MyGovernor);
+      c.addImportOnly(MyGovernor);
     }
 
     c.addFunctionCode(`vm.stopBroadcast();
@@ -69,13 +69,13 @@ function addBase(c: DeployBuilder) {
     name: 'MyGovernor',
     path: '@main/governer/MyGovernor.sol',
   };
-  c.addModule(MyGovernor);
+  c.addImportOnly(MyGovernor);
   
   const IVotes = {
     name: 'IVotes',
     path: '@main/governer/MyGovernor.sol',
   };
-  c.addModule(IVotes);
+  c.addImportOnly(IVotes);
 
   c.addVariable('address token;');
   
@@ -142,7 +142,7 @@ function addDeployLogic(c: DeployBuilder, fn: BaseFunction, { timelock, upgradea
     path: timelockParent.path,
   };
 
-  c.addModule(TimelockController);
+  c.addImportOnly(TimelockController);
 
   if (upgradeable == 'transparent' ) {
     c.addFunctionCode(`address proxy = Upgrades.deployTransparentProxy("MyGovernor.sol", abi.encodeCall(MyGovernor.initialize, ( _token, _timelock)));`, fn);

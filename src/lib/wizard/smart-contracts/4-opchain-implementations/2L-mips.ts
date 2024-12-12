@@ -36,37 +36,37 @@ export function buildMIPS(opts: SharedMIPSOptions): Contract {
       name: 'IPreimageOracle',
       path: '@redprint-core/cannon/interfaces/IPreimageOracle.sol',
     };
-    c.addModule(IPreimageOracle);
+    c.addImportOnly(IPreimageOracle);
 
     const MIPSInstructions = {
       name: 'MIPSInstructions as ins',
       path: '@redprint-core/cannon/libraries/MIPSInstructions.sol',
     };
-    c.addModule(MIPSInstructions);
+    c.addImportOnly(MIPSInstructions);
 
     const MIPSSyscalls = {
         name: 'MIPSSyscalls as sys',
         path: '@redprint-core/cannon/libraries/MIPSSyscalls.sol',
     };
-    c.addModule(MIPSSyscalls);
+    c.addImportOnly(MIPSSyscalls);
 
     const MIPSState = {
         name: 'MIPSState as st',
         path: '@redprint-core/cannon/libraries/MIPSState.sol',
     };
-    c.addModule(MIPSState);
+    c.addImportOnly(MIPSState);
 
     const MIPSMemory = {
         name: 'MIPSMemory',
         path: '@redprint-core/cannon/libraries/MIPSMemory.sol',
     };
-    c.addModule(MIPSMemory);
+    c.addImportOnly(MIPSMemory);
 
     const InvalidRMWInstruction = {
         name: 'InvalidRMWInstruction',
         path: '@redprint-core/cannon/libraries/CannonErrors.sol',
     };    
-    c.addModule(InvalidRMWInstruction);
+    c.addImportOnly(InvalidRMWInstruction);
 
 
     c.addVariable(`/// @notice Stores the VM state.

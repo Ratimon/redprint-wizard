@@ -9,7 +9,7 @@ export function buildProxy(c: ContractBuilder): void {
       name: 'Constants',
       path: '@redprint-core/libraries/Constants.sol',
     };
-    c.addModule(Constants);
+    c.addImportOnly(Constants);
   
     c.addVariable(`/**
      * @notice An event that is emitted each time the implementation is changed. This event is part

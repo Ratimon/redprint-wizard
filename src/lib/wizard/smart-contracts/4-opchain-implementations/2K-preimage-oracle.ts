@@ -31,25 +31,25 @@ export function buildPreimageOracle(opts: SharedPreimageOracleOptions): Contract
         name: 'LibKeccak',
         path: '@redprint-lib-keccak/LibKeccak.sol',
     };    
-    c.addModule(LibKeccak);
+    c.addImportOnly(LibKeccak);
 
     const PreimageKeyLib = {
         name: 'PreimageKeyLib',
         path: '@redprint-core/cannon/PreimageKeyLib.sol',
     };    
-    c.addModule(PreimageKeyLib);
+    c.addImportOnly(PreimageKeyLib);
 
     const CannonErrors = {
         name: '',
         path: '@redprint-core/cannon/libraries/CannonErrors.sol',
     };
-    c.addModule(CannonErrors);
+    c.addImportOnly(CannonErrors);
 
     const CannonTypes = {
         name: '',
         path: '@redprint-core/cannon/libraries/CannonTypes.sol',
     };    
-    c.addModule(CannonTypes);
+    c.addImportOnly(CannonTypes);
 
     const ISemver = {
         name: 'ISemver',

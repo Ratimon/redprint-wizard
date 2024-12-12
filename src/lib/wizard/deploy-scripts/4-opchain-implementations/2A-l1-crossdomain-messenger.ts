@@ -42,7 +42,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployerFunctions = {
     name: 'DeployerFunctions',
@@ -53,25 +53,25 @@ function addBase(c: DeployBuilder) {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(DeployOptions);
+  c.addImportOnly(DeployOptions);
 
   const Types = {
     name: 'Types',
     path: '@redprint-deploy/optimism/Types.sol',
   };
-  c.addModule(Types);
+  c.addImportOnly(Types);
 
   const ChainAssertions = {
     name: 'ChainAssertions',
     path: '@redprint-deploy/optimism/ChainAssertions.sol',
   };
-  c.addModule(ChainAssertions);
+  c.addImportOnly(ChainAssertions);
 
   const L1CrossDomainMessenger = {
     name: 'L1CrossDomainMessenger',
     path: '@redprint-core/L1/L1CrossDomainMessenger.sol',
   };
-  c.addModule(L1CrossDomainMessenger);
+  c.addImportOnly(L1CrossDomainMessenger);
 
   c.addVariable(`L1CrossDomainMessenger l1CrossDomainMessenger;`);
 

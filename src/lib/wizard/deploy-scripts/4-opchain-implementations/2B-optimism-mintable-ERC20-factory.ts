@@ -42,7 +42,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployerFunctions = {
     name: 'DeployerFunctions',
@@ -53,25 +53,25 @@ function addBase(c: DeployBuilder) {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(DeployOptions);
+  c.addImportOnly(DeployOptions);
 
   const Types = {
     name: 'Types',
     path: '@redprint-deploy/optimism/Types.sol',
   };
-  c.addModule(Types);
+  c.addImportOnly(Types);
 
   const ChainAssertions = {
     name: 'ChainAssertions',
     path: '@redprint-deploy/optimism/ChainAssertions.sol',
   };
-  c.addModule(ChainAssertions);
+  c.addImportOnly(ChainAssertions);
 
   const OptimismMintableERC20Factory = {
     name: 'OptimismMintableERC20Factory',
     path: '@redprint-core/universal/OptimismMintableERC20Factory.sol',
   };
-  c.addModule(OptimismMintableERC20Factory);
+  c.addImportOnly(OptimismMintableERC20Factory);
 
   c.addVariable(`OptimismMintableERC20Factory factory;`);
 

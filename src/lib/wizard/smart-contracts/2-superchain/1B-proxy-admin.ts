@@ -36,38 +36,38 @@ export function buildProxyAdmin(opts: SharedProxyAdminOptions): Contract {
       name: 'Constants',
       path: '@redprint-core/libraries/Constants.sol',
     };
-    c.addModule(Constants);
+    c.addImportOnly(Constants);
 
     const IAddressManager = {
       name: 'IAddressManager',
       path: '@redprint-core/legacy/interfaces/IAddressManager.sol',
     };
-    c.addModule(IAddressManager);
+    c.addImportOnly(IAddressManager);
 
     const IL1ChugSplashProxy = {
       name: 'IL1ChugSplashProxy',
       path: '@redprint-core/legacy/interfaces/IL1ChugSplashProxy.sol',
     };
-    c.addModule(IL1ChugSplashProxy);
+    c.addImportOnly(IL1ChugSplashProxy);
 
     const IStaticL1ChugSplashProxy = {
       name: 'IStaticL1ChugSplashProxy',
       path: '@redprint-core/legacy/interfaces/IL1ChugSplashProxy.sol',
     };
-    c.addModule(IStaticL1ChugSplashProxy);
+    c.addImportOnly(IStaticL1ChugSplashProxy);
 
     const IStaticERC1967Proxy = {
       name: 'IStaticERC1967Proxy',
       path: '@redprint-core/universal/interfaces/IStaticERC1967Proxy.sol',
     };
-    c.addModule(IStaticERC1967Proxy);
+    c.addImportOnly(IStaticERC1967Proxy);
 
 
     const IProxy = {
       name: 'IProxy',
       path: '@redprint-core/universal/interfaces/IProxy.sol',
     };
-    c.addModule(IProxy);
+    c.addImportOnly(IProxy);
 
 
     c.addVariable(`enum ProxyType {

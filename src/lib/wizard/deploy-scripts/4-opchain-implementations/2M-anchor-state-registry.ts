@@ -42,7 +42,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployerFunctions = {
     name: 'DeployerFunctions',
@@ -54,19 +54,19 @@ function addBase(c: DeployBuilder) {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(DeployOptions);
+  c.addImportOnly(DeployOptions);
 
   const IDisputeGameFactory = {
     name: 'IDisputeGameFactory',
     path: '@redprint-core/dispute/interfaces/IDisputeGameFactory.sol',
   };
-  c.addModule(IDisputeGameFactory);
+  c.addImportOnly(IDisputeGameFactory);
 
   const AnchorStateRegistry = {
     name: 'AnchorStateRegistry',
     path: '@redprint-core/dispute/AnchorStateRegistry.sol',
   };
-  c.addModule(AnchorStateRegistry);
+  c.addImportOnly(AnchorStateRegistry);
 
   c.addVariable(`AnchorStateRegistry anchorStateRegistry;`);
 

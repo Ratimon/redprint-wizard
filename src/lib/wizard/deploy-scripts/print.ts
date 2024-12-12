@@ -1,6 +1,6 @@
 // import 'array.prototype.flatmap/auto';
 
-import type { ReferencedContract, DeployContract, Parent, ContractFunction, FunctionArgument, Value, NatspecTag } from './contract';
+import type { ReferencedContract, DeployContract, Parent, ContractFunction, FunctionArgument, Value, NatspecTag, ImportContract } from './contract';
 import type { Options, Helpers }from './options';
 import { withHelpers } from './options';
 
@@ -26,7 +26,9 @@ export function printDeployContract(contract: DeployContract, opts?: Options): s
         `pragma solidity ^${SOLIDITY_VERSION};`,
       ],
 
-      contract.dependencies.map(p => `import {${p.name}} from "${helpers.transformImport(p).path}";`),
+      // contract.dependencies.map(p => `import {${p.name}} from "${helpers.transformImport(p).path}";`),
+
+      printImports(contract.imports, helpers),
 
       [
         ...printNatspecTags(contract.natspecTags),
@@ -53,6 +55,21 @@ function printInheritance(contract: DeployContract, { transformName }: Helpers):
   } else {
     return [];
   }
+}
+
+function printImports(imports: ImportContract[], helpers: Helpers): string[] {
+  // Sort imports by name
+  imports.sort((a, b) => {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  });
+  const lines: string[] = [];
+  imports.map(p => {
+    const importContract = helpers.transformImport(p);
+    lines.push(`import {${importContract.name}} from "${importContract.path}";`);
+  });
+  return lines;
 }
 
 type SortedFunctions = Record<'code' | 'modifiers' | 'override', ContractFunction[]>;

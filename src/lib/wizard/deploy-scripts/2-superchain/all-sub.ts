@@ -40,7 +40,7 @@ function addBase(c: DeployBuilder) {
         name: 'console',
         path: '@redprint-forge-std/console.sol',
     };
-    c.addModule(console);
+    c.addImportOnly(console);
 
     const Script = {
         name: 'Script',
@@ -52,12 +52,12 @@ function addBase(c: DeployBuilder) {
         name: 'IDeployer',
         path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(IDeployer);
+    c.addImportOnly(IDeployer);
     const getDeployer = {
       name: 'getDeployer',
       path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(getDeployer);
+    c.addImportOnly(getDeployer);
 
     c.addVariable(`IDeployer deployerProcedue;`);
 
@@ -69,37 +69,37 @@ function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
         name: 'DeployAddressManagerScript',
         path: '@script/201A_DeployAddressManagerScript.s.sol',
     };
-    c.addModule(DeployAddressManagerScript);
+    c.addImportOnly(DeployAddressManagerScript);
 
     const DeployAndSetupProxyAdminScript = {
         name: 'DeployAndSetupProxyAdminScript',
         path: '@script/201B_DeployAndSetupProxyAdminScript.s.sol',
     };
-    c.addModule(DeployAndSetupProxyAdminScript);
+    c.addImportOnly(DeployAndSetupProxyAdminScript);
 
     const DeploySuperchainConfigProxyScript = {
         name: 'DeploySuperchainConfigProxyScript',
         path: '@script/202A_DeploySuperchainConfigProxyScript.s.sol',
     };
-    c.addModule(DeploySuperchainConfigProxyScript);
+    c.addImportOnly(DeploySuperchainConfigProxyScript);
 
     const DeployAndInitializeSuperchainConfig = {
         name: 'DeployAndInitializeSuperchainConfigScript',
         path: '@script/202B_DeployAndInitializeSuperchainConfigScript.s.sol',
     };
-    c.addModule(DeployAndInitializeSuperchainConfig);
+    c.addImportOnly(DeployAndInitializeSuperchainConfig);
 
     const DeployProtocolVersionsProxyScript = {
         name: 'DeployProtocolVersionsProxyScript',
         path: '@script/203A_DeployProtocolVersionsProxyScript.s.sol',
     };
-    c.addModule(DeployProtocolVersionsProxyScript);
+    c.addImportOnly(DeployProtocolVersionsProxyScript);
 
     const DeployAndInitializeProtocolVersionsScript = {
         name: 'DeployAndInitializeProtocolVersionsScript',
         path: '@script/203B_DeployAndInitializeProtocolVersionsScript.s.sol',
     };
-    c.addModule(DeployAndInitializeProtocolVersionsScript);
+    c.addImportOnly(DeployAndInitializeProtocolVersionsScript);
 
     c.addFunctionCode(`deployerProcedue = getDeployer();
         deployerProcedue.setAutoSave(true);

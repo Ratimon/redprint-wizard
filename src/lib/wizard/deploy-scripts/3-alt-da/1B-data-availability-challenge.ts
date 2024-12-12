@@ -42,7 +42,7 @@ function addBase(c: DeployBuilder) {
       name: 'IDeployer',
       path: '@redprint-deploy/deployer/DeployScript.sol',
       };
-    c.addModule(IDeployer);
+    c.addImportOnly(IDeployer);
   
     const DeployerFunctions = {
       name: 'DeployerFunctions',
@@ -54,13 +54,13 @@ function addBase(c: DeployBuilder) {
       name: 'DeployConfig',
       path: '@redprint-deploy/deployer/DeployConfig.s.sol',
     };
-    c.addModule(DeployConfig);
+    c.addImportOnly(DeployConfig);
   
     const DeployOptions = {
       name: 'DeployOptions',
       path: '@redprint-deploy/deployer/DeployerFunctions.sol',
     };
-    c.addModule(DeployOptions);
+    c.addImportOnly(DeployOptions);
 
     const SafeScript = {
       name: 'SafeScript',
@@ -72,24 +72,24 @@ function addBase(c: DeployBuilder) {
       name: 'console',
       path: '@redprint-forge-std/console.sol',
     };
-    c.addModule(console);
+    c.addImportOnly(console);
 
     const Vm = {
       name: 'Vm',
       path: '@redprint-forge-std/Vm.sol',
     };
-    c.addModule(Vm);
+    c.addImportOnly(Vm);
     const VmSafe = {
       name: 'VmSafe',
       path: '@redprint-forge-std/Vm.sol',
     };
-    c.addModule(VmSafe);
+    c.addImportOnly(VmSafe);
   
     const DataAvailabilityChallenge = {
       name: 'DataAvailabilityChallenge',
       path: '@redprint-core/L1/DataAvailabilityChallenge.sol',
     };
-    c.addModule(DataAvailabilityChallenge);
+    c.addImportOnly(DataAvailabilityChallenge);
 
     c.addVariable('DataAvailabilityChallenge dataAvailabilityChallenge;');
     

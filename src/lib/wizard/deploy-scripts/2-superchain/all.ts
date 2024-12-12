@@ -54,7 +54,7 @@ function setGovernanceDeployment(c: DeployBuilder, fn: BaseFunction, gov: Govern
             name: 'DeploySafeProxyScript',
             path: '@script/101_DeploySafeProxyScript.s.sol',
         };
-        c.addModule(DeploySafeProxyScript);
+        c.addImportOnly(DeploySafeProxyScript);
 
         c.addFunctionCode(`DeploySafeProxyScript safeDeployments = new DeploySafeProxyScript();
         //1) set up Safe Multisig
@@ -69,7 +69,7 @@ function setGovernanceDeployment(c: DeployBuilder, fn: BaseFunction, gov: Govern
             path: '@script/100_DeployGovernerScript.s.sol',
         };
 
-        c.addModule(DeployGovernerScript);
+        c.addImportOnly(DeployGovernerScript);
         c.addFunctionCode(`DeployGovernerScript govDeployments = new DeployGovernerScript();
         //1) set up Governer
         govDeployments.deploy();`, fn);
@@ -84,7 +84,7 @@ function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
         name: 'SetupSuperchainScript',
         path: '@script/200_SetupSuperchain.s.sol',
     };
-    c.addModule(SetupSuperchainScript);
+    c.addImportOnly(SetupSuperchainScript);
 
 
     c.addFunctionCode(`SetupSuperchainScript superchainSetups = new SetupSuperchainScript();

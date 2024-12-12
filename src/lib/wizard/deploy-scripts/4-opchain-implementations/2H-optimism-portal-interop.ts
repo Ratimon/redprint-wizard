@@ -42,7 +42,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployerFunctions = {
     name: 'DeployerFunctions',
@@ -54,31 +54,31 @@ function addBase(c: DeployBuilder) {
     name: 'DeployConfig',
     path: '@redprint-deploy/deployer/DeployConfig.s.sol',
   };
-  c.addModule(DeployConfig);
+  c.addImportOnly(DeployConfig);
 
   const DeployOptions = {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(DeployOptions);
+  c.addImportOnly(DeployOptions);
 
   const Types = {
     name: 'Types',
     path: '@redprint-deploy/optimism/Types.sol',
   };
-  c.addModule(Types);
+  c.addImportOnly(Types);
 
   const ChainAssertions = {
     name: 'ChainAssertions',
     path: '@redprint-deploy/optimism/ChainAssertions.sol',
   };
-  c.addModule(ChainAssertions);
+  c.addImportOnly(ChainAssertions);
 
   const OptimismPortalInterop = {
     name: 'OptimismPortalInterop',
     path: '@redprint-core/L1/OptimismPortalInterop.sol',
   };
-  c.addModule(OptimismPortalInterop);
+  c.addImportOnly(OptimismPortalInterop);
 
   c.addVariable(`OptimismPortalInterop optimismPortal;`);
 

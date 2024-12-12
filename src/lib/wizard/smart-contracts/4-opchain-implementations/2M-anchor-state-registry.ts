@@ -37,27 +37,27 @@ export function buildAnchorStateRegistry(opts: SharedAnchorStateRegistryOptions)
     const Types = {
         name: '',
         path: '@redprint-core/dispute/lib/Types.sol',
-      };
-      c.addModule(Types);
+    };
+    c.addImportOnly(Types);
 
     const Unauthorized = {
         name: 'Unauthorized',
         path: '@redprint-core/libraries/errors/CommonErrors.sol',
     };
-    c.addModule(Unauthorized);
+    c.addImportOnly(Unauthorized);
 
 
     const UnregisteredGame = {
         name: 'UnregisteredGame',
         path: '@redprint-core/dispute/lib/Errors.sol',
     };
-    c.addModule(UnregisteredGame);
+    c.addImportOnly(UnregisteredGame);
 
     const InvalidGameStatus = {
         name: 'InvalidGameStatus',
         path: '@redprint-core/dispute/lib/Errors.sol',
     };
-    c.addModule(InvalidGameStatus);
+    c.addImportOnly(InvalidGameStatus);
 
     const ISemver = {
         name: 'ISemver',
@@ -69,25 +69,25 @@ export function buildAnchorStateRegistry(opts: SharedAnchorStateRegistryOptions)
         name: 'IFaultDisputeGame',
         path: '@redprint-core/dispute/interfaces/IFaultDisputeGame.sol',
     };
-    c.addModule(IFaultDisputeGame);
+    c.addImportOnly(IFaultDisputeGame);
 
     const IDisputeGame = {
         name: 'IDisputeGame',
         path: '@redprint-core/dispute/interfaces/IDisputeGame.sol',
     };
-    c.addModule(IDisputeGame);
+    c.addImportOnly(IDisputeGame);
 
     const IDisputeGameFactory = {
         name: 'IDisputeGameFactory',
         path: '@redprint-core/dispute/interfaces/IDisputeGameFactory.sol',
     };
-    c.addModule(IDisputeGameFactory);
+    c.addImportOnly(IDisputeGameFactory);
 
     const ISuperchainConfig = {
         name: 'ISuperchainConfig',
         path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
     };
-    c.addModule(ISuperchainConfig);
+    c.addImportOnly(ISuperchainConfig);
 
 
     c.addVariable(`/// @notice Describes an initial anchor state for a game type.

@@ -38,7 +38,7 @@ export function buildL1CrossDomainMessenger(opts: SharedL1CrossDomainMessengerOp
         name: 'Predeploys',
         path: '@redprint-core/libraries/Predeploys.sol',
     };
-    c.addModule(Predeploys);
+    c.addImportOnly(Predeploys);
 
     const ISemver = {
       name: 'ISemver',
@@ -50,19 +50,19 @@ export function buildL1CrossDomainMessenger(opts: SharedL1CrossDomainMessengerOp
       name: 'ISuperchainConfig',
       path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
     };
-    c.addModule(ISuperchainConfig);
+    c.addImportOnly(ISuperchainConfig);
 
     const ISystemConfig = {
       name: 'ISystemConfig',
       path: '@redprint-core/L1/interfaces/ISystemConfig.sol',
     };
-    c.addModule(ISystemConfig);
+    c.addImportOnly(ISystemConfig);
 
     const IOptimismPortal = {
       name: 'IOptimismPortal',
       path: '@redprint-core/L1/interfaces/IOptimismPortal.sol',
     };
-    c.addModule(IOptimismPortal);
+    c.addImportOnly(IOptimismPortal);
 
 
     c.addVariable(`/// @notice Contract of the SuperchainConfig.

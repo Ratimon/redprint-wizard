@@ -44,7 +44,7 @@ export function buildProtocolVersions(opts: SharedProtocolVersionsOptions): Cont
         name: 'Storage',
         path: '@redprint-core/libraries/Storage.sol',
     };
-    c.addModule(Storage);
+    c.addImportOnly(Storage);
 
 
     c.addVariable(`/// @notice Enum representing different types of updates.

@@ -43,7 +43,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployScript = {
     name: 'DeployScript',
@@ -55,19 +55,19 @@ function addBase(c: DeployBuilder) {
     name: 'SafeProxyFactory',
     path: '@redprint-safe-contracts/contracts/proxies/SafeProxyFactory.sol',
   };
-  c.addModule(SafeProxyFactory);
+  c.addImportOnly(SafeProxyFactory);
 
   const Safe = {
     name: 'Safe',
     path: '@redprint-safe-contracts/contracts/Safe.sol',
   };
-  c.addModule(Safe);
+  c.addImportOnly(Safe);
 
   const SafeProxy = {
     name: 'SafeProxy',
     path: '@redprint-safe-contracts/contracts/proxies/SafeProxy.sol',
   };
-  c.addModule(SafeProxy);
+  c.addImportOnly(SafeProxy);
 
 }
 

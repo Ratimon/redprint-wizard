@@ -37,13 +37,13 @@ export function buildL1ERC721Bridge(opts: SharedL1ERC721BridgeOptions): Contract
         name: 'Predeploys',
         path: '@redprint-core/libraries/Predeploys.sol',
     };
-    c.addModule(Predeploys);
+    c.addImportOnly(Predeploys);
 
     const IERC721 = {
         name: 'IERC721',
         path: '@redprint-openzeppelin/token/ERC721/IERC721.sol',
     };
-    c.addModule(IERC721);
+    c.addImportOnly(IERC721);
 
     const ISemver = {
         name: 'ISemver',
@@ -55,19 +55,19 @@ export function buildL1ERC721Bridge(opts: SharedL1ERC721BridgeOptions): Contract
         name: 'ICrossDomainMessenger',
         path: '@redprint-core/universal/interfaces/ICrossDomainMessenger.sol',
     };
-    c.addModule(ICrossDomainMessenger);
+    c.addImportOnly(ICrossDomainMessenger);
 
     const ISuperchainConfig = {
         name: 'ISuperchainConfig',
         path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
     };
-    c.addModule(ISuperchainConfig);
+    c.addImportOnly(ISuperchainConfig);
 
     const IL2ERC721Bridge = {
         name: 'IL2ERC721Bridge',
         path: '@redprint-core/L2/interfaces/IL2ERC721Bridge.sol',
     };
-    c.addModule(IL2ERC721Bridge);
+    c.addImportOnly(IL2ERC721Bridge);
     
 
     c.addVariable(`/// @notice Mapping of L1 token to L2 token to ID to boolean, indicating if the given L1 token

@@ -1,8 +1,8 @@
 import type { DeployContract} from '../contract';
 import { DeployBuilder } from "../contract";
 
-import { withCommonDefaults, defaults as commonDefaults } from "../../shared/3-alt-da/1A-option-data-availability-challenge-proxy";
 import type { SharedDataAvailabilityChallengeProxyOptions } from '../../shared/3-alt-da/1A-option-data-availability-challenge-proxy';
+import { withCommonDefaults, defaults as commonDefaults } from "../../shared/3-alt-da/1A-option-data-availability-challenge-proxy";
 
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
@@ -41,7 +41,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployScript = {
     name: 'DeployScript',
@@ -53,7 +53,7 @@ function addBase(c: DeployBuilder) {
     name: 'Proxy',
     path: '@redprint-core/universal/Proxy.sol',
   };
-  c.addModule(Proxy);
+  c.addImportOnly(Proxy);
 
   // deploy
   c.addFunctionCode(`address proxyOwner = deployer.mustGetAddress("ProxyAdmin");

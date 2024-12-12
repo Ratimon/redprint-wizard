@@ -38,7 +38,7 @@ export function buildL2OutputOracle(opts: SharedL2OutputOracleOptions): Contract
         name: 'Types',
         path: '@redprint-core/libraries/Types.sol',
     };
-    c.addModule(Types);
+    c.addImportOnly(Types);
 
     const ISemver = {
         name: 'ISemver',

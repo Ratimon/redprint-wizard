@@ -31,14 +31,14 @@ export function buildSystemConfigInterop(opts: SharedSystemConfigInteropOptions)
       name: 'ERC20',
       path: '@redprint-openzeppelin/token/ERC20/ERC20.sol',
     };
-    c.addModule(ERC20);
+    c.addImportOnly(ERC20);
 
 
     const IOptimismPortalInterop = {
       name: 'IOptimismPortalInterop as IOptimismPortal',
       path: '@redprint-core/L1/interfaces/IOptimismPortalInterop.sol',
     };
-    c.addModule(IOptimismPortalInterop);
+    c.addImportOnly(IOptimismPortalInterop);
 
     const SystemConfig = {
       name: 'SystemConfig',
@@ -51,37 +51,37 @@ export function buildSystemConfigInterop(opts: SharedSystemConfigInteropOptions)
       name: 'ConfigType',
       path: '@redprint-core/L2/L1BlockInterop.sol',
     };
-    c.addModule(ConfigType);
+    c.addImportOnly(ConfigType);
 
     const Constants = {
       name: 'Constants',
       path: '@redprint-core/libraries/Constants.sol',
     };
-    c.addModule(Constants);
+    c.addImportOnly(Constants);
 
     const GasPayingToken = {
         name: 'GasPayingToken',
         path: '@redprint-core/libraries/GasPayingToken.sol',
     };
-    c.addModule(GasPayingToken);
+    c.addImportOnly(GasPayingToken);
 
     const StaticConfig = {
       name: 'StaticConfig',
       path: '@redprint-core/libraries/StaticConfig.sol',
     };
-    c.addModule(StaticConfig);
+    c.addImportOnly(StaticConfig);
 
     const Storage = {
         name: 'Storage',
         path: '@redprint-core/libraries/Storage.sol',
     };
-    c.addModule(Storage);
+    c.addImportOnly(Storage);
 
     const IResourceMetering = {
         name: 'IResourceMetering',
         path: '@redprint-core/L1/interfaces/IResourceMetering.sol',
     };
-    c.addModule(IResourceMetering);
+    c.addImportOnly(IResourceMetering);
 
 
     c.addVariable(`/// @notice Storage slot where the dependency manager address is stored

@@ -54,159 +54,159 @@ function addBase(c: DeployBuilder) {
         name: 'console',
         path: '@redprint-forge-std/console.sol',
     };
-    c.addModule(console);
+    c.addImportOnly(console);
 
     const Vm = {
         name: 'Vm',
         path: '@redprint-forge-std/Vm.sol',
     };
-    c.addModule(Vm);
+    c.addImportOnly(Vm);
     
     const VmSafe = {
         name: 'VmSafe',
         path: '@redprint-forge-std/Vm.sol',
     };
-    c.addModule(VmSafe);
+    c.addImportOnly(VmSafe);
 
 
     const IDeployer = {
         name: 'IDeployer',
         path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(IDeployer);
+    c.addImportOnly(IDeployer);
 
     const getDeployer = {
         name: 'getDeployer',
         path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(getDeployer);
+    c.addImportOnly(getDeployer);
     
     const DeployConfig = {
         name: 'DeployConfig',
         path: '@redprint-deploy/deployer/DeployConfig.s.sol',
     };
-    c.addModule(DeployConfig);
+    c.addImportOnly(DeployConfig);
 
     const Types = {
         name: 'Types',
         path: '@redprint-deploy/optimism/Types.sol',
     };
-    c.addModule(Types);
+    c.addImportOnly(Types);
 
     const ChainAssertions = {
         name: 'ChainAssertions',
         path: '@redprint-deploy/optimism/ChainAssertions.sol',
     };
-    c.addModule(ChainAssertions);
+    c.addImportOnly(ChainAssertions);
 
     const Chains = {
         name: 'Chains',
         path: '@redprint-deploy/libraries/Chains.sol',
     };
-    c.addModule(Chains);
+    c.addImportOnly(Chains);
 
     const Config = {
         name: 'Config',
         path: '@redprint-deploy/libraries/Config.sol',
     };
-    c.addModule(Config);
+    c.addImportOnly(Config);
 
     const Process = {
         name: 'Process',
         path: '@redprint-deploy/libraries/Process.sol',
     };
-    c.addModule(Process);
+    c.addImportOnly(Process);
 
     const IBigStepper = {
         name: 'IBigStepper',
         path: '@redprint-core/dispute/interfaces/IBigStepper.sol',
     };
-    c.addModule(IBigStepper);
+    c.addImportOnly(IBigStepper);
     
     const GameType = {
         name: 'GameType',
         path: '@redprint-core/dispute/lib/Types.sol',
     };
-    c.addModule(GameType);
+    c.addImportOnly(GameType);
 
     const GameTypes = {
         name: 'GameTypes',
         path: '@redprint-core/dispute/lib/Types.sol',
     };
-    c.addModule(GameTypes);
+    c.addImportOnly(GameTypes);
 
     const Claim = {
         name: 'Claim',
         path: '@redprint-core/dispute/lib/Types.sol',
     };
-    c.addModule(Claim);
+    c.addImportOnly(Claim);
 
     const Duration = {
         name: 'Duration',
         path: '@redprint-core/dispute/lib/Types.sol',
     };
-    c.addModule(Duration);
+    c.addImportOnly(Duration);
 
     const IAnchorStateRegistry = {
         name: 'IAnchorStateRegistry',
         path: '@redprint-core/dispute/interfaces/IAnchorStateRegistry.sol',
     };
-    c.addModule(IAnchorStateRegistry);
+    c.addImportOnly(IAnchorStateRegistry);
     
     const DisputeGameFactory = {
         name: 'DisputeGameFactory',
         path: '@redprint-core/dispute/DisputeGameFactory.sol',
     };
-    c.addModule(DisputeGameFactory);
+    c.addImportOnly(DisputeGameFactory);
 
     const FaultDisputeGame = {
         name: 'FaultDisputeGame',
         path: '@redprint-core/dispute/FaultDisputeGame.sol',
     };
-    c.addModule(FaultDisputeGame);
+    c.addImportOnly(FaultDisputeGame);
 
     const IDisputeGame = {
         name: 'IDisputeGame',
         path: '@redprint-core/dispute/interfaces/IDisputeGame.sol',
     };
-    c.addModule(IDisputeGame);
+    c.addImportOnly(IDisputeGame);
 
     const PermissionedDisputeGame = {
         name: 'PermissionedDisputeGame',
         path: '@redprint-core/dispute/PermissionedDisputeGame.sol',
     };
-    c.addModule(PermissionedDisputeGame);
+    c.addImportOnly(PermissionedDisputeGame);
 
 
     const IDelayedWETH = {
         name: 'IDelayedWETH',
         path: '@redprint-core/dispute/interfaces/IDelayedWETH.sol',
     };
-    c.addModule(IDelayedWETH);
+    c.addImportOnly(IDelayedWETH);
 
     const AlphabetVM = {
         name: 'AlphabetVM',
         path: '@redprint-test/mocks/AlphabetVM.sol',
     };
-    c.addModule(AlphabetVM);
+    c.addImportOnly(AlphabetVM);
 
     const IPreimageOracle = {
         name: 'IPreimageOracle',
         path: '@redprint-core/dispute/interfaces/IBigStepper.sol',
     };
-    c.addModule(IPreimageOracle);
+    c.addImportOnly(IPreimageOracle);
 
     const PreimageOracle = {
         name: 'PreimageOracle',
         path: '@redprint-core/cannon/PreimageOracle.sol',
     };
-    c.addModule(PreimageOracle);
+    c.addImportOnly(PreimageOracle);
 
     const IDisputeGameFactory = {
         name: 'IDisputeGameFactory',
         path: '@redprint-core/dispute/interfaces/IDisputeGameFactory.sol',
     };
-    c.addModule(IDisputeGameFactory);
+    c.addImportOnly(IDisputeGameFactory);
 
 
     c.addVariable(`IDeployer deployerProcedue;`);

@@ -40,7 +40,7 @@ function addBase(c: DeployBuilder) {
         name: 'console',
         path: '@redprint-forge-std/console.sol',
     };
-    c.addModule(console);
+    c.addImportOnly(console);
 
     const Script = {
         name: 'Script',
@@ -52,12 +52,12 @@ function addBase(c: DeployBuilder) {
         name: 'IDeployer',
         path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(IDeployer);
+    c.addImportOnly(IDeployer);
     const getDeployer = {
       name: 'getDeployer',
       path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(getDeployer);
+    c.addImportOnly(getDeployer);
 
     c.addVariable(`IDeployer deployerProcedue;`);
 
@@ -69,13 +69,13 @@ function setAlternateDADeployment(c: DeployBuilder, fn: BaseFunction) {
         name: 'DeployDataAvailabilityChallengeProxyScript',
         path: '@script/301A_DeployDataAvailabilityChallengeProxyScript.s.sol',
     };
-    c.addModule(DeployDataAvailabilityChallengeProxyScript);
+    c.addImportOnly(DeployDataAvailabilityChallengeProxyScript);
 
     const DeployAndInitializeDataAvailabilityChallengeScript = {
       name: 'DeployAndInitializeDataAvailabilityChallengeScript',
       path: '@script/301B_DeployAndInitializeDataAvailabilityChallengeScript.s.sol',
     };
-    c.addModule(DeployAndInitializeDataAvailabilityChallengeScript);
+    c.addImportOnly(DeployAndInitializeDataAvailabilityChallengeScript);
 
     c.addFunctionCode(`deployerProcedue = getDeployer();
         deployerProcedue.setAutoSave(true);

@@ -42,7 +42,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployerFunctions = {
     name: 'DeployerFunctions',
@@ -55,25 +55,25 @@ function addBase(c: DeployBuilder) {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(DeployOptions);
+  c.addImportOnly(DeployOptions);
 
   const Types = {
     name: 'Types',
     path: '@redprint-deploy/optimism/Types.sol',
   };
-  c.addModule(Types);
+  c.addImportOnly(Types);
 
   const ChainAssertions = {
     name: 'ChainAssertions',
     path: '@redprint-deploy/optimism/ChainAssertions.sol',
   };
-  c.addModule(ChainAssertions);
+  c.addImportOnly(ChainAssertions);
 
   const L1ERC721Bridge = {
     name: 'L1ERC721Bridge',
     path: '@redprint-core/L1/L1ERC721Bridge.sol',
   };
-  c.addModule(L1ERC721Bridge);
+  c.addImportOnly(L1ERC721Bridge);
 
   c.addVariable(`L1ERC721Bridge l1ERC721Bridge;`);
 

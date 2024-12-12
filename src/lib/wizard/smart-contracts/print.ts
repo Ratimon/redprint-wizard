@@ -1,6 +1,6 @@
 // import 'array.prototype.flatmap/auto';
 
-import type { Contract,ReferencedContract,  Parent, ContractFunction, FunctionArgument, Value, NatspecTag, ContractModifier } from './contract';
+import type { Contract,ReferencedContract,  Parent, ContractFunction, FunctionArgument, Value, NatspecTag, ImportContract, ContractModifier } from './contract';
 
 import type { Options, Helpers }from './options';
 import { withHelpers } from './options';
@@ -33,11 +33,13 @@ export function printContract(contract: Contract, opts?: Options): string {
         `pragma solidity ^${SOLIDITY_VERSION};`,
       ],
 
-      contract.dependencies.map(p => {
-        const names = p.name.split(', ').map(name => ({ name } as ReferencedContract));
-        const transformedNames = helpers.transformNames(names).join(', ');
-        return transformedNames === '' ? `import "${helpers.transformImport(p).path}";` : `import {${transformedNames}} from "${helpers.transformImport(p).path}";`;
-      }),
+      // contract.dependencies.map(p => {
+      //   const names = p.name.split(', ').map(name => ({ name } as ReferencedContract));
+      //   const transformedNames = helpers.transformNames(names).join(', ');
+      //   return transformedNames === '' ? `import "${helpers.transformImport(p).path}";` : `import {${transformedNames}} from "${helpers.transformImport(p).path}";`;
+      // }),
+
+      printImports(contract.imports, helpers),
 
       contract.outsideCode,
 
@@ -72,6 +74,22 @@ function printInheritance(contract: Contract, { transformName }: Helpers): [] | 
     return [];
   }
 }
+
+function printImports(imports: ImportContract[], helpers: Helpers): string[] {
+  // Sort imports by name
+  imports.sort((a, b) => {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  });
+  const lines: string[] = [];
+  imports.map(p => {
+    const importContract = helpers.transformImport(p);
+    lines.push(`import {${importContract.name}} from "${importContract.path}";`);
+  });
+  return lines;
+}
+
 
 function printConstructor(contract: Contract, helpers: Helpers): Lines[] {
   const hasParentParams = contract.parents.some(p => p.params.length > 0);

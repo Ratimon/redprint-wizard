@@ -7,8 +7,8 @@ export interface DeployContract {
   natspecTags: NatspecTag[];
 
   usings: Using[];
-  modules: ParentContract[];
-  dependencies: ParentContract[];
+  // modules: ImportContract[];
+  imports: ImportContract[];
 
   functions: ContractFunction[];
   constructorCode: string[];
@@ -19,11 +19,12 @@ export interface DeployContract {
 export type Value = string | number | { lit: string } | { note: string, value: Value };
 
 export interface Parent {
-  contract: ParentContract;
+  contract: ImportContract;
   params: Value[];
+  importOnly?: boolean;
 }
 
-export interface ParentContract extends ReferencedContract {
+export interface ImportContract extends ReferencedContract {
   path: string;
 }
 
@@ -33,7 +34,7 @@ export interface ReferencedContract {
 }
 
 export interface Using {
-  library: ParentContract;
+  library: ImportContract;
   usingFor: string;
 }
 
@@ -80,7 +81,7 @@ export class DeployBuilder implements DeployContract {
   license: string = 'MIT';
 
   readonly using: Using[] = [];
-  readonly modules: ParentContract[] = [];
+  // readonly modules: ImportContract[] = [];
   readonly natspecTags: NatspecTag[] = [];
 
   readonly constructorArgs: FunctionArgument[] = [];
@@ -95,16 +96,16 @@ export class DeployBuilder implements DeployContract {
   }
 
   get parents(): Parent[] {
-    return [...this.parentMap.values()]
+    return [...this.parentMap.values()].filter(p => !p.importOnly);
   }
 
-  get dependencies(): ParentContract[] {
+  get imports(): ImportContract[] {
 
     const pathMap: Map<string, Set<string>> = new Map();
     const allContracts = [
       ...[...this.parentMap.values()].map(p => p.contract),
       ...this.using.map(u => u.library),
-      ...this.modules,
+      // ...this.modules,
     ];
 
     allContracts.forEach(contract => {
@@ -117,7 +118,7 @@ export class DeployBuilder implements DeployContract {
     return Array.from(pathMap.entries()).map(([path, names]) => ({
       path,
       name: Array.from(names).join(', '),
-    } as ParentContract));
+    } as ImportContract));
     
   }
 
@@ -133,16 +134,22 @@ export class DeployBuilder implements DeployContract {
     return [...this.variableSet];
   }
 
-  addLibrary(contract: ParentContract, useFor: string ) {
+  addLibrary(contract: ImportContract, useFor: string ) {
     const using : Using = {library : contract, usingFor: useFor  } ;
     this.using.push(using);
   }
 
-  addModule(contract: ParentContract ) {
-    this.modules.push(contract);
+  // addModule(contract: ImportContract ) {
+  //   this.modules.push(contract);
+  // }
+
+  addImportOnly(contract: ImportContract): boolean {
+    const present = this.parentMap.has(contract.name);
+    this.parentMap.set(contract.name, { contract, params: [], importOnly: true });
+    return !present;
   }
 
-  addParent(contract: ParentContract, params: Value[] = []): boolean {
+  addParent(contract: ImportContract, params: Value[] = []): boolean {
     const present = this.parentMap.has(contract.name);
     this.parentMap.set(contract.name, { contract, params });
     return !present;

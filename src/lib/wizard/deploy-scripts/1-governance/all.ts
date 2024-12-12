@@ -46,12 +46,12 @@ function addBase(c: DeployBuilder) {
         name: 'IDeployer',
         path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(IDeployer);
+    c.addImportOnly(IDeployer);
     const getDeployer = {
       name: 'getDeployer',
       path: '@redprint-deploy/deployer/DeployScript.sol',
     };
-    c.addModule(getDeployer);
+    c.addImportOnly(getDeployer);
 
     c.addVariable(`IDeployer deployerProcedue;`);
 
@@ -66,7 +66,7 @@ function setSafeDeployment(c: DeployBuilder, fn: BaseFunction, gov: Governance) 
             name: 'DeploySafeProxyScript',
             path: '@script/101_DeploySafeProxyScript.s.sol',
         };
-        c.addModule(DeploySafeProxyScript);
+        c.addImportOnly(DeploySafeProxyScript);
 
         c.addFunctionCode(`deployerProcedue = getDeployer();
         deployerProcedue.setAutoSave(true);
@@ -84,7 +84,7 @@ function setSafeDeployment(c: DeployBuilder, fn: BaseFunction, gov: Governance) 
             path: '@script/100_DeployGovernerScript.s.sol',
         };
 
-        c.addModule(DeployGovernerScript);
+        c.addImportOnly(DeployGovernerScript);
         c.addFunctionCode(`deployerProcedue = getDeployer();
         deployerProcedue.setAutoSave(true);
         

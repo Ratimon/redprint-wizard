@@ -37,18 +37,18 @@ function addBase(c: DeployBuilder) {
     name: 'console',
     path: '@redprint-forge-std/console.sol',
   };
-  c.addModule(console);
+  c.addImportOnly(console);
 
   const Vm = {
     name: 'Vm',
     path: '@redprint-forge-std/Vm.sol',
   };
-  c.addModule(Vm);
+  c.addImportOnly(Vm);
   const VmSafe = {
     name: 'VmSafe',
     path: '@redprint-forge-std/Vm.sol',
   };
-  c.addModule(VmSafe);
+  c.addImportOnly(VmSafe);
 
   const DeployScript = {
     name: 'DeployScript',
@@ -59,7 +59,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployScript.sol',
   };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
   const DeployerFunctions = {
     name: 'DeployerFunctions',
@@ -70,7 +70,7 @@ function addBase(c: DeployBuilder) {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(DeployOptions);
+  c.addImportOnly(DeployOptions);
 
   const SafeScript = {
     name: 'SafeScript',
@@ -82,20 +82,20 @@ function addBase(c: DeployBuilder) {
     name: 'ChainAssertions',
     path: '@redprint-deploy/optimism/ChainAssertions.sol',
   };
-  c.addModule(ChainAssertions);
+  c.addImportOnly(ChainAssertions);
   
 
   const Proxy = {
     name: 'Proxy',
     path: '@redprint-core/universal/Proxy.sol',
   };
-  c.addModule(Proxy);
+  c.addImportOnly(Proxy);
 
   const SuperchainConfig = {
     name: 'SuperchainConfig',
     path: '@redprint-core/L1/SuperchainConfig.sol',
   };
-  c.addModule(SuperchainConfig);
+  c.addImportOnly(SuperchainConfig);
 
   c.addVariable(`SuperchainConfig superchainConfig;`);
 

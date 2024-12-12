@@ -37,13 +37,13 @@ export function buildDataAvailabilityChallenge(opts: SharedDataAvailabilityChall
       name: 'SafeCall',
       path: '@redprint-core/libraries/SafeCall.sol',
     };
-    c.addModule(SafeCall);
+    c.addImportOnly(SafeCall);
 
     const ISemver = {
         name: 'ISemver',
         path: '@redprint-core/universal/interfaces/ISemver.sol',
     };
-    c.addModule(ISemver);
+    c.addImportOnly(ISemver);
 
     c.addOutsidecode(`/// @dev An enum representing the status of a DA challenge.
 enum ChallengeStatus {

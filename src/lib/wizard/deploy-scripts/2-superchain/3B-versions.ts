@@ -37,18 +37,18 @@ function addBase(c: DeployBuilder) {
     name: 'console',
     path: '@redprint-forge-std/console.sol',
   };
-  c.addModule(console);
+  c.addImportOnly(console);
 
   const Vm = {
     name: 'Vm',
     path: '@redprint-forge-std/Vm.sol',
   };
-  c.addModule(Vm);
+  c.addImportOnly(Vm);
   const VmSafe = {
     name: 'VmSafe',
     path: '@redprint-forge-std/Vm.sol',
   };
-  c.addModule(VmSafe);
+  c.addImportOnly(VmSafe);
 
   const DeployScript = {
     name: 'DeployScript',
@@ -59,7 +59,7 @@ function addBase(c: DeployBuilder) {
     name: 'IDeployer',
     path: '@redprint-deploy/deployer/DeployScript.sol',
   };
-  c.addModule(IDeployer);
+  c.addImportOnly(IDeployer);
 
 
   const DeployerFunctions = {
@@ -71,7 +71,7 @@ function addBase(c: DeployBuilder) {
     name: 'DeployOptions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
   };
-  c.addModule(DeployOptions);
+  c.addImportOnly(DeployOptions);
 
 
   const SafeScript = {
@@ -84,26 +84,26 @@ function addBase(c: DeployBuilder) {
     name: 'Types',
     path: '@redprint-deploy/optimism/Types.sol',
   };
-  c.addModule(Types);
+  c.addImportOnly(Types);
 
   const ChainAssertions = {
     name: 'ChainAssertions',
     path: '@redprint-deploy/optimism/ChainAssertions.sol',
   };
-  c.addModule(ChainAssertions);
+  c.addImportOnly(ChainAssertions);
   
 
   const ProtocolVersions = {
     name: 'ProtocolVersions',
     path: '@redprint-core/L1/ProtocolVersions.sol',
   };
-  c.addModule(ProtocolVersions);
+  c.addImportOnly(ProtocolVersions);
 
   const ProtocolVersion = {
     name: 'ProtocolVersion',
     path: '@redprint-core/L1/ProtocolVersions.sol',
   };
-  c.addModule(ProtocolVersion);
+  c.addImportOnly(ProtocolVersion);
 
   c.addVariable(`ProtocolVersions versions;`);
 

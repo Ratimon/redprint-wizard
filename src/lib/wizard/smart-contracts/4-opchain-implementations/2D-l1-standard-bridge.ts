@@ -30,7 +30,7 @@ export function buildL1StandardBridge(opts: SharedL1StandardBridgeOptions): Cont
       name: 'Predeploys',
       path: '@redprint-core/libraries/Predeploys.sol',
     };
-    c.addModule(Predeploys);
+    c.addImportOnly(Predeploys);
 
 
     const StandardBridge = {
@@ -54,19 +54,19 @@ export function buildL1StandardBridge(opts: SharedL1StandardBridgeOptions): Cont
         name: 'ICrossDomainMessenger',
         path: '@redprint-core/universal/interfaces/ICrossDomainMessenger.sol',
     };
-    c.addModule(ICrossDomainMessenger);
+    c.addImportOnly(ICrossDomainMessenger);
 
     const ISuperchainConfig = {
         name: 'ISuperchainConfig',
         path: '@redprint-core/L1/interfaces/ISuperchainConfig.sol',
     };
-    c.addModule(ISuperchainConfig);
+    c.addImportOnly(ISuperchainConfig);
 
     const ISystemConfig = {
         name: 'ISystemConfig',
         path: '@redprint-core/L1/interfaces/ISystemConfig.sol',
     };
-    c.addModule(ISystemConfig);
+    c.addImportOnly(ISystemConfig);
 
     c.addVariable(`/// @custom:legacy
     /// @notice Emitted whenever a deposit of ETH from L1 into L2 is initiated.

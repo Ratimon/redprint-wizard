@@ -42,13 +42,13 @@ export function buildDisputeGameFactory(opts: SharedDisputeGameFactoryOptions): 
       name: '',
       path: '@redprint-core/dispute/lib/Types.sol',
     };
-    c.addModule(Types);
+    c.addImportOnly(Types);
 
     const Errors = {
         name: '',
         path: '@redprint-core/dispute/lib/Errors.sol',
     };    
-    c.addModule(Errors);
+    c.addImportOnly(Errors);
 
     const ISemver = {
         name: 'ISemver',
@@ -60,7 +60,7 @@ export function buildDisputeGameFactory(opts: SharedDisputeGameFactoryOptions): 
         name: 'IDisputeGame',
         path: '@redprint-core/dispute/interfaces/IDisputeGame.sol',
     };    
-    c.addModule(IDisputeGame);
+    c.addImportOnly(IDisputeGame);
 
 
     c.addVariable(`/// @notice Emitted when a new dispute game is created
