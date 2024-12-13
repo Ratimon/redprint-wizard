@@ -43,15 +43,39 @@
   export let data : PageData;
 
   $: remmapingContent = md.render(`
-  \`\`\`bash
-@redprint-core/=node_modules/redprint-forge/src
-@redprint-deploy/=node_modules/redprint-forge/script
-@redprint-forge-std/=node_modules/redprint-forge/lib/forge-std/src
-@redprint-openzeppelin/=node_modules/redprint-forge/lib/openzeppelin-4_9_4/contracts
-@redprint-openzeppelin-upgradeable/=node_modules/redprint-forge/lib/openzeppelin-upgradeable-4_9_4/contracts
-@redprint-safe-contracts/=node_modules/redprint-forge/lib/safe-smart-account/contracts
-@redprint-lib-keccak/=node_modules/redprint-forge/lib/lib-keccak/contracts/lib/
-@redprint-solad/=node_modules/redprint-forge/lib/solady/src/
+  \`\`\`diff
+[profile.default]
+
+# Compilation settings
+src = 'src'
+out = 'forge-artifacts'
+script = 'scripts'
+optimizer = true
+optimizer_runs = 999999
+remappings = [
+  '@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts',
+  '@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts',
+  '@openzeppelin/contracts-v5/=lib/openzeppelin-contracts-v5/contracts',
+  '@rari-capital/solmate/=lib/solmate',
+  '@lib-keccak/=lib/lib-keccak/contracts/lib',
+  '@solady/=lib/solady/src',
+  'forge-std/=lib/forge-std/src',
+  'ds-test/=lib/forge-std/lib/ds-test/src',
+  'safe-contracts/=lib/safe-contracts/contracts',
+  'kontrol-cheatcodes/=lib/kontrol-cheatcodes/src',
+  'gelato/=lib/automate/contracts'
+  '@redprint-core/=src/',
+  '@redprint-deploy/=node_modules/redprint-forge/script',
+  '@scripts/=scripts/',
+  '@redprint-test/=node_modules/redprint-forge/test/',
+  '@redprint-forge-std/=lib/forge-std/src',
+  '@redprint-openzeppelin/=lib/openzeppelin-contracts/contracts',
+  '@redprint-openzeppelin-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts',
+  '@redprint-safe-contracts/=lib/safe-contracts/contracts',
+  '@redprint-lib-keccak/=lib/lib-keccak/contracts/lib',
+  '@redprint-solady/=lib/solady/src',
+]
+...
   \`\`\`
   `);
 
@@ -60,6 +84,7 @@
   $: deployConfigContent = md.render(`
   \`\`\`json
 {
+    "l1StartingBlockTag": "0x28665aedb1e78a65e0878347df30f116e5652ce24ede025a80d603656536074f",
     "l1ChainID": 11155111,
     "l2ChainID": 42069,
     "l2BlockTime": 2,
@@ -114,31 +139,16 @@
     "faultGameSplitDepth": 4,
     "faultGameWithdrawalDelay": 604800,
     "preimageOracleMinProposalSize": 1800000,
-    "preimageOracleChallengePeriod": 86400,
+    "preimageOracleChallengePeriod": 120,
     "preimageOracleCancunActivationTimestamp": 0
 }
   \`\`\`
   `);
 
-  $: permissionContent = md.render(`
-  \`\`\`toml
-[profile.default]
-// ...
-fs_permissions = [
-    { access = 'read-write', path = './' },
-]
-  \`\`\`
-  `);
 
   let isEnvModalOpen = false;
   $: envContent = md.render(`
 \`\`\`bash
-# -------------------------------------------------------------------------------------------------
-# IMPORTANT!
-# -------------------------------------------------------------------------------------------------
-# USE .env.local and .env.<context>.local to set secrets
-# .env and .env.<context> are used for default public env
-# -------------------------------------------------------------------------------------------------
 
 RPC_URL_localhost=http://localhost:8545
 
@@ -150,9 +160,9 @@ DEPLOYER_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 
 # script/Config.sol
 DEPLOYMENT_OUTFILE=deployments/31337/.save.json
-DEPLOY_CONFIG_PATH=
+DEPLOY_CONFIG_PATH=deploy-config/hardhat.json
 CHAIN_ID=
-IMPL_SALT=
+IMPL_SALT=$(openssl rand -hex 32)
 STATE_DUMP_PATH=
 SIG=
 DEPLOY_FILE=
@@ -255,6 +265,29 @@ L1_RPC_URL=http://localhost:8545
 </Background>
 
 <div class="container flex flex-col gap-4 p-8 mx-8">
+
+  <h2 class="m-4 font-semibold">
+    Fork <a class="bg-primary underline" href="https://github.com/ethereum-optimism/optimism.git" target="_blank" rel="noreferrer">optimism</a> 's monorepo:
+  </h2>
+
+  <CopyBlock
+    boxClass="p-2 rounded-box font-black text-primary max-w-xl mx-auto"
+    class="mb-5"
+    background="bg-primary-content"
+    copiedBackground="bg-success"
+    copiedColor="text-success-content"
+    text={`git clone --depth 1 --branch v1.9.4 https://github.com/ethereum-optimism/optimism.git`}
+  />
+
+  <p class="mt-6 text-base-300">
+    All OPStack's contracts are based on
+    <a class="underline" href="https://github.com/ethereum-optimism/optimism/tree/v1.9.4/packages/contracts-bedrock" target="_blank" rel="noreferrer"
+      >v1.9.4
+    </a>
+  </p>
+
+  
+
   <h2 class="m-4 font-semibold">
     Add the <a class="bg-primary underline" href="https://github.com/Ratimon/redprint-forge" target="_blank" rel="noreferrer">redprint-forge</a> using your favorite package manager, e.g., with npm:
   </h2>
@@ -268,15 +301,8 @@ L1_RPC_URL=http://localhost:8545
     text={`npm install -D redprint-forge`}
   />
 
-  <p class="mt-6 text-base-300">
-    Find out about our lib more on
-    <a class="underline" href="https://github.com/Ratimon/redprint-forge" target="_blank" rel="noreferrer"
-      >github
-    </a>
-  </p>
-
   <h2 class="m-4 font-semibold">
-    Add <span class="underline bg-secondary">remappings.txt</span> to the <span class="underline">root directory</span> with following:
+    Modify OPStack's <a class="bg-primary underline" href="https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/foundry.toml" target="_blank" rel="noreferrer">foundry.toml</a> to the <span class="underline">root directory</span> with following:
   </h2>
 
   <div class="output flex flex-col grow overflow-auto">
@@ -314,16 +340,6 @@ L1_RPC_URL=http://localhost:8545
     </div>
   </div>
 
-  <p class="mt-6 text-base-300">
-    Also make sure that you enable permissions in <span class="underline bg-accent">foundry.toml</span> as following:
-  </p>
-
-  <div class="output flex flex-col grow overflow-auto">
-    <code class="hljs grow overflow-auto p-4">
-      {@html md.render(permissionContent)}
-    </code>
-  </div>
-
   <h2 class="m-4 font-semibold">
     Add <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>and modify as required. For example, this is a file <span class="underline bg-secondary">.env.optimism.local</span> for optimism network.
   </h2>
@@ -351,8 +367,13 @@ L1_RPC_URL=http://localhost:8545
   </div>
 
   <p class="mt-6 text-base-300">
-    In our example, we use <a class="bg-accent underline" href=https://github.com/wighawag/ldenv target="_blank" rel="noreferrer">ldenv</a> as convention guide for environment variable management.This will helps to manage deployment artifacts when deploying to different networks. Check our <a class="bg-accent underline" href=https://github.com/Ratimon/redprint-optimism-contracts-examples/blob/main/package.json target="_blank" rel="noreferrer">example !!</a> 
+    Find out more about our guide on
+    <a class="underline" href="https://github.com/Ratimon/redprint-forge?tab=readme-ov-file#quickstart" target="_blank" rel="noreferrer"
+      >github
+    </a>
   </p>
+
+
 </div>
 
 <Background color="bg-base-100 pt-3 pb-4">
