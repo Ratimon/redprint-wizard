@@ -31,7 +31,7 @@ export function withCommonDefaults(opts: CommonOptions): Required<CommonOptions>
 
 export const defaults: Required<SharedSafeOptions> = {
   //contract
-  contractName: 'SafeProxy',
+  contractName: 'GnosisSafeProxy',
   
   access: commonDefaults.access,
   upgradeable: commonDefaults.upgradeable,

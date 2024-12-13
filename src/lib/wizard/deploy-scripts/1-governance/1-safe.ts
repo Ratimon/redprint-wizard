@@ -52,20 +52,20 @@ function addBase(c: DeployBuilder) {
   c.addParent(DeployScript, []);
 
   const SafeProxyFactory = {
-    name: 'SafeProxyFactory',
-    path: '@redprint-safe-contracts/contracts/proxies/SafeProxyFactory.sol',
+    name: 'GnosisSafeProxyFactory as SafeProxyFactory',
+    path: '@redprint-safe-contracts/proxies/GnosisSafeProxyFactory.sol',
   };
   c.addImportOnly(SafeProxyFactory);
 
   const Safe = {
-    name: 'Safe',
-    path: '@redprint-safe-contracts/contracts/Safe.sol',
+    name: 'GnosisSafe as Safe',
+    path: '@redprint-safe-contracts/GnosisSafe.sol',
   };
   c.addImportOnly(Safe);
 
   const SafeProxy = {
-    name: 'SafeProxy',
-    path: '@redprint-safe-contracts/contracts/proxies/SafeProxy.sol',
+    name: 'GnosisSafeProxy as SafeProxy',
+    path: '@redprint-safe-contracts/proxies/GnosisSafeProxy.sol',
   };
   c.addImportOnly(SafeProxy);
 

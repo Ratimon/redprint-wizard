@@ -201,8 +201,8 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
     c.addImportOnly(ProxyAdmin);
 
     const Safe = {
-        name: 'Safe',
-        path: '@redprint-safe-contracts/Safe.sol',
+        name: 'GnosisSafe as Safe',
+        path: '@redprint-safe-contracts/GnosisSafe.sol',
     };
     c.addImportOnly(Safe);
 
@@ -568,7 +568,6 @@ function setL1ERC721Bridge(c: DeployBuilder) {
         address l1ERC721Bridge = deployerProcedue.mustGetAddress("L1ERC721Bridge");
         address l1CrossDomainMessengerProxy = deployerProcedue.mustGetAddress("L1CrossDomainMessengerProxy");
         address superchainConfigProxy = deployerProcedue.mustGetAddress("SuperchainConfigProxy");
-        address systemConfigProxy = deployerProcedue.mustGetAddress("SystemConfigProxy");
 
         _upgradeAndCallViaSafe({
             _proxyAdmin: proxyAdmin,
