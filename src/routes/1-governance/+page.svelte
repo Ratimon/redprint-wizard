@@ -145,7 +145,6 @@ remappings = [
   \`\`\`
   `);
 
-
   let isEnvModalOpen = false;
   $: envContent = md.render(`
 \`\`\`bash
@@ -289,7 +288,7 @@ L1_RPC_URL=http://localhost:8545
   
 
   <h2 class="m-4 font-semibold">
-    Add the <a class="bg-primary underline" href="https://github.com/Ratimon/redprint-forge" target="_blank" rel="noreferrer">redprint-forge</a> using your favorite package manager, e.g., with npm:
+    Add the <a class="bg-primary underline" href="https://github.com/Ratimon/redprint-forge" target="_blank" rel="noreferrer">redprint-forge</a> using your favorite package manager, e.g., with pnpm:
   </h2>
 
   <CopyBlock
@@ -298,7 +297,7 @@ L1_RPC_URL=http://localhost:8545
     background="bg-primary-content"
     copiedBackground="bg-success"
     copiedColor="text-success-content"
-    text={`npm install -D redprint-forge`}
+    text={`pnpm add redprint-forgee`}
   />
 
   <h2 class="m-4 font-semibold">
@@ -341,7 +340,7 @@ L1_RPC_URL=http://localhost:8545
   </div>
 
   <h2 class="m-4 font-semibold">
-    Add <span class="underline bg-secondary">.env.&lt;network&gt;.local</span>and modify as required. For example, this is a file <span class="underline bg-secondary">.env.optimism.local</span> for optimism network.
+    Add <span class="underline bg-secondary">.env</span>and modify as required.
   </h2>
 
   <button class="btn modal-button" on:click={()=>isEnvModalOpen = true}>See and Copy Env File </button>
