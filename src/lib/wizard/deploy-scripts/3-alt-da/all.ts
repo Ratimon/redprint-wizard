@@ -53,7 +53,7 @@ function setGovernanceDeployment(c: DeployBuilder, fn: BaseFunction, gov: Govern
 
         const DeploySafeProxyScript = {
             name: 'DeploySafeProxyScript',
-            path: '@script/101_DeploySafeProxyScript.s.sol',
+            path: '@scripts/101_DeploySafeProxyScript.s.sol',
         };
         c.addImportOnly(DeploySafeProxyScript);
 
@@ -67,7 +67,7 @@ function setGovernanceDeployment(c: DeployBuilder, fn: BaseFunction, gov: Govern
 
         const DeployGovernerScript = {
             name: 'DeployGovernerScript',
-            path: '@script/100_DeployGovernerScript.s.sol',
+            path: '@scripts/100_DeployGovernerScript.s.sol',
         };
 
         c.addImportOnly(DeployGovernerScript);
@@ -83,7 +83,7 @@ function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
 
     const SetupSuperchainScript = {
         name: 'SetupSuperchainScript',
-        path: '@script/200_SetupSuperchain.s.sol',
+        path: '@scripts/200_SetupSuperchain.s.sol',
     };
     c.addImportOnly(SetupSuperchainScript);
 
@@ -97,7 +97,7 @@ function setAlternateDADeployment(c: DeployBuilder, fn: BaseFunction) {
 
   const SetupOpAltDAScript = {
     name: 'SetupOpAltDAScript',
-    path: '@script/300_SetupOpAltDAScript.s.sol',
+    path: '@scripts/300_SetupOpAltDAScript.s.sol',
   };
   c.addImportOnly(SetupOpAltDAScript);
 

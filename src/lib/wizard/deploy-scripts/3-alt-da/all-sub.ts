@@ -67,13 +67,13 @@ function setAlternateDADeployment(c: DeployBuilder, fn: BaseFunction) {
 
     const DeployDataAvailabilityChallengeProxyScript = {
         name: 'DeployDataAvailabilityChallengeProxyScript',
-        path: '@script/301A_DeployDataAvailabilityChallengeProxyScript.s.sol',
+        path: '@scripts/301A_DeployDataAvailabilityChallengeProxyScript.s.sol',
     };
     c.addImportOnly(DeployDataAvailabilityChallengeProxyScript);
 
     const DeployAndInitializeDataAvailabilityChallengeScript = {
       name: 'DeployAndInitializeDataAvailabilityChallengeScript',
-      path: '@script/301B_DeployAndInitializeDataAvailabilityChallengeScript.s.sol',
+      path: '@scripts/301B_DeployAndInitializeDataAvailabilityChallengeScript.s.sol',
     };
     c.addImportOnly(DeployAndInitializeDataAvailabilityChallengeScript);
 

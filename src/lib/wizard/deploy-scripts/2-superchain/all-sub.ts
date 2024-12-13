@@ -67,37 +67,37 @@ function setSuperchainDeployment(c: DeployBuilder, fn: BaseFunction) {
 
     const DeployAddressManagerScript = {
         name: 'DeployAddressManagerScript',
-        path: '@script/201A_DeployAddressManagerScript.s.sol',
+        path: '@scripts/201A_DeployAddressManagerScript.s.sol',
     };
     c.addImportOnly(DeployAddressManagerScript);
 
     const DeployAndSetupProxyAdminScript = {
         name: 'DeployAndSetupProxyAdminScript',
-        path: '@script/201B_DeployAndSetupProxyAdminScript.s.sol',
+        path: '@scripts/201B_DeployAndSetupProxyAdminScript.s.sol',
     };
     c.addImportOnly(DeployAndSetupProxyAdminScript);
 
     const DeploySuperchainConfigProxyScript = {
         name: 'DeploySuperchainConfigProxyScript',
-        path: '@script/202A_DeploySuperchainConfigProxyScript.s.sol',
+        path: '@scripts/202A_DeploySuperchainConfigProxyScript.s.sol',
     };
     c.addImportOnly(DeploySuperchainConfigProxyScript);
 
     const DeployAndInitializeSuperchainConfig = {
         name: 'DeployAndInitializeSuperchainConfigScript',
-        path: '@script/202B_DeployAndInitializeSuperchainConfigScript.s.sol',
+        path: '@scripts/202B_DeployAndInitializeSuperchainConfigScript.s.sol',
     };
     c.addImportOnly(DeployAndInitializeSuperchainConfig);
 
     const DeployProtocolVersionsProxyScript = {
         name: 'DeployProtocolVersionsProxyScript',
-        path: '@script/203A_DeployProtocolVersionsProxyScript.s.sol',
+        path: '@scripts/203A_DeployProtocolVersionsProxyScript.s.sol',
     };
     c.addImportOnly(DeployProtocolVersionsProxyScript);
 
     const DeployAndInitializeProtocolVersionsScript = {
         name: 'DeployAndInitializeProtocolVersionsScript',
-        path: '@script/203B_DeployAndInitializeProtocolVersionsScript.s.sol',
+        path: '@scripts/203B_DeployAndInitializeProtocolVersionsScript.s.sol',
     };
     c.addImportOnly(DeployAndInitializeProtocolVersionsScript);
 

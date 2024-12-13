@@ -287,7 +287,7 @@ function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToke
             break;
         }
         case 'no-custom-token': {
-            c.addVariable(`address public constant customGasTokenAddress = Constants.ETHER;`);
+            c.addVariable(`address public constant customGasTokenAddress = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;`);
             break;
         }
     }

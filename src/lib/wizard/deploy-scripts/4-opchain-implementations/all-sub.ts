@@ -107,13 +107,13 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
 
   const DeployL1CrossDomainMessengerScript = {
     name: 'DeployL1CrossDomainMessengerScript',
-    path: '@script/402A_DeployL1CrossDomainMessengerScript.s.sol',
+    path: '@scripts/402A_DeployL1CrossDomainMessengerScript.s.sol',
   };
   c.addImportOnly(DeployL1CrossDomainMessengerScript);
 
   const DeployOptimismMintableERC20FactoryScript = {
     name: 'DeployOptimismMintableERC20FactoryScript',
-    path: '@script/402B_DeployOptimismMintableERC20Factory.s.sol',
+    path: '@scripts/402B_DeployOptimismMintableERC20Factory.s.sol',
   };
   c.addImportOnly(DeployOptimismMintableERC20FactoryScript);
 
@@ -121,7 +121,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
     case 'system-config': {
       const DeploySystemConfigScript = {
           name: 'DeploySystemConfigScript',
-          path: '@script/402C_DeploySystemConfigScript.s.sol',
+          path: '@scripts/402C_DeploySystemConfigScript.s.sol',
       };
       c.addImportOnly(DeploySystemConfigScript);
       break;
@@ -129,7 +129,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
     case 'system-config-interop': {
       const DeploySystemConfigInteropScript = {
           name: 'DeploySystemConfigInteropScript',
-          path: '@script/402C_DeploySystemConfigInteropScript.s.sol',
+          path: '@scripts/402C_DeploySystemConfigInteropScript.s.sol',
       };
       c.addImportOnly(DeploySystemConfigInteropScript);
       break;
@@ -138,25 +138,25 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
 
   const DeployL1StandardBridgeScript = {
     name: 'DeployL1StandardBridgeScript',
-    path: '@script/402D_DeployL1StandardBridgeScript.s.sol',
+    path: '@scripts/402D_DeployL1StandardBridgeScript.s.sol',
   };
   c.addImportOnly(DeployL1StandardBridgeScript);
 
   const DeployL1ERC721BridgeScript = {
     name: 'DeployL1ERC721BridgeScript',
-    path: '@script/402E_DeployL1ERC721BridgeScript.s.sol',
+    path: '@scripts/402E_DeployL1ERC721BridgeScript.s.sol',
   };
   c.addImportOnly(DeployL1ERC721BridgeScript);
 
   const DeployOptimismPortalScript = {
     name: 'DeployOptimismPortalScript',
-    path: '@script/402F_DeployOptimismPortalScript.s.sol',
+    path: '@scripts/402F_DeployOptimismPortalScript.s.sol',
   };
   c.addImportOnly(DeployOptimismPortalScript);
 
   const DeployL2OutputOracleScript = {
     name: 'DeployL2OutputOracleScript',
-    path: '@script/402G_DeployL2OutputOracleScript.s.sol',
+    path: '@scripts/402G_DeployL2OutputOracleScript.s.sol',
   };
   c.addImportOnly(DeployL2OutputOracleScript);
 
@@ -164,7 +164,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
     case 'optimism-portal-2': {
       const DeployOptimismPortal2Script = {
         name: 'DeployOptimismPortal2Script',
-        path: '@script/402H_DeployOptimismPortal2Script.s.sol',
+        path: '@scripts/402H_DeployOptimismPortal2Script.s.sol',
       };
       c.addImportOnly(DeployOptimismPortal2Script);
       break;
@@ -172,7 +172,7 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
     case 'optimism-portal-interop': {
       const DeployOptimismPortalInteropScript = {
           name: 'DeployOptimismPortalInteropScript',
-          path: '@script/402H_DeployOptimismPortalInteropScript.s.sol',
+          path: '@scripts/402H_DeployOptimismPortalInteropScript.s.sol',
       };
       c.addImportOnly(DeployOptimismPortalInteropScript);
       break;
@@ -181,43 +181,43 @@ function setOpImplementationsDeployment(c: DeployBuilder, fn: BaseFunction, syst
 
   const DeployDisputeGameFactoryScript = {
     name: 'DeployDisputeGameFactoryScript',
-    path: '@script/402I_DeployDisputeGameFactoryScript.s.sol',
+    path: '@scripts/402I_DeployDisputeGameFactoryScript.s.sol',
   };
   c.addImportOnly(DeployDisputeGameFactoryScript);
 
   const DeployDelayedWETHScript = {
     name: 'DeployDelayedWETHScript',
-    path: '@script/402J_DeployDelayedWETHScript.s.sol',
+    path: '@scripts/402J_DeployDelayedWETHScript.s.sol',
   };
   c.addImportOnly(DeployDelayedWETHScript);
 
   const DeployPreimageOracleScript = {
     name: 'DeployPreimageOracleScript',
-    path: '@script/402K_DeployPreimageOracleScript.s.sol',
+    path: '@scripts/402K_DeployPreimageOracleScript.s.sol',
   };
   c.addImportOnly(DeployPreimageOracleScript);
 
   const DeployMIPSScript = {
     name: 'DeployMIPSScript',
-    path: '@script/402L_DeployMIPSScript.s.sol',
+    path: '@scripts/402L_DeployMIPSScript.s.sol',
   };
   c.addImportOnly(DeployMIPSScript);
 
   const DeployAnchorStateRegistryScript = {
     name: 'DeployAnchorStateRegistryScript',
-    path: '@script/402M_DeployAnchorStateRegistryScript.s.sol',
+    path: '@scripts/402M_DeployAnchorStateRegistryScript.s.sol',
   };
   c.addImportOnly(DeployAnchorStateRegistryScript);
 
   const InitializeImplementationsScript = {
     name: 'InitializeImplementationsScript',
-    path: '@script/402N_InitializeImplementationsScript.s.sol',
+    path: '@scripts/402N_InitializeImplementationsScript.s.sol',
   };
   c.addImportOnly(InitializeImplementationsScript);
 
   const SetFaultGameImplementationScript = {
     name: 'SetFaultGameImplementationScript',
-    path: '@script/402O_SetFaultGameImplementationScript.s.sol',
+    path: '@scripts/402O_SetFaultGameImplementationScript.s.sol',
   };
   c.addImportOnly(SetFaultGameImplementationScript);
 
@@ -297,73 +297,73 @@ function setOpProxiesDeployment(c: DeployBuilder, fn: BaseFunction) {
 
   const DeployOptimismPortalProxyScript = {
     name: 'DeployOptimismPortalProxyScript',
-    path: '@script/401A_DeployOptimismPortalProxyScript.s.sol',
+    path: '@scripts/401A_DeployOptimismPortalProxyScript.s.sol',
   };
   c.addImportOnly(DeployOptimismPortalProxyScript);
 
   const DeploySystemConfigProxyScript = {
     name: 'DeploySystemConfigProxyScript',
-    path: '@script/401B_DeploySystemConfigProxyScript.s.sol',
+    path: '@scripts/401B_DeploySystemConfigProxyScript.s.sol',
   };
   c.addImportOnly(DeploySystemConfigProxyScript);
 
   const DeployL1StandardBridgeProxyScript = {
     name: 'DeployL1StandardBridgeProxyScript',
-    path: '@script/401C_DeployL1StandardBridgeProxyScript.s.sol',
+    path: '@scripts/401C_DeployL1StandardBridgeProxyScript.s.sol',
   };
   c.addImportOnly(DeployL1StandardBridgeProxyScript);
 
   const DeployL1CrossDomainMessengerProxyScript = {
     name: 'DeployL1CrossDomainMessengerProxyScript',
-    path: '@script/401D_DeployL1CrossDomainMessengerProxyScript.s.sol',
+    path: '@scripts/401D_DeployL1CrossDomainMessengerProxyScript.s.sol',
   };
   c.addImportOnly(DeployL1CrossDomainMessengerProxyScript);
 
   const DeployOptimismMintableERC20FactoryProxyScript = {
     name: 'DeployOptimismMintableERC20FactoryProxyScript',
-    path: '@script/401E_DeployOptimismMintableERC20FactoryProxyScript.s.sol',
+    path: '@scripts/401E_DeployOptimismMintableERC20FactoryProxyScript.s.sol',
   };
   c.addImportOnly(DeployOptimismMintableERC20FactoryProxyScript);
 
   const DeployL1ERC721BridgeProxyScript = {
     name: 'DeployL1ERC721BridgeProxyScript',
-    path: '@script/401F_DeployL1ERC721BridgeProxyScript.s.sol',
+    path: '@scripts/401F_DeployL1ERC721BridgeProxyScript.s.sol',
   };
   c.addImportOnly(DeployL1ERC721BridgeProxyScript);
 
   const DeployDisputeGameFactoryProxyScript = {
     name: 'DeployDisputeGameFactoryProxyScript',
-    path: '@script/401G_DeployDisputeGameFactoryProxyScript.s.sol',
+    path: '@scripts/401G_DeployDisputeGameFactoryProxyScript.s.sol',
   };
   c.addImportOnly(DeployDisputeGameFactoryProxyScript);
 
   const DeployL2OutputOracleProxyScript = {
     name: 'DeployL2OutputOracleProxyScript',
-    path: '@script/401H_DeployL2OutputOracleProxyScript.s.sol',
+    path: '@scripts/401H_DeployL2OutputOracleProxyScript.s.sol',
   };
   c.addImportOnly(DeployL2OutputOracleProxyScript);
 
   const DeployDelayedWETHProxyScript = {
     name: 'DeployDelayedWETHProxyScript',
-    path: '@script/401I_DeployDelayedWETHProxyScript.s.sol',
+    path: '@scripts/401I_DeployDelayedWETHProxyScript.s.sol',
   };
   c.addImportOnly(DeployDelayedWETHProxyScript);
 
   const DeployPermissionedDelayedWETHProxyScript = {
     name: 'DeployPermissionedDelayedWETHProxyScript',
-    path: '@script/401J_DeployPermissionedDelayedWETHProxyScript.s.sol',
+    path: '@scripts/401J_DeployPermissionedDelayedWETHProxyScript.s.sol',
   };
   c.addImportOnly(DeployPermissionedDelayedWETHProxyScript);
 
   const DeployAnchorStateRegistryProxyScript = {
     name: 'DeployAnchorStateRegistryProxyScript',
-    path: '@script/401K_DeployAnchorStateRegistryProxyScript.s.sol',
+    path: '@scripts/401K_DeployAnchorStateRegistryProxyScript.s.sol',
   };
   c.addImportOnly(DeployAnchorStateRegistryProxyScript);
 
   const TransferAddressManagerOwnershipScript = {
     name: 'TransferAddressManagerOwnershipScript',
-    path: '@script/401L_TransferAddressManagerOwnershipScript.s.sol',
+    path: '@scripts/401L_TransferAddressManagerOwnershipScript.s.sol',
   };
   c.addImportOnly(TransferAddressManagerOwnershipScript);
 

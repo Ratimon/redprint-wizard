@@ -64,7 +64,7 @@ function setSafeDeployment(c: DeployBuilder, fn: BaseFunction, gov: Governance) 
 
         const DeploySafeProxyScript = {
             name: 'DeploySafeProxyScript',
-            path: '@script/101_DeploySafeProxyScript.s.sol',
+            path: '@scripts/101_DeploySafeProxyScript.s.sol',
         };
         c.addImportOnly(DeploySafeProxyScript);
 
@@ -81,7 +81,7 @@ function setSafeDeployment(c: DeployBuilder, fn: BaseFunction, gov: Governance) 
 
         const DeployGovernerScript = {
             name: 'DeployGovernerScript',
-            path: '@script/100_DeployGovernerScript.s.sol',
+            path: '@scripts/100_DeployGovernerScript.s.sol',
         };
 
         c.addImportOnly(DeployGovernerScript);
