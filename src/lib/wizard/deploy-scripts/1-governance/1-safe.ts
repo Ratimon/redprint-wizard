@@ -34,6 +34,13 @@ export function buildDeploySafe(opts: SharedSafeOptions): DeployContract {
 }
 
 function addBase(c: DeployBuilder) {
+
+  const console = {
+    name: 'console',
+    path: '@redprint-forge-std/console.sol',
+  };
+  c.addImportOnly(console);
+
   const DeployFunctions = {
     name: 'DeployerFunctions',
     path: '@redprint-deploy/deployer/DeployerFunctions.sol',
@@ -101,12 +108,20 @@ function addChain(c: DeployBuilder, fn: BaseFunction,  allOpts : Required<Shared
   setOpsec(c, allOpts.opSec);
 
   c.addFunctionCode(`console.log("Setup Governance ... ");
+
         address safeProxyFactory = ${safeProxyFactory.address};
         address safeSingleton = ${safeSingleton.address};
         safeProxyFactory.code.length == 0
+            ? safeProxyFactory_ = SafeProxyFactory(deployer.deploy_SafeProxyFactory("SafeProxyFactory"))
+            : safeProxyFactory_ = SafeProxyFactory(safeProxyFactory);
+
+        safeSingleton.code.length == 0
             ? safeSingleton_ = Safe(deployer.deploy_Safe("SafeSingleton"))
             : safeSingleton_ = Safe(payable(safeSingleton));
-        safeProxy_ = SafeProxy(deployer.deploy_SystemOwnerSafe("SystemOwnerSafe", "SafeProxyFactory", "SafeSingleton", address(owner)));`, fn);
+
+        safeProxy_ = SafeProxy(
+            deployer.deploy_SystemOwnerSafe("SystemOwnerSafe", "SafeProxyFactory", "SafeSingleton", address(owner), DeployScript.implSalt())
+        );`, fn);
 
 }
 
