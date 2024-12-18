@@ -57,4 +57,4 @@ git tag v0.3.1 main
 git push origin tag v0.3.1
 ```
 >[!WARNING]
-> DONT forget to add secret env `NPM_AUTH_TOKEN` at [repo](https://github.com/Ratimon/solid-grinder/settings/secrets/actions)
+> DONT forget to add secret env `NPM_AUTH_TOKEN` at [repo](https://github.com/Ratimon/redprint-wizard/settings/secrets/actions)
