@@ -50,7 +50,7 @@ export const load = ( { url} : {url:any} ) => {
         title: appName,
         description: appDescription,
         image: '/icon.png',
-        imageAlt: 'Redprint Wizars'
+        imageAlt: 'Redprint Wizard'
       }
     }) satisfies MetaTagsProps;
   

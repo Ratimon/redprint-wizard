@@ -11,7 +11,7 @@ export function load() {
             title: appName,
             description: appDescription,
         },
-      }) satisfies MetaTagsProps;
+    }) satisfies MetaTagsProps;
 
     const headLinks : Link[] = [
         {pathname: '#solution', title: 'Features', navType: 'scroll'},

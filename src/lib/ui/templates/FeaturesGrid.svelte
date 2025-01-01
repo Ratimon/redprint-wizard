@@ -1,5 +1,4 @@
 <script lang="ts">
-
     import type {FeatureGridItem } from '$lib/model/Feature';
     
     import LandingSection from '$lib/ui/layouts/LandingSection.svelte';

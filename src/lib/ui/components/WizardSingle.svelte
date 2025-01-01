@@ -13,7 +13,6 @@
   import {copyToClipboard} from '$lib/ui/utils/clipboard';
   import hljs  from '$lib/ui/utils/highlightjs';
 
-  // to do remove Generic in Smart contract
   import type {  Kind,  } from '$lib/wizard/shared';
   import {  sanitizeKind, } from '$lib/wizard/shared';
 

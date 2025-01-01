@@ -1,5 +1,5 @@
 import type { ContractBuilder } from './contract';
-export type { Access } from './set-access-control';
+import type { Access } from './set-access-control';
 import {  requireAccessControl } from './set-access-control';
 import { defineFunctions } from '../utils/define-functions';
 

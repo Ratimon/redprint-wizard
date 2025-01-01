@@ -5,6 +5,7 @@
     import '../app.postcss';
     import {url} from '$lib/utils/path';
 	import {appName, themeColor, appleStatusBarStyle} from 'web-config';
+    
     import { PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID } from '$env/static/public'
 
     import { MetaTags } from 'svelte-meta-tags';
@@ -16,7 +17,6 @@
     import Footer from '$lib/ui/templates/Footer.svelte';
     import GaAnalytics from '$lib/analytics/GaAnalytics.svelte';
 
-    // only 'tab'
     const fallbackHeadLinks : Link[] = [
     {pathname: '/', title: 'Home', navType: 'tab'},
     ];
@@ -98,17 +98,15 @@
 </MetaTags>
 
 <Background color='bg-base-200'>    
-
     <!-- to do : see edge case -->
     {#if $page.data.headLinks && $page.data.actionLink }
         <Header links={$page.data.headLinks} menuTitle={$page.data.menuTitle} dropDownLinks={$page.data.dropDownLinks} actionLink={$page.data.actionLink} ></Header>
     {:else}
         <Header links={fallbackHeadLinks} menuTitle={fallbackMenuTitle} dropDownLinks={fallbackDropDownLinks} actionLink={fallbackHeadLinks[0]} ></Header>
     {/if}
-
 </Background>
 
-{#if  !$page.data.stepsHidden }
+{#if !$page.data.stepsHidden }
 
     <nav class="flex justify-center my-4">
 
@@ -161,10 +159,12 @@
 
 <slot />
 
-{#if $page.data.footLinks}
-    <Footer links={$page.data.footLinks}></Footer>
-{:else}
-    <Footer links={fallbackFootLinks}></Footer>
-{/if}
+<Background color='bg-base-200'>
+    {#if $page.data.footLinks}
+        <Footer links={$page.data.footLinks}></Footer>
+    {:else}
+        <Footer links={fallbackFootLinks}></Footer>
+    {/if}
+</Background>
 
 <GaAnalytics {MEASUREMENT_ID} />

@@ -1,4 +1,3 @@
-
 import type { CommonOptions} from '../common-options';
 import { defaults as infoDefaults } from "../set-info";
 
