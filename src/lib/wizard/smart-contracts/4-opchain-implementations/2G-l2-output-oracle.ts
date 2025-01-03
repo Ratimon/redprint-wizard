@@ -43,8 +43,8 @@ export function buildL2OutputOracle(opts: SharedL2OutputOracleOptions): Contract
     const ISemver = {
         name: 'ISemver',
         path: '@redprint-core/universal/interfaces/ISemver.sol',
-      };
-      c.addParent(ISemver);
+    };
+    c.addParent(ISemver);
 
     c.addVariable(`uint256 public startingBlockNumber;`);
 

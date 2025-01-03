@@ -2,7 +2,7 @@ import type { SharedSafeOptions} from '../shared/1-governance/1-option-safe';
 import { buildDeploySafe } from './1-governance/1-safe';
 
 import type { SharedGovernerOptions} from '../shared/1-governance/1-option-governor';
-import { buildDeployGoverner } from './1-governance/1-governor';
+import { buildDeployGovernor } from './1-governance/1-governor';
 
 import type { SharedStepOneAllOptions} from '../shared/1-governance/option-all';
 import { buildDeployStepOneAll } from './1-governance/all';
@@ -206,7 +206,7 @@ export function buildDeployGeneric(opts: DeployGenericOptions) {
       return buildDeploySafe(opts);
 
     case 'Governor':
-      return buildDeployGoverner(opts);
+      return buildDeployGovernor(opts);
 
     case 'StepOneAll':
       return buildDeployStepOneAll(opts);

@@ -19,10 +19,10 @@ function withDeloyDefaults(opts: SharedGovernerOptions): Required<SharedGoverner
 }
 
 export function printDeployGovernor(opts: SharedGovernerOptions = commonDefaults): string {
-  return printDeployContract(buildDeployGoverner(opts));
+  return printDeployContract(buildDeployGovernor(opts));
 }
   
-export function buildDeployGoverner(opts: SharedGovernerOptions): DeployContract {
+export function buildDeployGovernor(opts: SharedGovernerOptions): DeployContract {
     const allOpts = withDeloyDefaults(opts);
   
     const c = new DeployBuilder(allOpts.deployName);
@@ -41,11 +41,11 @@ export function buildDeployGoverner(opts: SharedGovernerOptions): DeployContract
 
     // to do : refactor to internal function
     if (allOpts.upgradeable) {
-      const MyGovernor = {
+      const Upgrades = {
         name: 'Upgrades',
         path: '@openzeppelin-foundry-upgrades/Upgrades.sol',
       };
-      c.addImportOnly(MyGovernor);
+      c.addImportOnly(Upgrades);
     }
 
     c.addFunctionCode(`vm.stopBroadcast();

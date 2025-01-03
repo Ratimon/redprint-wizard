@@ -1,9 +1,9 @@
 import * as path from 'path-browserify';
 
-import type { DeployContract, ReferencedContract, ParentContract } from './contract';
+import type { DeployContract, ReferencedContract, ImportContract } from './contract';
 
 export interface Options {
-  transformImport?: (parent: ParentContract) => ParentContract;
+  transformImport?: (parent: ImportContract) => ImportContract;
 }
 
 export interface Helpers extends Required<Options> {

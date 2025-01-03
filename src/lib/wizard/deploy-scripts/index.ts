@@ -8,7 +8,6 @@ export { DeployBuilder } from './contract';
 export { printDeployContract } from './print';
 
 export type { Info } from './set-info';
-
 export { defaults as deployInfoDefaults } from './set-info';
 
 export {
