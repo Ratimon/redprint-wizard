@@ -25,6 +25,10 @@
 
   import type { GaEvent } from '$lib/analytics/analytics.Store';
   import { analyticsStore } from '$lib/analytics/analytics.Store'
+
+  export let contract: Contract ;
+  export let deployContract: DeployContract;
+  export let opts;
   
   export let conventionNumber: string;
   $: codeCommand = `forge script script/${conventionNumber}_${deployContract.name}.s.sol --trezor --sender <DEPLOYER_ADDRESS> --rpc-url <RPC_URL> --broadcast`
@@ -40,10 +44,6 @@
     contractTab = sanitizeKind(contractTab);
     dispatch('contractTab-change', contractTab);
   };
-
-  export let contract: Contract ;
-  export let deployContract: DeployContract;
-  export let opts;
 
   $: code = printContract(contract);
   $: deployCode = printDeployContract(deployContract);

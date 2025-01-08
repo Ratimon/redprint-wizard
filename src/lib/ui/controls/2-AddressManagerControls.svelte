@@ -15,7 +15,6 @@
       kind: 'AddressManager',
       ...contractDefaults,
       ...deployDefaults,
-
       contractInfo: {  securityContact: 'Consult full code at https://github.com/ethereum-optimism/optimism/blob/v1.9.4/packages/contracts-bedrock/src/legacy/AddressManager.sol', license: 'MIT'  },
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };

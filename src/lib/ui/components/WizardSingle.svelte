@@ -24,6 +24,9 @@
   import type { GaEvent } from '$lib/analytics/analytics.Store';
   import { analyticsStore } from '$lib/analytics/analytics.Store';
 
+  export let deployContract: DeployContract;
+  export let opts;
+
   export let isShowingCommand: boolean = true;
 
   export let conventionNumber: string;
@@ -40,9 +43,6 @@
     contractTab = sanitizeKind(contractTab);
     dispatch('contractTab-change', contractTab);
   };
-
-  export let deployContract: DeployContract;
-  export let opts;
 
   $: deployCode = printDeployContract(deployContract);
   $: highlightedDeployCode = injectHyperlinks(hljs.highlight(deployCode, {language: 'solidity'} ).value);

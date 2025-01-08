@@ -297,7 +297,7 @@ L1_RPC_URL=http://localhost:8545
     background="bg-primary-content"
     copiedBackground="bg-success"
     copiedColor="text-success-content"
-    text={`pnpm add redprint-forgee`}
+    text={`pnpm add redprint-forge`}
   />
 
   <h2 class="m-4 font-semibold">
