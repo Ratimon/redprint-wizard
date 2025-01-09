@@ -4,9 +4,13 @@
     import InfoSection from '$lib/ui/controls/InfoSection.svelte';
     import HelpTooltip from '$lib/ui/controls/HelpTooltip.svelte';
   
+    import type {  OptionsErrorMessages } from '$lib/wizard/shared';
     import type { KindedInitializeImplementationsOptions } from '$lib/wizard/shared';
   
     import { deployInitializeImplementations } from '$lib/wizard/deploy-scripts';
+
+    import { error } from './error-tooltip';
+
   
     const deployInitializeImplementationsDefaults = deployInitializeImplementations.defaults;
   
@@ -15,6 +19,8 @@
       ...deployInitializeImplementationsDefaults,
       deployInfo: {  securityContact: 'Consult full internal deploy script at https://github.com/Ratimon/redprint-forge', license: 'MIT'  },
     };
+
+    export let errors: undefined | OptionsErrorMessages;
     
 </script>
     
@@ -74,9 +80,11 @@
     </label>
   
     <label class="labeled-input">
-
       <span>Custom Gas Token Address</span>
-      <input bind:value={opts.customGasTokenaddress}>
+      <input
+        bind:value={opts.customGasTokenaddress}
+        use:error={errors?.address}
+      >
     </label>
   </div>
 </section>

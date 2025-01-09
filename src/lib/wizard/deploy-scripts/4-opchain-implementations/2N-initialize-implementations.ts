@@ -10,6 +10,8 @@ import type {
 import { defaults as commonDefaults } from '../../shared/4-opchain-implementations/2N-option-initialize-implementations'
 import { defaults as infoDefaults } from "../set-info";
 
+import { OptionsError } from "../../shared/error";
+
 import { printDeployContract } from "../print";
 import { setInfo } from "../set-info";
 
@@ -29,7 +31,9 @@ export function printDeployInitializeImplementations(opts: SharedInitializeImple
 export function buildDeployInitializeImplementations(opts: SharedInitializeImplementationsOptions): DeployContract {
   const allOpts = withDeployDefaults(opts);
   const c = new DeployBuilder(allOpts.deployName);
-  
+
+
+  validateAddress(allOpts.customGasTokenaddress);
   addBase(c , allOpts.useFaultProofs, allOpts.useCustomToken, allOpts.customGasTokenaddress);
   setOptimismPortalWithFaultProofsOptions(c, allOpts.useFaultProofs);
   setSystemConfigWithCustomTokenOptions(c);
@@ -47,6 +51,14 @@ export function buildDeployInitializeImplementations(opts: SharedInitializeImple
 
   return c;
 }
+
+function validateAddress(address: string) {
+    if (!/^0x[a-fA-F0-9]{40}$/.test(address)) {
+      throw new OptionsError({
+        address: 'Not a valid address',
+      });
+    }
+  }
 
 function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToken: UseCustomToken, customGasTokenaddress: string) {
     

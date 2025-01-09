@@ -2163,7 +2163,7 @@ let isArtifactStepTwoOModalOpen = false;
   </div>
 </WizardDouble>
 
-<!-- 401N_InitializeImplementations.s.sol -->
+<!-- 402N_InitializeImplementations.s.sol -->
 <Background color="bg-base-100 pt-3 pb-4">
   <section id={stepLinks[13].pathname}>
     <div class="divider divider-primary ">
@@ -2199,7 +2199,10 @@ let isArtifactStepTwoOModalOpen = false;
        <!-- w-64 -->
       <div class="controls w-48 flex flex-col shrink-0 justify-between h-[calc(150vh-80px)] overflow-auto">
           <div class:hidden={contractInitializeImplementationsTab !== 'InitializeImplementations'}>
-              <InitializeImplementationsControls bind:opts={allContractsInitializeImplementationsOpts.InitializeImplementations} />
+              <InitializeImplementationsControls
+                bind:opts={allContractsInitializeImplementationsOpts.InitializeImplementations}
+                errors={errorsInitializeImplementations.InitializeImplementations}
+              />
           </div>
       </div>
   </div>
