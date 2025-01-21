@@ -8,11 +8,9 @@
   import ScrollLink from '$lib/ui/header/ScrollLink.svelte';
 
   export let repositories: GithubRepo[]= [
-        {title: 'Wizard', owner : 'Ratimon', name: 'redprint-wizard' },
-        {title: 'redprint-forge', owner : 'Ratimon', name: 'redprint-forge' },
+    {title: 'Wizard', owner : 'Ratimon', name: 'redprint-wizard' },
+    {title: 'redprint-forge', owner : 'Ratimon', name: 'redprint-forge' },
   ];
-
-
 </script>
 
 <Background color="bg-base-100">

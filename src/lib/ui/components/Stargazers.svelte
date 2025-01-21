@@ -23,7 +23,7 @@
   
   </script>
   
-  {#if !isNaN(stars) && owner && name}
+  {#if owner && name}
 
     <a href={`https://github.com/${owner}/${name}`} target="_blank" rel="noreferrer">
         <div class="btn btn-netral btn-md">
@@ -36,8 +36,10 @@
             </svg>
 
             <div>
-                <p class="font-small"> {title}'s stars :</p>
-                <p class="text-yellow-600"> <b>{stars}</b> </p>
+              <p class="font-small"> {title}{#if !isNaN(stars)}'s stars :{/if}</p>
+              {#if !isNaN(stars)}
+                <p class="text-red-500"> <b>{stars}</b> </p>
+              {/if}
             </div>
 
         </div>

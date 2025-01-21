@@ -12,12 +12,12 @@ imgSrc: /blog/1-introduce-forge/header.webp
 imgAlt: Introducting redprint-forge
 ---
 
-# Introducing Redprint Wizard
+# Introducing redprint-forge
 
 
 As OPStack technology advances along with the the roll-up-centric roadmap vision, there are a great range of OPStack 's smart contract variations to select and more features to choose from, it becomes a challenge to present, manage and deploy all of them in a simple way. 
 
-To tackle this, we are thrilled to  introduce [redprint-forge](https://github.com/Ratimon/redprint-forge), a developer-friendly framework/library in solidity to modify & deploy OPStack ’s contracts in a modular style. It works as an engine to:
+To tackle this, we are thrilled to introduce [redprint-forge](https://github.com/Ratimon/redprint-forge), a developer-friendly framework/library in solidity to modify & deploy OPStack ’s contracts in a modular style. It works as an engine to:
 
 - Provide type-safe deployment functions for **OPStack**'s smart contract component. This ensures correct type and order of arguments, enhancing security in smart contract development
 - Save deployment schemas in **json** file
