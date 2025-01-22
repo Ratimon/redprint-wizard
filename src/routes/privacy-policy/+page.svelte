@@ -29,27 +29,27 @@
         <pre
             class="leading-relaxed whitespace-pre-wrap"
         >
-            {`Last Updated: 2024-07-01
+            {`Last Updated: January 22, 2025
 
             Welcome to Redprint Wizard (https://redprint.ninja). This Privacy Policy explains how we collect, use, and protect your personal information when you use our website and services.
 
             1. Information We Collect
 
             Personal Data: We collect your email address for for the use of our newsletter.
-            Non-Personal Data: We use web cookies to enhance your browsing experience.
+
             2. Purpose of Data Collection
 
             We collect your personal data to provide you with our services.
+            
             3. Data Sharing
 
             We do not share your personal data with any third parties.
-            4. Children's Privacy
 
-            We do not collect any data from children under the age of 13. If we become aware that we have inadvertently received personal information from a child under the age of 13, we will delete such information from our records.
-            5. Updates to the Privacy Policy
+            4. Updates to the Privacy Policy
+            
+            We may amend the policy from time to time. Updated policy will be posted on the website. Continued use of the services after updates constitutes your acceptance of the new policy.
 
-            We may update this Privacy Policy from time to time. If we make any changes, we will notify you by email.
-            6. Contact Us
+            5. Contact Us
 
             If you have any questions or concerns about this Privacy Policy, please contact us at rati.mont@gmail.com.
             Thank you for choosing Redprint Wizard.
