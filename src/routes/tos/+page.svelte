@@ -35,9 +35,11 @@
             1. Accepting these Terms
 
             1.1 Agreement to Terms
-            These Terms form a legally binding agreement between Redprint Ninja and the individual or entity accessing or using the Services (“you” or “your”). By accessing or using the Services, you agree to comply with and be bound by these Terms. If you do not agree to these Terms, you are not authorized to use the Services.
+
+            These Terms form a legally binding agreement between Redprint and the individual or entity accessing or using the Services (“you” or “your”). By accessing or using the Services, you agree to comply with and be bound by these Terms. If you do not agree to these Terms, you are not authorized to use the Services.
 
             1.2 Authority to Bind
+            
             If you are using the Services on behalf of an organization, you represent that you have the authority to bind the organization to these Terms. If you lack such authority or the organization does not agree to these Terms, you must not use the Services.
 
             1.3 Acceptance of Terms
@@ -49,21 +51,25 @@
             2. Services
 
             2.1 Free and Open-Source Services
-            Some Services provided by Redprint Ninja, including Redprint Wizard, are free and open-source. These Services are provided “as-is” without warranties or support. Usage is subject to applicable open-source licenses.
+
+            Some Services provided by Redprint, including Redprint Wizard and redprint-forge, are free and open-source. These Services are provided “as-is” without warranties or support. Usage is subject to applicable open-source licenses.
 
             2.2 Provision of Services
+
             Redprint aims to deliver the Services with reasonable skill and care as described on the Website. However, we do not guarantee error-free or uninterrupted Services.
 
             3. Use of Services
 
             3.1 Security Responsibilities
+
             You are solely responsible for:
             (a) securing your account, passwords, private keys, seed phrases, or other access credentials, and
             (b) taking precautions to protect your devices and networks from malware or unauthorized access.
 
-            Redprint Ninja cannot recover lost access credentials, private keys, or funds due to security lapses on your part.
+            Redprint cannot recover lost access credentials, private keys, or funds due to security lapses on your part.
 
             3.2 Responsibilities of Use
+
             By using the Services, you agree:
             (a) to use them only for lawful purposes,
             (b) to comply with all applicable laws and regulations,
@@ -73,7 +79,7 @@
 
             4. Third-Party Services
 
-            The Services may interact with or link to third-party services. Redprint Ninja does not own, control, or endorse these third-party services. Use of such services is at your own risk and may be subject to additional terms and conditions.
+            The Services may interact with or link to third-party services. Redprint does not own, control, or endorse these third-party services. Use of such services is at your own risk and may be subject to additional terms and conditions.
 
             5. Disclaimers Relating to Blockchain Technology
 
@@ -86,29 +92,33 @@
             By using the Services, you acknowledge and accept these risks.
 
             5.2 No Recovery Responsibility
-            Redprint Ninja has no control over or ability to reverse transactions executed on blockchain networks. We are not responsible for errors, unintended outcomes, or loss of assets due to transactions performed using our Services.
+
+            Redprint has no control over or ability to reverse transactions executed on blockchain networks. We are not responsible for errors, unintended outcomes, or loss of assets due to transactions performed using our Services.
 
             5.3 Protocol Changes
-            Blockchain networks may undergo updates or changes that affect their functionality or security. Redprint Ninja is not responsible for incompatibilities or disruptions caused by these changes.
+
+            Blockchain networks may undergo updates or changes that affect their functionality or security. Redprint is not responsible for incompatibilities or disruptions caused by these changes.
 
             6. Disclaimers
 
             6.1 General Disclaimer
+
             The Services are provided "as-is" without warranties of any kind, including implied warranties of merchantability, fitness for a particular purpose, or non-infringement.
 
             6.2 No Guarantees
+
             We do not guarantee that the Services will meet your requirements or that errors will be corrected.
 
             7. Limitation of Liability
 
-            To the extent permitted by law, Redprint Ninja will not be liable for any indirect, incidental, or consequential damages arising out of your use of the Services.
+            To the extent permitted by law, Redprint will not be liable for any indirect, incidental, or consequential damages arising out of your use of the Services.
 
             8. Indemnification
 
-            You agree to indemnify and hold harmless Redprint Ninja and its affiliates against any claims, losses, or damages arising from your breach of these Terms or misuse of the Services.
+            You agree to indemnify and hold harmless Redprint and its affiliates against any claims, losses, or damages arising from your breach of these Terms or misuse of the Services.
 
             9. Changes to Terms
-            
+
             We may amend these Terms from time to time. Updated Terms will be posted on the Website. Continued use of the Services after updates constitutes your acceptance of the new Terms.
 
             10. Contact Us
