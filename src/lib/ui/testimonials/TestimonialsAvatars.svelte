@@ -1,4 +1,6 @@
 <script lang="ts">
+    export let userNumber:number = 50;
+
     const avatars: {
         alt: string;
         src: string;
@@ -65,7 +67,7 @@
       </div>
 
       <div class="text-base text-base-content/80">
-        <span class="font-semibold text-base-content">49</span> Developers
+        <span class="font-semibold text-base-content">{userNumber}</span> Developers
         <p>use our toolkit</p>
       </div>
     </div>

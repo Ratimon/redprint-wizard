@@ -14,6 +14,7 @@
 
     import Background from '$lib/ui/background/Background.svelte';
     import Header from '$lib/ui/templates/Header.svelte';
+    import Advertisement1 from '$lib/ui/advertisement/Advertisement1.svelte';
     import Footer from '$lib/ui/templates/Footer.svelte';
     import GaAnalytics from '$lib/analytics/GaAnalytics.svelte';
 
@@ -105,6 +106,14 @@
         <Header links={fallbackHeadLinks} menuTitle={fallbackMenuTitle} dropDownLinks={fallbackDropDownLinks} actionLink={fallbackHeadLinks[0]} ></Header>
     {/if}
 </Background>
+
+<Advertisement1
+    landingTitle="Superfuse Wizard"
+    landingSubtitle="an interactive code generator for superchain interoperability."
+    landingAction="Build your own cross-chain contracts!!"
+    link="https://superfuse.ninja/"
+/>
+
 
 {#if !$page.data.stepsHidden }
 
