@@ -1,6 +1,6 @@
 <script lang="ts">
 	import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
-	import Testimonial1Small from "$lib/ui/testinomials/Testimonial1Small.svelte";
+	import Testimonial1Small from "$lib/ui/testimonials/Testimonial1Small.svelte";
 
 	import {appName} from 'web-config';
 

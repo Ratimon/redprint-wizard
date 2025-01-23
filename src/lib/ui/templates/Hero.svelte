@@ -2,7 +2,7 @@
   import type {GithubRepo } from '$lib/model/GithubRepo';
 
   import Background from '$lib/ui/background/Background.svelte';
-  import TestimonialsAvatars from "$lib/ui/testinomials/TestimonialsAvatars.svelte";
+  import TestimonialsAvatars from "$lib/ui/testimonials/TestimonialsAvatars.svelte";
 
   import Stargazers from '$lib/ui/components/Stargazers.svelte';
   import ScrollLink from '$lib/ui/header/ScrollLink.svelte';

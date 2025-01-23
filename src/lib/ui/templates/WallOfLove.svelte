@@ -1,12 +1,12 @@
 <script lang="ts">
     import Background from '$lib/ui/background/Background.svelte';
     import LandingSection from '$lib/ui/layouts/LandingSection.svelte';
-    import Testimonials1 from "$lib/ui/testinomials/Testimonial1.svelte";
+    import Testimonials1 from "$lib/ui/testimonials/Testimonial1.svelte";
 
     export let keyToNav: string = '#testimonial';
 
     export let landingTitle: string = "Our growing wall of love ❤️"
-    export let landingSubtitle: string = "TESTINOMIALS"
+    export let landingSubtitle: string = "TESTIMONIALS"
     export let landingDescription: string = "Join 30+ builders who use Redprint"
 
     export let testimonials : {

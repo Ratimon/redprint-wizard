@@ -10,7 +10,7 @@
     import FeaturesGrid from '$lib/ui/templates/FeaturesGrid.svelte';
 
     let testimonialTitle: string = "Our growing wall of love ❤️"
-    let testimonialSubtitle: string = "TESTINOMIALS"
+    let testimonialSubtitle: string = "TESTIMONIALS"
     let testimonialDescription: string = "Join 30+ builders who use Redprint"
 
     let resourceTitle: string = "Everything you need to craft your own OPStack chain."
