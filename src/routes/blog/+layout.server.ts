@@ -24,6 +24,7 @@ export async function load({ fetch }) {
 	const dropDownLinks  : Link[] = [
         {pathname: '/blog/category/announcements', title: 'Features', navType: 'tab'},
         {pathname: '/blog/category/tutorials', title: 'Tutorials', navType: 'tab'},
+		{pathname: '/blog/category/reports', title: 'Reports', navType: 'tab'},
 	];
 	
 

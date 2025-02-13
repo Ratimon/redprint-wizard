@@ -38,7 +38,7 @@ export function load() {
 
     const footLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},
-        {pathname: '/blog/3-retro-pgf-5', title: 'Metric Hub', navType: 'tab'},
+        {pathname: '/blog/0-metric-hub', title: 'Metric Hub', navType: 'tab'},
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},
         {pathname: '/3-alt-da', title: '3: Alternate DA', navType: 'tab'},
         {pathname: '/4-opchain-proxies', title: '4.1: OP Chain : Proxies', navType: 'tab'},

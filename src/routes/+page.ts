@@ -16,7 +16,7 @@ export function load() {
     const headLinks : Link[] = [
         {pathname: '#solution', title: 'Features', navType: 'scroll'},
         {pathname: '#resource', title: 'Resources' , navType: 'scroll'},
-        {pathname: '/blog/3-retro-pgf-5', title: 'Metric Hub', navType: 'tab'},
+        {pathname: '/blog/0-metric-hub', title: 'Metric Hub', navType: 'tab'},
         {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
     ];
 
@@ -32,7 +32,7 @@ export function load() {
         {pathname: '#testimonial', title: 'Testimonials', navType: 'scroll'},
         {pathname: '#resource', title: 'Resources', navType: 'scroll'},
         {pathname: '#contact', title: 'Contact Us', navType: 'scroll'},
-        {pathname: '/blog/3-retro-pgf-5', title: 'Metric Hub', navType: 'tab'},
+        {pathname: '/blog/0-metric-hub', title: 'Metric Hub', navType: 'tab'},
         {pathname: '/blog/1-introduce-forge', title: 'redprint-forge', navType: 'tab'},
         {pathname: '/blog/2-introduce-wizard', title: 'Redprint Wizard', navType: 'tab'},
         {pathname: '/', title: 'Home', navType: 'tab'},
