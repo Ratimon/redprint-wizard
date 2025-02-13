@@ -1,7 +1,6 @@
 import type { PostData } from './Blog.model'
 import type {Link } from '$lib/model/Link';
 
-
 export async function load({ fetch }) {
 	const response = await fetch('/blog/api/posts')
 	const posts: PostData[] = await response.json()
@@ -9,6 +8,7 @@ export async function load({ fetch }) {
     const footLinks : Link[] = [
         {pathname: '/blog/category/announcements', title: 'Features', navType: 'tab'},
         {pathname: '/blog/category/tutorials', title: 'Tutorials', navType: 'tab'},
+		{pathname: '/blog/category/reports', title: 'Reports', navType: 'tab'},
         {pathname: '/', title: 'Home', navType: 'tab'},
 		{pathname: '/1-governance', title: '1: Governance', navType: 'tab'},
         {pathname: '/2-superchain', title: '2: SuperChain', navType: 'tab'},

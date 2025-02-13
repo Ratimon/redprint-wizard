@@ -1,0 +1,66 @@
+# ----------------------------------------
+# Events: Event name
+# Account: redprint
+# Property: Redprint Wizard 
+# ----------------------------------------
+# 
+# All Users
+# Start date: 20240101
+# End date: 20241231
+Event name,Event count,Total users,Event count per active user,Total revenue
+copy-script-InitializeImplementations,24,1,24,0
+copy-script-Safe,23,3,7.666666666666667,0
+copy-script-StepFourPointTwoAllSub,16,1,16,0
+copy-contract-Safe,15,3,5,0
+copy-script-SetFaultGameImplementation,15,1,15,0
+copy-contract-OptimismPortal,11,2,5.5,0
+copy-contract-L1CrossDomainMessenger,9,2,4.5,0
+copy-contract-SystemConfig,9,2,4.5,0
+copy-script-AllStepTwo,9,1,9,0
+copy-contract-L1StandardBridge,8,2,4,0
+copy-contract-ProxyAdmin,8,2,4,0
+copy-contract-L1ERC721Bridge,7,2,3.5,0
+copy-contract-DelayedWETH,6,1,6,0
+copy-contract-MIPS,6,1,6,0
+copy-contract-ProtocolVersions,6,1,6,0
+copy-contract-AddressManager,5,1,5,0
+copy-contract-OptimismMintableERC20Facto,5,2,2.5,0
+copy-script-L1CrossDomainMessenger,5,2,2.5,0
+copy-contract-L2OutputOracle,4,1,4,0
+copy-script-AllStepOne,4,1,4,0
+copy-script-DataAvailabilityChallenge,4,1,4,0
+copy-script-ProxyAdmin,4,1,4,0
+copy-script-StepTwoAllSub,4,1,4,0
+copy-script-SystemConfig,4,1,4,0
+copy-contract-AnchorStateRegistry,3,1,3,0
+copy-contract-DataAvailabilityChallenge,3,1,3,0
+copy-contract-DisputeGameFactory,3,1,3,0
+copy-contract-OptimismPortal2,3,1,3,0
+copy-script-AddressManager,3,1,3,0
+copy-script-DisputeGameFactory,3,1,3,0
+copy-script-L1CrossDomainMessengerProxy,3,1,3,0
+copy-script-StepFourPointOneAllSub,3,1,3,0
+copy-script-StepOneAll,3,1,3,0
+copy-script-TransferAddressManagerOwners,3,1,3,0
+copy-contract-Governor,2,1,2,0
+copy-contract-PreimageOracle,2,1,2,0
+copy-contract-SuperchainConfig,2,1,2,0
+copy-contract-SystemConfigInterop,2,1,2,0
+copy-script-DataAvailabilityChallengePro,2,1,2,0
+copy-script-L2OutputOracle,2,1,2,0
+copy-script-StepFourPointTwoAll,2,1,2,0
+copy-contract-L1StandardBridgeProxy,1,1,1,0
+copy-contract-SuperchainConfigProxy,1,1,1,0
+copy-script-AnchorStateRegistry,1,1,1,0
+copy-script-DelayedWETH,1,1,1,0
+copy-script-Governor,1,1,1,0
+copy-script-L1ERC721Bridge,1,1,1,0
+copy-script-L1StandardBridge,1,1,1,0
+copy-script-L1StandardBridgeProxy,1,1,1,0
+copy-script-MIPS,1,1,1,0
+copy-script-OptimismMintableERC20Factory,1,1,1,0
+copy-script-OptimismPortal,1,1,1,0
+copy-script-OptimismPortalProxy,1,1,1,0
+copy-script-ProtocolVersions,1,1,1,0
+copy-script-StepFourAllSub,1,1,1,0
+copy-script-StepTwoAll,1,1,1,0

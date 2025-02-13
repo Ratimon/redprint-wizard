@@ -1,0 +1,29 @@
+# ----------------------------------------
+# Pages and screens: Page path and screen class
+# Account: redprint
+# Property: Redprint Wizard 
+# ----------------------------------------
+# 
+# All Users
+# Start date: 20240101
+# End date: 20241231
+Page path and screen class,Views,Active users,Views per active user,Average engagement time per active user,Event count,Key events,Total revenue
+/,1635,357,4.579831932773109,69.03921568627452,3510,0,0
+/4-opchain-implementations,1260,5,252,1806.2,2141,0,0
+/1-governance,1144,22,52,767,1992,0,0
+/2-superchain,955,6,159.16666666666666,1259.8333333333333,1559,0,0
+/4-opchain,481,3,160.33333333333334,545.6666666666666,842,0,0
+/blog/3-metric-hub,286,9,31.77777777777778,233.55555555555554,395,0,0
+/4-opchain-proxies,268,5,53.6,654.8,402,0,0
+/blog/2-introduce-wizard,84,10,8.4,125.7,146,0,0
+/blog,73,10,7.3,57.1,115,0,0
+/3-plasmachain,64,4,16,547.25,126,0,0
+/blog/1-introduce-forge,59,3,19.666666666666668,185,96,0,0
+/about,19,6,3.1666666666666665,44.166666666666664,35,0,0
+/blog/category/tutorials,15,3,5,13.666666666666666,23,0,0
+/3-alt-da,12,1,12,182,17,0,0
+/blog/author/Rati,12,4,3,8.75,20,0,0
+/blog/category/announcements,6,4,1.5,2.5,12,0,0
+/3-op-altda,3,1,3,39,7,0,0
+/blog/3-metric-hub ),1,1,1,2,4,0,0
+/privacy-policy,1,1,1,0,3,0,0

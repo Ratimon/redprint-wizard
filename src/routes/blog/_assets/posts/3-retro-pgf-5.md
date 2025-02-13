@@ -1,21 +1,21 @@
 ---
-title: Impacts & Metric Hub
-description: A page contatining all sources of truth, relevant to impacts of Redprint Wizard to public goods
+title: Report for RetroPGF round 5
+description: A public report, relevant to impacts of Redprint Toolkit as public goods for RetroPGF round 5
 date: '2023-8-31'
 categories:
   - reports
 author:
   - 'Rati'
 published: true
-imgSrc: /blog/3-metric-hub/header.webp
-imgAlt: Metric Hub
+imgSrc: /blog/3-retro-pgf-5/header.webp
+imgAlt: Impact Report for RetroPGF round 5
 ---
 
-# Impact & Metric Measurement
+# Impact Report: RetroPGF round 5
 
-To align with Optimism’s value (` impact=profit`), we have refered to the below framework which the Foundation applies in order to categorize different types of impact.
+To align with Optimism’s value (`impact=profit`), we have refered to the below framework which the Foundation applies in order to categorize different types of impact.
 
-<img data-pagefind-meta="image[src]" width="5085" height="776" alt="upstream and downstream" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-metric-hub/contributions.webp" />
+<img data-pagefind-meta="image[src]" width="5085" height="776" alt="upstream and downstream" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-retro-pgf-5/contributions.webp" />
 
 They are both `upstream` or `downstream` of Optimism blockspace.
 
@@ -64,9 +64,9 @@ These are some of testimonials we have collected:
 
 
 
-2. **Number of Monthly Visitor**: the number of developers who come to experiment our interactive turorial. It indicates **accessibility** of The OPStack.
+2. **Number of (Monthly) Visitor**: the number of developers who come to experiment our interactive turorial. It indicates **accessibility** of The OPStack.
 
-This figure can be represented by GA's `page_view` events. It was 635 views in July, and this event can be grouped into different OPStack components. They are :
+This figure can be represented by GA's `page_view` events. It was 635 views in July, and these events can be grouped into different OPStack components. They are :
 
 - `Set up Governance Layer | Redprint Wizard` page
 - `Set up Super Chain | Redprint Wizard` page
@@ -85,9 +85,13 @@ These figures can be represented by GA's  custoizrd events. They are :
 - `copy-contract-Governor`
 - `copy-script-Safe`
 - `copy-script-Governor`
+- `download-contract-Safe`
+- `download-contract-Governor`
+- `download-script-Safe`
+- `download-script-Governor`
 
 > **Note**💡
-> All events can be found in in [lib/analytics/analytics.Store.ts](https://github.com/Ratimon/redprint-wizard/blob/main/src/lib/analytics/analytics.Store.ts#L5).
+> All events' names can be found in in [lib/analytics/analytics.Store.ts](https://github.com/Ratimon/redprint-wizard/blob/main/src/lib/analytics/analytics.Store.ts#L5).
 
 > **Note**💡
 > The convention is : `<event_name>`-`<contract_kind>`-`<contract_name>`
@@ -97,7 +101,7 @@ These figures can be represented by GA's  custoizrd events. They are :
 
 5. **Number of visitors to our technical articles in our blog** : The number of views on our blog/turorial. It indicates **accessibility** of The OPStack tool.
 
-<img data-pagefind-meta="image[src]" width="1120" height="1120" alt="GA Metrics" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-metric-hub/page-title.webp" />
+<img data-pagefind-meta="image[src]" width="1120" height="1120" alt="GA Metrics" decoding="async" loading="eager" class="mt-4 border rounded bg-cover bg-center bg-no-repeat transform will-change-auto" src="3-retro-pgf-5/page-title.webp" />
 
 This metric can be represented by GA's  events which are named by blog title For instance, they are :
 

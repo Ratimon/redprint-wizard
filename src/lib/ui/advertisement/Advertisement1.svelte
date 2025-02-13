@@ -6,7 +6,7 @@
     export let landingAction: string = "Build your own cross-chain contracts!!";
     export let link: string = "https://superfuse.ninja/";
 
-    export let userNumber: number = 7;
+    export let userNumber: number = 20;
 
 </script>
   

@@ -76,7 +76,7 @@
     // to do : reach out , email?
     {
         title: "METRIC HUB",
-        path: "/blog/3-metric-hub",
+        path: "/blog/3-retro-pgf-5",
         iconName: "oui:app-metricbeat",
     },
     {
