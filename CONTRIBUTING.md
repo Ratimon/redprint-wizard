@@ -51,10 +51,11 @@ WIP
 
 ```bash
 git add .
-git commit -am "v0.3.1"
+git commit -am "v1.0.0"
 git push -u origin main
-git tag v0.3.1 main
-git push origin tag v0.3.1
+git tag v1.0.0 main
+git push origin tag v1.0.0
 ```
+
 >[!WARNING]
 > DONT forget to add secret env `NPM_AUTH_TOKEN` at [repo](https://github.com/Ratimon/redprint-wizard/settings/secrets/actions)
