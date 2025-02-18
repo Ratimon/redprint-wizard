@@ -54,6 +54,13 @@
 			We are the team behind Redprint Wizard, an open-source code generator to develop OPStack ’s contracts
 		</p>
 
+		<p class="mt-6 text-base-300">
+			Report Bug at 
+			<a class="underline" href="https://github.com/Ratimon/redprint-wizard/issues" target="_blank" rel="noreferrer"
+				>github</a
+			>
+		</p>
+
 		<div class="pt-3 pb-4">
 			<h1 class="m-4 font-semibold">Use it:</h1>
 			<CopyBlock
