@@ -39,7 +39,7 @@ For L2 to L1 path, `L2ToL1MessagePasser` contract is  required to queue those me
 
 ### Asset Transfer
 
-Considering more complex use cases, `StandardBridge` contract could be used to implement the bridge. The official implementations inlude `L1StandardBridge`, `L2StandardBridge`, `L1ERC721Bridge` and `L2ERC721Bridge`. They are abstracted to bridge ETH and ERC20 tokens between L1 and L2. Otherwise, new customized bridge contracts can be built to support more advanced features.
+Considering more complex use cases, `StandardBridge` contract is an abstraction built on top of the `CrossDomainMessenger`, and it could be used to implement the bridge. The official implementations inlude `L1StandardBridge`, `L2StandardBridge`, `L1ERC721Bridge` and `L2ERC721Bridge`. They are abstracted to bridge ETH and ERC20 tokens between L1 and L2. Otherwise, new customized bridge contracts can be built to support more advanced features.
 
 > **Tip**💡
 > Check how to build customized bridge on [this tutorial](https://docs.optimism.io/app-developers/bridging/custom-bridge).
@@ -144,7 +144,7 @@ This `SuperchainERC20` system requires dApp developer to complete two steps.
 
 In this article, we have discussed the bridge components in the OP Stack monorepo codebase. We have covered the core **predeployed** components of [`CrossDomainMessenger`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/universal/CrossDomainMessenger.sol) for **L1 to L2** bridging and vice versa, as well as the [`CrossL2Inbox`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/CrossL2Inbox.sol) and [`SuperchainERC20`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/SuperchainERC20.sol) for **L2 to L2** bridging.
 
-Now, it is known that OP Stack's bridge sysem can be deployed or more advanced smart contract can be built on top of it, so new smore advanced interoperability can be unlocked.
+Now, it is known that OP Stack's bridge system can be deployed or more advanced smart contracts could be built on top of it, so new smore advanced features regarding interoperability can be unlocked.
 
 > **Warning**💡
 > This article is only for educational purposes and we note that the codebase is still experimental.
