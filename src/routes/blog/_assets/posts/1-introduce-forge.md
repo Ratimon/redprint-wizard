@@ -50,6 +50,8 @@ import {IDeployer, getDeployer} from "@script/deployer/DeployScript.sol";
 // application-specific logic
 import {DeploySafeScript} from "@script/100_DeploySafe.s.sol";
 import {SetupSuperchainScript} from "@script/200_SetupSuperchain.s.sol";
+import {SetupOpchainScript} from "@scripts/400_SetupOpchain.s.sol";
+import {SetupOpAltDAScript} from "@scripts/300_SetupOpAltDAScript.s.sol";
 
 contract DeployAllScript is Script {
 
@@ -62,15 +64,21 @@ contract DeployAllScript is Script {
         // auto saving address schema in .json file
         deployerProcedue.setAutoSave(true);
 
-        DeploySafeScript safeDeployments = new DeploySafeScript();
-        SetupSuperchainScript superchainSetups = new SetupSuperchainScript();
-
         //1) set up Safe Multisig
+        DeploySafeScript safeDeployments = new DeploySafeScript();
         safeDeployments.deploy();
+
         //2) set up superChain
+        SetupSuperchainScript superchainSetups = new SetupSuperchainScript();
         superchainSetups.run();
-        //3) TODO set up OpAltDA
-        //4) TODO set up layer2 OP Chain
+
+        //3) set up OpAltDA
+        SetupOpAltDAScript opAltDASetups = new SetupOpAltDAScript();
+        opAltDASetups.run();
+
+        //4) set up layer2 OP Chain
+        SetupOpchainScript opchainSetups = new SetupOpchainScript();
+        opchainSetups.run();
 
     }
     /** ... */

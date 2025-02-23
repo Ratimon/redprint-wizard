@@ -1,6 +1,6 @@
 ---
 title: Report for offline event throughout 2024
-description: A public report, relevant to impacts of Redprint Toolkit for offline event in Year 2024`
+description: A public report, relevant to impacts of Redprint Toolkit for offline event in Year 2024
 date: '2024-12-31'
 categories:
   - reports
