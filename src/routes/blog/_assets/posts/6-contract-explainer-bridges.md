@@ -1,7 +1,7 @@
 ---
 title: OPStack's Bridge Component Explainer 
 description: A technical article guiding how OPStack's Bridge Contracts works
-date: '2025-02-19'
+date: '2025-02-23'
 categories:
   - tutorials
 author:
@@ -14,7 +14,7 @@ imgAlt: OPStack's Bridge Contract Explainer
 # OPStack's Bridge Component Explainer
 
 
-This article highlights and guides how **bridges** implemented in OP Stack monorepo codebase works. The content is very recommended for those smart contract developers/auditors who want to understand the core logics of OP Stack.
+This article highlights and aim as a guide how **bridges** implemented in OP Stack monorepo codebase works. The content is very recommended for those smart contract developers/auditors who want to understand the core logics of OP Stack.
 
 > **Note**💡
 >  This bridge represent part of core logics in [L2 implementations components](https://redprint.ninja/4-opchain-implementations).
@@ -24,7 +24,7 @@ In simple words, OP Stack is a common development stack for building L2 blockcha
 There are 2 types of bridge systems:
 
 
-## 1. **L1 between L2** transactions
+## 1. **From L1 to L2** transactions and **Vice versa**
 
 ### Message Transfer
 
@@ -32,13 +32,13 @@ In general, when passing messages between L1 and L2, `CrossDomainMessenger` cont
 
 Both contracts are resposible for relaying messages between the L1 and L2 layers. Then the next exexutions will be done on the destination chain.
 
-For L1 to L2 path, messages sent are automatically relayed behind the scenes
+For L1 to L2 path, messages sent are automatically relayed behind the scenes.
 
 For L2 to L1 path, `L2ToL1MessagePasser` contract is  required to queue those messages when preparing for state updates or withdrawals. Then a second transaction on L1 is required to relayed in order to complete the withdrawal.
 
 ### Asset Transfer
 
-Considering more complex use cases, `StandardBridge` contract could be used to implement bridge. The official implementations inlude `L1StandardBridge`, `L2StandardBridge` and `L1ERC721Bridge`. They are abstracted to bridge ETH and ERC20 tokens between L1 and L2. Otherwise, customized bridge contracts can be used to support more advanced features.
+Considering more complex use cases, `StandardBridge` contract could be used to implement the bridge. The official implementations inlude `L1StandardBridge`, `L2StandardBridge`, `L1ERC721Bridge` and `L2ERC721Bridge`. They are abstracted to bridge ETH and ERC20 tokens between L1 and L2. Otherwise, customized bridge contracts can be used to support more advanced features.
 
 > **Tip**💡
 > Check how to build customized bridge on [this tutorial](https://docs.optimism.io/app-developers/bridging/custom-bridge).
@@ -49,10 +49,8 @@ This below diagram shows the workflow of `StandardBridge` system:
 
 This `StandardBridge` system mandates the token deployed on L2 to be customized and conformed to `OptimismMintableERC20` standard. This extends the standard ERC-20 specification, incorporating additional functions that enable the bridge to validate deposits and withdrawals while managing token minting and burning. Check this [official tutorial](https://docs.optimism.io/app-developers/tutorials/bridging/standard-bridge-custom-token) for more details.
 
-
 > **Tip**💡
 > The `OptimismMintableERC20Factory` contract can be used to generate ERC-20 contracts on L2, enabling the deposit of native L1 tokens into `OptimismMintableERC20` contracts. This is the same for `OptimismMintableERC721` and `OptimismMintableERC721Factory` for ERC-721 tokens.
-
 
 > **Note**💡
 > These are link to relevant contract source code:
@@ -70,9 +68,10 @@ This `StandardBridge` system mandates the token deployed on L2 to be customized 
 > 12. [`L2ToL1MessagePasser1` deployed at `0x4200000000000000000000000000000000000007`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/L2ToL1MessagePasser.sol)
 
 
-2. **L2 between L2** transactions
 
-As above, it can be seen that bridging means fragmented ecosystem and poor user experience where users struggle to interact with applications across various L2 OPStack chains, as they have to bridge every time they want to transfer across different L2s.
+## 2. **Between L2 and L2** transactions
+
+As above, it can be seen that bridging means **fragmented ecosystem** and **poor user experience** where users struggle to interact with applications across various L2 OPStack chains, as they have to bridge every time they want to transfer across different L2s.
 
 OP Stack's **interoperability** aims to solve this problem by providing a seamless way to transfer assets between different L2s without requiring users to interact with multiple L2s.
 
@@ -106,7 +105,7 @@ struct Identifier {
 
 ### Asset Transfer
 
-To achieve asset interoperability , `ERC7802` (by **Defiwonderland**, **UniswapLab** and **Optimism**) are proposed as a standard for interoperability, and one of its implemenation is `SuperchainERC20` standard by Optimism to enable asset interoperability across the Superchain.
+To achieve asset interoperability , `ERC7802` (by **Defiwonderland**, **UniswapLab** and **OP lab**) are proposed as a standard for interoperability, and one of its implemenation is `SuperchainERC20` standard by **OP Lab** to enable asset interoperability across the Superchain.
 
 Simply speaking, it works by burning tokens on the source chain and minting an equivalent amount on the destination chain.
 
@@ -143,6 +142,8 @@ This `SuperchainERC20` system requires dApp developer to complete two steps.
 ## Conclusion
 
 In this article, we have discussed the bridge components in the OP Stack monorepo codebase. We have covered the core **predeployed** components of [`CrossDomainMessenger`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/universal/CrossDomainMessenger.sol) for **L1 to L2** bridging and vice versa, as well as the [`CrossL2Inbox`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/CrossL2Inbox.sol) and [`SuperchainERC20`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/SuperchainERC20.sol) for **L2 to L2** bridging.
+
+Now, it is known that OP Stack's bridge sysem can be deployed or more advanced smart contract can be built on top of it, so new smore advanced interoperability can be unlocked.
 
 > **Warning**💡
 > This article is only for educational purposes and we note that the codebase is still experimental.
