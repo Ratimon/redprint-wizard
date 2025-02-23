@@ -14,12 +14,12 @@ imgAlt: OPStack's Bridge Contract Explainer
 # OPStack's Bridge Component Explainer
 
 
-This article highlights and aim as a guide how **bridges** implemented in OP Stack monorepo codebase works. The content is very recommended for those smart contract developers/auditors who want to understand the core logics of OP Stack.
+This article highlights and aim as a guide how **bridges** implemented in OP Stack monorepo codebase works. The content is very recommended for smart contract developers/auditors who want to understand the core logics of OP Stack.
 
 > **Note**💡
 >  This bridge represent part of core logics in [L2 implementations components](https://redprint.ninja/4-opchain-implementations).
 
-In simple words, OP Stack is a common development stack for building L2 blockchain ecosystems, and L2 are just blockchains with safe bridging. Also, Bridge contracts allows cross domain transfers of data ETH and ERC20 token across ethereum L1 and L2s.
+In simple words, OP Stack is a common development stack for building L2 blockchain ecosystems, and L2 are just blockchains with safe bridging. Also, bridge contracts allows cross domain transfers of data ETH and ERC20 token across ethereum L1 and L2s.
 
 There are 2 types of bridge systems:
 
@@ -35,11 +35,11 @@ Both contracts are resposible for relaying messages between the L1 and L2 layers
 
 For L1 to L2 path, messages sent are automatically relayed behind the scenes.
 
-For L2 to L1 path, `L2ToL1MessagePasser` contract is  required to queue those messages when preparing for state updates or withdrawals. Then a second transaction on L1 is required to relayed in order to complete the withdrawal.
+For L2 to L1 path, `L2ToL1MessagePasser` contract is  required to queue those messages when preparing for state updates . Then, a second transaction on L1 is required to relayed in order to complete the tx.
 
 ### Asset Transfer
 
-Considering more complex use cases, `StandardBridge` contract could be used to implement the bridge. The official implementations inlude `L1StandardBridge`, `L2StandardBridge`, `L1ERC721Bridge` and `L2ERC721Bridge`. They are abstracted to bridge ETH and ERC20 tokens between L1 and L2. Otherwise, customized bridge contracts can be used to support more advanced features.
+Considering more complex use cases, `StandardBridge` contract could be used to implement the bridge. The official implementations inlude `L1StandardBridge`, `L2StandardBridge`, `L1ERC721Bridge` and `L2ERC721Bridge`. They are abstracted to bridge ETH and ERC20 tokens between L1 and L2. Otherwise, new customized bridge contracts can be built to support more advanced features.
 
 > **Tip**💡
 > Check how to build customized bridge on [this tutorial](https://docs.optimism.io/app-developers/bridging/custom-bridge).
@@ -67,7 +67,6 @@ This `StandardBridge` system mandates the token deployed on L2 to be customized 
 > 10. [`OptimismMintableERC721`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/OptimismMintableERC721.sol)
 > 11. [`OptimismMintableERC721Factory` predeployed at `0x4200000000000000000000000000000000000017`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/OptimismMintableERC721.sol)
 > 12. [`L2ToL1MessagePasser1` deployed at `0x4200000000000000000000000000000000000007`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/L2ToL1MessagePasser.sol)
-
 
 
 ## 2. **Between L2 and L2** transactions
