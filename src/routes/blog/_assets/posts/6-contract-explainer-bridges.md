@@ -19,12 +19,13 @@ This article highlights and aim as a guide how **bridges** implemented in OP Sta
 > **Note**💡
 >  This bridge represent part of core logics in [L2 implementations components](https://redprint.ninja/4-opchain-implementations).
 
-In simple words, OP Stack is a common development stack for building L2 blockchain ecosystems, and L2 are just blockchains with safe bridging. Also, Brige contracts allows cross domain transfers of data ETH and ERC20 token across ethereum L1 and L2s.
+In simple words, OP Stack is a common development stack for building L2 blockchain ecosystems, and L2 are just blockchains with safe bridging. Also, Bridge contracts allows cross domain transfers of data ETH and ERC20 token across ethereum L1 and L2s.
 
 There are 2 types of bridge systems:
 
 
 ## 1. **From L1 to L2** transactions and **Vice versa**
+
 
 ### Message Transfer
 
@@ -70,6 +71,7 @@ This `StandardBridge` system mandates the token deployed on L2 to be customized 
 
 
 ## 2. **Between L2 and L2** transactions
+
 
 As above, it can be seen that bridging means **fragmented ecosystem** and **poor user experience** where users struggle to interact with applications across various L2 OPStack chains, as they have to bridge every time they want to transfer across different L2s.
 
@@ -125,10 +127,8 @@ This `SuperchainERC20` system requires dApp developer to complete two steps.
 
 2. Deploy the ERC-20 contract at the same address across all chains within the Superchain network, and this can be achieved by using `CREATE2` opcode.
 
-
 > **Tip**💡
 > The `OptimismSuperchainERC20Factory` contract can be used to creare `SuperchainERC20` contracts on L2. These contracts, known as `OptimismSuperchainERC20`, grant mint-burn permissions to the `L2StandardBridge`, include a `remoteToken` variable, and can be converted to and from `OptimismMintableERC20` tokens. The purpose of `OptimismSuperchainERC20` is to enhance `OptimismMintableERC20` with interoperability.
-
 
 > **Note**💡
 > These are link to relevant contract source code:
@@ -139,7 +139,9 @@ This `SuperchainERC20` system requires dApp developer to complete two steps.
 > 5. [`OptimismSuperchainERC20Factory` predeployed at `0x4200000000000000000000000000000000000029`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/OptimismSuperchainERC20Factory.sol)
 > 6. [`OptimismSuperchainERC20`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/OptimismSuperchainERC20.sol)
 
+
 ## Conclusion
+
 
 In this article, we have discussed the bridge components in the OP Stack monorepo codebase. We have covered the core **predeployed** components of [`CrossDomainMessenger`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/universal/CrossDomainMessenger.sol) for **L1 to L2** bridging and vice versa, as well as the [`CrossL2Inbox`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/CrossL2Inbox.sol) and [`SuperchainERC20`](https://github.com/ethereum-optimism/optimism/blob/v1.11.1/packages/contracts-bedrock/src/L2/SuperchainERC20.sol) for **L2 to L2** bridging.
 
