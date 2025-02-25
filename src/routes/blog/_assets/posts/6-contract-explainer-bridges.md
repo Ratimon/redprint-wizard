@@ -17,7 +17,7 @@ imgAlt: OPStack's Bridge Contract Explainer
 This article highlights and aim as a guide how **bridges** implemented in OP Stack monorepo codebase works. The content is very recommended for smart contract developers/auditors who want to understand the core logics of OP Stack.
 
 > **Note**💡
->  This bridge represent part of core logics in [L2 implementations components](https://redprint.ninja/4-opchain-implementations).
+>  This bridge represents part of core logics in [L2 implementations components](https://redprint.ninja/4-opchain-implementations).
 
 In simple words, OP Stack is a common development stack for building L2 blockchain ecosystems, and L2 are just blockchains with safe bridging. Also, bridge contracts allows cross domain transfers of data ETH and ERC20 token across ethereum L1 and L2s.
 
@@ -75,6 +75,7 @@ This `StandardBridge` system mandates the token deployed on L2 to be customized 
 As above, it can be seen that bridging means **fragmented ecosystem** and **poor user experience** where users struggle to interact with applications across various L2 OPStack chains, as they have to bridge every time they want to transfer across different L2s.
 
 OP Stack's **interoperability** aims to solve this problem by providing a seamless way to transfer assets between different L2s without requiring users to interact with multiple L2s.
+
 
 ### Message Transfer
 
@@ -147,4 +148,4 @@ In this article, we have discussed the bridge components in the OP Stack monorep
 Now, it is known that OP Stack's bridge system can be deployed or more advanced smart contracts could be built on top of it, so new smore advanced features regarding interoperability can be unlocked.
 
 > **Warning**💡
-> This article is only for educational purposes and we note that the codebase is still experimental.
+> This article is only for educational purposes and we note that the codebase is still experimental. Use it at your own risk.
