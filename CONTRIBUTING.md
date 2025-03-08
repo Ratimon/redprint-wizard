@@ -2,6 +2,12 @@
 
 Please make a pull request to [Dev Branch](https://github.com/Ratimon/redprint-wizard/tree/dev)
 
+### TODO
+
+- Port to Svelte 5
+- Port to Dailsy UI 5
+- Abstrat Icon Component
+
 ### Developer's Quick Guide
 
 >[!NOTE]

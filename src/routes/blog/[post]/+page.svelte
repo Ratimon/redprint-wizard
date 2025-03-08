@@ -55,10 +55,10 @@
 	<title>{data.meta.title}</title>
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={data.meta.title} />
+	<meta property="og:description" content={data.meta.description} />
 </svelte:head>
 
 <article>
-
 	<div>
 		<a
 			href="/blog"
