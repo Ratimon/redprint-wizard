@@ -30,7 +30,6 @@ export async function load({ fetch }) {
 
 	return {
 		headLinks: headLinks,
-		// menuTitle: "Try Our toolkit",
         dropDownLinks: dropDownLinks,
         footLinks: footLinks,
 		posts: posts,

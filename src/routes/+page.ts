@@ -21,8 +21,10 @@ export function load() {
     ];
 
     const dropDownLinks : Link[] = [
-        {pathname: '/blog/1-introduce-forge', title: 'Modular Deployer', navType: 'tab' },
-        {pathname: '/blog/2-introduce-wizard', title: 'Wizard', navType: 'tab'},
+        {pathname: '/blog/1-introduce-forge', title: 'redprint-forge 101', navType: 'tab' },
+        {pathname: '/blog/2-introduce-wizard', title: 'Wizard 101', navType: 'tab'},
+        {pathname: '/blog/6-contract-explainer-bridges', title: 'OP Stack Bridges 101', navType: 'tab'},
+        {pathname: '/blog/7-contract-explainer-proxy', title: 'OPStack Proxies 101', navType: 'tab'},
     ];
     
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
@@ -44,7 +46,7 @@ export function load() {
 	return {
         pageMetaTags: pageMetaTags,
 		headLinks: headLinks,
-        menuTitle: "Try Our toolkit",
+        menuTitle: "Tutorials",
         dropDownLinks: dropDownLinks,
         actionLink: actionLink,
         footLinks: footLinks,

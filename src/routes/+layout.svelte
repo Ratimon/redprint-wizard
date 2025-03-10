@@ -22,7 +22,7 @@
     {pathname: '/', title: 'Home', navType: 'tab'},
     ];
 
-    const fallbackMenuTitle: string = 'Blog'
+    const fallbackMenuTitle: string = 'Categories'
 
     const fallbackDropDownLinks : Link[] = [
     {pathname: '/blog/category/announcements', title: 'Announcements', navType: 'tab'},
