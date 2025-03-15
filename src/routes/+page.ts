@@ -24,7 +24,7 @@ export function load() {
         {pathname: '/blog/1-introduce-forge', title: 'redprint-forge 101', navType: 'tab' },
         {pathname: '/blog/2-introduce-wizard', title: 'Wizard 101', navType: 'tab'},
         {pathname: '/blog/6-contract-explainer-bridges', title: 'OP Stack Bridges 101', navType: 'tab'},
-        {pathname: '/blog/7-contract-explainer-proxy', title: 'OPStack Proxies 101', navType: 'tab'},
+        {pathname: '/blog/7-contract-explainer-proxy', title: 'OP Stack Proxies 101', navType: 'tab'},
     ];
     
     const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };

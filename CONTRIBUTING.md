@@ -48,7 +48,16 @@ pnpm run generate_icon
 
 ### Writer's Quick Guide
 
-WIP
+Here is the main directory that you can contribute to the blog posts:
+
+```sh
+├── src
+│   ├── routes                    # Svelte routes
+│   │   ├── blog
+└── static                        # Static files
+    ├── blog
+    └── pwa
+```
 
 ### Publishing
 

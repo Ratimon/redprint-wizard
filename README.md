@@ -55,7 +55,7 @@ Together with [`redprint-forge`](https://github.com/Ratimon/redprint-forge), it 
 │   │       ├── shared
 │   │       ├── smart-contracts
 │   │       └── utils
-│   ├── routes                    # Svelte routes
+│   ├── routes                    # the UIinterface (Svelte routes)
 │   │   ├── 1-governance
 │   │   ├── 2-superchain
 │   │   ├── 3-alt-da

@@ -58,7 +58,7 @@ function validateAddress(address: string) {
         address: 'Not a valid address',
       });
     }
-  }
+}
 
 function addBase(c: DeployBuilder, useFaultProofs: UseFaultProofs, useCustomToken: UseCustomToken, customGasTokenaddress: string) {
     

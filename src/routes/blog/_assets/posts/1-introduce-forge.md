@@ -5,6 +5,7 @@ date: '2023-7-24'
 categories:
   - announcements
   - products
+  - tutorials
 author:
   - 'Rati'
 published: true
