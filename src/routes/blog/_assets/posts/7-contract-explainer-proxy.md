@@ -39,8 +39,8 @@ This is important in context of L2 development stack, because the L2 acts as an 
 When looking at the OP Stack codebase, including [L1 's contracts](https://redprint.ninja/2-superchain) and [L2 's contracts](https://redprint.ninja/4-opchain-proxies), there are 3 types of proxy implementations as follows:
 
 1. [`Proxy.sol`](https://github.com/ethereum-optimism/optimism/blob/v1.11.2/packages/contracts-bedrock/src/universal/Proxy.sol)
-2. [`L1ChugSplashProxy`](https://github.com/ethereum-optimism/optimism/blob/v1.11.2/packages/contracts-bedrock/src/legacy/L1ChugSplashProxy.sol)
-3. [`ResolvedDelegateProxy`](https://github.com/ethereum-optimism/optimism/blob/v1.11.2/packages/contracts-bedrock/src/legacy/ResolvedDelegateProxy.sol)
+2. [`L1ChugSplashProxy.sol`](https://github.com/ethereum-optimism/optimism/blob/v1.11.2/packages/contracts-bedrock/src/legacy/L1ChugSplashProxy.sol)
+3. [`ResolvedDelegateProxy.sol`](https://github.com/ethereum-optimism/optimism/blob/v1.11.2/packages/contracts-bedrock/src/legacy/ResolvedDelegateProxy.sol)
 
 These different types of proxies are different variations of **Transparent Upgradeable Proxy Contract**. Essentially, it allows upgrades while preventing **function selector clashes**.
 

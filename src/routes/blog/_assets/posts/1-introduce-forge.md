@@ -120,7 +120,7 @@ This could, together with **Type-Safe Deployment** feature, also improve overall
 
 Find the example of using **redprint-forge** in [Redprint Wizard](http://redprint.ninja/) and the source code at [github repo](https://github.com/Ratimon/redprint-forge) and let us know what you think!!
 
-[👉🏻  🛠️ Installation Guide 🛠️](https://github.com/Ratimon/superfuse-forge?tab=readme-ov-file#quickstart)
+[👉🏻  🛠️ Detailed Installation Guide 🛠️](https://github.com/Ratimon/superfuse-forge?tab=readme-ov-file#quickstart)
 
 ## Acknowledgement
 

@@ -58,7 +58,7 @@
 
       <div class="flex flex-row gap-x-12 justify-center">
         <TestimonialsAvatars
-          userNumber={54}
+          userNumber={55}
          />
           <ScrollLink
             class='btn btn-secondary btn-wide'

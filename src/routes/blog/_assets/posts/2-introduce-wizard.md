@@ -43,7 +43,7 @@ This is just one example. There are many other interesting customizable contract
 
 let us know what you dream, tinker, and push the boundaries of what's possible by composing your own different OPStack components together!
 
-[👉🏻  🛠️ Installation Guide 🛠️](https://github.com/Ratimon/redprint-wizard?tab=readme-ov-file#installation)
+[👉🏻  🛠️ Detailed Installation Guide 🛠️](https://github.com/Ratimon/redprint-wizard?tab=readme-ov-file#installation)
 
 ## Acknowledgement
 

@@ -1,6 +1,8 @@
 import type { PostData } from './Blog.model'
 import type {Link } from '$lib/model/Link';
 
+export const ssr = true;
+
 export async function load({ fetch }) {
 	const response = await fetch('/blog/api/posts')
 	const posts: PostData[] = await response.json()
