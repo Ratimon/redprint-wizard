@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {FeatureListItem } from '$lib/model/Feature';
+    import type { FeatureListItem } from '$lib/model/Feature';
 
     import CopyBlock from '$lib/ui/components/CopyBlock.svelte';
     import Background from '$lib/ui/background/Background.svelte';
@@ -97,7 +97,7 @@
                 </div>
         
                 <div class="pt-0.5 pb-4 justify-center">
-                    <h3 class="m-2 text-accent font-medium text-sm font-mono mb-3">Original: we have:</h3>
+                    <h3 class="text-accent font-medium text-sm font-mono mb-3">Original: we have:</h3>
                     <CopyBlock
                       boxClass="p-2 rounded-box font-black text-primary max-w-full mx-auto text-center"
                       class="mb-5"
@@ -109,7 +109,7 @@
                 </div>
 
                <div class="pt-0.5 pb-4 justify-center">
-                    <h3 class="m-2 text-accent font-medium text-sm font-mono mb-3">Then: it can be broken into modular components::</h3>
+                    <h3 class="text-accent font-medium text-sm font-mono mb-3">Then: it can be broken into modular components::</h3>
                     <CopyBlock
                         boxClass="p-2 rounded-box font-black text-primary max-w-full mx-auto text-center"
                         class="mb-5"
@@ -199,7 +199,4 @@
         </Background>
     </div>
 
-
 </section>
-
-<!-- {/if} -->

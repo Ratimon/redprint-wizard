@@ -34,7 +34,7 @@ export function load() {
         {pathname: '/2-superchain/#2.3B', title: '2.3B : ProtocolVersions', navType: 'scroll'},
     ];
 
-    const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
+    const actionLink : Link = {pathname: '/blog', title: 'Blog', navType: 'tab' };
 
     const footLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},

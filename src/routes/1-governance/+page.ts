@@ -27,7 +27,7 @@ export function load() {
         {pathname: '/1-governance/#1.1', title: '1.1 : Governance', navType: 'scroll'},
     ];
 
-    const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
+    const actionLink : Link = {pathname: '/blog', title: 'Blog', navType: 'tab' };
 
     const footLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},

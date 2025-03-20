@@ -27,7 +27,7 @@ export function load() {
         {pathname: '/blog/7-contract-explainer-proxy', title: 'OP Stack Proxies 101', navType: 'tab'},
     ];
     
-    const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
+    const actionLink : Link = {pathname: '/blog', title: 'Blog', navType: 'tab' };
 
     const footLinks : Link[] = [
         {pathname: '#solution', title: 'Features', navType: 'scroll'},

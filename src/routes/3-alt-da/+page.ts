@@ -30,7 +30,7 @@ export function load() {
         {pathname: '/3-alt-da/#3.1B', title: '3.1B : DataAvailabilityChallenge', navType: 'scroll'},
     ];
 
-    const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
+    const actionLink : Link = {pathname: '/blog', title: 'Blog', navType: 'tab' };
     
     const footLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},

@@ -99,82 +99,86 @@
     >
 </MetaTags>
 
-<Background color='bg-base-200'>    
-    <!-- to do : see edge case -->
-    {#if $page.data.headLinks && $page.data.actionLink }
-        <Header links={$page.data.headLinks} menuTitle={$page.data.menuTitle} dropDownLinks={$page.data.dropDownLinks} actionLink={$page.data.actionLink} ></Header>
-    {:else}
-        <Header links={fallbackHeadLinks} menuTitle={fallbackMenuTitle} dropDownLinks={fallbackDropDownLinks} actionLink={fallbackHeadLinks[0]} ></Header>
-    {/if}
-</Background>
+<section class="min-h-screen">
+    <main>
+        <Background color='bg-base-200'>    
+            <!-- to do : see edge case -->
+            {#if $page.data.headLinks && $page.data.actionLink }
+                <Header links={$page.data.headLinks} menuTitle={$page.data.menuTitle} dropDownLinks={$page.data.dropDownLinks} actionLink={$page.data.actionLink} ></Header>
+            {:else}
+                <Header links={fallbackHeadLinks} menuTitle={fallbackMenuTitle} dropDownLinks={fallbackDropDownLinks} actionLink={fallbackHeadLinks[0]} ></Header>
+            {/if}
+        </Background>
+        
+        <Advertisement1
+            landingTitle="Superfuse Wizard"
+            landingSubtitle="an interactive code generator for superchain interoperability."
+            landingAction="Build your own cross-chain contracts!!"
+            link="https://superfuse.ninja/"
+        />
+        
+        {#if !$page.data.stepsHidden }
+        
+            <nav class="flex justify-center my-4">
+        
+                <ul class="steps">
+                    <a href="/"
+                        data-content="0"
+                        class="step step-primary"
+                    >
+                        Get Started !!
+                    </a>
+                    <a href="/1-governance"
+                        data-content="1"
+                        class="step"
+                        class:step-primary={$page.route.id?.match(/1-governance|2-superchain|3-alt-da|4-opchain-proxies|4-opchain-implementations/g)}
+                    >
+                        Set up Governance Layer
+                    </a>
+                    <a href="/2-superchain"
+                        data-content="2"
+                        class="step"
+                        class:step-primary={$page.route.id?.match(/2-superchain|3-alt-da|4-opchain-proxies|4-opchain-implementations/g)}
+                    > 
+                        Set up L1 Super Chain
+                    </a>
+                    <a href="/3-alt-da"
+                        data-content="3"
+                        class="step"
+                        class:step-primary={$page.route.id?.match(/3-alt-da|4-opchain-proxies|4-opchain-implementations/g)}
+                    >
+                        Set up OpAltDA Chain (Previously Plasmachain)
+                    </a>
+                    <a href="/4-opchain-proxies"
+                        data-content="4.1"
+                        class="step"
+                        class:step-primary={$page.route.id?.match(/4-opchain-proxies|4-opchain-implementations/g)}
+                        >
+                        Set up L2 OP Chain : Proxies
+                    </a>
+                    <a href="/4-opchain-implementations"
+                        data-content="4.2"
+                        class="step"
+                        class:step-primary={$page.route.id?.includes("/4-opchain-implementations")}
+                        >
+                        Set up L2 OP Chain : Implementations & Fault Proofs
+                    </a>
+                </ul>
+        
+            </nav>
+        {/if}
+        
+        <slot />
+        
+        <Background color='bg-base-200'>
+            {#if $page.data.footLinks}
+                <Footer links={$page.data.footLinks}></Footer>
+            {:else}
+                <Footer links={fallbackFootLinks}></Footer>
+            {/if}
+        </Background>        
+    </main>
+</section>
 
-<Advertisement1
-    landingTitle="Superfuse Wizard"
-    landingSubtitle="an interactive code generator for superchain interoperability."
-    landingAction="Build your own cross-chain contracts!!"
-    link="https://superfuse.ninja/"
-/>
-
-
-{#if !$page.data.stepsHidden }
-
-    <nav class="flex justify-center my-4">
-
-        <ul class="steps">
-            <a href="/"
-                data-content="0"
-                class="step step-primary"
-            >
-                Get Started !!
-            </a>
-            <a href="/1-governance"
-                data-content="1"
-                class="step"
-                class:step-primary={$page.route.id?.match(/1-governance|2-superchain|3-alt-da|4-opchain-proxies|4-opchain-implementations/g)}
-            >
-                Set up Governance Layer
-            </a>
-            <a href="/2-superchain"
-                data-content="2"
-                class="step"
-                class:step-primary={$page.route.id?.match(/2-superchain|3-alt-da|4-opchain-proxies|4-opchain-implementations/g)}
-            > 
-                Set up L1 Super Chain
-            </a>
-            <a href="/3-alt-da"
-                data-content="3"
-                class="step"
-                class:step-primary={$page.route.id?.match(/3-alt-da|4-opchain-proxies|4-opchain-implementations/g)}
-            >
-                Set up OpAltDA Chain (Previously Plasmachain)
-            </a>
-            <a href="/4-opchain-proxies"
-                data-content="4.1"
-                class="step"
-                class:step-primary={$page.route.id?.match(/4-opchain-proxies|4-opchain-implementations/g)}
-                >
-                Set up L2 OP Chain : Proxies
-            </a>
-            <a href="/4-opchain-implementations"
-                data-content="4.2"
-                class="step"
-                class:step-primary={$page.route.id?.includes("/4-opchain-implementations")}
-                >
-                Set up L2 OP Chain : Implementations & Fault Proofs
-            </a>
-        </ul>
-
-    </nav>
-{/if}
-
-<slot />
-
-<Background color='bg-base-200'>
-    {#if $page.data.footLinks}
-        <Footer links={$page.data.footLinks}></Footer>
-    {:else}
-        <Footer links={fallbackFootLinks}></Footer>
-    {/if}
-</Background>
 
 <GaAnalytics {MEASUREMENT_ID} />

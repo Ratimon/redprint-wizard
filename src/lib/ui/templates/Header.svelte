@@ -22,7 +22,6 @@
 
   export let actionLink :Link;
 
-
   let isOpen: boolean = false;
   const setIsOpen = (open : boolean) :void => {
       isOpen = open;
@@ -32,9 +31,9 @@
 
 <Background color={className}>
   <header>
-    <nav class="container flex items-center justify-between px-8 py-4 mx-8" aria-label="Global" >
+    <nav class="flex items-center justify-between px-8 py-4 mx-8" aria-label="Global" >
   
-      <div class="flex lg:flex-1">
+      <div class="flex lg:flex">
         <a class="flex items-center gap-2 shrink-0"
           href="/"
           title={`${appName} homepage`}
@@ -68,7 +67,7 @@
       </div>
   
       <!-- CTA / Launch / Lead on big screens  -->
-      <div class="hidden justify-end lg:flex lg:justify-end lg:flex-1">
+      <div class="items-center space-x-2 pointer-events-auto border-gray-500 lg:flex lg:justify-end lg:flex-nowrap">
         <a href={actionLink.pathname}>
           <ButtonGradient title={actionLink.title} />
         </a>

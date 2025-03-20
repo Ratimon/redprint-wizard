@@ -145,7 +145,10 @@ export function isPrivateWindow(): Promise<boolean | null> {
 						resolve(true);
 					}
 					// eslint-disable-next-line no-unused-expressions, no-void
-					void !e && ((e = !1), window.localStorage.removeItem('test'));
+					if (!e) {
+						e = false;
+						window.localStorage.removeItem('test');
+					}
 				}
 			} else if (navigator.userAgent.includes('Firefox')) {
 				// Firefox

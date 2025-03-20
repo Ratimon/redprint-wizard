@@ -16,6 +16,12 @@ Please make a pull request to [Dev Branch](https://github.com/Ratimon/redprint-w
 Scaffolding:
 
 ```bash
+forge init <projectname>
+git rm lib/forge-std
+nvm use v20.13.1
+```
+
+```bash
 pnpm init
 pnpm create svelte@latest
 nvm use v20.13.1

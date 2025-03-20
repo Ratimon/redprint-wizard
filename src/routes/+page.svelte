@@ -2,7 +2,7 @@
     import type {FeatureGridItem } from '$lib/model/Feature';
 
     import Hero from '$lib/ui/templates/Hero.svelte';
-    import Problem from '$lib/ui/components/Problem.svelte';
+    import Problem from '$lib/ui/templates/Problem.svelte';
     import FeaturesListicle from '$lib/ui/templates/FeaturesListicle.svelte';
 
     import  WallOfLove from "$lib/ui/templates/WallOfLove.svelte";

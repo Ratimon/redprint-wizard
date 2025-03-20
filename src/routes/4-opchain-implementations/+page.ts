@@ -42,7 +42,7 @@ export function load() {
         {pathname: '/4-opchain-implementations/#4.2O', title: '4.2O', navType: 'scroll'},
     ];
 
-    const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
+    const actionLink : Link = {pathname: '/blog', title: 'Blog', navType: 'tab' };
 
     const footLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},

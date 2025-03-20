@@ -40,7 +40,7 @@ export function load() {
         {pathname: '/4-opchain-proxies/#4.1L', title: '4.1L', navType: 'scroll'},
     ];
 
-    const actionLink : Link = {pathname: '/blog', title: 'Read Our Blog', navType: 'tab' };
+    const actionLink : Link = {pathname: '/blog', title: 'Blog', navType: 'tab' };
 
     const footLinks : Link[] = [
         {pathname: '/', title: 'Home', navType: 'tab'},
