@@ -22,7 +22,7 @@ Here is the sources of truth of all past impacts:
 
 ### 1. **Offline Event 2024**
 
-- `Report for Offline Event 2024` [page](hhttps://redprint.ninja/blog/5-2024-offline)
+- `Report for Offline Event 2024` [page](https://redprint.ninja/blog/5-2024-offline)
 
 
 ### 2. **Annual Report 2024: @31 Dec 2024**
