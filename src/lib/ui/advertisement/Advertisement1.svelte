@@ -1,16 +1,18 @@
 <script lang="ts">
-    import TestimonialsAvatars from "$lib/ui/testimonials/TestimonialsAvatars.svelte";
+  import Background from "$lib/ui/background/Background.svelte";
+  import TestimonialsAvatars from "$lib/ui/testimonials/TestimonialsAvatars.svelte";
 
-    export let landingTitle: string = "Superfuse Wizard";
-    export let landingSubtitle: string = "an interactive code generator for superchain interoperability.";
-    export let landingAction: string = "Build your own cross-chain contracts!!";
-    export let link: string = "https://superfuse.ninja/";
+  export let landingTitle: string = "Superfuse Wizard";
+  export let landingSubtitle: string = "an interactive code generator for superchain interoperability.";
+  export let landingAction: string = "Build your own cross-chain contracts!!";
+  export let link: string = "https://superfuse.ninja/";
 
-    export let userNumber: number = 20;
+  export let userNumber: number = 20;
 
 </script>
-  
-<div class="container flex flex-col gap-4 p-4 m-8">
+
+<Background color="bg-gray-100">
+  <div class="flex flex-col gap-4 p-4 m-8">
     <div class="flex flex-col md:flex-row gap-x-6 justify-center items-center">
 
       <h2 class="font-semibold text-xl lg:text-2xl text-base-300 tracking-tight md:-mb-4">
@@ -26,13 +28,5 @@
 
       <TestimonialsAvatars {userNumber} />
     </div>
-</div>
-
-<style lang="postcss">
-  .container {
-      background-color: var(--gray-1);
-      border: 1px solid var(--gray-2);
-      border-radius: 10px;
-      min-width: 16rem;
-  }
-</style>
+  </div>
+</Background>

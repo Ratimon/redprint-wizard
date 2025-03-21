@@ -40,7 +40,7 @@
     </a>
   </div>
   
-  <Background color="bg-white">
+  <Background color="bg-base-400">
     <div class="p-6 rounded-xl">
       <svg
         xmlns="http://www.w3.org/2000/svg"

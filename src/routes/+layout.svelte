@@ -119,9 +119,9 @@
         
         {#if !$page.data.stepsHidden }
         
-            <nav class="flex justify-center my-4">
+            <nav class="flex justify-center my-2 overflow-y-auto lg:overflow-x-auto">
         
-                <ul class="steps">
+                <ul class="steps steps-vertical lg:steps-horizontal">
                     <a href="/"
                         data-content="0"
                         class="step step-primary"

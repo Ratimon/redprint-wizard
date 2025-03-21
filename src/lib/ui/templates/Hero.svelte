@@ -53,16 +53,16 @@
         Opsec management". 
       </p> 
 
-      <div class="flex flex-row gap-x-12 justify-center">
+      <div class="flex flex-col md:flex-row gap-x-12 items-center justify-center">
         <TestimonialsAvatars
           userNumber={55}
          />
-          <ScrollLink
-            class='btn btn-secondary btn-xl'
-            href="#testimonial"
-          >
-          Check out full testimonials!!
-          </ScrollLink>
+        <ScrollLink
+          class='btn btn-secondary btn-xl'
+          href="#testimonial"
+        >
+        Check out full testimonials!!
+        </ScrollLink>
       </div>
 
 
