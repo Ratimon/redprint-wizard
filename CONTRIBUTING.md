@@ -7,6 +7,7 @@ Please make a pull request to [Dev Branch](https://github.com/Ratimon/redprint-w
 - Port to Svelte 5
 - Port to Dailsy UI 5
 - Abstrat Icon Component
+- SEO by changing p tag to h1
 
 ### Developer's Quick Guide
 

@@ -285,8 +285,6 @@ L1_RPC_URL=http://localhost:8545
     </a>
   </p>
 
-  
-
   <h2 class="m-4 font-semibold">
     Add the <a class="bg-primary underline" href="https://github.com/Ratimon/redprint-forge" target="_blank" rel="noreferrer">redprint-forge</a> using your favorite package manager, e.g., with pnpm:
   </h2>

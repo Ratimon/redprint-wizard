@@ -112,7 +112,7 @@ interface IL1ChugSplashProxy {
 
 ### 3. `ResolvedDelegateProxy`
 
-While, **ResolvedDelegateProxy(())** contails no public functions except the fallback. So,the risk of a selector clash collision is eliminated. It is noted that this contractis a legacy proxy that uses [AddressManager](https://github.com/ethereum-optimism/optimism/blob/v1.11.2/packages/contracts-bedrock/src/legacy/AddressManager.sol) to determine the implementation address. It is retained for backward compatibility to manage existing legacy proxies as needed.
+While, **ResolvedDelegateProxy()** contails no public functions except the fallback. So,the risk of a selector clash collision is eliminated. It is noted that this contractis a legacy proxy that uses [AddressManager](https://github.com/ethereum-optimism/optimism/blob/v1.11.2/packages/contracts-bedrock/src/legacy/AddressManager.sol) to determine the implementation address. It is retained for backward compatibility to manage existing legacy proxies as needed.
 
 
 ## Final Thoughts

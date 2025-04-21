@@ -29,7 +29,8 @@ export function buildDeployStepFourPointTwoAllSub(opts: SharedStepFourPointTwoAl
   
   addBase(c);
   const fn : BaseFunction = functions.run;
-  c.addFunctionCode(`deployerProcedue = getDeployer();
+  c.addFunctionCode(`
+        deployerProcedue = getDeployer();
         deployerProcedue.setAutoSave(true);`, fn);
   
   setOpProxiesDeployment(c, fn);

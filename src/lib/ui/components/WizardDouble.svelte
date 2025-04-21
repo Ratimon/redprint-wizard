@@ -200,7 +200,7 @@
   </div>
 
   <div class="flex flex-row gap-4 grow">
-      <slot name="control" />
+    <slot name="control" />
 
     <div class="output flex flex-col grow overflow-auto h-[calc(120vh-40px)]">
       <div class="badge badge-primary badge-outline badge-lg">
